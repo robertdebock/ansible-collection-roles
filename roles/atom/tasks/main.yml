@@ -1,0 +1,61 @@
+---
+# tasks file for atom
+
+- name: include assert.yml
+  import_tasks: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+- name: install requirements
+  ansible.builtin.package:
+    name: "{{ atom_requirements }}"
+    state: present
+  when:
+    - atom_requirements is defined
+    - ansible_pkg_mgr == "apt"
+
+- name: download atom
+  ansible.builtin.get_url:
+    url: "{{ atom_package_url }}"
+    dest: "/tmp/{{ atom_package }}"
+    checksum: "{{ atom_checksum }}"
+    validate_certs: no
+  when:
+    - ansible_pkg_mgr in [ "apt", "dnf", "yum", "zypper" ]
+
+- name: install atom deb
+  ansible.builtin.apt:
+    deb: "/tmp/{{ atom_package }}"
+    state: present
+  when:
+    - ansible_pkg_mgr == "apt"
+
+- name: install atom rpm dnf
+  ansible.builtin.dnf:
+    name: "/tmp/{{ atom_package }}"
+    state: present
+    disable_gpg_check: yes
+  when:
+    - ansible_pkg_mgr == "dnf"
+
+- name: install atom rpm yum
+  ansible.builtin.yum:
+    name: "/tmp/{{ atom_package }}"
+    state: present
+    disable_gpg_check: yes
+  when:
+    - ansible_pkg_mgr == "yum"
+
+- name: install atom rpm zypper
+  community.general.zypper:
+    name: "/tmp/{{ atom_package }}"
+    state: present
+    disable_gpg_check: yes
+  when:
+    - ansible_pkg_mgr == "zypper"
+
+- name: install apm packages
+  ansible.builtin.command: apm install {{ item }}
+  args:
+    creates: /root/.atom/packages/linter
+  loop: "{{ atom_apm_packages }}"

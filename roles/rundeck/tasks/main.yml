@@ -1,0 +1,100 @@
+---
+# tasks file for rundeck
+
+- name: include assert.yml
+  import_tasks: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+- name: create rundeck directories
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    mode: "0755"
+  loop:
+    - "{{ rundeck_rdeckbase }}"
+    - "{{ rundeck_rdeckbase }}/etc"
+    - "{{ rundeck_rdeckbase }}"
+
+- name: download rundeck
+  ansible.builtin.get_url:
+    url: "{{ rundeck_download_url }}"
+    dest: "{{ rundeck_rdeckbase }}/rundeck-{{ rundeck_version }}-{{ rundeck_release_date }}.war"
+
+- name: unpack rundeck
+  ansible.builtin.command: "java -jar {{ rundeck_war }} --installonly"
+  args:
+    chdir: "{{ rundeck_rdeckbase }}"
+    creates: "{{ rundeck_rdeckbase }}/server"
+
+- name: create rundeck service
+  ansible.builtin.import_role:
+    name: robertdebock.service
+  vars:
+    service_list:
+      - name: rundeck
+        description: Rundeck
+        start_command: /usr/bin/java -Xmx{{ rundeck_xmx }}m -jar rundeck-{{ rundeck_version }}-{{ rundeck_release_date }}.war
+        working_directory: "{{ rundeck_rdeckbase }}"
+
+- name: configure rundeck properties
+  ansible.builtin.lineinfile:
+    dest: "{{ rundeck_rdeckbase }}/server/config/rundeck-config.properties"
+    line: "{{ item.parameter }} = {{ item.value }}"
+    regexp: "^{{ item.parameter }}"
+    create: yes
+    mode: "0644"
+  notify:
+    - restart rundeck
+  loop: "{{ rundeck_config }}"
+  loop_control:
+    label: "{{ item.parameter }}"
+
+- name: configure rundeck framework
+  ansible.builtin.lineinfile:
+    dest: "{{ rundeck_rdeckbase }}/etc/framework.properties"
+    line: "{{ item.parameter }} = {{ item.value }}"
+    regexp: "^{{ item.parameter }}"
+    create: yes
+    mode: "0644"
+  notify:
+    - restart rundeck
+  loop: "{{ rundeck_framework }}"
+  loop_control:
+    label: "{{ item.parameter }}"
+
+- name: configure rundeck policy
+  ansible.builtin.template:
+    src: admin.aclpolicy.j2
+    dest: "{{ rundeck_rdeckbase }}/etc/admin.aclpolicy"
+    mode: "0644"
+  notify:
+    - restart rundeck
+
+- name: configure rundeck default users
+  ansible.builtin.template:
+    src: realm.properties.j2
+    dest: "{{ rundeck_rdeckbase }}/server/config/realm.properties"
+    mode: "0644"
+  notify:
+    - restart rundeck
+
+- name: create /opt/rundeck/libext
+  ansible.builtin.file:
+    path: /opt/rundeck/libext
+    state: directory
+    mode: "0755"
+
+- name: install plugins
+  ansible.builtin.get_url:
+    url: "{{ item }}"
+    dest: /opt/rundeck/libext
+  loop: "{{ rundeck_plugins }}"
+  when:
+    - rundeck_plugins is defined
+
+- name: start rundeck
+  ansible.builtin.service:
+    name: rundeck
+    state: started
+    enabled: yes

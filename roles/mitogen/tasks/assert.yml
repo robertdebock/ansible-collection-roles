@@ -1,0 +1,8 @@
+---
+
+- name: test if mitogen_ansible_file is set correctly
+  ansible.builtin.assert:
+    that:
+      - mitogen_ansible_file is defined
+      - mitogen_ansible_file is string
+    quiet: yes

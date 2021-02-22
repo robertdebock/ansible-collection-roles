@@ -1,0 +1,18 @@
+---
+# handlers file for php_fpm
+
+- name: restart php-fpm
+  ansible.builtin.service:
+    name: "{{ php_fpm_service }}"
+    state: restarted
+  when:
+    - not ansible_check_mode | bool
+
+- name: create selinux mod for php_fpm
+  ansible.builtin.command: checkmodule -M -m -o /etc/my-php-fpm.mod /etc/my-php-fpm.te
+
+- name: create selinux pp for php_fpm
+  ansible.builtin.command: semodule_package -o /etc/my-php-fpm.pp -m /etc/my-php-fpm.mod
+
+- name: load selinux pp for php_fpm
+  ansible.builtin.command: semodule -i /etc/my-php-fpm.pp

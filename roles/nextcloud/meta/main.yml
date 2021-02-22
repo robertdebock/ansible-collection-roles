@@ -1,0 +1,31 @@
+---
+galaxy_info:
+  author: Robert de Bock
+  role_name: nextcloud
+  description: Install and configure Nextcloud on your system.
+  license: Apache-2.0
+  company: none
+  min_ansible_version: "2.10"
+
+  platforms:
+    - name: Debian
+      versions:
+        - buster
+    - name: EL
+      versions:
+        - 8
+    - name: Fedora
+      versions:
+        - 33
+    - name: OpenSUSE
+      versions:
+        - all
+    - name: Ubuntu
+      versions:
+        - focal
+        - bionic
+
+  galaxy_tags:
+    - nextcloud
+
+dependencies: []

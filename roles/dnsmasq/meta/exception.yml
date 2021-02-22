@@ -1,0 +1,6 @@
+---
+exceptions:
+  - variation: centos:7
+    reason: "The file trust-anchors.conf is not available."
+  - variation: suse
+    reason: "Unable to start service dnsmasq: Job for dnsmasq.service failed because the control process exited with error code"

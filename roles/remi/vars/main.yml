@@ -1,0 +1,31 @@
+---
+# vars file for remi
+_remi_repository:
+  Fedora: "https://rpms.remirepo.net/fedora/remi-release-{{ ansible_distribution_major_version | int }}.rpm"
+  CentOS: "https://rpms.remirepo.net/enterprise/remi-release-{{ ansible_distribution_major_version | int }}.rpm"
+
+remi_repository: "{{ _remi_repository[ansible_distribution] }}"
+
+_remi_argument:
+  dnf:
+    php54: php:remi-5.4
+    php70: php:remi-7.0
+    php71: php:remi-7.1
+    php72: php:remi-7.2
+    php73: php:remi-7.3
+    php74: php:remi-7.4
+  yum:
+    php54: remi-php54
+    php70: remi-php70
+    php71: remi-php71
+    php72: remi-php72
+    php73: remi-php73
+    php74: remi-php74
+
+remi_argument: "{{ _remi_argument[ansible_pkg_mgr][remi_repository_selection] }}"
+
+_remi_enable_repository_command:
+  default: dnf --assumeyes module install {{ remi_argument }}
+  CentOS-7: yum-config-manager --enable {{ remi_argument }}
+
+remi_enable_repository_command: "{{ _remi_enable_repository_command[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_remi_enable_repository_command['default']) }}"

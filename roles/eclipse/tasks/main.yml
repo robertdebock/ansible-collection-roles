@@ -1,0 +1,30 @@
+---
+# tasks file for eclipse
+
+- name: include assert.yml
+  import_tasks: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+- name: unarchive eclipse
+  ansible.builtin.unarchive:
+    src: "{{ eclipse_archive }}"
+    dest: "{{ eclipse_install_path }}"
+    remote_src: yes
+    creates: "{{ eclipse_install_path }}/eclipse"
+    mode: "0755"
+
+- name: link eclipse to /usr/bin/eclipse
+  ansible.builtin.file:
+    src: "{{ eclipse_install_path }}/eclipse/eclipse"
+    dest: /usr/bin/eclipse
+    state: link
+    mode: "0755"
+
+- name: install plugins
+  ansible.builtin.command: "{{ eclipse_plugin_install_command }} {{ item.name }}"
+  args:
+    creates: "{{ eclipse_install_path }}/eclipse/features/{{ item.name | regex_replace('.feature.group.*') }}*"
+  loop: "{{ eclipse_plugins }}"
+  loop_control:
+    label: "{{ item.name }}"

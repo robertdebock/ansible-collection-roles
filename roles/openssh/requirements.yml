@@ -1,0 +1,6 @@
+---
+roles:
+  - name: robertdebock.bootstrap
+  - name: robertdebock.selinux
+collections:
+  - name: community.general

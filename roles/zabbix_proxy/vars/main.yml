@@ -1,0 +1,4 @@
+---
+# vars file for zabbix_proxy
+
+zabbix_proxy_package: zabbix-proxy-mysql

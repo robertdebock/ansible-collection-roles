@@ -1,0 +1,4 @@
+---
+exceptions:
+  - variation: amazonlinux:1
+    reason: "Service is not idempotent"

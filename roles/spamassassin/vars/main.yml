@@ -1,0 +1,12 @@
+---
+# vars file for spamassassin
+
+spamassassin_packages:
+  - spamassassin
+
+_spamassassin_service:
+  default: spamassassin
+  Alpine: spamd
+  Suse: spamd
+
+spamassassin_service: "{{ _spamassassin_service[ansible_os_family] | default(_spamassassin_service['default']) }}"

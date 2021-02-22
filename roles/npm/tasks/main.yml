@@ -1,0 +1,50 @@
+---
+# tasks file for npm
+
+- name: include assert.yml
+  import_tasks: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+- name: configure debian
+  block:
+    - name: install nodejs key
+      ansible.builtin.apt_key:
+        url: "{{ npm_apt_key }}"
+        state: present
+        validate_certs: "{{ npm_validate_certs }}"
+
+    - name: install nodejs deb repository
+      ansible.builtin.apt_repository:
+        repo: "{{ item }}"
+        state: present
+      loop: "{{ npm_apt_repositories }}"
+  when:
+    - ansible_distribution == "Debian"
+
+- name: install nodejs rpm repository
+  ansible.builtin.yum_repository:
+    name: "{{ item.name }}"
+    state: present
+    description: "{{ item.description }}"
+    baseurl: "{{ item.baseurl }}"
+    gpgkey: "{{ npm_gpg_key }}"
+  loop: "{{ npm_yum_repositories }}"
+  when:
+    - ansible_distribution == "CentOS"
+    - ansible_distribution_major_version == "6"
+  loop_control:
+    label: "{{ item.name }}"
+
+- name: install npm
+  ansible.builtin.package:
+    name: "{{ npm_packages }}"
+    state: present
+
+- name: set the registry
+  ansible.builtin.lineinfile:
+    path: /usr/etc/npmrc
+    regexp: "^registry="
+    line: "registry={{ npm_registry }}"
+    create: yes
+    mode: "0644"

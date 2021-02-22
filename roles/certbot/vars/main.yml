@@ -1,0 +1,47 @@
+---
+# vars file for certbot
+certbot_package:
+  - certbot
+
+_certbot_packages:
+  apache:
+    default:
+      - python3-certbot-apache
+    Alpine:
+      - certbot-apache
+    RedHat-7:
+      - python2-certbot-apache
+  haproxy:
+    default: []
+  nginx:
+    default:
+      - python3-certbot-nginx
+    Alpine:
+      - certbot-nginx
+    RedHat-7:
+      - python2-certbot-nginx
+
+certbot_packages: "{{ _certbot_packages[certbot_system][ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_certbot_packages[certbot_system][ansible_os_family] | default(_certbot_packages[certbot_system]['default'])) + certbot_package }}"
+
+_certbot_system_to_restart:
+  apache:
+    default: httpd
+    Alpine: apache2
+    Debian: apache2
+    Suse: apache2
+    RedHat: httpd
+  nginx:
+    default: nginx
+  haproxy:
+    default: haproxy
+
+certbot_system_to_restart: "{{ _certbot_system_to_restart[certbot_system][ansible_os_family] | default(_certbot_system_to_restart[certbot_system]['default']) }}"
+
+_certbot_sleep_command:
+  default: /usr/bin/sleep
+  Alpine: /bin/sleep
+  Debian: /bin/sleep
+  Ubuntu-16: /bin/sleep
+  Ubuntu-18: /bin/sleep
+
+certbot_sleep_command: "{{ _certbot_sleep_command[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_certbot_sleep_command[ansible_os_family] | default(_certbot_sleep_command['default'])) }}"  # noqa 204 Just long.

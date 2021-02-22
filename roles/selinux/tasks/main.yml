@@ -1,0 +1,35 @@
+---
+# tasks file for selinux
+
+- name: include assert.yml
+  import_tasks: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+- name: install required packages
+  ansible.builtin.package:
+    name: "{{ selinux_requirements }}"
+    state: present
+
+- name: configure selinux
+  block:
+    - name: manage selinux
+      ansible.posix.selinux:
+        state: "{{ selinux_state }}"
+        policy: "{{ selinux_policy }}"
+      notify:
+        - reboot
+
+    - name: manage selinux booleans
+      ansible.posix.seboolean:
+        name: "{{ item.name }}"
+        state: "{{ item.state | default('yes') }}"
+        persistent: "{{ item.persistent }}"
+      loop: "{{ selinux_booleans }}"
+      loop_control:
+        label: "{{ item.name }}"
+      when:
+        - selinux_booleans is defined
+  when:
+    - ansible_selinux.status is defined
+    - ansible_connection != "docker"

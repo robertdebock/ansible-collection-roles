@@ -1,0 +1,32 @@
+{{ ansible_managed | comment }}
+
+# Listen: Allows you to bind Apache to specific IP addresses and/or
+# ports. See also the <VirtualHost> directive.
+#
+# http://httpd.apache.org/docs/2.4/mod/mpm_common.html#listen
+#
+# Change this to Listen on specific IP addresses as shown below to 
+# prevent Apache from glomming onto all bound IP addresses (0.0.0.0)
+#
+# When we also provide SSL we have to listen to the 
+# standard HTTP port (see above) and to the HTTPS port
+#
+# Note: Configurations that use IPv6 but not IPv4-mapped addresses need two
+#       Listen directives: "Listen [::]:443" and "Listen 0.0.0.0:443"
+#
+#Listen 12.34.56.78:80
+#Listen 80
+#Listen 443
+
+Listen {{ httpd_port }}
+
+
+<IfDefine SSL>
+	<IfDefine !NOSSL>
+	<IfModule mod_ssl.c>
+
+		Listen {{ httpd_ssl_port }}
+
+	</IfModule>
+	</IfDefine>
+</IfDefine>

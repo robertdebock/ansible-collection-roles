@@ -1,0 +1,48 @@
+---
+# handlers file for clamav
+
+- name: restart clamav
+  ansible.builtin.service:
+    name: "{{ item }}"
+    state: restarted
+  loop: "{{ clamav_services }}"
+  when:
+    - not ansible_check_mode | bool
+
+- name: ensure logfiles exists
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: touch
+    owner: "{{ clamav_owner }}"
+    group: "{{ clamav_group }}"
+    mode: "0750"
+  loop:
+    - /var/log/clamd.scan
+    - "{{ clamav_freshclam_log_dir }}/freshclam.log"
+
+- name: stop clamav
+  ansible.builtin.service:
+    name: "{{ item }}"
+    state: stopped
+  loop: "{{ clamav_services }}"
+  when:
+    - not ansible_check_mode | bool
+
+- name: update virus definitions
+  ansible.builtin.command: freshclam
+  args:
+    creates: /var/lib/clamav/main.cvd
+  async: 900
+  poll: 0
+  register: updatevirusdefinitions
+  when:
+    - not ansible_check_mode | bool
+
+- name: create selinux mod for clamav
+  ansible.builtin.command: checkmodule -M -m -o /etc/my-clamd.mod /etc/my-clamd.te
+
+- name: create selinux pp for clamav
+  ansible.builtin.command: semodule_package -o /etc/my-clamd.pp -m /etc/my-clamd.mod
+
+- name: load selinux pp for clamav
+  ansible.builtin.command: semodule -i /etc/my-clamd.pp

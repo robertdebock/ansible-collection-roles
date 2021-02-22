@@ -1,0 +1,66 @@
+---
+# tasks file for owncloud
+
+- name: include assert.yml
+  import_tasks: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+- name: install requirements
+  ansible.builtin.package:
+    name: "{{ owncloud_requirements }}"
+    state: present
+
+- name: modify selinux settings
+  ansible.posix.seboolean:
+    name: "{{ item }}"
+    state: yes
+    persistent: yes
+  when:
+    - ansible_selinux.status is defined
+    - ansible_selinux.status == "enabled"
+  loop: "{{ owncloud_sebooleans }}"
+
+- name: install owncloud
+  ansible.builtin.unarchive:
+    src: "{{ owncloud_archive }}"
+    dest: "{{ owncloud_destination }}"
+    remote_src: yes
+    owner: "{{ owncloud_httpd_owner }}"
+    group: "{{ owncloud_httpd_group }}"
+    creates: "{{ owncloud_destination }}/owncloud"
+    mode: "0755"
+  notify:
+    - remove config.php
+
+- name: flush handlers
+  ansible.builtin.meta: flush_handlers
+
+- name: place owncloud.conf
+  ansible.builtin.template:
+    src: owncloud.conf.j2
+    dest: "{{ owncloud_config_directory }}/owncloud.conf"
+    mode: "0644"
+  notify:
+    - restart httpd
+
+- name: configure owncloud
+  ansible.builtin.command: "{{ owncloud_command }}"
+  args:
+    creates: "{{ owncloud_destination }}/owncloud/config/config.php"
+    chdir: "{{ owncloud_destination }}/owncloud"
+  notify:
+    - set owncloud trusted domains
+  no_log: yes
+  become: yes
+  become_user: "{{ owncloud_httpd_owner }}"
+
+- name: set permissions
+  ansible.builtin.file:
+    name: "{{ item.name }}"
+    owner: "{{ item.owner | default(omit) }}"
+    group: "{{ item.group | default(omit) }}"
+    mode: "{{ item.mode | default(omit) }}"
+  loop: "{{ owncloud_permissions }}"
+  loop_control:
+    label: "{{ item.name }}"

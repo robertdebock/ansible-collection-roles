@@ -1,0 +1,66 @@
+---
+
+- name: test if firewall_default_protocol is set correctly
+  ansible.builtin.assert:
+    that:
+      - firewall_default_protocol is defined
+      - firewall_default_protocol is string
+      - firewall_default_protocol in [ "tcp", "udp" ]
+    quiet: yes
+
+- name: test if firewall_default_rule is set correctly
+  ansible.builtin.assert:
+    that:
+      - firewall_default_rule is defined
+      - firewall_default_rule is string
+      - firewall_default_rule in [ "allow", "deny" ]
+    quiet: yes
+
+- name: test if firewall_services is set correctly
+  ansible.builtin.assert:
+    that:
+      - firewall_services is iterable
+    quiet: yes
+  when:
+    - firewall_services is defined
+
+- name: test if non-numeric item in firewall_services is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.name is defined
+      - item.name is string
+    quiet: yes
+  loop: "{{ firewall_services }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - firewall_services is defined
+    - item.name is not number
+
+- name: test if numeric item in firewall_services is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.name is defined
+      - item.name is number
+      - item.name > 0
+      - item.name < 65536
+    quiet: yes
+  loop: "{{ firewall_services }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - firewall_services is defined
+    - item.name is number
+
+- name: test if item with state in firewall_services is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.state is string
+      - item.state in [ "absent", "present" ]
+    quiet: yes
+  loop: "{{ firewall_services }}"
+  loop_control:
+    label: "{{ item.state | default('unset') }}"
+  when:
+    - firewall_services is defined
+    - item.state is defined

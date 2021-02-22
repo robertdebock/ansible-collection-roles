@@ -1,0 +1,10 @@
+---
+exceptions:
+  - variation: alpine
+    reason: Not idempotent on starting the service.
+  - variation: ubuntu
+    reason: Your npm version "3.5.2" is too old. npm 3.10.x or higher is required.
+  - variation: amazonlinux
+    reason: "Failed to set execute bit on remote files"
+  - variation: debian:testing
+    reason: "The repository 'https://deb.nodesource.com/node_10.x bullseye Release' does not have a Release file."

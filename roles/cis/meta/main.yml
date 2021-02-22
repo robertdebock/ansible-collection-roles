@@ -1,0 +1,22 @@
+---
+galaxy_info:
+  author: Robert de Bock
+  role_name: cis
+  description: Apply and/or check recommendations from the CIS benchmarks.
+  license: Apache-2.0
+  company: none
+  min_ansible_version: "2.10"
+
+  platforms:
+    - name: EL
+      versions:
+        - 8
+    - name: Ubuntu
+      versions:
+        - focal
+
+  galaxy_tags:
+    - cis
+    - security
+
+dependencies: []

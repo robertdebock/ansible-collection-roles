@@ -1,0 +1,56 @@
+---
+# tasks file for ca
+
+- name: include assert.yml
+  import_tasks: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+- name: create root ca
+  block:
+    - name: set path for root CA
+      ansible.builtin.set_fact:
+        ca_path: "{{ ca_openssl_path }}/{{ ca_common_name }}/rootCA"
+        ca_filename: rootCA
+
+    - name: init root CA
+      ansible.builtin.include_tasks: init_ca.yml
+  when:
+    - ca_init | bool
+    - ca_own_root | bool
+
+- name: set path for CA
+  ansible.builtin.set_fact:
+    ca_path: "{{ ca_openssl_path }}/{{ ca_common_name }}"
+    ca_filename: ca
+
+- name: create ca
+  block:
+    - name: init CA
+      ansible.builtin.include_tasks: init_ca.yml
+
+    - name: generate ca certificates
+      ansible.builtin.include_tasks: generate_ca_certs.yml
+      when:
+        - ca_own_root | bool
+  when:
+    - ca_init | bool
+
+- name: ensure publication location exists
+  ansible.builtin.file:
+    path: "{{ ca_publication_location }}"
+    state: directory
+    mode: "755"
+    owner: root
+    group: root
+  when:
+    - ca_publication_location is defined
+
+- name: handle requests
+  ansible.builtin.include_tasks: requests.yml
+  loop: "{{ ca_requests }}"
+  loop_control:
+    loop_var: request
+    label: "{{ request.name | default(request) }}"
+  when:
+    - ca_requests is defined

@@ -1,0 +1,7 @@
+---
+# vars file for earlyoom
+
+earlyoom_requirements:
+  - git
+
+earlyoom_service: earlyoom

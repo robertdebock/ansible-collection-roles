@@ -1,0 +1,22 @@
+---
+
+- name: test if go_version is set correctly
+  ansible.builtin.assert:
+    that:
+      - go_version is defined
+      - go_version is string
+    quiet: yes
+
+- name: test if go_destination is set correctly
+  ansible.builtin.assert:
+    that:
+      - go_destination is defined
+      - go_destination is string
+    quiet: yes
+
+- name: test if go_path is set correctly
+  ansible.builtin.assert:
+    that:
+      - go_path is defined
+      - go_path is string
+    quiet: yes

@@ -1,0 +1,38 @@
+---
+
+# apt_repositories:
+#   - repo: ppa:rabbitvcs/ppa
+#   - repo: ppa:something/ppa
+#     state: absent
+
+- name: test if apt_repositories is set correctly
+  ansible.builtin.assert:
+    that:
+      - apt_repositories is iterable
+    quiet: yes
+  when:
+    - apt_repositories is defined
+
+- name: test if mandatory item in apt_repositories is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.repo is string
+    quiet: yes
+  loop: "{{ apt_repositories }}"
+  loop_control:
+    label: "{{ item.repo }}"
+  when:
+    - apt_repositories is defined
+
+- name: test if optional item in apt_repositories is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.state is string
+      - item.state in [ "absent", "present" ]
+    quiet: yes
+  loop: "{{ apt_repositories }}"
+  loop_control:
+    label: "{{ item.repo }}"
+  when:
+    - apt_repositories is defined
+    - item.state is defined

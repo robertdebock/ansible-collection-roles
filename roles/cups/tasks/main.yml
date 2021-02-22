@@ -1,0 +1,27 @@
+---
+# tasks file for cups
+
+- name: include assert.yml
+  import_tasks: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+- name: install packages
+  ansible.builtin.package:
+    name: cups
+    state: present
+
+- name: configure cups
+  ansible.builtin.template:
+    src: cupsd.conf.j2
+    dest: /etc/cups/cupsd.conf
+    mode: "0640"
+    validate: cupsd -t -c %s
+  notify:
+    - restart cups
+
+- name: start and enable software
+  ansible.builtin.service:
+    name: "{{ cups_service }}"
+    state: started
+    enabled: yes

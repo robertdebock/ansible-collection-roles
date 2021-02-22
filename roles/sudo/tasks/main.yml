@@ -1,0 +1,53 @@
+---
+# tasks file for sudo-pair
+
+- name: include assert.yml
+  import_tasks: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+- name: install requirements
+  ansible.builtin.package:
+    name: "{{ sudo_pair_requirements }}"
+    state: present
+  environment:
+    ANSIBLE_SQUASH_ACTIONS: unset
+
+- name: download and unpack sudo_pair
+  ansible.builtin.unarchive:
+    src: "{{ sudo_pair_url }}"
+    dest: /tmp
+    remote_src: yes
+    mode: "0755"
+
+- name: build sudo_pair
+  ansible.builtin.command: cargo build --release
+  args:
+    chdir: "{{ sudo_pair_unpack_directory }}"
+    creates: "{{ sudo_pair_unpack_directory }}/target/release/libsudo_pair.so"
+  environment:
+    PATH: "{{ ansible_env.PATH }}:/usr/local/bin"
+
+- name: install sudo_pair
+  ansible.builtin.copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    mode: "{{ item.mode }}"
+    remote_src: yes
+  loop: "{{ sudo_pair_files }}"
+
+- name: create directories
+  ansible.builtin.file:
+    path: "{{ sudo_pair_directories }}"
+    state: directory
+    owner: root
+    group: root
+    mode: "644"
+
+- name: configure sudo
+  ansible.builtin.template:
+    src: sudo.conf.j2
+    dest: /etc/sudo.conf
+    owner: root
+    group: root
+    mode: "644"

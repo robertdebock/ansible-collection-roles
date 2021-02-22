@@ -1,0 +1,65 @@
+---
+# vars file for firewall
+
+# firewall_ansible_python_interpreter: "{{ _firewall_ansible_python_interpreter[ansible_distribution] |default(_firewall_ansible_python_interpreter['default']) }}"
+
+_firewall_packages:
+  conflicting:
+    default:
+      - firewalld
+    Alpine:
+      - firewalld
+      - ufw
+    CentOS-7:
+      - ufw
+    CentOS-8: []
+    RedHat-7:
+      - ufw
+    RedHat-8: []
+    Fedora:
+      - ufw
+    openSUSE Leap:
+      - ufw
+  required:
+    default:
+      - ufw
+    Alpine:
+      - iptables
+    CentOS-7:
+      - firewalld
+      - iptables
+      - iptables-services
+    CentOS-8:
+      - firewalld
+    RedHat-7:
+      - firewalld
+      - iptables
+      - iptables-services
+    RedHat-8:
+      - firewalld
+    Fedora:
+      - firewalld
+      - python3-firewall
+    openSUSE Leap:
+      - firewalld
+
+firewall_packages_conflicting: "{{ _firewall_packages['conflicting'][ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_firewall_packages['conflicting'][ansible_distribution] | default(_firewall_packages['conflicting']['default'])) }}"
+
+firewall_packages_required: "{{ _firewall_packages['required'][ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_firewall_packages['required'][ansible_distribution] | default(_firewall_packages['required']['default'])) }}"
+
+_firewall_service:
+  default: ufw
+  Alpine: iptables
+  CentOS-7: firewalld
+  CentOS-8: firewalld
+  RedHat-7: firewalld
+  RedHat-8: firewalld
+  Fedora: firewalld
+  openSUSE Leap: firewalld
+
+firewall_service: "{{ _firewall_service[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default (_firewall_service[ansible_distribution] | default (_firewall_service['default'])) }}"
+
+_firewall_iptables_rulefile:
+  Alpine: /etc/iptables/rules-save
+
+firewall_iptables_rulefile: "{{ _firewall_iptables_rulefile[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_firewall_iptables_rulefile[ansible_distribution] | default(_firewall_iptables_rulefile['default'])) }}"

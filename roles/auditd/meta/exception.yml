@@ -1,0 +1,6 @@
+---
+exceptions:
+  - variation: alpine
+    reason: "auditd start-stop-daemon: /sbin/auditd does not exist"
+  - variation: amazonlinux:1
+    reason: "/etc/init.d/auditd: line 32: /etc/init.d/functions: No such file or directory"

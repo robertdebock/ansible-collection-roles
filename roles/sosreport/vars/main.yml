@@ -1,0 +1,9 @@
+---
+# vars file for sosreport
+
+sosreport_packages:
+  - sos
+
+sosreport_command: sosreport --batch --tmp-dir={{ sosreport_remote_location }}
+
+sosreport_patterns: "sosreport-*-{{ ansible_date_time.date }}-*.tar.xz"

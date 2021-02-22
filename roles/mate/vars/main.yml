@@ -1,0 +1,28 @@
+---
+# vars file for mate
+
+_mate_packages:
+  Alpine:
+    - mate-desktop
+    - mate-desktop-environment
+    - mate-session-manager
+  RedHat:
+    - "@mate-desktop"
+    - NetworkManager
+  Debian:
+    - mate-desktop
+    - mate-indicator-applet
+    - mate-indicator-applet-common
+    - mate-menu
+    - mate-notification-daemon
+    - mate-notification-daemon-common
+    - mate-session-manager
+  Suse:
+    - patterns-mate-mate
+
+mate_packages: "{{ _mate_packages[ansible_os_family] }}"
+
+_mate_exclude:
+  RedHat: "{{ ansible_distribution | lower }}-release-matecompiz"
+
+mate_exclude: "{{ _mate_exclude[ansible_os_family] }}"

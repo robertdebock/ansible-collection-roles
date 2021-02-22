@@ -1,0 +1,8 @@
+---
+roles:
+  - name: robertdebock.bootstrap
+  - name: robertdebock.ca_certificates
+  - name: robertdebock.epel
+  - name: robertdebock.npm
+  - name: robertdebock.service
+  - name: robertdebock.users

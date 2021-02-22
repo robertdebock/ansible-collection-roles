@@ -1,0 +1,15 @@
+{{ ansible_managed | comment }}
+
+name = "{{ image_builder_product }}"
+description = "{{ image_builder_description }}"
+version = "{{ image_builder_version }}"
+modules = []
+groups = []
+
+{% if packages is defined %}
+[[packages]]
+{% for package in image_builder_packages %}
+name = "{{ package.name }}"
+version = "{{ pacakge.version }}"
+{% endfor %}
+{% endif %}

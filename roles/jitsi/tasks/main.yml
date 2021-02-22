@@ -1,0 +1,34 @@
+---
+# tasks file for jitsi
+
+- name: include assert.yml
+  import_tasks: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+- name: install repository key
+  ansible.builtin.apt_key:
+    url: "https://download.jitsi.org/jitsi-key.gpg.key"
+    validate_certs: no
+    state: present
+
+- name: add repository
+  ansible.builtin.apt_repository:
+    repo: "deb https://download.jitsi.org {{ jitsi_release }}/"
+    filename: jitsi-{{ jitsi_release }}
+    state: present
+
+- name: set installer options
+  ansible.builtin.debconf:
+    name: "{{ item.name }}"
+    question: "{{ item.question }}"
+    value: "{{ item.value }}"
+    vtype: "{{ item.type }}"
+  loop: "{{ jitsi_settings }}"
+  loop_control:
+    label: "{{ item.question }}"
+
+- name: install jitsi-meet
+  ansible.builtin.package:
+    name: jitsi-meet
+    state: present

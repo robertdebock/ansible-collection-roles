@@ -1,0 +1,6 @@
+---
+project_name: Snort
+reference: "https://github.com/robertdebock/ansible-role-snort/blob/master/vars/main.yml"
+versions:
+  - name: snort
+    url: "https://www.snort.org/downloads"

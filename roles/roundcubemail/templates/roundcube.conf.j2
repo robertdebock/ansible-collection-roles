@@ -1,0 +1,54 @@
+{{ ansible_managed | comment }}
+#
+# Round Cube Webmail is a browser-based multilingual IMAP client
+#
+
+Alias /roundcubemail {{ roundcubemail_install_directory }}
+
+# Define who can access the Webmail
+# You can enlarge permissions once configured
+
+<Directory {{ roundcubemail_install_directory }}/>
+    <IfModule mod_authz_core.c>
+        # Apache 2.4
+        Require all granted
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        # Apache 2.2
+        Order Allow,Deny
+        allow from all
+    </IfModule>
+    DirectoryIndex index.php
+</Directory>
+
+# Define who can access the installer
+# keep this secured once configured
+
+<Directory {{roundcubemail_install_directory }}/installer/>
+    <IfModule mod_authz_core.c>
+        # Apache 2.4
+        Require all granted
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        # Apache 2.2
+        Order Allow,Deny
+        allow from all
+    </IfModule>
+</Directory>
+
+# Those directories should not be viewed by Web clients.
+<Directory {{ roundcubemail_install_directory }}/bin/>
+    <IfModule !mod_authz_core.c>
+        # Apache 2.2
+        Order Allow,Deny
+        Deny from all
+    </IfModule>
+</Directory>
+
+<Directory {{ roundcubemail_install_directory }}/plugins/enigma/home/>
+    <IfModule !mod_authz_core.c>
+        # Apache 2.2
+        Order Allow,Deny
+        Deny from all
+    </IfModule>
+</Directory>

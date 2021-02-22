@@ -1,0 +1,5 @@
+---
+# vars file for image_builder
+
+_image_builder_packages:
+  - lorax

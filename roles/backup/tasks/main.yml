@@ -1,0 +1,29 @@
+---
+# tasks file for backup
+
+- name: include assert.yml
+  import_tasks: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+- name: create remote_backup_directory
+  ansible.builtin.file:
+    path: "{{ backup_remote_directory }}"
+    state: directory
+    mode: "0777"
+
+- name: create backup_directory
+  ansible.builtin.file:
+    path: "{{ backup_directory }}/{{ inventory_hostname }}"
+    state: directory
+    mode: "0750"
+  connection: local
+  become: no
+
+- name: loop over objects in backup_objects
+  ansible.builtin.include_tasks: object.yml
+  loop: "{{ backup_objects }}"
+  loop_control:
+    loop_var: object
+  when:
+    - backup_objects is defined

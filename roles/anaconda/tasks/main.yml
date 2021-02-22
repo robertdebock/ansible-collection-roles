@@ -1,0 +1,72 @@
+---
+# tasks file for anaconda
+
+- name: include assert.yml
+  import_tasks: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+- name: install requirements (package)
+  ansible.builtin.package:
+    name: "{{ item.name }}"
+    state: present
+  loop: "{{ anaconda_requirements }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - item.type == "package"
+
+- name: install requirements (pip)
+  ansible.builtin.pip:
+    name: "{{ item.name }}"
+    state: present
+  loop: "{{ anaconda_requirements }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - item.type == "pip"
+
+- name: download anaconda
+  ansible.builtin.get_url:
+    url: "{{ anaconda_url }}"
+    dest: "{{ anaconda_download_dest }}"
+
+- name: install anaconda
+  ansible.builtin.command: bash {{ anaconda_download_dest }}/{{ anaconda_file }} -b -p {{ anaconda_prefix }}
+  args:
+    creates: "{{ anaconda_prefix }}"
+
+- name: create anaconda service
+  ansible.builtin.import_role:
+    name: robertdebock.service
+  vars:
+    service_list:
+      - name: anaconda
+        description: Anaconda Notebook
+        start_command: "{{ anaconda_prefix }}/bin/jupyter notebook --ip={{ anaconda_ip }} --port={{ anaconda_port }} --allow-root"
+
+- name: change selinux settings
+  block:
+    - name: check for domain_can_mmap_files seboolean
+      ansible.builtin.command: getsebool domain_can_mmap_files
+      register: anaconda_getsebool_domain_can_mmap_files
+      check_mode: no
+      changed_when: no
+      failed_when: no
+
+    - name: modify selinux settings
+      ansible.posix.seboolean:
+        name: domain_can_mmap_files
+        state: yes
+        persistent: yes
+      when:
+        - anaconda_getsebool_domain_can_mmap_files.rc == 0
+  when:
+    - ansible_selinux.status is defined
+    - ansible_selinux.status == "enabled"
+
+- name: start and enable anaconda
+  ansible.builtin.service:
+    name: anaconda
+    state: started
+    enabled: yes

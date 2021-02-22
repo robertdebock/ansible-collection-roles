@@ -1,0 +1,69 @@
+---
+
+- name: test if zabbix_proxy_mode is set correctly
+  ansible.builtin.assert:
+    that:
+      - zabbix_proxy_mode is defined
+      - zabbix_proxy_mode is string
+      - zabbix_proxy_mode in [ "0", "1" ]
+    quiet: yes
+
+- name: test if zabbix_proxy_server is set correctly
+  ansible.builtin.assert:
+    that:
+      - zabbix_proxy_server is defined
+      - zabbix_proxy_server is string
+    quiet: yes
+
+- name: test if zabbix_proxy_server_port is set correctly
+  ansible.builtin.assert:
+    that:
+      - zabbix_proxy_server_port is defined
+      - zabbix_proxy_server_port is number
+      - zabbix_proxy_server_port > 0
+      - zabbix_proxy_server_port < 65536
+    quiet: yes
+
+- name: test if zabbix_proxy_hostname is set correctly
+  ansible.builtin.assert:
+    that:
+      - zabbix_proxy_hostname is defined
+      - zabbix_proxy_hostname is string
+    quiet: yes
+
+- name: test if zabbix_proxy_database_hostname is set correctly
+  ansible.builtin.assert:
+    that:
+      - zabbix_proxy_database_hostname is defined
+      - zabbix_proxy_database_hostname is string
+    quiet: yes
+
+- name: test if zabbix_proxy_database_name is set correctly
+  ansible.builtin.assert:
+    that:
+      - zabbix_proxy_database_name is defined
+      - zabbix_proxy_database_name is string
+    quiet: yes
+
+- name: test if zabbix_proxy_database_user is set correctly
+  ansible.builtin.assert:
+    that:
+      - zabbix_proxy_database_user is defined
+      - zabbix_proxy_database_user is string
+    quiet: yes
+
+- name: test if zabbix_proxy_database_password is set correctly
+  ansible.builtin.assert:
+    that:
+      - zabbix_proxy_database_password is defined
+      - zabbix_proxy_database_password is string
+    quiet: yes
+
+- name: test if zabbix_proxy_database_port is set correctly
+  ansible.builtin.assert:
+    that:
+      - zabbix_proxy_database_port is defined
+      - zabbix_proxy_database_port is number
+      - zabbix_proxy_database_port > 0
+      - zabbix_proxy_database_port < 65536
+    quiet: yes

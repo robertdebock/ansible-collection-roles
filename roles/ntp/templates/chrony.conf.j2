@@ -1,0 +1,18 @@
+{{ ansible_managed | comment }}
+
+driftfile /var/lib/chrony/drift
+
+makestep 1.0 3
+
+keyfile /etc/chrony.keys
+
+logdir /var/log/chrony
+
+dumponexit
+dumpdir /var/run/chrony
+
+bindaddress 127.0.0.1
+
+{% for ntp_server in ntp_pool %}
+pool {{ ntp_server.name }}
+{% endfor %}

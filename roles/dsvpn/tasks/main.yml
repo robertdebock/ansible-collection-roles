@@ -1,0 +1,82 @@
+---
+# tasks file for dsvpn
+
+- name: include assert.yml
+  import_tasks: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+- name: install requirements
+  ansible.builtin.package:
+    name: "{{ dsvpn_requirements }}"
+    state: present
+
+- name: unarchive
+  ansible.builtin.unarchive:
+    src: "{{ dsvpn_release_url }}"
+    dest: "{{ dsvpn_temporary_directory }}"
+    remote_src: yes
+    creates: "{{ dsvpn_temporary_directory }}/dsvpn-{{ dsvpn_version }}"
+    mode: "0755"
+
+- name: make
+  community.general.make:
+    chdir: "{{ dsvpn_temporary_directory }}/dsvpn-{{ dsvpn_version }}"
+
+- name: install
+  ansible.builtin.copy:
+    src: "{{ dsvpn_temporary_directory }}/dsvpn-{{ dsvpn_version }}/dsvpn"
+    dest: "{{ dsvpn_install_directory }}/dsvpn"
+    remote_src: yes
+    mode: "750"
+
+- name: generate key
+  ansible.builtin.command: dd if=/dev/urandom of={{ dsvpn_key_directory }}/vpn.key count=1 bs=32
+  args:
+    creates: "{{ dsvpn_key_directory }}/vpn.key"
+  delegate_to: localhost
+
+- name: set permissions on key
+  ansible.builtin.file:
+    path: "{{ dsvpn_key_directory }}/vpn.key"
+    mode: "644"
+  delegate_to: localhost
+
+- name: copy key
+  ansible.builtin.copy:
+    src: "{{ dsvpn_key_directory }}/vpn.key"
+    dest: "{{ dsvpn_key_directory }}/vpn.key"
+    mode: "640"
+    owner: root
+    group: root
+  notify:
+    - restart dsvpn-server
+    - restart dsvpn-client
+
+- name: load tun module
+  community.general.modprobe:
+    name: tun
+    state: present
+  when:
+    - ansible_connection != "docker"
+
+- name: create /dev/net directory
+  ansible.builtin.file:
+    path: /dev/net
+    state: directory
+    mode: "0755"
+
+- name: create character device /dev/net/tun
+  ansible.builtin.command: mknod /dev/net/tun c 10 200
+  args:
+    creates: /dev/net/tun
+
+- name: create server
+  ansible.builtin.include_tasks: server.yml
+  when:
+    - dsvpn_role == "server"
+
+- name: create client
+  ansible.builtin.include_tasks: client.yml
+  when:
+    - dsvpn_role == "client"

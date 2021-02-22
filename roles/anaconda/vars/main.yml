@@ -1,0 +1,14 @@
+---
+# vars file for anaconda
+
+anaconda_url: "https://repo.anaconda.com/archive/Anaconda{{ anaconda_python_version }}-{{ anaconda_version }}-Linux-{{ ansible_architecture }}.sh"
+
+anaconda_file: Anaconda{{ anaconda_python_version }}-{{ anaconda_version }}-Linux-{{ ansible_architecture }}.sh
+
+anaconda_requirements:
+  - name: bash
+    type: package
+  - name: bzip2
+    type: package
+  - name: pexpect
+    type: pip

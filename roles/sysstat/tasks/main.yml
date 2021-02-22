@@ -1,0 +1,26 @@
+---
+# tasks file for sysstat
+
+- name: install sysstat
+  ansible.builtin.package:
+    name: "{{ sysstat_packages }}"
+    state: present
+
+- name: enable sysstat
+  ansible.builtin.lineinfile:
+    path: /etc/default/sysstat
+    regexp: '^ENABLED='
+    line: 'ENABLED="true"'
+    owner: root
+    group: root
+    mode: "0644"
+  when:
+    - ansible_os_family == "Debian"
+
+- name: start and enable sysstat
+  ansible.builtin.service:
+    name: "{{ sysstat_service }}"
+    state: started
+    enabled: yes
+  when:
+    - sysstat_service | length

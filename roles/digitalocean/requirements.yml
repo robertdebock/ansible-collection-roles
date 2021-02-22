@@ -1,0 +1,5 @@
+---
+roles:
+  - name: robertdebock.apt_autostart
+  - name: robertdebock.bootstrap
+  - name: robertdebock.ca_certificates

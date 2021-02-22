@@ -1,0 +1,22 @@
+---
+# tasks file for server
+
+- name: include assert.yml
+  import_tasks: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+- name: load release_packages
+  ansible.builtin.include_vars: "{{ item }}"
+  with_first_found:
+    - "{{ ansible_distribution }}-{{ ansible_distribution_version }}.yml"
+    - "{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
+
+- name: install software (yum)
+  ansible.builtin.yum:
+    name: "{{ release_packages }}"
+    state: present
+  notify:
+    - reboot
+  when:
+    - ansible_pkg_mgr == "yum"

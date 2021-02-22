@@ -1,0 +1,4 @@
+{{ ansible_managed | comment }}
+securitytypes=none
+geometry=1920x1080
+localhost

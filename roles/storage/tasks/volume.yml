@@ -1,0 +1,14 @@
+---
+- name: test volume
+  ansible.builtin.assert:
+    that:
+      - volume.name is defined
+      - volume.vg is defined
+      - volume.size is defined
+    quiet: yes
+
+- name: create logical volume
+  lvol:
+    lv: "{{ volume.name }}"
+    vg: "{{ volume.vg }}"
+    size: "{{ volume.size }}"

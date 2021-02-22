@@ -1,0 +1,7 @@
+---
+roles:
+  - name: robertdebock.bootstrap
+  - name: robertdebock.epel
+  - name: robertdebock.git
+  - name: robertdebock.npm
+  - name: robertdebock.service

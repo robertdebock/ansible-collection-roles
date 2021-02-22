@@ -1,0 +1,31 @@
+---
+# vars file for virtualbox
+
+virtualbox_keys:
+  - https://www.virtualbox.org/download/oracle_vbox_2016.asc
+  - https://www.virtualbox.org/download/oracle_vbox.asc
+
+_virtualbox_requirements:
+  default:
+    - kernel-devel
+  Debian: []
+
+virtualbox_requirements: "{{ _virtualbox_requirements[ansible_os_family] | default(_virtualbox_requirements['default']) }}"
+
+_virtualbox_repo_mapping:
+  Fedora: fedora
+  CentOS: el
+  EL: el
+  openSUSE Leap: opensuse
+
+virtualbox_repo_mapping: "{{ _virtualbox_repo_mapping[ansible_distribution] }}"
+
+virtualbox_yum_baseurl: "http://download.virtualbox.org/virtualbox/rpm/{{ virtualbox_repo_mapping }}/$releasever/$basearch"
+
+virtualbox_apt_repository: "https://download.virtualbox.org/virtualbox/debian"
+
+_virtualbox_package:
+  default: VirtualBox-{{ virtualbox_version }}
+  Debian: virtualbox-{{ virtualbox_version }}
+
+virtualbox_package: "{{ _virtualbox_package[ansible_os_family] | default(_virtualbox_package['default']) }}"

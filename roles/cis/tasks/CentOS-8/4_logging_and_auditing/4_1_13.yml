@@ -1,0 +1,14 @@
+---
+- name: 4.1.13 Ensure use of privileged commands is collected (Scored)
+  lineinfile:
+    path: /etc/audit/rules.d/privileged.rules
+    create: yes
+    mode: "0600"
+    line: "-a always,exit -F path={{ cis_found_binary }} -F perm=x -F auid>={{ cis_privileged_commands_collected_test_one.stdout }} -F auid!=4294967295 -k privileged"  # noqa 204 This line is just very long.
+  loop: "{{ item.stdout_lines }}"
+  loop_control:
+    loop_var: cis_found_binary
+  notify:
+    - reboot
+  when:
+    - cis_privileged_commands_collected | bool

@@ -1,0 +1,50 @@
+---
+# vars file for redis
+
+_redis_packages:
+  default:
+    - redis
+  Debian:
+    - redis-server
+
+redis_packages: "{{ _redis_packages[ansible_os_family] | default(_redis_packages['default']) }}"
+
+_redis_configuration_directory:
+  default: /etc
+  Debian: /etc/redis
+  Suse: /etc/redis
+
+redis_configuration_directory: "{{ _redis_configuration_directory[ansible_os_family] | default(_redis_configuration_directory['default']) }}"
+
+_redis_configuration_file:
+  default: redis.conf
+  Suse: default.conf
+
+redis_configuration_file: "{{ _redis_configuration_file[ansible_os_family] | default(_redis_configuration_file['default']) }}"
+
+_redis_owner:
+  default: redis
+  Alpine: root
+  Suse: root
+
+redis_owner: "{{ _redis_owner[ansible_os_family] | default(_redis_owner['default']) }}"
+
+_redis_group:
+  default: root
+  Debian: redis
+  Suse: redis
+
+redis_group: "{{ _redis_group[ansible_os_family] | default(_redis_group['default']) }}"
+
+_redis_mode:
+  default: "640"
+  Alpine: "644"
+
+redis_mode: "{{ _redis_mode[ansible_os_family] | default(_redis_mode['default']) }}"
+
+_redis_service:
+  default: redis
+  Debian: redis-server
+  Suse: redis@default
+
+redis_service: "{{ _redis_service[ansible_os_family] | default(_redis_service['default']) }}"

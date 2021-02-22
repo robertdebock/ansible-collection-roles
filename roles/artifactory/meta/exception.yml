@@ -1,0 +1,6 @@
+---
+exceptions:
+  - variation: Alpine
+    reason: Artifactory start/stop scripts don't properly work.
+  - variation: amazonlinux
+    reason: Timeout when waiting for 127.0.0.1:8040

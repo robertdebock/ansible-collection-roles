@@ -1,0 +1,42 @@
+---
+# tasks file for azure_cli
+
+- name: add apt repository
+  ansible.builtin.apt_repository:
+    repo: "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ {{ ansible_distribution_release }} main"
+    state: present
+  when:
+    - ansible_pkg_mgr in [ "apt" ]
+
+- name: add yum repository
+  ansible.builtin.yum_repository:
+    name: AzureCLI
+    description: Azure CLI
+    baseurl: "https://packages.microsoft.com/yumrepos/azure-cli"
+    enabled: yes
+    gpgcheck: yes
+    gpgkey: "https://packages.microsoft.com/keys/microsoft.asc"
+  when:
+    - ansible_pkg_mgr in [ "yum", "dnf" ]
+
+- name: add zypper repository
+  community.general.zypper_repository:
+    name: AzureCLI
+    repo: 'https://packages.microsoft.com/yumrepos/azure-cli'
+    state: present
+  when:
+    - ansible_pkg_mgr in [ "zypper" ]
+
+- name: install using pip
+  ansible.builtin.pip:
+    name: azure-cli
+    state: present
+  when:
+    - ansible_pkg_mgr not in [ "apt", "yum", "dnf", "zypper" ]
+
+- name: install
+  ansible.builtin.package:
+    name: azure-cli
+    state: present
+  when:
+    - ansible_pkg_mgr in [ "apt", "yum", "dnf", "zypper" ]

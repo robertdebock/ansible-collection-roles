@@ -1,0 +1,4 @@
+---
+exceptions:
+  - variation: alpine
+    reason: "Idempotence test failed: start and enable unbound"

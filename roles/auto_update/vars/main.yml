@@ -1,0 +1,38 @@
+---
+# vars file for auto_update
+
+_auto_update_packages:
+  Debian:
+    - unattended-upgrades
+    - apt-listchanges
+  RedHat-7:
+    - yum-cron
+  RedHat:
+    - dnf-automatic
+
+auto_update_packages: "{{ _auto_update_packages[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_auto_update_packages[ansible_os_family] | default(_auto_update_packages['default'])) }}"
+
+_auto_update_config_directory:
+  Debian: /etc/apt/apt.conf.d
+  RedHat-7: /etc/yum
+  RedHat: /etc/dnf
+
+auto_update_config_directory: "{{ _auto_update_config_directory[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_auto_update_config_directory[ansible_os_family] | default(_auto_update_config_directory['default'])) }}"
+
+_auto_update_config_file:
+  Debian: 02periodic
+  RedHat-7: yum-cron.conf
+  RedHat: automatic.conf
+
+auto_update_config_file: "{{ _auto_update_config_file[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_auto_update_config_file[ansible_os_family] | default(_auto_update_config_file['default'])) }}"
+
+_auto_update_services:
+  Debian:
+    - apt-daily.timer
+    - apt-daily-upgrade.timer
+  RedHat-7:
+    - yum-cron.service
+  RedHat:
+    - dnf-automatic.timer
+
+auto_update_services: "{{ _auto_update_services[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_auto_update_services[ansible_os_family] | default(_auto_update_services['default'])) }}"

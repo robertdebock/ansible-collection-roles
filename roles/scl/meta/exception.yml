@@ -1,0 +1,4 @@
+---
+exceptions:
+  - variation: CentOS/RHEL 8
+    reason: SCL is not available.

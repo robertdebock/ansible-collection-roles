@@ -1,0 +1,15 @@
+---
+
+- name: test if hostname is set correctly
+  ansible.builtin.assert:
+    that:
+      - hostname is defined
+      - hostname is string
+    quiet: yes
+
+- name: test if hostname_reboot is set correctly
+  ansible.builtin.assert:
+    that:
+      - hostname_reboot is defined
+      - hostname_reboot is boolean
+    quiet: yes

@@ -1,0 +1,22 @@
+---
+galaxy_info:
+  author: Robert de Bock
+  role_name: stratis
+  description: Install stratis and carves pools and filesystems.
+  license: Apache-2.0
+  company: none
+  min_ansible_version: "2.10"
+
+  platforms:
+    - name: EL
+      versions:
+        - 8
+    - name: Fedora
+      versions:
+        - all
+
+  galaxy_tags:
+    - stratis
+    - storage
+
+dependencies: []

@@ -1,0 +1,4 @@
+---
+exceptions:
+  - variation: fedora:rawhide
+    reason: "Failure downloading https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-33.noarch.rpm, HTTP Error 404: Not Found"

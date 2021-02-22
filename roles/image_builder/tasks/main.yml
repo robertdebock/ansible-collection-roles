@@ -1,0 +1,21 @@
+---
+# tasks file for image_builder
+
+- name: include assert.yml
+  import_tasks: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+- name: install packages
+  ansible.builtin.package:
+    name: "{{ image_builder_packages }}"
+    state: present
+
+- name: create image
+  ansible.builtin.command: >
+    lorax -P Fedora -v 33 -r 33
+    -s http://dl.fedoraproject.org/pub/fedora/linux/releases/33/Everything/x86_64/os/ \
+    -s http://dl.fedoraproject.org/pub/fedora/linux/updates/33/x86_64/ \
+    ./results/
+  args:
+    creates: something

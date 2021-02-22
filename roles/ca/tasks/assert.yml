@@ -1,0 +1,119 @@
+---
+
+- name: test if ca_passphrase is set correctly
+  ansible.builtin.assert:
+    that:
+      - ca_passphrase is defined
+      - ca_passphrase is string
+    quiet: yes
+
+- name: test if ca_common_name is set correctly
+  ansible.builtin.assert:
+    that:
+      - ca_common_name is defined
+      - ca_common_name is string
+    quiet: yes
+
+- name: test if ca_country_name is set correctly
+  ansible.builtin.assert:
+    that:
+      - ca_country_name is defined
+      - ca_country_name is string
+      - ca_country_name | length <= 2
+    quiet: yes
+
+- name: test if ca_email_address is set correctly
+  ansible.builtin.assert:
+    that:
+      - ca_email_address is defined
+      - ca_email_address is string
+    quiet: yes
+
+- name: test if ca_organization_name is set correctly
+  ansible.builtin.assert:
+    that:
+      - ca_organization_name is defined
+      - ca_organization_name is string
+    quiet: yes
+
+- name: test if ca_organizational_unit_name is set correctly
+  ansible.builtin.assert:
+    that:
+      - ca_organizational_unit_name is defined
+      - ca_organizational_unit_name is string
+    quiet: yes
+
+- name: test if ca_state_or_province_name is set correctly
+  ansible.builtin.assert:
+    that:
+      - ca_state_or_province_name is defined
+      - ca_state_or_province_name is string
+    quiet: yes
+
+- name: test if ca_requests is set correctly
+  ansible.builtin.assert:
+    that:
+      - ca_requests is iterable
+    quiet: yes
+  when:
+    - ca_requests is defined
+
+- name: test if item of ca_requests is set correctly
+  ansible.builtin.assert:
+    that:
+      - item is defined
+      - item is string
+    quiet: yes
+  loop: "{{ ca_requests }}"
+  when:
+    - ca_requests is defined
+    - item.name is undefined
+
+- name: test if ca_publication_location is set correctly
+  ansible.builtin.assert:
+    that:
+      - ca_publication_location is defined
+      - ca_publication_location is string
+    quiet: yes
+
+- name: test if ca_openssl_path is set correctly
+  ansible.builtin.assert:
+    that:
+      - ca_openssl_path is defined
+      - ca_openssl_path is string
+    quiet: yes
+
+- name: test if ca_private_path is set correctly
+  ansible.builtin.assert:
+    that:
+      - ca_private_path is defined
+      - ca_private_path is string
+    quiet: yes
+
+- name: test if ca_certs_path is set correctly
+  ansible.builtin.assert:
+    that:
+      - ca_certs_path is defined
+      - ca_certs_path is string
+    quiet: yes
+
+- name: test if ca_privatekey_path is set correctly
+  ansible.builtin.assert:
+    that:
+      - ca_privatekey_path is defined
+      - ca_privatekey_path is string
+    quiet: yes
+
+- name: test if ca_csr_path is set correctly
+  ansible.builtin.assert:
+    that:
+      - ca_csr_path is defined
+      - ca_csr_path is string
+    quiet: yes
+
+- name: test if ca_certificate_path is set correctly
+  ansible.builtin.assert:
+    that:
+      - ca_certificate_path is defined
+      - ca_certificate_path is string
+    quiet: yes

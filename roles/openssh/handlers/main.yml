@@ -1,0 +1,9 @@
+---
+# handlers file for openssh
+
+- name: restart openssh
+  ansible.builtin.service:
+    name: "{{ openssh_service }}"
+    state: restarted
+  when:
+    - not ansible_check_mode | bool

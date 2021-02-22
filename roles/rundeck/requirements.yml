@@ -1,0 +1,7 @@
+---
+roles:
+  - name: robertdebock.bootstrap
+  - name: robertdebock.common
+  - name: robertdebock.core_dependencies
+  - name: robertdebock.java
+  - name: robertdebock.service

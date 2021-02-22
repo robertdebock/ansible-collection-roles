@@ -1,0 +1,29 @@
+---
+galaxy_info:
+  author: Robert de Bock
+  role_name: glusterfs
+  description: Install and configure glusterfs on your system.
+  license: Apache-2.0
+  company: none
+  min_ansible_version: "2.10"
+
+  platforms:
+    - name: Debian
+      versions:
+        - buster
+    - name: Fedora
+      versions:
+        - all
+    - name: Ubuntu
+      versions:
+        - focal
+        - bionic
+
+  galaxy_tags:
+    - cluster
+    - gluster
+    - glusterfs
+    - server
+    - system
+
+dependencies: []

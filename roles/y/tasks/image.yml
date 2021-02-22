@@ -1,0 +1,4 @@
+---
+- name: apply presets
+  ansible.builtin.include: "{{ item.name }}.yml"
+  loop: "{{ y_presets }}"

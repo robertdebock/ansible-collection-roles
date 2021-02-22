@@ -1,0 +1,43 @@
+---
+# tasks file for docker_ce
+
+- name: install required packages
+  ansible.builtin.package:
+    name: "{{ docker_ce_requirements }}"
+    state: present
+  when:
+    - docker_ce_requirements | length
+
+- name: configure debian like systems
+  block:
+    - name: install apt key
+      ansible.builtin.apt_key:
+        url: "{{ docker_ce_apt_key_url }}"
+        state: present
+
+    - name: install docker_ce repository for apt
+      ansible.builtin.apt_repository:
+        repo: "{{ docker_ce_apt_repository_repo }}"
+        state: present
+      notify:
+        - apt update cache
+  when:
+    - ansible_pkg_mgr == "apt"
+
+- name: install docker_ce repository for dnf/yum
+  ansible.builtin.get_url:
+    url: "{{ docker_ce_yum_repositories }}"
+    dest: /etc/yum.repos.d/docker_ce.repo
+  when:
+    - ansible_pkg_mgr in [ "dnf", "yum" ]
+
+- name: install docker_ce packages
+  ansible.builtin.package:
+    name: "{{ docker_ce_packages }}"
+    state: present
+
+- name: start and enable docker_ce
+  ansible.builtin.service:
+    name: "{{ docker_ce_service }}"
+    state: started
+    enabled: yes

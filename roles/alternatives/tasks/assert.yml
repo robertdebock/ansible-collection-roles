@@ -1,0 +1,25 @@
+---
+
+- name: test if alternatives_list is set correctly
+  ansible.builtin.assert:
+    that:
+      - alternatives_list is iterable
+    quiet: yes
+  when:
+    - alternatives_list is defined
+
+- name: test if item in alternatives_list is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.name is defined
+      - item.name is string
+      - item.link is defined
+      - item.link is string
+      - item.path is defined
+      - item.path is string
+    quiet: yes
+  when:
+    - alternatives_list is defined
+  loop: "{{ alternatives_list }}"
+  loop_control:
+    label: "{{ item.name }}"

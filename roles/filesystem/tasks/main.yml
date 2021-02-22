@@ -1,0 +1,24 @@
+---
+# tasks file for filesystem
+
+- name: include assert.yml
+  import_tasks: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+- name: install requirements
+  ansible.builtin.package:
+    name: "{{ filesystem_requirements }}"
+    state: present
+
+- name: manage filesystems
+  community.general.filesystem:
+    dev: "{{ item.dev }}"
+    force: "{{ item.force | default(omit) }}"
+    fstype: "{{ item.fstype | default(filesytem_default_filesystem ) }}"
+    state: "{{ item.state | default(omit) }}"
+    opts: "{{ item.opts | default(omit) }}"
+    resizefs: "{{ item.resizefs | default(omit) }}"
+  loop: "{{ filesystem_list }}"
+  loop_control:
+    label: "{{ item.dev }}"

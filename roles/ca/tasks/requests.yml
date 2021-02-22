@@ -1,0 +1,92 @@
+---
+# issue
+- block:
+    - name: upload requested key
+      ansible.builtin.copy:
+        src: "{{ request.upload_keyfile }}"
+        dest: "{{ ca_path }}/{{ ca_subject_keys_path }}/{{ request.name | default(request) }}.pem"
+        mode: "0644"
+      when:
+        - request.upload_keyfile is defined
+
+    - name: copy requested key
+      ansible.builtin.copy:
+        remote_src: yes
+        src: "{{ request.keyfile_path }}"
+        dest: "{{ ca_path }}/{{ ca_subject_keys_path }}/{{ request.name | default(request) }}.pem"
+        mode: "0644"
+      when:
+        - request.keyfile_path is defined
+
+    - name: generate requested key
+      openssl_privatekey:
+        path: "{{ ca_path }}/{{ ca_subject_keys_path }}/{{ request.name | default(request) }}.pem"
+        passphrase: "{{ request.passphrase | default(omit) }}"
+        cipher: "{{ request.cipher | default(omit) }}"
+      when:
+        - request.upload_keyfile is not defined
+        - request.keyfile_path is not defined
+
+    - name: generate requested certificate signing request
+      openssl_csr:
+        path: "{{ ca_path }}/{{ ca_requests_path }}/{{ request.name | default(request) }}.csr"
+        privatekey_path: "{{ ca_path }}/{{ ca_subject_keys_path }}/{{ request.name | default(request) }}.pem"
+        privatekey_passphrase: "{{ request.passphrase | default(omit) }}"
+        common_name: "{{ request.name | default(request) }}"
+        country_name: "{{ request.country_name | default(omit) }}"
+        email_address: "{{ request.email_address | default(omit) }}"
+        organization_name: "{{ request.organization_name | default(omit) }}"
+        organizational_unit_name: "{{ request.organizational_unit_name | default(omit) }}"
+
+    - name: generate requested certificate extension file
+      ansible.builtin.template:
+        src: extensions.cnf.j2
+        dest: "{{ ca_path }}/{{ ca_extfiles_path }}/{{ request.name | default(request) }}.cnf"
+        mode: "0644"
+
+    - name: generate requested certificate
+      ansible.builtin.command:
+        chdir: "{{ ca_path }}"
+        cmd: "openssl ca {{ ca_client_cert_params }}"
+        creates: "{{ ca_path }}/{{ ca_certs_path }}/{{ request.name | default(request) }}.crt"
+
+    - name: publish certificate
+      ansible.builtin.copy:
+        src: "{{ ca_path }}/{{ ca_certs_path }}/{{ request.name | default(request) }}.crt"
+        dest: "{{ ca_publication_location }}/{{ request.name | default(request) }}.crt"
+        mode: "644"
+        remote_src: yes
+      when:
+        - ca_publication_location is defined
+  when: (request.state is not defined) or (request.state == 'present')
+
+# revoke
+- name: check whether certificate file exists
+  ansible.builtin.stat:
+    path: "{{ ca_path }}/{{ ca_certs_path }}/{{ request.name | default(request) }}.crt"
+  register: check_certfile
+
+- block:
+    - name: revoke certificate
+      ansible.builtin.command:
+        chdir: "{{ ca_path }}"
+        cmd: "openssl ca {{ ca_client_cert_revoke_params }}"
+      register: revoke_result
+      ignore_errors: True
+
+    - name: update crl
+      ansible.builtin.command:
+        chdir: "{{ ca_path }}"
+        cmd: "openssl ca {{ ca_crl_params }}"
+
+    - name: ensure certificate file is absent
+      ansible.builtin.file:
+        path: "{{ ca_path }}/{{ ca_certs_path }}/{{ request.name | default(request) }}.crt"
+        state: absent
+      when:
+        - revoke_result.stderr | length > 0
+        - revoke_result.stderr_lines | last is regex('^(Data Base Updated|ERROR:Already revoked).*$')
+  when:
+    - request.state is defined
+    - request.state == 'absent'
+    - check_certfile.stat.exists

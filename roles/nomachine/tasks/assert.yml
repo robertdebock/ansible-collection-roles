@@ -1,0 +1,12 @@
+---
+
+# - name: test if nomachine_X is set correctly
+#   ansible.builtin.assert:
+#     that:
+#       - nomachine_X is defined
+#       - nomachine_X is iterable
+#       - nomachine_X is number
+#       - nomachine_X is boolean
+#       - nomachine_X = 0
+#       - nomachine_X in [ "a", "b" ]
+#     quiet: yes

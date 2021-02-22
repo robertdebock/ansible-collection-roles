@@ -1,0 +1,9 @@
+---
+roles:
+  - name: robertdebock.bootstrap
+  - name: robertdebock.buildtools
+  - name: robertdebock.ca_certificates
+  - name: robertdebock.core_dependencies
+  - name: robertdebock.service
+collections:
+  - name: community.general

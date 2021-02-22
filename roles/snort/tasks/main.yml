@@ -1,0 +1,52 @@
+---
+# tasks file for snort
+
+- name: include assert.yml
+  import_tasks: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+- name: install requirements
+  ansible.builtin.package:
+    name: "{{ snort_requirements }}"
+    state: present
+
+- name: install snort
+  ansible.builtin.package:
+    name: "{{ snort_package_url }}"
+    state: present
+    disable_gpg_check: yes
+
+- name: link libdnet.1
+  ansible.builtin.file:
+    src: /usr/lib64/libdnet.so.1.0.1
+    dest: /usr/lib64/libdnet.1
+    state: link
+    mode: "0755"
+
+- name: get rules
+  ansible.builtin.unarchive:
+    src: "{{ item.url }}"
+    dest: /etc/snort/rules
+    remote_src: yes
+    mode: "0755"
+  loop: "{{ snort_community_rules }}"
+  loop_control:
+    label: "{{ item.url }}"
+
+- name: include rules
+  ansible.builtin.lineinfile:
+    path: /etc/snort/snort.conf
+    line: "include $SO_RULES_PATH/{{ item.file }}"
+    mode: "0644"
+  loop: "{{ snort_community_rules }}"
+  loop_control:
+    label: "{{ item.file }}"
+  notify:
+    - restart snort
+
+- name: start and enable software
+  ansible.builtin.service:
+    name: "{{ snort_service }}"
+    state: started
+    enabled: yes

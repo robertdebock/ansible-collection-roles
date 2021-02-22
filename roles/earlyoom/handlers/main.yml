@@ -1,0 +1,20 @@
+---
+# handlers file for earlyoom
+
+- name: make earlyoom
+  community.general.make:
+    chdir: "{{ earlyoom_clone_destination }}"
+
+- name: install earlyoom
+  ansible.builtin.copy:
+    src: "{{ earlyoom_clone_destination }}/earlyoom"
+    dest: "{{ earlyoom_installation_destination }}"
+    remote_src: yes
+    mode: "0750"
+
+- name: restart earlyoom
+  ansible.builtin.service:
+    name: "{{ earlyoom_service }}"
+    state: restarted
+  when:
+    - not ansible_check_mode | bool

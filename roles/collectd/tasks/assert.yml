@@ -1,0 +1,190 @@
+---
+
+- name: test if collectd_conf_hostname is set correctly
+  ansible.builtin.assert:
+    that:
+      - collectd_conf_hostname is defined
+      - collectd_conf_hostname is string
+    quiet: yes
+
+- name: test if collectd_conf_fqdnlookup is set correctly
+  ansible.builtin.assert:
+    that:
+      - collectd_conf_fqdnlookup is defined
+      - collectd_conf_fqdnlookup is string
+      - collectd_conf_fqdnlookup in [ "false", "true" ]
+    quiet: yes
+
+- name: test if collectd_conf_basedir is set correctly
+  ansible.builtin.assert:
+    that:
+      - collectd_conf_basedir is defined
+      - collectd_conf_basedir is string
+    quiet: yes
+
+- name: test if collectd_conf_pidfile is set correctly
+  ansible.builtin.assert:
+    that:
+      - collectd_conf_pidfile is defined
+      - collectd_conf_pidfile is string
+    quiet: yes
+
+- name: test if collectd_conf_typesdb is set correctly
+  ansible.builtin.assert:
+    that:
+      - collectd_conf_typesdb is defined
+      - collectd_conf_typesdb is string
+    quiet: yes
+
+- name: test if collectd_conf_autoloadplugin is set correctly
+  ansible.builtin.assert:
+    that:
+      - collectd_conf_autoloadplugin is defined
+      - collectd_conf_autoloadplugin is string
+      - collectd_conf_autoloadplugin in [ "false", "true" ]
+    quiet: yes
+
+- name: test if collectd_conf_collectinternalstats is set correctly
+  ansible.builtin.assert:
+    that:
+      - collectd_conf_collectinternalstats is defined
+      - collectd_conf_collectinternalstats is string
+      - collectd_conf_collectinternalstats in [ "false", "true" ]
+    quiet: yes
+
+- name: test if collectd_conf_interval is set correctly
+  ansible.builtin.assert:
+    that:
+      - collectd_conf_interval is defined
+      - collectd_conf_interval is number
+      - collectd_conf_interval > 0
+    quiet: yes
+
+- name: test if collectd_conf_maxreadinterval is set correctly
+  ansible.builtin.assert:
+    that:
+      - collectd_conf_maxreadinterval is defined
+      - collectd_conf_maxreadinterval is number
+      - collectd_conf_maxreadinterval > 0
+    quiet: yes
+
+- name: test if collectd_conf_timeout is set correctly
+  ansible.builtin.assert:
+    that:
+      - collectd_conf_timeout is defined
+      - collectd_conf_timeout is number
+      - collectd_conf_timeout > 0
+    quiet: yes
+
+- name: test if collectd_conf_readthreads is set correctly
+  ansible.builtin.assert:
+    that:
+      - collectd_conf_readthreads is defined
+      - collectd_conf_readthreads is number
+      - collectd_conf_readthreads > 0
+    quiet: yes
+
+- name: test if collectd_conf_writethreads is set correctly
+  ansible.builtin.assert:
+    that:
+      - collectd_conf_writethreads is defined
+      - collectd_conf_writethreads is number
+      - collectd_conf_writethreads > 0
+    quiet: yes
+
+- name: test if collectd_conf_include_dir is set correctly
+  ansible.builtin.assert:
+    that:
+      - collectd_conf_include_dir is defined
+      - collectd_conf_include_dir is string
+    quiet: yes
+
+- name: test if collectd_conf_fnmatch_filters is set correctly
+  ansible.builtin.assert:
+    that:
+      - collectd_conf_fnmatch_filters is defined
+      - collectd_conf_fnmatch_filters is iterable
+    quiet: yes
+
+- name: test if collectd_plugin_logging is set correctly
+  ansible.builtin.assert:
+    that:
+      - collectd_plugin_logging is defined
+      - collectd_plugin_logging is string
+      - collectd_plugin_logging in [ "logfile", "log_stash", "syslog" ]
+    quiet: yes
+
+- name: test if collectd_plugin_logging_directory is set correctly
+  ansible.builtin.assert:
+    that:
+      - collectd_plugin_logging_directory is defined
+      - collectd_plugin_logging_directory is string
+    quiet: yes
+
+- name: test if collectd_plugin_logfile_loglevel is set correctly
+  ansible.builtin.assert:
+    that:
+      - collectd_plugin_logfile_loglevel is defined
+      - collectd_plugin_logfile_loglevel is string
+      - collectd_plugin_logfile_loglevel in [ "emerg", "alert", "crit", "err", "warning", "notice", "info", "debug"]
+    quiet: yes
+
+- name: test if collectd_plugin_logfile_file is set correctly
+  ansible.builtin.assert:
+    that:
+      - collectd_plugin_logfile_file is defined
+      - collectd_plugin_logfile_file is string
+    quiet: yes
+
+- name: test if collectd_plugin_logfile_timestamp is set correctly
+  ansible.builtin.assert:
+    that:
+      - collectd_plugin_logfile_timestamp is defined
+      - collectd_plugin_logfile_timestamp is string
+      - collectd_plugin_logfile_timestamp in [ "false", "true" ]
+    quiet: yes
+
+- name: test if collectd_plugin_logfile_printseverity is set correctly
+  ansible.builtin.assert:
+    that:
+      - collectd_plugin_logfile_printseverity is defined
+      - collectd_plugin_logfile_printseverity is string
+      - collectd_plugin_logfile_printseverity in [ "false", "true" ]
+    quiet: yes
+
+- name: test if collectd_plugin_logstash_loglevel is set correctly
+  ansible.builtin.assert:
+    that:
+      - collectd_plugin_logstash_loglevel is defined
+      - collectd_plugin_logstash_loglevel is string
+      - collectd_plugin_logstash_loglevel in [ "emerg", "alert", "crit", "err", "warning", "notice", "info", "debug" ]
+    quiet: yes
+
+- name: test if collectd_plugin_logstash_file is set correctly
+  ansible.builtin.assert:
+    that:
+      - collectd_plugin_logstash_file is defined
+      - collectd_plugin_logstash_file is string
+    quiet: yes
+
+- name: test if collectd_plugin_syslog_loglevel is set correctly
+  ansible.builtin.assert:
+    that:
+      - collectd_plugin_syslog_loglevel is defined
+      - collectd_plugin_syslog_loglevel is string
+      - collectd_plugin_syslog_loglevel in [ "emerg", "alert", "crit", "err", "warning", "notice", "info", "debug" ]
+    quiet: yes
+
+- name: test if collectd_basic_plugins is set correctly
+  ansible.builtin.assert:
+    that:
+      - collectd_basic_plugins is defined
+      - collectd_basic_plugins is iterable
+    quiet: yes
+
+- name: test if collectd_plugins is set correctly
+  ansible.builtin.assert:
+    that:
+      - collectd_plugins is defined
+      - collectd_plugins is iterable
+    quiet: yes

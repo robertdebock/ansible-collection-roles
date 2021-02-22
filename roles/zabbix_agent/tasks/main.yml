@@ -1,0 +1,28 @@
+---
+# tasks file for zabbix_agent
+
+- name: include assert.yml
+  import_tasks: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+- name: install zabbix-agent software
+  ansible.builtin.package:
+    name: zabbix-agent
+    state: present
+
+- name: configuring zabbix agent
+  ansible.builtin.template:
+    src: zabbix_agentd.conf.j2
+    dest: /etc/zabbix/zabbix_agentd.conf
+    owner: zabbix
+    group: zabbix
+    mode: "0640"
+  notify:
+    - restart zabbix-agent
+
+- name: start and enable zabbix agent
+  ansible.builtin.service:
+    name: "{{ zabbix_agent_service }}"
+    state: started
+    enabled: yes

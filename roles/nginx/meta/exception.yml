@@ -1,0 +1,8 @@
+---
+exceptions:
+  - variation: Alpine
+    reason: "can't create /sys/fs/cgroup/systemd/tasks: Read-only file system"
+  - variation: amazonlinux:1
+    reason: "etc/init.d/nginx: line 17: /etc/sysconfig/network: No such file or directory"
+  - variation: centos:7
+    reason: "Package: 1:nginx Requires: libprofiler.so.0"

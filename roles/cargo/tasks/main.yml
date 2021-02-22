@@ -1,0 +1,28 @@
+---
+# tasks file for sudo-pair
+
+- name: include assert.yml
+  import_tasks: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+- name: install requirements for cargo
+  ansible.builtin.package:
+    name: "{{ cargo_requirements }}"
+    state: present
+
+- name: download installer rustup
+  ansible.builtin.get_url:
+    url: https://static.rust-lang.org/rustup.sh
+    dest: "{{ cargo_tmp }}/rustup.sh"
+    mode: "750"
+    validate_certs: no
+
+- name: run installer rustup
+  ansible.builtin.command: ./rustup.sh -y
+  args:
+    chdir: "{{ cargo_tmp }}"
+    creates: "{{ cargo_prefix }}/bin/cargo"
+  environment:
+    CARGO_HOME: "{{ cargo_prefix }}"
+    TMPDIR: "{{ cargo_tmp }}"

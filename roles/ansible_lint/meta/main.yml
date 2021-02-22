@@ -1,0 +1,30 @@
+---
+galaxy_info:
+  author: Robert de Bock
+  role_name: ansible_lint
+  description: Install ansible-lint on your system.
+  license: Apache-2.0
+  company: none
+  min_ansible_version: "2.10"
+
+  platforms:
+    - name: EL
+      versions:
+        - 8
+    - name: Debian
+      versions:
+        - all
+    - name: Fedora
+      versions:
+        - all
+    - name: Ubuntu
+      versions:
+        - focal
+        - bionic
+
+  galaxy_tags:
+    - ansiblelint
+    - ansible
+    - lint
+
+dependencies: []

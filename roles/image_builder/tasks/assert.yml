@@ -1,0 +1,43 @@
+---
+
+- name: test if image_builder_product is set correctly
+  ansible.builtin.assert:
+    that:
+      - image_builder_product is defined
+      - image_builder_product is string
+    quiet: yes
+
+- name: test if image_builder_description is set correctly
+  ansible.builtin.assert:
+    that:
+      - image_builder_description is defined
+      - image_builder_description is string
+    quiet: yes
+
+- name: test if image_builder_version is set correctly
+  ansible.builtin.assert:
+    that:
+      - image_builder_version is defined
+      - image_builder_version is string
+    quiet: yes
+
+- name: test if item of image_builder_installed_packages is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.name is defined
+      - item.name is string
+      - item.version is defined
+    quiet: yes
+  loop: "{{ image_builder_installed_packages }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - image_builder_installed_packages is defined
+
+- name: test if image_builder_type is set correctly
+  ansible.builtin.assert:
+    that:
+      - image_builder_type is defined
+      - image_builder_type is string
+      - image_builder_type in [ "alibaba", "ami", "ext4-filesystem", "google", "live-iso",  "openstack", "partitioned-disk", "qcow2", "tar", "vhd", "vmdk" ]
+    quiet: yes

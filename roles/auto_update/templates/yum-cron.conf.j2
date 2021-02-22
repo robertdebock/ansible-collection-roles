@@ -1,0 +1,29 @@
+{{ ansible_managed | comment }}
+
+#  What kind of update to use:
+# default                            = yum upgrade
+# security                           = yum --security upgrade
+# security-severity:Critical         = yum --sec-severity=Critical upgrade
+# minimal                            = yum --bugfix upgrade-minimal
+# minimal-security                   = yum --security upgrade-minimal
+# minimal-security-severity:Critical =  --sec-severity=Critical upgrade-minimal
+update_cmd = {{ auto_update_update_cmd }}
+
+# Whether a message should be emitted when updates are available,
+# were downloaded, or applied.
+update_messages = {{ auto_update_message }}
+
+# Whether updates should be downloaded when they are available.
+download_updates = {{ auto_update_download_updates }}
+
+# Whether updates should be applied when they are available.  Note
+# that download_updates must also be yes for the update to be applied.
+apply_updates = {{ auto_update_apply_updates }}
+
+# Maximum amout of time to randomly sleep, in minutes.  The program
+# will sleep for a random amount of time between 0 and random_sleep
+# minutes before running.  This is useful for e.g. staggering the
+# times that multiple systems will access update servers.  If
+# random_sleep is 0 or negative, the program will run immediately.
+# 6*60 = 360
+random_sleep = {{ auto_update_random_sleep }}

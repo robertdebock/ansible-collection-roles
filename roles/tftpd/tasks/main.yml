@@ -1,0 +1,13 @@
+---
+# tasks file for tftpd
+
+- name: install tftpd
+  ansible.builtin.package:
+    name: "{{ tftpd_packages }}"
+    state: present
+
+- name: start and enable tftpd
+  ansible.builtin.service:
+    name: "{{ tftpd_service }}"
+    state: started
+    enabled: yes

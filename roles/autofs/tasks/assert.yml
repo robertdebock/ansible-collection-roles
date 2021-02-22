@@ -1,0 +1,58 @@
+---
+
+- name: test if slash_replace_char is set correctly
+  ansible.builtin.assert:
+    that:
+      - slash_replace_char is defined
+      - slash_replace_char is string
+      - slash_replace_char | length in [ 0, 1 ]
+    quiet: yes
+
+- name: test if autofs_maps is set correctly
+  ansible.builtin.assert:
+    that:
+      - autofs_maps is iterable
+    quiet: yes
+  when:
+    - autofs_maps is defined
+
+- name: test if item in autofs_maps is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.mountpoint is defined
+      - item.mountpoint is string
+      - item.directories is defined
+      - item.directories is iterable
+    quiet: yes
+  loop: "{{ autofs_maps }}"
+  loop_control:
+    label: "{{ item.mountpoint }}"
+  when:
+    - autofs_maps is defined
+    - item.state is undefined or (item.state is defined and item.state == "present")
+
+- name: test if item in autofs_maps is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.mountpoint is defined
+      - item.mountpoint is string
+    quiet: yes
+  loop: "{{ autofs_maps }}"
+  loop_control:
+    label: "{{ item.mountpoint }}"
+  when:
+    - autofs_maps is defined
+    - item.state is defined and item.state == "absent"
+
+- name: test if options item in autofs_maps is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.options is iterable
+    quiet: yes
+  loop: "{{ autofs_maps }}"
+  loop_control:
+    label: "{{ item.mountpoint }}"
+  when:
+    - autofs_maps is defined
+    - item.options is defined
+    - item.state is undefined or (item.state is defined and item.state == "present")

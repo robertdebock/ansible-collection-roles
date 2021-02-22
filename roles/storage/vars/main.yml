@@ -1,0 +1,6 @@
+---
+# vars file for storage
+
+storage_requirements:
+  - parted
+  - lvm2

@@ -1,0 +1,6 @@
+---
+project_name: Zabbix
+reference: "https://github.com/robertdebock/ansible-role-zabbix/blob/master/defaults/main.yml"
+versions:
+  - name: Zabbix
+    url: "https://www.zabbix.com/download"

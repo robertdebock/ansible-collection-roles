@@ -1,0 +1,120 @@
+---
+# tasks file for mssql
+
+- name: include assert.yml
+  import_tasks: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+- name: add yum repository packages-microsoft-com-mssql-server-2019
+  ansible.builtin.yum_repository:
+    name: "{{ item.name }}"
+    state: present
+    baseurl: "{{ item.baseurl }}"
+    description: "{{ item.description }}"
+    gpgkey: "{{ mssql_gpgkey }}"
+    gpgcheck: yes
+  when:
+    - ansible_distribution in [ "CentOS", "RedHat", "Fedora" ]
+    - mssql_add_repositories | bool
+  loop: "{{ mssql_rhel_repositories }}"
+  loop_control:
+    label: "{{ item.name }}"
+
+- name: add apt repository
+  ansible.builtin.apt_repository:
+    repo: deb [arch=amd64,arm64,armhf] "{{ item.repo }}" {{ ansible_distribution_release }} main
+    state: present
+  when:
+    - ansible_os_family == "Debian"
+    - mssql_add_repositories | bool
+  loop: "{{ mssql_ubuntu_repositories }}"
+
+- name: install software mssql-server (package)
+  ansible.builtin.package:
+    name: "{{ mssql_server_package }}"
+    state: present
+  environment:
+    ACCEPT_EULA: Y
+  when:
+    - ansible_distribution != "Ubuntu"
+  notify:
+    - stop mssql-server
+    - configure mssql-server using mssql-conf
+    - set network.ipaddress
+
+- name: install software in mssql-server (apt)
+  ansible.builtin.apt:
+    name: "{{ mssql_server_package }}"
+    state: present
+    allow_unauthenticated: yes
+  environment:
+    ACCEPT_EULA: Y
+  when:
+    - ansible_distribution == "Ubuntu"
+  notify:
+    - configure mssql-server using mssql-conf
+
+- name: flush handlers
+  ansible.builtin.meta: flush_handlers
+
+- name: install software mssql-tools (package)
+  ansible.builtin.package:
+    name: mssql-tools
+    state: present
+  environment:
+    ACCEPT_EULA: Y
+  when:
+    - ansible_distribution != "Ubuntu"
+
+- name: install software in mssql-tools (apt)
+  ansible.builtin.apt:
+    name: mssql-tools
+    state: present
+    allow_unauthenticated: yes
+  environment:
+    ACCEPT_EULA: Y
+  when:
+    - ansible_distribution == "Ubuntu"
+
+- name: install software mssql-server-agent (package)
+  ansible.builtin.package:
+    name: "{{ mssql_server_agent_package }}"
+    state: present
+  environment:
+    ACCEPT_EULA: Y
+  when:
+    - ansible_distribution != "Ubuntu"
+  notify:
+    - restart mssql-server
+
+- name: install software in mssql-server-agent (apt)
+  ansible.builtin.apt:
+    name: "{{ mssql_server_agent_package }}"
+    state: present
+    allow_unauthenticated: yes
+  environment:
+    ACCEPT_EULA: Y
+  when:
+    - ansible_distribution == "Ubuntu"
+  notify:
+    - restart mssql-server
+
+- name: install mssql-server-fts
+  ansible.builtin.package:
+    name: "{{ mssql_fts_package }}"
+  when:
+    - mssql_fts | bool
+  notify:
+    - restart mssql-server
+
+- name: flush handlers
+  ansible.builtin.meta: flush_handlers
+
+- name: start and enable mssql-server
+  ansible.builtin.service:
+    name: mssql-server
+    state: started
+    enabled: yes
+  environment:
+    ACCEPT_EULA: Y

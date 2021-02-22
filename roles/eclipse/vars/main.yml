@@ -1,0 +1,10 @@
+---
+# vars file for eclipse
+
+eclipse_archive_mirror: "http://ftp.snt.utwente.nl/pub/software/eclipse/technology/epp/downloads/release"
+
+eclipse_archive: "{{ eclipse_archive_mirror }}/{{ eclipse_release }}/{{ eclipse_release_version }}/eclipse-{{ eclipse_release_type }}-{{ eclipse_release}}-{{ eclipse_release_version }}-linux-gtk-x86_64.tar.gz"
+
+eclipse_default_repository: "http://download.eclipse.org/releases/{{ eclipse_release }}"
+
+eclipse_plugin_install_command: "eclipse -nosplash -application org.eclipse.equinox.p2.director -repository {{ item.repository | default(eclipse_default_repository) }} -installIU"

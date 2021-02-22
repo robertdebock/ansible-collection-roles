@@ -1,0 +1,22 @@
+---
+
+- name: test if bios_update_temporary_directory is set correctly
+  ansible.builtin.assert:
+    that:
+      - bios_update_temporary_directory is defined
+      - bios_update_temporary_directory is string
+    quiet: yes
+
+- name: test if bios_update_url is set correctly
+  ansible.builtin.assert:
+    that:
+      - bios_update_url is defined
+      - bios_update_url is string
+    quiet: yes
+
+- name: test if bios_update_flash_drive is set correctly
+  ansible.builtin.assert:
+    that:
+      - bios_update_flash_drive is defined
+      - bios_update_flash_drive is string
+    quiet: yes

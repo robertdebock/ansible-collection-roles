@@ -1,0 +1,18 @@
+---
+
+- name: test if openvpn_role is set correctly
+  ansible.builtin.assert:
+    that:
+      - openvpn_role is defined
+      - openvpn_role is string
+      - openvpn_role in [ "client", "server" ]
+    quiet: yes
+
+- name: test if openvpn_client_server is set correctly
+  ansible.builtin.assert:
+    that:
+      - openvpn_client_server is defined
+      - openvpn_client_server is string
+    quiet: yes
+  when:
+    - openvpn_role == "client"

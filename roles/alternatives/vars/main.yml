@@ -1,0 +1,14 @@
+---
+# vars file for alternatives
+
+_alternatives_packages:
+  default:
+    - alternatives
+  Alpine:
+    - dpkg
+  RedHat:
+    - chkconfig
+  Debian:
+    - dpkg
+
+alternatives_packages: "{{ _alternatives_packages[ansible_os_family] | default(_alternatives_packages['default']) }}"

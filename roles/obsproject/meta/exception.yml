@@ -1,0 +1,12 @@
+---
+exceptions:
+  - variation: opensuse
+    reason: "Requires [much more efforts](https://obsproject.com/wiki/install-instructions#opensuse-installation-unofficial) than usual."
+  - variation: alpine
+    reason: obs-studio (missing)
+  - variation: centos:latest
+    reason: "nothing provides libSDL2-2.0.so.0()(64bit) needed by ffmpeg-4.2.1-3.el8.x86_64"
+  - variation: amazonlinux
+    reason: Missing dependecies
+  - variation: fedora:rawhide
+    reason: "Failure downloading https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-33.noarch.rpm"

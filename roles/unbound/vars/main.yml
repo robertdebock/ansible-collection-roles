@@ -1,0 +1,31 @@
+---
+# vars file for unbound
+
+_unbound_requirements:
+  default:
+    - diffutils
+    - libexpat1-dev
+    - file
+    - libssl-dev
+    - libsystemd-dev
+    - libudev-dev
+  Alpine:
+    - diffutils
+    - expat-dev
+    - file
+    - openssl-dev
+    - systemd-dev
+  RedHat:
+    - diffutils
+    - expat-devel
+    - file
+    - openssl-devel
+    - systemd-devel
+  Suse:
+    - diffutils
+    - libexpat-devel
+    - file
+    - openssl-devel
+    - systemd-devel
+
+unbound_requirements: "{{ _unbound_requirements[ansible_os_family] | default(_unbound_requirements['default']) }}"

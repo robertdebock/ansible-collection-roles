@@ -1,0 +1,69 @@
+---
+
+- name: test if php_fpm_listen is set correctly
+  ansible.builtin.assert:
+    that:
+      - php_fpm_listen is defined
+      - php_fpm_listen is string
+    quiet: yes
+
+- name: test if php_fpm_listen_owner is set correctly
+  ansible.builtin.assert:
+    that:
+      - php_fpm_listen_owner is defined
+      - php_fpm_listen_owner is string
+    quiet: yes
+
+- name: test if php_fpm_listen_group is set correctly
+  ansible.builtin.assert:
+    that:
+      - php_fpm_listen_group is defined
+      - php_fpm_listen_group is string
+    quiet: yes
+
+- name: test if php_fpm_listen_mode is set correctly
+  ansible.builtin.assert:
+    that:
+      - php_fpm_listen_mode is defined
+      - php_fpm_listen_mode is string
+    quiet: yes
+
+- name: test if php_fpm_pm is set correctly
+  ansible.builtin.assert:
+    that:
+      - php_fpm_pm is defined
+      - php_fpm_pm is string
+      - php_fpm_pm in [ "dynamic", "ondemand", "static" ]
+    quiet: yes
+
+- name: test if php_fpm_pm_max_children is set correctly
+  ansible.builtin.assert:
+    that:
+      - php_fpm_pm_max_children is defined
+      - php_fpm_pm_max_children is number
+      - php_fpm_pm_max_children > 0
+    quiet: yes
+
+- name: test if php_fpm_pm_start_servers is set correctly
+  ansible.builtin.assert:
+    that:
+      - php_fpm_pm_start_servers is defined
+      - php_fpm_pm_start_servers is number
+      - php_fpm_pm_start_servers > 0
+    quiet: yes
+
+- name: test if php_fpm_pm_min_spare_servers is set correctly
+  ansible.builtin.assert:
+    that:
+      - php_fpm_pm_min_spare_servers is defined
+      - php_fpm_pm_min_spare_servers is number
+      - php_fpm_pm_min_spare_servers > 0
+    quiet: yes
+
+- name: test if php_fpm_pm_max_spare_servers is set correctly
+  ansible.builtin.assert:
+    that:
+      - php_fpm_pm_max_spare_servers is defined
+      - php_fpm_pm_max_spare_servers is number
+      - php_fpm_pm_max_spare_servers > 0
+    quiet: yes

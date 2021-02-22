@@ -1,0 +1,23 @@
+{{ ansible_managed | comment }}
+
+{% for storage in vault_storages %}
+storage "{{ storage.name }}" {
+  path    = "{{ storage.path }}"
+  node_id = "{{ storage.node_id }}"
+}
+{% endfor %}
+
+{% for listener in vault_listeners %}
+listener "{{ listener.name }}" {
+  address         = "{{ listener.address }}"
+  cluster_address = "{{ listener.cluster_address }}"
+  tls_disable     = {{ listener.tls_disable }}
+}
+{% endfor %}
+
+api_addr           = "{{ vault_api_addr }}"
+cluster_addr       = "{{ vault_cluster_addr }}"
+disable_mlock      = {{ vault_disable_mlock }}
+disable_clustering = "{{ vault_disable_clustering }}"
+plugin_directory   = "{{ vault_plugin_directory }}"
+ui                 = {{ vault_ui }}

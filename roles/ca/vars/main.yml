@@ -1,0 +1,64 @@
+---
+# vars file for ca
+
+_ca_openssl_path:
+  Alpine: /etc/ssl
+  Debian: /etc/ssl
+  RedHat: /etc/pki/tls
+  Suse: /etc/ssl
+
+# config file name
+ca_openssl_config_file: openssl.cnf
+
+# The names of the generated files, relative to `ca_path`.
+ca_private_path: private
+ca_certs_path: certs
+ca_requests_path: requests
+ca_newcerts_path: newcerts
+ca_extfiles_path: extfiles
+ca_subject_keys_path: subject_keys
+ca_filename: ca
+ca_privatekey_path: "{{ ca_private_path }}/{{ ca_filename }}.key"
+ca_csr_path: "{{ ca_requests_path }}/{{ ca_filename }}.csr"
+ca_certificate_path: "{{ ca_certs_path }}/{{ ca_filename }}.crt"
+
+# root CA names
+ca_root_privatekey_path: "{{ ca_private_path }}/rootCA.key"
+ca_root_csr_path: "{{ ca_requests_path }}/rootCA.csr"
+ca_root_certificate_path: "{{ ca_certs_path }}/rootCA.crt"
+ca_root_common_name: "{{ ca_common_name }} root CA"
+
+# CA certificate creation parameters (openssl ca)
+ca_root_cert_params: >
+  -config {{ ca_openssl_config_file }} -key {{ ca_passphrase }}
+  -out {{ ca_root_certificate_path }} -days 7300
+  -create_serial
+  -selfsign -extensions v3_ca
+  -batch -infiles {{ ca_root_csr_path }}
+
+ca_cert_params: >
+  -config {{ ca_openssl_config_file }} -key {{ ca_passphrase }}
+  -out {{ ca_certificate_path }} -days 3650
+  -policy policy_anything
+  -notext
+  -extensions v3_ca
+  -batch -infiles {{ ca_csr_path }}
+
+ca_client_cert_params: >
+  -config {{ ca_openssl_config_file }} -key {{ ca_passphrase }}
+  -out {{ ca_certs_path }}/{{ request.name | default(request) }}.crt
+  -policy policy_anything
+  -notext -create_serial
+  -extfile {{ ca_extfiles_path }}/{{ request.name | default(request) }}.cnf -extensions x509_extensions
+  -batch -infiles {{ ca_requests_path }}/{{ request.name | default(request) }}.csr
+
+ca_client_cert_revoke_params: >
+  -config {{ ca_openssl_config_file }} -key {{ ca_passphrase }}
+  -revoke {{ ca_certs_path }}/{{ request.name | default(request) }}.crt
+
+ca_crl_params: >
+  -config {{ ca_openssl_config_file }} -key {{ ca_passphrase }}
+  -gencrl -out {{ ca_certs_path }}/crl.pem
+
+# The ca_openssl_path is determined in the `defaults/main.yml`, so users may
+# overwrite it to their preference.

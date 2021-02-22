@@ -1,0 +1,4 @@
+---
+exceptions:
+  - variation: Alpine
+    reason: "ImportError: Error loading shared library /tmp/pip-build-env-zrX8Lu/lib/python2.7/site-packages/_cffi_backend.so: Operation not permitted"

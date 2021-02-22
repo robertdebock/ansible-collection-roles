@@ -1,0 +1,10 @@
+---
+exceptions:
+  - variation: "centos:8"
+    reason: "No package roundcubemail available."
+  - variation: "amazonlinux:1"
+    reason: "No package matching 'python3-pip' found available, installed or updated"
+  - variation: "amazonlinux:latest"
+    reason: "The error was: ImportError: No module named pkg_resources (openssl role)"
+  - variation: "alpine"
+    reason: "failed to install mariadb py-mysqldb (mysql role)"

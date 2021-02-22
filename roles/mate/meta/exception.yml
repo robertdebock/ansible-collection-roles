@@ -1,0 +1,4 @@
+---
+exceptions:
+  - variation: centos:8
+    reason: "MATE is not available"

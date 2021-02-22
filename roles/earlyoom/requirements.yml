@@ -1,0 +1,7 @@
+---
+roles:
+  - name: robertdebock.bootstrap
+  - name: robertdebock.buildtools
+  - name: robertdebock.service
+collections:
+  - name: community.general

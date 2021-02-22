@@ -1,0 +1,14 @@
+{{ ansible_managed | comment }}
+[Unit]
+Description=Remote desktop service (VNC)
+After=syslog.target network.target
+
+[Service]
+Type=forking
+# User={{ tigervnc_username }}
+ExecStart={{ tigervnc_binary }} %i
+PIDFile=/var/run/vncsession-%i.pid
+SELinuxContext=system_u:system_r:vnc_session_t:s0
+
+[Install]
+WantedBy=multi-user.target

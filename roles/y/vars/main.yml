@@ -1,0 +1,12 @@
+---
+# vars file for y
+
+_y_requirements:
+  default:
+    - imagemagick
+  RedHat:
+    - ImageMagick
+  Suse:
+    - ImageMagick
+
+y_requirements: "{{ _y_requirements[ansible_os_family] | default(_y_requirements['default']) }}"

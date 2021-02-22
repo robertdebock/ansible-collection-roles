@@ -1,0 +1,14 @@
+---
+- name: create pool members
+  bigip_pool_member:
+    provider: "{{ provider }}"
+    state: "present"
+    name: "{{ item.name }}"
+    host: "{{ item.host | default(item.name) }}"
+    port: "{{ item.port }}"
+    pool: "{{ pool_member.name }}"
+    partition: "{{ f5_ltm_partition }}"
+  loop: "{{ pool_member.members }}"
+  when:
+    - f5_ltm_provider is defined
+  delegate_to: localhost

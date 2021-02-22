@@ -1,0 +1,6 @@
+---
+exceptions:
+  - variation: amazonlinux:1
+    reason: "Testing mysql fails, because a dependecy (ansible-role-mysql) is not met."
+  - variation: alpine
+    reason: "Testing mysql fails, because a dependecy (ansible-role-mysql) is not met."

@@ -1,0 +1,8 @@
+---
+roles:
+  - name: robertdebock.apt_autostart
+  - name: robertdebock.bootstrap
+collections:
+  - name: ansible.posix
+  - name: community.general
+  - name: gluster.gluster

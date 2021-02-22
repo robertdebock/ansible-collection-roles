@@ -1,0 +1,10 @@
+
+module my-glusterfsd 1.0;
+
+require {
+	type glusterd_t;
+	class capability dac_override;
+}
+
+#============= glusterd_t ==============
+allow glusterd_t self:capability dac_override;

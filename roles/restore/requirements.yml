@@ -1,0 +1,10 @@
+---
+roles:
+  - name: robertdebock.backup
+  - name: robertdebock.bootstrap
+  - name: robertdebock.core_dependencies
+  - name: robertdebock.mysql
+  - name: robertdebock.buildtools
+  - name: robertdebock.epel
+  - name: robertdebock.python_pip
+  - name: robertdebock.postgres

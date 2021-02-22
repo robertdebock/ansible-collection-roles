@@ -1,0 +1,54 @@
+---
+
+- name: test if zabbix_agent_server_address is set correctly
+  ansible.builtin.assert:
+    that:
+      - zabbix_agent_server_address is defined
+      - zabbix_agent_server_address is string
+    quiet: yes
+
+- name: test if zabbix_agent_listen_port is set correctly
+  ansible.builtin.assert:
+    that:
+      - zabbix_agent_listen_port is defined
+      - zabbix_agent_listen_port is number
+      - zabbix_agent_listen_port > 0
+      - zabbix_agent_listen_port < 65536
+    quiet: yes
+
+- name: test if zabbix_agent_server_active_address is set correctly
+  ansible.builtin.assert:
+    that:
+      - zabbix_agent_server_active_address is defined
+      - zabbix_agent_server_active_address is string
+    quiet: yes
+
+- name: test if zabbix_agent_hostname is set correctly
+  ansible.builtin.assert:
+    that:
+      - zabbix_agent_hostname is defined
+      - zabbix_agent_hostname is string
+    quiet: yes
+
+- name: test if zabbix_agent_hostmetadata is set correctly
+  ansible.builtin.assert:
+    that:
+      - zabbix_agent_hostmetadata is defined
+      - zabbix_agent_hostmetadata is string
+    quiet: yes
+
+- name: test if zabbix_agent_timeout is set correctly
+  ansible.builtin.assert:
+    that:
+      - zabbix_agent_timeout is defined
+      - zabbix_agent_timeout is number
+      - zabbix_agent_timeout >= 0
+    quiet: yes
+
+- name: test if zabbix_agent_logremotecommands is set correctly
+  ansible.builtin.assert:
+    that:
+      - zabbix_agent_logremotecommands is defined
+      - zabbix_agent_logremotecommands is string
+      - zabbix_agent_logremotecommands in [ "0", "1" ]
+    quiet: yes

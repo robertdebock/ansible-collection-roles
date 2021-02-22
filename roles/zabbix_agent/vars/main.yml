@@ -1,0 +1,8 @@
+---
+# vars file for zabbix_agent
+
+zabbix_agent_service: zabbix-agent
+
+zabbix_agent_conf_d_directory: /etc/zabbix/zabbix_agentd.d
+
+zabbix_log_directory: /var/log/zabbix

@@ -1,0 +1,16 @@
+---
+# handlers file for image_builder
+
+- name: restart service
+  ansible.builtin.service:
+    name: "{{ item }}"
+    state: restarted
+  loop: "{{ image_builder_services }}"
+  when:
+    - not ansible_check_mode | bool
+
+- name: push blueprint
+  ansible.builtin.command: composer-cli blueprints push blueprint.toml
+
+- name: start blueprint
+  ansible.builtin.command: composer-cli compose start {{ image_builder_product }} {{ image_builder_type }}

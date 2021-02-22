@@ -1,0 +1,6 @@
+---
+project_name: Remi's RPM repository
+reference: "https://github.com/robertdebock/ansible-role-remi/blob/master/molecule/resources/playbook.yml"
+versions:
+  - name: Remi's repositories
+    url: "https://blog.remirepo.net/pages/Config-en"

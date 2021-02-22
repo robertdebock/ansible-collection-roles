@@ -1,0 +1,68 @@
+---
+# handlers file for dovecot
+
+- name: copy sample configuration
+  ansible.builtin.copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    remote_src: yes
+    mode: "0640"
+  loop:
+    - src: /usr/share/doc/dovecot/example-config/dovecot.conf
+      dest: /etc/dovecot/dovecot.conf
+    - src: /usr/share/doc/dovecot/example-config/conf.d/10-auth.conf
+      dest: /etc/dovecot/conf.d/10-auth.conf
+    - src: /usr/share/doc/dovecot/example-config/conf.d/10-auth.conf
+      dest: /etc/dovecot/conf.d/10-auth.conf
+    - src: /usr/share/doc/dovecot/example-config/conf.d/10-director.conf
+      dest: /etc/dovecot/conf.d/10-director.conf
+    - src: /usr/share/doc/dovecot/example-config/conf.d/10-logging.conf
+      dest: /etc/dovecot/conf.d/10-logging.conf
+    - src: /usr/share/doc/dovecot/example-config/conf.d/10-mail.conf
+      dest: /etc/dovecot/conf.d/10-mail.conf
+    - src: /usr/share/doc/dovecot/example-config/conf.d/10-master.conf
+      dest: /etc/dovecot/conf.d/10-master.conf
+    - src: /usr/share/doc/dovecot/example-config/conf.d/10-ssl.conf
+      dest: /etc/dovecot/conf.d/10-ssl.conf
+    - src: /usr/share/doc/dovecot/example-config/conf.d/15-lda.conf
+      dest: /etc/dovecot/conf.d/15-lda.conf
+    - src: /usr/share/doc/dovecot/example-config/conf.d/15-mailboxes.conf
+      dest: /etc/dovecot/conf.d/15-mailboxes.conf
+    - src: /usr/share/doc/dovecot/example-config/conf.d/20-imap.conf
+      dest: /etc/dovecot/conf.d/20-imap.conf
+    - src: /usr/share/doc/dovecot/example-config/conf.d/20-lmtp.conf
+      dest: /etc/dovecot/conf.d/20-lmtp.conf
+    - src: /usr/share/doc/dovecot/example-config/conf.d/20-pop3.conf
+      dest: /etc/dovecot/conf.d/20-pop3.conf
+    - src: /usr/share/doc/dovecot/example-config/conf.d/20-submission.conf
+      dest: /etc/dovecot/conf.d/20-submission.conf
+    - src: /usr/share/doc/dovecot/example-config/conf.d/90-acl.conf
+      dest: /etc/dovecot/conf.d/90-acl.conf
+    - src: /usr/share/doc/dovecot/example-config/conf.d/90-plugin.conf
+      dest: /etc/dovecot/conf.d/90-plugin.conf
+    - src: /usr/share/doc/dovecot/example-config/conf.d/90-quota.conf
+      dest: /etc/dovecot/conf.d/90-quota.conf
+    - src: /usr/share/doc/dovecot/example-config/conf.d/auth-checkpassword.conf.ext
+      dest: /etc/dovecot/conf.d/auth-checkpassword.conf.ext
+    - src: /usr/share/doc/dovecot/example-config/conf.d/auth-deny.conf.ext
+      dest: /etc/dovecot/conf.d/auth-deny.conf.ext
+    - src: /usr/share/doc/dovecot/example-config/conf.d/auth-dict.conf.ext
+      dest: /etc/dovecot/conf.d/auth-dict.conf.ext
+    - src: /usr/share/doc/dovecot/example-config/conf.d/auth-ldap.conf.ext
+      dest: /etc/dovecot/conf.d/auth-ldap.conf.ext
+    - src: /usr/share/doc/dovecot/example-config/conf.d/auth-master.conf.ext
+      dest: /etc/dovecot/conf.d/auth-master.conf.ext
+    - src: /usr/share/doc/dovecot/example-config/conf.d/auth-passwdfile.conf.ext
+      dest: /etc/dovecot/conf.d/auth-passwdfile.conf.ext
+    - src: /usr/share/doc/dovecot/example-config/conf.d/auth-sql.conf.ext
+      dest: /etc/dovecot/conf.d/auth-sql.conf.ext
+    - src: /usr/share/doc/dovecot/example-config/conf.d/auth-static.conf.ext
+      dest: /etc/dovecot/conf.d/auth-static.conf.ext
+    - src: /usr/share/doc/dovecot/example-config/conf.d/auth-system.conf.ext
+      dest: /etc/dovecot/conf.d/auth-system.conf.ext
+    - src: /usr/share/doc/dovecot/example-config/conf.d/auth-vpopmail.conf.ext
+      dest: /etc/dovecot/conf.d/auth-vpopmail.conf.ext
+  loop_control:
+    label: "{{ item.dest }}"
+  when:
+    - ansible_distribution == "Archlinux"

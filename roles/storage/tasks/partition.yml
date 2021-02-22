@@ -1,0 +1,18 @@
+---
+- name: test storage_partitions
+  ansible.builtin.assert:
+    that:
+      - partition.name is defined
+      - partition.number is defined
+      - partition.part_start is defined or
+        partition.part_end is defined
+    quiet: yes
+
+- name: create partitions
+  parted:
+    device: "{{ partition.name }}"
+    number: "{{ partition.number }}"
+    flags: "{{ partition.flags | default(omit) }}"
+    part_start: "{{ partition.part_start | default(omit) }}"
+    part_end: "{{ partition.part_end | default(omit) }}"
+    state: present

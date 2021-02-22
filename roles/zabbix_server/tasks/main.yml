@@ -1,0 +1,80 @@
+---
+# tasks file for zabbix_server
+
+- name: include assert.yml
+  import_tasks: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+- name: install zabbix-server requirements
+  ansible.builtin.package:
+    name: "{{ zabbix_server_requirements }}"
+    state: present
+
+- name: install zabbix_server
+  ansible.builtin.package:
+    name: zabbix-server-mysql
+    state: present
+
+- name: find zabbix_documentation_directory
+  ansible.builtin.find:
+    paths:
+      - "{{ zabbix_server_docdir }}"
+    file_type: directory
+    use_regex: yes
+    patterns:
+      - '^zabbix-server-mysql'
+      - '^zabbix-server-mysql-.*'
+  register: zabbix_documentation_directory_found
+
+- name: unarchive zabbix schema
+  ansible.builtin.command: gunzip {{ zabbix_documentation_directory_found.files[-1].path }}/create.sql.gz
+  args:
+    creates: "{{ zabbix_documentation_directory_found.files[-1].path }}/create.sql"
+  notify:
+    - import zabbix schema
+    - restart zabbix_server
+  loop_control:
+    label: "{{ item.path }}"
+
+- name: configure selinux
+  block:
+    - name: set selinux settings for zabbix_server
+      ansible.posix.seboolean:
+        name: "{{ item }}"
+        state: yes
+        persistent: yes
+      loop:
+        - httpd_can_connect_zabbix
+        - httpd_can_network_connect_db
+        - zabbix_can_network
+
+    - name: place selinux type enforcement
+      ansible.builtin.copy:
+        src: my-zabbixserver.te
+        dest: /etc/zabbix/my-zabbixserver.te
+        mode: "0644"
+      notify:
+        - create selinux mod for zabbix_server
+        - create selinux pp for zabbix_server
+        - load selinux pp for zabbix_server
+  when:
+    - ansible_selinux.status is defined
+    - ansible_selinux.status == "enabled"
+
+- name: flush handlers
+  ansible.builtin.meta: flush_handlers
+
+- name: configure zabbix_server
+  ansible.builtin.template:
+    src: zabbix_server.conf.j2
+    dest: /etc/zabbix/zabbix_server.conf
+    mode: "0644"
+  notify:
+    - restart zabbix_server
+
+- name: start and enable zabbix_server
+  ansible.builtin.service:
+    name: zabbix-server
+    state: started
+    enabled: yes

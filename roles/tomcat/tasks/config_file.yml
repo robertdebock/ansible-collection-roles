@@ -1,0 +1,8 @@
+---
+- name: deploy config_file
+  ansible.builtin.template:
+    src: "{{ config_file.src }}"
+    dest: "{{ tomcat_directory }}/{{ instance.name }}/conf/{{ config_file.dest }}"
+    owner: "{{ instance.user | default(tomcat_user) }}"
+    group: "{{ instance.group | default(tomcat_group) }}"
+    mode: "{{ config_file.mode }}"

@@ -1,0 +1,8 @@
+---
+exceptions:
+  - variation: fedora:32
+    reason: "nothing provides libzip(x86-64) >= 1.7.3 needed by php-pecl-zip-1.19.1-1.fc32.remi.7.4.x86_64"
+  - variation: fedora:rawhide
+    reason: "dependent role \"remi\" does not support fedora:rawhide."
+  - variation: debian:bullseye
+    reason: "Package 'php-dom' (and 'php-posix') has no installation candidate"

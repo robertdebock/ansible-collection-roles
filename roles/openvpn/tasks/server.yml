@@ -1,0 +1,76 @@
+---
+
+- name: ensure /etc/openvpn/easy-rsa exists
+  ansible.builtin.file:
+    path: /etc/openvpn/easy-rsa
+    state: directory
+    mode: "0755"
+
+- name: easyrsa init-pki
+  ansible.builtin.command: "{{ openvpn_easyrsa_path }}/easyrsa init-pki"
+  args:
+    chdir: /etc/openvpn/easy-rsa
+    creates: /etc/openvpn/easy-rsa/pki
+
+- name: easyrsa build-ca
+  ansible.builtin.command: "{{ openvpn_easyrsa_path }}/easyrsa build-ca nopass"
+  args:
+    chdir: /etc/openvpn/easy-rsa
+    creates: /etc/openvpn/easy-rsa/pki/ca.crt
+  environment:
+    EASYRSA_BATCH: "yes"
+
+- name: easyrsa gen-dh
+  ansible.builtin.command: "{{ openvpn_easyrsa_path }}/easyrsa gen-dh"
+  args:
+    chdir: /etc/openvpn/easy-rsa
+    creates: /etc/openvpn/easy-rsa/pki/dh.pem
+
+- name: easyrsa build-server-full server nopass
+  ansible.builtin.command: "{{ openvpn_easyrsa_path }}/easyrsa build-server-full server nopass"
+  args:
+    chdir: /etc/openvpn/easy-rsa
+    creates: /etc/openvpn/easy-rsa/pki/issued/server.crt
+
+- name: easyrsa build-client-full client nopass
+  ansible.builtin.command: "{{ openvpn_easyrsa_path }}/easyrsa build-client-full client nopass"
+  args:
+    chdir: /etc/openvpn/easy-rsa
+    creates: /etc/openvpn/easy-rsa/pki/issued/client.crt
+
+- name: easyrsa gen-crl
+  ansible.builtin.command: "{{ openvpn_easyrsa_path }}/easyrsa gen-crl"
+  args:
+    chdir: /etc/openvpn/easy-rsa
+    creates: /etc/openvpn/easy-rsa/pki/crl.pem
+
+- name: openvpn --genkey --secret /etc/openvpn/easy-rsa/pki/ta.key
+  ansible.builtin.command: openvpn --genkey --secret /etc/openvpn/easy-rsa/pki/ta.key
+  args:
+    creates: /etc/openvpn/easy-rsa/pki/ta.key
+
+- name: copy files to /etc/openvpn/server
+  ansible.builtin.copy:
+    src: /etc/openvpn/easy-rsa/pki/{{ item }}
+    dest: /etc/openvpn/server/{{ item | basename }}
+    mode: "0640"
+    remote_src: yes
+  loop:
+    - ca.crt
+    - dh.pem
+    - ta.key
+    - issued/client.crt
+    - issued/server.crt
+    - private/ca.key
+    - private/client.key
+    - private/server.key
+
+- name: place server.conf
+  ansible.builtin.template:
+    src: server.conf.j2
+    dest: "{{ openvpn_configuration_directory }}/server.conf"
+    owner: root
+    group: "{{ openvpn_group }}"
+    mode: "0640"
+  notify:
+    - restart openvpn

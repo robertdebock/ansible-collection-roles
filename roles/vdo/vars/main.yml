@@ -1,0 +1,7 @@
+---
+# vars file for vdo
+vdo_packages:
+  - vdo
+  - kmod-kvdo
+
+vdo_service: vdo

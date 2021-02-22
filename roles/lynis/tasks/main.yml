@@ -1,0 +1,38 @@
+---
+# tasks file for lynis
+
+- name: include assert.yml
+  import_tasks: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+- name: install requirements
+  ansible.builtin.package:
+    name: "{{ lynis_requirements }}"
+
+- name: install lynis
+  ansible.builtin.git:
+    repo: "{{ lynis_repository }}"
+    dest: "{{ lynis_destination }}"
+    version: "{{ lynis_version }}"
+
+- name: audit system
+  ansible.builtin.shell: "set -o pipefail ; {{ lynis_destination }}/lynis audit system | tee -a {{ lynis_output }}"
+  register: lynix_audit_system
+  args:
+    creates: "{{ lynis_output }}"
+    chdir: "{{ lynis_destination }}"
+    executable: /bin/bash
+  when:
+    - lynis_run_now | bool
+
+- name: schedule a run of lynis
+  ansible.builtin.cron:
+    name: run lynis
+    minute: "23"
+    hour: "4"
+    job: "{{ lynis_destination }}/lynis --cronjob audit system | tee -a {{ lynis_output }}"
+    cron_file: lynis
+    user: root
+  when:
+    - lynis_cronjob | bool

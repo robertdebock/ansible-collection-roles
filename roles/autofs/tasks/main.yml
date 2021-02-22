@@ -1,0 +1,111 @@
+---
+# tasks file for autofs
+
+- name: include assert.yml
+  import_tasks: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+- name: install requirements for autofs
+  ansible.builtin.package:
+    name: "{{ autofs_requirements }}"
+    state: present
+
+- name: install autofs
+  ansible.builtin.package:
+    name: "{{ autofs_packages }}"
+    state: present
+
+- name: ensure /etc/auto.master.d exists.
+  ansible.builtin.file:
+    path: /etc/auto.master.d
+    state: directory
+    mode: "0755"
+
+- name: enable /etc/auto.master.d/*.autofs inclusions
+  ansible.builtin.lineinfile:
+    path: /etc/auto.master
+    line: '+dir:/etc/auto.master.d'
+  notify:
+    - restart autofs
+
+- name: place the nis_master_map line in /etc/auto.master
+  ansible.builtin.lineinfile:
+    path: /etc/auto.master
+    line: "+{{ nis_master_map }}"
+    regexp: '^#\s*[+]{{ nis_master_map }}'
+  notify:
+    - restart autofs
+  when:
+    nis_master_map is defined
+
+- name: configure autofs_maps
+  block:
+    - name: place autofs in /etc/auto.master.d/
+      ansible.builtin.template:
+        src: template.autofs.j2
+        dest: /etc/auto.master.d/00-{{ item.mountpoint | regex_replace('^/', '') | regex_replace('/', slash_replace_char) }}.autofs
+        mode: "0640"
+      loop: "{{ autofs_maps }}"
+      loop_control:
+        label: /etc/auto.master.d/00-{{ item.mountpoint | regex_replace('^/', '') | regex_replace('/', slash_replace_char) }}.autofs
+      notify:
+        - reload autofs
+      when:
+        - item.state is not defined or (item.state is defined and item.state == "present")
+
+    - name: configure map
+      ansible.builtin.template:
+        src: map.j2
+        dest: /etc/auto.{{ item.mountpoint | regex_replace('^/', '') | regex_replace('/', slash_replace_char) }}
+        mode: "0644"
+      loop: "{{ autofs_maps }}"
+      loop_control:
+        label: "{{ item.mountpoint }}"
+      when:
+        - item.state is not defined or (item.state is defined and item.state == "present")
+
+    - name: cleanup autofs file that should not exist
+      ansible.builtin.file:
+        path: /etc/auto.master.d/00-{{ item.mountpoint | regex_replace('^/', '') | regex_replace('/', slash_replace_char) }}.autofs
+        state: absent
+      loop: "{{ autofs_maps }}"
+      loop_control:
+        label: /etc/auto.master.d/00-{{ item.mountpoint | regex_replace('^/', '') | regex_replace('/', slash_replace_char) }}.autofs
+      notify:
+        - reload autofs
+      when:
+        - item.state is defined
+        - item.state == "absent"
+
+    - name: cleanup maps that should not exist
+      ansible.builtin.file:
+        path: /etc/auto.{{ item.mountpoint | regex_replace('^/', '') | regex_replace('/', slash_replace_char) }}
+        state: absent
+      loop: "{{ autofs_maps }}"
+      loop_control:
+        label: "/etc/auto.{{ item.mountpoint | regex_replace('^/', '') | regex_replace('/', slash_replace_char) }}"
+      when:
+        - item.state is defined
+        - item.state == "absent"
+
+    - name: create mountpoints
+      ansible.builtin.file:
+        path: "{{ item.mountpoint }}"
+        state: directory
+        owner: root
+        group: root
+        mode: "0755"
+      loop: "{{ autofs_maps }}"
+      loop_control:
+        label: "{{ item.mountpoint }}"
+      when:
+        - item.state is not defined or (item.state is defined and item.state == "present")
+  when:
+    - autofs_maps is defined
+
+- name: start autofs
+  ansible.builtin.service:
+    name: "{{ autofs_service }}"
+    state: started
+    enabled: yes

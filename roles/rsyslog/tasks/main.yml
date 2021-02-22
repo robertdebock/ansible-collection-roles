@@ -1,0 +1,49 @@
+---
+# tasks file for rsyslog
+
+- name: include assert.yml
+  import_tasks: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+- name: uninstall conflicting systemd-logger
+  ansible.builtin.package:
+    name: systemd-logger
+    state: absent
+
+- name: install rsyslog
+  ansible.builtin.package:
+    name: "{{ rsyslog_packages }}"
+    state: "{{ rsyslog_package_state }}"
+
+- name: configuring default rsyslog
+  ansible.builtin.template:
+    src: "{{ rsyslog_config_file_format }}_rsyslog.conf.j2"
+    dest: /etc/rsyslog.conf
+    mode: "0644"
+  when:
+    - rsyslog_deploy_default_config
+  notify:
+    - restart rsyslog
+
+- name: make configuration directory
+  ansible.builtin.file:
+    name: /etc/rsyslog.d/
+    state: directory
+    mode: "0755"
+
+- name: configuring {{ rsyslog_forward_rule_name }} rsyslog forward rule
+  ansible.builtin.template:
+    src: "forward_rule.conf.j2"
+    dest: /etc/rsyslog.d/{{ rsyslog_forward_rule_name }}.conf
+    mode: "0644"
+  when:
+    - not rsyslog_deploy_default_config
+  notify:
+    - restart rsyslog
+
+- name: start and enable rsyslog
+  ansible.builtin.service:
+    name: "{{ rsyslog_service }}"
+    state: started
+    enabled: yes

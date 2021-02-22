@@ -1,0 +1,149 @@
+---
+# tasks file for firewall
+
+- name: include assert.yml
+  import_tasks: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+- name: remove conflicting software
+  ansible.builtin.package:
+    name: "{{ firewall_packages_conflicting }}"
+    state: absent
+  when:
+    - firewall_packages_conflicting is defined
+
+- name: install required software
+  ansible.builtin.package:
+    name: "{{ firewall_packages_required }}"
+    state: present
+  when:
+    - firewall_packages_required is defined
+
+- name: open ports (ufw)
+  community.general.ufw:
+    rule: "{{ item.rule | default(firewall_default_rule) }}"
+    port: "{{ item.name }}"
+    proto: "{{ item.protocol | default(firewall_default_protocol) }}"
+  loop: "{{ firewall_services }}"
+  when:
+    - ansible_connection != "docker"
+    - firewall_services is defined
+    - firewall_service == "ufw"
+  loop_control:
+    label: "{{ item.name }}"
+
+- name: close ports (ufw)
+  community.general.ufw:
+    rule: "{{ item.rule | default(firewall_default_rule) }}"
+    port: "{{ item.name }}"
+    proto: "{{ item.protocol | default(firewall_default_protocol) }}"
+    delete: yes
+  loop: "{{ firewall_services }}"
+  when:
+    - ansible_connection != "docker"
+    - firewall_services is defined
+    - firewall_service == "ufw"
+    - item.state is defined
+    - item.state == "absent"
+  loop_control:
+    label: "{{ item.name }}"
+
+- name: open ports (firewalld-port)
+  ansible.posix.firewalld:
+    port: "{{ item.name }}/{{ item.protocol | default(firewall_default_protocol) }}"
+    permanent: yes
+    state: enabled
+  loop: "{{ firewall_services }}"
+  when:
+    - ansible_connection != "docker"
+    - firewall_services is defined
+    - firewall_service == "firewalld"
+    - item.name is number
+  loop_control:
+    label: "{{ item.name }}"
+  notify:
+    - reload firewalld
+
+- name: close ports (firewalld-port)
+  ansible.posix.firewalld:
+    port: "{{ item.name }}/{{ item.protocol | default(firewall_default_protocol) }}"
+    permanent: yes
+    state: disabled
+  loop: "{{ firewall_services }}"
+  when:
+    - ansible_connection != "docker"
+    - firewall_services is defined
+    - firewall_service == "firewalld"
+    - item.name is number
+    - item.state is defined
+    - item.state == "absent"
+  loop_control:
+    label: "{{ item.name }}"
+  notify:
+    - reload firewalld
+
+- name: open ports (firewalld-service)
+  ansible.posix.firewalld:
+    service: "{{ item.name }}"
+    permanent: yes
+    state: enabled
+  loop: "{{ firewall_services }}"
+  when:
+    - ansible_connection != "docker"
+    - firewall_services is defined
+    - firewall_service == "firewalld"
+    - item.name is not number
+  loop_control:
+    label: "{{ item.name }}"
+  notify:
+    - reload firewalld
+
+- name: close ports (firewalld-service)
+  ansible.posix.firewalld:
+    service: "{{ item.name }}"
+    permanent: yes
+    state: disabled
+  loop: "{{ firewall_services }}"
+  when:
+    - ansible_connection != "docker"
+    - firewall_services is defined
+    - firewall_service == "firewalld"
+    - item.name is not number
+    - item.state is defined
+    - item.state == "absent"
+  loop_control:
+    label: "{{ item.name }}"
+  notify:
+    - reload firewalld
+
+- name: enable ufw
+  community.general.ufw:
+    state: enabled
+  when:
+    - ansible_connection != "docker"
+    - firewall_service == "ufw"
+
+- name: configure iptables
+  ansible.builtin.template:
+    src: iptables.j2
+    dest: "{{ firewall_iptables_rulefile }}"
+    validate: "iptables-restore --test %s"
+    mode: "0640"
+  when:
+    - ansible_connection != "docker"
+    - firewall_services is defined
+    - firewall_service == "iptables"
+  loop_control:
+    label: "{{ item.name }}"
+  notify:
+    - reload firewall
+
+- name: start and enable firewall service
+  ansible.builtin.service:
+    name: "{{ firewall_service }}"
+    state: started
+    enabled: yes
+  when:
+    - ansible_connection != "docker"
+    - firewall_service is defined

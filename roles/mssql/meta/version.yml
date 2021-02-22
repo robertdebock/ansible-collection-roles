@@ -1,0 +1,10 @@
+---
+project_name: Microsoft
+reference: "https://github.com/robertdebock/ansible-role-mssql/blob/master/defaults/main.yml"
+versions:
+  - name: SQL for RHEL
+    url: "https://packages.microsoft.com/rhel/7/mssql-server-2017/"
+  - name: SQL for Ubuntu
+    url: "https://packages.microsoft.com/ubuntu/16.04/mssql-server-2017/pool/main/m/mssql-server/"
+  - name: SQL for SLES
+    url: "https://packages.microsoft.com/sles/12/mssql-server-2017/"

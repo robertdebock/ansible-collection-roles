@@ -1,0 +1,56 @@
+---
+# tasks file for squid
+
+- name: include assert.yml
+  import_tasks: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+- name: create group
+  ansible.builtin.group:
+    name: "{{ squid_group }}"
+    system: yes
+    state: present
+
+- name: create user
+  ansible.builtin.user:
+    name: "{{ squid_user }}"
+    group: "{{ squid_group }}"
+    create_home: no
+    state: present
+    home: /var/spool/squid
+    shell: /sbin/nologin
+    system: yes
+
+- name: install squid
+  ansible.builtin.package:
+    name: "{{ squid_packages }}"
+    state: present
+
+- name: configure squid
+  ansible.builtin.template:
+    src: "{{ squid_config_file }}.j2"
+    dest: "{{ squid_config_directory }}/{{ squid_config_file }}"
+    mode: "0644"
+    validate: squid -k parse -f %s
+  notify:
+    - restart squid
+
+- name: create cache directory
+  ansible.builtin.file:
+    path: /var/spool/squid
+    state: directory
+    owner: "{{ squid_user }}"
+    group: "{{ squid_group }}"
+    mode: "0750"
+
+- name: flush_handlers
+  ansible.builtin.meta: flush_handlers
+
+- name: start and enable squid
+  ansible.builtin.service:
+    name: "{{ squid_service }}"
+    state: started
+    enabled: yes
+  when:
+    - not ansible_check_mode | bool

@@ -1,0 +1,7 @@
+---
+- name: 2.1.1 Ensure xinetd is not installed (Scored)
+  package:
+    name: xinetd
+    state: absent
+  when:
+    - cis_xinet_not_installed | bool

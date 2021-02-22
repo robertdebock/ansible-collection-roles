@@ -1,0 +1,17 @@
+---
+# handlers file for ara
+
+- name: restart ara
+  ansible.builtin.service:
+    name: ara
+    state: restarted
+  become: yes
+  when:
+    - not ansible_check_mode | bool
+
+- name: systemctl daemon-reload
+  ansible.builtin.systemd:
+    daemon_reload: yes
+  become: yes
+  notify:
+    - restart ara

@@ -1,0 +1,29 @@
+---
+
+- name: test if mysql_bind_address is set correctly
+  ansible.builtin.assert:
+    that:
+      - mysql_bind_address is defined
+      - mysql_bind_address is string
+    quiet: yes
+
+- name: test if mysql_root_password is set correctly
+  ansible.builtin.assert:
+    that:
+      - mysql_root_password is defined
+      - mysql_root_password is string
+    quiet: yes
+
+- name: test if mysql_innodb_buffer_pool_size is set correctly
+  ansible.builtin.assert:
+    that:
+      - mysql_innodb_buffer_pool_size is defined
+      - mysql_innodb_buffer_pool_size is string
+    quiet: yes
+
+- name: test if mysql_innodb_io_capacity is set correctly
+  ansible.builtin.assert:
+    that:
+      - mysql_innodb_io_capacity is defined
+      - mysql_innodb_io_capacity is integer
+    quiet: yes

@@ -1,0 +1,17 @@
+---
+- name: create client service
+  ansible.builtin.import_role:
+    name: robertdebock.service
+  vars:
+    service_list:
+      - name: dsvpn-client
+        description: "Dead simple VPN client"
+        start_command: "{{ dsvpn_install_directory }}/dsvpn client {{ dsvpn_key_directory }}/vpn.key {{ dsvpn_server }}"
+  notify:
+    - restart dsvpn-client
+
+- name: start dsvpn-client
+  ansible.builtin.service:
+    name: dsvpn-client
+    state: started
+    enabled: yes

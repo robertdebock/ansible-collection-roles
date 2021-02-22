@@ -1,0 +1,19 @@
+---
+# handlers file for auditd
+
+- name: run augenrules
+  ansible.builtin.command: augenrules
+  notify: load rules
+
+- name: load rules
+  ansible.builtin.command: augenrules --load
+  when:
+    - ansible_connection != "docker"
+
+- name: restart auditd
+  ansible.builtin.service:
+    name: "{{ auditd_service }}"
+    state: restarted
+    use: service  # systemctl can't restart auditd, service can: https://access.redhat.com/solutions/2664811
+  when:
+    - not ansible_check_mode | bool

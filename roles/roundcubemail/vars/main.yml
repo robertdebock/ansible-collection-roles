@@ -1,0 +1,105 @@
+---
+# vars file for roundcubemailmail
+
+_roundcubemail_requirements:
+  default:
+    - php-mysql
+    - php-mcrypt
+    - python2-mysql
+  Alpine:
+    - php7-mysqli
+    - php7-mcrypt
+    - py-mysqldb
+  Amazon-2018:
+    - MySQL-python27
+  Amazon:
+    - MySQL-python
+  Debian:
+    - php-mysql
+    - dbconfig-no-thanks
+    - python3-mysqldb
+  Suse:
+    - php7-mysql
+    - python3-mysqlclient
+  RedHat-7:
+    - php-mcrypt
+    - php-cli
+    - php-gd
+    - php-curl
+    - php-xml
+    - php-mysql
+    - php-mbstring
+    - php-pspell
+    - php-pecl-imagick
+    - MySQL-python
+  RedHat:
+    - php-cli
+    - php-gd
+    - php-curl
+    - php-xml
+    - php-mysqlnd
+    - php-mbstring
+    - python3-PyMySQL
+
+roundcubemail_requirements: "{{ _roundcubemail_requirements[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_roundcubemail_requirements[ansible_os_family] | default(_roundcubemail_requirements['default'])) }}"
+
+_roundcubemail_packages:
+  default:
+    - roundcubemail
+  Debian:
+    - roundcube
+
+roundcubemail_packages: "{{ _roundcubemail_packages[ansible_os_family] | default(_roundcubemail_packages['default']) }}"
+
+_roundcubemail_conf_dir:
+  default: /etc/roundcubemail
+  Debian: /etc/roundcube
+
+roundcubemail_conf_dir: "{{ _roundcubemail_conf_dir[ansible_os_family] | default(_roundcubemail_conf_dir['default']) }}"
+
+_roundcubemail_owner:
+  default: http
+  Alpine: apache
+  Debian: www-data
+  RedHat: apache
+  Suse: root
+
+roundcubemail_owner: "{{ _roundcubemail_owner[ansible_os_family] | default(_roundcubemail_owner['default']) }}"
+
+_roundcubemail_group:
+  default: apache
+  Alpine: root
+  Debian: www-data
+  RedHat: apache
+  Suse: root
+
+roundcubemail_group: "{{ _roundcubemail_group[ansible_os_family] | default(_roundcubemail_group['default']) }}"
+
+_roundcubemail_mode:
+  default: "640"
+  Alpine: "644"
+  Suse: "644"
+
+roundcubemail_mode: "{{ _roundcubemail_mode[ansible_os_family] | default(_roundcubemail_mode['default']) }}"
+
+_roundcubemail_install_directory:
+  default: /usr/share/roundcubemail
+  Debian: /usr/share/roundcube
+  Suse: /srv/www/roundcubemail
+
+roundcubemail_install_directory: "{{ _roundcubemail_install_directory[ansible_os_family] | default(_roundcubemail_install_directory['default']) }}"
+
+roundcubemail_database_url: mysql://{{ roundcubemail_database_user }}:{{ roundcubemail_database_password }}@{{ roundcubemail_database_host }}/{{ roundcubemail_database_name }}
+
+roundcubemail_database_target: "{{ roundcubemail_install_directory }}/SQL/mysql.initial.sql"
+
+roundcubemail_file: config.inc.php
+
+_roundcubemail_httpd_configuration:
+  default: /etc/httpd/conf.d/roundcube.conf
+  Alpine: /etc/apache2/conf.d/roundcube.conf
+  Debian: /etc/apache2/conf-enabled/roundcube.conf
+  RedHat: /etc/httpd/conf.d/roundcubemail.conf
+  Suse: /etc/apache2/conf.d/roundcubemail.conf
+
+roundcubemail_httpd_configuration: "{{ _roundcubemail_httpd_configuration[ansible_os_family] | default(_roundcubemail_httpd_configuration['default']) }}"

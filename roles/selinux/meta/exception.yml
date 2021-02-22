@@ -1,0 +1,6 @@
+---
+exceptions:
+  - variation: Archlinux & Ansible 2.7
+    reason: New-style module did not handle its own exit
+  - variation: amazonlinux
+    reason: "Dependency (reboot) does not work on amazonlinux."

@@ -1,0 +1,36 @@
+---
+# vars file for omsagent
+
+_omsagent_requirements:
+  default:
+    - glibc
+    - openssl
+    - curl
+    # - python-ctypes
+    - pam
+    - wget
+    - which
+  Suse:
+    - glibc
+    - openssl
+    - curl
+    - python3-base
+    - pam
+    - wget
+    - which
+
+omsagent_requirements: "{{ _omsagent_requirements[ansible_distribution] | default(_omsagent_requirements[ansible_os_family] | default(_omsagent_requirements['default'])) }}"
+
+_omsagent_creates_pattern:
+  default: x86
+  x86_64: x64
+
+omsagent_creates_pattern: "{{ _omsagent_creates_pattern[ansible_architecture] | default(_omsagent_creates_pattern['default']) }}"
+
+omsagent_url: "https://raw.githubusercontent.com/Microsoft/OMS-Agent-for-Linux/master/installer/scripts/onboard_agent.sh"
+
+_omsagent_service_state:
+  default: started
+  RedHat: ""
+
+omsagent_service_state: "{{ _omsagent_service_state[ansible_os_family] | default(_omsagent_service_state['default']) }}"

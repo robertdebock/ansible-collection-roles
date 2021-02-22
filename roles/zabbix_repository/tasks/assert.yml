@@ -1,0 +1,16 @@
+---
+
+- name: test if zabbix_repository_version_major is set correctly
+  ansible.builtin.assert:
+    that:
+      - zabbix_repository_version_major is defined
+      - zabbix_repository_version_major is string
+    quiet: yes
+
+- name: test if zabbix_repository_version_minor is set correctly
+  ansible.builtin.assert:
+    that:
+      - zabbix_repository_version_minor is defined
+      - zabbix_repository_version_minor is number
+      - zabbix_repository_version_minor >= 0
+    quiet: yes

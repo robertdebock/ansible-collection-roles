@@ -1,0 +1,4 @@
+---
+exceptions:
+  - variation: Alpine
+    reason: "/tmp/Anaconda3-2018.12-Linux-x86_64.sh: line 377: /root/anaconda3/pkgs/python-3.7.1-h0371630_7/bin/python: No such file or directory"

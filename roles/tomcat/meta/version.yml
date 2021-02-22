@@ -1,0 +1,10 @@
+---
+project_name: Apache Tomcat
+reference: "https://github.com/robertdebock/ansible-role-tomcat/blob/master/defaults/main.yml"
+versions:
+  - name: Tomcat version 7
+    url: "https://tomcat.apache.org/download-70.cgi"
+  - name: Tomcat version 8
+    url: "https://tomcat.apache.org/download-80.cgi"
+  - name: Tomcat version 9
+    url: "https://tomcat.apache.org/download-90.cgi"

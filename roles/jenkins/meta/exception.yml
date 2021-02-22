@@ -1,0 +1,12 @@
+---
+exceptions:
+  - variation: alpine
+    reason: 'tried to configure name using a file "/etc/sysconfig/clock", but could not write to it'
+  - variation: amazonlinux
+    reason: "/etc/rc.d/init.d/jenkins: line 59: /etc/init.d/functions: No such file or directory"
+  - variation: ubuntu:bionic
+    reason: "No openjdk 8, with openjdk 11 jenkins returns an error."
+  - variation: ubuntu:focal
+    reason: "No openjdk 8, with openjdk 11 jenkins returns an error."
+  - variation: opensuse
+    reason: "An initscript is not idempotent."

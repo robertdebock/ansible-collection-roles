@@ -1,0 +1,4 @@
+---
+- name: convert to monochrome # noqa 106 This is really a role name.
+  ansible.builtin.command: convert {{ image.path }} -monochrome {{ image.path }}
+  changed_when: no

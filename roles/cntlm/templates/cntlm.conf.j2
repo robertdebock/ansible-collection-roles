@@ -1,0 +1,25 @@
+{{ ansible_managed | comment }}
+Username {{ cntlm_username }}
+Domain {{ cntlm_domain }}
+Proxy {{ cntlm_proxy }}
+Listen {{ cntlm_listen }}
+{% if cntlm_passntlmv2 is defined %}
+PassNTLMv2 {{ cntlm_passntlmv2 }}
+{% else %}
+{{ cntlm_generate_hash.stdout_lines[3] }}
+{% endif %}
+NoProxy {{ cntlm_noproxy }}
+
+# Enable to allow access from other computers
+#
+Gateway {{ gateway_enabled }}
+
+# Useful in Gateway mode to allow/restrict certain IPs
+# Specifiy individual IPs or subnets one rule per line.
+#
+{% for allow in cntlm_allows %}
+    Allow {{ allow }}
+{% endfor %}
+{% for deny in cntlm_denies %}
+    Deny   {{ deny }}
+{% endfor %}

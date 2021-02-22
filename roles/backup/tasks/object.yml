@@ -1,0 +1,54 @@
+---
+- name: archive directory object
+  archive:
+    path: "{{ object.source }}"
+    dest: "{{ backup_remote_directory }}/{{ object.type }}-{{ object.name }}-{{ backup_timestamp }}.{{ object.format | default(backup_format) }}"
+    exclude_path: "{{ object.exclude_path | default(omit) }}"
+    format: "{{ object.format | default(backup_format) }}"
+    mode: "0640"
+  when:
+    - object.type == "directory"
+
+- name: dump mysql object
+  community.mysql.mysql_db:
+    name: "{{ object.name }}"
+    state: dump
+    target: "{{ backup_remote_directory }}/{{ object.type }}-{{ object.name }}-{{ backup_timestamp }}.sql"
+  when:
+    - object.type == "mysql"
+
+- name: dump postgres object
+  community.general.postgresql_db:
+    name: "{{ object.name }}"
+    state: dump
+    target: "{{ backup_remote_directory }}/{{ object.type }}-{{ object.name }}-{{ backup_timestamp }}.sql"
+  become_user: postgres
+  become: yes
+  when:
+    - object.type == "postgres"
+
+- name: compress object
+  archive:
+    path: "{{ backup_remote_directory }}/{{ object.type }}-{{ object.name }}-{{ backup_timestamp }}.sql"
+    dest: "{{ backup_remote_directory }}/{{ object.type }}-{{ object.name }}-{{ backup_timestamp }}.{{ object.format | default(backup_format) }}"
+    format: "{{ object.format | default(backup_format) }}"
+    mode: "0640"
+  when:
+    - object.type in [ "mysql", "postgres" ]
+
+- name: fetch object
+  ansible.builtin.fetch:
+    src: "{{ backup_remote_directory }}/{{ object.type }}-{{ object.name }}-{{ backup_timestamp }}.{{ object.format | default(backup_format) }}"
+    dest: "{{ backup_directory }}/{{ inventory_hostname }}/"
+    flat: yes
+  become: no
+  when:
+    - object.type in [ "mysql", "postgres" ]
+
+- name: cleanup object
+  ansible.builtin.file:
+    path: "{{ backup_remote_directory }}/{{ object.type }}-{{ object.name }}-{{ backup_timestamp }}.{{ object.format | default(backup_format) }}"
+    state: absent
+  when:
+    - backup_cleanup | bool
+    - object.type in [ "mysql", "postgres" ]

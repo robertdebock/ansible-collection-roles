@@ -1,0 +1,24 @@
+---
+- name: 1.4.1 Ensure AIDE is installed (Scored)
+  package:
+    name: aide
+    state: present
+  when:
+    - cis_aide_installed | bool
+
+- name: 1.4.1 Ensure AIDE is installed (Scored)
+  command: aide --init
+  args:
+    creates: /var/lib/aide/aide.db.new.gz
+  notify:
+    - copy aide.db.new.gz to aide.db.gz
+  when:
+    - cis_aide_installed | bool
+
+- name: 1.4.2 Ensure filesystem integrity is regularly checked (Scored)
+  cron:
+    name: "1.4.2 Ensure filesystem integrity is regularly checked (Scored)"
+    hour: "0"
+    minute: "5"
+    job: /usr/sbin/aide --check
+    user: root

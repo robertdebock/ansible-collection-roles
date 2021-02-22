@@ -1,0 +1,26 @@
+---
+# vars file for tigervnc
+
+_tigervnc_packages:
+  default:
+    - tigervnc-server
+  Debian:
+    - tigervnc-standalone-server
+    - tigervnc-xorg-extension
+
+tigervnc_packages: "{{ _tigervnc_packages[ansible_os_family] | default(_tigervnc_packages['default']) }}"
+
+_tigervnc_binary:
+  default: /usr/bin/vncserver
+  Fedora: /usr/libexec/vncsession-start
+
+tigervnc_binary: "{{ _tigervnc_binary[ansible_distribution] | default(_tigervnc_binary['default']) }}"
+
+_tigervnc_unitfile_template:
+  default: vncserver.service.j2
+  Fedora: Fedora-vncserver.service.j2
+  RedHat: RedHat-vncserver.service.j2
+
+tigervnc_unitfile_template: "{{ _tigervnc_unitfile_template[ansible_distribution] | default(_tigervnc_unitfile_template[ansible_os_family] | default(_tigervnc_unitfile_template['default'])) }}"
+
+tigervnc_service: "vncserver@:1.service"

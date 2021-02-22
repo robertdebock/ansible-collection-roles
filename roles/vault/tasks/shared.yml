@@ -1,0 +1,64 @@
+---
+- name: create vault storage path
+  ansible.builtin.file:
+    path: "{{ item.path }}"
+    mode: "0750"
+    owner: vault
+    group: vault
+    state: directory
+  loop: "{{ vault_storages }}"
+  loop_control:
+    label: "{{ item.path }}"
+
+- name: make plugin directory
+  ansible.builtin.file:
+    path: "{{ vault_plugin_directory }}"
+    state: directory
+    owner: vault
+    group: vault
+    mode: "0755"
+
+- name: select leader if vault_leader is unset
+  ansible.builtin.set_fact:
+    vault_leader: "{{ inventory_hostname }}"
+  run_once: yes
+  when:
+    - vault_leader is not defined
+
+- name: create /etc/vault.d
+  ansible.builtin.file:
+    path: /etc/vault.d
+    state: directory
+    owner: vault
+    group: vault
+    mode: "0755"
+
+- name: place /etc/vaultd.d/config.hcl
+  ansible.builtin.template:
+    src: config.hcl.j2
+    dest: /etc/vault.d/vault.hcl
+    owner: vault
+    group: vault
+    mode: "0640"
+  notify:
+    - restart vault
+
+- name: start vault
+  ansible.builtin.service:
+    name: vault
+    state: started
+    enabled: true
+
+- name: check status of vault
+  ansible.builtin.command: vault status -format=yaml
+  environment:
+    VAULT_ADDR: "{{ vault_api_addr }}"
+  register: vault_status_raw
+  changed_when: no
+  check_mode: no
+  failed_when:
+    - vault_status_raw.rc == 1
+
+- name: save vault_status
+  ansible.builtin.set_fact:
+    vault_status: "{{ vault_status_raw.stdout | from_yaml }}"

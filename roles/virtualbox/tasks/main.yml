@@ -1,0 +1,63 @@
+---
+# tasks file for virtualbox
+
+- name: include assert.yml
+  import_tasks: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+- name: import rpm key
+  ansible.builtin.rpm_key:
+    state: present
+    key: "{{ item }}"
+  loop: "{{ virtualbox_keys }}"
+  loop_control:
+    label: "{{ item | basename }}"
+  when:
+    - ansible_pkg_mgr in [ "yum", "dnf", "zypper" ]
+
+- name: place yum repository
+  ansible.builtin.yum_repository:
+    name: virtualbox
+    description: Fedora $releasever - $basearch - VirtualBox
+    baseurl: "{{ virtualbox_yum_baseurl }}"
+    gpgcheck: yes
+  when:
+    - ansible_pkg_mgr in [ "yum", "dnf" ]
+
+- name: place zypper repository
+  community.general.zypper_repository:
+    name: virtualbox
+    repo: "{{ virtualbox_yum_baseurl }}"
+    state: present
+  when:
+    - ansible_pkg_mgr in [ "zypper" ]
+
+- name: configure apt repository
+  block:
+    - name: import apt key
+      ansible.builtin.apt_key:
+        url: "{{ item }}"
+        state: present
+      loop: "{{ virtualbox_keys }}"
+      loop_control:
+        label: "{{ item | basename }}"
+
+    - name: place apt repository
+      ansible.builtin.apt_repository:
+        repo: deb [ arch=amd64 ] {{ virtualbox_apt_repository }} {{ ansible_distribution_release | lower }} contrib
+        state: present
+  when:
+    - ansible_pkg_mgr in [ "apt" ]
+
+- name: install requirements
+  ansible.builtin.package:
+    name: "{{ virtualbox_requirements }}"
+    state: present
+
+- name: install virtualbox
+  ansible.builtin.package:
+    name: "{{ virtualbox_package }}"
+    state: present
+  notify:
+    - run vboxconfig

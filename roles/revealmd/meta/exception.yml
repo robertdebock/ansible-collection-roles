@@ -1,0 +1,6 @@
+---
+exceptions:
+  - variation: centos:7
+    reason: "/usr/lib/node_modules/reveal-md/bin/reveal-md.js:29 (async () => {"
+  - variation: redhat:7
+    reason: "/usr/lib/node_modules/reveal-md/bin/reveal-md.js:29 (async () => {"

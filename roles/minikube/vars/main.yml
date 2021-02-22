@@ -1,0 +1,33 @@
+---
+# vars file for minikube
+
+_minikube_requirements:
+  default:
+  Alpine:
+    - ebtables
+    - ethtool
+    - socat
+  Debian:
+    - ebtables
+    - ethtool
+    - socat
+  RedHat:
+    - conntrack-tools
+    - ebtables
+    - ethtool
+    - iptables
+    - kmod
+    - socat
+
+minikube_requirements: "{{ _minikube_requirements[ansible_os_family] | default(_minikube_requirements['default']) }}"
+
+_minikube_packages:
+  Debian:
+    - "https://storage.googleapis.com/minikube/releases/latest/minikube_{{ minikube_version }}_amd64.deb"
+  RedHat:
+    - "https://storage.googleapis.com/minikube/releases/latest/minikube-{{ minikube_version }}.x86_64.rpm"
+
+minikube_packages: "{{ _minikube_packages[ansible_os_family] }}"
+
+minikube_command: /usr/bin/minikube start --vm-driver=none
+# minikube_command: /usr/bin/minikube start --vm-driver=none --apiserver-ips 127.0.0.1 --apiserver-name localhost --extra-config=kubelet.cgroup-driver=systemd

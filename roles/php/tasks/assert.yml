@@ -1,0 +1,168 @@
+---
+
+- name: test if php_ini_location is set correctly
+  ansible.builtin.assert:
+    that:
+      - php_ini_location is string
+    quiet: yes
+  when:
+    - php_ini_location is defined
+
+- name: test if php_alpine_version is set correctly
+  ansible.builtin.assert:
+    that:
+      - php_alpine_version is defined
+      - php_alpine_version is number
+      - php_alpine_version in [ 5, 7 ]
+    quiet: yes
+  when:
+    - ansible_os_family == "Alpine"
+
+- name: test if php_display_errors is set correctly
+  ansible.builtin.assert:
+    that:
+      - php_display_errors is defined
+      - php_display_errors is boolean
+    quiet: yes
+
+- name: test if php_startup_errors is set correctly
+  ansible.builtin.assert:
+    that:
+      - php_startup_errors is defined
+      - php_startup_errors is boolean
+    quiet: yes
+
+- name: test if php_error_reporting is set correctly
+  ansible.builtin.assert:
+    that:
+      - php_error_reporting is defined
+      - php_error_reporting is boolean
+    quiet: yes
+
+- name: test if php_html_errors is set correctly
+  ansible.builtin.assert:
+    that:
+      - php_display_errors is defined
+      - php_display_errors is boolean
+    quiet: yes
+
+- name: test if php_log_errors is set correctly
+  ansible.builtin.assert:
+    that:
+      - php_log_errors is defined
+      - php_log_errors is boolean
+    quiet: yes
+
+- name: test if php_max_input_time is set correctly
+  ansible.builtin.assert:
+    that:
+      - php_max_input_time is defined
+      - php_max_input_time is number
+    quiet: yes
+
+- name: test if php_max_execution_time is set correctly
+  ansible.builtin.assert:
+    that:
+      - php_max_execution_time is defined
+      - php_max_execution_time is number
+    quiet: yes
+
+- name: test if php_output_buffering is set correctly
+  ansible.builtin.assert:
+    that:
+      - php_output_buffering is defined
+      - php_output_buffering in [ "Off", "On" ] or
+        php_output_buffering is number
+    quiet: yes
+
+- name: test if php_register_argc_argv is set correctly
+  ansible.builtin.assert:
+    that:
+      - php_register_argc_argv is defined
+      - php_register_argc_argv is boolean
+    quiet: yes
+
+- name: test if php_request_order is set correctly
+  ansible.builtin.assert:
+    that:
+      - php_request_order is defined
+      - php_request_order is string
+    quiet: yes
+
+- name: test if php_session_gc_divisor is set correctly
+  ansible.builtin.assert:
+    that:
+      - php_session_gc_divisor is defined
+      - php_session_gc_divisor is number
+    quiet: yes
+
+- name: test if php_session_hash_bits_per_character is set correctly
+  ansible.builtin.assert:
+    that:
+      - php_session_hash_bits_per_character is defined
+      - php_session_hash_bits_per_character is number
+    quiet: yes
+
+- name: test if php_short_open_tag is set correctly
+  ansible.builtin.assert:
+    that:
+      - php_short_open_tag is defined
+      - php_short_open_tag is boolean
+    quiet: yes
+
+- name: test if php_track_errors is set correctly
+  ansible.builtin.assert:
+    that:
+      - php_track_errors is defined
+      - php_track_errors is boolean
+    quiet: yes
+
+- name: test if php_variables_order is set correctly
+  ansible.builtin.assert:
+    that:
+      - php_variables_order is defined
+      - php_variables_order is string
+    quiet: yes
+
+- name: test if php_engine is set correctly
+  ansible.builtin.assert:
+    that:
+      - php_engine is defined
+      - php_engine is boolean
+    quiet: yes
+
+- name: test if php_date_timezone is set correctly
+  ansible.builtin.assert:
+    that:
+      - php_date_timezone is defined
+      - php_date_timezone is string
+    quiet: yes
+
+- name: test if php_memory_limit is set correctly
+  ansible.builtin.assert:
+    that:
+      - php_memory_limit is defined
+      - php_memory_limit is string
+    quiet: yes
+
+- name: test if php_upload_max_filesize is set correctly
+  ansible.builtin.assert:
+    that:
+      - php_upload_max_filesize is defined
+      - php_upload_max_filesize is string
+    quiet: yes
+
+- name: test if php_post_max_size is set correctly
+  ansible.builtin.assert:
+    that:
+      - php_post_max_size is defined
+      - php_post_max_size is string
+    quiet: yes
+
+- name: test if php_extensions is set correctly
+  ansible.builtin.assert:
+    that:
+      - php_extensions is iterable
+    quiet: yes
+  when:
+    - php_extensions is defined

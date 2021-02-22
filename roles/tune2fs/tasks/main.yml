@@ -1,0 +1,21 @@
+---
+# tasks file for tune2fs
+
+- name: include assert.yml
+  import_tasks: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+- name: install software for tune2fs
+  ansible.builtin.package:
+    name: e2fsprogs
+    state: present
+
+- name: loop over settings
+  ansible.builtin.include: setting.yml
+  loop: "{{ tune2fs_settings }}"
+  loop_control:
+    label: "{{ setting.device }}"
+    loop_var: setting
+  when:
+    - tune2fs_settings is defined

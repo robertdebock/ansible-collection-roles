@@ -1,0 +1,65 @@
+---
+# tasks file for collectd
+
+- name: include assert.yml
+  import_tasks: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+- name: install collectd
+  ansible.builtin.package:
+    name: "{{ collectd_packages }}"
+    state: present
+
+- name: configure collectd
+  ansible.builtin.template:
+    src: collectd.conf.j2
+    dest: "{{ collectd_configuration_path }}"
+    owner: root
+    group: root
+    mode: "644"
+    validate: collectd -C %s -t
+  notify:
+    - restart collectd
+
+- name: make sure collectd dirs exists
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+  loop:
+    - "{{ collectd_conf_include_dir }}"
+    - "{{ collectd_plugin_logging_directory }}"
+
+- name: set _new_plugins_configured to empty list
+  ansible.builtin.set_fact:
+    _new_plugins_configured: []
+
+- name: find existing plugins files
+  ansible.builtin.find:
+    paths: "{{ collectd_conf_include_dir }}"
+    file_type: file
+    patterns: '*.conf'
+  register: collectd_plugins_configured
+
+- name: configure collectd plugins
+  ansible.builtin.include_tasks: plugins.yml
+  loop: "{{ collectd_plugins }}"
+  loop_control:
+    label: "{{ plugin.name }}"
+    loop_var: plugin
+    index_var: index
+
+- name: remove obsolete plugin files
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: absent
+  loop: "{{ (collectd_plugins_configured.files | map(attribute='path') | list) | difference(_new_plugins_configured) }}"
+
+- name: start and enable collectd
+  ansible.builtin.service:
+    name: "{{ collectd_service }}"
+    state: started
+    enabled: yes

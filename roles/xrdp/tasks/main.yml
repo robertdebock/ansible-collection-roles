@@ -1,0 +1,35 @@
+---
+# tasks file for xrdp
+
+- name: include assert.yml
+  import_tasks: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+- name: install software
+  ansible.builtin.package:
+    name: "{{ xrdp_packages }}"
+    state: present
+
+- name: configure xrdp
+  community.general.ini_file:
+    path: /etc/xrdp/xrdp.ini
+    section: "{{ item.section }}"
+    option: "{{ item.option }}"
+    value: "{{ item.value }}"
+    mode: "0644"
+  loop: "{{ xrdp_configuration }}"
+  loop_control:
+    label: "{{ item.option }}"
+  notify:
+    - restart xrdp
+
+- name: start and enable xrdp
+  ansible.builtin.service:
+    name: "{{ xrdp_service }}"
+    state: started
+    enabled: yes
+  register: xrdp_start_and_enable_xrdp
+  until:
+    - xrdp_start_and_enable_xrdp is succeeded
+  retries: 3

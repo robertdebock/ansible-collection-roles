@@ -1,0 +1,58 @@
+---
+# tasks file for sosreport
+
+- name: include assert.yml
+  import_tasks: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+- name: install sosreport
+  ansible.builtin.package:
+    name: "{{ sosreport_packages }}"
+    state: present
+
+- name: create remote directory
+  ansible.builtin.file:
+    path: "{{ sosreport_remote_location }}"
+    state: directory
+    mode: "0755"
+
+- name: find sosreports
+  ansible.builtin.find:
+    paths: "{{ sosreport_remote_location }}"
+    patterns: "{{ sosreport_patterns }}"
+  register: sosreport_find_sosreports
+
+- name: run sosreport
+  ansible.builtin.command: "{{ sosreport_command }}"
+  tags:
+    - skip_ansible_lint
+  when:
+    - sosreport_find_sosreports.matched | int == 0
+
+- name: create local directory
+  ansible.builtin.file:
+    path: "{{ sosreport_local_location }}"
+    state: directory
+    mode: "0755"
+  delegate_to: localhost
+  run_once: yes
+  become: no
+
+- name: find sosreports
+  ansible.builtin.find:
+    paths: "{{ sosreport_remote_location }}"
+    patterns: "{{ sosreport_patterns }}"
+  register: sosreport_find_sosreport
+
+- name: fetch sosreports
+  ansible.builtin.fetch:
+    src: "{{ item.path }}"
+    dest: "{{ sosreport_local_location }}/"
+    flat: yes
+  loop: "{{ sosreport_find_sosreport.files }}"
+  when:
+    - sosreport_find_sosreport is defined
+    - sosreport_find_sosreport.files is defined
+  loop_control:
+    label: "{{ item.path | basename }}"

@@ -1,0 +1,5 @@
+{{ ansible_managed | comment }}
+
+{% for line in postgres_hba_entries %}
+{{ line.type }} {{ line.database }} {{ line.user }} {% if line.address is defined %}{{ line.address }}{% endif %} {{ line.method }}
+{% endfor %}

@@ -1,0 +1,17 @@
+---
+# tasks file for software
+
+- name: include assert.yml
+  import_tasks: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+- name: install packages
+  ansible.builtin.package:
+    name: "{{ item.name }}"
+    state: "{{ item.state | default('present') }}"
+  loop: "{{ software_packages }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - software_packages is defined

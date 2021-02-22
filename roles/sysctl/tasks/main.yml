@@ -1,0 +1,28 @@
+---
+# tasks file for sysctl
+
+- name: include assert.yml
+  import_tasks: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+- name: install requirements
+  ansible.builtin.package:
+    name: "{{ sysctl_requirements }}"
+    state: present
+
+- name: set sysctl setting
+  ansible.posix.sysctl:
+    name: "{{ item.name }}"
+    value: "{{ item.value }}"
+    sysctl_set: "{{ sysctl_set }}"
+    state: present
+    reload: "{{ sysctl_reload }}"
+  loop: "{{ sysctl_items }}"
+  when:
+    - sysctl_items is defined
+    - item.name is defined
+    - item.value is defined
+    - ansible_connection != "docker"
+  loop_control:
+    label: "{{ item.name }}"

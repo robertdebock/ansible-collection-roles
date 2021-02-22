@@ -1,0 +1,47 @@
+---
+# tasks file for auditd
+
+- name: include assert.yml
+  import_tasks: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+- name: install requirements
+  ansible.builtin.package:
+    name: bash
+    state: present
+
+- name: install audit
+  ansible.builtin.package:
+    name: "{{ auditd_packages }}"
+    state: present
+
+- name: configure auditd
+  ansible.builtin.template:
+    src: "{{ auditd_config_file }}.j2"
+    dest: "{{ auditd_config_directory }}/{{ auditd_config_file }}"
+    mode: "0640"
+  notify:
+    - restart auditd
+
+- name: create rules.d directory
+  ansible.builtin.file:
+    path: "{{ auditd_config_directory }}/rules.d"
+    state: directory
+    mode: "0750"
+
+- name: place custom.rules
+  ansible.builtin.template:
+    src: custom.rules.j2
+    dest: "{{ auditd_config_directory }}/rules.d/custom.rules"
+    mode: "0664"
+  notify:
+    - run augenrules
+  when:
+    - auditd_manage_rules | bool
+
+- name: start and enable auditd
+  ansible.builtin.service:
+    name: "{{ auditd_service }}"
+    state: started
+    enabled: yes

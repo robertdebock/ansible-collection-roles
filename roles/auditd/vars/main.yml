@@ -1,0 +1,22 @@
+---
+# vars file for auditd
+
+_auditd_packages:
+  default:
+    - audit
+  Debian:
+    - auditd
+
+auditd_packages: "{{ _auditd_packages[ansible_os_family] | default(_auditd_packages['default']) }}"
+
+auditd_config_directory: /etc/audit
+
+auditd_config_file: auditd.conf
+
+auditd_service: auditd
+
+_auditd_permissions:
+  read: r
+  write: w
+  execute: x
+  attribute_change: a

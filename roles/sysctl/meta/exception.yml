@@ -1,0 +1,4 @@
+---
+exceptions:
+  - variation: Alpine
+    reason: "directory /etc/security is not writable (check presence, access rights, use sudo)"

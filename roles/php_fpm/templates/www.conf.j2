@@ -1,0 +1,14 @@
+{{ ansible_managed | comment(decoration='; ') }}
+
+[www]
+user = {{ php_fpm_user }}
+group = {{ php_fpm_group }}
+listen = {{ php_fpm_listen }}
+listen.owner = {{ php_fpm_listen_owner }}
+listen.group = {{ php_fpm_listen_group }}
+listen.mode = {{ php_fpm_listen_mode }}
+pm = {{ php_fpm_pm }}
+pm.max_children = {{ php_fpm_pm_max_children }}
+pm.start_servers = {{ php_fpm_pm_start_servers }}
+pm.min_spare_servers = {{ php_fpm_pm_min_spare_servers }}
+pm.max_spare_servers = {{ php_fpm_pm_max_spare_servers }}

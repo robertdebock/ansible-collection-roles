@@ -1,0 +1,7 @@
+---
+# vars file for cargo
+
+cargo_requirements:
+  - curl
+  - file
+  - bash

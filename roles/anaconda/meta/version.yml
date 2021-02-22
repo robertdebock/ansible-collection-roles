@@ -1,0 +1,6 @@
+---
+project_name: Anaconda
+reference: "https://github.com/robertdebock/ansible-role-anaconda/blob/master/defaults/main.yml"
+versions:
+  - name: Anaconda
+    url: "https://www.anaconda.com/distribution/"

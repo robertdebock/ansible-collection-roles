@@ -1,0 +1,35 @@
+---
+galaxy_info:
+  author: Robert de Bock
+  role_name: phpmyadmin
+  description: Install and configure phpmyadmin on your system.
+  license: Apache-2.0
+  company: none
+  min_ansible_version: "2.10"
+
+  platforms:
+    - name: EL
+      versions:
+        - 8
+    - name: Debian
+      versions:
+        - buster
+        - bullseye
+    - name: Fedora
+      versions:
+        - all
+    - name: OpenSUSE
+      versions:
+        - all
+    - name: Ubuntu
+      versions:
+        - focal
+        - bionic
+
+  galaxy_tags:
+    - php
+    - installer
+    - package
+
+dependencies:
+  - robertdebock.httpd

@@ -1,0 +1,26 @@
+---
+# tasks file for apt_autostart
+
+- name: include assert.yml
+  import_tasks: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+- name: manage automatic service management
+  block:
+    - name: disable automatic service management on installation
+      ansible.builtin.copy:
+        dest: /usr/sbin/policy-rc.d
+        content: "exit 101"
+        mode: "755"
+      when:
+        - apt_autostart_state == "disabled"
+
+    - name: enable automatic service management on installation
+      ansible.builtin.file:
+        path: /usr/sbin/policy-rc.d
+        state: absent
+      when:
+        - apt_autostart_state == "enabled"
+  when:
+    - ansible_pkg_mgr == "apt"

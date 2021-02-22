@@ -1,0 +1,14 @@
+---
+# handlers file for mysql
+
+- name: restart mysql server
+  ansible.builtin.service:
+    name: "{{ mysql_service }}"
+    state: restarted
+  when:
+    - not ansible_check_mode | bool
+
+- name: set root password
+  ansible.builtin.command: "{{ mysql_set_root_password_command }}"
+  become: yes
+  become_user: "{{ mysql_user }}"

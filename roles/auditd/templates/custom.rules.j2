@@ -1,0 +1,26 @@
+{{ ansible_managed | comment }}
+
+# Delete all previous rules
+-D
+# Set buffer size
+-b {{ auditd_buffer_size }}
+# Set failure behavior
+-f {{ auditd_fail_mode }}
+# Set the maximum amount of messages per second
+-r {{ auditd_maximum_rate }}
+# Set enable flag (0=disable, 1=enable, 2=locked, requires reboot to unlock)
+-e {{ auditd_enable_flag }}
+
+{% if auditd_rules is defined %}
+{% for rule in auditd_rules %}
+{% if rule.file is defined %}
+-w {{ rule.file }}{% if rule.filters is defined %}{% for filter in rule.filters %} -F {{ filter }}{% endfor %}{% endif %}{% if rule.permissions is defined %} -p {% for permission in rule.permissions %}{{ _auditd_permissions[permission] }}{% endfor %}{% endif %} -k {{ rule.keyname }}
+{% endif %}
+{% if rule.syscall is defined %}
+-a {{ rule.action }},{{ rule.filter }} -F arch={{ rule.arch | default(auditd_default_arch) }} -S {{ rule.syscall }}{% if rule.filters is defined %}{% for filter in rule.filters %} -F {{ filter }}{% endfor %}{% endif %} -k {{ rule.keyname }}
+{% endif %}
+{% if rule.action is defined and rule.file is not defined and rule.syscall is not defined %}
+-a {{ rule.action }},{{ rule.filter }}{% for filter in rule.filters %} -F {{ filter }}{% endfor %} -k {{ rule.keyname }}
+{% endif %}
+{% endfor %}
+{% endif %}

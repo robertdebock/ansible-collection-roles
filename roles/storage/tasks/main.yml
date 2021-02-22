@@ -1,0 +1,66 @@
+---
+# tasks file for storage
+
+- name: include assert.yml
+  import_tasks: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+- name: install requirements
+  ansible.builtin.package:
+    name: "{{ storage_requirements }}"
+    state: present
+
+- name: find scsi busses
+  ansible.builtin.find:
+    path: /sys/class/scsi_host
+    patterns: 'host*'
+  register: storage_scsi_busses
+
+- name: scan scsi bus
+  ansible.builtin.lineinfile:
+    path: "{{ item.path }}"
+    line: "- - -"
+    mode: "0444"
+  loop: "{{ storage_scsi_busses.files }}"
+  changed_when: no
+
+- name: include partition
+  ansible.builtin.include: partition.yml
+  loop: "{{ storage_partitions }}"
+  loop_control:
+    loop_var: partition
+  when:
+    - storage_partitions is defined
+
+- name: include volumegroup
+  ansible.builtin.include: volumegroup.yml
+  loop: "{{ storage_volumegroups }}"
+  loop_control:
+    loop_var: volumegroup
+  when:
+    - storage_volumegroups is defined
+
+- name: include volume
+  ansible.builtin.include: volume.yml
+  loop: "{{ storage_volumes }}"
+  loop_control:
+    loop_var: volume
+  when:
+    - storage_volumes is defined
+
+- name: include filesystem
+  ansible.builtin.include: filesystem.yml
+  loop: "{{ storage_filesystems }}"
+  loop_control:
+    loop_var: filesystem
+  when:
+    - storage_filesystems is defined
+
+- name: include mount
+  ansible.builtin.include: mount.yml
+  loop: "{{ storage_mounts }}"
+  loop_control:
+    loop_var: mount
+  when:
+    - storage_mounts is defined

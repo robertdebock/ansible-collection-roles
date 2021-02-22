@@ -1,0 +1,10 @@
+---
+# vars file for sysctl
+
+_sysctl_requirements:
+  default:
+    - procps
+  RedHat:
+    - procps-ng
+
+sysctl_requirements: "{{ _sysctl_requirements[ansible_os_family] | default(_sysctl_requirements['default']) }}"

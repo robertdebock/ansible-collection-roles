@@ -1,0 +1,29 @@
+---
+- name: test storage_mounts
+  ansible.builtin.assert:
+    that:
+      - mount.name is defined
+      - mount.src is defined
+    quiet: yes
+
+- name: create mountpoint
+  ansible.builtin.file:
+    path: "{{ mount.name }}"
+    owner: "{{ mount.owner | default(omit) }}"
+    group: "{{ mount.group | default(omit) }}"
+    mode: "{{ mount.mode | default(omit) }}"
+    state: directory
+
+- name: mount filesystems
+  ansible.posix.mount:
+    path: "{{ mount.name }}"
+    src: "{{ mount.src }}"
+    fstype: "{{ mount.fstype | default(storage_default_fstype) }}"
+    opts: "{{ mount.opts | default(omit) }}"
+    boot: "{{ mount.boot | default(omit) }}"
+    dump: "{{ mount.dump | default(omit) }}"
+    passno: "{{ mount.passno | default(omit) }}"
+    state: mounted
+  notify:
+    - reload systemd
+    - refresh facts

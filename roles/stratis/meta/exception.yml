@@ -1,0 +1,12 @@
+---
+exceptions:
+  - variation: Alpine
+    reason: Stratis is not available.
+  - variation: CentOS-7
+    reason: Stratis is not available.
+  - variation: Debian
+    reason: Stratis is not available.
+  - variation: openSUSE Leap
+    reason: Stratis is not available.
+  - variation: Ubuntu
+    reason: Stratis is not available.

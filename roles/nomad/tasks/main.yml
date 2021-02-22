@@ -1,0 +1,66 @@
+---
+# tasks file for nomad
+
+- name: include assert.yml
+  import_tasks: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+- name: create /etc/nomad.d
+  ansible.builtin.file:
+    path: /etc/nomad
+    state: directory
+    mode: "0750"
+    owner: nomad
+    group: nomad
+
+- name: configure nomad server
+  ansible.builtin.template:
+    src: server.hcl.j2
+    dest: /etc/nomad.d/nomad.hcl
+    mode: "0640"
+    owner: nomad
+    group: nomad
+  notify:
+    - restart nomad
+  when:
+    - nomad_server | bool
+
+- name: configure nomad agent
+  ansible.builtin.template:
+    src: agent.hcl.j2
+    dest: /etc/nomad.d/nomad.hcl
+    mode: "0640"
+    owner: nomad
+    group: nomad
+  notify:
+    - restart nomad
+  when:
+    - nomad_agent | bool
+
+- name: start nomad
+  ansible.builtin.service:
+    name: nomad
+    state: started
+    enabled: yes
+
+- name: determine nomad leader
+  ansible.builtin.set_fact:
+    nomad_leader: "{{ ansible_hostname }}"
+  run_once: yes
+  when:
+    - nomad_server | bool
+
+- name: list server members
+  ansible.builtin.command: nomad server members
+  register: nomad_list_server_members
+  changed_when: no
+  when:
+    - nomad_server | bool
+
+- name: join nomad leader
+  ansible.builtin.command: nomad server join {{ nomad_leader }}:4648
+  register: nomad_join_nomad_leader
+  when:
+    - ansible_hostname != nomad_server
+    - ansible_hostname not in nomad_list_server_members.stdout

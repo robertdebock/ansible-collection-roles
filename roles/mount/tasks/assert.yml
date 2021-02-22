@@ -1,0 +1,84 @@
+---
+
+- name: test if mount_default_mode is set correctly
+  ansible.builtin.assert:
+    that:
+      - mount_default_mode is defined
+      - mount_default_mode is string
+    quiet: yes
+
+- name: test if mount_default_owner is set correctly
+  ansible.builtin.assert:
+    that:
+      - mount_default_owner is defined
+      - mount_default_owner is string
+    quiet: yes
+
+- name: test if mount_default_group is set correctly
+  ansible.builtin.assert:
+    that:
+      - mount_default_group is defined
+      - mount_default_group is string
+    quiet: yes
+
+- name: test if mount_requests is set correctly
+  ansible.builtin.assert:
+    that:
+      - mount_requests is defined
+      - mount_requests is iterable
+    quiet: yes
+
+- name: test if item.backup in mount_requests is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.backup is boolean
+    quiet: yes
+  loop: "{{ mount_requests }}"
+  loop_control:
+    label: "{{ item.path }}"
+  when:
+    - item.backup is defined
+
+- name: test if item.boot in mount_requests is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.boot is boolean
+    quiet: yes
+  loop: "{{ mount_requests }}"
+  loop_control:
+    label: "{{ item.path }}"
+  when:
+    - item.boot is defined
+
+- name: test if item.fstype in mount_requests is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.fstype is string
+      - item.fstype in [ "ext3", "ext4", "iso9660", "nfs", "none", "xfs" ]
+    quiet: yes
+  loop: "{{ mount_requests }}"
+  loop_control:
+    label: "{{ item.path }}"
+  when:
+    - item.fstype is defined
+
+- name: test if item.path in mount_requests is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.path is defined
+      - item.path is string
+    quiet: yes
+  loop: "{{ mount_requests }}"
+  loop_control:
+    label: "{{ item.path }}"
+
+- name: test if item.state in mount_requests is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.state is defined
+      - item.state is string
+      - item.state in [ "absent", "mounted", "present", "remounted", "unmounted" ]
+    quiet: yes
+  loop: "{{ mount_requests }}"
+  loop_control:
+    label: "{{ item.path }}"

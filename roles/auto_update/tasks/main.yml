@@ -1,0 +1,25 @@
+---
+# tasks file for auto_update
+
+- name: include assert.yml
+  import_tasks: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+- name: install packages
+  ansible.builtin.package:
+    name: "{{ auto_update_packages }}"
+    state: present
+
+- name: configure auto_update
+  ansible.builtin.template:
+    src: "{{ auto_update_config_file }}.j2"
+    dest: "{{ auto_update_config_directory }}/{{ auto_update_config_file }}"
+    mode: "0644"
+
+- name: start and enable auto_update
+  ansible.builtin.service:
+    name: "{{ item }}"
+    state: started
+    enabled: yes
+  loop: "{{ auto_update_services }}"

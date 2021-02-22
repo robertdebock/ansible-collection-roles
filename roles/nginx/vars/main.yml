@@ -1,0 +1,9 @@
+---
+# vars file for nginx
+
+_nginx_user:
+  default: nginx
+  Debian: root
+  RedHat: nginx
+
+nginx_user: "{{ _nginx_user[ansible_os_family] | default(_nginx_user['default']) }}"

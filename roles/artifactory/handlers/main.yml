@@ -1,0 +1,9 @@
+---
+# handlers file for artifactory
+
+- name: restart artifactory
+  ansible.builtin.service:
+    name: artifactory
+    state: restarted
+  when:
+    - not ansible_check_mode | bool

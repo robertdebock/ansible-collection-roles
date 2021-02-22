@@ -1,0 +1,6 @@
+---
+project_name: Oracle
+reference: "https://github.com/robertdebock/ansible-role-java/blob/master/vars/main.yml"
+versions:
+  - name: java
+    url: "https://www.oracle.com/technetwork/java/javaseproducts/downloads/index.html"

@@ -1,0 +1,4 @@
+---
+# vars file for docker_compose
+
+docker_compose_url: "https://github.com/docker/compose/releases/download/{{ docker_compose_version }}/docker-compose-Linux-x86_64"

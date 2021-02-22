@@ -1,0 +1,22 @@
+---
+# vars file for luks
+
+_luks_requirements:
+  default:
+    - cryptsetup
+    - cracklib-dicts
+    - util-linux
+  Alpine:
+    - cryptsetup
+    - cracklib
+    - util-linux
+  Debian:
+    - cryptsetup
+    - cracklib-runtime
+    - util-linux
+  Suse:
+    - cryptsetup
+    - cracklib-dict-small
+    - util-linux
+
+luks_requirements: "{{ _luks_requirements[ansible_os_family] | default(_luks_requirements['default']) }}"

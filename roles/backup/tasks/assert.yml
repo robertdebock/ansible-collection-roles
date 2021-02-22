@@ -1,0 +1,62 @@
+---
+
+- name: test if backup_directory is set correctly
+  ansible.builtin.assert:
+    that:
+      - backup_directory is defined
+      - backup_directory is string
+    quiet: yes
+
+- name: test if backup_remote_directory is set correctly
+  ansible.builtin.assert:
+    that:
+      - backup_remote_directory is defined
+      - backup_remote_directory is string
+    quiet: yes
+
+- name: test if backup_cleanup is set correctly
+  ansible.builtin.assert:
+    that:
+      - backup_cleanup is defined
+      - backup_cleanup is boolean
+    quiet: yes
+
+- name: test if backup_timestamp is set correctly
+  ansible.builtin.assert:
+    that:
+      - backup_timestamp is defined
+      - backup_timestamp is string
+    quiet: yes
+
+- name: test if backup_format is set correctly
+  ansible.builtin.assert:
+    that:
+      - backup_format is defined
+      - backup_format is string
+      - backup_format in [ "gz", "tgz", "zip", "bz2" ]
+    quiet: yes
+
+- name: test if backup_objects is set correctly
+  ansible.builtin.assert:
+    that:
+      - backup_objects is iterable
+    quiet: yes
+  when:
+    - backup_objects is defined
+
+- name: test if item in backup_objects is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.name is defined
+      - item.name is string
+      - item.type is defined
+      - item.type is string
+      - item.type in [ "directory", "mysql", "postgres" ]
+      - item.source is defined
+      - item.source is string
+    quiet: yes
+  loop: "{{ backup_objects }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - backup_objects is defined

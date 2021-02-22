@@ -1,0 +1,29 @@
+---
+galaxy_info:
+  author: Robert de Bock
+  role_name: zabbix_web
+  description: Install and configure zabbix_web on your system.
+  license: Apache-2.0
+  company: none
+  min_ansible_version: "2.10"
+
+  platforms:
+    - name: EL
+      versions:
+        - 8
+    - name: Debian
+      versions:
+        - buster
+    - name: OpenSUSE
+      versions:
+        - all
+    - name: Ubuntu
+      versions:
+        - focal
+        - bionic
+
+  galaxy_tags:
+    - zabbix
+    - web
+
+dependencies: []

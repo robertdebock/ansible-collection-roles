@@ -1,0 +1,44 @@
+---
+# vars file for dhcpd
+
+_dhcpd_packages:
+  default:
+    - dhcp
+  Amazon:
+    - dhcp
+  Debian:
+    - isc-dhcp-server
+  CentOS-7:
+    - dhcp
+  Red Hat Enterprise Linux-7:
+    - dhcp
+  RedHat:
+    - dhcp-server
+  Suse:
+    - dhcp-server
+
+dhcpd_packages: "{{ _dhcpd_packages[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_dhcpd_packages[ansible_distribution] | default(_dhcpd_packages[ansible_os_family] | default(_dhcpd_packages['default']))) }}"
+
+_dhcpd_defaults_src:
+  Debian: isc-dhcp-server.j2
+  Suse: dhcpd.j2
+
+dhcpd_defaults_src: "{{ _dhcpd_defaults_src[ansible_os_family] }}"
+
+_dhcpd_defaults_dest:
+  Debian: /etc/default/isc-dhcp-server
+  Suse: /etc/sysconfig/dhcpd
+
+dhcpd_defaults_dest: "{{ _dhcpd_defaults_dest[ansible_os_family] }}"
+
+_dhcpd_service:
+  default: dhcpd
+  Debian: isc-dhcp-server
+
+dhcpd_service: "{{ _dhcpd_service[ansible_os_family] | default (_dhcpd_service['default'] ) }}"
+
+_dhcpd_confdir:
+  default: /etc/dhcp
+  Suse: /etc
+
+dhcpd_confdir: "{{ _dhcpd_confdir[ansible_os_family] | default (_dhcpd_confdir['default'] ) }}"
