@@ -1,0 +1,20 @@
+---
+namespace: robertdebock
+name: roles
+version: 1.0.0
+readme: README.md
+authors:
+- Robert de Bock <robert@meinit.nl>
+description: A collection of all roles listed in [robertdebock.nl](https://robertdebock.nl/).
+license_file: 'LICENSE'
+tags:
+  - robertdebock
+  - roles
+  - linux
+# No sure if I should list all collections the roles have listed in requirments.yml.
+dependencies: {}
+repository: https://github.com/robertdebock/ansible-collection-roles
+documentation: https://robertdebock.nl/
+homepage: https://robertdebock.nl/
+issues: http://github.com/robertdebock/ansible-collection-roles/issues
+build_ignore: []
