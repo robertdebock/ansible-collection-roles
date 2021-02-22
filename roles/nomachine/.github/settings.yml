@@ -1,8 +1,0 @@
----
-#
-# Ansible managed
-#
-repository:
-  description: Install and configure nomachine on your system.
-  homepage: https://robertdebock.nl/
-  topics: nomachine, ansible, molecule, tox, playbook, hacktoberfest

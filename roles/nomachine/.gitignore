@@ -1,5 +1,0 @@
-.molecule
-*.log
-*.swp
-.tox
-.cache
