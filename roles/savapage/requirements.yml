@@ -1,0 +1,6 @@
+---
+roles:
+  - name: robertdebock.bootstrap
+  - name: robertdebock.users
+  - name: robertdebock.cups
+  - name: robertdebock.java

@@ -1,0 +1,92 @@
+0000000000000000000000000000000000000000 f1ed74043df6e6552969793edcd135d6896cc97a Robert de Bock <robertdb@laptop-robert.(none)> 1544109440 +0100	clone: from git@github.com:robertdebock/ansible-role-skeleton.git
+f1ed74043df6e6552969793edcd135d6896cc97a 89428f9f8b03ddb7fe8ea5c433acef53da279beb Robert de Bock <robert@meinit.nl> 1544177804 +0100	commit: Adding Fedora 30 and newer python3 interpreter.
+89428f9f8b03ddb7fe8ea5c433acef53da279beb 501a29cfa735fa257db2d63979a425cc6fdf2089 Robert de Bock <robert@meinit.nl> 1544185868 +0100	commit: Travis Encrypt has chagned a bit.
+501a29cfa735fa257db2d63979a425cc6fdf2089 a022407a72bbc0528aeced84fb9256951b8fc286 Robert de Bock <robert@meinit.nl> 1544213346 +0100	commit: Retry.
+a022407a72bbc0528aeced84fb9256951b8fc286 52c67e1c4a974744602bd3853645c2bf093b0291 Robert de Bock <robert@meinit.nl> 1544332759 +0100	commit: Switch to fedora 29.
+52c67e1c4a974744602bd3853645c2bf093b0291 b29d5a9342ae1fb64f2aa61b1367c31d05f7c8b7 Robert de Bock <robert@meinit.nl> 1544332841 +0100	commit: Vagrant instance names can't have underscores in them.
+b29d5a9342ae1fb64f2aa61b1367c31d05f7c8b7 744f73abb82876f6cc6037da84e78234e30bed69 Robert de Bock <robert@meinit.nl> 1544421822 +0100	commit: Change the purpose.
+744f73abb82876f6cc6037da84e78234e30bed69 fbba86ea5b46fd93cb52dddb861b23277b0255f5 Robert de Bock <robert@meinit.nl> 1545745024 +0100	commit: Prevent _ in tags.
+fbba86ea5b46fd93cb52dddb861b23277b0255f5 2e167adb466a7dca1b5ac3dd545f8bd1cdcd6d6d Robert de Bock <robert@meinit.nl> 1545804095 +0100	commit: Add a set of default assertions.
+2e167adb466a7dca1b5ac3dd545f8bd1cdcd6d6d 30907b00db95491f76dc711fb44f579984ccd625 Robert de Bock <robert@meinit.nl> 1546243629 +0000	commit: Compare strings using "==".
+30907b00db95491f76dc711fb44f579984ccd625 aab4e058a60f98d16587f1bb28caa9f9ff00ce5b Robert de Bock <robert@meinit.nl> 1546272608 +0000	commit: Explicit file.
+aab4e058a60f98d16587f1bb28caa9f9ff00ce5b 5347f8158ecf81307c751255b52742e5be82ff98 Robert de Bock <robert@meinit.nl> 1546510085 +0000	pull: Fast-forward
+5347f8158ecf81307c751255b52742e5be82ff98 f514fd201990ab93c4ffae605a7fbe3f6dce038c Robert de Bock <robert@meinit.nl> 1547226337 +0000	pull: Fast-forward
+f514fd201990ab93c4ffae605a7fbe3f6dce038c cdd5c5545281a5b5db158d12bc0c1531721d215c Robert de Bock <robert@meinit.nl> 1547446111 +0000	commit: Add requirements.
+cdd5c5545281a5b5db158d12bc0c1531721d215c 2b393cccd15d0035936d394ca95aabce5e22aa2e Robert de Bock <robert@meinit.nl> 1548576202 +0100	commit: true -> yes, false -> no.
+2b393cccd15d0035936d394ca95aabce5e22aa2e fe2ce036a052003d0bc762cad229b974165cc448 Robert de Bock <robert@meinit.nl> 1548867791 +0100	commit: Serial.
+fe2ce036a052003d0bc762cad229b974165cc448 dc7b690fd9fe8d46f8da38fa8eed4a6e665d4a4a Robert de Bock <robert@meinit.nl> 1548868838 +0100	commit: Add settings for https://probot.github.io/apps/settings/
+dc7b690fd9fe8d46f8da38fa8eed4a6e665d4a4a ba12bcf33dd4f8d641012aad5baf1c5087dde2b9 Robert de Bock <robert@meinit.nl> 1549032262 +0100	commit: License date update 2018 to 2019.
+ba12bcf33dd4f8d641012aad5baf1c5087dde2b9 4516f02ec1a0f6a632d8ee2ae4534750739949b7 Robert de Bock <robert@meinit.nl> 1549035136 +0100	commit: Introducing fast_finish for faster build results.
+4516f02ec1a0f6a632d8ee2ae4534750739949b7 8234ff704838b0617466aed3039714d1ca7b70a9 Robert de Bock <robert@meinit.nl> 1549888372 +0100	commit: Don't finish fast and use `archlinux/base` renames docker image.
+8234ff704838b0617466aed3039714d1ca7b70a9 e3551894e4b750a200236d9b83e3b5e7fe59c3c8 Robert de Bock <robert@meinit.nl> 1549888730 +0100	commit: Also rename archlinux image in default.
+e3551894e4b750a200236d9b83e3b5e7fe59c3c8 894d56e8adfcaf85f0873c70cf38c142738cb27c Robert de Bock <robert@meinit.nl> 1549898710 +0100	commit: Ubuntu, use: devel, rolling and latest.
+894d56e8adfcaf85f0873c70cf38c142738cb27c 2cd8ae87f737e731a1b702b48997139d004183ff Robert de Bock <robert@meinit.nl> 1549898996 +0100	commit: Rolling should work.
+2cd8ae87f737e731a1b702b48997139d004183ff b5046a5ce6c874d470a8916ff75e99b63ae039b2 Robert de Bock <robert@meinit.nl> 1550693458 +0100	commit: Missed a rename of ubuntu-artful -> ubuntu-rolling
+b5046a5ce6c874d470a8916ff75e99b63ae039b2 45b5c252b0296ba28aaffdd72d0c40cade9ccec9 Robert de Bock <robert@meinit.nl> 1551421263 +0100	commit: Removing opensuse-tumbleweed, it is deprecated.
+45b5c252b0296ba28aaffdd72d0c40cade9ccec9 6a172e61d69254d2c9939c0b91530e22e0e7c6ce Robert de Bock <robert@meinit.nl> 1551422590 +0100	commit: Remove all Tumbleweed references.
+6a172e61d69254d2c9939c0b91530e22e0e7c6ce 72ccb94e473fd6ce3a4795cc40eaf6d8a0c0b778 Robert de Bock <robert@meinit.nl> 1551613129 +0100	commit: Change the description.
+72ccb94e473fd6ce3a4795cc40eaf6d8a0c0b778 93a91cdf9cc2e3a909e299df10a5a578df05dab9 Robert de Bock <robert@meinit.nl> 1552244410 +0100	commit: Removing GOSS tests as they can't test as flexible as required.
+93a91cdf9cc2e3a909e299df10a5a578df05dab9 ed62fa87a95e12ea3f8f350bc57faec6e7bf0797 Robert de Bock <robert@meinit.nl> 1552638155 +0100	commit: Remove asserts
+ed62fa87a95e12ea3f8f350bc57faec6e7bf0797 80515e0acfd4cbbaf2ae771f71884e3b19907dab Robert de Bock <robert@meinit.nl> 1552638209 +0100	commit: A little simpler, without a variable package state and no ignore_docker.
+80515e0acfd4cbbaf2ae771f71884e3b19907dab 14c5ab2086acfaf217fe2823514ae8094564f264 Robert de Bock <robert@meinit.nl> 1552638353 +0100	commit: Add CI.
+14c5ab2086acfaf217fe2823514ae8094564f264 646878da2590b0600c5704dc2fe5e475094ff830 Robert de Bock <robert@meinit.nl> 1552746771 +0100	commit: Use templated molecule scenarios, remove complexity.
+646878da2590b0600c5704dc2fe5e475094ff830 ea83d9719d61b24ba13c6be9cf98db627ee866d8 Robert de Bock <robert@meinit.nl> 1553059331 +0100	commit: Remove docker_ignore, use improved molecule layout.
+ea83d9719d61b24ba13c6be9cf98db627ee866d8 c154dd7487f3594b9751a740c5e54f3e87d216ee Robert de Bock <robert@meinit.nl> 1553087455 +0100	commit: Mixed variables.
+c154dd7487f3594b9751a740c5e54f3e87d216ee ff5903cd759751bf1136a22fb3ac0a07f47cd01c Robert de Bock <robert@meinit.nl> 1553254901 +0100	commit: Remove duplicate instance in the default scenario.
+ff5903cd759751bf1136a22fb3ac0a07f47cd01c edca1950d21a09d22e56eda3b8441261afc381a4 Robert de Bock <robert@meinit.nl> 1553606063 +0100	commit: Don't hardcode the name.
+edca1950d21a09d22e56eda3b8441261afc381a4 99a3b2e1ec75680aefda96418c77fe882ecb23b3 Robert de Bock <robert@meinit.nl> 1553701624 +0100	commit: Use template (.j2) version of molecule.
+99a3b2e1ec75680aefda96418c77fe882ecb23b3 0d703523dc2fd3940d553dc58a99db3ea8970d1f Robert de Bock <robert@meinit.nl> 1554180695 +0200	commit: Add requirements in tasks.
+0d703523dc2fd3940d553dc58a99db3ea8970d1f a1ab46f26fa562c3e1c1675cd287781bccd27840 Robert de Bock <robert@meinit.nl> 1560857773 +0200	commit: Also update skeleton.
+a1ab46f26fa562c3e1c1675cd287781bccd27840 a98650e7132616408b88d069f91fed52f9a48c98 Robert de Bock <robert@meinit.nl> 1560872520 +0200	commit: New version. doh.
+a98650e7132616408b88d069f91fed52f9a48c98 ca865734d60ccdfe68458672df831acfed54c6de Robert de Bock <robert@meinit.nl> 1562940956 +0200	commit: Debian and openSUSE fixes.
+ca865734d60ccdfe68458672df831acfed54c6de 13f4080df0ee520712d42fa0471f28859395aa60 Robert de Bock <robert@meinit.nl> 1562941339 +0200	commit: Fix the default scenariFix the default scenarioo
+13f4080df0ee520712d42fa0471f28859395aa60 b7bdb8ae3c4e828ef6233a8ae8d529685304ba9c Robert de Bock <robert@meinit.nl> 1563135314 +0200	commit: Debian latest has been removed.
+b7bdb8ae3c4e828ef6233a8ae8d529685304ba9c f0987ab20ef7507f5b4d30e503528d110bd9e0a4 Robert de Bock <robert@meinit.nl> 1563511526 +0200	commit: Fedora 30.
+f0987ab20ef7507f5b4d30e503528d110bd9e0a4 3ea6e827da76893f93160e4a9ffa6d8b3bc1ca18 Robert de Bock <robert@meinit.nl> 1563601432 +0200	commit: Use variable.
+3ea6e827da76893f93160e4a9ffa6d8b3bc1ca18 b40db1fbdffe4c5931b5309338f4500026b310c0 Robert de Bock <robert@meinit.nl> 1563601464 +0200	commit (merge): Merge branch 'master' of github.com:robertdebock/ansible-role-skeleton
+b40db1fbdffe4c5931b5309338f4500026b310c0 749c8da6b19fab9845d88de2b95ea6cd3fa8b288 Robert de Bock <robert@meinit.nl> 1563601524 +0200	commit: Use `| replace("_", "-")` everywhere.
+749c8da6b19fab9845d88de2b95ea6cd3fa8b288 a1cfb33fad7b415aa47dde9f143986c311ccdc49 Robert de Bock <robert@meinit.nl> 1568834928 +0200	commit: Move lint rules to .ansible-lint
+a1cfb33fad7b415aa47dde9f143986c311ccdc49 282fcfcab804f03e52cec8871bb5143fd334873c Robert de Bock <robert@meinit.nl> 1569591219 -0400	commit: stdout_callback to yaml and python3 for debian likes.
+282fcfcab804f03e52cec8871bb5143fd334873c 8a098a21db449c090c0c543e5269c3dc8dea905f Robert de Bock <robert@meinit.nl> 1570130362 +0200	commit: CentOS 8.
+8a098a21db449c090c0c543e5269c3dc8dea905f 0df04b4c9712b951226ae8e686759257e1e47ba2 Robert de Bock <robert@meinit.nl> 1570800525 +0200	commit: Update python interpreter.
+0df04b4c9712b951226ae8e686759257e1e47ba2 388bfe0ba7d8267d279fc338f8319d365ed3780e Robert de Bock <robert@meinit.nl> 1571328571 +0200	commit: Switch to tox.
+388bfe0ba7d8267d279fc338f8319d365ed3780e 4c15dcc4ae3789a6e1c4a02e5b6b38b3f7524b23 Robert de Bock <robert@meinit.nl> 1571328613 +0200	commit: Update metadata.
+4c15dcc4ae3789a6e1c4a02e5b6b38b3f7524b23 05736fa99563d6d7e6f32635df51fd1768d78828 Robert de Bock <robert@meinit.nl> 1571382804 +0200	commit: What I've learned.
+05736fa99563d6d7e6f32635df51fd1768d78828 0cb2495420013d02a355f772a987aa6f761ee1b5 Robert de Bock <robert@meinit.nl> 1571398995 +0200	commit: Ready for tox.
+0cb2495420013d02a355f772a987aa6f761ee1b5 681e8e4d59fe7800528d1d32304be0c2c2a0ffad Robert de Bock <robert@meinit.nl> 1571596984 +0200	commit: Plural.
+681e8e4d59fe7800528d1d32304be0c2c2a0ffad d57887af27a86dd655250ed233ce51bf232081e4 Robert de Bock <robert@meinit.nl> 1571635878 +0200	commit: Verify by Ansible and dont specify default playbook/prepare.yml.
+d57887af27a86dd655250ed233ce51bf232081e4 6f8e85154ac235e933ab906a4c51bbd2a1c66bb0 Robert de Bock <robert@meinit.nl> 1572000078 +0200	commit: Use shorter names.
+6f8e85154ac235e933ab906a4c51bbd2a1c66bb0 ae285427a7e39b2f06399f6d78a039ddd3afb4c3 Robert de Bock <robert@meinit.nl> 1572589837 +0100	commit: Bump Ansible versions.
+ae285427a7e39b2f06399f6d78a039ddd3afb4c3 b9ec4cb6b2d3cbdfdf8bb7dc536cd7aa7a744a84 Robert de Bock <robert@meinit.nl> 1573301940 +0100	commit: Fix ansible versions and isolate molecule better.
+b9ec4cb6b2d3cbdfdf8bb7dc536cd7aa7a744a84 bcc25d9af7490efe905a17a38189133bdbbc3743 Robert de Bock <robert@meinit.nl> 1573537740 +0100	commit: Update a little.
+bcc25d9af7490efe905a17a38189133bdbbc3743 363ae3791046c6343bb8ddb237caae994794cf59 Robert de Bock <robert@meinit.nl> 1573541919 +0100	commit: Add role: for better readability.
+363ae3791046c6343bb8ddb237caae994794cf59 c543c18dcd84dba8e36b77a9a1181298c04f03cd Robert de Bock <robert@meinit.nl> 1574852147 +0100	commit: Use variable instance name.
+c543c18dcd84dba8e36b77a9a1181298c04f03cd 3754b4cf88324ce410a89a9f3a7574324eb10f3b Robert de Bock <robert@meinit.nl> 1574853979 +0100	commit: Remove many tags.
+3754b4cf88324ce410a89a9f3a7574324eb10f3b b20cfd14c28cd5b5cbd1ac59b1f04e739e24fec1 Robert de Bock <robert@meinit.nl> 1576067426 +0100	commit: Use YAML output.
+b20cfd14c28cd5b5cbd1ac59b1f04e739e24fec1 7bd3a40329d08ce0072d7ed930b798aff93dbe37 Robert de Bock <robert@meinit.nl> 1576126416 +0100	commit: redhat instead of rhel is being picked up.
+7bd3a40329d08ce0072d7ed930b798aff93dbe37 936c5d889655cf90152d15140271b346b976012b Robert de Bock <robert@meinit.nl> 1577599583 +0100	commit: Variable year, seems logical.
+936c5d889655cf90152d15140271b346b976012b 0554485f75069e1698b0305ef6c4df65232150f5 Robert de Bock <robert@meinit.nl> 1578076766 +0100	commit: Drop ArchLinux
+0554485f75069e1698b0305ef6c4df65232150f5 f0621ed9621df61cc2d1dc9cf8fa7c0ee244bdad Robert de Bock <robert@meinit.nl> 1578647213 +0100	commit: Adding preferencens.yml and remove artful.
+f0621ed9621df61cc2d1dc9cf8fa7c0ee244bdad a0c76e76924ee4c1953bc999bf03636f30c5fcc7 Robert de Bock <robert@meinit.nl> 1580728996 +0100	commit: Why not start in Docker?
+a0c76e76924ee4c1953bc999bf03636f30c5fcc7 8da668f38d19c136c203e0f961959c180b93e5de Robert de Bock <robert@meinit.nl> 1580806322 +0100	commit: Add a simple verifier.
+8da668f38d19c136c203e0f961959c180b93e5de a4947cad66035799ffd070468ef2833076ced1fe Robert de Bock <robert@meinit.nl> 1580889839 +0100	commit: Allig with generator.
+a4947cad66035799ffd070468ef2833076ced1fe 0e49c4d8f6cf6a7278f4556a401e78895f77524c Robert de Bock <robert@meinit.nl> 1582275123 +0100	commit: Molecule 3 wants converge.yml.
+0e49c4d8f6cf6a7278f4556a401e78895f77524c 8a92a9cc9dbc17242bf4574a24a64c689a7cb95f Robert de Bock <robert@meinit.nl> 1582527846 +0100	commit: No more playbook.yml
+8a92a9cc9dbc17242bf4574a24a64c689a7cb95f 669361ce3528263413cf416372cf9f0e5001f7cf Robert de Bock <robert@meinit.nl> 1582698791 +0100	commit: More up to date.
+669361ce3528263413cf416372cf9f0e5001f7cf e59a8677f9bec31723e29f2a30830b0838c49481 Robert de Bock <robert@meinit.nl> 1582992729 +0100	commit: Molecule 3:
+e59a8677f9bec31723e29f2a30830b0838c49481 7cfe362614c9337f2e81618bb7c9aa66a3ea0dcf Robert de Bock <robert@meinit.nl> 1586321187 +0200	commit: Bump Ansible 2.7 to 2.8, that is what is tested, ubuntu:all please.
+7cfe362614c9337f2e81618bb7c9aa66a3ea0dcf 96dfc19e4cc9894f6bd1d1ba2bbc23ba465992c2 Robert de Bock <robert@meinit.nl> 1589788884 +0200	commit: Use the right name, lowercase.
+96dfc19e4cc9894f6bd1d1ba2bbc23ba465992c2 a2665bfa8ff6d82edd537fc6ec6bf16c9d5bca5f Robert de Bock <robert@meinit.nl> 1593614773 +0200	commit: Add assert suggestions.
+a2665bfa8ff6d82edd537fc6ec6bf16c9d5bca5f 57ac6e26c2405c80422af97a41c5843cb1297ea4 Robert de Bock <robert@meinit.nl> 1593684427 +0200	commit: Update.
+57ac6e26c2405c80422af97a41c5843cb1297ea4 f2b03dce9862c6f6ecdf3d6b55b7ed052a0005ad Robert de Bock <robert@meinit.nl> 1593714985 +0200	commit: Troubleshoot.
+f2b03dce9862c6f6ecdf3d6b55b7ed052a0005ad 4c05b7f8e322abfa4b9a0cd9331af8a64d6c8c65 Robert de Bock <robert@meinit.nl> 1593758157 +0200	commit: Back on directory.
+4c05b7f8e322abfa4b9a0cd9331af8a64d6c8c65 d825459d9bf5d069dab20dca188ece2bc69430d0 Robert de Bock <robert@meinit.nl> 1602332062 +0200	commit: Run once in the skeleton too.
+d825459d9bf5d069dab20dca188ece2bc69430d0 296f392df101135ffc5cfa5bb4929f3bc8442557 Robert de Bock <robert@meinit.nl> 1602332081 +0200	commit: What? autofs?
+296f392df101135ffc5cfa5bb4929f3bc8442557 29da5353990bea09716807547456d306ae223bf4 Robert de Bock <robert@meinit.nl> 1602571852 +0200	commit: More in line with generated docs.
+29da5353990bea09716807547456d306ae223bf4 305a801dc59b5a4b7825cf88c619b0d05df5c889 Robert de Bock <robert@meinit.nl> 1603703364 +0100	commit: No weird tags.
+305a801dc59b5a4b7825cf88c619b0d05df5c889 6694c262ff500ba67d8c87d96a04775cb3a98637 Robert de Bock <robert@meinit.nl> 1603976222 +0100	commit: Bump version of Ansible and add Amazon.
+6694c262ff500ba67d8c87d96a04775cb3a98637 a1f3f0c2cdeabfa5a9b2f070cce3b9103b06b73f Robert de Bock <robert@meinit.nl> 1605074731 +0100	commit: New learnings.
+a1f3f0c2cdeabfa5a9b2f070cce3b9103b06b73f f9b1f4f1bdf6a76fa04963412e6191f4865ad74a Robert de Bock <robert@meinit.nl> 1605523198 +0100	commit: More readable.
+f9b1f4f1bdf6a76fa04963412e6191f4865ad74a 35fabf8f7f83b63b913c1d50df804fda5673f017 Robert de Bock <robert@meinit.nl> 1606382666 +0100	commit: More empty lines.
+35fabf8f7f83b63b913c1d50df804fda5673f017 b76f6dd21467a938faf0ee3f26499f474bebb8bd Robert de Bock <robert@meinit.nl> 1609145084 +0100	commit: Not all.
+b76f6dd21467a938faf0ee3f26499f474bebb8bd 59468ef8a6fdbe25536eea4b6fa9ea308c33a894 Robert de Bock <robert@meinit.nl> 1611128373 +0100	commit: Assert just once and fail.

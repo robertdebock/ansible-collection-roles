@@ -1,0 +1,4 @@
+---
+# defaults file for nomachine
+
+nomachine_version: "7.1.3_1"
