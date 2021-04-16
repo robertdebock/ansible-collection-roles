@@ -1,0 +1,31 @@
+---
+- name: Verify
+  hosts: all
+  become: yes
+  gather_facts: yes
+
+  vars:
+    _nslookup_package:
+      default:
+        - bind-utils
+      Debian:
+        - dnsutils
+
+    nslookup_package: "{{ _nslookup_package[ansible_os_family] | default(_nslookup_package['default']) }}"
+
+  tasks:
+    - name: install nslookup
+      ansible.builtin.package:
+        name: "{{ nslookup_package }}"
+        state: present
+      notify:
+        - remove nslookup
+
+    - name: nslookup robertdebock.nl
+      command: nslookup robertdebock.nl
+
+  handlers:
+    - name: remove nslookup
+      ansible.builtin.package:
+        name: "{{ nslookup_package }}"
+        state: absent

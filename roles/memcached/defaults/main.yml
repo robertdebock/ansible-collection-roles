@@ -1,0 +1,14 @@
+---
+# defaults file for memcached
+
+# The tcp port memcached should listen on.
+memcached_port: 11211
+
+# The address memcached should bind on.
+memcached_listenon: "127.0.0.1"
+
+# The maximum connections memcached.
+memcached_maxconn: 1024
+
+# The cachesize.
+memcached_cachesize: 64

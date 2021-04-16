@@ -1,13 +1,15 @@
 ---
 # tasks file for mate
 
+- name: install software
+  ansible.builtin.package:
+    name: "{{ mate_packages }}"
+    state: present
+  when:
+    - ansible_os_family != "RedHat"
+
 - name: configure redhat
   block:
-    - name: install software
-      ansible.builtin.package:
-        name: "{{ mate_packages }}"
-        state: present
-
     - name: install software with excluded
       ansible.builtin.package:
         name: "{{ mate_packages }}"

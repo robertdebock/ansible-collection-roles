@@ -1,4 +1,6 @@
 ---
 exceptions:
-  - variation: centos:7
-    reason: PHP is too old for mediawiki 1.31.1.
+  - variation: centos
+    reason: PHP is too old for mediawiki.
+  - variation: ubuntu:bionic
+    reason: PHP is too old for mediawiki.

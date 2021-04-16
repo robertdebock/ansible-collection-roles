@@ -1,0 +1,21 @@
+---
+- name: converge
+  hosts: all
+  become: yes
+  gather_facts: no
+
+  roles:
+    - role: ansible-role-ulimit
+      ulimit_items:
+        - limit_item: nofile
+          domain: root
+          limit_type: soft
+          value: 1048576
+        - limit_item: nproc
+          domain: root
+          limit_type: soft
+          value: 1024
+        - limit_item: nproc
+          domain: root
+          limit_type: hard
+          value: 2048

@@ -27,6 +27,16 @@ This example is taken from `molecule/resources/converge.yml` and is tested on ea
               server: ":/mnt"
               options:
                 - "fstype=bind"
+        - name: direct-mounts
+          mountpoint: /-
+          options:
+            - "--timeout 60"
+            - "--ghost"
+          directories:
+            - path: /bind/direct/mount
+              server: ":/mnt"
+              options:
+                - "fstype=bind"
         - mountpoint: /do_not_exist
           state: absent
       nis_master_map: auto.master
@@ -76,7 +86,8 @@ slash_replace_char: ""
 #           - rsize=8192
 #           - wsize=8192
 #         server: "server.example.com:/"
-#   - mountpoint: /cifs
+#   - name: cifs-mounts  # optionally name the map (for use in files names).
+#     mountpoint: /cifs
 #     directories:
 #       - path: data
 #         options:
@@ -110,7 +121,7 @@ The following roles are used to prepare a system. You may choose to prepare your
 
 | Requirement | GitHub | GitLab |
 |-------------|--------|--------|
-| [robertdebock.bootstrap](https://galaxy.ansible.com/robertdebock/bootstrap) | [![Build Status GitHub](https://github.com/robertdebock/ansible-role-bootstrap/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-bootstrap/actions) | [![Build Status GitLab ](https://gitlab.com/robertdebock/ansible-role-ansible-role-bootstrap/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-bootstrap)
+|[robertdebock.bootstrap](https://galaxy.ansible.com/robertdebock/bootstrap)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-bootstrap/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-bootstrap/actions)|[![Build Status GitLab ](https://gitlab.com/robertdebock/ansible-role-bootstrap/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-bootstrap)|
 
 ## [Context](#context)
 
@@ -156,6 +167,8 @@ Apache-2.0
 
 I'd like to thank everybody that made contributions to this repository. It motivates me, improves the code and is just fun to collaborate.
 
+- [citnfm](https://github.com/citnfm)
+- [nicholas-FTS](https://github.com/nicholas-FTS)
 
 ## [Author Information](#author-information)
 

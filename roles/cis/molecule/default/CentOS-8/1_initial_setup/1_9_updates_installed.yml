@@ -1,0 +1,16 @@
+---
+- name: 1.9 Ensure updates, patches, and additional security software are installed (Not Scored)
+  package:
+    name: "*"
+    state: latest
+  check_mode: yes
+  register: cis_updates_installed_test
+  when:
+    - cis_updates_installed | bool
+
+- name: 1.9 Ensure updates, patches, and additional security software are installed (Not Scored)
+  assert:
+    that:
+      - cis_updates_installed_test is not changed
+  when:
+    - cis_updates_installed | bool

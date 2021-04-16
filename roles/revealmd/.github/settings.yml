@@ -1,0 +1,8 @@
+---
+#
+# Ansible managed
+#
+repository:
+  description: Install and configure revealmd on your system.
+  homepage: https://robertdebock.nl/
+  topics: revealmd, presentation, html, markdown, nodejs, git, npm, slides, ansible, molecule, tox, playbook, hacktoberfest

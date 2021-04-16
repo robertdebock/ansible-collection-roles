@@ -6,10 +6,39 @@
   run_once: yes
   delegate_to: localhost
 
+- name: pre-configure debian systems
+  ansible.builtin.debconf:
+    name: postfix
+    question: postfix/main_mailer_type
+    vtype: string
+    value: "No configuration"
+  when:
+    - ansible_os_family == "Debian"
+
 - name: install postfix
   ansible.builtin.package:
     name: "{{ postfix_packages }}"
     state: present
+
+- name: configure postfix (transport_maps)
+  ansible.builtin.template:
+    src: "{{ postfix_transport_maps_template }}"
+    dest: /etc/postfix/transport
+    mode: "0644"
+  notify:
+    - rebuild transport_maps database
+  when:
+    - postfix_transport_maps_template is defined
+
+- name: configure postfix (header_checks)
+  ansible.builtin.template:
+    src: "{{ postfix_header_checks_template }}"
+    dest: /etc/postfix/header_checks
+    mode: "0644"
+  notify:
+    - reload postfix
+  when:
+    - postfix_header_checks_template is defined
 
 - name: configure postfix (main.cf)
   ansible.builtin.template:
@@ -18,7 +47,7 @@
     validate: postconf -d -c %s
     mode: "0644"
   notify:
-    - restart postfix
+    - reload postfix
 
 - name: configure postfix (master.cf)
   ansible.builtin.template:
@@ -43,7 +72,7 @@
   loop: "{{ postfix_aliases }}"
   notify:
     - rebuild alias database
-    - restart postfix
+    - reload postfix
   loop_control:
     label: "{{ item.name }}"
 
@@ -59,7 +88,7 @@
   loop: "{{ postfix_sender_access }}"
   notify:
     - rebuild sender_access database
-    - restart postfix
+    - reload postfix
   loop_control:
     label: "{{ item.domain }}"
 
@@ -75,7 +104,7 @@
   loop: "{{ postfix_recipient_access }}"
   notify:
     - rebuild recipient_access database
-    - restart postfix
+    - reload postfix
   loop_control:
     label: "{{ item.domain }}"
 
@@ -87,6 +116,3 @@
     name: "{{ postfix_service }}"
     state: started
     enabled: yes
-
-- name: flush handlers
-  ansible.builtin.meta: flush_handlers

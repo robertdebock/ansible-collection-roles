@@ -1,0 +1,35 @@
+---
+- name: Verify
+  hosts: all
+  become: yes
+  gather_facts: yes
+
+  tasks:
+    - name: create a firewall rule to open port 1337
+      include_role:
+        name: ansible-role-firewall
+      vars:
+        firewall_services:
+          - name: 1337
+
+    - name: remove a firewall rule to close port 1337
+      include_role:
+        name: ansible-role-firewall
+      vars:
+        firewall_services:
+          - name: 1337
+            state: absent
+
+    - name: remove a firewall rule to close port 1337
+      include_role:
+        name: ansible-role-firewall
+      vars:
+        firewall_services:
+          - name: 1337
+            state: absent
+      register: firewall_remove_a_firewall_rule_to_close_port_1337
+
+    - name: check last result
+      ansible.builtin.assert:
+        that:
+          - firewall_remove_a_firewall_rule_to_close_port_1337 is not changed

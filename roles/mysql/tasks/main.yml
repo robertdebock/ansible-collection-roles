@@ -80,6 +80,7 @@
     password: "{{ item.password | default(omit) }}"
     priv: "{{ item.priv | default(omit) }}"
     host: "{{ item.host | default(omit) }}"
+    host_all: "{{ item.host_all | default(omit) }}"
     update_password: "{{ item.update_password | default('on_create') }}"
     login_unix_socket: "{{ mysql_socket }}"
     login_user: root

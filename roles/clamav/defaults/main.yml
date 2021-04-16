@@ -1,0 +1,16 @@
+---
+# defaults file for clamav
+
+# SELinux has to be configured to allow scanning. Set clamav_can_scan_system to
+# either "yes" or "no". Only has effect on systems that support SELinux.
+clamav_can_scan_system: yes
+
+# Configure any parameter using "regexp" and "line". The parameter "regexp"
+# contains the line that needs to be replaced. The replacement is stored in
+# "line".
+clamav_configuration:
+  - line: "Example"
+    state: absent
+  - line: "TCPSocket 10025"
+  - line: "TCPAddr 127.0.0.1"
+  - line: "LogFile /var/log/clamd.scan"

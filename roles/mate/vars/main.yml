@@ -2,21 +2,11 @@
 # vars file for mate
 
 _mate_packages:
-  Alpine:
-    - mate-desktop
-    - mate-desktop-environment
-    - mate-session-manager
   RedHat:
     - "@mate-desktop"
     - NetworkManager
   Debian:
-    - mate-desktop
-    - mate-indicator-applet
-    - mate-indicator-applet-common
-    - mate-menu
-    - mate-notification-daemon
-    - mate-notification-daemon-common
-    - mate-session-manager
+    - mate-desktop-environment
   Suse:
     - patterns-mate-mate
 

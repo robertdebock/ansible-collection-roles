@@ -1,4 +1,2 @@
 ---
 tox_parallel: no
-tox_versions:
-  - current

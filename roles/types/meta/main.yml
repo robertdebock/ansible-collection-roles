@@ -1,6 +1,7 @@
 ---
 galaxy_info:
   author: Robert de Bock
+  namespace: robertdebock
   role_name: types
   description: Try variables for their type.
   license: Apache-2.0

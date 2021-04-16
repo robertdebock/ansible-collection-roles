@@ -1,0 +1,8 @@
+---
+#
+# Ansible managed
+#
+repository:
+  description: Install and configure a NAT router on your system.
+  homepage: https://robertdebock.nl/
+  topics: networking, natrouter, router, nat, masquerade, ansible, molecule, tox, playbook, hacktoberfest

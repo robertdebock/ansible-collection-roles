@@ -1,7 +1,7 @@
 {{ ansible_managed | comment }}
 
 #
-# /etc/apache2/httpd.conf 
+# /etc/apache2/httpd.conf
 #
 # This is the main Apache server configuration file.  It contains the
 # configuration directives that give the server its instructions.
@@ -23,7 +23,7 @@
 # Overview of include files, chronologically:
 #
 # httpd.conf
-#  | 
+#  |
 #  |-- uid.conf  . . . . . . . . . . . . . .  UserID/GroupID to run under
 #  |-- server-tuning.conf  . . . . . . . . .  sizing of the server (how many processes to start, ...)
 #  |-- loadmodule.conf . . . . . . . . . . .  [*] load these modules
@@ -141,9 +141,9 @@ Include /etc/apache2/mod_info.conf
 # with the configured default values. You shouldn't notice it at all.
 Include /etc/apache2/mod_reqtimeout.conf
 
-# Fix for CVE-2014-0231 introduces new configuration parameter 
-# CGIDScriptTimeout. This directive and its effect prevent request 
-# workers to be eaten until starvation if cgi programs do not send 
+# Fix for CVE-2014-0231 introduces new configuration parameter
+# CGIDScriptTimeout. This directive and its effect prevent request
+# workers to be eaten until starvation if cgi programs do not send
 # output back to the server within the timout set by CGIDScriptTimeout.
 Include /etc/apache2/mod_cgid-timeout.conf
 
@@ -161,7 +161,7 @@ Include /etc/apache2/mod_mime-defaults.conf
 # set up (customizable) error responses
 Include /etc/apache2/errors.conf
 
-# global (server-wide) SSL configuration, that is not specific to 
+# global (server-wide) SSL configuration, that is not specific to
 # any virtual host
 Include /etc/apache2/ssl-global.conf
 
@@ -229,10 +229,10 @@ Include /etc/apache2/default-server.conf
 IncludeOptional /etc/apache2/vhosts.d/*.conf
 
 
-# Note: instead of adding your own configuration here, consider 
+# Note: instead of adding your own configuration here, consider
 #       adding it in your own file (/etc/apache2/httpd.conf.local)
-#       putting its name into APACHE_CONF_INCLUDE_FILES in 
-#       /etc/sysconfig/apache2 -- this will make system updates 
-#       easier :) 
+#       putting its name into APACHE_CONF_INCLUDE_FILES in
+#       /etc/sysconfig/apache2 -- this will make system updates
+#       easier :)
 
 TraceEnable Off

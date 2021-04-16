@@ -1,0 +1,14 @@
+---
+- name: Verify
+  hosts: all
+  become: yes
+  gather_facts: yes
+
+  tasks:
+    - name: test port 5901
+      ansible.builtin.wait_for:
+        port: 5901
+
+    - name: show testing instruction
+      ansible.builtin.debug:
+        msg: "Please run: vncviewer {{ ansible_default_ipv4.address|default(ansible_all_ipv4_addresses[0]) }}:5901"

@@ -1,0 +1,8 @@
+---
+- name: 3.5 Ensure wireless interfaces are disabled (Scored)
+  command: nmcli radio all
+  register: cis_wireless_interface_disabled_test
+  failed_when:
+    - "'enabled  enabled  enabled  enabled' in cis_wireless_interface_disabled_test.stdout"
+  when:
+    - cis_wireless_interface_disabled | bool

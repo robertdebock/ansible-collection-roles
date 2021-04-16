@@ -1,0 +1,15 @@
+---
+- name: prepare
+  hosts: all
+  become: yes
+  gather_facts: no
+
+  roles:
+    - role: robertdebock.bootstrap
+
+  tasks:
+    - name: create a file
+      ansible.builtin.copy:
+        dest: /tmp/some_file.txt
+        content: "Some content"
+        mode: "0644"

@@ -1,0 +1,21 @@
+
+module my-zabbixagent 1.0;
+
+require {
+        type zabbix_agent_t;
+        type proc_kcore_t;
+        type devlog_t;
+        type mysqld_port_t;
+        type rpm_exec_t;
+        type initctl_t;
+        class file { execute getattr };
+        class fifo_file getattr;
+        class sock_file getattr;
+        class tcp_socket name_connect;
+}
+
+#============= zabbix_agent_t ==============
+allow zabbix_agent_t devlog_t:sock_file getattr;
+allow zabbix_agent_t initctl_t:fifo_file getattr;
+allow zabbix_agent_t proc_kcore_t:file getattr;
+allow zabbix_agent_t rpm_exec_t:file execute;

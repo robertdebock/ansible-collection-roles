@@ -3,3 +3,5 @@ roles:
   - name: robertdebock.bootstrap
   - name: robertdebock.buildtools
   - name: robertdebock.ruby
+collections:
+  - name: community.general

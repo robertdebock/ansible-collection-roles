@@ -22,8 +22,6 @@ This example is taken from `molecule/resources/converge.yml` and is tested on ea
       # "discovered". For CI however, there is not right model, so this
       # variable needs to be set manually.
       bios_update_url: "https://download.lenovo.com/pccbbs/mobiles/r02uj70d.iso"
-      # Can't emulate a block-device in CI.
-      bios_update_ci_mode: yes
 ```
 
 The machine needs to be prepared in CI this is done using `molecule/resources/prepare.yml`:
@@ -73,7 +71,7 @@ The following roles are used to prepare a system. You may choose to prepare your
 
 | Requirement | GitHub | GitLab |
 |-------------|--------|--------|
-| [robertdebock.bootstrap](https://galaxy.ansible.com/robertdebock/bootstrap) | [![Build Status GitHub](https://github.com/robertdebock/ansible-role-bootstrap/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-bootstrap/actions) | [![Build Status GitLab ](https://gitlab.com/robertdebock/ansible-role-ansible-role-bootstrap/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-bootstrap)
+|[robertdebock.bootstrap](https://galaxy.ansible.com/robertdebock/bootstrap)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-bootstrap/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-bootstrap/actions)|[![Build Status GitLab ](https://gitlab.com/robertdebock/ansible-role-bootstrap/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-bootstrap)|
 
 ## [Context](#context)
 
@@ -117,10 +115,6 @@ If you find issues, please register them in [GitHub](https://github.com/robertde
 ## [License](#license)
 
 Apache-2.0
-
-## [Contributors](#contributors)
-
-I'd like to thank everybody that made contributions to this repository. It motivates me, improves the code and is just fun to collaborate.
 
 
 ## [Author Information](#author-information)

@@ -10,3 +10,5 @@ roles:
   - name: robertdebock.php
   - name: robertdebock.python_pip
   - name: robertdebock.selinux
+collections:
+  - name: ansible.posix

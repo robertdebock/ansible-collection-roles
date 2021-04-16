@@ -1,0 +1,13 @@
+---
+- name: Converge
+  hosts: all
+  become: yes
+  gather_facts: yes
+
+  roles:
+    - role: ansible-role-selinux
+      selinux_booleans:
+        - name: http_can_network_connect
+        - name: abrt_anon_write
+          state: no
+          persistent: no

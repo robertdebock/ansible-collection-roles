@@ -1,0 +1,56 @@
+name: Roles CI
+on:
+  push:
+    paths:
+      - 'roles/**'
+      - '.github/workflows/ansible-test-roles.yml'
+  pull_request:
+    paths:
+      - 'roles/**'
+      - '.github/workflows/ansible-test-roles.yml'
+  schedule:
+    - cron: '0 6 * * *'
+
+jobs:
+  molecule:
+    name: "Molecule (Python: ${{ matrix.python }}, Ansible: ${{ matrix.ansible }}, MySQL: ${{ matrix.mysql }})"
+    runs-on: ubuntu-latest
+    env:
+      PY_COLORS: 1
+      ANSIBLE_FORCE_COLOR: 1
+    strategy:
+      matrix:
+        mysql:
+          - 2.0.12
+        ansible:
+          - stable-2.9
+          ### it looks like there's errors for 2.10+ with ansible-lint (https://github.com/ansible/ansible-lint/pull/878)
+          ### and molecule (_maybe_ relating to https://github.com/ansible-community/molecule/pull/2547)
+          # - stable-2.10
+          # - devel
+        python:
+          - 2.7
+          - 3.8
+
+    steps:
+
+      - name: Check out code
+        uses: actions/checkout@v2
+        with:
+          path: ansible_collections/community/mysql
+
+      - name: Set up Python ${{ matrix.python }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python }}
+
+      - name: Install ansible-base (${{ matrix.ansible }})
+        run: pip install https://github.com/ansible/ansible/archive/${{ matrix.ansible }}.tar.gz --disable-pip-version-check
+
+      - name: Install molecule and related dependencies
+        run: |
+          pip install ansible-lint docker flake8 molecule testinfra yamllint
+
+      # - name: Run molecule default test scenario
+      #   run: for d in roles/*/; do (cd "$d" && molecule --version && molecule test) done
+      #   working-directory: ./ansible_collections/community/mysql

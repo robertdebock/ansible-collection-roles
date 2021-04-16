@@ -1,4 +1,4 @@
 ---
 tox_parallel: no
 tox_versions:
-  - current
+  - "2.10"

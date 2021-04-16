@@ -1,0 +1,3 @@
+dependencies:
+  - setup_ssh_keygen
+  - setup_ssh_agent

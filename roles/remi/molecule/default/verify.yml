@@ -1,0 +1,16 @@
+---
+- name: Verify
+  hosts: all
+  become: yes
+  gather_facts: yes
+
+  vars:
+    _remi_verify_package:
+      Fedora: php-gd
+      CentOS: php74-php-gd
+    remi_verify_package: "{{ _remi_verify_package[ansible_distribution] }}"
+
+  tasks:
+    - name: install a package from the remi repository
+      ansible.builtin.package:
+        name: "{{ remi_verify_package }}"

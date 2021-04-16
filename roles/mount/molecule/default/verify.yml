@@ -1,0 +1,39 @@
+---
+- name: Verify
+  hosts: all
+  become: yes
+  gather_facts: no
+
+  tasks:
+    - name: check directory
+      ansible.builtin.stat:
+        path: /mnt/tmp
+      register: mount_check_directory
+      failed_when:
+        - not mount_check_directory.stat.exists
+
+    - name: place some file
+      ansible.builtin.file:
+        path: /mnt/tmp/some_file.txt
+        state: touch
+        mode: "0644"
+
+    - name: unmount
+      ansible.posix.mount:
+        path: /mnt/tmp
+        state: unmounted
+
+    - name: check if some file is gone
+      ansible.builtin.stat:
+        path: /mnt/tmp/some_file.txt
+      register: mount_check_some_file
+      failed_when:
+        - mount_check_some_file.stat.exists
+
+    - name: revert to mounted state before verify
+      ansible.posix.mount:
+        path: /mnt/tmp
+        src: /tmp
+        opts: bind
+        fstype: none
+        state: mounted

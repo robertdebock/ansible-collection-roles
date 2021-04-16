@@ -1,0 +1,30 @@
+---
+- name: converge
+  hosts: all
+  become: yes
+  gather_facts: yes
+
+  vars:
+    logrotate_frequency: daily
+    logrotate_keep: 7
+    logrotate_compress: yes
+    logrotate_user: root
+    logrotate_group: syslog
+    logrotate_entries:
+      - name: example
+        path: "/var/log/example/*.log"
+      - name: example-frequency
+        path: "/var/log/example-frequency/*.log"
+        frequency: weekly
+      - name: example-keep
+        path: "/var/log/example-keep/*.log"
+        keep: 14
+      - name: example-compress-yes
+        path: "/var/log/example-compress/*.log"
+        compress: yes
+      - name: example-compress-no
+        path: "/var/log/example-compress/*.log"
+        compress: no
+
+  roles:
+    - role: ansible-role-logrotate

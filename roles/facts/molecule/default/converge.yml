@@ -1,0 +1,13 @@
+---
+- name: converge
+  hosts: all
+  become: yes
+  gather_facts: yes
+
+  roles:
+    - role: ansible-role-facts
+      facts:
+        - key: datacenter
+          value: Amsterdam
+        - key: availability_zone
+          value: west

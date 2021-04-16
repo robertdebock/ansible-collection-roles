@@ -1,0 +1,20 @@
+---
+# defaults file for openssl
+
+# You can pass a list of ssl key/csr/crt/p12's to generate:
+# openssl_items:
+#   - name: my_openssl_key
+#     common_name: my.example.com
+
+# You can change the paths where to store each type of object (key, csr, crt,
+# p12 and pkcs12). This is not required, by default the distributions regular
+# location is set in `vars/main.yml`.
+
+# This directory stores sensitive objects. (key, p12 and pkcs12)
+openssl_key_directory: "{{ _openssl_key_directory[ansible_os_family] | default(_openssl_key_directory['default']) }}"
+
+# This directory stores public, non-persistent objects. (csr)
+openssl_csr_directory: "{{ _openssl_csr_directory[ansible_os_family] | default(_openssl_csr_directory['default']) }}"
+
+# This directory stores public, persistent objects. (crt)
+openssl_crt_directory: "{{ _openssl_crt_directory[ansible_os_family] | default(_openssl_crt_directory['default']) }}"

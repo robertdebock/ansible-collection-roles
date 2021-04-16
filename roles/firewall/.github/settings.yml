@@ -1,0 +1,8 @@
+---
+#
+# Ansible managed
+#
+repository:
+  description: Manage firewall ports on all (known) Linux operating systems.
+  homepage: https://robertdebock.nl/
+  topics: firewall, firewalld, server, system, ansible, molecule, tox, playbook, hacktoberfest

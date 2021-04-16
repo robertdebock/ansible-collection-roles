@@ -1,0 +1,8 @@
+---
+# defaults file for squid
+
+# The port squid is listening on.
+squid_port: 3128
+
+# The directory where (and how) to cache.
+squid_cache_dir: ufs /var/spool/squid 100 16 256

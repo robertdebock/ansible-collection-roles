@@ -1,0 +1,8 @@
+---
+#
+# Ansible managed
+#
+repository:
+  description: Test connection possibilities to your system.
+  homepage: https://robertdebock.nl/
+  topics: testconnection, ansible, molecule, tox, playbook, hacktoberfest

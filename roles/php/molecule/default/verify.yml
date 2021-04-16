@@ -1,0 +1,14 @@
+---
+- name: Verify
+  hosts: all
+  become: yes
+  gather_facts: no
+
+  tasks:
+    - name: place php_info
+      ansible.builtin.copy:
+        content: "<?php phpinfo(); ?>"
+        dest: php_info.php
+
+    - name: run php php_info.php
+      command: php php_info.php

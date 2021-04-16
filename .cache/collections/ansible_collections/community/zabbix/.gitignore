@@ -1,0 +1,17 @@
+tests/output
+__pycache__
+
+# ignore visual studio code things
+.vscode
+
+# ignore Python Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# unit test
+.tox/

@@ -1,0 +1,128 @@
+[
+    {
+      "ownerMachineId": "f34e87f5-0494-4707-8dcc-980c7c0cdec3",
+      "cloudConnectorReference": {
+        "link": "https://localhost/mgmt/cm/cloud/connectors/local"
+      },
+      "displayName": "BIG-IP",
+      "connectorId": "212301e6-6d01-4509-bfe3-8e372e792fb0",
+      "name": "foo",
+      "deviceGroupReference": {
+        "link": "https://localhost/mgmt/shared/resolver/device-groups/connector-212301e6-6d01-4509-bfe3-8e372e792fb0"
+      },
+      "supportsServerProvisioning": false,
+      "supportsDeviceProvisioning": false,
+      "supportsVirtualServerProvisioning": false,
+      "supportsDeviceDiscovery": false,
+      "supportsMultipleNetworks": false,
+      "requiresCallbacks": false,
+      "requiresOutboundHttps": false,
+      "parameters": [
+        {
+          "id": "eventAggregator",
+          "displayName": "Event Aggregator",
+          "isRequired": false,
+          "value": "https://localhost/mgmt/shared/analytics/event-aggregation-tasks/0fb436ae-c19c-498b-93c0-b6c83352d109"
+        }
+      ],
+      "generation": 1,
+      "lastUpdateMicros": 1489448364826907,
+      "kind": "cm:cloud:connectors:cloudconnectorstate",
+      "selfLink": "https://localhost/mgmt/cm/cloud/connectors/local/212301e6-6d01-4509-bfe3-8e372e792fb0"
+    },
+    {
+      "ownerMachineId": "f34e87f5-0494-4707-8dcc-980c7c0cdec3",
+      "cloudConnectorReference": {
+        "link": "https://localhost/mgmt/cm/cloud/connectors/local"
+      },
+      "displayName": "BIG-IP",
+      "connectorId": "6ff15eda-2f1e-449e-b7fb-f945dee207ae",
+      "name": "dwa",
+      "description": "adwa",
+      "deviceGroupReference": {
+        "link": "https://localhost/mgmt/shared/resolver/device-groups/connector-6ff15eda-2f1e-449e-b7fb-f945dee207ae"
+      },
+      "supportsServerProvisioning": false,
+      "supportsDeviceProvisioning": false,
+      "supportsVirtualServerProvisioning": false,
+      "supportsDeviceDiscovery": false,
+      "supportsMultipleNetworks": false,
+      "requiresCallbacks": false,
+      "requiresOutboundHttps": false,
+      "parameters": [
+        {
+          "id": "eventAggregator",
+          "displayName": "Event Aggregator",
+          "isRequired": false,
+          "value": "https://localhost/mgmt/shared/analytics/event-aggregation-tasks/911fe71c-5846-4492-97c2-ed5da5d8eebb"
+        }
+      ],
+      "generation": 1,
+      "lastUpdateMicros": 1489442750268921,
+      "kind": "cm:cloud:connectors:cloudconnectorstate",
+      "selfLink": "https://localhost/mgmt/cm/cloud/connectors/local/6ff15eda-2f1e-449e-b7fb-f945dee207ae"
+    },
+    {
+      "ownerMachineId": "f34e87f5-0494-4707-8dcc-980c7c0cdec3",
+      "cloudConnectorReference": {
+        "link": "https://localhost/mgmt/cm/cloud/connectors/local"
+      },
+      "displayName": "BIG-IP",
+      "connectorId": "ccf0c60f-1fb4-4b83-8719-dc9cd6b6d109",
+      "name": "bar",
+      "deviceGroupReference": {
+        "link": "https://localhost/mgmt/shared/resolver/device-groups/connector-ccf0c60f-1fb4-4b83-8719-dc9cd6b6d109"
+      },
+      "supportsServerProvisioning": false,
+      "supportsDeviceProvisioning": false,
+      "supportsVirtualServerProvisioning": false,
+      "supportsDeviceDiscovery": false,
+      "supportsMultipleNetworks": false,
+      "requiresCallbacks": false,
+      "requiresOutboundHttps": false,
+      "parameters": [
+        {
+          "id": "eventAggregator",
+          "displayName": "Event Aggregator",
+          "isRequired": false,
+          "value": "https://localhost/mgmt/shared/analytics/event-aggregation-tasks/c1a2ad84-8cfc-4fde-bad9-1221d8e564a7"
+        }
+      ],
+      "generation": 1,
+      "lastUpdateMicros": 1489448365968990,
+      "kind": "cm:cloud:connectors:cloudconnectorstate",
+      "selfLink": "https://localhost/mgmt/cm/cloud/connectors/local/ccf0c60f-1fb4-4b83-8719-dc9cd6b6d109"
+    },
+    {
+      "ownerMachineId": "f34e87f5-0494-4707-8dcc-980c7c0cdec3",
+      "cloudConnectorReference": {
+        "link": "https://localhost/mgmt/cm/cloud/connectors/local"
+      },
+      "displayName": "BIG-IP",
+      "connectorId": "f5532a36-2401-4daa-b796-0176f4972730",
+      "name": "asd",
+      "description": "asd",
+      "deviceGroupReference": {
+        "link": "https://localhost/mgmt/shared/resolver/device-groups/connector-f5532a36-2401-4daa-b796-0176f4972730"
+      },
+      "supportsServerProvisioning": false,
+      "supportsDeviceProvisioning": false,
+      "supportsVirtualServerProvisioning": false,
+      "supportsDeviceDiscovery": false,
+      "supportsMultipleNetworks": false,
+      "requiresCallbacks": false,
+      "requiresOutboundHttps": false,
+      "parameters": [
+        {
+          "id": "eventAggregator",
+          "displayName": "Event Aggregator",
+          "isRequired": false,
+          "value": "https://localhost/mgmt/shared/analytics/event-aggregation-tasks/e007819b-6cc4-4c9b-81b4-5d893fb5095f"
+        }
+      ],
+      "generation": 1,
+      "lastUpdateMicros": 1489442742069263,
+      "kind": "cm:cloud:connectors:cloudconnectorstate",
+      "selfLink": "https://localhost/mgmt/cm/cloud/connectors/local/f5532a36-2401-4daa-b796-0176f4972730"
+    }
+]

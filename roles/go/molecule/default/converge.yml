@@ -1,0 +1,12 @@
+---
+- name: Converge
+  hosts: all
+  become: yes
+  gather_facts: yes
+
+  vars:
+    go_packages:
+      - github.com/golang/dep
+
+  roles:
+    - role: ansible-role-go

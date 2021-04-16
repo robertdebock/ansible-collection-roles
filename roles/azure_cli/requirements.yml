@@ -5,3 +5,5 @@ roles:
   - name: robertdebock.epel
   - name: robertdebock.microsoft_repository_keys
   - name: robertdebock.python_pip
+collections:
+  - name: community.general

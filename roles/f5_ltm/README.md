@@ -104,7 +104,7 @@ The following roles are used to prepare a system. You may choose to prepare your
 
 | Requirement | GitHub | GitLab |
 |-------------|--------|--------|
-| [robertdebock.bootstrap](https://galaxy.ansible.com/robertdebock/bootstrap) | [![Build Status GitHub](https://github.com/robertdebock/ansible-role-bootstrap/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-bootstrap/actions) | [![Build Status GitLab ](https://gitlab.com/robertdebock/ansible-role-ansible-role-bootstrap/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-bootstrap)
+|[robertdebock.bootstrap](https://galaxy.ansible.com/robertdebock/bootstrap)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-bootstrap/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-bootstrap/actions)|[![Build Status GitLab ](https://gitlab.com/robertdebock/ansible-role-bootstrap/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-bootstrap)|
 
 ## [Context](#context)
 
@@ -141,6 +141,11 @@ If you find issues, please register them in [GitHub](https://github.com/robertde
 
 Apache-2.0
 
+## [Contributors](#contributors)
+
+I'd like to thank everybody that made contributions to this repository. It motivates me, improves the code and is just fun to collaborate.
+
+- [bwittenburg](https://github.com/bwittenburg)
 
 ## [Author Information](#author-information)
 

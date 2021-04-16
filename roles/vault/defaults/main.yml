@@ -1,0 +1,77 @@
+---
+# defaults file for vault
+
+# Configure clustering.
+vault_disable_clustering: "false"
+
+# The leader to use, please use a fqdn, i.e. `vault.example.com`
+# This variable is not required for single-node installations, where the
+# variabel `vault_disable_clustering` is set to `"True"`.
+# vault_leader: centos-7
+
+# The URL where cluster members can find the leader.
+vault_cluster_addr: "http://{{ vault_leader | default('localhost') }}:8201"
+
+# The URL where the API will be served. This is the API of a local instance.
+vault_api_addr: "http://127.0.0.1:8200"
+
+# The plugin plugin directory.
+vault_plugin_directory: /usr/local/lib/vault/plugins
+
+# The storage backend(s) to configure.
+vault_storages:
+  - name: raft
+    path: /vault/data
+    node_id: "{{ inventory_hostname_short }}"
+
+# Where vault should listen on.
+vault_listeners:
+  - name: tcp
+    address: 127.0.0.1:8200
+    cluster_address: 127.0.0.1:8201
+    tls_disable: "true"
+
+# Have the web ui be made available.
+vault_ui: "true"
+
+# The amount of unseal keys to hand out.
+vault_key_shares: 5
+# The amount of unseal keys to require.
+vault_key_threshold: 3
+
+# If you want to see the (sensitive) output of `vault operator init`, set
+# this parameter to `yes`
+vault_show_unseal_information: no
+
+# To reduce disk io, mlock can be disabled.
+vault_disable_mlock: "true"
+
+# You can unseal vault using unseal keys that are know. For new installations
+# you do not need to specify these.
+# vault_unseal_keys:
+#   - KeY-oNe
+#   - KeY-tWo
+#   - KeY-tHrEe
+
+# You can use this role to make a backup of Vault.
+vault_make_backup: no
+
+# Where should backups be saved? A full path, including file, for example:
+# vault_backup_path: /tmp/my_backup.yml
+vault_backup_path: "/root/vault-raft_{{ ansible_date_time.date}}-{{ ansible_date_time.hour }}{{ ansible_date_time.minute }}.snapshot"
+
+# To provision resources, a namespace can be set.
+# vault_namespace: ""
+
+# The Key-Value engine can be configured with these items.
+vault_kv_max_versions: 5
+vault_kv_cas_required: "false"
+vault_kv_delete_version_after: 3h25m19s
+
+# Provision secrets.
+# vault_kv_secrets:
+#   - name: my-secret
+#     cas: 0
+#     data:
+#       foo: bar
+#       zip: zap

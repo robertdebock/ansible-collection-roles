@@ -41,3 +41,5 @@
     name: "{{ docker_ce_service }}"
     state: started
     enabled: yes
+  when:
+    - ansible_connection != "docker"

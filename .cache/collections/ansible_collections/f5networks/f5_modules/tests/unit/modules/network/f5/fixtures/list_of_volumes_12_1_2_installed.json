@@ -1,0 +1,92 @@
+[
+    {
+      "kind": "tm:sys:software:volume:volumestate",
+      "name": "HD1.1",
+      "fullPath": "HD1.1",
+      "generation": 13982,
+      "selfLink": "https://localhost/mgmt/tm/sys/software/volume/HD1.1?ver=12.1.0",
+      "active": true,
+      "apiRawValues": {},
+      "basebuild": "0.0.1434",
+      "build": "1.0.1447",
+      "product": "BIG-IP",
+      "status": "complete",
+      "version": "12.1.0",
+      "media": [
+        {
+          "name": "HD1.1",
+          "defaultBootLocation": true,
+          "media": "hd",
+          "size": "default",
+          "nameReference": {
+            "link": "https://localhost/mgmt/tm/sys/software/volume/HD1.1?ver=12.1.0"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "tm:sys:software:volume:volumestate",
+      "name": "HD1.2",
+      "fullPath": "HD1.2",
+      "generation": 305,
+      "selfLink": "https://localhost/mgmt/tm/sys/software/volume/HD1.2?ver=12.1.0",
+      "basebuild": "0.0.184",
+      "build": "1.0.196",
+      "product": "BIG-IP",
+      "status": "complete",
+      "version": "12.1.1",
+      "media": [
+        {
+          "name": "HD1.2",
+          "media": "hd",
+          "size": "default",
+          "nameReference": {
+            "link": "https://localhost/mgmt/tm/sys/software/volume/HD1.2?ver=12.1.0"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "tm:sys:software:volume:volumestate",
+      "name": "HD1.3",
+      "fullPath": "HD1.3",
+      "generation": 13983,
+      "selfLink": "https://localhost/mgmt/tm/sys/software/volume/HD1.3?ver=12.1.0",
+      "build": "0.0.249",
+      "product": "BIG-IP",
+      "status": "complete",
+      "version": "12.1.2",
+      "media": [
+        {
+          "name": "HD1.3",
+          "media": "hd",
+          "size": "default",
+          "nameReference": {
+            "link": "https://localhost/mgmt/tm/sys/software/volume/HD1.3?ver=12.1.0"
+          }
+        }
+      ]
+    },
+  {
+      "kind": "tm:sys:software:volume:volumestate",
+      "name": "HD1.4",
+      "fullPath": "HD1.4",
+      "generation": 5996,
+      "selfLink": "https://localhost/mgmt/tm/sys/software/volume/HD1.4?ver=12.1.0",
+      "basebuild": "0.0.249",
+      "build": "1.0.271",
+      "product": "BIG-IP",
+      "status": "complete",
+      "version": "12.1.2",
+      "media": [
+        {
+          "name": "HD1.4",
+          "media": "hd",
+          "size": "default",
+          "nameReference": {
+            "link": "https://localhost/mgmt/tm/sys/software/volume/HD1.4?ver=12.1.0"
+          }
+        }
+      ]
+    }
+  ]

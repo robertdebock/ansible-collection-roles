@@ -1,0 +1,8 @@
+---
+#
+# Ansible managed
+#
+repository:
+  description: Install and configure java on your system.
+  homepage: https://robertdebock.nl/
+  topics: java, oracle, openjdk, jre, jdk, alternatives, ansible, molecule, tox, playbook, hacktoberfest

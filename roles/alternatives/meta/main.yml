@@ -1,6 +1,7 @@
 ---
 galaxy_info:
   author: Robert de Bock
+  namespace: robertdebock
   role_name: alternatives
   description: Set alternatives
   license: Apache-2.0

@@ -1,0 +1,1 @@
+../../docs/ZABBIX_PROXY_ROLE.md

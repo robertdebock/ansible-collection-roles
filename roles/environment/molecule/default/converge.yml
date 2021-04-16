@@ -1,0 +1,12 @@
+---
+- name: converge
+  hosts: all
+  become: yes
+  gather_facts: yes
+
+  roles:
+    - role: ansible-role-environment
+      environment_list:
+        my_variable: "my_value"
+        my_other_variable: "my_other_value"
+        PATH: "$PATH:/my/path"

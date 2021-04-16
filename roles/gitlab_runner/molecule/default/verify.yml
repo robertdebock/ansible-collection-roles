@@ -1,0 +1,10 @@
+---
+- name: Verify
+  hosts: all
+  become: yes
+  gather_facts: no
+
+  tasks:
+    - name: run version check
+      command: gitlab-runner --version
+      changed_when: no

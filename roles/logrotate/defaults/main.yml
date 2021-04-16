@@ -1,0 +1,15 @@
+---
+# defaults file for logrotate
+
+# How often to rotate logs, either daily, weekly or monthly.
+logrotate_frequency: weekly
+
+# How many files to keep.
+logrotate_keep: 4
+
+# Should rotated logs be compressed??
+logrotate_compress: yes
+
+# User/Group for rotated log files
+logrotate_user: root
+logrotate_group: syslog

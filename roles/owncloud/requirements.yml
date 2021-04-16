@@ -3,6 +3,7 @@ roles:
   - name: robertdebock.bootstrap
   - name: robertdebock.buildtools
   - name: robertdebock.core_dependencies
+  - name: robertdebock.cron
   - name: robertdebock.epel
   - name: robertdebock.httpd
   - name: robertdebock.mysql

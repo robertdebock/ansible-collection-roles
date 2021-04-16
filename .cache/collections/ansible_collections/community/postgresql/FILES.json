@@ -1,0 +1,2406 @@
+{
+ "files": [
+  {
+   "name": ".",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": ".azure-pipelines",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": ".azure-pipelines/README.md",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "61f20decd3c8fb34ac2cc6ff79f598fc5136e642130a7ba065ccc5aa37960cd2",
+   "format": 1
+  },
+  {
+   "name": ".azure-pipelines/azure-pipelines.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "ce7e83ce5bcb478262887d400c83f6f36cfa0b51ce858a6b9005388f25314ffe",
+   "format": 1
+  },
+  {
+   "name": ".azure-pipelines/scripts",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": ".azure-pipelines/scripts/aggregate-coverage.sh",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "820353ffde6fd3ad655118772547549d84ccf0a7ba951e8fb1325f912ef640a0",
+   "format": 1
+  },
+  {
+   "name": ".azure-pipelines/scripts/combine-coverage.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e34d4e863a65b9f53c4ca8ae37655858969898a949e050e9cb3cb0d5f02342d0",
+   "format": 1
+  },
+  {
+   "name": ".azure-pipelines/scripts/process-results.sh",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "c03d7273fe58882a439b6723e92ab89f1e127772b5ce35aa67c546dd62659741",
+   "format": 1
+  },
+  {
+   "name": ".azure-pipelines/scripts/publish-codecov.sh",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "2662ee5039b851fd66c069ff6704024951ced29fa04bf1e2df5b75f18fc2a32b",
+   "format": 1
+  },
+  {
+   "name": ".azure-pipelines/scripts/report-coverage.sh",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "f6a373322759ccc2736fb25d25d8c402dfe16b5d9a57cfccb1ca8cb136e09663",
+   "format": 1
+  },
+  {
+   "name": ".azure-pipelines/scripts/run-tests.sh",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "cb08a3ec5715b00d476ae6d63ca22e11a9ad8887239439937d2a7ea342e5a623",
+   "format": 1
+  },
+  {
+   "name": ".azure-pipelines/scripts/time-command.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "0232f415efeb583ddff907c058986963b775441eaf129d7162aee0acb0d36834",
+   "format": 1
+  },
+  {
+   "name": ".azure-pipelines/templates",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": ".azure-pipelines/templates/coverage.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "daf1930264760d47b54588f05c6339fd69ca2d239c77c44bc4cee3c4e9f76447",
+   "format": 1
+  },
+  {
+   "name": ".azure-pipelines/templates/matrix.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "4fb0d3ffb2125d5806c7597e4f9d4b2af69cf8c337e9d57803081eddd4a6b081",
+   "format": 1
+  },
+  {
+   "name": ".azure-pipelines/templates/test.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "2cfa1271f94c71f05ffa0b1f763d8946394b5636e14579cda8ee14bb38bbcf1c",
+   "format": 1
+  },
+  {
+   "name": "CHANGELOG.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "681d112042f6404a9ec71d26310f6df1ba2b69233a5703f1264e42c2d82a0540",
+   "format": 1
+  },
+  {
+   "name": "CONTRIBUTING.md",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "60855379d108d1b3a25f70794c3302ea835171a833a4bdcb535f6e2b44ffc250",
+   "format": 1
+  },
+  {
+   "name": "COPYING",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+   "format": 1
+  },
+  {
+   "name": "README.md",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "76c90162633c3dfdbf64634bffa724902c49753424e56d9e5b7f903dccceb8dc",
+   "format": 1
+  },
+  {
+   "name": "REVIEW_CHECKLIST.md",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "7d2f6d22c4bd5b207b9695e289f7f800b261bee8479c4aff1d1543b7632497d2",
+   "format": 1
+  },
+  {
+   "name": "changelogs",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "changelogs/changelog.yaml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "ad96a74fce228dc4bc829befabc0114d8a4bb2d22ffdaf7826edefd1a73608b2",
+   "format": 1
+  },
+  {
+   "name": "changelogs/config.yaml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "dc4c2808161bd591e443ffd315931ec82d014ee09698caf078ca953e8689a8ce",
+   "format": 1
+  },
+  {
+   "name": "changelogs/fragments",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "changelogs/fragments/.keep",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "format": 1
+  },
+  {
+   "name": "meta",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "meta/runtime.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "df18179bb2f5447a56ac92261a911649b96821c0b2c08eea62d5cc6b0195203f",
+   "format": 1
+  },
+  {
+   "name": "plugins",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "plugins/doc_fragments",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "plugins/doc_fragments/postgres.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "5829a5a9e73df091b04cc3e24c8ac3b467721b0c70a84bed979339fe850e5a53",
+   "format": 1
+  },
+  {
+   "name": "plugins/module_utils",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "plugins/module_utils/database.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "bf286e7fb228799c46b66d7e34bacb613838f65d8faa42efd2a1f29ee6759c1b",
+   "format": 1
+  },
+  {
+   "name": "plugins/module_utils/postgres.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "65e3101d323d453f7292912da477050d0fb90f7b0e4fd155cad0698f1c1c3815",
+   "format": 1
+  },
+  {
+   "name": "plugins/module_utils/saslprep.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "bc03619992801129d5aacabd6caca116a11077a3270d1a8934213a0f870725af",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/postgresql_copy.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "33fcce0d082f18c5ca99bd06c26bccc953a34f902573fea7ded5427b98a73fcb",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/postgresql_db.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "ff85ac757a5c2f8a017449f9f65bf3b2dd3c99dfb8d424b00f0ff51ad6dc1ce4",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/postgresql_ext.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "dedd8728c19dfefe70667bbd692386a79db8bfd6383d229dc3e43dcef2f6ea56",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/postgresql_idx.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "1e8c059194e66fb1ee9f3be03af5733cb72d255c0b323694a5ec8c92bd560298",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/postgresql_info.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "141cd97698ba926fe7265aaf7f7e035ba131978e686273f1afc41d29d6217337",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/postgresql_lang.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "2058e9c8ab39b0253ff97f6a25c23df4abd1cef25f7bd7718233872c85e0fd42",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/postgresql_membership.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "44410cab59069279cb1cffeb80af60201f9a321d1bbf207f2b3e13e28bcfb781",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/postgresql_owner.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "31b460d944df29be5f40a636ffa660bffb2b36108fd0aa7c42fcdfccf0cff4df",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/postgresql_pg_hba.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "3a2b9c7684cd9154a0aea6afb4b190b2ef58b42a6aa5a7a308941acdee765f6b",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/postgresql_ping.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "305be692b589513030a47c0d3d985d769c75e03d593ac0efaf432695f3e9fd2e",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/postgresql_privs.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "b1a8af6bcc8c03a0b72134d73353fdbb890de23bcc5d73efecc67e5f5a902f91",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/postgresql_publication.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "6218d527eab37ba608f756e103d02dd441ab6fee2f32e656bcb2197ce6154f66",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/postgresql_query.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "0f01589f9c3ca2ed814a01bee389472fa3b4dd64ecd432955a57408fdfa65203",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/postgresql_schema.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "0941619650d5e9ca5d23b50696a954789d73d21252b5f553594146ffc2fc8f21",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/postgresql_sequence.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "9190f3ba2f54944ca829d1a56b5742b15caf9798665c9472ed3d9217bc961874",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/postgresql_set.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "4fe0eb6dfc6445eff50073408332afdfb06a0a8eb94c75dcbe681c220cd29ef5",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/postgresql_slot.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "2f623b52acec17d3c41b251ef83ec301be67ef463fc433608d4f456779af5225",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/postgresql_subscription.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "54fd9c26717ad7b1abdcf251f62a0066b01ab243403b876f6a30ebe2fa7aecbb",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/postgresql_table.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "4193948365321688d2307a258ebe90c9ee4c808aaed24639fb42ba43d74ce9f8",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/postgresql_tablespace.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "19a2682bd8cf3a0df60d4e7bfafe2dd0dc80b64c8b8bf9540785c935e18781b7",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/postgresql_user.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "d73884a85c6b512d048eb6f21efbe22f68dd752f364793413a9d5cfe0feb328c",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/postgresql_user_obj_stat_info.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "d32782e75fdf5971297eeb70feb35a97cab8fb981f2563f14a0cdf0fc7fa358c",
+   "format": 1
+  },
+  {
+   "name": "shippable.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "b25a0d6005dd9ca6a8b332606992ad6ce1b8570dce061bb3eafe80ec60d49e5f",
+   "format": 1
+  },
+  {
+   "name": "tests",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_copy",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_copy/aliases",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "9c3727573ab082cf9663d6af87da5aba1a250004f96e94811cfe3e435de28f6f",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_copy/meta",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_copy/meta/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "cc91f9aaa105d7ebdf8f3ecb4801b8e815c91b8af6dbf673c2a4167399c0228e",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_copy/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_copy/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "cb8afe7f5d60c2d26691849facab97a0cabdf2113dff7963c9dcf8ea399d0354",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_copy/tasks/postgresql_copy_initial.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "9208884beaa8b6ff04285e748e50ef0402f1af9f9875929dd2eacea9c389112e",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_db",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_db/aliases",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "b3dbb7181be6f88eb1887cc28be153f197c76ccdb0512af52f311816658b1e9e",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_db/defaults",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_db/defaults/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "11d903913550d93aaffcda9458d70349ce6e703cf071e922c8124dc24b7f9cdb",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_db/meta",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_db/meta/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "cc91f9aaa105d7ebdf8f3ecb4801b8e815c91b8af6dbf673c2a4167399c0228e",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_db/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_db/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "61aeb2ebcd4439d4c8f2f150ffabf461df17e0da5760297e07790b59f6911506",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_db/tasks/postgresql_db_general.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "061558b412eb0734d680cc4498c45dacb89222065c292631fe4f9351d9f74eca",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_db/tasks/postgresql_db_initial.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "7ae81d2773a21629eda0387590cfc79f41514fe513f8f16c80019a66f72da26c",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_db/tasks/postgresql_db_session_role.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "41224534c3fee82c517472b1ff3af82528eb5f67122e2a4de23a1e2a1ec2d73a",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_db/tasks/state_dump_restore.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "977d4f865cde7124f68c3c97f31776d15d86897a843c7fe9e815134e2852babb",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_ext",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_ext/aliases",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "9d1d066196bc922c2a80e67260f93a69bd805233b4f4b60baed742ef0e68e8e2",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_ext/defaults",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_ext/defaults/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "0825fa293c525220ac6e3f52f1fbd7464a1ea91281eda9fb3dc3d614ba77f815",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_ext/meta",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_ext/meta/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "62bf42b117b74dcc39491f0501575a090971dd200281a3d7b1323601f8429365",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_ext/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_ext/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "69406a13751afa1a236adfa8a4f6d029018ee42986ab25676885bb54a0d5adc5",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_ext/tasks/postgresql_ext_initial.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "d95163444521b730b60aa1b1113c51a350afb9ba594cc6a9e319a8d298606f2a",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_ext/tasks/postgresql_ext_session_role.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "c598bdac114d3caf6d677960202338b5d28fd7b4597d346d72fc543c8e125fbc",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_ext/tasks/postgresql_ext_version_opt.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "6109411f740064ab34f8658eedb93865183bdc5b561ac184e3d6ea7c8af4ab6c",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_idx",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_idx/aliases",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "9c3727573ab082cf9663d6af87da5aba1a250004f96e94811cfe3e435de28f6f",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_idx/meta",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_idx/meta/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "cc91f9aaa105d7ebdf8f3ecb4801b8e815c91b8af6dbf673c2a4167399c0228e",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_idx/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_idx/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "be09f7acd3c03ff517ade5601bc6a55aafe3c0d8e60fc37133f1e24d69935f8c",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_idx/tasks/postgresql_idx_initial.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "5310371ca64df3006a6a5d2193d495509cdf281282c8c17d238185659b5f2f5e",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_info",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_info/aliases",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "fcd58a1a5188a145948f0d2cd67f7d46900d949fcb7f3b28e7731b0a062df66e",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_info/defaults",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_info/defaults/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "974d333f5710b85d7249dfd2ba0878e82e3ce16a7e05d8bee46d78c0c754e0af",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_info/meta",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_info/meta/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "ab541e45bbbeb211496e76434bd09715e9a541449c267f449d4625b044465286",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_info/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_info/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "41aee9caccefdd5eec4b8fd1eeaea84532cd4402095e8742d0e866cc8139b5b4",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_info/tasks/postgresql_info_initial.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "6d45048343da40dde3beab4887e7aa42f9132cd96c5876ca5100b4d88c53ac16",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_info/tasks/setup_publication.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "c113dd7ecebd33f62cc31b9c6a006e79a33fa5a268f2f1844a359aa0cf6ff654",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_lang",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_lang/aliases",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "9c3727573ab082cf9663d6af87da5aba1a250004f96e94811cfe3e435de28f6f",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_lang/meta",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_lang/meta/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "cc91f9aaa105d7ebdf8f3ecb4801b8e815c91b8af6dbf673c2a4167399c0228e",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_lang/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_lang/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "b75ee9a6bf02c5ff2f9e629a35e588e5297d1bca6463f5fc69a06aa27735d96f",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_lang/tasks/postgresql_lang_add_owner_param.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "725d64739e31b82e7102e348baffdd50693713723c434fffc17c5d4a9d174868",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_lang/tasks/postgresql_lang_initial.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e19f7046dc136bb74a25b4fc5bd45ae7c7dd48be648dd28fd12ffccd54ae1e83",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_lang/vars",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_lang/vars/CentOS-7.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "a2395b707eb60229acffb97605104820a7f00a23d83d63d90e353929e97fb4e9",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_lang/vars/CentOS-8.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "a5b45ee4b79b491c7c057d1c4c940df1ef7fa8e7fa6e1d006cbb1f839eeca40d",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_lang/vars/default.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_membership",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_membership/aliases",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "9c3727573ab082cf9663d6af87da5aba1a250004f96e94811cfe3e435de28f6f",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_membership/defaults",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_membership/defaults/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "b96d9358354b72ca27b4079b748fc140086aa57b553209aa83887e15ee219420",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_membership/meta",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_membership/meta/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "cc91f9aaa105d7ebdf8f3ecb4801b8e815c91b8af6dbf673c2a4167399c0228e",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_membership/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_membership/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "d5aca162654e8110b7883ff6ce7517273d7b49688a05d8331b0d39f5321b4d8a",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_membership/tasks/postgresql_membership_initial.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "3bf999eaca031d48e1f02c951c913b339c20992f5fed64196b8c95f7f3d8f221",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_owner",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_owner/aliases",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "9c3727573ab082cf9663d6af87da5aba1a250004f96e94811cfe3e435de28f6f",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_owner/defaults",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_owner/defaults/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "5c1aa84798ed23a23135fbf53a881b42e2c1edc79f8edc7509829125fefa1a05",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_owner/meta",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_owner/meta/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "cc91f9aaa105d7ebdf8f3ecb4801b8e815c91b8af6dbf673c2a4167399c0228e",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_owner/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_owner/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "be8c3305d4986b588578932b0b29cf10d6c85909adf2a31afeaa8fa4c9d9d946",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_owner/tasks/postgresql_owner_initial.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "a46fea48ad48b4722d9a103098fdb57ba23dab047a74d6db00a70b53141847e3",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_pg_hba",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_pg_hba/aliases",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "9c3727573ab082cf9663d6af87da5aba1a250004f96e94811cfe3e435de28f6f",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_pg_hba/defaults",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_pg_hba/defaults/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "92cf983b9149e1ac59ed2b39a814b5c1c9204f949884922cbd265ce0eeec4747",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_pg_hba/meta",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_pg_hba/meta/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "cc91f9aaa105d7ebdf8f3ecb4801b8e815c91b8af6dbf673c2a4167399c0228e",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_pg_hba/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_pg_hba/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "447bebf5eaa66b04d77ddc3640990e7816dbaf207422402037a5869a4694399c",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_pg_hba/tasks/postgresql_pg_hba_initial.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "bd5c23f758ddbf09bb7959fb3aefcf2fae8bfb1e3fdf3ee21b74a96776fa8608",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_ping",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_ping/aliases",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "9c3727573ab082cf9663d6af87da5aba1a250004f96e94811cfe3e435de28f6f",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_ping/defaults",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_ping/defaults/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "ee4c4c179b3e7fdde23d8cf3a4855188e229f2a4ba2828bb3dd8b0a6a1365aea",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_ping/meta",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_ping/meta/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "cc91f9aaa105d7ebdf8f3ecb4801b8e815c91b8af6dbf673c2a4167399c0228e",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_ping/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_ping/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "115c090f1029bac19af8970417d5e50b212a935c55a2d23059175fdb308f3b92",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_ping/tasks/postgresql_ping_initial.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "754fe9dd5fe510dc0660b7b28532d59aa5836fce67b6c83b0e76d52bc43820e1",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_privs",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_privs/aliases",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "9c3727573ab082cf9663d6af87da5aba1a250004f96e94811cfe3e435de28f6f",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_privs/defaults",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_privs/defaults/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "68036cf7cd11887e6421c5863abd5ab5b4592fe4d70f5199dd284d82c581c798",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_privs/meta",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_privs/meta/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "cc91f9aaa105d7ebdf8f3ecb4801b8e815c91b8af6dbf673c2a4167399c0228e",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_privs/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_privs/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "52d9ea758f3abea032d42028fe55c7373ac250cc5285a23e22f49229a14831f9",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_privs/tasks/pg_authid_not_readable.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "3b9c4a77bc5ca43db99fdce7e5ae3edf5cb72fdce4f328e11d3cef0399be907f",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_privs/tasks/postgresql_privs_general.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "0b3669f59f5e07f827479495a55c7cfd401b682e5067aeec46e0b9f380776ed5",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_privs/tasks/postgresql_privs_initial.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "3581e99cafd5936362840e483d966ac78f69c4969dbd55609d18e114574fd4d0",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_privs/tasks/postgresql_privs_session_role.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "ec0bfa34cdff051289a8824b5efaed38d2a3e5e1c3810a2f3f155b6f72f3a551",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_privs/tasks/test_target_role.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "7b6544ff9e5356dbde038ea100d1d6e25eaa25ae588222dbb8d94e649256b013",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_publication",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_publication/aliases",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "9d1d066196bc922c2a80e67260f93a69bd805233b4f4b60baed742ef0e68e8e2",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_publication/meta",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_publication/meta/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "cc91f9aaa105d7ebdf8f3ecb4801b8e815c91b8af6dbf673c2a4167399c0228e",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_publication/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_publication/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "663e2ade4e3c5f2b5e2c75da96b8f596196a21fe8bb4ce5fcecb63e2f664d0b7",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_publication/tasks/postgresql_publication_initial.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "30586aed9fc7d67db41330928b859804e787699cd953223ef14c245b170d1a07",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_query",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_query/aliases",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "9c3727573ab082cf9663d6af87da5aba1a250004f96e94811cfe3e435de28f6f",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_query/files",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_query/files/test0.sql",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "c3c59720ac1314a814f51dced181f9d624d11b0087f095cf75dc97a90b6cd777",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_query/files/test1.sql",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "8de29e382b1af32c9352400d107e16d232405cc50c126ae7f99a5a0879f34320",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_query/meta",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_query/meta/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "cc91f9aaa105d7ebdf8f3ecb4801b8e815c91b8af6dbf673c2a4167399c0228e",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_query/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_query/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "a77f5f53953beb0037561ef70130651715fe677f0428a3f56e9facc00dcc5eb5",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_query/tasks/postgresql_query_initial.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "4a38fe33791abba7d5ed391032d579ecf3e29cb722802ab9134869dd5d2968cb",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_schema",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_schema/aliases",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "9c3727573ab082cf9663d6af87da5aba1a250004f96e94811cfe3e435de28f6f",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_schema/defaults",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_schema/defaults/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "db462dadd7106222bf4e2f1beab06e522172bd5ba2502cb702aaead6a06ac716",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_schema/meta",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_schema/meta/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "cc91f9aaa105d7ebdf8f3ecb4801b8e815c91b8af6dbf673c2a4167399c0228e",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_schema/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_schema/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "01c1f7f0d634cabfe23bdbaac0559d84c25265bafeebf3ffba6175a6e90f837a",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_schema/tasks/postgresql_schema_initial.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "4e71d17cbb99fbec0b80c86ec63447f1ffafe17baf914a44ab751b673145626e",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_schema/tasks/postgresql_schema_session_role.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "da5a970704edf3a78de91acb2549a101cfadda8793c90c65723938c18036e3cb",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_sequence",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_sequence/aliases",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "9c3727573ab082cf9663d6af87da5aba1a250004f96e94811cfe3e435de28f6f",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_sequence/defaults",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_sequence/defaults/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "d437a0ee3b271c8934e68d14684931a56a398d633c6b549e74ee3a9f17f9bc46",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_sequence/meta",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_sequence/meta/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "cc91f9aaa105d7ebdf8f3ecb4801b8e815c91b8af6dbf673c2a4167399c0228e",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_sequence/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_sequence/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "7e2b8a8ad0b65cf738ea7fdcb6b18f528a6bcfffa1981f91838fc284ac4ddb6f",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_sequence/tasks/postgresql_sequence_initial.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "0763f1ec93dac58e3dbe26963e7ff9f4df97e5692302d31e19ee7edffb58384e",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_set",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_set/aliases",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "9c3727573ab082cf9663d6af87da5aba1a250004f96e94811cfe3e435de28f6f",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_set/meta",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_set/meta/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "cc91f9aaa105d7ebdf8f3ecb4801b8e815c91b8af6dbf673c2a4167399c0228e",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_set/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_set/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "955f64aa9a8675f80d702ab39436a2b236d1adb7b9c89a4dfe313fe1e0c51594",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_set/tasks/options_coverage.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "96253a58687f7e0a5e2e9d5e69922b387b5e35c0c66a1adba6a7b77067ce89c9",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_set/tasks/postgresql_set_initial.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "a04bb3707fc2f553413dd3946312dd913da22d66108bee535168c8dc0df9d658",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_slot",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_slot/aliases",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "9c3727573ab082cf9663d6af87da5aba1a250004f96e94811cfe3e435de28f6f",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_slot/meta",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_slot/meta/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "cc91f9aaa105d7ebdf8f3ecb4801b8e815c91b8af6dbf673c2a4167399c0228e",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_slot/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_slot/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "5419b276f7c47acaf995267ce3acbb56a0922a4f715db0df27cf0e535cd0220d",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_slot/tasks/postgresql_slot_initial.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "3b8d53742b5e50fc42d5ae1b7de9d5090168ac4ecc5c6ce06b142a3cc6938eb5",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_subscription",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_subscription/aliases",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "fcd58a1a5188a145948f0d2cd67f7d46900d949fcb7f3b28e7731b0a062df66e",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_subscription/defaults",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_subscription/defaults/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "daec2dfde35fe1da0b50a089f77437f268d9e0935aa2f4fd5aa7b3ef2f3838dc",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_subscription/meta",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_subscription/meta/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "ab541e45bbbeb211496e76434bd09715e9a541449c267f449d4625b044465286",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_subscription/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_subscription/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "eca673fddaf151a108873b2567fc9e40fb19ec24f6559355a602e983fdcf5495",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_subscription/tasks/postgresql_subscription_initial.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "06b386b788664ada8abf66bff910349ff37dd31560b96080510000a6b80aca25",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_subscription/tasks/setup_publication.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "9bb6ecfc56c7fc026f999a320b839774d9b113cc1176e398319a658fd4657793",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_table",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_table/aliases",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "01f5b747e4b37d8d14ee65bf72bc036da73766464ae02af174f5b6d41394aa87",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_table/meta",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_table/meta/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "cc91f9aaa105d7ebdf8f3ecb4801b8e815c91b8af6dbf673c2a4167399c0228e",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_table/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_table/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "472e36bde52e14d2f401739cdbcaf09c945bafaec718ff016890616b6bc3c118",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_table/tasks/postgresql_table_initial.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "d4c3198701c97bd1ce2daad5592e08b15ad9f0324f9c856ce16433c73b0e0406",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_tablespace",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_tablespace/aliases",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "9c3727573ab082cf9663d6af87da5aba1a250004f96e94811cfe3e435de28f6f",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_tablespace/defaults",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_tablespace/defaults/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "589d9dd6e690018d918be7f002c310d40aa4632f100d32008dbd7db685d47ecb",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_tablespace/meta",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_tablespace/meta/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "cc91f9aaa105d7ebdf8f3ecb4801b8e815c91b8af6dbf673c2a4167399c0228e",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_tablespace/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_tablespace/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "188470559381756e939df9d964d444ff47e7df613c77b6cc2653627bab65df69",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_tablespace/tasks/postgresql_tablespace_initial.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "c42d4a477852bb0307062e6aa65d150e9fd5e84c643e74c458b576b2b1b72844",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_user",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_user/aliases",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "9c3727573ab082cf9663d6af87da5aba1a250004f96e94811cfe3e435de28f6f",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_user/defaults",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_user/defaults/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "b14eed97d15235e2056971743de23709e18c00b91c358fe1e79002c98ece9d60",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_user/meta",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_user/meta/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "cc91f9aaa105d7ebdf8f3ecb4801b8e815c91b8af6dbf673c2a4167399c0228e",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_user/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_user/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "b2d881033346cf5e84f4a84dbdcbdd6539fca4a20663af9aa958f7befe2a07a7",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_user/tasks/postgresql_user_general.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "7ab6c81a10d4fad3dc540e804f657478b4f6b8b940549742bf944216ed51bd07",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_user/tasks/postgresql_user_initial.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "f4342b6e307d91be7a98212fe29adbaa34d6ac12905a1e1f4347eea6c74173d8",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_user/tasks/test_no_password_change.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "cc4c15de06b2d6a7367156243b5f7a40bea5863eeb098e44cf7ddc3b304e0125",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_user/tasks/test_password.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "c49f0cdaf8a111ae6d575cffaf696a863eb1288bc7df778d48871da06a4bba19",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_user_obj_stat_info",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_user_obj_stat_info/aliases",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "fcd58a1a5188a145948f0d2cd67f7d46900d949fcb7f3b28e7731b0a062df66e",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_user_obj_stat_info/defaults",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_user_obj_stat_info/defaults/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "bd425d7bbca57edbcc6883e032b1d00ecdc9b2cc1d75b0be4fda3e488fed7053",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_user_obj_stat_info/meta",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_user_obj_stat_info/meta/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "cc91f9aaa105d7ebdf8f3ecb4801b8e815c91b8af6dbf673c2a4167399c0228e",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_user_obj_stat_info/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_user_obj_stat_info/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "72441f6b0cc63e71b547b18314bc8b45bb8a792ba466d75c8a4b2c63c7bdecc2",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/postgresql_user_obj_stat_info/tasks/postgresql_user_obj_stat_info.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "cb9e09507ad5d6513450009d5745cf6af17ebae39a58b53bad34607387170752",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/setup_pkg_mgr",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/setup_pkg_mgr/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/setup_pkg_mgr/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "4a3ac16c80747874defcb3b8bcd0cf796fb847b440ee5ae240d7b5b71cf32c0e",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/setup_postgresql_db",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/setup_postgresql_db/defaults",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/setup_postgresql_db/defaults/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "0349988df512a65575f9594c62d6d8a0aa0cea38ef60f75236e6c9c1bb075d58",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/setup_postgresql_db/files",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/setup_postgresql_db/files/dummy--1.0.sql",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e4e7839720cd873fbfbe855a61c55f4d69bf5154c420a5a776daccba0db0326e",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/setup_postgresql_db/files/dummy--2.0.sql",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "be49da51a69d0f8af9ad8bfd120189b95aa9feb2ea00be9e2f6e06af3a5c754b",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/setup_postgresql_db/files/dummy--3.0.sql",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "a16cb164d32705033b9e7a7c4e9b8050de79c561deddbcc8603e8d0d59cb563e",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/setup_postgresql_db/files/dummy.control",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e8000b3819e84f8f1af575e137e4f478bc16cef5b0b11867f4d348840ea34bff",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/setup_postgresql_db/files/pg_hba.conf",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "a1d8fd0e6645d939cf0fc5a67738039e036f06c540efeb8a18bf9fed779ddb40",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/setup_postgresql_db/meta",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/setup_postgresql_db/meta/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "ae816995bad20b4c09762e88d447ddf2793e1df8f6d61c0fdc03a7432a06e75a",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/setup_postgresql_db/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/setup_postgresql_db/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "a865752c99869e935042e46266ac03d4ae8703c636117b2985d981e62740f6ae",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/setup_postgresql_db/tasks/ssl.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "1e33b09073258235aaf62001cdbe34257c2a25412856d1fb2dbefac18fa4c17f",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/setup_postgresql_db/vars",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/setup_postgresql_db/vars/Debian-8.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "cec5e777df87e1ef7dfac426286cc5a26d3ed9bc8d7e4e3a8c307f6d670b5edd",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/setup_postgresql_db/vars/FreeBSD-11-py3.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "6d202e54ca2923b961c8d293fcb733c3a7acfa5aceeb0a524f230314e760c62b",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/setup_postgresql_db/vars/FreeBSD-11.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "3aed68dc0d315a161453b95ef5d5fc2e386fe3569386bc1620128bd59e955afb",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/setup_postgresql_db/vars/FreeBSD-12.0-py3.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "6d202e54ca2923b961c8d293fcb733c3a7acfa5aceeb0a524f230314e760c62b",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/setup_postgresql_db/vars/FreeBSD-12.0.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "641d72a4f0cd5bb640de8ed043befc0cadcf9c70cc399f0a1485483e32c35fe7",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/setup_postgresql_db/vars/FreeBSD-12.1-py3.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "c03e2e8a0629d06cb1bd91a6e0dc3b72a3079d5c045d07f09684d63e2f1759e9",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/setup_postgresql_db/vars/FreeBSD-12.1.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "b8b67d7d2dc8c0caa1b89de5338dfabcc75e6480ecc6cd92bc26da43affd9568",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/setup_postgresql_db/vars/RedHat-py3.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "40a6304f5e4cf6e2baaa10718ae657c1ca67bb1cf127bd971b2a438d6c64f215",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/setup_postgresql_db/vars/RedHat.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "510078001c894619b1437c45e647391781d9fb1a17bcff5cb26d7939a4970a16",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/setup_postgresql_db/vars/Ubuntu-12.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "83efd43f61060d2f160e5a2fa8fcd185029672112068fc103f0e35ab384bb8b2",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/setup_postgresql_db/vars/Ubuntu-14.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "44b26cda219358db0bdac8d4df06f14be1405c0ec75c9cd066b79a84fd97990e",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/setup_postgresql_db/vars/Ubuntu-16-py3.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "3dff2ca237b634d4731dad7c812af330acd802a9aafa126c1ce623d80a2330b4",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/setup_postgresql_db/vars/Ubuntu-16.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "be5506a46fa7e9d06827fb16fcbcb51093d07c4e50e476b928bd285e4d3d6d60",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/setup_postgresql_db/vars/Ubuntu-18-py3.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "92b075e3829177e0a0163e38e7a65f108084d520ac1d4f55031c4b574654a7af",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/setup_postgresql_db/vars/Ubuntu-20-py3.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "4e29edbfd62160c4a843990c36520882f8a5c818c67a26a84ca58d6c643a1cd0",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/setup_postgresql_db/vars/default-py3.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "bd40f6ab072c5b9d5c83d83595fc6a6489dfc8ddeb4c470b01d8b6b3d539b361",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/setup_postgresql_db/vars/default.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "64f6e20d24c3def6bae446791f056131c8d272d6dda5f354ae63bfdc415e0819",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/setup_postgresql_replication",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/setup_postgresql_replication/defaults",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/setup_postgresql_replication/defaults/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "a86163af8f53b6f28ea75bcad1ef3c8b89b09e1b3b206259378eda6bfd542f95",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/setup_postgresql_replication/handlers",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/setup_postgresql_replication/handlers/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "db1aed6cad04fb78aa7c663e9b5276693594ae943adb38727099a5602d6eb8b8",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/setup_postgresql_replication/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/setup_postgresql_replication/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "332fef4bb8a02f7be01b7dea5632ce4608b2aabe87c40464048aa3e172804108",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/setup_postgresql_replication/tasks/setup_postgresql_cluster.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "9abbe85801d10ba98d5f77cc8370a02638651593ad2ee501547f5b556060bed9",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/setup_postgresql_replication/templates",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/setup_postgresql_replication/templates/pg_hba.conf.j2",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "9b3e39d80a8a59947b5fba38e8db942a1933ffefcef368cd13a5594fc2f65668",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/setup_postgresql_replication/templates/primary_postgresql.conf.j2",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "4e40eae546ddaeff2de7356ece590b70001f976feb6c07b0c83a9fd1b86ea23d",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/setup_postgresql_replication/templates/replica_postgresql.conf.j2",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "2a70a2f2e5beaa52cefcc93461ca067ef2b665b859a468cbe74d27464253bc6e",
+   "format": 1
+  },
+  {
+   "name": "tests/requirements.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "309eab525a905a19f04aa713a60a344b64f115cbdece10d237ddd35f5fc76311",
+   "format": 1
+  },
+  {
+   "name": "tests/sanity",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/sanity/extra",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/sanity/extra/no-unwanted-files.json",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "a3d3b17f699b042958c7cd845a9d685bc935d83062e0bcf077f2c7200e2c0bac",
+   "format": 1
+  },
+  {
+   "name": "tests/sanity/extra/no-unwanted-files.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "f1468e7b22ba353d18fcf2f5b18607873f792de629f887798f081eb6e2cd54fc",
+   "format": 1
+  },
+  {
+   "name": "tests/sanity/ignore-2.10.txt",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "49102a67465c1a0afcbbee7add94310d2a1f673eb6e588d37ccf598c92159724",
+   "format": 1
+  },
+  {
+   "name": "tests/sanity/ignore-2.11.txt",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "49102a67465c1a0afcbbee7add94310d2a1f673eb6e588d37ccf598c92159724",
+   "format": 1
+  },
+  {
+   "name": "tests/sanity/ignore-2.9.txt",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "4fa0f70f77a42e1969eead40104af12e8a476fc8d68eb99f9437a2db17a3b01a",
+   "format": 1
+  },
+  {
+   "name": "tests/unit",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/unit/plugins",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/unit/plugins/module_utils",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/unit/plugins/module_utils/__init__.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "format": 1
+  },
+  {
+   "name": "tests/unit/plugins/module_utils/test_postgres.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "fe3c58eba95632b3d99d0951552530816e1fe90bd7621c2080820821a24a56d8",
+   "format": 1
+  },
+  {
+   "name": "tests/unit/plugins/module_utils/test_saslprep.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "f5e044a935e091aaf52115d3f3238bcd32b3627f9cebac26bd1d6d52aa339953",
+   "format": 1
+  },
+  {
+   "name": "tests/utils",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/utils/constraints.txt",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "5beb3383ef5546038c2c00ea8e5f438e607d91828ce2259594fd8fbaea003ec9",
+   "format": 1
+  },
+  {
+   "name": "tests/utils/shippable",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/utils/shippable/aix.sh",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "2a140a1cea2fbf3b291009694bcfcf0f2877e92ec01c7e929e787f5b4cdd6d92",
+   "format": 1
+  },
+  {
+   "name": "tests/utils/shippable/check_matrix.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "163dc2e4b0fb28faa6a03c02c7a5b2e470ca156e119943bf1d8bbf5efff02c18",
+   "format": 1
+  },
+  {
+   "name": "tests/utils/shippable/freebsd.sh",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "2a140a1cea2fbf3b291009694bcfcf0f2877e92ec01c7e929e787f5b4cdd6d92",
+   "format": 1
+  },
+  {
+   "name": "tests/utils/shippable/linux.sh",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "07aa5e07a0b732a671bf9fdadfe073dd310b81857b897328ce2fa829e2c76315",
+   "format": 1
+  },
+  {
+   "name": "tests/utils/shippable/remote.sh",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "2a140a1cea2fbf3b291009694bcfcf0f2877e92ec01c7e929e787f5b4cdd6d92",
+   "format": 1
+  },
+  {
+   "name": "tests/utils/shippable/rhel.sh",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "2a140a1cea2fbf3b291009694bcfcf0f2877e92ec01c7e929e787f5b4cdd6d92",
+   "format": 1
+  },
+  {
+   "name": "tests/utils/shippable/sanity.sh",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "a01d92ca36ea457c0e7032ece03a0b485377eef8c8598d8f7c04a185fba279ed",
+   "format": 1
+  },
+  {
+   "name": "tests/utils/shippable/shippable.sh",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "4bfb96822521d9f13120593d56ec9c21c49ff5cb13d3a435b1fe65eae28c31db",
+   "format": 1
+  },
+  {
+   "name": "tests/utils/shippable/timing.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "ebb7d3553349747ad41d80899ed353e13cf32fcbecbb6566cf36e9d2bc33703e",
+   "format": 1
+  },
+  {
+   "name": "tests/utils/shippable/timing.sh",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "f3f3cc03a997cdba719b0542fe668fc612451841cbe840ab36865f30aa54a1bd",
+   "format": 1
+  },
+  {
+   "name": "tests/utils/shippable/units.sh",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "a712977b416e5b93325b40d0bf855e4817e597076552f79777aeca8d2fa192bd",
+   "format": 1
+  }
+ ],
+ "format": 1
+}

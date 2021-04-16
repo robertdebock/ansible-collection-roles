@@ -1,0 +1,8 @@
+---
+#
+# Ansible managed
+#
+repository:
+  description: Install and configure sudo-pair on your system.
+  homepage: https://robertdebock.nl/
+  topics: sudopair, sudo, ansible, molecule, tox, playbook, hacktoberfest

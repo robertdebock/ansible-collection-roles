@@ -1,0 +1,8 @@
+---
+#
+# Ansible managed
+#
+repository:
+  description: Make openssl certificates.
+  homepage: https://robertdebock.nl/
+  topics: openssl, ansible, molecule, tox, playbook, hacktoberfest

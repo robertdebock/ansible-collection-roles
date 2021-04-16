@@ -1,0 +1,32 @@
+---
+# defaults file for cups
+
+# Allow remote access
+cups_listen: "localhost:631"
+
+# Share local printers on the local network.
+cups_browsing: "Off"
+
+# Allow access to the server...
+cups_locations:
+  - name: /
+    order: allow,deny
+    allow: "@LOCAL"
+  - name: /admin
+    order: allow,deny
+    allow: "@LOCAL"
+  - name: /admin/conf
+    authtype: Default
+    require: user @SYSTEM
+    order: allow,deny
+    allow: "@LOCAL"
+  - name: /admin/log
+    authtype: Default
+    require: user @SYSTEM
+    order: allow,deny
+
+# Cups can save a job history. Choose from "No" or "Yes".
+cups_preserve_job_history: "Yes"
+
+# Cups can offer a web-interface. Choose from "No" or "Yes".
+cups_web_interface: "Yes"

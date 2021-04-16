@@ -1,6 +1,7 @@
 ---
 galaxy_info:
   author: Robert de Bock
+  namespace: robertdebock
   role_name: auditd
   description: Install and configure auditd on your system.
   license: Apache-2.0

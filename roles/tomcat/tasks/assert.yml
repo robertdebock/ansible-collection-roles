@@ -203,7 +203,7 @@
   when:
     - tomcat_access_log_enabled | bool
 
-- name: test if item in tomcat_instances is set correctly
+- name: test if item.name in tomcat_instances is set correctly
   ansible.builtin.assert:
     that:
       - item.name is defined
@@ -377,3 +377,16 @@
     label: "{{ item.name }}"
   when:
     - item.service_enabled is defined
+
+- name: test if item.packet_size in tomcat_instances is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.packet_size is number
+      - item.packet_size > 0
+      - item.packet_size <= 65536
+    quiet: yes
+  loop: "{{ tomcat_instances }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - item.packet_size is defined

@@ -1,0 +1,17 @@
+---
+- name: converge
+  hosts: all
+  become: yes
+  gather_facts: yes
+
+  roles:
+    - role: ansible-role-hashicorp
+      hashicorp_products:
+        - name: consul
+
+    - role: ansible-role-hashicorp
+      hashicorp_installation_method: manual
+      hashicorp_products:
+        - name: vault
+          version: 1.4.2
+          type: ent

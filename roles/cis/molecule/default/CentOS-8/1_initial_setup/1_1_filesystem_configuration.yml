@@ -1,0 +1,358 @@
+---
+- name: 1.1.1.1 Ensure mounting of cramfs filesystems is disabled (Scored)
+  command: modprobe -n -v cramfs
+  register: output
+  when:
+    - cis_cramfs_disabled | bool
+  failed_when:
+    - '"install /bin/true" not in output.stdout'
+
+- name: 1.1.1.1 Ensure mounting of cramfs filesystems is disabled (Scored)
+  command: lsmod | grep cramfs
+  register: output
+  when:
+    - cis_cramfs_disabled | bool
+  failed_when:
+    - output.stdout_lines | length > 0
+
+- name: 1.1.1.2 Ensure mounting of vFAT filesystems is disabled (Not Scored)
+  command: modprobe -n -v vfat
+  register: output
+  when:
+    - cis_vfat_disabled | bool
+  failed_when:
+    - '"install /bin/true" not in output.stdout'
+
+- name: 1.1.1.2 Ensure mounting of vFAT filesystems is disabled (Not Scored)
+  command: lsmod | grep vfat
+  register: output
+  when:
+    - cis_vfat_disabled | bool
+  failed_when:
+    - output.stdout_lines | length > 0
+
+- name: 1.1.1.3 Ensure mounting of squashfs filesystems is disabled (Scored)
+  command: modprobe -n -v squashfs
+  register: output
+  when:
+    - cis_squashfs_disabled | bool
+  failed_when:
+    - '"install /bin/true" not in output.stdout'
+
+- name: 1.1.1.3 Ensure mounting of squashfs filesystems is disabled (Scored)
+  command: lsmod | grep squashfs
+  register: output
+  when:
+    - cis_squashfs_disabled | bool
+  failed_when:
+    - output.stdout_lines | length > 0
+
+- name: 1.1.1.3 Ensure mounting of udf filesystems is disabled (Scored)
+  command: modprobe -n -v udf
+  register: output
+  when:
+    - cis_udf_disabled | bool
+  failed_when:
+    - '"install /bin/true" not in output.stdout'
+
+- name: 1.1.1.3 Ensure mounting of udf filesystems is disabled (Scored)
+  command: lsmod | grep udf
+  register: output
+  when:
+    - cis_udf_disabled | bool
+  failed_when:
+    - output.stdout_lines | length > 0
+
+- name: 1.1.2 Ensure /tmp is configured (Scored)
+  shell: mount | grep -E '\s/tmp\s'
+  args:
+    warn: no
+  register: output
+  when:
+    - cis_tmp_configured | bool
+  failed_when:
+    - output.stdout_lines | length < 1
+
+- name: 1.1.2 Ensure /tmp is configured (Scored)
+  stat:
+    path: /etc/fstab
+  register: fstab
+  when:
+    - cis_tmp_configured | bool
+
+- name: 1.1.2 Ensure /tmp is configured (Scored)
+  shell: grep -E '\s/tmp\s' /etc/fstab | grep -E -v '^\s*#'
+  failed_when:
+    - no
+  register: output_fstab
+  when:
+    - cis_tmp_configured | bool
+    - fstab.stat.exists | bool
+
+- name: 1.1.2 Ensure /tmp is configured (Scored)
+  command: systemctl is-enabled tmp.mount
+  register: output_systemctl
+  when:
+    - cis_tmp_configured | bool
+
+- name: 1.1.2 Ensure /tmp is configured (Scored)
+  assert:
+    that:
+      - output_fstab.stdout_lines | length > 0 or
+        output_systemctl.stdout in ["static", "enabled"]
+  when:
+    - cis_tmp_configured | bool
+    - output_fstab.stdout_lines is defined
+
+- name: 1.1.3 Ensure nodev option set on /tmp partition (Scored)
+  shell: mount | grep -E '\s/tmp\s' | grep -v nodev
+  args:
+    warn: no
+  register: output
+  when:
+    - cis_tmp_nodev | bool
+  failed_when:
+    - output.stdout_lines | length > 0
+
+- name: 1.1.4 Ensure nosuid option set on /tmp partition (Scored)
+  shell: mount | grep -E '\s/tmp\s' | grep -v nosuid
+  args:
+    warn: no
+  register: output
+  when:
+    - cis_tmp_nosuid | bool
+  failed_when:
+    - output.stdout_lines | length > 0
+
+- name: 1.1.5 Ensure noexec option set on /tmp partition (Scored)
+  shell: mount | grep -E '\s/tmp\s' | grep -v noexec
+  register: output
+  when:
+    - cis_tmp_noexec | bool
+  failed_when:
+    - output.stdout_lines | length > 0
+
+- name: 1.1.6 Ensure separate partition exists for /var (Scored)
+  shell: mount | grep -E '\s/var\s'
+  register: cis_var
+  failed_when:
+    - cis_var | length != 1
+  when:
+    - cis_var_partition | bool
+
+- name: 1.1.7 Ensure separate partition exists for /var/tmp (Scored)
+  shell: mount | grep /var/tmp
+  register: cis_var_tmp
+  failed_when:
+    - cis_var_tmp | length != 1
+  changed_when:
+    - false
+  when:
+    - cis_var_tmp_partition | bool
+
+- name: 1.1.8 Ensure nodev option set on /var/tmp partition (Scored)
+  shell: mount | grep -E '\s/tmp/tmp\s' | grep -v nodev
+  args:
+    warn: no
+  register: output
+  when:
+    - cis_var_tmp_nodev | bool
+  failed_when:
+    - output.stdout_lines | length > 0
+
+- name: 1.1.9 Ensure nosuid option set on /var/tmp partition (Scored)
+  shell: mount | grep -E '\s/tmp/tmp\s' | grep -v nosuid
+  args:
+    warn: no
+  register: output
+  when:
+    - cis_var_tmp_nodev | bool
+  failed_when:
+    - output.stdout_lines | length > 0
+
+- name: 1.1.10 Ensure noexec option set on /var/tmp partition (Scored)
+  shell: mount | grep -E '\s/tmp/tmp\s' | grep -v noexec
+  args:
+    warn: no
+  register: output
+  when:
+    - cis_var_tmp_nodev | bool
+  failed_when:
+    - output.stdout_lines | length > 0
+
+- name: 1.1.11 Ensure separate partition exists for /var/log (Scored)
+  shell: mount | grep -E '\s/var/log\s'
+  args:
+    warn: no
+  register: cis_var_log
+  failed_when:
+    - cis_var_log | length != 1
+  when:
+    - cis_var_log_partition | bool
+
+- name: 1.1.12 Ensure separate partition exists for /var/log/audit (Scored)
+  shell: mount | grep -E '\s/var/log/audit\s'
+  args:
+    warn: no
+  register: cis_var_log_audit
+  failed_when:
+    - cis_var_log_audit | length != 1
+  when:
+    - cis_var_log_audit_partition | bool
+
+- name: 1.1.13 Ensure separate partition exists for /home (Scored)
+  shell: mount | grep -E '\s/home\s'
+  args:
+    warn: no
+  register: cis_home_audit
+  failed_when:
+    - cis_home_audit | length != 1
+  when:
+    - cis_home_partition | bool
+
+- name: 1.1.14 Ensure nodev option set on /home partition (Scored)
+  shell: mount | grep -E '\s/home\s' | grep -v nodev
+  args:
+    warn: no
+  register: output
+  when:
+    - cis_home_nodev | bool
+  failed_when:
+    - output.stdout_lines | length > 0
+
+- name: 1.1.15 Ensure nodev option set on /dev/shm partition (Scored)
+  shell: mount | grep -E '\s/dev/shm\s' | grep -v nodev
+  args:
+    warn: no
+  register: output
+  when:
+    - cis_dev_shm_nodev | bool
+  failed_when:
+    - output.stdout_lines | length > 0
+
+- name: 1.1.16 Ensure nosuid option set on /dev/shm partition (Scored)
+  shell: mount | grep -E '\s/dev/shm\s' | grep -v nosuid
+  args:
+    warn: no
+  register: output
+  when:
+    - cis_dev_shm_nosuid | bool
+  failed_when:
+    - output.stdout_lines | length > 0
+
+- name: 1.1.17 Ensure noexec option set on /dev/shm partition (Scored)
+  shell: mount | grep -E '\s/dev/shm\s' | grep -v noexec
+  args:
+    warn: no
+  register: output
+  when:
+    - cis_dev_shm_noexec | bool
+  failed_when:
+    - output.stdout_lines | length > 0
+
+- name: 1.1.18 Ensure nodev option set on removable media partitions (Not Scored)
+  shell: mount | grep -E '\s{{ item }}\s' | grep -v nodev
+  args:
+    warn: no
+  register: output
+  when:
+    - cis_removable_media_nodev | bool
+  failed_when:
+    - output.stdout_lines | length > 0
+  loop: "{{ cis_removable_media_partitions }}"
+
+- name: 1.1.19 Ensure nosuid option set on removable media partitions (Not Scored)
+  shell: mount | grep -E '\s{{ item }}\s' | grep -v nosuid
+  args:
+    warn: no
+  register: output
+  when:
+    - cis_removable_media_nosuid | bool
+  failed_when:
+    - output.stdout_lines | length > 0
+  loop: "{{ cis_removable_media_partitions }}"
+
+- name: 1.1.20 Ensure noexec option set on removable media partitions (Not Scored)
+  shell: mount | grep -E '\s{{ item }}\s' | grep -v noexec
+  args:
+    warn: no
+  register: output
+  when:
+    - cis_removable_media_noexec | bool
+  failed_when:
+    - output.stdout_lines | length > 0
+  loop: "{{ cis_removable_media_partitions }}"
+
+# TODO: This task fails somehow:
+# fatal: [cis-centos-latest]: FAILED! => changed=true
+#   cmd:
+#   - find
+#   - /
+#   - -xdev
+#   - -type
+#   - d
+#   - (
+#   - -perm
+#   - '-0002'
+#   - -a
+#   - '!'
+#   - -perm
+#   - '-1000'
+#   - )
+#   - -print
+#   delta: '0:00:00.025816'
+#   end: '2020-08-06 14:34:11.434167'
+#   failed_when_result: true
+#   invocation:
+#     module_args:
+#       _raw_params: find / -xdev -type d \( -perm -0002 -a ! -perm -1000 \) -print
+#       _uses_shell: false
+#       argv: null
+#       chdir: null
+#       creates: null
+#       executable: null
+#       removes: null
+#       stdin: null
+#       stdin_add_newline: true
+#       strip_empty_ends: true
+#       warn: true
+#   rc: 0
+#   start: '2020-08-06 14:34:11.408351'
+#   stderr: ''
+#   stderr_lines: <omitted>
+#   stdout: ''
+#   stdout_lines: <omitted>
+# - name: 1.1.21 Ensure sticky bit is set on all world-writable directories (Scored)
+#   command: find / -xdev -type d \( -perm -0002 -a ! -perm -1000 \) -print
+#   when:
+#     - cis_fix_sticky_bit | bool
+#   register: cis_world_writable_directories
+#   failed_when:
+#     - cis_world_writable_directories | length > 0
+
+- name: 1.1.22 Disable Automounting (Scored)
+  service:
+    name: autofs
+    state: stopped
+    enabled: true
+  register: cis_disable_autofs
+  failed_when:
+    - cis_disable_autofs is changed
+  when:
+    - cis_disable_automount
+
+- name: 1.1.23 Disable USB Storage (Scored)
+  command: modprobe -n -v usb-storage
+  register: output
+  when:
+    - cis_usb_storage_disabled | bool
+  failed_when:
+    - '"install /bin/true" not in output.stdout'
+
+- name: 1.1.23 Disable USB Storage (Scored)
+  command: lsmod | grep usb-storage
+  register: output
+  when:
+    - cis_usb_storage_disabled | bool
+  failed_when:
+    - output.stdout_lines | length > 0

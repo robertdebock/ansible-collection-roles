@@ -1,0 +1,8 @@
+---
+#
+# Ansible managed
+#
+repository:
+  description: Install and configure owncloud on your system.
+  homepage: https://robertdebock.nl/
+  topics: owncloud, ansible, molecule, tox, playbook, hacktoberfest

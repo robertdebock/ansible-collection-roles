@@ -1,0 +1,17 @@
+---
+- name: prepare
+  hosts: all
+  become: yes
+  gather_facts: no
+
+  roles:
+    - role: robertdebock.bootstrap
+    - role: robertdebock.ca_certificates
+    - role: robertdebock.epel
+    - role: robertdebock.npm
+    - role: robertdebock.users
+      users_group_list:
+        - name: nodered
+      users_user_list:
+        - name: nodered
+          group: nodered

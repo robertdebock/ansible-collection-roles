@@ -1,0 +1,8 @@
+---
+#
+# Ansible managed
+#
+repository:
+  description: Install epel on your system.
+  homepage: https://robertdebock.nl/
+  topics: epel, repository, installer, packages, ansible, molecule, tox, playbook, hacktoberfest

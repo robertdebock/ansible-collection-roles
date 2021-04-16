@@ -9,4 +9,3 @@ require {
 
 #============= httpd_t ==============
 allow httpd_t var_log_t:file open;
-

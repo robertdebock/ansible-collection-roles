@@ -1,0 +1,8 @@
+---
+# defaults file for terraform
+
+# The version of Terraform to install.
+terraform_version: 0.13.4
+
+# Where to place the binary.
+terraform_destination: /usr/local/bin

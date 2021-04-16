@@ -1,6 +1,7 @@
 ---
 galaxy_info:
   author: Robert de Bock
+  namespace: robertdebock
   role_name: docker_ce
   description: Install and configure Docker CE on your system.
   license: Apache-2.0
@@ -17,6 +18,7 @@ galaxy_info:
     - name: Fedora
       versions:
         - 32
+        - 33
     - name: Ubuntu
       versions:
         - focal

@@ -1,0 +1,18 @@
+{
+    "kind": "tm:sys:file:data-group:data-groupstate",
+    "name": "foo",
+    "partition": "Common",
+    "fullPath": "/Common/foo",
+    "generation": 75,
+    "selfLink": "https://localhost/mgmt/tm/sys/file/data-group/~Common~foo?ver=13.1.0",
+    "checksum": "SHA1:18:aba04bb67707bd5fad2a7fffd5509d1c9594d1ba",
+    "createTime": "2018-01-12T05:13:59Z",
+    "createdBy": "admin",
+    "lastUpdateTime": "2018-01-12T05:13:59Z",
+    "mode": 33188,
+    "revision": 1,
+    "separator": ":=",
+    "size": 18,
+    "type": "string",
+    "updatedBy": "admin"
+}

@@ -1,0 +1,13 @@
+---
+- name: Verify
+  hosts: all
+  become: yes
+  gather_facts: no
+
+  tasks:
+    - name: test the proxy
+      ansible.builtin.uri:
+        url: "http://www.google.com/"
+      environment:
+        http_proxy: http://localhost:3128
+        https_proxy: http://localhost:3128

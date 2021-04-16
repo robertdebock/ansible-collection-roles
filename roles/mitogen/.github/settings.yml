@@ -1,0 +1,8 @@
+---
+#
+# Ansible managed
+#
+repository:
+  description: Install and configure mitogen on your system.
+  homepage: https://robertdebock.nl/
+  topics: cloud, mitogen, ansible, molecule, tox, playbook, hacktoberfest

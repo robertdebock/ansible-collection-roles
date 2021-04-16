@@ -1,0 +1,8 @@
+---
+#
+# Ansible managed
+#
+repository:
+  description: Install Molecule on your system.
+  homepage: https://robertdebock.nl/
+  topics: molecule, ansible, molecule, tox, playbook, hacktoberfest

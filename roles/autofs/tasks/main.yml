@@ -44,11 +44,11 @@
     - name: place autofs in /etc/auto.master.d/
       ansible.builtin.template:
         src: template.autofs.j2
-        dest: /etc/auto.master.d/00-{{ item.mountpoint | regex_replace('^/', '') | regex_replace('/', slash_replace_char) }}.autofs
+        dest: /etc/auto.master.d/00-{{ item.name | default(item.mountpoint) | regex_replace('^/', '') | regex_replace('/', slash_replace_char) }}.autofs
         mode: "0640"
       loop: "{{ autofs_maps }}"
       loop_control:
-        label: /etc/auto.master.d/00-{{ item.mountpoint | regex_replace('^/', '') | regex_replace('/', slash_replace_char) }}.autofs
+        label: /etc/auto.master.d/00-{{ item.name | default(item.mountpoint) | regex_replace('^/', '') | regex_replace('/', slash_replace_char) }}.autofs
       notify:
         - reload autofs
       when:
@@ -57,7 +57,7 @@
     - name: configure map
       ansible.builtin.template:
         src: map.j2
-        dest: /etc/auto.{{ item.mountpoint | regex_replace('^/', '') | regex_replace('/', slash_replace_char) }}
+        dest: /etc/auto.{{ item.name | default(item.mountpoint) | regex_replace('^/', '') | regex_replace('/', slash_replace_char) }}
         mode: "0644"
       loop: "{{ autofs_maps }}"
       loop_control:
@@ -67,11 +67,11 @@
 
     - name: cleanup autofs file that should not exist
       ansible.builtin.file:
-        path: /etc/auto.master.d/00-{{ item.mountpoint | regex_replace('^/', '') | regex_replace('/', slash_replace_char) }}.autofs
+        path: /etc/auto.master.d/00-{{ item.name | default(item.mountpoint) | regex_replace('^/', '') | regex_replace('/', slash_replace_char) }}.autofs
         state: absent
       loop: "{{ autofs_maps }}"
       loop_control:
-        label: /etc/auto.master.d/00-{{ item.mountpoint | regex_replace('^/', '') | regex_replace('/', slash_replace_char) }}.autofs
+        label: /etc/auto.master.d/00-{{ item.name | default(item.mountpoint) | regex_replace('^/', '') | regex_replace('/', slash_replace_char) }}.autofs
       notify:
         - reload autofs
       when:
@@ -80,11 +80,11 @@
 
     - name: cleanup maps that should not exist
       ansible.builtin.file:
-        path: /etc/auto.{{ item.mountpoint | regex_replace('^/', '') | regex_replace('/', slash_replace_char) }}
+        path: /etc/auto.{{ item.name | default(item.mountpoint) | regex_replace('^/', '') | regex_replace('/', slash_replace_char) }}
         state: absent
       loop: "{{ autofs_maps }}"
       loop_control:
-        label: "/etc/auto.{{ item.mountpoint | regex_replace('^/', '') | regex_replace('/', slash_replace_char) }}"
+        label: "/etc/auto.{{ item.name | default(item.mountpoint) | regex_replace('^/', '') | regex_replace('/', slash_replace_char) }}"
       when:
         - item.state is defined
         - item.state == "absent"
@@ -101,6 +101,7 @@
         label: "{{ item.mountpoint }}"
       when:
         - item.state is not defined or (item.state is defined and item.state == "present")
+        - item.mountpoint != "/-"
   when:
     - autofs_maps is defined
 

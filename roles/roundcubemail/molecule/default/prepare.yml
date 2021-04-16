@@ -1,0 +1,30 @@
+---
+- name: Prepare
+  hosts: all
+  become: yes
+  gather_facts: no
+
+  roles:
+    - role: robertdebock.bootstrap
+    - role: robertdebock.epel
+    - role: robertdebock.buildtools
+    - role: robertdebock.python_pip
+    - role: robertdebock.openssl
+      openssl_items:
+        - name: apache-httpd
+          common_name: "{{ ansible_fqdn }}"
+    - role: robertdebock.selinux
+    - role: robertdebock.httpd
+    - role: robertdebock.php
+      php_upload_max_filesize: 5M
+      php_post_max_size: 6M
+      php_date_timezone: Europe/Amsterdam
+      php_extension:
+        - mcrypt.so
+    - role: robertdebock.mysql
+      mysql_databases:
+        - name: roundcube
+      mysql_users:
+        - name: roundcube
+          password: roundcube
+          priv: "roundcube.*:ALL"

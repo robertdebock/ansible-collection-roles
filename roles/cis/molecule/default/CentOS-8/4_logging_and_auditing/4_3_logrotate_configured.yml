@@ -1,0 +1,13 @@
+---
+
+- name: 4.2.3 Ensure permissions on all logfiles are configured (Scored)
+  stat:
+    path: /etc/logrotate.d/{{ item.name }}
+  register: cis_logrotate_configured_test_one
+  failed_when:
+    - not cis_logrotate_configured_test_one.stat.exists
+  loop: "{{ cis_logrotate_policy }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - cis_logrotate_configured | bool

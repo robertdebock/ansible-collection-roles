@@ -1,0 +1,16 @@
+---
+- name: Verify
+  hosts: all
+  become: yes
+  gather_facts: yes
+
+  tasks:
+    - name: check if product is installed
+      command: "{{ item.name }} --version"
+      args:
+        creates: nothing
+      loop:
+        - name: consul
+        - name: vault
+      environment:
+        PATH: "/bin:/usr/bin:/usr/local/bin"

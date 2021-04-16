@@ -1,0 +1,10 @@
+{
+  "kind": "tm:net:lldp-globals:lldp-globalsstate",
+  "selfLink": "https://localhost/mgmt/tm/net/lldp-globals?ver=13.1.1.4",
+  "disabled": true,
+  "maxNeighborsPerPort": 10,
+  "reinitDelay": 2,
+  "txDelay": 0,
+  "txHold": 5,
+  "txInterval": 0
+}

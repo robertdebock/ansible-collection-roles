@@ -1,0 +1,19 @@
+---
+# defaults file for php_fpm
+
+# The `php_fpm_listen` parameter can be an address:port combination or a path
+# if you want to use a socket. For example: 127.0.0.1:9000
+
+php_fpm_listen: "{{ php_fpm_pid_directory }}/www.sock"
+
+# When using a socket in `php_fpm_listen`, you can set the user and group.
+# Sane defaults are set in `vars/main.yml`
+php_fpm_listen_owner: "{{ php_fpm_owner }}"
+php_fpm_listen_group: "{{ php_fpm_group }}"
+php_fpm_listen_mode: "0666"
+
+php_fpm_pm: dynamic
+php_fpm_pm_max_children: 5
+php_fpm_pm_start_servers: 2
+php_fpm_pm_min_spare_servers: 1
+php_fpm_pm_max_spare_servers: 3

@@ -1,0 +1,26 @@
+{
+  "items": [
+    {
+      "name": "tenant-foo",
+      "roleReference": {
+        "link": "https://localhost/mgmt/shared/authz/roles/CloudTenantAdministrator_tenant-foo"
+      },
+      "cloudConnectorReferences": [
+        {
+          "link": "https://localhost/mgmt/cm/cloud/connectors/local/212301e6-6d01-4509-bfe3-8e372e792fb0"
+        },
+        {
+          "link": "https://localhost/mgmt/cm/cloud/connectors/local/ccf0c60f-1fb4-4b83-8719-dc9cd6b6d109"
+        }
+      ],
+      "generation": 103,
+      "lastUpdateMicros": 1489448651359525,
+      "kind": "cm:cloud:tenants:tenantworkerstate",
+      "selfLink": "https://localhost/mgmt/cm/cloud/tenants/tenant-foo"
+    }
+  ],
+  "generation": 103,
+  "kind": "cm:cloud:tenants:tenantcollectionworkerstate",
+  "lastUpdateMicros": 1489448651360348,
+  "selfLink": "https://localhost/mgmt/cm/cloud/tenants"
+}

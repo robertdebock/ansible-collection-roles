@@ -1,6 +1,7 @@
 ---
 galaxy_info:
   author: Robert de Bock
+  namespace: robertdebock
   role_name: at
   description: Install and configure at on your system.
   license: Apache-2.0

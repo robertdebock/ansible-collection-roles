@@ -1,0 +1,35 @@
+---
+- name: "Apache | Get Apache version"
+  shell: |
+    PATH=/usr/sbin:$PATH
+    set -o pipefail
+    apachectl -v | grep 'version' | awk -F '/' '{ print $2 }'| awk '{ print $1 }' | cut -c 1-3
+  changed_when: False
+  register: apachectl_version
+  check_mode: no
+  args:
+    executable: /bin/bash
+  tags:
+    - zabbix-web
+
+- name: "Apache | Set correct apache_version"
+  set_fact:
+    apache_version: "{{ apachectl_version.stdout }}"
+  tags:
+    - zabbix-web
+
+- name: "Set some"
+  set_fact:
+    _zabbix_web_apache_php_addition: True
+  when:
+    - zabbix_version is version('4.4', '<=')
+  tags:
+    - zabbix-web
+
+- name: "Set some"
+  set_fact:
+    _zabbix_web_apache_php_addition: True
+  when:
+    - ansible_os_family == "Debian"
+  tags:
+    - zabbix-web

@@ -102,13 +102,14 @@
   ansible.builtin.meta: flush_handlers
 
 - name: create postgres database
-  community.general.postgresql_db:
+  community.postgresql.postgresql_db:
     name: "{{ item.name }}"
     encoding: "{{ item.encoding | default(omit) }}"
     conn_limit: "{{ item.conn_limit | default(omit) }}"
     owner: "{{ item.owner | default(omit) }}"
     trust_input: "{{ item.trust_input | default(omit) }}"
     state: "{{ item.state | default(omit) }}"
+    login_unix_socket: "{{ postgres_socket_directory }}"
   loop: "{{ postgres_databases }}"
   loop_control:
     label: "{{ item.name }}"
@@ -118,11 +119,13 @@
   become: yes
 
 - name: create postgres users
-  community.general.postgresql_user:
+  community.postgresql.postgresql_user:
     name: "{{ item.name }}"
     db: "{{ item.db | default(omit) }}"
     password: "{{ item.password }}"
     expires: "{{ item.expires | default(omit) }}"
+    # port: "{{ postgres_port }}"
+    login_unix_socket: "{{ postgres_socket_directory }}"
   loop: "{{ postgres_users }}"
   loop_control:
     label: "{{ item.name }}"

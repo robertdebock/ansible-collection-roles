@@ -1,0 +1,18 @@
+---
+- name: prepare
+  hosts: all
+  become: yes
+  gather_facts: no
+
+  roles:
+    - role: robertdebock.bootstrap
+    - role: robertdebock.core_dependencies
+    - role: robertdebock.users
+      users_group_list:
+        - name: omiusers
+      users_user_list:
+        - name: omsagent
+          group: omiusers
+    - role: robertdebock.auditd
+      auditd_local_events: "no"
+    - role: robertdebock.cron

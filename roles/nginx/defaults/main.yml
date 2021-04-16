@@ -1,0 +1,5 @@
+---
+# defaults file for nginx
+
+# The tcp port nginx should listen on.
+nginx_port: 80

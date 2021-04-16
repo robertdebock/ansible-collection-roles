@@ -1,0 +1,16 @@
+---
+- name: Prepare
+  hosts: all
+  become: yes
+  gather_facts: no
+
+  roles:
+    - role: robertdebock.bootstrap
+    - role: robertdebock.epel
+    - role: robertdebock.python_pip
+    - role: robertdebock.buildtools
+    - role: robertdebock.openssl
+      openssl_items:
+        - name: apache-httpd
+          common_name: "{{ ansible_fqdn }}"
+    - role: robertdebock.httpd

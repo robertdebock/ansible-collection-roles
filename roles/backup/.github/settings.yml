@@ -1,0 +1,8 @@
+---
+#
+# Ansible managed
+#
+repository:
+  description: The purpose of this role is to make backups of your system.
+  homepage: https://robertdebock.nl/
+  topics: backup, server, system, ansible, molecule, tox, playbook, hacktoberfest

@@ -1,0 +1,44 @@
+---
+- name: Verify
+  hosts: all
+  become: yes
+  gather_facts: yes
+
+  vars:
+    _tftp_directory:
+      default: &default /var/lib/tftpboot
+      Debian: /srv/tftp
+      Ubuntu-18: *default
+      Suse: /srv/tftpboot
+    tftp_directory: "{{ _tftp_directory[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_tftp_directory[ansible_os_family] | default(_tftp_directory['default'])) }}"
+    tftp_client_package: tftp
+
+  tasks:
+    - name: install tftp client
+      ansible.builtin.package:
+        name: "{{ tftp_client_package }}"
+        state: present
+      notify:
+        - uninstall tftp client
+
+    - name: touch {{ tftp_directory }}/test
+      ansible.builtin.file:
+        path: "{{ tftp_directory }}/test"
+        mode: "0777"
+        state: touch
+      notify:
+        - remove test
+
+    - name: put /etc/passwd to test
+      command: tftp localhost -c put /etc/passwd test
+
+  handlers:
+    - name: uninstall tftp client
+      ansible.builtin.package:
+        name: "{{ tftp_client_package }}"
+        state: absent
+
+    - name: remove test
+      ansible.builtin.file:
+        path: "{{ tftp_directory }}/test"
+        state: absent

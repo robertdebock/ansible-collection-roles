@@ -1,0 +1,41 @@
+---
+- name: Verify
+  hosts: all
+  become: yes
+  gather_facts: no
+
+  tasks:
+    - name: try vault --version
+      command: vault --version
+
+    - name: check status of vault
+      command: vault status -format=yaml
+      environment:
+        VAULT_ADDR: "http://127.0.0.1:8200"
+      register: vault_status_raw
+
+    - name: save vault_status
+      ansible.builtin.set_fact:
+        vault_status: "{{ vault_status_raw.stdout | from_yaml }}"
+
+    - name: check if vault is initialized
+      ansible.builtin.assert:
+        that:
+          - vault_status.initialized | bool
+
+    - name: check if vault is unsealed
+      ansible.builtin.assert:
+        that:
+          - not vault_status.sealed | bool
+
+    - name: connect to vault ui
+      ansible.builtin.uri:
+        url: "http://127.0.0.1:8200/ui/vault/auth?with=token"
+
+    - name: check if backup exists
+      ansible.builtin.find:
+        path: /root
+        pattern: '*.snapshot'
+      register: vault_check_backup
+      failed_when:
+        - vault_check_backup.matched <= 0

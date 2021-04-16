@@ -1,0 +1,8 @@
+---
+#
+# Ansible managed
+#
+repository:
+  description: Install and configure tomcat on your system.
+  homepage: https://robertdebock.nl/
+  topics: tomcat, ansible, molecule, tox, playbook, hacktoberfest

@@ -1,6 +1,7 @@
 ---
 galaxy_info:
   author: Robert de Bock
+  namespace: robertdebock
   role_name: tlp
   description: Save laptop battery power using TLP
   license: Apache-2.0

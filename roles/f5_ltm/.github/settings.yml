@@ -1,0 +1,8 @@
+---
+#
+# Ansible managed
+#
+repository:
+  description: Configure an F5 LTMs nodes, pool, pool members and virtual servers.
+  homepage: https://robertdebock.nl/
+  topics: f5ltm, ansible, molecule, tox, playbook, hacktoberfest

@@ -1,6 +1,7 @@
 ---
 galaxy_info:
   author: Robert de Bock
+  namespace: robertdebock
   role_name: azure_cli
   description: Install and configure azure_cli on your system.
   license: Apache-2.0

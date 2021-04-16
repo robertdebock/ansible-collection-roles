@@ -1,0 +1,6 @@
+{
+  "kind": "tm:util:bash:runstate",
+  "command": "run",
+  "utilCmdArgs": "-c 'cd /shared/images; md5sum -c /shared/images/Hotfix-12.1.2.1.0.271-HF1.iso'",
+  "commandResult": "Hotfix-12.1.2.1.0.271-HF1.iso: FAILED open or read\nmd5sum: Hotfix-12.1.2.1.0.271-HF1.iso: No such file or directory\nmd5sum: WARNING: 1 of 1 listed file could not be read\n"
+}

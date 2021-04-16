@@ -1,6 +1,7 @@
 ---
 galaxy_info:
   author: Robert de Bock
+  namespace: robertdebock
   role_name: qemu
   description: Install qemu.
   license: Apache-2.0

@@ -1,0 +1,16 @@
+---
+- name: 1.10 Ensure system-wide crypto policy is not legacy (Scored)
+  command: grep -E -i '^\s*LEGACY\s*(\s+#.*)?$' /etc/crypto-policies/config
+  register: cis_crypto_policy_not_legacy_test
+  failed_when:
+    - cis_crypto_policy_not_legacy_test.stdout | length > 0
+  when:
+    - cis_crypto_policy_not_legacy | bool
+
+- name: 1.11 Ensure system-wide crypto policy is FUTURE or FIPS (Scored)
+  command: grep -E -i '^\s*(FUTURE|FIPS)\s*(\s+#.*)?$' /etc/crypto-policies/config
+  register: cis_ensure_crypto_policy_test
+  failed_when:
+    - cis_ensure_crypto_policy_test.stdout not in ["FUTURE", "FIPS"]
+  when:
+    - cis_ensure_crypto_policy | bool

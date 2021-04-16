@@ -1,0 +1,8 @@
+---
+#
+# Ansible managed
+#
+repository:
+  description: Find and update pip packages.
+  homepage: https://robertdebock.nl/
+  topics: updatepippackages, pip, update, ansible, molecule, tox, playbook, hacktoberfest

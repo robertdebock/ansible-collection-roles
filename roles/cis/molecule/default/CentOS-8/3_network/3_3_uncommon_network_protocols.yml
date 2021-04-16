@@ -1,0 +1,64 @@
+---
+- name: 3.3.1 Ensure DCCP is disabled (Scored)
+  command: modprobe -n -v usb-storage
+  register: cis_dccp_disabled_test_one
+  failed_when:
+    - '"install /bin/true" not in cis_dccp_disabled_test_one.stdout'
+  when:
+    - cis_dccp_disabled | bool
+
+- name: 3.3.1 Ensure DCCP is disabled (Scored)
+  command: lsmod | grep dccp
+  register: cis_dccp_disabled_test_two
+  failed_when:
+    - cis_dccp_disabled_test_two.stdout_lines | length > 0
+  when:
+    - cis_dccp_disabled | bool
+
+- name: 3.3.2 Ensure SCTP is disabled (Scored)
+  command: modprobe -n -v sctp
+  register: cis_sctp_disabled_test_one
+  failed_when:
+    - '"install /bin/true" not in cis_sctp_disabled_test_one.stdout'
+  when:
+    - cis_sctp_disabled | bool
+
+- name: 3.3.2 Ensure SCTP is disabled (Scored)
+  command: lsmod | grep sctp
+  register: cis_sctp_disabled_test_two
+  failed_when:
+    - cis_sctp_disabled_test_two.stdout_lines | length > 0
+  when:
+    - cis_sctp_disabled | bool
+
+- name: 3.3.3 Ensure RDS is disabled (Scored)
+  command: modprobe -n -v rds
+  register: cis_rds_disabled_test_one
+  failed_when:
+    - '"install /bin/true" not in cis_rds_disabled_test_one.stdout'
+  when:
+    - cis_rds_disabled | bool
+
+- name: 3.3.3 Ensure RDS is disabled (Scored)
+  command: lsmod | grep rds
+  register: cis_rds_disabled_test_two
+  failed_when:
+    - cis_rds_disabled_test_two.stdout_lines | length > 0
+  when:
+    - cis_rds_disabled | bool
+
+- name: 3.3.4 Ensure TIPC is disabled (Scored)
+  command: modprobe -n -v tipc
+  register: cis_tipc_disabled_test_one
+  failed_when:
+    - '"install /bin/true" not in cis_tipc_disabled_test_one.stdout'
+  when:
+    - cis_tipc_disabled | bool
+
+- name: 3.3.4 Ensure TIPC is disabled (Scored)
+  command: lsmod | grep tipc
+  register: cis_tipc_disabled_test_two
+  failed_when:
+    - cis_tipc_disabled_test_two.stdout_lines | length > 0
+  when:
+    - cis_tipc_disabled | bool

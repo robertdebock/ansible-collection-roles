@@ -1,0 +1,11 @@
+{
+  "kind": "tm:net:route:routestate",
+  "name": "bad",
+  "partition": "Common",
+  "fullPath": "/Common/bad",
+  "generation": 93,
+  "selfLink": "https://localhost/mgmt/tm/net/route/~Common~bad?ver=12.1.0",
+  "blackhole": true,
+  "mtu": 0,
+  "network": "1.2.3.4/30"
+}

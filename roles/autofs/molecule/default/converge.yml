@@ -1,0 +1,30 @@
+---
+- name: converge
+  hosts: all
+  become: yes
+  gather_facts: yes
+
+  roles:
+    - role: ansible-role-autofs
+      autofs_maps:
+        - mountpoint: /bind/mnt
+          options:
+            - "--timeout 60"
+          directories:
+            - path: mount
+              server: ":/mnt"
+              options:
+                - "fstype=bind"
+        - name: direct-mounts
+          mountpoint: /-
+          options:
+            - "--timeout 60"
+            - "--ghost"
+          directories:
+            - path: /bind/direct/mount
+              server: ":/mnt"
+              options:
+                - "fstype=bind"
+        - mountpoint: /do_not_exist
+          state: absent
+      nis_master_map: auto.master

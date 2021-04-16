@@ -18,6 +18,7 @@ This example is taken from `molecule/resources/converge.yml` and is tested on ea
 
   roles:
     - role: robertdebock.postfix
+      postfix_relayhost: "[relay.example.com]"
       postfix_myhostname: "smtp.example.com"
       postfix_mydomain: "example.com"
       postfix_myorigin: "example.com"
@@ -72,7 +73,7 @@ postfix_mynetworks: "127.0.0.0/8"
 
 # If you want to forward emails to another central relay server, set relayhost.
 # use brackets to sent to the A-record of the relayhost.
-# postfix_relayhost: [relay.example.com]
+# postfix_relayhost: "[relay.example.com]"
 
 # Set the restrictions for receiving mails.
 postfix_smtpd_recipient_restrictions:
@@ -120,6 +121,15 @@ postfix_smtpd_sender_restrictions:
 #     action: OK
 #   - domain: baddomain.com
 #     action: REJECT
+
+# You can disable SSL/TLS versions here.
+# postfix_tls_protocols: '!SSLv2, !SSLv3, !TLSv1, !TLSv1.1'
+
+# You can supply a transport_maps Jinja2 template here
+# postfix_transport_maps_template: /path/to/transport.j2
+
+# You can supply a header_checks Jinja2 template here
+# postfix_header_checks_template: /path/to/header_checks.j2
 ```
 
 ## [Requirements](#requirements)
@@ -132,8 +142,8 @@ The following roles are used to prepare a system. You may choose to prepare your
 
 | Requirement | GitHub | GitLab |
 |-------------|--------|--------|
-| [robertdebock.bootstrap](https://galaxy.ansible.com/robertdebock/bootstrap) | [![Build Status GitHub](https://github.com/robertdebock/ansible-role-bootstrap/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-bootstrap/actions) | [![Build Status GitLab ](https://gitlab.com/robertdebock/ansible-role-ansible-role-bootstrap/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-bootstrap)
-| [robertdebock.core_dependencies](https://galaxy.ansible.com/robertdebock/core_dependencies) | [![Build Status GitHub](https://github.com/robertdebock/ansible-role-core_dependencies/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-core_dependencies/actions) | [![Build Status GitLab ](https://gitlab.com/robertdebock/ansible-role-ansible-role-core_dependencies/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-core_dependencies)
+|[robertdebock.bootstrap](https://galaxy.ansible.com/robertdebock/bootstrap)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-bootstrap/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-bootstrap/actions)|[![Build Status GitLab ](https://gitlab.com/robertdebock/ansible-role-bootstrap/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-bootstrap)|
+|[robertdebock.core_dependencies](https://galaxy.ansible.com/robertdebock/core_dependencies)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-core_dependencies/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-core_dependencies/actions)|[![Build Status GitLab ](https://gitlab.com/robertdebock/ansible-role-core_dependencies/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-core_dependencies)|
 
 ## [Context](#context)
 
@@ -148,10 +158,10 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|amazon|Candidate|
+|amazon|2018.03|
 |el|7, 8|
 |debian|buster, bullseye|
-|fedora|all|
+|fedora|32, 33|
 |ubuntu|focal, bionic|
 
 The minimum version of Ansible required is 2.10, tests have been done to:
@@ -176,6 +186,12 @@ If you find issues, please register them in [GitHub](https://github.com/robertde
 
 Apache-2.0
 
+## [Contributors](#contributors)
+
+I'd like to thank everybody that made contributions to this repository. It motivates me, improves the code and is just fun to collaborate.
+
+- [benformosa](https://github.com/benformosa)
+- [justin-p](https://github.com/justin-p)
 
 ## [Author Information](#author-information)
 

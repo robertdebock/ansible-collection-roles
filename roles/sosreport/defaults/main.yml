@@ -1,0 +1,8 @@
+---
+# defaults file for sosreport
+
+# Where to store the sosreport on the managed node.
+sosreport_remote_location: /tmp/sosreport
+
+# Where to store the sosreport(s) on the controller.
+sosreport_local_location: /tmp/sosreports

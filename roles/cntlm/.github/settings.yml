@@ -1,0 +1,8 @@
+---
+#
+# Ansible managed
+#
+repository:
+  description: Install and configure cntlm on your system.
+  homepage: https://robertdebock.nl/
+  topics: cntlm, proxy, installer, package, ansible, molecule, tox, playbook, hacktoberfest

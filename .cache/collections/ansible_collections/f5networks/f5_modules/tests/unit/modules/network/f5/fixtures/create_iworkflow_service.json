@@ -1,0 +1,34 @@
+{
+  "tables":[
+    {
+      "name": "pool__Members",
+      "section": "pool",
+      "columnNames": [
+        "IPAddress",
+        "Port"
+      ],
+      "rows": [
+        [
+          "20.0.1.11", "80"
+        ],
+        [
+          "20.0.1.12"
+        ]
+      ]
+    }
+  ],
+  "vars":[
+    {
+      "name":"pool__addr",
+      "value":"172.27.1.10"
+    },
+    {
+      "name":"pool__port",
+      "value":"900"
+    },
+    {
+      "name":"vs__ProfileClientProtocol",
+      "value":"tcp"
+    }
+  ]
+}

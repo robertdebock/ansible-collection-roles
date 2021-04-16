@@ -1,0 +1,8 @@
+---
+# defaults file for apt_repositories
+
+# You can add or remove repositories:
+# apt_repositories:
+#   - repo: ppa:rabbitvcs/ppa
+#   - repo: ppa:something/ppa
+#     state: absent

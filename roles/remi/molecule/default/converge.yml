@@ -1,0 +1,10 @@
+---
+- name: converge
+  hosts: all
+  become: yes
+  gather_facts: yes
+
+  roles:
+    - role: ansible-role-remi
+      remi_enabled_repositories:
+        - php73

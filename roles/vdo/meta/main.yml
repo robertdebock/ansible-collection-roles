@@ -1,6 +1,7 @@
 ---
 galaxy_info:
   author: Robert de Bock
+  namespace: robertdebock
   role_name: vdo
   description: Configure VDO devices.
   license: Apache-2.0

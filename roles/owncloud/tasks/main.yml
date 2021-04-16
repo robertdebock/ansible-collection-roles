@@ -64,3 +64,11 @@
   loop: "{{ owncloud_permissions }}"
   loop_control:
     label: "{{ item.name }}"
+
+- name: setup crontab
+  ansible.builtin.cron:
+    name: owncloud
+    minute: "*/5"
+    hour: "*"
+    job: "php {{ owncloud_destination }}/owncloud/occ system:cron"
+    user: "{{ owncloud_httpd_owner }}"

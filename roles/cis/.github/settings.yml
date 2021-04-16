@@ -1,0 +1,8 @@
+---
+#
+# Ansible managed
+#
+repository:
+  description: Apply and/or check recommendations from the CIS benchmarks.
+  homepage: https://robertdebock.nl/
+  topics: cis, security, ansible, molecule, tox, playbook, hacktoberfest

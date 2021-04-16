@@ -1,2 +1,4 @@
 ---
 tox_parallel: yes
+tox_versions:
+  - "2.10"

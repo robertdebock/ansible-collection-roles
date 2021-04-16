@@ -1,0 +1,8 @@
+---
+#
+# Ansible managed
+#
+repository:
+  description: Install and configure unowned_files on your system.
+  homepage: https://robertdebock.nl/
+  topics: unownedfiles, ansible, molecule, tox, playbook, hacktoberfest

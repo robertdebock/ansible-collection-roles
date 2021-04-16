@@ -1,0 +1,27 @@
+---
+- name: Verify
+  hosts: all
+  become: yes
+  gather_facts: yes
+
+  roles:
+    - role: ansible-role-cron
+      cron_jobs:
+        - name: requested job
+          job: "ls -alh > /dev/null"
+        - name: requested job by the minute
+          minute: "23"
+          job: "ls -alh > /dev/null"
+        - name: requested job by the hour
+          hour: "23"
+          job: "ls -alh > /dev/null"
+        - name: requested job by the weekday
+          weekday: "1"
+          job: "ls -alh > /dev/null"
+        - name: requested job by specific user
+          hour: "23"
+          job: "ls -alh > /dev/null"
+          user: "root"
+        - name: requested job every 5 minutes
+          minute: "*/5"
+          job: "ls -alh > /dev/null"

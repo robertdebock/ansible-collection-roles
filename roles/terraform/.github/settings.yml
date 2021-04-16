@@ -1,0 +1,8 @@
+---
+#
+# Ansible managed
+#
+repository:
+  description: Install and configure terraform on your system.
+  homepage: https://robertdebock.nl/
+  topics: terraform, ansible, molecule, tox, playbook, hacktoberfest

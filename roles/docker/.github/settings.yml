@@ -1,0 +1,8 @@
+---
+#
+# Ansible managed
+#
+repository:
+  description: Install and configure Docker (non-CE) on your system.
+  homepage: https://robertdebock.nl/
+  topics: docker, ansible, molecule, tox, playbook, hacktoberfest

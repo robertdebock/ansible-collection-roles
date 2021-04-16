@@ -1,0 +1,8 @@
+---
+#
+# Ansible managed
+#
+repository:
+  description: Install HashiCorp products using packages.
+  homepage: https://robertdebock.nl/
+  topics: hashicorp, consul, nomad, terraform, vagrant, vault, ansible, molecule, tox, playbook, hacktoberfest

@@ -1,0 +1,8 @@
+---
+#
+# Ansible managed
+#
+repository:
+  description: Install and configure unbound on your system.
+  homepage: https://robertdebock.nl/
+  topics: unbound, ansible, molecule, tox, playbook, hacktoberfest

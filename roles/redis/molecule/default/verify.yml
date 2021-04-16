@@ -1,0 +1,15 @@
+---
+- name: Verify
+  hosts: all
+  become: yes
+  gather_facts: no
+
+  tasks:
+    - name: write my_key to redis
+      command: redis-cli set my_key my_value
+
+    - name: read my_key from redis
+      command: redis-cli get my_key
+      register: redis_read_my_key_from_redis
+      failed_when:
+        - redis_read_my_key_from_redis.stdout != "my_value"

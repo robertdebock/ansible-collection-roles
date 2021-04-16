@@ -1,0 +1,15 @@
+---
+# defaults file for revealmd
+
+# The directory where reveal-md should find presentations.
+revealmd_directory: /data
+
+# The exact presentation to process
+revealmd_presentation: index.md
+
+# The tcp port where reveal-md should listen on.
+revealmd_port: 1948
+
+# The theme to use.
+# https://github.com/highlightjs/highlight.js/tree/master/src/styles
+revealmd_options: --theme black

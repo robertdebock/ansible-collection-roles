@@ -51,13 +51,13 @@
     dest: "{{ httpd_config_directory }}/{{ item.name }}.conf"
     mode: "0644"
   loop: "{{ httpd_locations }}"
+  loop_control:
+    label: "{{ item.name }}"
   notify:
     - test httpd configuration validity
     - restart httpd
   when:
     - httpd_locations is defined
-  loop_control:
-    label: "{{ item.name }}"
 
 - name: configure vhosts
   ansible.builtin.template:
@@ -65,13 +65,13 @@
     dest: "{{ httpd_config_directory }}/{{ item.name }}.conf"
     mode: "0644"
   loop: "{{ httpd_vhosts }}"
+  loop_control:
+    label: "{{ item.name }}"
   notify:
     - test httpd configuration validity
     - restart httpd
   when:
     - httpd_vhosts is defined
-  loop_control:
-    label: "{{ item.name }}"
 
 - name: configure httpd
   ansible.builtin.template:
@@ -108,6 +108,8 @@
     state: directory
     mode: "0755"
   loop: "{{ httpd_vhosts }}"
+  loop_control:
+    label: "{{ item.name }}"
   when:
     - httpd_vhosts is defined
     - item.documentroot is defined

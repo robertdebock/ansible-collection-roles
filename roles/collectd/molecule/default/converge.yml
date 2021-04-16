@@ -1,0 +1,41 @@
+---
+- name: converge
+  hosts: all
+  become: yes
+  gather_facts: yes
+  vars:
+    collectd_plugin_logging: logfile
+    collectd_basic_plugins:
+      - cpu
+      - interface
+      - load
+      - memory
+    collectd_plugins:
+      - name: write_http
+        config: |
+          <Node "test">
+            URL "127.0.0.1:8080/test.collectd"
+            Format "JSON"
+            StoreRates true
+          </Node>
+      - name: postgresql
+        config: |
+          <Query tickets>
+            Statement "SELECT count(t.id) AS count FROM tickets t WHERE t.closed is null;"
+            <Result>
+              Type gauge
+              InstancePrefix "tickets"
+              ValuesFrom "count"
+            </Result>
+          </Query>
+          <Database "test">
+            Host "psql-database.hostname.com"
+            Port "5432"
+            User "my_psqladminuser"
+            Password "my_passwd"
+            SSLMode "prefer"
+            Query tickets
+          </Database>
+
+  roles:
+    - role: ansible-role-collectd

@@ -1,8 +1,0 @@
----
-
-- name: test if snort_version is set correctly
-  ansible.builtin.assert:
-    that:
-      - snort_version is defined
-      - snort_version is string
-    quiet: yes

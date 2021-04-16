@@ -1,7 +1,7 @@
 ---
 
 - name: get status of kv secrets engine
-  uri:
+  ansible.builtin.uri:
     url: "{{ vault_api_addr }}/v1/sys/mounts"
     method: GET
     headers:
@@ -12,7 +12,7 @@
   register: vault_status_kv_secrets_engine
 
 - name: enable kv secrets engine
-  uri:
+  ansible.builtin.uri:
     url: "{{ vault_api_addr }}/v1/sys/mounts/kv"
     method: POST
     headers:
@@ -33,7 +33,7 @@
     - "'kv/' not in vault_status_kv_secrets_engine.json.data"
 
 - name: configure the kv engine
-  uri:
+  ansible.builtin.uri:
     url: "{{ vault_api_addr }}/v1/kv/config"
     method: POST
     headers:
@@ -48,7 +48,7 @@
       - 204
 
 - name: create or update secret
-  uri:
+  ansible.builtin.uri:
     url: "{{ vault_api_addr }}/v1/kv/data/{{ item.name }}"
     method: POST
     headers:

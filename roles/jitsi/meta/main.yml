@@ -1,6 +1,7 @@
 ---
 galaxy_info:
   author: Robert de Bock
+  namespace: robertdebock
   role_name: jitsi
   description: Install and configure jitsi on your system.
   license: Apache-2.0

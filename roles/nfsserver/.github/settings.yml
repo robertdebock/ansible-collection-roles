@@ -1,0 +1,8 @@
+---
+#
+# Ansible managed
+#
+repository:
+  description: Setup exports on an nfs server
+  homepage: https://robertdebock.nl/
+  topics: nfs, nfsserver, exports, ansible, molecule, tox, playbook, hacktoberfest

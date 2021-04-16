@@ -1,0 +1,12 @@
+---
+- name: converge
+  hosts: all
+  become: yes
+  gather_facts: yes
+
+  roles:
+    - role: ansible-role-luks
+      luks_devices:
+        - device: /dev/loop0
+          name: luksdisk0
+          keyfile: /etc/luksdisk0.keyfile

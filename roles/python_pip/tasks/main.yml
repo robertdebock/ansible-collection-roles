@@ -37,6 +37,7 @@
       - pip
       - setuptools
     state: latest  # noqa package-latest
+    executable: "{{ python_pip_executable | default(omit) }}"
   when:
     - python_pip_update | bool
 
@@ -45,6 +46,7 @@
     name: "{{ item.name }}"
     state: "{{ item.state | default('present') }}"
     version: "{{ item.version | default(omit) }}"
+    executable: "{{ python_pip_executable | default(omit) }}"
   loop: "{{ python_pip_modules }}"
   loop_control:
     label: "{{ item.name }}"

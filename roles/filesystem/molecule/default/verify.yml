@@ -1,0 +1,12 @@
+---
+- name: Verify
+  hosts: all
+  become: yes
+  gather_facts: yes
+
+  tasks:
+    - name: filesystem check on disk1
+      command: fsck.ext4 -y disk_1
+
+    - name: filesystem check on disk2
+      command: fsck.ext3 -y disk_2

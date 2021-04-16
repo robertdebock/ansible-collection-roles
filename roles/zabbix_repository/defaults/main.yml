@@ -1,0 +1,8 @@
+---
+# defaults file for zabbix_repository
+
+# The`"zabbix_version_major` are two numerical values, sparated by a period.
+zabbix_repository_version_major: "5.0"
+
+# The `zabbix_version_minor` is a single numerical value.
+zabbix_repository_version_minor: 1

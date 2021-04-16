@@ -1,0 +1,8 @@
+---
+#
+# Ansible managed
+#
+repository:
+  description: Install and configure php on your system.
+  homepage: https://robertdebock.nl/
+  topics: installer, package, php, web, ansible, molecule, tox, playbook, hacktoberfest

@@ -1,0 +1,12 @@
+---
+- name: Verify
+  hosts: all
+  become: yes
+  gather_facts: yes
+
+  roles:
+    - role: ansible-role-alternatives
+      alternatives_list:
+        - name: my_alternative_fake_binary
+          link: /bin/my_alternative_fake_binary
+          path: /bin/my_fake_binary

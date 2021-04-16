@@ -1,0 +1,10 @@
+---
+collections:
+  - name: ansible.posix
+  - name: community.crypto
+  - name: community.general
+  - name: community.mysql
+  - name: community.postgresql
+  - name: community.zabbix
+  - name: f5networks.f5_modules
+  - name: gluster.gluster

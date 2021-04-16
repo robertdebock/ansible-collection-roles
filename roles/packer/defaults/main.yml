@@ -1,0 +1,5 @@
+---
+# defaults file for packer
+
+# The version of Packer to install.
+packer_version: 1.4.5

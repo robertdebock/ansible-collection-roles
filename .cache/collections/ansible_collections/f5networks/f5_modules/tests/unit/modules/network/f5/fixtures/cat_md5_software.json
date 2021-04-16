@@ -1,0 +1,6 @@
+{
+  "kind": "tm:util:bash:runstate",
+  "command": "run",
+  "utilCmdArgs": "-c 'cat /shared/images/BIGIP-12.1.2.0.0.249.iso.md5'",
+  "commandResult": "0389775fabf7b42f12ceceac64f3b84d  BIGIP-12.1.2.0.0.249.iso\n"
+}

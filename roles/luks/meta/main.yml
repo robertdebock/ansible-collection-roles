@@ -1,6 +1,7 @@
 ---
 galaxy_info:
   author: Robert de Bock
+  namespace: robertdebock
   role_name: luks
   description: Create encrypted devices using luks and open them at boot.
   license: Apache-2.0

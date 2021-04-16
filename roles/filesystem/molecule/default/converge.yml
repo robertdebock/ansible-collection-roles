@@ -1,0 +1,16 @@
+---
+- name: converge
+  hosts: all
+  become: yes
+  gather_facts: yes
+
+  roles:
+    - role: ansible-role-filesystem
+      filesystem_list:
+        - dev: disk_1
+          fstype: ext4
+        - dev: disk_2
+          fstype: ext3
+          opts: -cc
+        - dev: disk_3
+          state: absent

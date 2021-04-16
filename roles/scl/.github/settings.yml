@@ -1,0 +1,8 @@
+---
+#
+# Ansible managed
+#
+repository:
+  description: Install SCL on your system.
+  homepage: https://robertdebock.nl/
+  topics: scl, repository, installer, packages, ansible, molecule, tox, playbook, hacktoberfest

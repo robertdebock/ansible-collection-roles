@@ -1,0 +1,8 @@
+---
+#
+# Ansible managed
+#
+repository:
+  description: Install eclipse and plugins on your system.
+  homepage: https://robertdebock.nl/
+  topics: eclipse, ansible, molecule, tox, playbook, hacktoberfest

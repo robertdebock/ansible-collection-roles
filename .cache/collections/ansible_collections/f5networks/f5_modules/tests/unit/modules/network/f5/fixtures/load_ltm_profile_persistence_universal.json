@@ -1,0 +1,18 @@
+{
+  "kind": "tm:ltm:persistence:universal:universalcollectionstate",
+  "name": "universal",
+  "partition": "Common",
+  "fullPath": "/Common/universal",
+  "generation": 1,
+  "selfLink": "https://localhost/mgmt/tm/ltm/persistence/universal/~Common~universal?ver=13.1.0.7",
+  "appService": "none",
+  "defaultsFrom": "none",
+  "description": "none",
+  "matchAcrossPools": "disabled",
+  "matchAcrossServices": "disabled",
+  "matchAcrossVirtuals": "disabled",
+  "mirror": "disabled",
+  "overrideConnectionLimit": "disabled",
+  "rule": "none",
+  "timeout": "180"
+}

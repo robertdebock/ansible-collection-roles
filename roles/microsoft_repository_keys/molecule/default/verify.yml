@@ -1,0 +1,21 @@
+---
+- name: Verify
+  hosts: all
+  become: yes
+  gather_facts: yes
+
+  tasks:
+    - name: install a test package
+      block:
+        - name: add apt repository packages-microsoft-com-yumrepos-azure-cli
+          ansible.builtin.apt_repository:
+            repo: "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ {{ ansible_distribution_release }} main"
+            filename: "package-microsoft-com-repos-azure-cli"
+            state: present
+
+        - name: install azure-cli
+          ansible.builtin.package:
+            name: azure-cli
+            state: present
+      when:
+        - ansible_distribution == "Ubuntu"

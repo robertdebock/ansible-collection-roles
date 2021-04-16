@@ -1,0 +1,8 @@
+---
+#
+# Ansible managed
+#
+repository:
+  description: Install common CA certificates on your system.
+  homepage: https://robertdebock.nl/
+  topics: cacertificates, ca, ssl, certificates, ansible, molecule, tox, playbook, hacktoberfest

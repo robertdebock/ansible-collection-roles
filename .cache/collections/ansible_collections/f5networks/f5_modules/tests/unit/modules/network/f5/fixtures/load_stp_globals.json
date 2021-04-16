@@ -1,0 +1,11 @@
+{
+  "kind": "tm:net:stp-globals:stp-globalsstate",
+  "selfLink": "https://localhost/mgmt/tm/net/stp-globals?ver=13.1.1.4",
+  "configRevision": 0,
+  "fwdDelay": 15,
+  "helloTime": 2,
+  "maxAge": 20,
+  "maxHops": 20,
+  "mode": "passthru",
+  "transmitHold": 6
+}

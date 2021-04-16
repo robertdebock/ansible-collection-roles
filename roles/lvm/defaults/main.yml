@@ -1,0 +1,26 @@
+---
+# defaults file for lvm
+
+# Per lvm a size can be set, if it's not set, use this value.
+lvm_default_pesize: 32
+
+# A list of volume groups.
+# lvm_volume_groups:
+#   - name: first
+#     pvs:
+#       - /dev/sdb1
+#   - name: second
+#     pvs:
+#       - /dev/sdb2
+#     pesize: 128K
+#   - name: third
+#     pvs:
+#       - /dev/sdb3
+#       - /dev/sdb4
+
+# A list of volumes.
+# lvm_logical_volumes:
+#   - name: first
+#     vg: first
+#     size: 512
+#     opts: --type cache-pool

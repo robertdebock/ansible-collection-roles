@@ -9,7 +9,7 @@
 - name: install yum repository
   ansible.builtin.get_url:
     url: "https://bintray.com/jfrog/artifactory-rpms/rpm"
-    dest: /etc/yum.repos.d/bintray-jfrog-artifactory-oss-rpms.repo
+    dest: /etc/yum.repos.d/bintray-jfrog-artifactory-rpms.repo
   when:
     - ansible_pkg_mgr in [ "dnf", "yum" ]
 
@@ -30,7 +30,7 @@
 
 - name: install package
   ansible.builtin.package:
-    name: jfrog-artifactory-oss
+    name: jfrog-artifactory-{{ artifactory_flavour }}
     state: present
 
 - name: ensure artifactory_file_store_dir exists

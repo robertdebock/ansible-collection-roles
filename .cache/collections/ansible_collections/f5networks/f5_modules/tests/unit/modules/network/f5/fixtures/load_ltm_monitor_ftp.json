@@ -1,0 +1,17 @@
+{
+  "kind": "tm:ltm:monitor:ftp:ftpstate",
+  "name": "foo_ftp",
+  "partition": "Common",
+  "fullPath": "/Common/foo_ftp",
+  "generation": 0,
+  "selfLink": "https://localhost/mgmt/tm/ltm/monitor/ftp/~Common~foo_ftp?ver=14.1.0.3",
+  "debug": "no",
+  "defaultsFrom": "/Common/ftp",
+  "destination": "*:*",
+  "interval": 10,
+  "manualResume": "disabled",
+  "mode": "passive",
+  "timeUntilUp": 0,
+  "timeout": 31,
+  "upInterval": 16
+}

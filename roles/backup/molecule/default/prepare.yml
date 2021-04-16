@@ -1,0 +1,20 @@
+---
+- name: Prepare
+  hosts: all
+  gather_facts: no
+  become: yes
+
+  roles:
+    - role: robertdebock.bootstrap
+    - role: robertdebock.mysql
+      mysql_databases:
+        - name: test_db
+          encoding: utf8
+          collation: utf8_bin
+    - role: robertdebock.buildtools
+    - role: robertdebock.epel
+    - role: robertdebock.python_pip
+    - role: robertdebock.postgres
+      postgres_databases:
+        - name: test_db
+          state: present

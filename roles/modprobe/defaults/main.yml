@@ -1,0 +1,6 @@
+---
+# defaults file for modprobe
+
+# You can pass a list of modules to this role to be loaded. For example:
+# modprobe_modules:
+#   - br_netfilter

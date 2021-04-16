@@ -1,0 +1,5 @@
+---
+# defaults file for mitogen
+
+# The Ansible configuration to modify for Mitogen.
+mitogen_ansible_file: /etc/ansible/ansible.cfg

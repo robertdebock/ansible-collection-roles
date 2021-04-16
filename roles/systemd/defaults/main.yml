@@ -1,0 +1,36 @@
+---
+# defaults file for systemd
+
+# Select the target to boot into. Either "multiuser.target",
+# "graphical.target" or "rescue.target".
+# systemd_default_target: multi-user.target
+
+# Set options in coredump.conf. For example:
+# systemd_coredump:
+#   - option: Compress
+#     value: "yes"
+
+# Set options in journald.conf. For example:
+# systemd_journald:
+#   - option: LineMax
+#     value: 48k
+
+# Set options in logind.conf. For example:
+# systemd_logind:
+#   - option: HandleLidSwitch
+#     value: ignore
+
+# Set options in resolved.conf. For example:
+# systemd_resolved:
+#   - option: DNSOverTLS
+#     value: "no"
+
+# Set options in system.conf. For example:
+# systemd_system:
+#   - option: LogLevel
+#     value: info
+
+# Set options in user.conf. For example:
+# systemd_logind:
+#   - option: DefaultStartLimitBurst
+#     value: 5

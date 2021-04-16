@@ -1,0 +1,49 @@
+---
+# defaults file for autofs
+
+# The first slash in a path will be removed, all remaining slashes will be replaced with this character.
+#   Example: mountpoint=/bin/mount & slash_replace_char="-"
+#   Output file name: /etc/auto.bind-mount (leading slash removed, remaining replaced with "-")
+slash_replace_char: ""
+
+# Here you can configure automount mountpoints.
+# autofs_maps:
+#   - mountpoint: /home
+#     directories:
+#       - path: "*"
+#         server: "server.example.com/&"
+#   - mountpoint: /net
+#     options:
+#       - "--timeout=60"
+#     directories:
+#       - path: server
+#         options:
+#           - rw
+#           - soft
+#           - intr
+#           - rsize=8192
+#           - wsize=8192
+#         server: "server.example.com:/"
+#   - name: cifs-mounts  # optionally name the map (for use in files names).
+#     mountpoint: /cifs
+#     directories:
+#       - path: data
+#         options:
+#           - fstype=cifs
+#         server: "://server.example.com/sharename/"
+#   - mountpoint: /fuse
+#     directories:
+#       - path: ftpserver
+#         options:
+#           - fstype=curl
+#           - rw
+#           - allow_others
+#           - nodev
+#           - nonempty
+#           - noatime
+#         server: ':ftp\://username\:password\@ftp.example.com'
+#   - mountpoint: /do_not_exist
+#     state: absent
+
+# Set the nis_master_map.
+# nis_master_map: auto.master

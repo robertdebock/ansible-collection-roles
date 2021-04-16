@@ -1,6 +1,7 @@
 ---
 galaxy_info:
   author: Robert de Bock
+  namespace: robertdebock
   role_name: owncloud
   description: Install and configure owncloud on your system.
   license: Apache-2.0

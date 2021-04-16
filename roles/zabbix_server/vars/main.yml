@@ -13,13 +13,6 @@ _zabbix_server_requirements:
 
 zabbix_server_requirements: "{{ _zabbix_server_requirements[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default (_zabbix_server_requirements[ansible_os_family]) }}"
 
-_zabbix_server_mysql_socket:
-  default: /var/run/mysql/mysql.sock
-  Debian: /var/run/mysqld/mysqld.sock
-  RedHat: /var/lib/mysql/mysql.sock
-
-zabbix_server_mysql_socket: "{{ _zabbix_server_mysql_socket[ansible_os_family] | default(_zabbix_server_mysql_socket['default']) }}"
-
 _zabbix_server_docdir:
   default: /usr/share/doc
   Suse: /usr/share/doc/packages

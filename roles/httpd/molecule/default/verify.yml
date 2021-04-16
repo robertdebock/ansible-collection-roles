@@ -1,0 +1,35 @@
+---
+- name: Verify
+  hosts: all
+  become: yes
+  gather_facts: yes
+
+  vars_files: ../../vars/main.yml
+
+  tasks:
+    - name: check if ports are open
+      ansible.builtin.wait_for:
+        port: "{{ item }}"
+        timeout: 2
+      loop:
+        - "8080"
+        - "8443"
+
+    - name: place sample index.html
+      ansible.builtin.copy:
+        content: "Hello World!"
+        dest: "{{ httpd_data_directory }}/index.html"
+        mode: "0644"
+
+    - name: see if the sample index.html returns 200
+      ansible.builtin.uri:
+        url: "https://127.0.0.1:8443/"
+        validate_certs: no
+
+    - name: see if TRACE option returns 405
+      ansible.builtin.uri:
+        url: "https://127.0.0.1:8443/"
+        method: TRACE
+        status_code:
+          - 405
+        validate_certs: no

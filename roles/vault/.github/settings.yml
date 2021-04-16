@@ -1,0 +1,8 @@
+---
+#
+# Ansible managed
+#
+repository:
+  description: Install Hashicorp Vault on your system.
+  homepage: https://robertdebock.nl/
+  topics: vault, ansible, molecule, tox, playbook, hacktoberfest

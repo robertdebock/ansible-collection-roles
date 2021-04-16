@@ -1,0 +1,11 @@
+---
+- name: converge
+  hosts: all
+  become: yes
+  gather_facts: yes
+
+  roles:
+    - role: ansible-role-openssl
+      openssl_items:
+        - name: my_openssl_key
+          common_name: my.example.com

@@ -1,8 +1,11 @@
 #!/bin/sh
-{{ ansible_managed | comment }}
-unset SESSION_MANAGER
-unset DBUS_SESSION_BUS_ADDRESS
-# makes clipboard working
-/usr/bin/vncconfig -nowin -poll 500 &
 
-exec {{ tigervnc_desktop_session }}
+{{ ansible_managed | comment }}
+
+[ -x /etc/vnc/xstartup ] && exec /etc/vnc/xstartup
+
+[ -r $HOME/.Xresources ] && xrdb $HOME/.Xresources
+
+vncconfig -iconic &
+
+dbus-launch --exit-with-session {{ tigervnc_desktop_session }} &

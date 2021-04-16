@@ -6,3 +6,5 @@ roles:
   - name: robertdebock.git
   - name: robertdebock.npm
   - name: robertdebock.service
+collections:
+  - name: community.general

@@ -4,7 +4,7 @@ Install and configure Early Out Of Memory Killer on your system.
 
 |GitHub|GitLab|Quality|Downloads|Version|
 |------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-earlyoom/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-earlyoom/actions)|[![gitlab](https://gitlab.com/robertdebock/ansible-role-earlyoom/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-earlyoom)|[![quality](https://img.shields.io/ansible/quality/40792)](https://galaxy.ansible.com/robertdebock/earlyoom)|[![downloads](https://img.shields.io/ansible/role/d/40792)](https://galaxy.ansible.com/robertdebock/earlyoom)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-earlyoom.svg)](https://github.com/robertdebock/ansible-role-earlyoom/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-earlyoom/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-earlyoom/actions)|[![gitlab](https://gitlab.com/robertdebock/ansible-role-earlyoom/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-earlyoom)|[![quality](https://img.shields.io/ansible/quality/)](https://galaxy.ansible.com/robertdebock/earlyoom)|[![downloads](https://img.shields.io/ansible/role/d/)](https://galaxy.ansible.com/robertdebock/earlyoom)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-earlyoom.svg)](https://github.com/robertdebock/ansible-role-earlyoom/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -61,9 +61,9 @@ The following roles are used to prepare a system. You may choose to prepare your
 
 | Requirement | GitHub | GitLab |
 |-------------|--------|--------|
-| [robertdebock.bootstrap](https://galaxy.ansible.com/robertdebock/bootstrap) | [![Build Status GitHub](https://github.com/robertdebock/ansible-role-bootstrap/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-bootstrap/actions) | [![Build Status GitLab ](https://gitlab.com/robertdebock/ansible-role-ansible-role-bootstrap/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-bootstrap)
-| [robertdebock.buildtools](https://galaxy.ansible.com/robertdebock/buildtools) | [![Build Status GitHub](https://github.com/robertdebock/ansible-role-buildtools/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-buildtools/actions) | [![Build Status GitLab ](https://gitlab.com/robertdebock/ansible-role-ansible-role-buildtools/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-buildtools)
-| [robertdebock.service](https://galaxy.ansible.com/robertdebock/service) | [![Build Status GitHub](https://github.com/robertdebock/ansible-role-service/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-service/actions) | [![Build Status GitLab ](https://gitlab.com/robertdebock/ansible-role-ansible-role-service/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-service)
+|[robertdebock.bootstrap](https://galaxy.ansible.com/robertdebock/bootstrap)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-bootstrap/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-bootstrap/actions)|[![Build Status GitLab ](https://gitlab.com/robertdebock/ansible-role-bootstrap/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-bootstrap)|
+|[robertdebock.buildtools](https://galaxy.ansible.com/robertdebock/buildtools)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-buildtools/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-buildtools/actions)|[![Build Status GitLab ](https://gitlab.com/robertdebock/ansible-role-buildtools/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-buildtools)|
+|[robertdebock.service](https://galaxy.ansible.com/robertdebock/service)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-service/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-service/actions)|[![Build Status GitLab ](https://gitlab.com/robertdebock/ansible-role-service/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-service)|
 
 ## [Context](#context)
 
@@ -110,11 +110,6 @@ If you find issues, please register them in [GitHub](https://github.com/robertde
 
 Apache-2.0
 
-## [Contributors](#contributors)
-
-I'd like to thank everybody that made contributions to this repository. It motivates me, improves the code and is just fun to collaborate.
-
-- [aisbergg](https://github.com/aisbergg)
 
 ## [Author Information](#author-information)
 

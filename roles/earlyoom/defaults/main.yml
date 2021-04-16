@@ -1,0 +1,10 @@
+---
+# defaults file for earlyoom
+
+earlyoom_version: v1.6
+earlyoom_clone_destination: /tmp/earlyoom
+earlyoom_installation_destination: /usr/bin
+
+earlyoom_minimum_memory_percent: 10
+earlyoom_minimum_swap_percent: 5
+earlyoom_memory_report_interval: 60  # in seconds

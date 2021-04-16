@@ -18,7 +18,7 @@
     - object.type == "mysql"
 
 - name: dump postgres object
-  community.general.postgresql_db:
+  community.postgresql.postgresql_db:
     name: "{{ object.name }}"
     state: dump
     target: "{{ backup_remote_directory }}/{{ object.type }}-{{ object.name }}-{{ backup_timestamp }}.sql"

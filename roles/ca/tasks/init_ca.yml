@@ -42,4 +42,4 @@
   openssl_privatekey:
     path: "{{ ca_path }}/{{ ca_privatekey_path }}"
     passphrase: "{{ ca_passphrase }}"
-    cipher: aes256
+    cipher: auto

@@ -1,0 +1,19 @@
+---
+# defaults file for anaconda
+
+# The version of python to install, either 2 or 3.
+anaconda_python_version: 3
+
+# The version of anaconda to install.
+# See https://www.anaconda.com/distribution/
+anaconda_version: "2018.12"
+
+# What ip and port to let anaconda listen to.
+anaconda_ip: 0.0.0.0
+anaconda_port: 8888
+
+# Where to save the (large) download file
+anaconda_download_dest: /tmp
+
+# Where to install anaconda
+anaconda_prefix: /root/anaconda3

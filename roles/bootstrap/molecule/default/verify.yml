@@ -1,0 +1,14 @@
+---
+- name: Verify
+  hosts: all
+  become: no
+  gather_facts: no
+
+  tasks:
+    - name: test connection
+      ansible.builtin.ping:
+
+    - name: try the package module
+      ansible.builtin.package:
+        name: gzip
+        state: present

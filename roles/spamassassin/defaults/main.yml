@@ -1,0 +1,6 @@
+---
+# defaults file for spamassassin
+
+# What group and user spamd should run under.
+spamassassin_group: spamd
+spamassassin_user: spamd

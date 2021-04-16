@@ -1,0 +1,38 @@
+---
+# defaults file for types
+
+# A list of strings.
+types_strings:
+  - "hello"
+  - "1.2.3"
+
+# A list of integers.
+types_integers:
+  - 0
+  - 1
+  - 2
+
+# A list of booleans.
+types_booleans:
+  - yes
+  - Yes
+  - YES
+  - true
+  - True
+  - TRUE
+  - no
+  - No
+  - NO
+  - false
+  - False
+  - FALSE
+
+# A list of floats.
+types_floats:
+  - 0.0
+  - 0.1
+
+# A map.
+types_map:
+  value1: something
+  value2: not-something

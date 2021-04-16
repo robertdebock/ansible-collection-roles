@@ -1,0 +1,8 @@
+---
+#
+# Ansible managed
+#
+repository:
+  description: Install and configure a certificate authority on your system.
+  homepage: https://robertdebock.nl/
+  topics: ca, certificate, authority, openssl, ansible, molecule, tox, playbook, hacktoberfest

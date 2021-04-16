@@ -1,0 +1,8 @@
+---
+# defaults file for etherpad
+
+etherpad_version: 1.7.5
+
+etherpad_installation_destination: /opt
+
+etherpad_port: 9001

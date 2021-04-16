@@ -13,9 +13,11 @@
 - name: import zabbix schema
   community.mysql.mysql_db:
     state: import
-    name: zabbix
+    name: "{{ zabbix_server_database_name }}"
     target: "{{ zabbix_documentation_directory_found.files[-1].path }}/create.sql"
-    login_unix_socket: "{{ zabbix_server_mysql_socket }}"
+    login_host: "{{ zabbix_server_database_host | default(omit) }}"
+    login_user: "{{ zabbix_server_database_user }}"
+    login_password: "{{ zabbix_server_database_password }}"
 
 - name: restart zabbix_server
   ansible.builtin.service:
@@ -23,3 +25,6 @@
     state: restarted
   when:
     - not ansible_check_mode | bool
+    - not ci
+  vars:
+    ci: "{{ lookup('env', 'CI') }}"

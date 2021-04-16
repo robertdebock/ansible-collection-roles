@@ -1,0 +1,15 @@
+---
+- name: prepare
+  hosts: all
+  become: yes
+  gather_facts: no
+
+  roles:
+    - role: robertdebock.bootstrap
+
+  tasks:
+    - name: make a fake binary
+      ansible.builtin.file:
+        path: /bin/my_fake_binary
+        state: touch
+        mode: "0755"

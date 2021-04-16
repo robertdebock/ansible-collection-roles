@@ -1,0 +1,18 @@
+---
+# defaults file for mount
+
+# The `mode`, `owner` and `group` can be set in the `mount_requests` list, but
+# when not specified, these defaults are used.
+mount_default_mode: "0750"
+mount_default_owner: root
+mount_default_group: root
+
+# You can define mounts as variables. All parameters for the `mount` module are
+# supported.
+
+# mount_requests:
+#   - path: /mnt/tmp
+#     src: /tmp
+#     opts: bind
+#     state: mounted
+#     fstype: none

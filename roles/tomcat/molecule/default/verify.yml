@@ -1,0 +1,38 @@
+---
+- name: Verify
+  hosts: all
+  become: yes
+  gather_facts: yes
+
+  vars:
+    _netcat_package:
+      default: nc
+      Alpine: netcat-openbsd
+      Debian: netcat
+      Suse: netcat-openbsd
+    netcat_package: "{{ _netcat_package[ansible_os_family] | default(_netcat_package['default']) }}"
+
+  tasks:
+    - name: install netcat
+      ansible.builtin.package:
+        name: "{{ netcat_package }}"
+        state: present
+      notify:
+        - uninstall netcat
+
+    - name: let netcat listen on port 127.0.0.2:8080
+      shell: nc --listen --keep-open 127.0.0.2 8080 &
+
+    - name: see if sensitive information is not exposed
+      ansible.builtin.uri:
+        url: "http://localhost:8080/"
+        return_content: yes
+      register: this
+      failed_when:
+        - "'successfully installed Tomcat' in this.content"
+
+  handlers:
+    - name: uninstall netcat
+      ansible.builtin.package:
+        name: "{{ netcat_package }}"
+        state: absent

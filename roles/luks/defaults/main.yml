@@ -1,0 +1,8 @@
+---
+# defaults file for luks
+
+# The state of luks devices if not mentioned specifically.
+luks_default_state: opened
+
+# A list of devices to encrypt.
+luks_devices: []

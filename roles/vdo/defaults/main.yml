@@ -1,0 +1,8 @@
+---
+# defaults file for vdo
+
+# You can make VDO devices using this list:
+# vdo_devices:
+#   - name: vdo1
+#     device: /dev/sdz1
+#     logicalsize: 1G

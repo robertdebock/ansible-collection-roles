@@ -1,0 +1,7 @@
+---
+
+# A list of devices and their settings. Supported settings at the moment:
+# - maximum_count_mount
+# tune2fs_settings:
+#   - device: /dev/mapper/system-root
+#     maximum_count_mount: 1

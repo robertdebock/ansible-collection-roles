@@ -57,9 +57,10 @@ These variables are set in `defaults/main.yml`:
 tigervnc_username: vncuser
 tigervnc_groupname: vncgroup
 
-# Connecting to tigervnc-server required a password.
+# Connecting to tigervnc-server requires a password.
 tigervnc_password: vncpass
-# Use existing user's paswword
+
+# Use existing user's vnc paswword
 tigervnc_user_exists: no
 
 # Desktop session xstartup should connect to e.g. gnome-session, mate-session
@@ -76,10 +77,10 @@ The following roles are used to prepare a system. You may choose to prepare your
 
 | Requirement | GitHub | GitLab |
 |-------------|--------|--------|
-| [robertdebock.bootstrap](https://galaxy.ansible.com/robertdebock/bootstrap) | [![Build Status GitHub](https://github.com/robertdebock/ansible-role-bootstrap/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-bootstrap/actions) | [![Build Status GitLab ](https://gitlab.com/robertdebock/ansible-role-ansible-role-bootstrap/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-bootstrap)
-| [robertdebock.core_dependencies](https://galaxy.ansible.com/robertdebock/core_dependencies) | [![Build Status GitHub](https://github.com/robertdebock/ansible-role-core_dependencies/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-core_dependencies/actions) | [![Build Status GitLab ](https://gitlab.com/robertdebock/ansible-role-ansible-role-core_dependencies/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-core_dependencies)
-| [robertdebock.gnome](https://galaxy.ansible.com/robertdebock/gnome) | [![Build Status GitHub](https://github.com/robertdebock/ansible-role-gnome/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-gnome/actions) | [![Build Status GitLab ](https://gitlab.com/robertdebock/ansible-role-ansible-role-gnome/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-gnome)
-| [robertdebock.users](https://galaxy.ansible.com/robertdebock/users) | [![Build Status GitHub](https://github.com/robertdebock/ansible-role-users/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-users/actions) | [![Build Status GitLab ](https://gitlab.com/robertdebock/ansible-role-ansible-role-users/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-users)
+|[robertdebock.bootstrap](https://galaxy.ansible.com/robertdebock/bootstrap)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-bootstrap/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-bootstrap/actions)|[![Build Status GitLab ](https://gitlab.com/robertdebock/ansible-role-bootstrap/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-bootstrap)|
+|[robertdebock.core_dependencies](https://galaxy.ansible.com/robertdebock/core_dependencies)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-core_dependencies/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-core_dependencies/actions)|[![Build Status GitLab ](https://gitlab.com/robertdebock/ansible-role-core_dependencies/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-core_dependencies)|
+|[robertdebock.gnome](https://galaxy.ansible.com/robertdebock/gnome)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-gnome/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-gnome/actions)|[![Build Status GitLab ](https://gitlab.com/robertdebock/ansible-role-gnome/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-gnome)|
+|[robertdebock.users](https://galaxy.ansible.com/robertdebock/users)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-users/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-users/actions)|[![Build Status GitLab ](https://gitlab.com/robertdebock/ansible-role-users/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-users)|
 
 ## [Context](#context)
 
@@ -94,9 +95,10 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|el|7|
-|debian|buster, bullseye|
+|debian|buster|
+|el|8|
 |fedora|all|
+|ubuntu|focal, bionic|
 
 The minimum version of Ansible required is 2.10, tests have been done to:
 
@@ -118,6 +120,7 @@ I'd like to thank everybody that made contributions to this repository. It motiv
 
 - [jellevandehaterd](https://github.com/jellevandehaterd)
 - [aindenko](https://github.com/aindenko)
+- [hunter-hunter](https://github.com/hunter-hunter)
 
 ## [Author Information](#author-information)
 

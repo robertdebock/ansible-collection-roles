@@ -1,0 +1,8 @@
+---
+#
+# Ansible managed
+#
+repository:
+  description: Install and configure tftpd on your system.
+  homepage: https://robertdebock.nl/
+  topics: tftp, tfptd, networking, system, pxe, ansible, molecule, tox, playbook, hacktoberfest

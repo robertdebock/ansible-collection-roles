@@ -1,0 +1,24 @@
+---
+# defaults file for locale
+
+# Set one locale from the output of the shell command `locale -a`.
+# A few common locales: en_US.UTF-8, nl_NL.utf8, C.utf8, POSIX
+
+locale_lang: en_US.UTF-8
+locale_language: "{{ locale_lang }}"
+locale_lc_address: "{{ locale_lang }}"
+locale_lc_all: "{{ locale_lang }}"
+locale_lc_collate: "{{ locale_lang }}"
+locale_lc_ctype: "{{ locale_lang }}"
+locale_lc_identification: "{{ locale_lang }}"
+locale_lc_measurement: "{{ locale_lang }}"
+locale_lc_messages: "{{ locale_lang }}"
+locale_lc_monetary: "{{ locale_lang }}"
+locale_lc_name: "{{ locale_lang }}"
+locale_lc_numeric: "{{ locale_lang }}"
+locale_lc_paper: "{{ locale_lang }}"
+locale_lc_response: "{{ locale_lang }}"
+locale_lc_telephone: "{{ locale_lang }}"
+locale_lc_time: "{{ locale_lang }}"
+
+locale_timezone: Europe/Amsterdam

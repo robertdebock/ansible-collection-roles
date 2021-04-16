@@ -78,3 +78,7 @@
     name: zabbix-server
     state: started
     enabled: yes
+  when:
+    - not ci
+  vars:
+    ci: "{{ lookup('env', 'CI') }}"

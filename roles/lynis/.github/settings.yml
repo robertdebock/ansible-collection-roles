@@ -1,0 +1,8 @@
+---
+#
+# Ansible managed
+#
+repository:
+  description: Install and configure lynis on your system.
+  homepage: https://robertdebock.nl/
+  topics: lynis, ansible, molecule, tox, playbook, hacktoberfest

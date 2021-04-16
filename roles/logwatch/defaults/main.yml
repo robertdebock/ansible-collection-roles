@@ -1,0 +1,16 @@
+---
+# defaults file for logwatch
+
+logwatch_mailto: root
+logwatch_mailfrom: Logwatch
+
+# The time range for the report, either "all", "today" or "yesterday".
+logwatch_range: yesterday
+
+# The detail level for the report, either "Low", "Med" or "High" or a number
+# ranging from 0 to 10.
+logwatch_detail: Low
+
+# A name of a defined service in "/usr/share/logwatch/scripts/services/" or
+# "All".
+logwatch_service: All

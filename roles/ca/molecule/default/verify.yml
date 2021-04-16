@@ -1,0 +1,29 @@
+---
+- name: Verify
+  hosts: all
+  become: yes
+  gather_facts: yes
+
+  roles:
+    - role: ansible-role-ca
+      ca_openssl_path: /ca
+      ca_common_name: example.com
+      ca_requests:
+        - "{{ ansible_fqdn }}"
+        - name: my_ca.example.com
+          passphrase: WoNtT3L1
+          cipher: aes256
+          country_name: NL
+          email_address: robert@meinit.nl
+          organization_name: Some Corporation
+          organizational_unit_name: Department X
+
+  post_tasks:
+    - name: check if key exists
+      ansible.builtin.stat:
+        path: "{{ item }}"
+      loop:
+        - /ca/example.com/certs/my_ca.example.com.crt
+      register: ca_check_key
+      failed_when:
+        - not ca_check_key.stat.exists

@@ -15,3 +15,4 @@ roles:
   - name: robertdebock.zabbix_server
 collections:
   - name: community.zabbix
+  - name: ansible.posix

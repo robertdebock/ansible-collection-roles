@@ -1,0 +1,29 @@
+---
+- name: Verify
+  hosts: all
+  become: yes
+  gather_facts: yes
+
+  roles:
+    - robertdebock.core_dependencies
+
+  tasks:
+    - name: connect to rundeck
+      block:
+        - name: connect to http://{{ ansible_default_ipv4.address }}:4440
+          ansible.builtin.uri:
+            url: "http://{{ ansible_default_ipv4.address }}:4440/user/login"
+            method: GET
+          register: rundeck_connect
+          until:
+            - rundeck_connect is succeeded
+          retries: 3
+      rescue:
+        - name: connect to http://locahost:4440
+          ansible.builtin.uri:
+            url: "http://localhost:4440/user/login"
+            method: GET
+          register: rundeck_connect
+          until:
+            - rundeck_connect is succeeded
+          retries: 3

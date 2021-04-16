@@ -1,0 +1,47 @@
+---
+# defaults file for storage
+
+storage_default_fstype: ext4
+
+# storage_partitions:
+#   - name: /dev/sdb
+#     number: 1
+#     part_end: 4GiB
+#   - name: /dev/sdb
+#     number: 2
+#     flags:
+#       - lvm
+#     part_start: 4GiB
+#     part_end: 8GiB
+
+# The `size` is the physical extend size.
+# storage_volumegroups:
+#   - name: group1
+#     devices:
+#       - /dev/sdb2
+#     size: 8
+#   - name: group2
+#     devices:
+#       - /dev/sdb2
+#     size: 128M
+
+# Sizes in megabytes.
+# storage_volumes:
+#   - name: var1
+#     vg: group1
+#     size: 16
+
+# storage_filesystems:
+#   - name: /dev/group1/var
+#     filesystem: ext4
+
+# storage_mounts:
+#   - name: /var
+#     src: /dev/group1/var1
+#     owner: root
+#     group: root
+#     mode: "0755"
+#     opts: defaults
+#     boot: yes
+#     dump: 0
+#     passno: 2

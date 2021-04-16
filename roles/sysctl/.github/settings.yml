@@ -1,0 +1,8 @@
+---
+#
+# Ansible managed
+#
+repository:
+  description: Configure sysctl on your system.
+  homepage: https://robertdebock.nl/
+  topics: sysctl, ansible, molecule, tox, playbook, hacktoberfest

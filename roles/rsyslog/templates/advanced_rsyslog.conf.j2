@@ -2,7 +2,7 @@
 # rsyslog configuration file
 
 # For more information see /usr/share/doc/rsyslog-*/rsyslog_conf.html
-# or latest version online at http://www.rsyslog.com/doc/rsyslog_conf.html 
+# or latest version online at http://www.rsyslog.com/doc/rsyslog_conf.html
 # If you experience problems, see http://www.rsyslog.com/doc/troubleshoot.html
 
 #### GLOBAL DIRECTIVES ####
@@ -76,7 +76,7 @@ local7.*                                                /var/log/boot.log
 
 {% if rsyslog_remote is defined %}
 # ### sample forwarding rule ###
-action(type="omfwd"  
+action(type="omfwd"
 # # An on-disk queue is created for this action. If the remote host is
 # # down, messages are spooled to disk and sent when it is up again.
 #queue.filename="fwdRule1"       # unique name prefix for spool files

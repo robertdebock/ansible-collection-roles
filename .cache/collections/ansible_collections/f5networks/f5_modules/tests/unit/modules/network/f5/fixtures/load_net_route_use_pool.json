@@ -1,0 +1,14 @@
+{
+  "kind": "tm:net:route:routestate",
+  "name": "sddfg",
+  "partition": "Common",
+  "fullPath": "/Common/sddfg",
+  "generation": 90,
+  "selfLink": "https://localhost/mgmt/tm/net/route/~Common~sddfg?ver=12.1.0",
+  "mtu": 0,
+  "network": "11.11.11.0/30",
+  "pool": "/Common/adsasd",
+  "poolReference": {
+    "link": "https://localhost/mgmt/tm/ltm/pool/~Common~adsasd?ver=12.1.0"
+  }
+}

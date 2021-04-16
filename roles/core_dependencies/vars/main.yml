@@ -32,7 +32,7 @@ _core_dependencies_packages:
   Debian:
     - apt-transport-https
     - debconf
-    - debconf-utils
+    - debconf-i18n
     - iproute2
     - passwd
     - python3-apt

@@ -1,0 +1,8 @@
+---
+#
+# Ansible managed
+#
+repository:
+  description: Install and configure virtualbox on your system.
+  homepage: https://robertdebock.nl/
+  topics: virtualbox, ansible, molecule, tox, playbook, hacktoberfest

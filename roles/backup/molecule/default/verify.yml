@@ -1,0 +1,24 @@
+---
+- name: Verify
+  hosts: all
+  become: yes
+  gather_facts: yes
+
+  roles:
+    - role: ansible-role-backup
+      backup_directory: backups
+      backup_remote_directory: /data
+      backup_cleanup: yes
+      backup_timestamp: "{{ ansible_date_time.date }}"
+      backup_format: gz
+      backup_objects:
+        - name: home
+          type: directory
+          source: /home
+        - name: test_db
+          type: mysql
+          source: test_db
+          format: zip
+        - name: test_db
+          type: postgres
+          source: test_db

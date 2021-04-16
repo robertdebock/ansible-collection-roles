@@ -1,0 +1,23 @@
+{
+    "kind": "tm:ltm:data-group:internal:internalstate",
+    "name": "images",
+    "partition": "Common",
+    "fullPath": "/Common/images",
+    "generation": 1,
+    "selfLink": "https://localhost/mgmt/tm/ltm/data-group/internal/~Common~images?ver=13.1.0",
+    "type": "string",
+    "records": [
+        {
+            "name": ".bmp",
+            "data": ""
+        },
+        {
+            "name": ".gif",
+            "data": ""
+        },
+        {
+            "name": ".jpg",
+            "data": ""
+        }
+    ]
+}

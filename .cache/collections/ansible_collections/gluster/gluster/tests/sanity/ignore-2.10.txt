@@ -1,0 +1,4 @@
+plugins/modules/gluster_peer.py validate-modules:doc-required-mismatch
+plugins/modules/gluster_peer.py validate-modules:parameter-list-no-elements
+plugins/modules/gluster_volume.py validate-modules:parameter-list-no-elements
+plugins/modules/gluster_heal_info.py pylint:ansible-deprecated-no-collection-name

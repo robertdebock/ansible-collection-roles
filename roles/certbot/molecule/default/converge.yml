@@ -1,0 +1,12 @@
+---
+- name: converge
+  hosts: all
+  become: yes
+  gather_facts: yes
+
+  roles:
+    - role: ansible-role-certbot
+      certbot_email: robert@meinit.nl
+      certbot_domains:
+        - meinit.nl
+      certbot_ci_mode: yes

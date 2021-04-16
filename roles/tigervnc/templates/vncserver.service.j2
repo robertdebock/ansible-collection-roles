@@ -1,4 +1,5 @@
 {{ ansible_managed | comment }}
+
 [Unit]
 Description=Remote desktop service (VNC)
 After=syslog.target network.target
@@ -6,10 +7,10 @@ After=syslog.target network.target
 [Service]
 Type=forking
 User={{ tigervnc_username }}
-ExecStartPre=/bin/sh -c '{{ tigervnc_binary }} -kill %i > /dev/null 2>&1 || :'
-ExecStart={{ tigervnc_binary }} %i
-ExecStop=/bin/sh -c '{{ tigervnc_binary }} -kill %i > /dev/null 2>&1 || :'
-
+Group={{ tigervnc_groupname }}
+ExecStartPre=-/usr/bin/vncserver -kill %i
+ExecStart=/usr/bin/vncserver %i -localhost no
+ExecStop=/usr/bin/vncserver -kill %i
 
 [Install]
 WantedBy=multi-user.target

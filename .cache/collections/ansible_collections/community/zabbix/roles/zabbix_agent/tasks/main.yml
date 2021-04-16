@@ -1,0 +1,111 @@
+---
+# tasks file for dj-wasabi.zabbix-agent
+
+- name: "Set variables specific for Zabbix Agent 2"
+  set_fact:
+    zabbix_agent_service: zabbix-agent2
+    zabbix_agent_package: zabbix-agent2
+  when:
+    - zabbix_agent2 is defined
+    - zabbix_agent2
+  tags:
+    - always
+
+- name: "Fix facts for linuxmint - distribution release"
+  set_fact:
+    zabbix_agent_distribution_release: xenial
+  when:
+    - ansible_os_family == "Linuxmint"
+    - ansible_distribution_release == "sonya" or ansible_distribution_release == "serena"
+  tags:
+    - always
+
+- name: "Fix facts for linuxmint - family"
+  set_fact:
+    zabbix_agent_os_family: Debian
+  when:
+    - ansible_os_family == "Linuxmint"
+  tags:
+    - always
+
+- name: "Fix facts for XCP-ng - family"
+  set_fact:
+    zabbix_agent_os_family: RedHat
+  when:
+    - ansible_os_family == "XCP-ng"
+
+- name: "Include OS-specific variables"
+  include_vars: "{{ zabbix_agent_os_family }}.yml"
+  tags:
+    - always
+
+- name: "Install the correct repository"
+  include_tasks: "{{ zabbix_agent_os_family if (zabbix_agent_os_family not in ['Sangoma']) else 'RedHat' }}.yml"
+  when:
+    - not (zabbix_agent_docker | bool)
+  tags:
+    - always
+
+- name: "Install local python-netaddr package"
+  pip:
+    name: netaddr
+    state: present
+  register: zabbix_python_netaddr_package_installed
+  until: zabbix_python_netaddr_package_installed is succeeded
+  delegate_to: localhost
+  run_once: True
+  become: "{{ zabbix_agent_become_on_localhost }}"
+  when:
+    - zabbix_install_pip_packages | bool
+    - ansible_all_ipv4_addresses is defined or (zabbix_agent_ip is not defined and total_private_ip_addresses is defined)
+
+- name: "Encrypt with TLS PSK auto management"
+  include_tasks: tlspsk_auto.yml
+  when:
+    - not zabbix_agent2
+    - zabbix_agent_tlspsk_auto | bool
+    - (zabbix_agent_tlspskfile is undefined) or (zabbix_agent_tlspskfile | length == '0')
+    - (zabbix_agent_tlspsk_secret is undefined) or (zabbix_agent_tlspsk_secret | length == '0')
+
+- name: "Encrypt with TLS PSK auto management"
+  include_tasks: tlspsk_auto_agent2.yml
+  when:
+    - zabbix_agent2 | bool
+    - zabbix_agent2_tlspsk_auto | bool
+    - (zabbix_agent2_tlspskfile is undefined) or (zabbix_agent2_tlspskfile | length == '0')
+    - (zabbix_agent2_tlspsk_secret is undefined) or (zabbix_agent2_tlspsk_secret | length == '0')
+
+- name: "Install the correct repository"
+  include_tasks: Windows.yml
+  when:
+    - zabbix_agent_os_family == "Windows"
+  tags:
+    - always
+
+- name: "Install the correct repository"
+  include_tasks: Linux.yml
+  when:
+    - (zabbix_agent_os_family != "Windows" and zabbix_agent_os_family != "Darwin") or (zabbix_agent_docker | bool)
+  tags:
+    - always
+
+- name: "Install the correct repository"
+  include_tasks: macOS.yml
+  when:
+    - zabbix_agent_os_family == "Darwin"
+  tags:
+    - always
+
+- name: "Run the API calls to Zabbix Server"
+  include_tasks: api.yml
+  when:
+    - (zabbix_api_create_hostgroup | bool) or (zabbix_api_create_hosts | bool)
+  tags:
+    - api
+
+- name: "Including userparameters"
+  include_tasks: "userparameter.yml"
+  when: zabbix_agent_userparameters|length > 0
+  tags:
+    - zabbix-agent
+    - userparameter

@@ -1,0 +1,3 @@
+---
+bugfixes:
+  - synchronize - fix for private_key overriding in synchronize module.

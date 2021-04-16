@@ -1,0 +1,8 @@
+---
+#
+# Ansible managed
+#
+repository:
+  description: Save laptop battery power using TLP
+  homepage: https://robertdebock.nl/
+  topics: tlp, ansible, molecule, tox, playbook, hacktoberfest

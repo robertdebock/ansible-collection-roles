@@ -1,18 +1,25 @@
-#!/bin/sh -x
+#!/bin/sh
 
-directories="default files handlers meta tasks templates vars"
-files="README.md requirements.yml"
+# Copy all roles.
+for role in ../ansible-role-* ; do
+  short=$(echo ${role} | cut -d\- -f3)
+  if [ ! -d roles/${short} ] ; then
+    echo "Copying ${role} to roles/${short}."
+    cp -Rip "${role}" "roles/${short}"
+  fi
+done
 
-for role in /home/robertdb/Documents/github.com/robertdebock/ansible-role-* ; do
-  for directory in ${directories} ; do
-    if [ -d ${role}/${directory} ] ; then
-      mkdir -p $(basename ${role} | cut -d- -f3)/${directory}
-      cp -r ${role}/${directory}/* $(basename ${role} | cut -d- -f3)/${directory}/
-    fi
-  done
-  for file in ${files} ; do
-    if [ -f ${role}/${file} ] ; then
-      cp ${role}/${file} $(basename ${role} | cut -d- -f3)/${file}
+# Clean-up the copied roles.
+ls -d roles/* | while read short ; do
+  for object in .git .cache .tox .DS_Store ; do
+    if [ -d ./${short}/${object} ] ; then
+      echo "Removing roles/${short}/${object}."
+      rm -Rf "roles/${short}/${object}"
     fi
   done
 done
+
+# Regenerate all used collections.
+echo "---" > requirements.yml
+echo "collections:" >> requirements.yml
+cat roles/*/requirements.yml | grep '  - name: ' | grep -v robertdebock | sort | uniq >> requirements.yml

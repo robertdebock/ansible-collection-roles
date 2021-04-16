@@ -1,0 +1,42 @@
+---
+# defaults file for postgres
+
+postgres_port: 5432
+postgres_listen_addresses: 127.0.0.1
+postgres_unix_socket_directories: "{{ postgres_socket_directory }}"
+postgres_max_wal_size: 1GB
+postgres_min_wal_size: 80MB
+postgres_log_timezone: UTC
+postgres_datestyle: iso, ymd
+postgres_timezone: UTC
+postgres_default_text_search_config: pg_catalog.english
+
+postgres_hba_entries:
+  - type: local
+    database: all
+    user: all
+    method: peer
+  - type: host
+    database: all
+    user: all
+    address: 127.0.0.1/32
+    method: ident
+  - type: host
+    database: all
+    user: all
+    address: ::1/128
+    method: ident
+  - type: local
+    database: replication
+    user: all
+    method: peer
+  - type: host
+    database: replication
+    user: all
+    address: 127.0.0.1/32
+    method: ident
+  - type: host
+    database: replication
+    user: all
+    address: ::1/128
+    method: ident

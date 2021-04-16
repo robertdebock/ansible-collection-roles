@@ -1,6 +1,7 @@
 ---
 galaxy_info:
   author: Robert de Bock
+  namespace: robertdebock
   role_name: tune2fs
   description: tune ext3 and ext4 filesystems using tune2fs.
   license: Apache-2.0

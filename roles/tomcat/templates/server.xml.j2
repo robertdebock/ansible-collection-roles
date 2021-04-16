@@ -20,7 +20,7 @@
      define subcomponents such as "Valves" at this level.
      Documentation at /docs/config/server.html
  -->
-<Server port="{{ instance.shutdown_port | default(tomcat_shutdown_port) }}" shutdown="SHUTDOWN">
+<Server port="{{ instance.shutdown_port | default(tomcat_shutdown_port) }}" shutdown="{{ instance.shutdown_pass | default(tomcat_shutdown_pass) }}">
   <Listener className="org.apache.catalina.startup.VersionLoggerListener" />
   <!-- Security listener. Documentation at /docs/config/listeners.html
   <Listener className="org.apache.catalina.security.SecurityListener" />
@@ -124,6 +124,9 @@
               secret="{{ instance.ajp_secret }}"
 {% else %}
               secretRequired="false"
+{% endif %}
+{% if instance.packet_size is defined %}
+	      packetSize="{{ instance.packet_size }}"
 {% endif %}
     />
 

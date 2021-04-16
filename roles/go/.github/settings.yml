@@ -1,0 +1,8 @@
+---
+#
+# Ansible managed
+#
+repository:
+  description: Install go on your system.
+  homepage: https://robertdebock.nl/
+  topics: go, ansible, molecule, tox, playbook, hacktoberfest

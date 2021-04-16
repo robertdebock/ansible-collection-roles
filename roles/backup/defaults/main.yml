@@ -1,0 +1,22 @@
+---
+# defaults file for backup
+
+# The directory on the Ansible controller where to store backups.
+backup_directory: backups
+
+# The directory on the Ansible managed node where to temporarily store backups.
+backup_remote_directory: /tmp
+
+# Cleanup files created on the {{ backup_remote_directory }} when done?
+backup_cleanup: yes
+
+# What timestamp format to use when saving files.
+backup_timestamp: "{{ ansible_date_time.date }}"
+
+# What compression type to use, choose from gz, tgz, zip, bz2
+backup_format: tgz
+
+backup_objects:
+  - name: varspool
+    type: directory
+    source: /var/spool

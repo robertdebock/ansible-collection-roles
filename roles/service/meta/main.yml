@@ -1,6 +1,7 @@
 ---
 galaxy_info:
   author: Robert de Bock
+  namespace: robertdebock
   role_name: service
   description: Add custom services to your Linux system.
   license: Apache-2.0

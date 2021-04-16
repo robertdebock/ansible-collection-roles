@@ -1,0 +1,16 @@
+---
+# defaults file for glusterfs
+
+# A list of bricks and their properties.
+# glusterfs_bricks:
+#   - name: brick1
+#     device: /dev/vdb
+#     mountpoint: /data/brick1
+
+# A list of volumes and their properties.
+# glusterfs_volumes:
+#   - name: gv0
+#     bricks: /data/brick1/gv0
+#     replicas: 3
+#     mountpoint: /mnt/gv0
+#     rebalance: no

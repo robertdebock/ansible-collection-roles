@@ -1,0 +1,33 @@
+{
+  "kind": "tm:net:interface:interfacestate",
+  "name": "1.1",
+  "fullPath": "1.1",
+  "generation": 1710,
+  "selfLink": "https://localhost/mgmt/tm/net/interface/1.1?ver=13.1.1.4",
+  "bundle": "not-supported",
+  "bundleSpeed": "not-supported",
+  "enabled": true,
+  "flowControl": "tx-rx",
+  "forceGigabitFiber": "disabled",
+  "forwardErrorCorrection": "not-supported",
+  "ifIndex": 48,
+  "lldpAdmin": "txonly",
+  "lldpTlvmap": 114680,
+  "macAddress": "fa:16:3e:7d:29:78",
+  "mediaActive": "none",
+  "mediaFixed": "10000T-FD",
+  "mediaMax": "auto",
+  "mediaSfp": "auto",
+  "mtu": 9198,
+  "portFwdMode": "l3",
+  "preferPort": "sfp",
+  "qinqEthertype": "0x8100",
+  "sflow": {
+    "pollInterval": 0,
+    "pollIntervalGlobal": "no"
+  },
+  "stp": "enabled",
+  "stpAutoEdgePort": "enabled",
+  "stpEdgePort": "true",
+  "stpLinkType": "auto"
+}

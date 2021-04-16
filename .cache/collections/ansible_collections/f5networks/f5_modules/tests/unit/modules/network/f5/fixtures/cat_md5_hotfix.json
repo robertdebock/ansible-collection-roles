@@ -1,0 +1,6 @@
+{
+  "kind": "tm:util:bash:runstate",
+  "command": "run",
+  "utilCmdArgs": "-c 'cat /shared/images/Hotfix-12.1.2.1.0.271-HF1.iso.md5'",
+  "commandResult": "0389775fabf7b42f12ceceac64f3b84d  Hotfix-12.1.2.1.0.271-HF1.iso\n"
+}

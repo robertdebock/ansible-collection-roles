@@ -1,0 +1,25 @@
+{
+  "kind": "tm:ltm:profile:ftp:ftpstate",
+  "name": "foo",
+  "partition": "Common",
+  "fullPath": "/Common/foo",
+  "generation": 986,
+  "selfLink": "https://localhost/mgmt/tm/ltm/profile/ftp/~Common~foo?ver=12.1.4",
+  "allowFtps": "enabled",
+  "defaultsFrom": "/Common/ftp",
+  "defaultsFromReference": {
+    "link": "https://localhost/mgmt/tm/ltm/profile/ftp/~Common~ftp?ver=12.1.4"
+  },
+  "inheritParentProfile": "enabled",
+  "logProfile": "/Common/alg_log_profile",
+  "logProfileReference": {
+    "link": "https://localhost/mgmt/tm/ltm/alg-log-profile/~Common~alg_log_profile?ver=12.1.4"
+  },
+  "logPublisher": "/Common/default-ipsec-log-publisher",
+  "logPublisherReference": {
+    "link": "https://localhost/mgmt/tm/sys/log-config/publisher/~Common~default-ipsec-log-publisher?ver=12.1.4"
+  },
+  "port": 20,
+  "security": "enabled",
+  "translateExtended": "enabled"
+}

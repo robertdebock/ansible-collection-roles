@@ -1,0 +1,12 @@
+---
+- name: Converge
+  hosts: all
+  become: yes
+  gather_facts: yes
+
+  roles:
+    - role: ansible-role-sudo-pair
+      sudo_pair_gids_exempted:
+        - 123
+      sudo_pair_gids_enforced:
+        - 321

@@ -1,0 +1,8 @@
+---
+#
+# Ansible managed
+#
+repository:
+  description: Install and configure auditd on your system.
+  homepage: https://robertdebock.nl/
+  topics: auditd, ansible, molecule, tox, playbook, hacktoberfest

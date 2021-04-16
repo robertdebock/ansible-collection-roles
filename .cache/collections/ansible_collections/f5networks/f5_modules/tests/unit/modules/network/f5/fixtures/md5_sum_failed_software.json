@@ -1,0 +1,6 @@
+{
+  "kind": "tm:util:bash:runstate",
+  "command": "run",
+  "utilCmdArgs": "-c 'cd /shared/images; md5sum -c /shared/images/BIGIP-12.1.2.0.0.249.iso.md5'",
+  "commandResult": "BIGIP-12.1.2.0.0.249.iso: FAILED open or read\nmd5sum: BIGIP-12.1.2.0.0.249.iso: No such file or directory\nmd5sum: WARNING: 1 of 1 listed file could not be read\n"
+}

@@ -1,0 +1,33 @@
+---
+- name: 1.3.1 Ensure sudo is installed (Scored)
+  command: rpm -q sudo
+  args:
+    warn: no
+  when:
+    - cis_sudo_installed | bool
+
+- name: 1.3.2 Ensure sudo commands use pty (Scored)
+  lineinfile:
+    path: /etc/sudoers.d/use_pty.conf
+    line: 'Defaults use_pty'
+    state: present
+  check_mode: yes
+  register: cis_sudo_use_pty
+
+- name: 1.3.2 Ensure sudo commands use pty (Scored)
+  assert:
+    that:
+      - cis_sudo_use_pty is not changed
+
+- name: 1.3.3 Ensure sudo log file exists (Scored)
+  lineinfile:
+    path: /etc/sudoers.d/logfile.conf
+    line: 'Defaults logfile="/var/log/sudo.log"'
+    state: present
+  check_mode: yes
+  register: cis_sudo_logfile
+
+- name: 1.3.3 Ensure sudo log file exists (Scored)
+  assert:
+    that:
+      - cis_sudo_logfile is not changed

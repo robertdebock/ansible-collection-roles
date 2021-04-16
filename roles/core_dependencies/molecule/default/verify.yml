@@ -1,0 +1,16 @@
+---
+- name: Verify
+  hosts: all
+  become: yes
+  gather_facts: yes
+
+  tasks:
+    - name: compress /tmp
+      archive:
+        path: /tmp
+        dest: tmp.tgz
+
+    - name: check network facts
+      ansible.builtin.assert:
+        that:
+          - ansible_default_ipv4.broadcast is defined

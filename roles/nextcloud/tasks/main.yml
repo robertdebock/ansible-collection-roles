@@ -79,3 +79,11 @@
     label: "{{ item.name }}"
   when:
     - nextcloud_settings is defined
+
+- name: setup crontab
+  ansible.builtin.cron:
+    name: nextcloud
+    minute: "*/5"
+    hour: "*"
+    job: "php {{ nextcloud_destination }}/nextcloud/occ system:cron"
+    user: "{{ nextcloud_httpd_owner }}"

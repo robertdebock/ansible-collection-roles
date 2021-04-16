@@ -1,0 +1,76 @@
+---
+- name: 1.6.1 Ensure core dumps are restricted (Scored)
+  find:
+    paths: /etc/security/limits.d
+  register: cis_core_dumps_restricted_files
+  when:
+    - cis_core_dumps_restricted
+
+- name: 1.6.1 Ensure core dumps are restricted (Scored)
+  command: grep -E "^\s*\*\s+hard\s+core" {{ item.path | default(item) }}
+  failed_when: no
+  register: cis_core_dumps_restricted_test_one
+  loop: "{{ cis_core_dumps_restricted_files.files + [ '/etc/security/limits.conf' ] }}"
+  loop_control:
+    label: "{{ item.path }}"
+  when:
+    - cis_core_dumps_restricted
+
+- name: 1.6.1 Ensure core dumps are restricted (Scored)
+  assert:
+    that:
+      - item.stdout == "* hard core 0"
+    quiet: yes
+  loop: "{{ cis_core_dumps_restricted_test_one.results }}"
+  loop_control:
+    label: "{{ item.cmd }}"
+  when:
+    - not item.failed | bool
+
+- name: 1.6.1 Ensure core dumps are restricted (Scored)
+  sysctl:
+    name: fs.suid_dumpable
+    value: "0"
+  register: cis_core_dumps_restricted_test_two
+  check_mode: yes
+  when:
+    - cis_core_dumps_restricted
+
+- name: 1.6.1 Ensure core dumps are restricted (Scored)
+  assert:
+    that:
+      - cis_core_dumps_restricted_test_two is not changed
+    quiet: yes
+  when:
+    - cis_core_dumps_restricted
+
+- name: 1.6.1 Ensure core dumps are restricted (Scored)
+  sysctl:
+    name: fs.suid_dumpable
+    value: "0"
+  check_mode: yes
+  register: cis_core_dumps_restricted_test_three
+  when:
+    - cis_core_dumps_restricted
+
+- name: 1.6.1 Ensure core dumps are restricted (Scored)
+  assert:
+    that:
+      - cis_core_dumps_restricted_test_three is not changed
+    quiet: yes
+  when:
+    - cis_core_dumps_restricted
+
+- name: 1.6.2 Ensure address space layout randomization (ASLR) is enabled (Scored)
+  command: sysctl kernel.randomize_va_space
+  register: cis_aslr_enabled_test
+  when:
+    - cis_aslr_enabled
+
+- name: 1.6.2 Ensure address space layout randomization (ASLR) is enabled (Scored)
+  assert:
+    that:
+      - cis_aslr_enabled_test.stdout == "kernel.randomize_va_space = 2"
+    quiet: yes
+  when:
+    - cis_aslr_enabled

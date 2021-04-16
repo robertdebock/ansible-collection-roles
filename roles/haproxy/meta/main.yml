@@ -1,6 +1,7 @@
 ---
 galaxy_info:
   author: Robert de Bock
+  namespace: robertdebock
   role_name: haproxy
   description: Install and configure haproxy on your system.
   license: Apache-2.0

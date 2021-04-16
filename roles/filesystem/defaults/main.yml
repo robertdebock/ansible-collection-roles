@@ -1,0 +1,18 @@
+---
+# defaults file for filesystem
+
+# If not specified in the `filesystem_list`, use this filesytem type.
+filesytem_default_filesystem: ext4
+
+# A list of filesytems to manage.
+filesystem_list: []
+
+# For example:
+# filesystem_list:
+#   - dev: /dev/sdb1
+#     fstype: ext4
+#   - dev: /dev/sdb2
+#     fstype: ext3
+#     opts: -cc
+#   - dev: /dev/sdb3
+#     state: absent

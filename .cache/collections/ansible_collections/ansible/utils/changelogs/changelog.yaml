@@ -1,0 +1,87 @@
+ancestor: null
+releases:
+  1.0.0:
+    changes:
+      bugfixes:
+      - linting and formatting for CI
+      minor_changes:
+      - Add cli_parse module and plugins (https://github.com/ansible-collections/ansible.utils/pull/28)
+      - Added fact_diff plugin and sub plugin
+      - Added validate module/lookup/filter/test plugin to validate data based on
+        given criteria
+    fragments:
+    - 23 linting and formatting.yaml
+    - 28_cli_parse_plugins_add.yaml
+    - 29-add_docs_for_Cli_parse.yaml
+    - add_fact_diff.yaml
+    - docs_copyedit.yaml
+    - validate.yaml
+    modules:
+    - description: Parse cli output or text using a variety of parsers
+      name: cli_parse
+      namespace: ''
+    - description: Find the difference between currently set facts
+      name: fact_diff
+      namespace: ''
+    - description: Update currently set facts
+      name: update_fact
+      namespace: ''
+    - description: Validate data with provided criteria
+      name: validate
+      namespace: ''
+    plugins:
+      lookup:
+      - description: Retrieve the value in a variable using a path
+        name: get_path
+        namespace: null
+      - description: Find the indices of items in a list matching some criteria
+        name: index_of
+        namespace: null
+      - description: Flatten a complex object into a dictionary of paths and values
+        name: to_paths
+        namespace: null
+      - description: Validate data with provided criteria
+        name: validate
+        namespace: null
+    release_date: '2020-12-08'
+  1.0.1:
+    changes:
+      minor_changes:
+      - Move CHANGELOG.rst file under changelogs folder as required
+    fragments:
+    - fix_changelog_file_location.yaml
+    release_date: '2020-12-08'
+  2.0.0:
+    changes:
+      breaking_changes:
+      - If added custom sub plugins in your collection move from old location `plugins/<sub-plugin-name>`
+        to the new location `plugins/sub_plugins/<sub-plugin-name>` and update the
+        imports as required
+      - Move sub plugins cli_parsers, fact_diff and validate to `plugins/sub_plugins`
+        folder
+      - The `cli_parsers` sub plugins folder name is changed to `cli_parse` to have
+        consistent naming convention, that is all the cli_parse subplugins will now
+        be in `plugins/sub_plugins/cli_parse` folder
+    fragments:
+    - 32_doc_updates.yaml
+    - sub_plugins_dir_change.yaml
+    - upcap_ansible.yaml
+    release_date: '2021-01-29'
+  2.0.1:
+    changes:
+      bugfixes:
+      - Fix ansible.utils.cli_parse action plugin to support old cli_parse sub-plugin
+        structure in ansible.netcommon collection.
+    fragments:
+    - ansible-doc.yaml
+    - cli_parse_fix.yaml
+    release_date: '2021-02-25'
+  2.0.2:
+    changes:
+      bugfixes:
+      - Fix cli_parse template_path read error (https://github.com/ansible-collections/ansible.utils/pull/51).
+      - Fix jsonschema input data format checking (https://github.com/ansible-collections/ansible.utils/pull/50).
+    fragments:
+    - cli_parse_errors_return.yaml
+    - jsonschema_data_validation_fix.yaml
+    release_date: '2021-03-29'

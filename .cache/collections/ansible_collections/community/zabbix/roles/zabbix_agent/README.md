@@ -1,0 +1,1 @@
+../../docs/ZABBIX_AGENT_ROLE.md

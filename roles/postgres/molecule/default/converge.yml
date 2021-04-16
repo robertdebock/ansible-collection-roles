@@ -1,0 +1,9 @@
+---
+- name: converge
+  hosts: all
+  become: yes
+  gather_facts: yes
+
+  roles:
+    - role: ansible-role-postgres
+      postgres_port: 6543

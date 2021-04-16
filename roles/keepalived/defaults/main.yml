@@ -1,0 +1,33 @@
+---
+# defaults file for keepalived
+
+# By default, there is not configuration, because there is no "sane default" to
+# set. You'll have to set it yourself. Here are a few hints.
+#
+# Have a look in `molecule/default/converge.yml` for an example.
+# You do not need to set the state to `MASTER`, all nodes can also be set to
+# `BACKUP`, in which case a random host will be selected to configure the
+# virtual IP. Setting `state` to `MASTER` only initially sets that host to be
+# the master. Over time, other nodes will likely become master.
+#
+# You can see the configure virtual IP using `ip addr list eth0`.
+
+# keepalived_vrrp_instances:
+#   # `name` defines an individual instance of the VRRP protocol running on an interface.
+#   - name: VI_1
+#   # `state` defines the initial state that the instance should start in.
+#     state: MASTER
+#   # `interface` defines the interface that VRRP runs on.
+#     interface: eth0
+#   # `virtual_router_id` is the unique identifier.
+#     virtual_router_id: 51
+#   # `priority` is the advertised priority.
+#     priority: 255
+#   # `authentication` specifies the information necessary for servers participating in VRRP to authenticate with each other.
+#     authentication:
+#       auth_type: PASS
+#       auth_pass: 12345
+#   # `virtual_ipaddress` defines the IP addresses (there can be multiple) that VRRP is responsible for.
+#     virtual_ipaddresses:
+#       - name: 192.168.122.200
+#         cidr: 24

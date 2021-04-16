@@ -20,6 +20,10 @@
     owner: root
     group: root
     mode: "0755"
+  register: moodle_download_and_unpack
+  until:
+    - moodle_download_and_unpack is succeeded
+  retries: 3
 
 - name: make directory
   ansible.builtin.file:

@@ -21,6 +21,19 @@
   notify:
     - restart httpd
 
+- name: set selinux settings for zabbix_web
+  ansible.posix.seboolean:
+    name: "{{ item }}"
+    state: yes
+    persistent: yes
+  loop:
+    - httpd_can_network_connect
+    - httpd_can_network_connect_db
+    - httpd_can_connect_zabbix
+  when:
+    - ansible_selinux.status is defined
+    - ansible_selinux.status == "enabled"
+
 - name: flush handlers
   ansible.builtin.meta: flush_handlers
 

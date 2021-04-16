@@ -1,0 +1,8 @@
+---
+#
+# Ansible managed
+#
+repository:
+  description: Trust microsofts gpg keys
+  homepage: https://robertdebock.nl/
+  topics: microsoftrepositorykeys, ansible, molecule, tox, playbook, hacktoberfest

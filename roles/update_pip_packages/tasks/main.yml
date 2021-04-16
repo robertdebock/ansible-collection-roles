@@ -1,0 +1,47 @@
+---
+# tasks file for update_pip_packages
+
+- name: include assert.yml
+  import_tasks: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+- name: check if pip is used
+  block:
+    - name: which pip
+      ansible.builtin.command: which pip
+      changed_when: no
+      register: update_pip_packages_pip
+  rescue:
+    - name: no pip
+      ansible.builtin.debug:
+        msg: "There is no pip."
+
+- name: check if pip3 is used
+  block:
+    - name: which pip3
+      command: which pip3
+      changed_when: no
+      register: update_pip_packages_pip3
+  rescue:
+    - name: no pip3
+      ansible.builtin.debug:
+        msg: "There is no pip3."
+
+- name: add pip to list
+  ansible.builtin.set_fact:
+    update_pip_packages_clients: "{{ update_pip_packages_clients + [ update_pip_packages_pip.stdout ] }}"
+  when:
+    - update_pip_packages_pip is succeeded
+
+- name: add pip3 to list
+  ansible.builtin.set_fact:
+    update_pip_packages_clients: "{{ update_pip_packages_clients + [ update_pip_packages_pip3.stdout ] }}"
+  when:
+    - update_pip_packages_pip3 is succeeded
+
+- name: include client.yml
+  ansible.builtin.include: client.yml
+  loop: "{{ update_pip_packages_clients }}"
+  loop_control:
+    loop_var: client

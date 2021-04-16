@@ -1,0 +1,13 @@
+---
+- name: Converge
+  hosts: all
+  become: yes
+  gather_facts: yes
+
+  roles:
+    - role: ansible-role-grub
+      grub_options:
+        - option: cgroup_enable
+          value: memory
+        - option: systemd.unified_cgroup_hierarchy
+          value: 0

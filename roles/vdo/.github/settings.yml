@@ -1,0 +1,8 @@
+---
+#
+# Ansible managed
+#
+repository:
+  description: Configure VDO devices.
+  homepage: https://robertdebock.nl/
+  topics: vdo, ansible, molecule, tox, playbook, hacktoberfest

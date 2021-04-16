@@ -1,0 +1,3 @@
+---
+- name: include initial_setup.yml
+  include: initial_setup.yml

@@ -7,7 +7,7 @@
   delegate_to: localhost
 
 - name: set hostname
-  f5networks.f5_modules.hostname:
+  f5networks.f5_modules.bigip_hostname:
     hostname: "{{ f5_ltm_hostname }}"
     provider: "{{ f5_ltm_provider }}"
   when:
@@ -27,7 +27,7 @@
   delegate_to: localhost
 
 - name: create nodes
-  f5networks.f5_modules.node:
+  f5networks.f5_modules.bigip_node:
     provider: "{{ f5_ltm_provider }}"
     name: "{{ item.name }}"
     host: "{{ item.host }}"
@@ -39,7 +39,7 @@
   delegate_to: localhost
 
 - name: create pools
-  f5networks.f5_modules.pool:
+  f5networks.f5_modules.bigip_pool:
     provider: "{{ f5_ltm_provider }}"
     name: "{{ item.name }}"
     lb_method: "{{ item.lb_method }}"
@@ -49,7 +49,7 @@
   loop: "{{ f5_ltm_pools }}"
   when:
     - f5_ltm_pools is defined
-    - ft_ltm_partition | bool
+    - f5_ltm_partition is defined
     - f5_ltm_provider is defined
   delegate_to: localhost
 
@@ -57,14 +57,15 @@
   ansible.builtin.include: pool_member.yml
   loop_control:
     label: pool_member
+    loop_var: pool_member
   loop: "{{ f5_ltm_pool_members }}"
   when:
     - f5_ltm_pool_members is defined
   delegate_to: localhost
 
 - name: add virtual server
-  f5networks.f5_modules.virtual_server:
-    provider: "{{ provider }}"
+  f5networks.f5_modules.bigip_virtual_server:
+    provider: "{{ f5_ltm_provider }}"
     name: "{{ item.name }}"
     destination: "{{ item.destination }}"
     port: "{{ item.port }}"

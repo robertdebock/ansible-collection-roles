@@ -1,0 +1,8 @@
+---
+#
+# Ansible managed
+#
+repository:
+  description: Manage apt repositories.
+  homepage: https://robertdebock.nl/
+  topics: apt, repository, ansible, molecule, tox, playbook, hacktoberfest

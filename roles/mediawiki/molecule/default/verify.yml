@@ -1,0 +1,12 @@
+---
+- name: Verify
+  hosts: all
+  become: yes
+  gather_facts: no
+
+  tasks:
+    - name: connect to mediawiki
+      ansible.builtin.get_url:
+        url: https://localhost/mediawiki
+        dest: /tmp/whatever
+        validate_certs: no

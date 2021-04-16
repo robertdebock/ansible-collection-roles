@@ -1,0 +1,8 @@
+---
+#
+# Ansible managed
+#
+repository:
+  description: Set alternatives
+  homepage: https://robertdebock.nl/
+  topics: alternatives, ansible, molecule, tox, playbook, hacktoberfest

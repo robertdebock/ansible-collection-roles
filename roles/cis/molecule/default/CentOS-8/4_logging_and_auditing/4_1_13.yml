@@ -1,0 +1,16 @@
+---
+- name: 4.1.13 Ensure use of privileged commands is collected (Scored)
+  shell: grep -- "-a always,exit -F path={{ cis_found_binary }} -F perm=x -F auid>={{ cis_privileged_commands_collected_test_one.stdout }} -F auid!=4294967295 -k privileged" /etc/audit/rules.d/*.rules  # noqa 204 This line is just very long.
+  loop: "{{ item.stdout_lines }}"
+  loop_control:
+    loop_var: cis_found_binary
+  when:
+    - cis_privileged_commands_collected | bool
+
+- name: 4.1.13 Ensure use of privileged commands is collected (Scored)
+  shell: auditctl -l | grep -- "-a always,exit -S all -F path={{ cis_found_binary }} -F perm=x -F auid>={{ cis_privileged_commands_collected_test_one.stdout }} -F auid!=-1 -F key=privileged"  # noqa 204 This line is just very long.
+  loop: "{{ item.stdout_lines }}"
+  loop_control:
+    loop_var: cis_found_binary
+  when:
+    - cis_privileged_commands_collected | bool

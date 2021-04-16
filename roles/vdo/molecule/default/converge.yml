@@ -1,0 +1,12 @@
+---
+- name: converge
+  hosts: all
+  become: yes
+  gather_facts: yes
+
+  roles:
+    - role: ansible-role-vdo
+      vdo_devices:
+        - name: vdo1
+          device: /dev/loop0
+          logicalsize: 1T

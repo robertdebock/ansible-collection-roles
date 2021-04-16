@@ -1,0 +1,17 @@
+{
+  "kind": "tm:gtm:server:virtual-servers:virtual-serversstate",
+  "name": "vs1",
+  "fullPath": "vs1",
+  "generation": 127,
+  "selfLink": "https://localhost/mgmt/tm/gtm/server/~Common~server1/virtual-servers/vs1?ver=13.0.0",
+  "destination": "4.4.4.4:0",
+  "enabled": true,
+  "limitMaxBps": 0,
+  "limitMaxBpsStatus": "disabled",
+  "limitMaxConnections": 0,
+  "limitMaxConnectionsStatus": "disabled",
+  "limitMaxPps": 0,
+  "limitMaxPpsStatus": "disabled",
+  "translationAddress": "none",
+  "translationPort": 0
+}

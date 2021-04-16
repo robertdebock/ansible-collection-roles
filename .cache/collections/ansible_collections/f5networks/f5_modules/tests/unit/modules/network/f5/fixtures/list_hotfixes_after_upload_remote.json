@@ -1,0 +1,30 @@
+[
+    {
+      "kind": "tm:sys:software:hotfix:hotfixstate",
+      "name": "Hotfix-BIGIP-12.1.2.1.0.271-HF1.iso",
+      "fullPath": "Hotfix-BIGIP-12.1.2.1.0.271-HF1.iso",
+      "generation": 5792,
+      "selfLink": "https://localhost/mgmt/tm/sys/software/hotfix/Hotfix-BIGIP-12.1.2.1.0.271-HF1.iso?ver=12.1.0",
+      "build": "1.0.271",
+      "checksum": "b5055fa2619f725ab97137fe5de3b3b9",
+      "id": "HF1",
+      "product": "BIG-IP",
+      "title": "Hotfix Version 1.0.271",
+      "verified": "yes",
+      "version": "12.1.2"
+    },
+    {
+      "kind": "tm:sys:software:hotfix:hotfixstate",
+      "name": "Hotfix-BIGIP-12.1.0.1.0.1447-HF1.iso",
+      "fullPath": "Hotfix-BIGIP-12.1.0.1.0.1447-HF1.iso",
+      "generation": 14018,
+      "selfLink": "https://localhost/mgmt/tm/sys/software/hotfix/Hotfix-BIGIP-12.1.0.1.0.1447-HF1.iso?ver=12.1.0",
+      "build": "1.0.1447",
+      "checksum": "c727a20957d5cbce287f99c0ba3fe83f",
+      "id": "HF1",
+      "product": "BIG-IP",
+      "title": "Hotfix Version 1.0.1447",
+      "verified": "yes",
+      "version": "12.1.0"
+    }
+  ]

@@ -1,0 +1,43 @@
+---
+- name: prepare
+  hosts: all
+  become: yes
+  gather_facts: no
+
+  vars:
+    devices:
+      - name: vdb
+        major: 252
+        minor: 2
+      - name: vdc
+        major: 252
+        minor: 3
+
+  roles:
+    - role: robertdebock.bootstrap
+
+  tasks:
+    - name: create storage file
+      command: dd if=/dev/zero of=/{{ item.name }} bs=1M count=1K
+      args:
+        creates: "/{{ item.name }}"
+      loop: "{{ devices }}"
+      notify:
+        - create loopback device
+        - loopback device to storage file
+      loop_control:
+        label: "/{{ item.name }}"
+
+  handlers:
+    - name: create loopback device
+      command: mknod /dev/{{ item.name }} b {{ item.major }} {{ item.minor }}
+      loop: "{{ devices }}"
+      loop_control:
+        label: "/dev/{{ item.name }}"
+
+    - name: loopback device to storage file
+      command: losetup /dev/{{ item.name }} /{{ item.name }}
+      loop: "{{ devices }}"
+      failed_when: no
+      loop_control:
+        label: "/dev/{{ item.name }} to /{{ item.name }}"

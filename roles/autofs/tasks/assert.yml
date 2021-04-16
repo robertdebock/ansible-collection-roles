@@ -31,6 +31,19 @@
     - autofs_maps is defined
     - item.state is undefined or (item.state is defined and item.state == "present")
 
+- name: test if item name in autofs_maps is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.name is string
+      - item.name is regex("^[A-Za-z0-9-_.^]+$")
+    quiet: yes
+  loop: "{{ autofs_maps }}"
+  loop_control:
+    label: "{{ item.mountpoint }}"
+  when:
+    - autofs_maps is defined
+    - item.name is defined
+
 - name: test if item in autofs_maps is set correctly
   ansible.builtin.assert:
     that:

@@ -1,0 +1,13 @@
+---
+# defaults file for node_red
+
+# The directory where Node RED should be running from.
+node_red_working_directory: /opt/node_red
+
+# The user Node RED should be running under.
+# This roles does not create users, see `molecule/default/prepare.yml`.
+node_red_user_name: nodered
+
+# The group Node RED should be running under.
+# This roles does not create groups, see `molecule/default/prepare.yml`.
+node_red_group_name: nodered

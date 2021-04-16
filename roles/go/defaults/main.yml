@@ -1,0 +1,11 @@
+---
+# defaults file for go
+
+# Verion to install.
+go_version: 1.14.4
+
+# Where to place go
+go_destination: /usr/local
+
+# Where to download packages to, aka GOROOT.
+go_path: /root/go

@@ -1,0 +1,8 @@
+---
+# defaults file for software
+
+# A list of software packages to manage.
+# software_packages:
+#   - name: screen
+#   - name: tcpdump
+#     state: absent

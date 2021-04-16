@@ -1,0 +1,22 @@
+---
+# defaults file for moodle
+
+# The version of moodle to install.
+moodle_version: 310
+
+# A path where to save the data.
+moodle_data_directory: /opt/moodledata
+
+# The permissions of the created directories.
+moodle_directory_mode: "0750"
+
+# Details to connect to the database.
+moodle_database_type: mysqli
+moodle_database_hostname: localhost
+moodle_database_name: moodle
+moodle_database_username: moodle
+moodle_database_password: moodle
+moodle_database_prefix: ""
+
+# The URL where to serve content.
+moodle_wwwroot: "https://{{ ansible_default_ipv4.address }}/moodle"

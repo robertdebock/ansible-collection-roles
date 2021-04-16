@@ -1,0 +1,11 @@
+---
+- name: Converge
+  hosts: all
+  become: yes
+  gather_facts: yes
+
+  vars:
+    etherpad_port: 9002
+
+  roles:
+    - role: ansible-role-etherpad

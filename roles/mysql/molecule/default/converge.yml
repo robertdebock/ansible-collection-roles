@@ -1,0 +1,16 @@
+---
+- name: Converge
+  hosts: all
+  become: yes
+  gather_facts: yes
+
+  roles:
+    - role: ansible-role-mysql
+      mysql_databases:
+        - name: my_db
+          encoding: utf8
+          collation: utf8_bin
+      mysql_users:
+        - name: my_user
+          password: my_pass
+          priv: "my_db.*:ALL"

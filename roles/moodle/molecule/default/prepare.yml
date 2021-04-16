@@ -1,0 +1,32 @@
+---
+- name: prepare
+  hosts: all
+  become: yes
+  gather_facts: no
+
+  roles:
+    - role: robertdebock.bootstrap
+    - role: robertdebock.buildtools
+    - role: robertdebock.epel
+    - role: robertdebock.mysql
+      mysql_databases:
+        - name: moodle
+          encoding: utf8mb4
+          collation: utf8mb4_unicode_ci
+      mysql_users:
+        - name: moodle
+          password: moodle
+          priv: "moodle.*:ALL"
+    - role: robertdebock.python_pip
+    - role: robertdebock.openssl
+      openssl_items:
+        - name: apache-httpd
+          common_name: "{{ ansible_fqdn }}"
+    - role: robertdebock.php
+    - role: robertdebock.selinux
+    - role: robertdebock.httpd
+      httpd_vhosts:
+        - name: moodle
+          servername: moodle.example.com
+    - role: robertdebock.cron
+    - role: robertdebock.core_dependencies

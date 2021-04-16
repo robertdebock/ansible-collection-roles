@@ -1,5 +1,8 @@
 ---
-
+# This file contains modifications contributed by Brandon Wittenburg
+# 1. In "test if item in f5_ltm_provider is set correctly": modified f5_ltm_provider.port to f5_ltm_provider.server_port
+# 2. In "test if item in f5_ltm_pool_members is set correctly": modified item.member to item.members
+# 3. In "test if item in f5_ltm_virtual_servers is set correctly": added loop and loop_control
 - name: test if item in f5_ltm_provider is set correctly
   ansible.builtin.assert:
     that:
@@ -9,10 +12,10 @@
       - f5_ltm_provider.user is string
       - f5_ltm_provider.password is defined
       - f5_ltm_provider.password is string
-      - f5_ltm_provider.port is defined
-      - f5_ltm_provider.port is number
-      - f5_ltm_provider.port > 0
-      - f5_ltm_provider.port < 65536
+      - f5_ltm_provider.server_port is defined
+      - f5_ltm_provider.server_port is number
+      - f5_ltm_provider.server_port > 0
+      - f5_ltm_provider.server_port < 65536
       - f5_ltm_provider.validate_certs is defined
       - f5_ltm_provider.validate_certs is boolean
     quiet: yes
@@ -109,8 +112,8 @@
     that:
       - item.name is defined
       - item.name is string
-      - item.member is defined
-      - item.member is iterable
+      - item.members is defined
+      - item.members is iterable
     quiet: yes
   loop: "{{ f5_ltm_pool_members }}"
   loop_control:
@@ -145,5 +148,8 @@
       - item.snat is string
       - item.snat in [ "dhcp", "reject", "internal", "none", "automap" ]
     quiet: yes
+  loop: "{{ f5_ltm_virtual_servers }}"
+  loop_control:
+    label: "{{ item.name }}"
   when:
     - f5_ltm_virtual_servers is defined

@@ -1,0 +1,8 @@
+---
+#
+# Ansible managed
+#
+repository:
+  description: Download, extract and write bootable USB image.
+  homepage: https://robertdebock.nl/
+  topics: biosupdate, lenovo, ansible, molecule, tox, playbook, hacktoberfest

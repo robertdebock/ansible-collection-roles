@@ -1,0 +1,37 @@
+---
+# defaults file for mssql
+
+# mssql_add_repositories can be used to select if you want the repositories installed by this role.
+# See vars/main.yml for the location of the repositories. Can be: yes, true or 1.
+mssql_add_repositories: yes
+
+# What version to use, currently either 2017 or 2019.
+# `2017` is the only working version now, `2019` lacks the required
+# mssql-server-agent package.
+mssql_version: "2017"
+
+# Select the version of server and server_agent to install.
+mssql_server_version: 14.0.3294.2-27
+mssql_server_agent_version: 14.0.3015.40-1
+
+# mssql_sa_password contains the password for a system administrator.
+# The password must be at least 8 characters long and contain characters from
+# three of the following four sets:
+# - uppercase letters
+# - lowercase letters
+# - numbers
+# - and symbols
+mssql_sa_password: "StR0nGp4ss."
+
+# mssql_pid refers to the product key to use. Either:
+# - Evaluation
+# - Developer
+# - Express
+# - Web
+# - Standard
+# - Enterprise
+# - A product key (Format: #####-#####-#####-#####-#####)
+mssql_pid: Evaluation
+
+# To enable full text search, set this value to yes.
+mssql_fts: no

@@ -1,0 +1,7 @@
+{
+  "machineId": "f34e87f5-0494-4707-8dcc-980c7c0cdec3",
+  "generation": 2,
+  "lastUpdateMicros": 1490032874192306,
+  "kind": "shared:identified-devices:config:discovery:discoveryconfigworkerstate",
+  "selfLink": "https://localhost/mgmt/shared/identified-devices/config/discovery"
+}

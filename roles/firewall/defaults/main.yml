@@ -1,0 +1,23 @@
+---
+# defaults file for firewall
+
+# If you don't specify a protocol in `firewall_services`, fall back to this.
+firewall_default_protocol: tcp
+
+# If you don't specify a rule in `firewall_services`, fall back to this.
+firewall_default_rule: allow
+
+# A list of service to allow traffic to.
+firewall_services:
+  - name: ssh
+
+# A bit more difficult example:
+# firewall_services:
+#   - name: ssh
+#   - name: https
+#   - name: 5353
+#     protocol: udp
+#   - name: 1234
+#     protocol: tcp
+#   - name: 1337
+#     state: absent

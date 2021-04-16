@@ -1,4 +1,0 @@
----
-exceptions:
-  - variation: CentOS 8
-    reason: Can't build a CentOS 8 box using vagrant, not image released.

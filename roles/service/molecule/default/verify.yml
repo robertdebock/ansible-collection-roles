@@ -1,0 +1,30 @@
+---
+- name: Verify
+  hosts: all
+  become: yes
+  gather_facts: no
+
+  vars:
+    service_list:
+      - name: simple-service
+
+  tasks:
+    - name: check simple-service
+      ansible.builtin.service:
+        name: simple-service
+        state: started
+        enabled: yes
+      check_mode: yes
+      register: service_check_simple_service
+      failed_when:
+        - service_check_simple_service is changed
+
+    - name: check stopped-service
+      ansible.builtin.service:
+        name: stopped-service
+        state: stopped
+        enabled: no
+      check_mode: yes
+      register: service_check_stopped_service
+      failed_when:
+        - service_check_stopped_service is changed

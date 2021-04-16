@@ -1,6 +1,7 @@
 ---
 galaxy_info:
   author: Robert de Bock
+  namespace: robertdebock
   role_name: debug
   description: Show variable per host.
   license: Apache-2.0

@@ -75,7 +75,7 @@
     - latest_file_extension in [ ".gz", ".tgz", ".tar", ".zip" ]
 
 - name: import postgres database
-  community.general.postgresql_db:
+  community.postgresql.postgresql_db:
     name: "{{ object.destination }}"
     target: "{{ restore_remote_directory }}/{{ latest_file.path | basename | splitext | first }}.sql"
     state: restore

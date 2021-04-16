@@ -1,0 +1,51 @@
+---
+# defaults file for rsyslog
+
+# To configure a server to reveice logs, set rsyslog_receiver to yes.
+# Not setting this value will not configure the server tor receive logs.
+# rsyslog_receiver: yes
+
+# To forward logs to another server, set rsyslog_remote to the hostname or
+# the ipaddress of the receiving rsyslog server.
+# Not setting this variable will not forward logs.
+# rsyslog_remote: server1.example.com
+
+# If rsylog_remote is set, sets the "selector" pattern for determining which
+# messages to send to the remote server.  Default "*.*" sends everything.
+# See `man rsyslog.conf`.
+rsyslog_remote_selector: "*.*"
+
+# If rsylog_remote is set, use TCP if yes. UDP if no.
+rsyslog_remote_tcp: yes
+
+# If rsylog_remote is set, destination port to use.
+rsyslog_remote_port: 514
+
+# Set the mode for new directories; only available in legacy template.
+rsyslog_dircreatemode: "0700"
+
+# Set the mode for new files; only available in legacy template.
+rsyslog_filecreatemode: "0644"
+
+# Set the mods enabled
+rsyslog_mods:
+  - imuxsock
+  - imjournal
+
+# Configure rsyslog minimally (may be in conflict with custom configuration files)
+rsyslog_deploy_default_config: yes
+
+# Use the (obsolete) legacy, pre-v6 configuration file format, or the more
+# modern # 'advanced' configuration file format available in v6 and up. The
+# default is to use the 'legacy' format to not change config files for
+# existing users of this role out of the blue.
+# More information on the different formats on the rsyslog website:
+# https://www.rsyslog.com/doc/v8-stable/configuration/conf_formats.html
+rsyslog_config_file_format: legacy
+
+# The rule conf to name to add to /etc/rsyslog.d/
+# rsyslog_forward_rule_name: <to fill>
+
+# Configure the rsyslog package to be `present`, or set to `latest` to install
+# the latest available version.
+rsyslog_package_state: present

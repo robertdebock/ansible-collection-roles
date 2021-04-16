@@ -1,0 +1,59 @@
+---
+- name: converge
+  hosts: all
+  become: yes
+  gather_facts: yes
+
+  roles:
+    - role: ansible-role-auditd
+      auditd_local_events: "no"
+      auditd_rules:
+        - file: /var/log/audit/
+          keyname: auditlog
+        - file: /etc/audit/
+          permissions:
+            - write
+            - attribute_change
+          keyname: auditconfig
+        - file: /etc/libaudit.conf
+          permissions:
+            - write
+            - attribute_change
+          keyname: auditconfig
+        - file: /etc/audisp/
+          permissions:
+            - write
+            - attribute_change
+          keyname: audispconfig
+        - file: /sbin/auditctl
+          permissions:
+            - execute
+          keyname: audittools
+        - file: /sbin/auditd
+          permissions:
+            - execute
+          keyname: audittools
+        - syscall: open
+          action: always
+          filter: exit
+          filters:
+            - auid!=4294967295
+            - auid!=unset
+          keyname: my_keyname
+          arch: b32
+        - syscall: adjtimex
+          action: always
+          filter: exit
+          keyname: time_change
+        - syscall: settimeofday
+          action: always
+          filter: exit
+          keyname: time_change
+        - action: always
+          filter: exit
+          filters:
+            - path=/bin/ping
+            - perm=x
+            - auid>=500
+            - auid!=4294967295
+          keyname: privileged

@@ -38,4 +38,6 @@
   args:
     creates: "{{ bios_update_flash_drive }}1"
   when:
-    - not bios_update_ci_mode
+    - not ci
+  vars:
+    ci: "{{ lookup('env', 'CI') }}"

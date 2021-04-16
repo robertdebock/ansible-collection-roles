@@ -1,0 +1,21 @@
+---
+- name: Prepare
+  hosts: all
+  gather_facts: no
+  become: yes
+
+  roles:
+    - role: robertdebock.bootstrap
+    - role: robertdebock.selinux
+    - role: robertdebock.container_docs
+    - role: robertdebock.mysql
+      mysql_databases:
+        - name: zabbix
+          encoding: utf8
+          collation: utf8_bin
+      mysql_users:
+        - name: zabbix
+          password: zabbix
+          priv: "zabbix.*:ALL"
+    - role: robertdebock.zabbix_repository
+    - role: robertdebock.core_dependencies

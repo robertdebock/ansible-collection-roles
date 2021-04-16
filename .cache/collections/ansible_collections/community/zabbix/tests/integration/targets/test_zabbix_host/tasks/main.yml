@@ -1,0 +1,12 @@
+---
+# setup stuff not testing zabbix_host
+- include: zabbix_host_setup.yml
+
+# zabbix_host module tests
+- include: zabbix_host_tests.yml
+
+# documentation example tests
+- include: zabbix_host_doc.yml
+
+# tear down stuff set up earlier
+- include: zabbix_host_teardown.yml

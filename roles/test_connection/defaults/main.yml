@@ -1,0 +1,11 @@
+---
+# defaults file for test_connection
+
+# What host to save the results to.
+test_connection_report_host: localhost
+
+# What directory to save results to.
+test_connection_report_directory: /tmp
+
+# The timeout to wait for a connection.
+test_connection_timeout: 5

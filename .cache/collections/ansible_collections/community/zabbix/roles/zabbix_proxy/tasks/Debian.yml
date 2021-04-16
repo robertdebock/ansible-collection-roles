@@ -1,0 +1,229 @@
+---
+
+- name: "Include Zabbix gpg ids"
+  include_vars: zabbix.yml
+
+- name: "Set short version name"
+  set_fact:
+    zabbix_short_version: "{{ zabbix_version | regex_replace('\\.', '') }}"
+    zabbix_python_prefix: "python{% if ansible_python_version is version('3', '>=') %}3{% endif %}"
+    zabbix_underscore_version: "{{ zabbix_version | regex_replace('\\.', '_') }}"
+
+- name: "Debian | Set some facts"
+  set_fact:
+    apache_log: apache2
+    datafiles_path: "/usr/share/zabbix-proxy-{{ zabbix_proxy_database }}"
+  when:
+    - zabbix_version is version_compare('3.0', '<')
+  tags:
+    - zabbix-proxy
+    - init
+    - config
+
+- name: "Debian | Set some facts for Zabbix 3.0"
+  set_fact:
+    apache_log: apache2
+    datafiles_path: "/usr/share/doc/zabbix-proxy-{{ zabbix_proxy_database }}"
+  when:
+    - zabbix_version is version_compare('3.0', '>=')
+  tags:
+    - zabbix-proxy
+    - init
+    - config
+
+- name: "Debian | Installing gnupg"
+  apt:
+    pkg: gnupg
+    update_cache: yes
+    cache_valid_time: 3600
+    force: yes
+    state: present
+  environment:
+    http_proxy: "{{ zabbix_http_proxy | default(None) | default(omit) }}"
+    https_proxy: "{{ zabbix_https_proxy | default(None) | default(omit) }}"
+  register: gnupg_installed
+  until: gnupg_installed is succeeded
+  become: yes
+
+- name: "Debian | Install gpg key"
+  apt_key:
+    id: "{{ sign_keys[zabbix_short_version][ansible_distribution_release]['sign_key'] }}"
+    url: http://repo.zabbix.com/zabbix-official-repo.key
+  register: are_zabbix_proxy_dependency_packages_installed
+  until: are_zabbix_proxy_dependency_packages_installed is succeeded
+  when:
+    - zabbix_repo == "zabbix"
+  become: yes
+  tags:
+    - zabbix-proxy
+    - init
+
+- name: "Debian | Installing repository {{ ansible_distribution }}"
+  apt_repository:
+    repo: "{{ item }} http://repo.zabbix.com/zabbix/{{ zabbix_version }}/{{ ansible_distribution.lower() }}/ {{ ansible_distribution_release }} main"
+    state: present
+  when: zabbix_repo == "zabbix"
+  become: yes
+  with_items:
+    - deb-src
+    - deb
+  tags:
+    - zabbix-proxy
+    - init
+
+- name: "Debian | Select Zabbix proxy version"
+  set_fact:
+    zabbix_proxy_deb_version: "{{ zabbix_proxy_debian_version }}"
+    cacheable: yes
+  when:
+    - ansible_distribution == "Debian"
+    - zabbix_proxy_debian_version is defined
+
+- name: "Ubuntu | Select Zabbix proxy version"
+  set_fact:
+    zabbix_proxy_deb_version: "{{ zabbix_proxy_ubuntu_version }}"
+    cacheable: yes
+  when:
+    - ansible_distribution == "Ubuntu"
+    - zabbix_proxy_ubuntu_version is defined
+
+- name: "Debian | Define package with version"
+  set_fact:
+    deb_pkg: "zabbix-proxy-{{ zabbix_proxy_database }}={{ zabbix_proxy_deb_version }}"
+    cacheable: yes
+  when:
+    zabbix_proxy_deb_version is defined
+
+- name: "Debian | Define package without version"
+  set_fact:
+    deb_pkg: "zabbix-proxy-{{ zabbix_proxy_database }}"
+    cacheable: yes
+  when:
+    zabbix_proxy_deb_version is not defined
+
+- name: "Debian | Create /etc/apt/preferences.d/"
+  file:
+    path: /etc/apt/preferences.d/
+    state: directory
+  when:
+    - zabbix_proxy_apt_priority | int
+  become: yes
+
+- name: "Debian | Configuring the weight for APT"
+  copy:
+    dest: "/etc/apt/preferences.d/zabbix-proxy-{{ zabbix_proxy_database }}"
+    content: |
+      Package: zabbix-proxy-{{ zabbix_proxy_database }}
+      Pin: origin repo.zabbix.com
+      Pin-Priority: {{ zabbix_proxy_apt_priority }}
+    owner: root
+  when:
+    - zabbix_proxy_apt_priority | int
+  become: yes
+
+- name: "Debian | Installing zabbix-proxy-{{ zabbix_proxy_database }}"
+  apt:
+    pkg: "{{ deb_pkg }}"
+    update_cache: yes
+    cache_valid_time: 3600
+    force: yes
+    state: "{{ zabbix_proxy_package_state }}"
+    default_release: "{{ ansible_distribution_release }}"
+  environment:
+    http_proxy: "{{ zabbix_http_proxy | default(None) | default(omit) }}"
+    https_proxy: "{{ zabbix_https_proxy | default(None) | default(omit) }}"
+  register: is_zabbix_proxy_package_installed
+  until: is_zabbix_proxy_package_installed is succeeded
+  become: yes
+
+- name: "Debian | Install Ansible module dependencies"
+  apt:
+    name: "{{ zabbix_python_prefix }}-psycopg2"
+    state: present
+  environment:
+    http_proxy: "{{ zabbix_http_proxy | default(None) | default(omit) }}"
+    https_proxy: "{{ zabbix_https_proxy | default(None) | default(omit) }}"
+  register: zabbix_proxy_dependencies_installed
+  until: zabbix_proxy_dependencies_installed is succeeded
+  become: yes
+  when:
+    - zabbix_database_creation
+  tags:
+    - zabbix-server
+    - init
+
+- name: "Debian | Install Mysql Client package"
+  apt:
+    name:
+      - mysql-client
+      - "{{ zabbix_python_prefix }}-mysqldb"
+    state: present
+  environment:
+    http_proxy: "{{ zabbix_http_proxy | default(None) | default(omit) }}"
+    https_proxy: "{{ zabbix_https_proxy | default(None) | default(omit) }}"
+  register: zabbix_proxy_dependencies_installed
+  until: zabbix_proxy_dependencies_installed is succeeded
+  become: yes
+  when:
+    - zabbix_proxy_database == 'mysql'
+    - zabbix_proxy_install_database_client
+    - ansible_distribution_release != "buster"
+  tags:
+    - zabbix-server
+    - init
+    - database
+
+- name: "Debian 10 | Install Mysql Client package"
+  apt:
+    name:
+      - mariadb-client
+      - "{{ zabbix_python_prefix }}-mysqldb"
+    state: present
+  environment:
+    http_proxy: "{{ zabbix_http_proxy | default(None) | default(omit) }}"
+    https_proxy: "{{ zabbix_https_proxy | default(None) | default(omit) }}"
+  register: zabbix_proxy_dependencies_installed
+  until: zabbix_proxy_dependencies_installed is succeeded
+  become: yes
+  when:
+    - zabbix_proxy_database == 'mysql'
+    - zabbix_proxy_install_database_client
+    - ansible_distribution_release == "buster"
+  tags:
+    - zabbix-server
+    - init
+    - database
+
+- name: "Debian | Install PostgreSQL Client package"
+  apt:
+    name: postgresql-client
+    state: present
+  environment:
+    http_proxy: "{{ zabbix_http_proxy | default(None) | default(omit) }}"
+    https_proxy: "{{ zabbix_https_proxy | default(None) | default(omit) }}"
+  register: are_zabbix_proxy_dependency_packages_installed
+  until: are_zabbix_proxy_dependency_packages_installed is succeeded
+  become: yes
+  when:
+    - zabbix_database_creation or zabbix_database_sqlload
+    - zabbix_proxy_database == 'pgsql'
+    - zabbix_proxy_install_database_client
+  tags:
+    - zabbix-proxy
+    - init
+    - database
+
+- name: "Debian | Install sqlite3"
+  apt:
+    name: sqlite
+    state: present
+  environment:
+    http_proxy: "{{ zabbix_http_proxy | default(None) | default(omit) }}"
+    https_proxy: "{{ zabbix_https_proxy | default(None) | default(omit) }}"
+  register: are_zabbix_proxy_dependency_packages_installed
+  until: are_zabbix_proxy_dependency_packages_installed is succeeded
+  become: yes
+  when:
+    - zabbix_proxy_database == 'sqlite3'
+  tags:
+    - zabbix-proxy

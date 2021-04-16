@@ -1,0 +1,17 @@
+---
+- name: Verify
+  hosts: all
+  become: yes
+  gather_facts: no
+
+  tasks:
+    - name: try webinterface
+      ansible.builtin.uri:
+        url: "http://localhost:8082/ui/"
+        return_content: yes
+      register: artifactory_try_webinterface
+      failed_when:
+        - "'JFrog' not in artifactory_try_webinterface.content"
+      retries: 10
+      until:
+        - artifactory_try_webinterface is succeeded

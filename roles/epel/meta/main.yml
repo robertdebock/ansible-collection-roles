@@ -1,6 +1,7 @@
 ---
 galaxy_info:
   author: Robert de Bock
+  namespace: robertdebock
   ansible_role: epel
   description: Install epel on your system.
   license: Apache-2.0

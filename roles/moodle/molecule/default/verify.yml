@@ -1,0 +1,15 @@
+---
+- name: Verify
+  hosts: all
+  become: yes
+  gather_facts: yes
+
+  tasks:
+    - name: connect to installer
+      ansible.builtin.uri:
+        url: "https://localhost/moodle/admin/index.php?cache=0&lang=en&agreelicense=1"
+        validate_certs: no
+        return_content: yes
+      register: moodle_connect_to_installer
+      failed_when:
+        - "'class=error' in moodle_connect_to_installer.content"

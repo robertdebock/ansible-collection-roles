@@ -1,0 +1,7 @@
+---
+- name: converge
+  hosts: all
+  gather_facts: no
+
+  roles:
+    - role: ansible-role-test_connection

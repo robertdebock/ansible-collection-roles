@@ -1,0 +1,11 @@
+{
+  "kind": "tm:asm:tasks:apply-policy:apply-policy-taskstate",
+  "selfLink": "https://localhost/mgmt/tm/asm/tasks/apply-policy/zR-4NWzKj9Zq4rdVX4Um8A?ver=12.1.2",
+  "policyReference": {
+    "link": "https://localhost/mgmt/tm/asm/policies/0EHlYeS5noAOZLY3YsJjEw?ver=12.1.2"
+  },
+  "status": "NEW",
+  "id": "zR-4NWzKj9Zq4rdVX4Um8A",
+  "startTime": "2017-09-24T11:03:47Z",
+  "lastUpdateMicros": 1.506251027e+15
+}

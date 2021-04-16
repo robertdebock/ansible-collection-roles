@@ -1,0 +1,12 @@
+---
+- name: converge
+  hosts: all
+  become: yes
+  gather_facts: yes
+
+  roles:
+    - role: ansible-role-bios_update
+      # The bios_update_url does not always need to be set, it's typically
+      # "discovered". For CI however, there is not right model, so this
+      # variable needs to be set manually.
+      bios_update_url: "https://download.lenovo.com/pccbbs/mobiles/r02uj70d.iso"

@@ -1,0 +1,8 @@
+---
+#
+# Ansible managed
+#
+repository:
+  description: Install and configure packer on your system.
+  homepage: https://robertdebock.nl/
+  topics: packer, ansible, molecule, tox, playbook, hacktoberfest

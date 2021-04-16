@@ -1,0 +1,8 @@
+---
+#
+# Ansible managed
+#
+repository:
+  description: Install the latest stable version of kubectl on your system.
+  homepage: https://robertdebock.nl/
+  topics: kubectl, ansible, molecule, tox, playbook, hacktoberfest

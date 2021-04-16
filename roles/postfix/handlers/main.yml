@@ -10,6 +10,16 @@
 - name: rebuild recipient_access database
   ansible.builtin.command: postmap "{{ postfix_recipient_access_path }}"
 
+- name: rebuild transport_maps database
+  ansible.builtin.command: postmap /etc/postfix/transport
+
+- name: reload postfix
+  ansible.builtin.service:
+    name: "{{ postfix_service }}"
+    state: reloaded
+  when:
+    - not ansible_check_mode | bool
+
 - name: restart postfix
   ansible.builtin.service:
     name: "{{ postfix_service }}"

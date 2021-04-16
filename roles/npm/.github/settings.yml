@@ -1,0 +1,8 @@
+---
+#
+# Ansible managed
+#
+repository:
+  description: Install npm on your system.
+  homepage: https://robertdebock.nl/
+  topics: npm, nodejs, ansible, molecule, tox, playbook, hacktoberfest

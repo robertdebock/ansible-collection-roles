@@ -1,0 +1,14 @@
+---
+- name: Verify
+  hosts: all
+  become: no
+  gather_facts: no
+
+  tasks:
+    - name: check /opt/digitalocean/bin/do-agent
+      ansible.builtin.stat:
+        path: /opt/digitalocean/bin/do-agent
+      register: check_do_agent
+      failed_when:
+        - not check_do_agent.stat.exists
+        - not check_do_agent.stat.executable
