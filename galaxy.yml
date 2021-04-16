@@ -1,7 +1,7 @@
 ---
 namespace: robertdebock
 name: roles
-version: 1.0.0
+version: 1.0.1
 readme: README.md
 authors:
 - Robert de Bock <robert@meinit.nl>
@@ -12,7 +12,15 @@ tags:
   - roles
   - linux
 # No sure if I should list all collections the roles have listed in requirments.yml.
-dependencies: {}
+dependencies:
+  ansible.posix: "*"
+  community.crypto: "*"
+  community.general: "*"
+  community.mysql: "*"
+  community.postgresql: "*"
+  community.zabbix: "*"
+  f5networks.f5_modules: "*"
+  gluster.gluster: "*"
 repository: https://github.com/robertdebock/ansible-collection-roles
 documentation: https://robertdebock.nl/
 homepage: https://robertdebock.nl/
