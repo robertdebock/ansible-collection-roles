@@ -1,8 +1,0 @@
----
-#
-# Ansible managed
-#
-repository:
-  description: Install and configure ntp on your system.
-  homepage: https://robertdebock.nl/
-  topics: ntp, ntpd, ntpdate, ansible, molecule, tox, playbook, hacktoberfest

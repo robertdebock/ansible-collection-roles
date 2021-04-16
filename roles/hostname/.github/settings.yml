@@ -1,8 +1,0 @@
----
-#
-# Ansible managed
-#
-repository:
-  description: Install dependencies and configure the hostname on your system.
-  homepage: https://robertdebock.nl/
-  topics: hostname, ansible, molecule, tox, playbook, hacktoberfest

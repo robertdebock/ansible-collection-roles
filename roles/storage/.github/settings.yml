@@ -1,8 +1,0 @@
----
-#
-# Ansible managed
-#
-repository:
-  description: Create partitions, volume groups, volumes, filesystems and mounts
-  homepage: https://robertdebock.nl/
-  topics: storage, ansible, molecule, tox, playbook, hacktoberfest

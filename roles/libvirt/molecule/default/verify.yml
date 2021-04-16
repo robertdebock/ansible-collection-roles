@@ -1,9 +1,0 @@
----
-- name: Verify
-  hosts: all
-  become: yes
-  gather_facts: no
-
-  tasks:
-    - name: see if qemu-io is installed
-      command: qemu-io --version

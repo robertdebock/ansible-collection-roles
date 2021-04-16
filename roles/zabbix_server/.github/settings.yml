@@ -1,8 +1,0 @@
----
-#
-# Ansible managed
-#
-repository:
-  description: Install and configure zabbix_server on your system.
-  homepage: https://robertdebock.nl/
-  topics: zabbix, server, ansible, molecule, tox, playbook, hacktoberfest

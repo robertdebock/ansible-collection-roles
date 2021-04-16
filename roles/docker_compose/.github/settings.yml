@@ -1,8 +1,0 @@
----
-#
-# Ansible managed
-#
-repository:
-  description: Install docker_compose.
-  homepage: https://robertdebock.nl/
-  topics: docker, dockercompose, compose, ansible, molecule, tox, playbook, hacktoberfest

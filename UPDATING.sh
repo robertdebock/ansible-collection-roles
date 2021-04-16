@@ -4,19 +4,16 @@
 for role in ../ansible-role-* ; do
   short=$(echo ${role} | cut -d\- -f3)
   if [ ! -d roles/${short} ] ; then
+    mkdir "roles/${short}"
     echo "Copying ${role} to roles/${short}."
-    cp -Rip "${role}" "roles/${short}"
+    for object in LICENSE README.md defaults handlers meta requirements.yml tasks vars ; do
+      if [ -d "${role}/${object}" ] ; then
+        cp -Rip "${role}/${object}" "roles/${short}/${object}"
+      elif [ -f "${role}/${object}" ] ; then
+        cp "${role}/${object}" "roles/${short}/${object}"
+      fi
+    done
   fi
-done
-
-# Clean-up the copied roles.
-ls -d roles/* | while read short ; do
-  for object in .git .cache .tox .DS_Store ; do
-    if [ -d ./${short}/${object} ] ; then
-      echo "Removing roles/${short}/${object}."
-      rm -Rf "roles/${short}/${object}"
-    fi
-  done
 done
 
 # Regenerate all used collections.

@@ -1,8 +1,0 @@
----
-#
-# Ansible managed
-#
-repository:
-  description: Install and configure artifactory on your system.
-  homepage: https://robertdebock.nl/
-  topics: artifactory, server, system, ansible, molecule, tox, playbook, hacktoberfest

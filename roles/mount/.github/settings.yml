@@ -1,8 +1,0 @@
----
-#
-# Ansible managed
-#
-repository:
-  description: Configure mounts
-  homepage: https://robertdebock.nl/
-  topics: mount, ansible, molecule, tox, playbook, hacktoberfest

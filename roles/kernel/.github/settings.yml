@@ -1,8 +1,0 @@
----
-#
-# Ansible managed
-#
-repository:
-  description: Build and install a kernel
-  homepage: https://robertdebock.nl/
-  topics: kernel, ansible, molecule, tox, playbook, hacktoberfest

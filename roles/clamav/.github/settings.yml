@@ -1,8 +1,0 @@
----
-#
-# Ansible managed
-#
-repository:
-  description: Install and configure clamav on your system.
-  homepage: https://robertdebock.nl/
-  topics: clamav, installer, package, scan, security, system, virus, virusscan, ansible, molecule, tox, playbook, hacktoberfest

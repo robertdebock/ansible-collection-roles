@@ -1,8 +1,0 @@
----
-#
-# Ansible managed
-#
-repository:
-  description: Test if your system is vulernable for cve_2018_19788.
-  homepage: https://robertdebock.nl/
-  topics: cve201819788, cve, ansible, molecule, tox, playbook, hacktoberfest

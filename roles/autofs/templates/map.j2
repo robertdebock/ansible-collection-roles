@@ -1,4 +1,0 @@
-{{ ansible_managed | comment }}
-{% for directory in item.directories %}
-{{ directory.path }} {% if directory.options is defined %}-{% for option in directory.options %}{{ option }}{% if not loop.last %},{% endif %}{% endfor %} {% endif %}{{ directory.server }}
-{% endfor %}

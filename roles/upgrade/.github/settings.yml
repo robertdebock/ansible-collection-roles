@@ -1,8 +1,0 @@
----
-#
-# Ansible managed
-#
-repository:
-  description: Upgrade a package only if it is installed otherwise do nothing.
-  homepage: https://robertdebock.nl/
-  topics: upgrade, ansible, molecule, tox, playbook, hacktoberfest

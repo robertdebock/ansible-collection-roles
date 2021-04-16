@@ -1,8 +1,0 @@
----
-#
-# Ansible managed
-#
-repository:
-  description: Install and configure dnsmasq on your system.
-  homepage: https://robertdebock.nl/
-  topics: dnsmasq, dns, dhcp, ansible, molecule, tox, playbook, hacktoberfest

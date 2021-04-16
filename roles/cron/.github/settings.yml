@@ -1,8 +1,0 @@
----
-#
-# Ansible managed
-#
-repository:
-  description: Install cron and scedule jobs on your system.
-  homepage: https://robertdebock.nl/
-  topics: cron, crontab, scheduling, ansible, molecule, tox, playbook, hacktoberfest

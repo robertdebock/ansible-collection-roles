@@ -1,8 +1,0 @@
----
-#
-# Ansible managed
-#
-repository:
-  description: Make filesystems.
-  homepage: https://robertdebock.nl/
-  topics: filesystem, ansible, molecule, tox, playbook, hacktoberfest

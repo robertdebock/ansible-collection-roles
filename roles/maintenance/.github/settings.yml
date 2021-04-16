@@ -1,8 +1,0 @@
----
-#
-# Ansible managed
-#
-repository:
-  description: Maintain your system by cleaning up.
-  homepage: https://robertdebock.nl/
-  topics: maintenance, ansible, molecule, tox, playbook, hacktoberfest

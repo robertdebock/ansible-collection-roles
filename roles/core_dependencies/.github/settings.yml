@@ -1,8 +1,0 @@
----
-#
-# Ansible managed
-#
-repository:
-  description: Install dependecies to support the Ansible core modules.
-  homepage: https://robertdebock.nl/
-  topics: coredependencies, ansible, molecule, tox, playbook, hacktoberfest

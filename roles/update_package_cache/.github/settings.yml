@@ -1,8 +1,0 @@
----
-#
-# Ansible managed
-#
-repository:
-  description: Update cache for yum and apt package managers.
-  homepage: https://robertdebock.nl/
-  topics: updatepackagecache, ansible, molecule, tox, playbook, hacktoberfest

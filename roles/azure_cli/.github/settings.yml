@@ -1,8 +1,0 @@
----
-#
-# Ansible managed
-#
-repository:
-  description: Install and configure azure_cli on your system.
-  homepage: https://robertdebock.nl/
-  topics: azurecli, ansible, molecule, tox, playbook, hacktoberfest

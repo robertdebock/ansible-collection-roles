@@ -1,8 +1,0 @@
----
-#
-# Ansible managed
-#
-repository:
-  description: Install and configure postfix on your system.
-  homepage: https://robertdebock.nl/
-  topics: installer, mailserver, package, postfix, security, system, ansible, molecule, tox, playbook, hacktoberfest

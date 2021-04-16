@@ -1,5 +1,0 @@
-{{ ansible_managed | comment }}
-session=gnome
-geometry=1920x1080
-localhost
-alwaysshared

@@ -1,8 +1,0 @@
----
-#
-# Ansible managed
-#
-repository:
-  description: Configure Logical Volumes Management (lvm), group and volumes.
-  homepage: https://robertdebock.nl/
-  topics: lvm, ansible, molecule, tox, playbook, hacktoberfest

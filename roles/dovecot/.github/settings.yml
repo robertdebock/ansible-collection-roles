@@ -1,8 +1,0 @@
----
-#
-# Ansible managed
-#
-repository:
-  description: Install and configure dovecot on your system.
-  homepage: https://robertdebock.nl/
-  topics: dovecot, pop3, imap, installer, package, ansible, molecule, tox, playbook, hacktoberfest

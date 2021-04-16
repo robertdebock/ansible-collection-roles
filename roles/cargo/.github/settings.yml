@@ -1,8 +1,0 @@
----
-#
-# Ansible managed
-#
-repository:
-  description: Install cargo on your system.
-  homepage: https://robertdebock.nl/
-  topics: cargo, rust, packager, ansible, molecule, tox, playbook, hacktoberfest

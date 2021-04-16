@@ -1,5 +1,0 @@
-{{ ansible_managed | comment }}
-
-[Service]
-ExecStart=
-ExecStart=/usr/sbin/haveged --write {{ haveged_write_wakeup_threshold }} --verbose 1 --Foreground

@@ -1,8 +1,0 @@
----
-#
-# Ansible managed
-#
-repository:
-  description: Configure grub on your system.
-  homepage: https://robertdebock.nl/
-  topics: grub, ansible, molecule, tox, playbook, hacktoberfest

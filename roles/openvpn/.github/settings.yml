@@ -1,8 +1,0 @@
----
-#
-# Ansible managed
-#
-repository:
-  description: Install and configure openvpn server or client on your system.
-  homepage: https://robertdebock.nl/
-  topics: openvpn, ansible, molecule, tox, playbook, hacktoberfest

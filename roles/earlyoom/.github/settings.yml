@@ -1,8 +1,0 @@
----
-#
-# Ansible managed
-#
-repository:
-  description: Install and configure Early Out Of Memory Killer on your system.
-  homepage: https://robertdebock.nl/
-  topics: earlyoom, ansible, molecule, tox, playbook, hacktoberfest

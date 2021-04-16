@@ -1,8 +1,0 @@
----
-#
-# Ansible managed
-#
-repository:
-  description: Install and configure nginx on your system.
-  homepage: https://robertdebock.nl/
-  topics: nginx, web, installer, ansible, molecule, tox, playbook, hacktoberfest

@@ -1,8 +1,0 @@
----
-#
-# Ansible managed
-#
-repository:
-  description: Install gotop on your system.
-  homepage: https://robertdebock.nl/
-  topics: gotop, system, monitoring, top, ansible, molecule, tox, playbook, hacktoberfest

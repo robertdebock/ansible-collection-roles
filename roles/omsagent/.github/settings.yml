@@ -1,8 +1,0 @@
----
-#
-# Ansible managed
-#
-repository:
-  description: Install Microsoft omsagent (Log Analytics agent) on your system.
-  homepage: https://robertdebock.nl/
-  topics: omsagent, ansible, molecule, tox, playbook, hacktoberfest

@@ -1,8 +1,0 @@
----
-#
-# Ansible managed
-#
-repository:
-  description: Install and configure Etherpad on your system.
-  homepage: https://robertdebock.nl/
-  topics: etherpad, ansible, molecule, tox, playbook, hacktoberfest

@@ -1,8 +1,0 @@
----
-#
-# Ansible managed
-#
-repository:
-  description: Install, run and collect sosreports from your systems.
-  homepage: https://robertdebock.nl/
-  topics: sosreport, ansible, molecule, tox, playbook, hacktoberfest

@@ -1,8 +1,0 @@
----
-#
-# Ansible managed
-#
-repository:
-  description: Load modules.
-  homepage: https://robertdebock.nl/
-  topics: modprobe, ansible, molecule, tox, playbook, hacktoberfest
