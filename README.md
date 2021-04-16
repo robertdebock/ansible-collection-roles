@@ -16,6 +16,7 @@ You can also list a collection in `requirements.yml`:
 ---
 collections:
   - name: robertdebock.roles
+```
 
 2. Include roles in your playbooks:
 
