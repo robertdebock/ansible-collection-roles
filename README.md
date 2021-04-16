@@ -10,6 +10,13 @@ A collection of roles found on [robertdebock.nl](https://robertdebock.nl/).
 ansible-galaxy collection install robertdebock.roles
 ```
 
+You can also list a collection in `requirements.yml`:
+
+```yaml
+---
+collections:
+  - name: robertdebock.roles
+
 2. Include roles in your playbooks:
 
 ```yaml
