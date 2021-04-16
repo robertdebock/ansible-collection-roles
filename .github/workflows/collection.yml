@@ -1,5 +1,15 @@
 ---
-- name: Build and Deploy Collection
-  uses: artis3n/ansible_galaxy_collection@v2
-  with:
-    api_key: '${{ secrets.GALAXY_API_KEY }}'
+
+name: Build and Deploy Collection
+
+on:
+  push:
+
+jobs:
+  build:
+    runs-on: "Ubuntu-20.04"
+    steps:
+      - name: Build and Deploy Collection
+        uses: artis3n/ansible_galaxy_collection@v2
+        with:
+          api_key: '${{ secrets.GALAXY_API_KEY }}'
