@@ -1,7 +1,0 @@
-{
-  "kind": "tm:net:dag-globals:dag-globalsstate",
-  "selfLink": "https://localhost/mgmt/tm/net/dag-globals?ver=13.1.1.4",
-  "dagIpv6PrefixLen": 128,
-  "icmpHash": "icmp",
-  "roundRobinMode": "global"
-}

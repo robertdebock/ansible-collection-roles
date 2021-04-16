@@ -1,6 +1,0 @@
----
-apache_user: apache
-apache_group: apache
-apache_log: httpd
-
-mysql_create_dir: create/

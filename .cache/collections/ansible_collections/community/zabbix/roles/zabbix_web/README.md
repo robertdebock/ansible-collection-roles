@@ -1,1 +1,0 @@
-../../docs/ZABBIX_WEB_ROLE.md

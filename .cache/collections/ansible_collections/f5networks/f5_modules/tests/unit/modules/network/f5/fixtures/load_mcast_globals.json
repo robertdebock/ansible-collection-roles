@@ -1,8 +1,0 @@
-{
-  "kind": "tm:net:multicast-globals:multicast-globalsstate",
-  "selfLink": "https://localhost/mgmt/tm/net/multicast-globals?ver=13.1.1.4",
-  "maxPendingPackets": 16,
-  "maxPendingRoutes": 256,
-  "rateLimit": "enabled",
-  "routeLookupTimeout": 2
-}

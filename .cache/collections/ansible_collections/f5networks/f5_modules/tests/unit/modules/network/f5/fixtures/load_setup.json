@@ -1,9 +1,0 @@
-{
-  "isSystemSetup": true,
-  "isAdminPasswordChanged": false,
-  "isRootPasswordChanged": false,
-  "generation": 5,
-  "lastUpdateMicros": 1490030910772165,
-  "kind": "shared:system:setup:systemsetupworkerstate",
-  "selfLink": "https://localhost/mgmt/shared/system/setup"
-}

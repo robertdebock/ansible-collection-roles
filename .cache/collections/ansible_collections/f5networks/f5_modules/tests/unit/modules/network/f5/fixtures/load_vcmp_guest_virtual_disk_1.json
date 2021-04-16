@@ -1,8 +1,0 @@
-{
-    "kind": "tm:vcmp:virtual-disk:virtual-diskstate",
-    "name": "guest1.img/1",
-    "fullPath": "guest1.img/1",
-    "generation": 172,
-    "selfLink": "https://localhost/mgmt/tm/vcmp/virtual-disk/guest1.img~1?ver=13.1.0.1",
-    "operatingSystem": "unknown"
-}

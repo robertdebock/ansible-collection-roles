@@ -1,1 +1,0 @@
-../../docs/ZABBIX_JAVAGATEWAY_ROLE.md
