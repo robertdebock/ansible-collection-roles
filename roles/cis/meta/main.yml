@@ -12,9 +12,6 @@ galaxy_info:
     - name: EL
       versions:
         - 8
-    - name: Ubuntu
-      versions:
-        - focal
 
   galaxy_tags:
     - cis

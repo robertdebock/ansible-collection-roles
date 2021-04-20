@@ -1,0 +1,26 @@
+---
+# tasks file for turn
+
+- name: include assert.yml
+  import_tasks: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+- name: install turn
+  ansible.builtin.package:
+    name: "{{ turn_packages }}"
+    state: present
+
+- name: configure coturn
+  ansible.builtin.template:
+    src: turnserver.conf.j2
+    dest: /etc/turnserver.conf
+    mode: "0640"
+  notify:
+    - restart turn
+
+- name: start turn
+  ansible.builtin.service:
+    name: "{{ turn_service }}"
+    state: started
+    enabled: yes

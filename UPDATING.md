@@ -3,12 +3,11 @@
 1. Delete the roles:
 
 ```shell
-cd roles
-rm -Rf *
+rm -Rf roles/*
 ```
 
 2. Copy the roles in:
 
 ```shell
-../UPDATING.sh
+./UPDATING.sh
 ```

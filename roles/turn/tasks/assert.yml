@@ -1,0 +1,22 @@
+---
+
+- name: test if turn_listening_port is set correctly
+  ansible.builtin.assert:
+    that:
+      - turn_listening_port is defined
+      - turn_listening_port is number
+    quiet: yes
+
+- name: test if turn_static_auth_secret is set correctly
+  ansible.builtin.assert:
+    that:
+      - turn_static_auth_secret is defined
+      - turn_static_auth_secret is string
+    quiet: yes
+
+- name: test if turn_realm is set correctly
+  ansible.builtin.assert:
+    that:
+      - turn_realm is defined
+      - turn_realm is string
+    quiet: yes

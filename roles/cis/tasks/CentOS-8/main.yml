@@ -91,3 +91,7 @@
 # 4.3 Ensure logrotate is configured (Not Scored)
 - name: include 4_3_logrotate_configured.yml
   include: 4_logging_and_auditing/4_3_logrotate_configured.yml
+
+# 5.1 Configure cron
+- name: include 5_1_configure_cron.yml
+  include: 5_access_authentication_authorization/5_1_configure_cron.yml
