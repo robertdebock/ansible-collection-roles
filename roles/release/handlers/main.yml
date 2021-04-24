@@ -1,0 +1,8 @@
+---
+# handlers file for release
+
+- name: reboot
+  ansible.builtin.reboot:
+  when:
+    - release_reboot | bool
+    - ansible_connection != "docker"

@@ -1283,3 +1283,11 @@
       - cis_cron_monthly_permissions_configured is defined
       - cis_cron_monthly_permissions_configured is boolean
     quiet: yes
+
+# 5.1.7 Ensure permissions on /etc/cron.d are configured (Scored)
+- name: test if cis_cron_d_permissions_configured is set correctly
+  assert:
+    that:
+      - cis_cron_d_permissions_configured is defined
+      - cis_cron_d_permissions_configured is boolean
+    quiet: yes

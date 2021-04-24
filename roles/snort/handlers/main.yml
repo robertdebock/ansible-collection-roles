@@ -1,0 +1,9 @@
+---
+# handlers file for snort
+
+- name: restart snort
+  ansible.builtin.service:
+    name: "{{ snort_service }}"
+    state: restarted
+  when:
+    - not ansible_check_mode | bool

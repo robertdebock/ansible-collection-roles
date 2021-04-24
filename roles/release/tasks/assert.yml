@@ -1,0 +1,8 @@
+---
+
+- name: test if release_reboot is set correctly
+  ansible.builtin.assert:
+    that:
+      - release_reboot is defined
+      - release_reboot is boolean
+    quiet: yes

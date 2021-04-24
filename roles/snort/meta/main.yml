@@ -1,0 +1,24 @@
+---
+galaxy_info:
+  author: Robert de Bock
+  namespace: robertdebock
+  role_name: snort
+  description: Install and configure snort on your system.
+  license: Apache-2.0
+  company: none
+  min_ansible_version: "2.10"
+
+  platforms:
+    - name: EL
+      versions:
+        - 8
+    - name: Fedora
+      versions:
+        - 32
+
+  galaxy_tags:
+    - snort
+    - server
+    - system
+
+dependencies: []

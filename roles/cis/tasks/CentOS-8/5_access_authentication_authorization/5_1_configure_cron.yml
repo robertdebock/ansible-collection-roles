@@ -47,7 +47,6 @@
   when:
     - cis_cron_weekly_permissions_configured
 
-
 - name: 5.1.6 Ensure permissions on /etc/cron.monthly are configured (Scored)
   file:
     path: /etc/cron.monthly
@@ -57,3 +56,13 @@
     mode: "og-rwx"
   when:
     - cis_cron_monthly_permissions_configured
+
+- name: 5.1.7 Ensure permissions on /etc/cron.d are configured (Scored)
+  file:
+    path: /etc/cron.d
+    state: directory
+    owner: root
+    group: root
+    mode: "og-rwx"
+  when:
+    - cis_cron_d_permissions_configured
