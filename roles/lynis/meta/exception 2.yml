@@ -1,4 +1,0 @@
----
-exceptions:
-  - variation: alpine
-    reason: "No such file or directory: '/etc/cron.d/lynis'"

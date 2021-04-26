@@ -1,8 +1,0 @@
----
-exceptions:
-  - variation: opensuse
-    reason: "Idempotency issue with start and enable haveged"
-  - variation: ubuntu
-    reason: "Idempotency issue with start and enable haveged"
-  - variation: amazonlinux
-    reason: "Dependency robertdebock.sysctl does not work."

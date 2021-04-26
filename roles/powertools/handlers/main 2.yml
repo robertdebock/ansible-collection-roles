@@ -1,6 +1,0 @@
----
-# handlers file for powertools
-
-- name: yum update cache
-  ansible.builtin.yum:
-    update_cache: yes

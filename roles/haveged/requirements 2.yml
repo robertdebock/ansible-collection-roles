@@ -1,7 +1,0 @@
----
-roles:
-  - name: robertdebock.bootstrap
-  - name: robertdebock.epel
-  - name: robertdebock.sysctl
-collections:
-  - name: ansible.posix

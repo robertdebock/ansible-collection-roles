@@ -1,7 +1,0 @@
----
-# vars file for turn
-
-turn_packages:
-  - coturn
-
-turn_service: coturn

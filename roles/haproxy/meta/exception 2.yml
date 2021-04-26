@@ -1,6 +1,0 @@
----
-exceptions:
-  - variation: amazonlinux:1
-    reason: "/etc/init.d/haproxy: line 17: /etc/sysconfig/network: No such file or directory"
-  - variation: ubuntu:xenial
-    reason: "Setup script exited with error: command 'x86_64-linux-gnu-gcc' failed with exit status 1"

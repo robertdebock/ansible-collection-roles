@@ -1,5 +1,0 @@
----
-# vars file for lvm
-
-lvm_requirements:
-  - lvm2

@@ -1,9 +1,0 @@
----
-# handlers file for stratis
-
-- name: restart stratis
-  ansible.builtin.service:
-    name: "{{ stratis_service }}"
-    state: restarted
-  when:
-    - not ansible_check_mode | bool

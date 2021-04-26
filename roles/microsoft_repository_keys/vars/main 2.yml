@@ -1,4 +1,0 @@
----
-# vars file for microsoft_repository_keys
-
-microsoft_repository_keys_url: "https://packages.microsoft.com/keys/microsoft.asc"

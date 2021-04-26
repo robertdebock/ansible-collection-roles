@@ -1,6 +1,0 @@
----
-# vars file for cis
-
-cis_removable_media_partitions:
-  - /mnt/floppy
-  - /mnt/cdrom

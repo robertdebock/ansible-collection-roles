@@ -1,8 +1,0 @@
----
-
-- name: test if subversion_path is set correctly
-  ansible.builtin.assert:
-    that:
-      - subversion_path is defined
-      - subversion_path is string
-    quiet: yes

@@ -1,9 +1,0 @@
----
-# handlers file for redis
-
-- name: restart redis
-  ansible.builtin.service:
-    name: "{{ redis_service }}"
-    state: restarted
-  when:
-    - not ansible_check_mode | bool

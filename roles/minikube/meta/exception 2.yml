@@ -1,4 +1,0 @@
----
-exceptions:
-  - variation: CentOS 6
-    reason: Depending role (python_pip) does not work on CentOS 6.

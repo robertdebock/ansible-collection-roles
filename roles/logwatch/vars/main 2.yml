@@ -1,9 +1,0 @@
----
-# vars file for logwatch
-
-logwatch_packages:
-  - logwatch
-
-logwatch_config_directory: /usr/share/logwatch/default.conf
-
-logwatch_config_file: logwatch.conf

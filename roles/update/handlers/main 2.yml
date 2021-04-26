@@ -1,8 +1,0 @@
----
-# handlers file for update
-
-- name: reboot
-  ansible.builtin.reboot:
-  when:
-    - update_reboot | bool
-    - ansible_connection != "docker"

@@ -1,7 +1,0 @@
----
-# vars file for xrdp
-
-xrdp_packages:
-  - xrdp
-
-xrdp_service: xrdp

@@ -1,9 +1,0 @@
----
-# tasks file for scl
-
-- name: install centos-release-scl
-  ansible.builtin.package:
-    name: centos-release-scl
-    state: present
-  when:
-    - ansible_distribution == "CentOS"

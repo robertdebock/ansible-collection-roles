@@ -1,8 +1,0 @@
----
-
-- name: update package {{ package.key }}
-  ansible.builtin.pip:
-    name: "{{ package.key }}"
-    state: latest
-  when:
-    - package.key not in update_pip_package_ignore

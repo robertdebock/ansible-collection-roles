@@ -1,6 +1,0 @@
----
-exceptions:
-  - variation: centos
-    reason: PHP is too old for mediawiki.
-  - variation: ubuntu:bionic
-    reason: PHP is too old for mediawiki.

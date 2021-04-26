@@ -1,6 +1,0 @@
----
-# handlers file for omsagent
-
-- name: wait for the script to finish
-  ansible.builtin.pause:
-    seconds: 60
