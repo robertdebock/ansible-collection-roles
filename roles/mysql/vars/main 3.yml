@@ -1,0 +1,101 @@
+---
+# vars file for mysql
+
+_mysql_packages:
+  default:
+    - mariadb-server
+    - mariadb-devel
+    - python2-mysql
+  Alpine:
+    - mariadb
+    - py-mysqldb
+  Amazon-2018:
+    - mysql-server
+    - mysql-devel
+    - MySQL-python27
+  Amazon:
+    - mariadb-server
+    - mariadb-devel
+    - MySQL-python
+  CentOS-7:
+    - mariadb-devel
+    - mariadb-server
+    - MySQL-python
+  CentOS:
+    - mysql-devel
+    - mysql-server
+    - python3-PyMySQL
+  Debian:
+    - mariadb-server
+    - python3-mysqldb
+  Fedora:
+    - mariadb-server
+    - mariadb-connector-c-devel
+    - python3-PyMySQL
+  openSUSE Leap:
+    - libmysqlclient-devel
+    - mariadb
+    - python3-mysqlclient
+  RedHat-7:
+    - mariadb-devel
+    - mariadb-server
+    - MySQL-python
+  Ubuntu:
+    - mariadb-server
+    - libssl-dev
+    - python3-mysqldb
+
+mysql_packages: "{{ _mysql_packages[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_mysql_packages[ansible_distribution] | default(_mysql_packages['default'])) }}"
+
+_mysql_initialize_command:
+  Alpine: /etc/init.d/mariadb setup
+  Archlinux: mysql_install_db --basedir=/usr --datadir=/var/lib/mysql
+
+mysql_initialize_command: "{{ _mysql_initialize_command[ansible_os_family] }}"
+
+_mysql_service:
+  default: mysql
+  Alpine: mariadb
+  Amazon: mariadb
+  Amazon-2018: mysqld
+  Fedora: mariadb
+  RedHat-7: mariadb
+  RedHat: mysqld
+
+mysql_service: "{{ _mysql_service[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_mysql_service[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_mysql_service[ansible_distribution] | default(_mysql_service[ansible_os_family] | default(_mysql_service['default'])))) }}"
+
+_mysql_socket:
+  default: /var/run/mysql/mysql.sock
+  Debian: /var/run/mysqld/mysqld.sock
+  RedHat: /var/lib/mysql/mysql.sock
+
+mysql_socket: "{{ _mysql_socket[ansible_os_family] | default(_mysql_socket['default']) }}"
+
+_mysql_pid:
+  default: /var/run/mysql/mysql.pid
+  Debian: /tmp/mysql.pid
+
+mysql_pid: "{{ _mysql_pid[ansible_os_family] | default(_mysql_pid['default']) }}"
+
+mysql_configuration_options:
+  - option: bind-address
+    section: mysqld
+    value: "{{ mysql_bind_address }}"
+  - option: socket
+    section: mysqld
+    value: "{{ mysql_socket }}"
+  - option: pid-file
+    section: mysqld
+    value: "{{ mysql_pid }}"
+  - section: mysqld
+    option: innodb_buffer_pool_size
+    value: "{{ mysql_innodb_buffer_pool_size }}"
+  - section: mysqld
+    option: innodb_io_capacity
+    value: "{{ mysql_innodb_io_capacity }}"
+
+_mysql_user:
+  default: root
+  Fedora-34: mysql
+
+mysql_user: "{{ _mysql_user[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_mysql_user['default']) }}"

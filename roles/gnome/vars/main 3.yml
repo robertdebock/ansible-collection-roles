@@ -1,0 +1,28 @@
+---
+# vars file for gnome
+
+_gnome_packages:
+  default: []
+  Alpine:
+    - gdm
+    - gnome-session
+  Debian:
+    - gnome-session
+    - gdm3
+  Fedora:
+    - "@Fedora Workstation"
+    - "@Fonts"
+    - dbus-x11
+  RedHat:
+    - "@Server with GUI"
+  openSUSE Leap:
+    - gnome-desktop
+    - gnome-session
+    - gdm
+    - gdm-systemd
+
+gnome_packages: "{{ _gnome_packages[ansible_distribution] | default(_gnome_packages[ansible_os_family] | default(_gnome_packages['default'] )) }}"
+
+gnome_exclude:
+  - "{{ ansible_distribution | lower }}-release-workstation"
+  - "{{ ansible_distribution | lower }}-release-workstation"

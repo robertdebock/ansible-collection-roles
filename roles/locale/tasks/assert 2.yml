@@ -1,0 +1,120 @@
+---
+
+- name: test if locale_lang is set correctly
+  ansible.builtin.assert:
+    that:
+      - locale_lang is defined
+      - locale_lang is string
+    quiet: yes
+
+- name: test if locale_language is set correctly
+  ansible.builtin.assert:
+    that:
+      - locale_language is defined
+      - locale_language is string
+    quiet: yes
+
+- name: test if locale_lc_address is set correctly
+  ansible.builtin.assert:
+    that:
+      - locale_lc_address is defined
+      - locale_lc_address is string
+    quiet: yes
+
+- name: test if locale_lc_all is set correctly
+  ansible.builtin.assert:
+    that:
+      - locale_lc_all is defined
+      - locale_lc_all is string
+    quiet: yes
+
+- name: test if locale_lc_collate is set correctly
+  ansible.builtin.assert:
+    that:
+      - locale_lc_collate is defined
+      - locale_lc_collate is string
+    quiet: yes
+
+- name: test if locale_lc_ctype is set correctly
+  ansible.builtin.assert:
+    that:
+      - locale_lc_ctype is defined
+      - locale_lc_ctype is string
+    quiet: yes
+
+- name: test if locale_lc_identification is set correctly
+  ansible.builtin.assert:
+    that:
+      - locale_lc_identification is defined
+      - locale_lc_identification is string
+    quiet: yes
+
+- name: test if locale_lc_measurement is set correctly
+  ansible.builtin.assert:
+    that:
+      - locale_lc_measurement is defined
+      - locale_lc_measurement is string
+    quiet: yes
+
+- name: test if locale_lc_messages is set correctly
+  ansible.builtin.assert:
+    that:
+      - locale_lc_messages is defined
+      - locale_lc_messages is string
+    quiet: yes
+
+- name: test if locale_lc_monetary is set correctly
+  ansible.builtin.assert:
+    that:
+      - locale_lc_monetary is defined
+      - locale_lc_monetary is string
+    quiet: yes
+
+- name: test if locale_lc_name is set correctly
+  ansible.builtin.assert:
+    that:
+      - locale_lc_name is defined
+      - locale_lc_name is string
+    quiet: yes
+
+- name: test if locale_lc_numeric is set correctly
+  ansible.builtin.assert:
+    that:
+      - locale_lc_numeric is defined
+      - locale_lc_numeric is string
+    quiet: yes
+
+- name: test if locale_lc_paper is set correctly
+  ansible.builtin.assert:
+    that:
+      - locale_lc_paper is defined
+      - locale_lc_paper is string
+    quiet: yes
+
+- name: test if locale_lc_response is set correctly
+  ansible.builtin.assert:
+    that:
+      - locale_lc_response is defined
+      - locale_lc_response is string
+    quiet: yes
+
+- name: test if locale_lc_telephone is set correctly
+  ansible.builtin.assert:
+    that:
+      - locale_lc_telephone is defined
+      - locale_lc_telephone is string
+    quiet: yes
+
+- name: test if locale_lc_time is set correctly
+  ansible.builtin.assert:
+    that:
+      - locale_lc_time is defined
+      - locale_lc_time is string
+    quiet: yes
+
+- name: test if locale_timezone is set correctly
+  ansible.builtin.assert:
+    that:
+      - locale_timezone is defined
+      - locale_timezone is string
+    quiet: yes

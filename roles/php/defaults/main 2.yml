@@ -1,0 +1,32 @@
+---
+# defaults file for php
+
+# The role discovers the ini location automatically, but can be overwritten.
+# php_ini_location: /etc/php/7.4/apache/php.ini
+
+# Alpine has both php5 and php7. Select the desired version here.
+php_alpine_version: 7
+
+# All the settings for PHP.
+php_display_errors: no
+php_startup_errors: no
+php_error_reporting: no
+php_html_errors: yes
+php_log_errors: yes
+php_max_input_time: 60
+php_max_execution_time: 60
+php_output_buffering: 4096
+php_register_argc_argv: no
+php_request_order: GP
+php_session_gc_divisor: 1000
+php_session_hash_bits_per_character: 5
+php_short_open_tag: no
+php_track_errors: no
+php_variables_order: GPCS
+php_engine: yes
+php_date_timezone: Europe/Amsterdam
+php_memory_limit: 128M
+php_upload_max_filesize: 2M
+php_post_max_size: 8M
+# php_extensions:
+#   - mcrypt.so

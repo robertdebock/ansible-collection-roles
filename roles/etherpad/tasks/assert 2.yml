@@ -1,0 +1,24 @@
+---
+
+- name: test if etherpad_version is set correctly
+  ansible.builtin.assert:
+    that:
+      - etherpad_version is defined
+      - etherpad_version is string
+    quiet: yes
+
+- name: test if etherpad_installation_destination is set correctly
+  ansible.builtin.assert:
+    that:
+      - etherpad_installation_destination is defined
+      - etherpad_installation_destination is string
+    quiet: yes
+
+- name: test if etherpad_port is set correctly
+  ansible.builtin.assert:
+    that:
+      - etherpad_port is defined
+      - etherpad_port is number
+      - etherpad_port > 0
+      - etherpad_port <= 65536
+    quiet: yes

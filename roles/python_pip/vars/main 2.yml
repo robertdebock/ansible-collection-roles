@@ -1,0 +1,19 @@
+---
+# vars file for python_pip
+
+_python_pip_packages:
+  Alpine:
+    - py3-pip
+    - py3-setuptools
+    - python3-dev
+  Debian:
+    - python3-pip
+    - python3-setuptools
+  RedHat:
+    - python3-pip
+    - python3-setuptools
+  Suse:
+    - python3-pip
+    - python3-setuptools
+
+python_pip_packages: "{{ _python_pip_packages[ansible_os_family] | default(_python_pip_packages['default']) }}"

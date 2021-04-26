@@ -1,0 +1,26 @@
+---
+galaxy_info:
+  author: Robert de Bock
+  namespace: robertdebock
+  role_name: unbound
+  description: Install and configure unbound on your system.
+  license: Apache-2.0
+  company: none
+  min_ansible_version: "2.10"
+
+  platforms:
+    - name: EL
+      versions:
+        - 7
+        - 8
+    - name: Fedora
+      versions:
+        - all
+    - name: OpenSUSE
+      versions:
+        - all
+
+  galaxy_tags:
+    - unbound
+
+dependencies: []

@@ -1,0 +1,93 @@
+---
+
+- name: test if squid_port is set correctly
+  ansible.builtin.assert:
+    that:
+      - squid_port is defined
+      - squid_port is number
+      - squid_port > 0
+      - squid_port < 65536
+    quiet: yes
+
+- name: test if squid_cache_dir is set correctly
+  ansible.builtin.assert:
+    that:
+      - squid_cache_dir is defined
+      - squid_cache_dir is string
+      - squid_cache_dir.split(" ")[0] in [ "ufs", "aufs", "diskd", "rock", "null" ]
+    quiet: yes
+
+- name: test if squid_cache_dir is set correctly when no null driver is used
+  ansible.builtin.assert:
+    that:
+      - squid_cache_dir.split(" ")[2]
+      - squid_cache_dir.split(" ")[2] |int > 0
+      - squid_cache_dir.split(" ")[3]
+      - squid_cache_dir.split(" ")[3] |int > 0
+      - squid_cache_dir.split(" ")[4]
+      - squid_cache_dir.split(" ")[4] |int > 0
+    quiet: yes
+    fail_msg: "The null storage driver does not allow arguments to be set."
+  when:
+    - squid_cache_dir.split(" ")[0] != "null"
+
+- name: test if squid_acls is set correctly
+  ansible.builtin.assert:
+    that:
+      - squid_acls is iterable
+    quiet: yes
+  when:
+    - squid_acls is defined
+
+- name: test if item in squid_acls is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.name is defined
+      - item.name is string
+      - item.classifier is defined
+      - item.classifier is string
+      - item.value is defined
+      - item.value is string
+    quiet: yes
+  loop: "{{ squid_acls }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - squid_acls is defined
+
+- name: test if item in squid_http_access is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.state is defined
+      - item.state is string
+      - item.acls is defined
+      - item.acls is iterable
+    quiet: yes
+  loop: "{{ squid_http_access }}"
+  loop_control:
+    label: "{{ item.state }}"
+  when:
+    - squid_http_access is defined
+
+- name: test if squid_rules is set correctly
+  ansible.builtin.assert:
+    that:
+      - squid_rules is iterable
+    quiet: yes
+  when:
+    - squid_rules is defined
+
+- name: test if item in squid_rules is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.acl is defined
+      - item.acl is string
+      - item.decision is defined
+      - item.decision is string
+      - item.decision in [ "allow", "deny" ]
+    quiet: yes
+  loop: "{{ squid_rules }}"
+  loop_control:
+    label: "{{ item.acl }}"
+  when:
+    - squid_rules is defined

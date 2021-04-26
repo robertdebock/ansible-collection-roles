@@ -1,0 +1,9 @@
+---
+# tasks file for microsoft_repository_keys
+
+- name: add apt key
+  ansible.builtin.apt_key:
+    url: "{{ microsoft_repository_keys_url }}"
+    state: present
+  when:
+    - ansible_os_family == "Debian"

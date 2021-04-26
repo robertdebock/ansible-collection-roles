@@ -1,0 +1,33 @@
+---
+
+- name: test if memcached_port is set correctly
+  ansible.builtin.assert:
+    that:
+      - memcached_port is defined
+      - memcached_port is number
+      - memcached_port > 0
+      - memcached_port < 65536
+    quiet: yes
+
+- name: test if memcached_listenon is set correctly
+  ansible.builtin.assert:
+    that:
+      - memcached_listenon is defined
+      - memcached_listenon is string
+    quiet: yes
+
+- name: test if memcached_maxconn is set correctly
+  ansible.builtin.assert:
+    that:
+      - memcached_maxconn is defined
+      - memcached_maxconn is number
+      - memcached_maxconn >= 1
+    quiet: yes
+
+- name: test if memcached_cachesize is set correctly
+  ansible.builtin.assert:
+    that:
+      - memcached_cachesize is defined
+      - memcached_cachesize is number
+      - memcached_cachesize >= 1
+    quiet: yes

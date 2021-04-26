@@ -1,0 +1,40 @@
+---
+- name: 1.6.1 Ensure core dumps are restricted (Scored)
+  copy:
+    dest: /etc/security/limits.d/coredumps.conf
+    content: "* hard core 0"
+    mode: "0600"
+  when:
+    - cis_core_dumps_restricted | bool
+
+- name: 1.6.1 Ensure core dumps are restricted (Scored)
+  sysctl:
+    name: fs.suid_dumpable
+    value: "0"
+  when:
+    - cis_core_dumps_restricted | bool
+
+- name: 1.6.1 Ensure core dumps are restricted (Scored)
+  ini_file:
+    path: /etc/systemd/coredump.conf
+    mode: "0644"
+    section: Coredump
+    option: "{{ item.option }}"
+    value: "{{ item.value }}"
+    no_extra_spaces: yes
+  loop:
+    - option: Storage
+      value: none
+    - option: ProcessSizeMax
+      value: "0"
+  when:
+    - cis_core_dumps_restricted | bool
+  notify:
+    - systemctl daemon-reload
+
+- name: 1.6.2 Ensure address space layout randomization (ASLR) is enabled (Scored)
+  sysctl:
+    name: kernel.randomize_va_space
+    value: "2"
+  when:
+    - cis_aslr_enabled | bool

@@ -1,0 +1,6 @@
+---
+project_name: adsr on GitHub
+reference: "https://github.com/robertdebock/ansible-role-irslackd/blob/master/defaults/main.yml"
+versions:
+  - name: irslackd
+    url: "https://github.com/adsr/irslackd/releases"

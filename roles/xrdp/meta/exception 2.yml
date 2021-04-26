@@ -1,0 +1,4 @@
+---
+exceptions:
+  - variation: ubuntu:latest
+    reason: "Unable to start service xrdp: A dependency job for xrdp.service failed. See 'journalctl -xe' for details. "

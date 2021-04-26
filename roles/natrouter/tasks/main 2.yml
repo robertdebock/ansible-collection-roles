@@ -1,0 +1,27 @@
+---
+# tasks file for natrouter
+
+- name: include assert.yml
+  import_tasks: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+- name: install iptables
+  ansible.builtin.package:
+    name: iptables
+    state: present
+
+- name: set routing rules
+  ansible.builtin.iptables:
+    table: nat
+    state: present
+    chain: POSTROUTING
+    out_interface: "{{ natrouter_public_interface }}"
+    source: "{{ natrouter_private_network }}"
+    destination: "{{ natrouter_destination }}"
+    jump: MASQUERADE
+    protocol: "{{ item }}"
+    comment: Ansible NAT Masquerade
+  loop: "{{ natrouter_protocols }}"
+  when:
+    - ansible_connection != "docker"

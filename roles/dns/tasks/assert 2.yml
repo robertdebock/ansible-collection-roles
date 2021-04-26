@@ -1,0 +1,144 @@
+---
+
+- name: test if dns_port is set correctly
+  ansible.builtin.assert:
+    that:
+      - dns_port is defined
+      - dns_port is number
+    quiet: yes
+
+- name: test if dns_caching_dns is set correctly
+  ansible.builtin.assert:
+    that:
+      - dns_caching_dns is defined
+      - dns_caching_dns is boolean
+    quiet: yes
+
+- name: test if dns_zones is set correctly
+  ansible.builtin.assert:
+    that:
+      - dns_zones is defined
+      - dns_zones is iterable
+    quiet: yes
+
+- name: test if item in dns_zones is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.name is defined
+      - item.name is string
+      - item.records is defined
+      - item.records is iterable
+    quiet: yes
+  loop: "{{ dns_zones }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - dns_zones is defined
+    - item.type is undefined
+
+- name: test if item in dns_zones is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.type is defined
+      - item.type is string
+      - item.type in [ "forward" ]
+      - item.dns_zone_forwarders is defined
+      - item.dns_zone_forwarders is iterable
+    quiet: yes
+  loop: "{{ dns_zones }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - dns_zones is defined
+    - dns_zones is string
+    - item.type is defined
+    - item.type is string
+
+- name: test if dns_allow_recursion is set correctly
+  ansible.builtin.assert:
+    that:
+      - dns_allow_recursion is iterable
+    quiet: yes
+  when:
+    - dns_allow_recursion is defined
+
+- name: test if dns_options_listen_on is set correctly
+  ansible.builtin.assert:
+    that:
+      - dns_options_listen_on is iterable
+    quiet: yes
+  when:
+    - dns_options_listen_on is defined
+
+- name: test if item in dns_options_listen_on is set correctly
+  ansible.builtin.assert:
+    that:
+      - item in [ "any", "none" ]
+    quiet: yes
+  loop: "{{ dns_options_listen_on }}"
+  loop_control:
+    label: "{{ item }}"
+  when:
+    - dns_options_listen_on is defined
+    - item is string
+
+- name: test if item in dns_options_listen_on is set correctly
+  ansible.builtin.assert:
+    that:
+      - item is number
+      - item >= 1
+      - item <= 65535
+    quiet: yes
+  loop: "{{ dns_options_listen_on }}"
+  loop_control:
+    label: "{{ item }}"
+  when:
+    - dns_options_listen_on is defined
+    - item is not string
+
+- name: test if dns_options_listen_on_v6 is set correctly
+  ansible.builtin.assert:
+    that:
+      - dns_options_listen_on_v6 is iterable
+    quiet: yes
+  when:
+    - dns_options_listen_on_v6 is defined
+
+- name: test if item in dns_options_listen_on_v6 is set correctly
+  ansible.builtin.assert:
+    that:
+      - item is defined
+      - item is string
+      - item in [ "any", "none" ]
+    quiet: yes
+  loop: "{{ dns_options_listen_on_v6 }}"
+  loop_control:
+    label: "{{ item }}"
+  when:
+    - dns_options_listen_on_v6 is defined
+
+- name: test if dns_options_allow_query is set correctly
+  ansible.builtin.assert:
+    that:
+      - dns_options_allow_query is iterable
+    quiet: yes
+  when:
+    - dns_options_allow_query is defined
+
+- name: test if dns_options_forwarders is set correctly
+  ansible.builtin.assert:
+    that:
+      - dns_options_forwarders is iterable
+    quiet: yes
+  when:
+    - dns_options_forwarders is defined
+
+- name: test if item in dns_options_forwarders is set correctly
+  ansible.builtin.assert:
+    that:
+      - item is defined
+      - item is string
+    quiet: yes
+  loop: "{{ dns_options_forwarders }}"
+  when:
+    - dns_options_forwarders is defined

@@ -1,0 +1,6 @@
+---
+# handlers file for minikube
+
+- name: systemctl daemon-reload
+  ansible.builtin.systemd:
+    daemon_reload: yes

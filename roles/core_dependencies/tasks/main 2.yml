@@ -1,0 +1,20 @@
+---
+# tasks file for core_dependencies
+
+- name: install packages
+  ansible.builtin.package:
+    name: "{{ core_dependencies }}"
+    state: present
+  notify:
+    - gather facts
+
+- name: try to install pip packages
+  ansible.builtin.pip:
+    name: "{{ core_dependencies_pip_packages }}"
+    state: present
+  failed_when: no
+  notify:
+    - gather facts
+
+- name: flush handlers
+  ansible.builtin.meta: flush_handlers

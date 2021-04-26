@@ -1,0 +1,9 @@
+---
+# handlers file for zabbix_proxy
+
+- name: restart zabbix-proxy
+  ansible.builtin.service:
+    name: zabbix-proxy
+    state: restarted
+  when:
+    - not ansible_check_mode | bool

@@ -1,0 +1,9 @@
+---
+# handlers file for cups
+
+- name: restart cups
+  ansible.builtin.service:
+    name: "{{ cups_service }}"
+    state: restarted
+  when:
+    - not ansible_check_mode | bool

@@ -1,0 +1,59 @@
+---
+
+- name: test if gitlab_runner_register_runner is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_runner_register_runner is defined
+      - gitlab_runner_register_runner is boolean
+    quiet: yes
+
+- name: test if gitlab_runner_name is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_runner_name is defined
+      - gitlab_runner_name is string
+    quiet: yes
+
+- name: test if gitlab_runner_token is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_runner_token is defined
+      - gitlab_runner_token is string
+    quiet: yes
+
+- name: test if gitlab_runner_token is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_runner_token is defined
+      - gitlab_runner_token is string
+    quiet: yes
+
+- name: test if gitlab_runner_url is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_runner_url is defined
+      - gitlab_runner_url is string
+    quiet: yes
+
+- name: test if gitlab_runner_tags is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_runner_tags is defined
+      - gitlab_runner_tags is string
+    quiet: yes
+
+- name: test if gitlab_runner_executor is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_runner_executor is string
+      - gitlab_runner_executor in [ "ssh", "shell", "parallels", "virtualbox", "docker", "docker_machine", "kubernetes", "custom" ]
+    quiet: yes
+
+- name: test if gitlab_runner_docker_image is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_runner_docker_image is defined
+      - gitlab_runner_docker_image is string
+    quiet: yes
+  when:
+    - gitlab_runner_executor == "docker"

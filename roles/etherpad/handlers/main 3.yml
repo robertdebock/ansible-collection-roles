@@ -1,0 +1,9 @@
+---
+# handlers file for etherpad
+
+- name: restart etherpad
+  ansible.builtin.service:
+    name: "{{ etherpad_service }}"
+    state: restarted
+  when:
+    - not ansible_check_mode | bool

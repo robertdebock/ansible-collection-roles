@@ -1,0 +1,38 @@
+---
+
+- name: test if keepalived_vrrp_instances is set correctly
+  ansible.builtin.assert:
+    that:
+      - keepalived_vrrp_instances is defined
+      - keepalived_vrrp_instances is iterable
+    quiet: yes
+
+- name: test if item in keepalived_vrrp_instances is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.name is defined
+      - item.name is string
+      - item.state is defined
+      - item.state is string
+      - item.state in [ "BACKUP", "MASTER" ]
+      - item.interface is defined
+      - item.interface is string
+      - item.virtual_router_id is defined
+      - item.virtual_router_id is number
+      - item.virtual_router_id >= 0
+      - item.virtual_router_id <= 255
+      - item.priority is defined
+      - item.priority is number
+      - item.priority >= 1
+      - item.priority <= 255
+    quiet: yes
+  loop: "{{ keepalived_vrrp_instances }}"
+  loop_control:
+    label: "{{ item.name }}"
+
+- name: loop over keepalived_vrrp_instances
+  ansible.builtin.include: assert_instances.yml
+  loop: "{{ keepalived_vrrp_instances }}"
+  loop_control:
+    label: "{{ instance.name }}"
+    loop_var: instance

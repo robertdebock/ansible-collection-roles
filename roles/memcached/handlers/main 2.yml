@@ -1,0 +1,15 @@
+---
+# handlers file for memcached
+
+- name: systemctl daemon-reload
+  ansible.builtin.systemd:
+    daemon_reload: yes
+  notify:
+    - restart software
+
+- name: restart memcached
+  ansible.builtin.service:
+    name: memcached
+    state: restarted
+  when:
+    - not ansible_check_mode | bool

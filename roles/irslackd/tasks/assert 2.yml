@@ -1,0 +1,73 @@
+---
+
+- name: test if irslackd_port is set correctly
+  ansible.builtin.assert:
+    that:
+      - irslackd_port is defined
+      - irslackd_port is number
+      - irslackd_port > 0
+      - irslackd_port < 65536
+    quiet: yes
+
+- name: test if irslackd_address is set correctly
+  ansible.builtin.assert:
+    that:
+      - irslackd_address is defined
+      - irslackd_address is string
+    quiet: yes
+
+- name: test if irslackd_dest is set correctly
+  ansible.builtin.assert:
+    that:
+      - irslackd_dest is defined
+      - irslackd_dest is string
+    quiet: yes
+
+- name: test if irslackd_version is set correctly
+  ansible.builtin.assert:
+    that:
+      - irslackd_version is defined
+      - irslackd_version is string
+    quiet: yes
+
+- name: test if irslackd_country is set correctly
+  ansible.builtin.assert:
+    that:
+      - irslackd_country is defined
+      - irslackd_country is string
+    quiet: yes
+
+- name: test if irslackd_state is set correctly
+  ansible.builtin.assert:
+    that:
+      - irslackd_state is defined
+      - irslackd_state is string
+    quiet: yes
+
+- name: test if irslackd_location is set correctly
+  ansible.builtin.assert:
+    that:
+      - irslackd_location is defined
+      - irslackd_location is string
+    quiet: yes
+
+- name: test if irslackd_organization is set correctly
+  ansible.builtin.assert:
+    that:
+      - irslackd_organization is defined
+      - irslackd_organization is string
+    quiet: yes
+
+- name: test if irslackd_organizational_unit is set correctly
+  ansible.builtin.assert:
+    that:
+      - irslackd_organizational_unit is defined
+      - irslackd_organizational_unit is string
+    quiet: yes
+
+- name: test if irslackd_common_name is set correctly
+  ansible.builtin.assert:
+    that:
+      - irslackd_common_name is defined
+      - irslackd_common_name is string
+    quiet: yes

@@ -1,0 +1,37 @@
+---
+galaxy_info:
+  author: Robert de Bock
+  namespace: robertdebock
+  role_name: mysql
+  description: Install and configure mysql on your system.
+  license: Apache-2.0
+  company: none
+  min_ansible_version: "2.10"
+
+  platforms:
+    - name: Debian
+      versions:
+        - buster
+    - name: EL
+      versions:
+        - 7
+        - 8
+    - name: Fedora
+      versions:
+        - all
+    - name: OpenSUSE
+      versions:
+        - all
+    - name: Ubuntu
+      versions:
+        - focal
+        - bionic
+
+  galaxy_tags:
+    - mysql
+    - mariadb
+    - database
+    - installer
+    - package
+
+dependencies: []

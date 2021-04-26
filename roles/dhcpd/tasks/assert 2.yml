@@ -1,0 +1,96 @@
+---
+
+- name: test if dhcpd_ipv4_interface is set correctly
+  ansible.builtin.assert:
+    that:
+      - dhcpd_ipv4_interface is defined
+      - dhcpd_ipv4_interface is string
+    quiet: yes
+
+- name: test if dhcpd_default_lease_time is set correctly
+  ansible.builtin.assert:
+    that:
+      - dhcpd_default_lease_time is defined
+      - dhcpd_default_lease_time is number
+      - dhcpd_default_lease_time > 0
+    quiet: yes
+
+- name: test if dhcpd_max_lease_time is set correctly
+  ansible.builtin.assert:
+    that:
+      - dhcpd_max_lease_time is defined
+      - dhcpd_max_lease_time is number
+      - dhcpd_max_lease_time > 0
+    quiet: yes
+
+- name: test if dhcpd_subnet_mask is set correctly
+  ansible.builtin.assert:
+    that:
+      - dhcpd_subnet_mask is defined
+      - dhcpd_subnet_mask is string
+    quiet: yes
+
+- name: test if dhcpd_broadcast_address is set correctly
+  ansible.builtin.assert:
+    that:
+      - dhcpd_broadcast_address is defined
+      - dhcpd_broadcast_address is string
+    quiet: yes
+
+- name: test if dhcpd_routers is set correctly
+  ansible.builtin.assert:
+    that:
+      - dhcpd_routers is defined
+      - dhcpd_routers is string
+    quiet: yes
+
+- name: test if dhcpd_domain_name_servers is set correctly
+  ansible.builtin.assert:
+    that:
+      - dhcpd_domain_name_servers is defined
+      - dhcpd_domain_name_servers is string
+    quiet: yes
+
+- name: test if dhcpd_domain_search is set correctly
+  ansible.builtin.assert:
+    that:
+      - dhcpd_domain_search is defined
+      - dhcpd_domain_search is string
+    quiet: yes
+
+- name: test if dhcpd_filename is set correctly
+  ansible.builtin.assert:
+    that:
+      - dhcpd_filename is defined
+      - dhcpd_filename is string
+    quiet: yes
+
+- name: test if dhcpd_next_server is set correctly
+  ansible.builtin.assert:
+    that:
+      - dhcpd_next_server is defined
+      - dhcpd_next_server is string
+    quiet: yes
+
+- name: test if dhcpd_subnets is set correctly
+  ansible.builtin.assert:
+    that:
+      - dhcpd_subnets is iterable
+    quiet: yes
+  when:
+    - dhcpd_subnets is defined
+    - dhcpd_subnets is string
+
+- name: test if item in dhcpd_subnets is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.network is defined
+      - item.network is string
+      - item.netmask is defined
+      - item.netmask is string
+    quiet: yes
+  loop: "{{ dhcpd_subnets }}"
+  loop_control:
+    label: "{{ item.network }}"
+  when:
+    - dhcpd_subnets is defined

@@ -1,0 +1,25 @@
+---
+# defaults file for zabbix_web
+
+# How to connect to the mysql database, either `socket` or `network`.
+zabbix_web_mysql_connection: socket
+
+# Details to connect to the database.
+zabbix_web_database_name: zabbix
+zabbix_web_database_user: zabbix
+zabbix_web_database_pass: zabbix
+
+# When `zabbix_web_mysql_connection` is set to `network` this role needs
+# these extra setting.
+# zabbix_web_database_host: localhost
+# zabbix_web_database_port: 3306
+
+# Details to connect to Zabbix.
+zabbix_web_server: "{{ ansible_fqdn }}"
+zabbix_web_server_port: 10051
+zabbix_web_server_name: zabbix
+
+# Details to connect to the Zabbix API.
+zabbix_web_username: Admin
+zabbix_web_password: zabbix
+zabbix_web_validate_certs: no

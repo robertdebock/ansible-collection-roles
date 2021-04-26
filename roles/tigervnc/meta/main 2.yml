@@ -1,0 +1,29 @@
+---
+galaxy_info:
+  author: Robert de Bock
+  namespace: robertdebock
+  role_name: tigervnc
+  description: Install and configure tigervnc on your system.
+  license: Apache-2.0
+  company: none
+  min_ansible_version: "2.10"
+
+  platforms:
+    - name: Debian
+      versions:
+        - buster
+    - name: EL
+      versions:
+        - 8
+    - name: Fedora
+      versions:
+        - all
+    - name: Ubuntu
+      versions:
+        - focal
+        - bionic
+
+  galaxy_tags:
+    - tigervnc
+
+dependencies: []

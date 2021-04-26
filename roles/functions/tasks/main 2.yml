@@ -1,0 +1,107 @@
+---
+# tasks file for functions
+
+- name: include assert.yml
+  import_tasks: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+- name: no function on strings
+  ansible.builtin.debug:
+    msg: "{{ item }}"
+  loop: "{{ functions_strings }}"
+
+- name: capitalize strings
+  ansible.builtin.debug:
+    msg: "{{ item | capitalize }}"
+  loop: "{{ functions_strings }}"
+
+- name: indent strings
+  ansible.builtin.debug:
+    msg: "{{ item | indent }}"
+  loop: "{{ functions_strings }}"
+
+- name: list strings
+  ansible.builtin.debug:
+    msg: "{{ item | list }}"
+  loop: "{{ functions_strings }}"
+
+- name: lower strings
+  ansible.builtin.debug:
+    msg: "{{ item | lower }}"
+  loop: "{{ functions_strings }}"
+
+- name: replace strings
+  ansible.builtin.debug:
+    msg: "{{ item | replace('old', 'new') }}"
+  loop: "{{ functions_strings }}"
+
+- name: reverse strings
+  ansible.builtin.debug:
+    msg: "{{ item | reverse }}"
+  loop: "{{ functions_strings }}"
+
+- name: string strings
+  ansible.builtin.debug:
+    msg: "{{ item | string }}"
+  loop: "{{ functions_strings }}"
+
+- name: trim strings
+  ansible.builtin.debug:
+    msg: "{{ item | trim }}"
+  loop: "{{ functions_strings }}"
+
+- name: truncate strings
+  ansible.builtin.debug:
+    msg: "{{ item | truncate(5) }}"
+  loop: "{{ functions_strings }}"
+
+- name: upper strings
+  ansible.builtin.debug:
+    msg: "{{ item | upper }}"
+  loop: "{{ functions_strings }}"
+
+- name: wordcount strings
+  ansible.builtin.debug:
+    msg: "{{ item | wordcount }}"
+  loop: "{{ functions_strings }}"
+
+- name: wordwrap strings
+  ansible.builtin.debug:
+    msg: "{{ item | wordwrap(5) }}"
+  loop: "{{ functions_strings }}"
+
+- name: comment strings
+  ansible.builtin.debug:
+    msg: "{{ item | comment }}"
+  loop: "{{ functions_strings }}"
+
+- name: abs integers
+  ansible.builtin.debug:
+    msg: "{{ item | abs }}"
+  loop: "{{ functions_integers }}"
+
+- name: float integers
+  ansible.builtin.debug:
+    msg: "{{ item | float }}"
+  loop: "{{ functions_integers }}"
+
+- name: int integers
+  ansible.builtin.debug:
+    msg: "{{ item | int }}"
+  loop: "{{ functions_integers }}"
+
+- name: round integers
+  ansible.builtin.debug:
+    msg: "{{ item | round }}"
+  loop: "{{ functions_integers }}"
+
+- name: pow(2) integers
+  ansible.builtin.debug:
+    msg: "{{ item | pow(2) }}"
+  loop: "{{ functions_integers }}"
+
+- name: root integers
+  ansible.builtin.debug:
+    msg: "{{ item | root }}"
+  loop: "{{ functions_integers }}"

@@ -1,0 +1,20 @@
+---
+# vars file for zabbix_server
+
+_zabbix_server_requirements:
+  Debian:
+    - python3-mysqldb
+  RedHat:
+    - MySQL-python
+  RedHat-8:
+    - python3-PyMySQL
+  Suse:
+    - python3-PyMySQL
+
+zabbix_server_requirements: "{{ _zabbix_server_requirements[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default (_zabbix_server_requirements[ansible_os_family]) }}"
+
+_zabbix_server_docdir:
+  default: /usr/share/doc
+  Suse: /usr/share/doc/packages
+
+zabbix_server_docdir: "{{ _zabbix_server_docdir[ansible_os_family] | default(_zabbix_server_docdir['default']) }}"

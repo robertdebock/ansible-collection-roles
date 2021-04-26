@@ -1,0 +1,29 @@
+---
+# vars file for jenkins
+
+_jenkins_requirements:
+  default: []
+  RedHat:
+    - initscripts
+    - chkconfig
+  Suse:
+    - insserv-compat
+
+jenkins_requirements: "{{ _jenkins_requirements[ansible_os_family] | default(_jenkins_requirements['default']) }}"
+
+_jenkins_configuration_directory:
+  default: /etc/default
+  Alpine: /etc/conf.d
+  RedHat: /etc/sysconfig
+  Suse: /etc/sysconfig
+
+jenkins_configuration_directory: "{{ _jenkins_configuration_directory[ansible_os_family] | default(_jenkins_configuration_directory['default']) }}"
+
+jenkins_yum_repository_baseurl: "https://pkg.jenkins.io/redhat/jenkins.repo"
+
+jenkins_rpm_key: "https://jenkins.io/redhat/jenkins.io.key"
+
+jenkins_apt_key_url: "https://pkg.jenkins.io/debian-stable/jenkins.io.key"
+jenkins_apt_repository_repo: "deb http://pkg.jenkins.io/debian-stable binary/"
+
+jenkins_zypper_repository_repo: "https://pkg.jenkins.io/opensuse/"

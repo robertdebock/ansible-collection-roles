@@ -1,0 +1,22 @@
+---
+
+- name: test if zabbix_server_database_user is set correctly
+  ansible.builtin.assert:
+    that:
+      - zabbix_server_database_user is defined
+      - zabbix_server_database_user is string
+    quiet: yes
+
+- name: test if zabbix_server_database_password is set correctly
+  ansible.builtin.assert:
+    that:
+      - zabbix_server_database_password is defined
+      - zabbix_server_database_password is string
+    quiet: yes
+
+- name: test if zabbix_server_database_host is set correctly
+  ansible.builtin.assert:
+    that:
+      - zabbix_server_database_host is defined
+      - zabbix_server_database_host is string
+    quiet: yes

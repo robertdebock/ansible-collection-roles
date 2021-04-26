@@ -1,0 +1,23 @@
+---
+
+- name: test if test_connection_report_host is set correctly
+  ansible.builtin.assert:
+    that:
+      - test_connection_report_host is defined
+      - test_connection_report_host is string
+    quiet: yes
+
+- name: test if test_connection_report_directory is set correctly
+  ansible.builtin.assert:
+    that:
+      - test_connection_report_directory is defined
+      - test_connection_report_directory is string
+    quiet: yes
+
+- name: test if test_connection_timeout is set correctly
+  ansible.builtin.assert:
+    that:
+      - test_connection_timeout is defined
+      - test_connection_timeout is number
+      - test_connection_timeout >= 0
+    quiet: yes

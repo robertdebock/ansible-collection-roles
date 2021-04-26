@@ -1,0 +1,14 @@
+---
+# handlers file for owncloud
+
+- name: set owncloud trusted domains
+  ansible.builtin.lineinfile:
+    path: "{{ owncloud_destination }}/owncloud/config/config.php"
+    regexp: "    0 => '"
+    line: "    0 => '{{ owncloud_domain_url }}'"
+    mode: "0664"
+
+- name: remove config.php
+  ansible.builtin.file:
+    path: "{{ owncloud_destination }}/owncloud/config/config.php"
+    state: absent

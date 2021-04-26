@@ -1,0 +1,6 @@
+---
+exceptions:
+  - variation: alpine
+    reason: "Segmentation fault (core dumped)"
+  - variation: centos:8
+    reason: "MATE is not available"

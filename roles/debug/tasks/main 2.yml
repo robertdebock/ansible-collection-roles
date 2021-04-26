@@ -1,0 +1,17 @@
+---
+# tasks file for debug
+
+- name: collect package facts
+  ansible.builtin.package_facts:
+  when:
+    - ansible_os_family not in [ "Alpine", "Suse" ]
+
+- name: collect service_facts
+  ansible.builtin.service_facts:
+  when:
+    - ansible_os_family != "Debian"
+    - ansible_distribution_version != "NA"
+
+- name: show vars
+  ansible.builtin.debug:
+    var: vars

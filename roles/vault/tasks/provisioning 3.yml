@@ -1,0 +1,65 @@
+---
+
+- name: get status of kv secrets engine
+  ansible.builtin.uri:
+    url: "{{ vault_api_addr }}/v1/sys/mounts"
+    method: GET
+    headers:
+      X-Vault-Token: "{{ vault_init_output.root_token | default(vault_root_token) }}"
+      X-Vault-Namespace: "{{ vault_namespace | default(omit) }}"
+  failed_when:
+    - no
+  register: vault_status_kv_secrets_engine
+
+- name: enable kv secrets engine
+  ansible.builtin.uri:
+    url: "{{ vault_api_addr }}/v1/sys/mounts/kv"
+    method: POST
+    headers:
+      X-Vault-Token: "{{ vault_init_output.root_token | default(vault_root_token) }}"
+      X-Vault-Namespace: "{{ vault_namespace | default(omit) }}"
+    body:
+      type: kv
+      description: "key/value secret storage"
+      options:
+        version: 2
+      cas_required: "{{ vault_kv_cas_required }}"
+      delete_version_after: "{{ vault_kv_delete_version_after }}"
+    body_format: json
+    status_code:
+      - 200
+      - 204
+  when:
+    - "'kv/' not in vault_status_kv_secrets_engine.json.data"
+
+- name: configure the kv engine
+  ansible.builtin.uri:
+    url: "{{ vault_api_addr }}/v1/kv/config"
+    method: POST
+    headers:
+      X-Vault-Token: "{{ vault_init_output.root_token | default(vault_root_token) }}"
+      X-Vault-Namespace: "{{ vault_namespace | default(omit) }}"
+    body:
+      max_versions: "{{ vault_kv_max_versions }}"
+      cas_required: "{{ vault_kv_cas_required }}"
+      delete_version_after: "{{ vault_kv_delete_version_after }}"
+    body_format: json
+    status_code:
+      - 204
+
+- name: create or update secret
+  ansible.builtin.uri:
+    url: "{{ vault_api_addr }}/v1/kv/data/{{ item.name }}"
+    method: POST
+    headers:
+      X-Vault-Token: "{{ vault_init_output.root_token | default(vault_root_token) }}"
+      X-Vault-Namespace: "{{ vault_namespace | default(omit) }}"
+    body:
+      options:
+        cas: "{{ item.cas | default(omit) }}"
+      data:
+        "{{ item.data }}"
+    body_format: json
+  loop: "{{ vault_kv_secrets }}"
+  loop_control:
+    label: "{{ item.name }}"

@@ -1,0 +1,33 @@
+---
+# tasks file for container_docs
+
+- name: unset nodocs flag in yum.conf
+  ansible.builtin.replace:
+    path: /etc/yum.conf
+    regexp: nodocs
+    mode: "0640"
+  when:
+    - ansible_pkg_mgr == "yum"
+
+- name: unset nodocs flag in dnf.conf
+  ansible.builtin.replace:
+    path: /etc/dnf/dnf.conf
+    regexp: nodocs
+    mode: "0640"
+  when:
+    - ansible_pkg_mgr == "dnf"
+
+- name: status of /etc/dpkg/dpkg.cfg.d/excludes
+  ansible.builtin.stat:
+    path: /etc/dpkg/dpkg.cfg.d/excludes
+  register: container_docs_status_of_etc_dpkg_dpkg_cfg_d_excludes
+
+- name: unset excludes /usr/share/doc in dpkg.cfg.d/excludes
+  ansible.builtin.replace:
+    path: /etc/dpkg/dpkg.cfg.d/excludes
+    regexp: '^(path-exclude=.*)'
+    replace: '#\1'
+    mode: "0640"
+  when:
+    - ansible_pkg_mgr == "apt"
+    - container_docs_status_of_etc_dpkg_dpkg_cfg_d_excludes.stat.exists

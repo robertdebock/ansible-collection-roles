@@ -1,0 +1,21 @@
+---
+# tasks file for hostname
+
+- name: include assert.yml
+  import_tasks: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+- name: install requirements
+  ansible.builtin.package:
+    name: "{{ hostname_requirements }}"
+    state: present
+
+- name: set hostname
+  ansible.builtin.hostname:
+    name: "{{ hostname }}"
+  notify:
+    - reboot
+    - gather facts
+  when:
+    - ansible_connection != "docker"

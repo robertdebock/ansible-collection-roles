@@ -1,0 +1,6 @@
+---
+exceptions:
+  - variation: Alpine
+    reason: logwatch (missing)
+  - variation: EL
+    reason: No package logwatch available.

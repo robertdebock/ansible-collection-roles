@@ -1,0 +1,28 @@
+---
+# tasks file for upgrade
+
+- name: include assert.yml
+  import_tasks: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+- name: check if package is installed
+  ansible.builtin.package:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ upgrade_packages }}"
+  check_mode: yes
+  when:
+    - upgrade_packages is defined
+    - upgrade_packages | length > 0
+
+- name: upgrade package
+  ansible.builtin.package:
+    name: "{{ item.item }}"
+    state: latest  # noqa 403 This task is to upgrade, latest is okay.
+  loop: "{{ upgrade_check_if_package_is_installed.results }}"
+  loop_control:
+    label: "{{ item.item }}"
+  when:
+    - upgrade_check_if_package_is_installed.results is defined
+    - not item.changed | bool

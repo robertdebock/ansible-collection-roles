@@ -1,0 +1,4 @@
+---
+exceptions:
+  - variation: Suse
+    reason: "Starting ISC DHCPv4 Server chown: invalid user: 'dhcpd:root\nshadow\n..."

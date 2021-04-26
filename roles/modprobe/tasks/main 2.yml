@@ -1,0 +1,15 @@
+---
+# tasks file for modprobe
+
+- name: include assert.yml
+  import_tasks: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+- name: load requested modules
+  community.general.modprobe:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ modprobe_modules }}"
+  when:
+    - modprobe_modules is defined

@@ -1,0 +1,11 @@
+---
+# vars file for logrotate
+
+logrotate_packages:
+  - logrotate
+
+logrotate_config_directory: /etc
+
+logrotate_config_file: logrotate.conf
+
+logrotate_confd_directory: "{{ logrotate_config_directory }}/logrotate.d"

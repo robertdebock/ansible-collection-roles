@@ -1,0 +1,68 @@
+---
+# tasks file for jenkins
+
+- name: include assert.yml
+  import_tasks: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+- name: add yum repository
+  ansible.builtin.get_url:
+    url: "{{ jenkins_yum_repository_baseurl }}"
+    dest: /etc/yum.repos.d/jenkins.repo
+  when:
+    - ansible_pkg_mgr in [ "dnf", "yum" ]
+
+- name: import rpm key
+  ansible.builtin.rpm_key:
+    key: "{{ jenkins_rpm_key }}"
+    state: present
+    validate_certs: no
+  when:
+    - ansible_pkg_mgr in [ "dnf", "yum", "zypper" ]
+
+- name: configure apt
+  block:
+    - name: add apt key
+      ansible.builtin.apt_key:
+        url: "{{ jenkins_apt_key_url }}"
+        state: present
+
+    - name: add apt repository
+      ansible.builtin.apt_repository:
+        repo: "{{ jenkins_apt_repository_repo }}"
+        state: present
+  when:
+    - ansible_pkg_mgr == "apt"
+
+- name: add zypper repository
+  community.general.zypper_repository:
+    name: jenkins
+    repo: "{{ jenkins_zypper_repository_repo }}"
+    state: present
+  when:
+    - ansible_pkg_mgr == "zypper"
+
+- name: install requirements
+  ansible.builtin.package:
+    name: "{{ jenkins_requirements }}"
+    state: present
+
+- name: install jenkins
+  ansible.builtin.package:
+    name: jenkins
+    state: present
+
+- name: configure jenkins
+  ansible.builtin.template:
+    src: jenkins.j2
+    dest: "{{ jenkins_configuration_directory }}"
+    mode: "0640"
+  notify:
+    - restart jenkins
+
+- name: start and enable jenkins
+  ansible.builtin.service:
+    name: jenkins
+    state: started
+    enabled: yes

@@ -1,0 +1,33 @@
+---
+
+- name: test if authentication is set correctly
+  ansible.builtin.assert:
+    that:
+      - instance.authentication is defined
+      - instance.authentication | length > 0
+      - instance.authentication is iterable
+
+- name: test if item in instance.authentication is set correctly
+  ansible.builtin.assert:
+    that:
+      - instance.authentication.auth_type is defined
+      - instance.authentication.auth_type | length > 0
+      - instance.authentication.auth_type in [ "AH", "PASS", "PASS|AH" ]
+      - instance.authentication.auth_pass is defined
+      - instance.authentication.auth_pass | length > 0
+      - instance.authentication.auth_pass | length <= 20
+
+- name: test if item in instance.virtual_ipaddresses is set correctly
+  ansible.builtin.assert:
+    that:
+      - item | length > 0
+      - item | length <= 20
+      - item.name is defined
+      - item.name | length > 0
+      - item.cidr is defined
+      - item.cidr is number
+      - item.cidr | int >= 0
+      - item.cidr | int <= 32
+  loop: "{{ instance.virtual_ipaddresses }}"
+  loop_control:
+    label: "{{ item.name }}"

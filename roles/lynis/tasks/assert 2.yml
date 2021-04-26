@@ -1,0 +1,36 @@
+---
+
+- name: test if lynis_destination is set correctly
+  ansible.builtin.assert:
+    that:
+      - lynis_destination is defined
+      - lynis_destination is string
+    quiet: yes
+
+- name: test if lynis_version is set correctly
+  ansible.builtin.assert:
+    that:
+      - lynis_version is defined
+      - lynis_version is string
+    quiet: yes
+
+- name: test if lynis_output is set correctly
+  ansible.builtin.assert:
+    that:
+      - lynis_output is defined
+      - lynis_output is string
+    quiet: yes
+
+- name: test if lynis_run_now is set correctly
+  ansible.builtin.assert:
+    that:
+      - lynis_run_now is defined
+      - lynis_run_now is boolean
+    quiet: yes
+
+- name: test if lynis_cronjob is set correctly
+  ansible.builtin.assert:
+    that:
+      - lynis_cronjob is defined
+      - lynis_cronjob is boolean
+    quiet: yes

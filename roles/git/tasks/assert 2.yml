@@ -1,0 +1,46 @@
+---
+
+- name: test if git_repository_destination is set correctly
+  ansible.builtin.assert:
+    that:
+      - git_repository_destination is defined
+      - git_repository_destination is string
+    quiet: yes
+
+- name: test if git_force is set correctly
+  ansible.builtin.assert:
+    that:
+      - git_force is defined
+      - git_force is boolean
+    quiet: yes
+
+- name: test if git_repositories is set correctly
+  ansible.builtin.assert:
+    that:
+      - git_repositories is iterable
+    quiet: yes
+  when:
+    - git_repositories is defined
+
+- name: test if item in git_repositories is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.repo is defined
+      - item.repo is string
+      - item.dest is defined
+      - item.dest is string
+    quiet: yes
+  loop: "{{ git_repositories }}"
+  loop_control:
+    label: "{{ item.repo }}"
+  when:
+    - git_repositories is defined
+
+- name: test if item in git_repositories with force is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.version is boolean
+    quiet: yes
+  when:
+    - git_repositories is defined
+    - item.force is defined

@@ -1,0 +1,6 @@
+---
+project_name: MediaWiki
+reference: "https://github.com/robertdebock/ansible-role-mediawiki/blob/master/defaults/main.yml"
+versions:
+  - name: mediawiki
+    url: "https://www.mediawiki.org/wiki/Download"

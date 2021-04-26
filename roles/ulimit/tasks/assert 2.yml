@@ -1,0 +1,74 @@
+---
+
+- name: test if ulimit_items is set correctly
+  ansible.builtin.assert:
+    that:
+      - ulimit_items is iterable
+    quiet: yes
+  when:
+    - ulimit_items is defined
+
+- name: test if item in ulimit_items is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.limit_item is defined
+      - item.limit_item is string
+      - item.limit_item in ulimit_acceptable_limit_items
+      - item.value is defined
+      - item.value is number
+    quiet: yes
+  loop: "{{ ulimit_items }}"
+  loop_control:
+    label: "{{ item.limit_item }}"
+  when:
+    - ulimit_items is defined
+  vars:
+    ulimit_acceptable_limit_items:
+      - core
+      - data
+      - fsize
+      - memlock
+      - nofile
+      - rss
+      - stack
+      - cpu
+      - nproc
+      - as
+      - maxlogins
+      - maxsyslogins
+      - priority
+      - locks
+      - sigpending
+      - msgqueue
+      - nice
+      - rtprio
+      - chroot
+
+- name: test if ulimit_domain is set correctly
+  ansible.builtin.assert:
+    that:
+      - ulimit_domain is defined
+      - ulimit_domain is string
+    quiet: yes
+
+- name: test if ulimit_limit_type is set correctly
+  ansible.builtin.assert:
+    that:
+      - ulimit_limit_type is defined
+      - ulimit_limit_type is string
+      - ulimit_limit_type in [ "hard", "soft", "-" ]
+    quiet: yes
+
+- name: test if ulimit_dest is set correctly
+  ansible.builtin.assert:
+    that:
+      - ulimit_dest is defined
+      - ulimit_dest is string
+    quiet: yes
+
+- name: test if ulimit_backup is set correctly
+  ansible.builtin.assert:
+    that:
+      - ulimit_backup is defined
+      - ulimit_backup is boolean
+    quiet: yes

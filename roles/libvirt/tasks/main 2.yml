@@ -1,0 +1,13 @@
+---
+# tasks file for libvirt
+
+- name: install libvirt
+  ansible.builtin.package:
+    name: "{{ libvirt_packages }}"
+    state: present
+
+- name: start libvirtd
+  ansible.builtin.service:
+    name: "{{ libvirt_service }}"
+    state: started
+    enabled: yes

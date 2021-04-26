@@ -1,0 +1,9 @@
+---
+# handlers file for xrdp
+
+- name: restart xrdp
+  ansible.builtin.service:
+    name: "{{ xrdp_service }}"
+    state: restarted
+  when:
+    - not ansible_check_mode | bool

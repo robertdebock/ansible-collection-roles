@@ -1,0 +1,4 @@
+---
+exceptions:
+  - variation: redhat
+    reason: "Can't test on RHEL: No package matching 'firewalld' found available, installed or updated"

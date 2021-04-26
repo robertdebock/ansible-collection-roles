@@ -1,0 +1,20 @@
+---
+# handlers file for mysql
+
+- name: restart mysql server
+  ansible.builtin.service:
+    name: "{{ mysql_service }}"
+    state: restarted
+  when:
+    - not ansible_check_mode | bool
+
+- name: set root password
+  community.mysql.mysql_user:
+    login_unix_socket: "{{ mysql_socket }}"
+    login_user: root
+    login_password: ""
+    name: root
+    password: "{{ mysql_root_password }}"
+    state: present
+  become: yes
+  become_user: "{{ mysql_user }}"

@@ -1,0 +1,18 @@
+---
+# handlers file for dsvpn
+
+- name: restart dsvpn-server
+  ansible.builtin.service:
+    name: "dsvpn-server"
+    state: restarted
+  when:
+    - dsvpn_role == "server"
+    - not ansible_check_mode | bool
+
+- name: restart dsvpn-client
+  ansible.builtin.service:
+    name: "dsvpn-client"
+    state: restarted
+  when:
+    - dsvpn_role == "client"
+    - not ansible_check_mode | bool

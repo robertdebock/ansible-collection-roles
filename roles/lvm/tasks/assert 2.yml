@@ -1,0 +1,77 @@
+---
+
+- name: test if lvm_default_pesize is set correctly
+  ansible.builtin.assert:
+    that:
+      - lvm_default_pesize is defined
+    quiet: yes
+
+- name: test if lvm_volume_groups is set correctly
+  ansible.builtin.assert:
+    that:
+      - lvm_volume_groups is iterable
+    quiet: yes
+  when:
+    - lvm_volume_groups is defined
+
+- name: test if mandatory item in lvm_volume_groups is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.name is defined
+      - item.name is string
+      - item.pvs is defined
+      - item.pvs is iterable
+    quiet: yes
+  loop: "{{ lvm_volume_groups }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - lvm_volume_groups is defined
+
+- name: test if item.pesize in lvm_volume_groups is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.pesize is string or item.pesize is number
+    quiet: yes
+  loop: "{{ lvm_volume_groups }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - lvm_volume_groups is defined
+    - item.pesize is defined
+
+- name: test if lvm_logical_volumes is set correctly
+  ansible.builtin.assert:
+    that:
+      - lvm_logical_volumes is iterable
+    quiet: yes
+  when:
+    - lvm_logical_volumes is defined
+
+- name: test if mandatory item in lvm_logical_volumes is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.name is defined
+      - item.name is string
+      - item.vg is defined
+      - item.vg is string
+      - item.size is defined
+      - item.size is string or item.size is number
+    quiet: yes
+  loop: "{{ lvm_logical_volumes }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - lvm_logical_volumes is defined
+
+- name: test if item.opts in lvm_logical_volumes is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.opts is string
+    quiet: yes
+  loop: "{{ lvm_logical_volumes }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - lvm_logical_volumes is defined
+    - item.opts is defined

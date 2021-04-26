@@ -1,0 +1,21 @@
+---
+# tasks file for epel
+
+- name: install epel
+  block:
+    - name: install epel gpg key
+      ansible.builtin.rpm_key:
+        key: "{{ epel_gpg_key }}"
+        state: present
+
+    - name: install epel-release
+      ansible.builtin.package:
+        name: "{{ epel_url }}"
+        state: present
+      notify:
+        - yum update cache
+  when:
+    - (ansible_distribution == "Amazon" and
+      ansible_distribution_major_version == "2") or
+      (ansible_distribution in [ "CentOS", "RedHat" ] and
+      ansible_distribution_major_version in [ "7", "8" ])

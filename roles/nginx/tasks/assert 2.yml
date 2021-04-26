@@ -1,0 +1,10 @@
+---
+
+- name: test if nginx_port is set correctly
+  ansible.builtin.assert:
+    that:
+      - nginx_port is defined
+      - nginx_port is number
+      - nginx_port > 0
+      - nginx_port < 65536
+    quiet: yes

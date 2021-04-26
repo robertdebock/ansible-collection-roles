@@ -1,0 +1,6 @@
+---
+# defaults file for turn
+
+turn_listening_port: 3478
+turn_static_auth_secret: 96ef8dbed1ba36132d9cccfa608d1f90f879d7fb38cb5c18
+turn_realm: nextcloud.meinit.nl

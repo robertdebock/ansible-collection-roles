@@ -1,0 +1,9 @@
+---
+# handlers file for spamassassin
+
+- name: restart spamassassin
+  ansible.builtin.service:
+    name: "{{ spamassassin_service }}"
+    state: restarted
+  when:
+    - not ansible_check_mode | bool

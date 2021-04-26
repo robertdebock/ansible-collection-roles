@@ -1,0 +1,6 @@
+---
+project_name: Go
+reference: "https://github.com/robertdebock/ansible-role-go/blob/master/defaults/main.yml"
+versions:
+  - name: go
+    url: "https://golang.org/dl/"

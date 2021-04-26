@@ -1,0 +1,97 @@
+---
+# handlers file for cis
+
+- name: remount /var/tmp
+  ansible.posix.mount:
+    path: /var/tmp
+    state: remounted
+
+- name: remount /home
+  ansible.posix.mount:
+    path: /home
+    state: remounted
+
+- name: remount /dev/shm with nodev
+  ansible.builtin.command: mount -o remount,nodev /dev/shm  # noqa 303 Remounting not in module
+
+- name: remount /dev/shm with nosuid
+  ansible.builtin.command: mount -o remount,nosuid /dev/shm  # noqa 303 Remounting not in module
+
+- name: remount /dev/shm with noexec
+  ansible.builtin.command: mount -o remount,noexec /dev/shm  # noqa 303 Remounting not in module
+  args:
+    warn: no
+
+- name: copy aide.db.new.gz to aide.db.gz
+  ansible.builtin.copy:
+    src: /var/lib/aide/aide.db.new.gz
+    dest: /var/lib/aide/aide.db.gz
+    mode: "0600"
+    remote_src: yes
+
+- name: run grub2-mkconfig
+  ansible.builtin.command: grub2-mkconfig -o /boot/grub2/grub.cfg
+
+- name: systemctl daemon-reload
+  ansible.builtin.systemd:
+    daemon_reload: yes
+
+- name: reboot
+  ansible.builtin.reboot:
+  when:
+    - ansible_connection != "docker"
+
+- name: update-crypto-policies
+  ansible.builtin.command: update-crypto-policies
+
+- name: restart chronyd
+  block:
+    - name: restart chronyd
+      ansible.builtin.service:
+        name: chronyd
+        state: restarted
+  rescue:
+    - name: collect information
+      ansible.builtin.command: "{{ item }}"
+      register: cis_collect_information
+      loop:
+        - journalxtl -xe
+        - systemctl status chronyd
+    - name: show information
+      ansible.builtin.debug:
+        msg: "{{ item }}"
+      loop: "{{ cis_collect_information.results }}"
+  when:
+    - not ansible_check_mode | bool
+
+- name: net.ipv4.route.flush
+  ansible.posix.sysctl:
+    name: net.ipv4.route.flush
+    value: "1"
+
+- name: net.ipv6.route.flush
+  ansible.posix.sysctl:
+    name: net.ipv6.route.flush
+    value: "1"
+
+- name: run augenrules
+  ansible.builtin.command: augenrules
+  notify: load rules
+
+- name: load rules
+  ansible.builtin.command: augenrules --load
+
+- name: restart auditd
+  ansible.builtin.service:
+    name: auditd
+    state: restarted
+    use: service  # systemctl can't restart auditd, service can: https://access.redhat.com/solutions/2664811
+  when:
+    - not ansible_check_mode | bool
+
+- name: restart rsyslog
+  ansible.builtin.service:
+    name: rsyslog
+    state: restarted
+  when:
+    - not ansible_check_mode | bool

@@ -1,0 +1,24 @@
+---
+# tasks file for gnome
+
+- name: install software using dnf
+  ansible.builtin.package:
+    name: "{{ gnome_packages }}"
+    state: present
+    exclude: "{{ gnome_exclude | default(omit) }}"
+    allowerasing: yes
+  when:
+    - ansible_pkg_mgr == "dnf"
+
+- name: install software using package
+  ansible.builtin.package:
+    name: "{{ gnome_packages }}"
+    state: present
+  when:
+    - ansible_pkg_mgr != "dnf"
+
+- name: start gnome display manager
+  ansible.builtin.service:
+    name: gdm
+    state: started
+    enabled: yes

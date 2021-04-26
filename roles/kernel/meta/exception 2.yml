@@ -1,0 +1,8 @@
+---
+exceptions:
+  - variation: amazonlinux:1
+    reason: "Not idempotent on: make modules_install"
+  - variation: debian:bullseye
+    reason: "./include/linux/filter.h:550:20: note: at offset 0 to object insnsi with size 0 declared here"
+  - variation: alpine:edge
+    reason: "make[2]: *** [arch/x86/boot/compressed/Makefile:119: arch/x86/boot/compressed/vmlinux] Error"

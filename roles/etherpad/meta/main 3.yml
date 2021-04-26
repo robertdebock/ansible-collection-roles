@@ -1,0 +1,29 @@
+---
+galaxy_info:
+  author: Robert de Bock
+  namespace: robertdebock
+  role_name: etherpad
+  description: Install and configure Etherpad on your system.
+  license: Apache-2.0
+  company: none
+  min_ansible_version: "2.10"
+
+  platforms:
+    - name: EL
+      versions:
+        - 7
+        - 8
+    - name: Debian
+      versions:
+        - buster
+    - name: Fedora
+      versions:
+        - all
+    - name: Ubuntu
+      versions:
+        - focal
+
+  galaxy_tags:
+    - etherpad
+
+dependencies: []

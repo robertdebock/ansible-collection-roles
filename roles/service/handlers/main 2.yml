@@ -1,0 +1,9 @@
+---
+# handlers file for service
+
+- name: gather facts
+  ansible.builtin.setup:
+
+- name: systemctl daemon-reload
+  ansible.builtin.systemd:
+    daemon_reload: yes

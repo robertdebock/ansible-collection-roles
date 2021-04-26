@@ -1,0 +1,7 @@
+---
+
+- name: 4.2.3 Ensure permissions on all logfiles are configured (Scored)
+  debug:
+    msg: "You can define the policy, there is no sane default documented."
+  when:
+    - cis_logrotate_configured | bool

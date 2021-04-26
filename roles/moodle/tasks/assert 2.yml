@@ -1,0 +1,72 @@
+---
+
+- name: test if moodle_version is set correctly
+  ansible.builtin.assert:
+    that:
+      - moodle_version is defined
+      - moodle_version is number
+    quiet: yes
+
+- name: test if moodle_data_directory is set correctly
+  ansible.builtin.assert:
+    that:
+      - moodle_data_directory is defined
+      - moodle_data_directory is string
+    quiet: yes
+
+- name: test if moodle_directory_mode is set correctly
+  ansible.builtin.assert:
+    that:
+      - moodle_directory_mode is defined
+      - moodle_directory_mode is string
+    quiet: yes
+
+- name: test if moodle_database_type is set correctly
+  ansible.builtin.assert:
+    that:
+      - moodle_database_type is defined
+      - moodle_database_type is string
+      - moodle_database_type in [ "mariadb", "mysql", "mysqli" ]
+    quiet: yes
+
+- name: test if moodle_database_hostname is set correctly
+  ansible.builtin.assert:
+    that:
+      - moodle_database_hostname is defined
+      - moodle_database_hostname is string
+    quiet: yes
+
+- name: test if moodle_database_name is set correctly
+  ansible.builtin.assert:
+    that:
+      - moodle_database_name is defined
+      - moodle_database_name is string
+    quiet: yes
+
+- name: test if moodle_database_username is set correctly
+  ansible.builtin.assert:
+    that:
+      - moodle_database_username is defined
+      - moodle_database_username is string
+    quiet: yes
+
+- name: test if moodle_database_password is set correctly
+  ansible.builtin.assert:
+    that:
+      - moodle_database_password is defined
+      - moodle_database_password is string
+    quiet: yes
+
+- name: test if moodle_database_prefix is set correctly
+  ansible.builtin.assert:
+    that:
+      - moodle_database_prefix is defined
+      - moodle_database_prefix is string
+    quiet: yes
+
+- name: test if moodle_wwwroot is set correctly
+  ansible.builtin.assert:
+    that:
+      - moodle_wwwroot is defined
+      - moodle_wwwroot is string
+    quiet: yes

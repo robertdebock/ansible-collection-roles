@@ -1,0 +1,18 @@
+---
+roles:
+  - name: robertdebock.bootstrap
+  - name: robertdebock.buildtools
+  - name: robertdebock.core_dependencies
+  - name: robertdebock.cron
+  - name: robertdebock.epel
+  - name: robertdebock.httpd
+  - name: robertdebock.mysql
+  - name: robertdebock.openssl
+  - name: robertdebock.php
+  - name: robertdebock.php_fpm
+  - name: robertdebock.python_pip
+  - name: robertdebock.redis
+  - name: robertdebock.remi
+  - name: robertdebock.selinux
+collections:
+  - name: ansible.posix

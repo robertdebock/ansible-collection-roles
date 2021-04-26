@@ -1,0 +1,13 @@
+---
+# handlers file for docker_ce
+
+- name: restart docker_ce
+  ansible.builtin.service:
+    name: "{{ docker_ce_service }}"
+    state: restarted
+  when:
+    - not ansible_check_mode | bool
+
+- name: apt update cache
+  ansible.builtin.apt:
+    update_cache: yes
