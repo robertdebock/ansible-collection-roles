@@ -94,6 +94,10 @@ postfix_smtpd_recipient_restrictions:
 postfix_smtpd_sender_restrictions:
   - reject_unknown_sender_domain
 
+# The default SMTP TLS security level for the Postfix SMTP client
+# Valid values are: dane, encrypt, fingerprint, may, none, secure, verify
+postfix_smtp_tls_security_level: none
+
 # To enable spamassassin, ensure spamassassin is installed,
 # (hint: role: robertdebock.spamassassin) and set these two variables:
 # postfix_spamassassin: enabled
@@ -161,7 +165,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |amazon|2018.03|
 |el|7, 8|
 |debian|buster, bullseye|
-|fedora|32, 33|
+|fedora|all|
 |ubuntu|focal, bionic|
 
 The minimum version of Ansible required is 2.10, tests have been done to:
@@ -192,6 +196,7 @@ I'd like to thank everybody that made contributions to this repository. It motiv
 
 - [benformosa](https://github.com/benformosa)
 - [justin-p](https://github.com/justin-p)
+- [Obihoernchen](https://github.com/Obihoernchen)
 
 ## [Author Information](#author-information)
 

@@ -63,7 +63,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |amazon|Candidate|
 |el|7, 8|
 |debian|all|
-|fedora|32, 33|
+|fedora|33|
 |opensuse|all|
 |ubuntu|focal, bionic|
 

@@ -9,6 +9,6 @@
 
 - name: install molecule
   ansible.builtin.pip:
-    name: molecule[ansible,docker,lint]
+    name: molecule[ansible-base,docker,lint]
     state: present
     extra_args: "{{ molecule_extra_args | default(omit) }}"

@@ -44,6 +44,10 @@ These variables are set in `defaults/main.yml`:
 
 # The location where Artifactory should store data.
 artifactory_file_store_dir: /data
+
+# The type of installation of artifactory.
+# Choose from "oss", "jcr" or "cpp-ce".
+artifactory_flavour: oss
 ```
 
 ## [Requirements](#requirements)

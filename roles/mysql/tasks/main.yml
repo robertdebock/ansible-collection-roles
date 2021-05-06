@@ -15,7 +15,7 @@
 
 - name: configure mysql server
   community.general.ini_file:
-    dest: /etc/mysql/mariadb.conf.d/50-server.cnf
+    dest: "{{ mysql_configuration_destination }}/{{ mysql_name }}-server.cnf"
     section: "{{ item.section }}"
     option: "{{ item.option }}"
     value: "{{ item.value }}"
@@ -28,7 +28,7 @@
 
 - name: configure mysql client
   community.general.ini_file:
-    dest: /etc/mysql/mariadb.conf.d/50-client.cnf
+    dest: "{{ mysql_configuration_destination }}/{{ mysql_name }}-client.cnf"
     section: client
     option: socket
     value: "{{ mysql_socket }}"

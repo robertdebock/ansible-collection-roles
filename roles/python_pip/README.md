@@ -88,7 +88,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |---------|----|
 |el|8|
 |debian|buster, bullseye|
-|fedora|32, 33|
+|fedora|all|
 |opensuse|all|
 |ubuntu|focal, bionic|
 

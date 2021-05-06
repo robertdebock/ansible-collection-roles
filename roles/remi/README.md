@@ -74,7 +74,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |container|tags|
 |---------|----|
 |el|7, 8|
-|fedora|32, 33|
+|fedora|all|
 
 The minimum version of Ansible required is 2.10, tests have been done to:
 

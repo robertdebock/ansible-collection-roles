@@ -101,3 +101,12 @@
     label: "{{ item.option }}"
   when:
     - systemd_user is defined
+
+- name: start dbus-broker
+  ansible.builtin.service:
+    name: dbus-broker
+    state: started
+    enabled: yes
+  when:
+    - ansible_distribution == "Fedora"
+    - ansible_distribution_major_version | int > 33

@@ -7,7 +7,7 @@ _java_default_version:
   Amazon: 8
   CentOS: 8
   Debian: 11
-  Fedora: 8
+  Fedora: 11
   Gentoo: 8
   RedHat: 8
   Ubuntu: 11
@@ -35,13 +35,13 @@ _java_openjdk_package:
       Alpine: openjdk8-jre-base
       CentOS: java-1.8.0-openjdk
       Debian: openjdk-8-jre
-      Fedora: java-1.8.0-openjdk
+      Fedora: java-1.8.0-openjdk-headless
       Gentoo: jre
       Ubuntu: openjdk-8-jre
       openSUSE Leap: java-1_8_0-openjdk
       RedHat: java-1.8.0-openjdk
     9:
-      Fedora: java-9-openjdk
+      # Fedora: java-9-openjdk
       Ubuntu: openjdk-9-jre
     10:
       Debian: openjdk-10-jre
@@ -49,7 +49,7 @@ _java_openjdk_package:
     11:
       CentOS: java-11-openjdk
       Debian: openjdk-11-jre
-      Fedora: java-11-openjdk
+      Fedora: java-11-openjdk-headless
       Ubuntu: openjdk-11-jre
       RedHat: java-11-openjdk
     12:

@@ -63,3 +63,11 @@
     quiet: yes
   when:
     - postfix_tls_protocols is defined
+
+- name: test if postfix_smtp_tls_security_level is set correctly
+  ansible.builtin.assert:
+    that:
+      - postfix_smtp_tls_security_level is defined
+      - postfix_smtp_tls_security_level is string
+      - postfix_smtp_tls_security_level in [ "dane", "encrypt", "fingerprint", "may", "none", "secure", "verify" ]
+    quiet: yes

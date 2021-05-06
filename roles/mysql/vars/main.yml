@@ -1,51 +1,50 @@
 ---
 # vars file for mysql
 
+_mysql_name:
+  default: mariadb
+  RedHat-8: mysql
+  Amazon-2018: mysql
+
+mysql_name: "{{ _mysql_name[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_mysql_name['default']) }}"
+
 _mysql_packages:
   default:
-    - mariadb-server
-    - mariadb-devel
+    - "{{ mysql_name }}-server"
+    - "{{ mysql_name }}-devel"
     - python2-mysql
   Alpine:
-    - mariadb
+    - "{{ mysql_name }}"
     - py-mysqldb
   Amazon-2018:
-    - mysql-server
-    - mysql-devel
+    - "{{ mysql_name }}-server"
+    - "{{ mysql_name }}-devel"
     - MySQL-python27
-  Amazon:
-    - mariadb-server
-    - mariadb-devel
-    - MySQL-python
-  CentOS-7:
-    - mariadb-devel
-    - mariadb-server
-    - MySQL-python
-  CentOS:
-    - mysql-devel
-    - mysql-server
-    - python3-PyMySQL
+  # Amazon:
+  #   - "{{ mysql_name }}-server"
+  #   - "{{ mysql_name }}-devel"
+  #   - MySQL-python
   Debian:
-    - mariadb-server
+    - "{{ mysql_name }}-server"
     - python3-mysqldb
-  Fedora:
-    - mariadb-server
-    - mariadb-connector-c-devel
-    - python3-PyMySQL
-  openSUSE Leap:
+  # Fedora:
+  #   - "{{ mysql_name }}-server"
+  #   - mariadb-connector-c-devel
+  #   - python3-PyMySQL
+  Suse:
     - libmysqlclient-devel
-    - mariadb
+    - "{{ mysql_name }}"
     - python3-mysqlclient
+  RedHat:
+    - "{{ mysql_name }}-server"
+    - "{{ mysql_name }}-devel"
+    - python3-PyMySQL
   RedHat-7:
-    - mariadb-devel
-    - mariadb-server
+    - "{{ mysql_name }}-server"
+    - "{{ mysql_name }}-devel"
     - MySQL-python
-  Ubuntu:
-    - mariadb-server
-    - libssl-dev
-    - python3-mysqldb
 
-mysql_packages: "{{ _mysql_packages[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_mysql_packages[ansible_distribution] | default(_mysql_packages['default'])) }}"
+mysql_packages: "{{ _mysql_packages[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_mysql_packages[ansible_os_family] | default(_mysql_packages['default'])) }}"
 
 _mysql_initialize_command:
   Alpine: /etc/init.d/mariadb setup
@@ -54,15 +53,10 @@ _mysql_initialize_command:
 mysql_initialize_command: "{{ _mysql_initialize_command[ansible_os_family] }}"
 
 _mysql_service:
-  default: mysql
-  Alpine: mariadb
-  Amazon: mariadb
-  Amazon-2018: mysqld
-  Fedora: mariadb
-  RedHat-7: mariadb
-  RedHat: mysqld
+  default: "{{ mysql_name }}"
+  RedHat-8: "{{ mysql_name}}d"
 
-mysql_service: "{{ _mysql_service[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_mysql_service[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_mysql_service[ansible_distribution] | default(_mysql_service[ansible_os_family] | default(_mysql_service['default'])))) }}"
+mysql_service: "{{ _mysql_service[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_mysql_service['default']) }}"
 
 _mysql_socket:
   default: /var/run/mysql/mysql.sock
@@ -71,11 +65,12 @@ _mysql_socket:
 
 mysql_socket: "{{ _mysql_socket[ansible_os_family] | default(_mysql_socket['default']) }}"
 
-_mysql_pid:
-  default: /var/run/mysql/mysql.pid
-  Debian: /tmp/mysql.pid
-
-mysql_pid: "{{ _mysql_pid[ansible_os_family] | default(_mysql_pid['default']) }}"
+# _mysql_pid:
+#   default: /var/run/mysql/mysql.pid
+#   Debian: /tmp/mysql.pid
+#   RedHat: /run/mysqld/mysqld.pid
+#
+# mysql_pid: "{{ _mysql_pid[ansible_os_family] | default(_mysql_pid['default']) }}"
 
 mysql_configuration_options:
   - option: bind-address
@@ -84,9 +79,9 @@ mysql_configuration_options:
   - option: socket
     section: mysqld
     value: "{{ mysql_socket }}"
-  - option: pid-file
-    section: mysqld
-    value: "{{ mysql_pid }}"
+  # - option: pid-file
+  #   section: mysqld
+  #   value: "{{ mysql_pid }}"
   - section: mysqld
     option: innodb_buffer_pool_size
     value: "{{ mysql_innodb_buffer_pool_size }}"
@@ -99,3 +94,9 @@ _mysql_user:
   Fedora-34: mysql
 
 mysql_user: "{{ _mysql_user[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_mysql_user['default']) }}"
+
+_mysql_configuration_destination:
+  default: /etc/mysql/mariadb.conf.d
+  RedHat: /etc/my.cnf.d
+
+mysql_configuration_destination: "{{ _mysql_configuration_destination[ansible_os_family] | default(_mysql_configuration_destination['default']) }}"

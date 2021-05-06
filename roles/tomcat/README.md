@@ -229,7 +229,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |---------|----|
 |el|7, 8|
 |debian|buster, bullseye|
-|fedora|all|
+|fedora|33, 34|
 |opensuse|all|
 |ubuntu|focal, bionic|
 

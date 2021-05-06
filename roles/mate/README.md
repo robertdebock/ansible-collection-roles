@@ -64,7 +64,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |---------|----|
 |el|7|
 |debian|buster, bullseye|
-|fedora|all|
+|fedora|33|
 |opensuse|all|
 |ubuntu|focal, bionic|
 

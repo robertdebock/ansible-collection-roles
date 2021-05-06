@@ -46,6 +46,10 @@ postfix_smtpd_recipient_restrictions:
 postfix_smtpd_sender_restrictions:
   - reject_unknown_sender_domain
 
+# The default SMTP TLS security level for the Postfix SMTP client
+# Valid values are: dane, encrypt, fingerprint, may, none, secure, verify
+postfix_smtp_tls_security_level: none
+
 # To enable spamassassin, ensure spamassassin is installed,
 # (hint: role: robertdebock.spamassassin) and set these two variables:
 # postfix_spamassassin: enabled

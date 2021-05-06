@@ -16,108 +16,11 @@ This example is taken from `molecule/resources/converge.yml` and is tested on ea
   become: yes
   gather_facts: yes
 
+  vars_files:
+    - defaults.yml
+
   roles:
     - role: robertdebock.cis
-
-      # 1.1.1.1 Ensure mounting of cramfs filesystems is disabled (Scored)
-      # Modprobe does not work in containers.
-      cis_cramfs_disabled: no
-
-      # 1.1.1.2 Ensure mounting of vFAT filesystems is limited (Not Scored)
-      # Modprobe does not work in containers.
-      cis_vfat_disabled: no
-
-      # 1.1.1.3 Ensure mounting of squashfs filesystems is disabled (Scored)
-      # Modprobe does not work in containers.
-      cis_squashfs_disabled: no
-
-      # 1.1.1.4 Ensure mounting of udf filesystems is disabled (Scored)
-      # Modprobe does not work in containers.
-      cis_udf_disabled: no
-
-      # 1.1.5 Ensure noexec option set on /tmp partition (Scored)
-      # `noexec` can't be set in a container.
-      cis_tmp_noexec: no
-
-      # 1.1.6 Ensure separate partition exists for /var (Scored)
-      # Can't create a partition in CI.
-      cis_var_partition: no
-
-      # 1.1.7 Ensure separate partition exists for /var/tmp (Scored)
-      # Can't create a partition in CI.
-      cis_var_tmp_partition: no
-
-      # 1.1.11 Ensure separate partition exists for /var/log (Scored)
-      # Can't create a partition in CI.
-      cis_var_log_partition: no
-
-      # 1.1.12 Ensure separate partition exists for /var/log/audit (Scored)
-      # Can't create a partition in CI.
-      cis_var_log_audit_partition: no
-
-      # 1.1.13 Ensure separate partition exists for /home (Scored)
-      # Can't create a partition in CI.
-      cis_home_partition: no
-
-      # 1.1.23 Disable USB Storage (Scored)
-      # Modprobe does not work in containers.
-      cis_usb_storage_disabled: no
-
-      # 1.5.1 Ensure permissions on bootloader config are configured (Scored)
-      # No bootloaders in a container.
-      cis_permissions_bootloader: no
-
-      # 1.5.2 Ensure bootloader password is set (Scored)
-      # No bootloaders in a container.
-      cis_bootloader_password_set: no
-
-      # 1.7.1.2 Ensure SELinux is not disabled in bootloader configuration (Scored)
-      # No bootloaders in a container.
-      cis_selinux_not_disabled: no
-
-      # 1.7.1.3 Ensure SELinux policy is configured (Scored)
-      # Can't change an SELinux policy in a container.
-      cis_selinux_policy_configured: no
-
-      # 1.7.1.4 Ensure the SELinux state is enforcing (Scored)
-      # Can't change an SELinux state in a container.
-      cis_selinux_state_enforcing: no
-
-      # 3.3.1 Ensure DCCP is disabled (Scored)
-      # can't load modules in a container.
-      cis_dccp_disabled: no
-
-      # 3.3.2 Ensure SCTP is disabled (Scored)
-      # can't load modules in a container.
-      cis_sctp_disabled: no
-
-      # 3.3.3 Ensure RDS is disabled (Scored)
-      # can't load modules in a container.
-      cis_rds_disabled: no
-
-      # 3.3.4 Ensure TIPC is disabled (Scored)
-      # can't load modules in a container.
-      cis_tipc_disabled: no
-
-      # 3.5 Ensure wireless interfaces are disabled (Scored)
-      # No NetworkManager in a container.
-      cis_wireless_interface_disabled: no
-
-      # 3.6 Disable IPv6 (Not Scored)
-      # No grub in containers.
-      cis_disable_ipv6: no
-
-      # 4.1.1.2 Ensure auditd service is enabled (Scored)
-      # For some reason auditd does not start.
-      cis_auditd_service_enabled: no
-
-      # 4.1.1.3 Ensure auditing for processes that start prior to auditd is enabled (Scored)
-      # No grub in containers.
-      cis_auditing_processes_prior_start: no
-
-      # 4.1.1.4 Ensure audit_backlog_limit is sufficient (Scored)
-      # No grub in containers.
-      cis_audit_backlog_limit_sufficient: no
 ```
 
 The machine needs to be prepared in CI this is done using `molecule/resources/prepare.yml`:
@@ -638,6 +541,27 @@ cis_permissions_on_logfiles: yes
 cis_logrotate_configured: yes
 cis_logrotate_policy:
   - name: dnf
+
+# 5.1.1 Ensure cron daemon is enabled (Scored)
+cis_cron_enabled: yes
+
+# 5.1.2 Ensure permissions on /etc/crontab are configured (Scored)
+cis_cron_permissions_configured: yes
+
+# 5.1.3 Ensure permissions on /etc/cron.hourly are configured (Scored)
+cis_cron_hourly_permissions_configured: yes
+
+# 5.1.4 Ensure permissions on /etc/cron.daily are configured (Scored)
+cis_cron_daily_permissions_configured: yes
+
+# 5.1.5 Ensure permissions on /etc/cron.weekly are configured (Scored)
+cis_cron_weekly_permissions_configured: yes
+
+# 5.1.6 Ensure permissions on /etc/cron.monthly are configured (Scored)
+cis_cron_monthly_permissions_configured: yes
+
+# 5.1.7 Ensure permissions on /etc/cron.d are configured (Scored)
+cis_cron_d_permissions_configured: yes
 ```
 
 ## [Requirements](#requirements)

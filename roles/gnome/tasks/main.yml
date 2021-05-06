@@ -17,6 +17,15 @@
   when:
     - ansible_pkg_mgr != "dnf"
 
+- name: start dbus-broker
+  ansible.builtin.service:
+    name: dbus-broker
+    state: started
+    enabled: yes
+  when:
+    - ansible_distribution == "Fedora"
+    - ansible_distribution_major_version | int > 33
+
 - name: start gnome display manager
   ansible.builtin.service:
     name: gdm

@@ -27,6 +27,14 @@
   when:
     - ansible_distribution_release == "bionic"
 
+- name: ensure /etc/systemd/system/coturn.service.d exists
+  file:
+    path: /etc/systemd/system/coturn.service.d
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+
 - name: place systemd override
   copy:
     src: override.conf
