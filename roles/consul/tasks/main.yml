@@ -1,0 +1,23 @@
+---
+# tasks file for consul
+
+- name: include assert.yml
+  import_tasks: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+- name: configure consul
+  template:
+    src: consul.hcl.j2
+    dest: /etc/consul.d/consul.hcl
+    owner: consul
+    group: consul
+    mode: "0644"
+  notify:
+    - restart consul
+
+- name: start and enable consul
+  service:
+    name: consul
+    state: started
+    enabled: true

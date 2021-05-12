@@ -4,9 +4,6 @@
     name: "{{ _collectd_plugin_dependencies[plugin.name][ansible_distribution] | default(_collectd_plugin_dependencies[plugin.name][ansible_os_family] | default(_collectd_plugin_dependencies[plugin.name]['default'])) }}"  # noqa 204 Needs to be long, sorry lint.
     state: present
 
-- debug:
-    var: collectd_install_collectd_deps
-
 - name: find all plugins files not complying to the index based naming convention (001-plugin_name.conf)
   ansible.builtin.find:
     paths: "{{ collectd_conf_include_dir }}"

@@ -1,10 +1,10 @@
-# [nomad](#nomad)
+# [consul](#consul)
 
-Install and configure Nomad.
+Install and configure consul on your system.
 
 |GitHub|GitLab|Quality|Downloads|Version|
 |------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-nomad/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-nomad/actions)|[![gitlab](https://gitlab.com/robertdebock/ansible-role-nomad/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-nomad)|[![quality](https://img.shields.io/ansible/quality/51615)](https://galaxy.ansible.com/robertdebock/nomad)|[![downloads](https://img.shields.io/ansible/role/d/51615)](https://galaxy.ansible.com/robertdebock/nomad)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-nomad.svg)](https://github.com/robertdebock/ansible-role-nomad/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-consul/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-consul/actions)|[![gitlab](https://gitlab.com/robertdebock/ansible-role-consul/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-consul)|[![quality](https://img.shields.io/ansible/quality/)](https://galaxy.ansible.com/robertdebock/consul)|[![downloads](https://img.shields.io/ansible/role/d/)](https://galaxy.ansible.com/robertdebock/consul)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-consul.svg)](https://github.com/robertdebock/ansible-role-consul/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -14,26 +14,26 @@ This example is taken from `molecule/resources/converge.yml` and is tested on ea
 - name: converge
   hosts: all
   become: yes
-  gather_facts: yes
+  gather_facts: no
 
   roles:
-    - role: robertdebock.nomad
+    - role: robertdebock.consul
+      consul_bootstrap_expect: 1
 ```
 
 The machine needs to be prepared in CI this is done using `molecule/resources/prepare.yml`:
 ```yaml
 ---
-- name: Prepare
+- name: prepare
   hosts: all
-  gather_facts: no
   become: yes
+  gather_facts: no
 
   roles:
     - role: robertdebock.bootstrap
-    - role: robertdebock.core_dependencies
     - role: robertdebock.hashicorp
       hashicorp_products:
-        - name: nomad
+        - name: consul
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.
@@ -43,35 +43,22 @@ Also see a [full explanation and example](https://robertdebock.nl/how-to-use-the
 These variables are set in `defaults/main.yml`:
 ```yaml
 ---
-# defaults file for nomad
+# defaults file for consul
 
-# Set this to "yes" for a server.
-nomad_server: yes
-
-# Configuration items for the Nomad server
-nomad_server_data_dir: /tmp/server
-nomad_server_bind_addr: 0.0.0.0
-nomad_server_log_level: INFO
-
-# How many servers and agents are expected?
-nomad_server_bootstrap_expect: 1
-
-# This this to "yes" for an agent.
-nomad_agent: no
-
-# Configuration items for the Nomad agent
-nomad_agent_log_level: INFO
-nomad_agent_data_dir: /tmp/agent
-nomad_agent_name: "{{ inventory_hostname }}"
-
-nomad_agent_servers:
-  - name: 127.0.0.1
-    port: 4647
+consul_datacenter: dc1
+consul_data_dir: /opt/consul
+consul_client_addr: 0.0.0.0
+consul_ui: yes
+consul_server: yes
+# consul_bootstrap_expect: 3
+# consul_encrypt: "GEZzRM+2P+FiUcyrx9Fte8NbwtTlX3NA/mbhIAna7u0="
+# consul_retry_join:
+#   - consul.domain.internal
 ```
 
 ## [Requirements](#requirements)
 
-- pip packages listed in [requirements.txt](https://github.com/robertdebock/ansible-role-nomad/blob/master/requirements.txt).
+- pip packages listed in [requirements.txt](https://github.com/robertdebock/ansible-role-consul/blob/master/requirements.txt).
 
 ## [Status of requirements](#status-of-requirements)
 
@@ -80,7 +67,6 @@ The following roles are used to prepare a system. You may choose to prepare your
 | Requirement | GitHub | GitLab |
 |-------------|--------|--------|
 |[robertdebock.bootstrap](https://galaxy.ansible.com/robertdebock/bootstrap)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-bootstrap/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-bootstrap/actions)|[![Build Status GitLab ](https://gitlab.com/robertdebock/ansible-role-bootstrap/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-bootstrap)|
-|[robertdebock.core_dependencies](https://galaxy.ansible.com/robertdebock/core_dependencies)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-core_dependencies/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-core_dependencies/actions)|[![Build Status GitLab ](https://gitlab.com/robertdebock/ansible-role-core_dependencies/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-core_dependencies)|
 |[robertdebock.hashicorp](https://galaxy.ansible.com/robertdebock/hashicorp)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-hashicorp/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-hashicorp/actions)|[![Build Status GitLab ](https://gitlab.com/robertdebock/ansible-role-hashicorp/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-hashicorp)|
 
 ## [Context](#context)
@@ -88,7 +74,7 @@ The following roles are used to prepare a system. You may choose to prepare your
 This role is a part of many compatible roles. Have a look at [the documentation of these roles](https://robertdebock.nl/) for further information.
 
 Here is an overview of related roles:
-![dependencies](https://raw.githubusercontent.com/robertdebock/ansible-role-nomad/png/requirements.png "Dependencies")
+![dependencies](https://raw.githubusercontent.com/robertdebock/ansible-role-consul/png/requirements.png "Dependencies")
 
 ## [Compatibility](#compatibility)
 
@@ -96,12 +82,15 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
+|alpine|all|
+|amazon|all|
+|debian|all|
 |el|7, 8|
-|debian|buster|
-|fedora|33, 34|
-|ubuntu|bionic, focal|
+|fedora|all|
+|opensuse|all|
+|ubuntu|focal, bionic|
 
-The minimum version of Ansible required is 2.10, tests have been done to:
+The minimum version of Ansible required is 2.9, tests have been done to:
 
 - The previous version.
 - The current version.
@@ -109,11 +98,15 @@ The minimum version of Ansible required is 2.10, tests have been done to:
 
 
 
-If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-nomad/issues)
+If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-consul/issues)
 
 ## [License](#license)
 
 Apache-2.0
+
+## [Contributors](#contributors)
+
+I'd like to thank everybody that made contributions to this repository. It motivates me, improves the code and is just fun to collaborate.
 
 
 ## [Author Information](#author-information)

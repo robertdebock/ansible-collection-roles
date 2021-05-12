@@ -6,6 +6,15 @@
     name: "{{ stratis_packages }}"
     state: present
 
+- name: start dbus-broker
+  ansible.builtin.service:
+    name: dbus-broker
+    state: started
+    enabled: yes
+  when:
+    - ansible_distribution == "Fedora"
+    - ansible_distribution_major_version | int > 33
+
 - name: start and enable stratis
   ansible.builtin.service:
     name: "{{ stratis_service }}"

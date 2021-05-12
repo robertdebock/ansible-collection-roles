@@ -1,0 +1,62 @@
+---
+
+- name: test if consul_datacenter is set correctly
+  ansible.builtin.assert:
+    that:
+      - consul_datacenter is defined
+      - consul_datacenter is string
+    quiet: yes
+
+- name: test if consul_data_dir is set correctly
+  ansible.builtin.assert:
+    that:
+      - consul_data_dir is defined
+      - consul_data_dir is string
+    quiet: yes
+
+- name: test if consul_client_addr is set correctly
+  ansible.builtin.assert:
+    that:
+      - consul_client_addr is defined
+      - consul_client_addr is string
+    quiet: yes
+
+- name: test if consul_ui is set correctly
+  ansible.builtin.assert:
+    that:
+      - consul_ui is defined
+      - consul_ui is boolean
+    quiet: yes
+
+- name: test if consul_server is set correctly
+  ansible.builtin.assert:
+    that:
+      - consul_server is defined
+      - consul_server is boolean
+    quiet: yes
+
+- name: test if consul_bootstrap_expect is set correctly
+  ansible.builtin.assert:
+    that:
+      - consul_bootstrap_expect is number
+      - consul_bootstrap_expect in [ 1, 3, 5 ]
+    quiet: yes
+  when:
+    - consul_bootstrap_expect is defined
+
+- name: test if consul_encrypt is set correctly
+  ansible.builtin.assert:
+    that:
+      - consul_encrypt is string
+      - consul_encrypt | length == 32
+    quiet: yes
+  when:
+    - consul_encrypt is defined
+
+- name: test if consul_retry_join is set correctly
+  ansible.builtin.assert:
+    that:
+      - consul_retry_join is iterable
+    quiet: yes
+  when:
+    - consul_retry_join is defined

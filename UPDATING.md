@@ -11,3 +11,7 @@ rm -Rf roles/*
 ```shell
 ./UPDATING.sh
 ```
+
+3. Update galaxy.yml
+
+Bump version.

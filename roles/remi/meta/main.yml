@@ -15,7 +15,8 @@ galaxy_info:
         - 8
     - name: Fedora
       versions:
-        - all
+        - 33
+        - 34
 
   galaxy_tags:
     - remi
