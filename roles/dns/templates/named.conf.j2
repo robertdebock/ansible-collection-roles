@@ -1,0 +1,79 @@
+{{ ansible_managed | comment }}
+options {
+  directory "{{ dns_datadir }}";
+{% if dns_pid_file is defined %}
+  pid-file "{{ dns_pid_file }}";
+{% endif %}
+  dnssec-validation auto;
+  auth-nxdomain no;
+  listen-on port {{ dns_port }} {
+{% for ipv4 in dns_options_listen_on %}
+    {{ ipv4 }};
+{% endfor %}
+  };
+  listen-on-v6 port {{ dns_port }} {
+{% for ipv6 in dns_options_listen_on_v6 %}
+    {{ ipv6 }};
+{% endfor %}
+  };
+{% if dns_options_allow_query is defined %}
+  allow-query {
+{% for ip in dns_options_allow_query %}
+    {{ ip }};
+{% endfor %}
+  };
+{% endif %}
+{% if dns_allow_recursion is defined %}
+  allow-recursion {
+{% for acl in dns_allow_recursion %}
+   {{ acl }};
+{% endfor %}
+  };
+{% endif %}
+  allow-transfer {
+{% if dns_options_allow_transfer is defined %}
+{% for ip in dns_options_allow_transfer %}
+    {{ ip }};
+{% endfor %}
+{% else %}
+    none;
+{% endif %}
+  };
+{% if dns_options_forwarders is defined %}
+  forwarders {
+{% for options_forwarder in dns_options_forwarders %}
+    {{ options_forwarder }};
+{% endfor %}
+  };
+{% endif %}
+};
+
+{% if dns_caching_dns is defined and dns_caching_dns | bool %}
+zone "." {
+  type hint;
+  file "{{ dns_datadir }}/named.root";
+};
+{% endif %}
+
+{% for zone in dns_zones %}
+zone "{{ zone.name }}" {
+  type {{ zone.type | default('master') }};
+{% if zone.type is not defined or zone.type == "master" %}
+  file "{{ dns_datadir }}/{{ zone.name }}.conf";
+{% endif %}
+{% if zone.dns_zone_forwarders is defined %}
+  forwarders {
+{% for zone_forwarder in zone.dns_zone_forwarders %}
+    {{ zone_forwarder }};
+{% endfor %}
+  };
+{% endif %}
+};
+{% endfor %}
+
+include "{{ dns_confdir }}/rndc.key";
+
+controls {
+  inet 127.0.0.1 port 953
+  allow { 127.0.0.1; } keys { "rndc-key"; };
+};

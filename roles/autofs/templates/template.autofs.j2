@@ -1,0 +1,2 @@
+{{ ansible_managed | comment }}
+{{ item.mountpoint }} /etc/auto.{{ item.name | default(item.mountpoint) | regex_replace('^/', '') | regex_replace('/', slash_replace_char) }} {% if item.options is defined %}{% for option in item.options %}{{ option }}{% if not loop.last %} {% endif %}{% endfor %} {% endif %}

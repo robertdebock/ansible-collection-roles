@@ -1,0 +1,11 @@
+{{ ansible_managed | comment }}
+
+LoadModule ssl_module {{ httpd_modules_path}}/mod_ssl.so
+
+Listen {{ httpd_ssl_port }}
+<VirtualHost *:{{ httpd_ssl_port }}>
+    ServerName {{ httpd_ssl_servername }}
+    SSLEngine on
+    SSLCertificateFile "{{ httpd_openssl_crt }}"
+    SSLCertificateKeyFile "{{ httpd_openssl_key }}"
+</VirtualHost>

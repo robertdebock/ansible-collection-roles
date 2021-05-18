@@ -1,0 +1,11 @@
+
+module my-glusterepoll0 1.0;
+
+require {
+	type glusterd_t;
+	type unlabeled_t;
+	class file map;
+}
+
+#============= glusterd_t ==============
+allow glusterd_t unlabeled_t:file map;

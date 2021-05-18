@@ -1,0 +1,2 @@
+{{ ansible_managed | comment }}
+Plugin sudo_pair libsudo_pair.so socket_dir=/var/run/sudo_pair user_prompt_path=/etc/sudo.prompt.user pair_prompt_path=/etc/sudo.prompt.pair {% if sudo_pair_gids_exempted is defined %}gids_exempted={% for gid in sudo_pair_gids_exempted %}{{ gid }}{% if not loop.last %},{% endif %}{% endfor %}{% endif %}{% if sudo_pair_gids_enforced is defined %}gids_enforced={% for gid in sudo_pair_gids_enforced %}{{ gid }}{% if not loop.last %},{% endif %}{% endfor %}{% endif %}

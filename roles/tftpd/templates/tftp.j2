@@ -1,0 +1,14 @@
+{{ ansible_managed | comment }}
+service tftp
+  {
+    socket_type = dgram
+    protocol    = udp
+    wait        = yes
+    user        = root
+    server      = /usr/sbin/in.tftpd
+    server_args = -s {{ tftpd_tftproot }}
+    disable     = no
+    per_source  = 11
+    cps         = 100 2
+    flags       = IPv4
+}

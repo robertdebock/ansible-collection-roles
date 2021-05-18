@@ -1,0 +1,13 @@
+---
+argument_specs:
+  main:
+    short_description: "Jitsi installation."
+    options:
+      jitsi_release:
+        type: "str"
+        required: true
+        description: "The type of release to install."
+        choices:
+          - stable
+          - testing
+          - nightly

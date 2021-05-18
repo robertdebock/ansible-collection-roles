@@ -1,0 +1,39 @@
+{{ ansible_managed | comment('c') }}
+// Control parameters for cron jobs by /etc/cron.daily/apt-compat //
+
+
+// Enable the update/upgrade script (0=disable)
+APT::Periodic::Enable "1";
+
+
+// Do "apt-get update" automatically every n-days (0=disable)
+APT::Periodic::Update-Package-Lists "1";
+
+
+// Do "apt-get upgrade --download-only" every n-days (0=disable)
+{% if auto_update_download_updates %}
+APT::Periodic::Download-Upgradeable-Packages "1";
+{% else %}
+APT::Periodic::Download-Upgradeable-Packages "0";
+{% endif %}
+
+// Run the "unattended-upgrade" security upgrade script
+// every n-days (0=disabled)
+// Requires the package "unattended-upgrades" and will write
+// a log in /var/log/unattended-upgrades
+{% if auto_update_apply_updates %}
+APT::Periodic::Unattended-Upgrade "1";
+{% else %}
+APT::Periodic::Unattended-Upgrade "0";
+{% endif %}
+
+// Do "apt-get autoclean" every n-days (0=disable)
+APT::Periodic::AutocleanInterval "21";
+
+
+// Send report mail to root
+//     0:  no report             (or null string)
+//     1:  progress report       (actually any string)
+//     2:  + command outputs     (remove -qq, remove 2>/dev/null, add -d)
+//     3:  + trace on
+APT::Periodic::Verbose "2";

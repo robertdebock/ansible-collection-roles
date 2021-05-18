@@ -1,0 +1,6 @@
+{{ ansible_managed | comment }}
+
+<Location {{ item.location }}>
+  ProxyPass {{ item.backend_url }}
+  ProxyPassReverse {{ item.backend_url }}
+</Location>

@@ -1,0 +1,11 @@
+
+module my-clamd 1.0;
+
+require {
+	type antivirus_t;
+	type amavisd_send_port_t;
+	class tcp_socket name_bind;
+}
+
+#============= antivirus_t ==============
+allow antivirus_t amavisd_send_port_t:tcp_socket name_bind;

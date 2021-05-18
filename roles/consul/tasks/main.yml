@@ -16,6 +16,19 @@
   notify:
     - restart consul
 
+- name: configure consul service
+  template:
+    src: service.hcl.j2
+    dest: /etc/cosul.d/service-{{ item.name }}-{{ item.port }}.hcl
+    owner: consul
+    group: consul
+    mode: "0644"
+  loop: "{{ consul_services }}"
+  notify:
+    - restart consul
+  when:
+    - consul_services is defined
+
 - name: start and enable consul
   service:
     name: consul

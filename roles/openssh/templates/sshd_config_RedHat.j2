@@ -1,0 +1,152 @@
+{{ ansible_managed | comment }}
+#	$OpenBSD: sshd_config,v 1.103 2018/04/09 20:41:22 tj Exp $
+
+# This is the sshd server system-wide configuration file.  See
+# sshd_config(5) for more information.
+
+# This sshd was compiled with PATH=/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin
+
+# The strategy used for options in the default sshd_config shipped with
+# OpenSSH is to specify options with their default value where
+# possible, but leave them commented.  Uncommented options override the
+# default value.
+
+# If you want to change the port on a SELinux system, you have to tell
+# SELinux about this change.
+# semanage port -a -t ssh_port_t -p tcp #PORTNUMBER
+#
+Port {{ openssh_port }}
+AddressFamily {{ openssh_address_family }}
+{% for address in openssh_listen_addresses %}
+ListenAddress {{ address }}
+{% endfor %}
+
+{% for hostkey in openssh_host_keys %}
+HostKey {{ hostkey }}
+{% endfor %}
+
+# Ciphers and keying
+RekeyLimit {{ openssh_rekey_limit }}
+
+# System-wide Crypto policy:
+# This system is following system-wide crypto policy. The changes to
+# Ciphers, MACs, KexAlgoritms and GSSAPIKexAlgorithsm will not have any
+# effect here. They will be overridden by command-line options passed on
+# the server start up.
+# To opt out, uncomment a line with redefinition of  CRYPTO_POLICY=
+# variable in  /etc/sysconfig/sshd  to overwrite the policy.
+# For more information, see manual page for update-crypto-policies(8).
+
+# Logging
+#SyslogFacility AUTH
+SyslogFacility {{ openssh_syslog_facility }}
+LogLevel {{ openssh_loglevel }}
+
+# Authentication:
+
+LoginGraceTime {{ openssh_login_grace_time }}
+PermitRootLogin {{ openssh_permit_root_login }}
+StrictModes {{ openssh_strict_modes }}
+MaxAuthTries  {{ openssh_max_auth_tries }}
+MaxSessions {{ openssh_max_sessions }}
+
+PubkeyAuthentication {{ openssh_pub_key_authentication }}
+
+# The default is to check both .ssh/authorized_keys and .ssh/authorized_keys2
+# but this is overridden so installations will only check .ssh/authorized_keys
+AuthorizedKeysFile	{{ openssh_authorized_key_file }}
+
+AuthorizedPrincipalsFile {{ openssh_authorized_prinicpals_file }}
+
+AuthorizedKeysCommand {{ openssh_authorized_keys_command }}
+AuthorizedKeysCommandUser {{ openssh_authorized_keys_command_user }}
+
+# For this to work you will also need host keys in /etc/ssh/ssh_known_hosts
+HostbasedAuthentication {{ openssh_host_based_authentication }}
+# Change to yes if you don't trust ~/.ssh/known_hosts for
+# HostbasedAuthentication
+IgnoreUserKnownHosts {{ openssh_ignore_user_known_hosts }}
+# Don't read the user's ~/.rhosts and ~/.shosts files
+IgnoreRhosts {{ openssh_ignore_rhosts }}
+
+# To disable tunneled clear text passwords, change to no here!
+PasswordAuthentication {{ openssh_password_authentication }}
+PermitEmptyPasswords {{ openssh_permit_empty_passwords }}
+
+# Change to no to disable s/key passwords
+ChallengeResponseAuthentication {{ openssh_challenge_response_authentication }}
+
+# Kerberos options
+#KerberosAuthentication no
+#KerberosOrLocalPasswd yes
+#KerberosTicketCleanup yes
+#KerberosGetAFSToken no
+#KerberosUseKuserok yes
+
+# GSSAPI options
+GSSAPIAuthentication {{ openssh_gssapi_authentication }}
+GSSAPICleanupCredentials {{ openssh_gssapi_cleanup_credentials }}
+GSSAPIStrictAcceptorCheck {{ openssh_gssapi_strict_acceptor_check }}
+GSSAPIKeyExchange {{ openssh_gssapi_key_exchange }}
+GSSAPIEnablek5users {{ openssh_gssaip_enable_k5_users }}
+
+# Set this to 'yes' to enable PAM authentication, account processing,
+# and session processing. If this is enabled, PAM authentication will
+# be allowed through the ChallengeResponseAuthentication and
+# PasswordAuthentication.  Depending on your PAM configuration,
+# PAM authentication via ChallengeResponseAuthentication may bypass
+# the setting of "PermitRootLogin without-password".
+# If you just want the PAM account and session checks to run without
+# PAM authentication, then enable this but set PasswordAuthentication
+# and ChallengeResponseAuthentication to 'no'.
+# WARNING: 'UsePAM no' is not supported in Fedora and may cause several
+# problems.
+UsePAM {{ openssh_use_pam }}
+
+AllowAgentForwarding {{ openssh_allow_agent_forwarding }}
+AllowTcpForwarding {{ openssh_allow_tcp_forwarding }}
+GatewayPorts {{ openssh_gateway_ports }}
+X11Forwarding {{ openssh_x11_forwarding }}
+X11DisplayOffset {{ openssh_x11_display_offset }}
+X11UseLocalhost {{ openssh_x11_use_localhost }}
+PermitTTY {{ openssh_permit_tty }}
+
+# It is recommended to use pam_motd in /etc/pam.d/sshd instead of PrintMotd,
+# as it is more configurable and versatile than the built-in version.
+PrintMotd {{ openssh_print_motd }}
+
+PrintLastLog {{ openssh_print_last_log }}
+TCPKeepAlive {{ openssh_tcp_keep_alive }}
+PermitUserEnvironment {{ openssh_permit_user_environment }}
+Compression {{ openssh_compression }}
+ClientAliveInterval {{ openssh_client_alive_interval }}
+ClientAliveCountMax {{ openssh_client_alive_count_max }}
+# ShowPatchLevel {{ openssh_show_patch_level }}
+UseDNS {{ openssh_use_dns }}
+PidFile {{ openssh_pid_file }}
+MaxStartups {{ openssh_max_startups }}
+PermitTunnel {{ openssh_permit_tunnel }}
+ChrootDirectory {{ openssh_chroot_directory }}
+VersionAddendum {{ openssh_version_addendum }}
+
+# no default banner path
+Banner {{ openssh_banner }}
+
+# Accept locale-related environment variables
+{% for item in openssh_accept_envs %}
+AcceptEnv {{ item }}
+{% endfor %}
+
+# override default of no subsystems
+Subsystem {{ openssh_subsystem }}
+
+# Example of overriding settings on a per-user basis
+#Match User anoncvs
+#	X11Forwarding no
+#	AllowTcpForwarding no
+#	PermitTTY no
+#	ForceCommand cvs server
+
+{% if openssh_allow_users is defined %}
+AllowUsers {{ openssh_allow_users }}
+{% endif %}

@@ -1,0 +1,11 @@
+
+module my-php-fpm 1.0;
+
+require {
+	type var_log_t;
+	type httpd_t;
+	class file open;
+}
+
+#============= httpd_t ==============
+allow httpd_t var_log_t:file open;

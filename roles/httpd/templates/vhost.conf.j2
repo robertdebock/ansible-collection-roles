@@ -1,0 +1,51 @@
+{{ ansible_managed | comment }}
+
+{% if item.backend_url is defined %}
+<IfModule !proxy_module>
+   LoadModule proxy_module {{ httpd_modules_path }}/mod_proxy.so
+</IfModule>
+
+<IfModule !proxy_http_module>
+   LoadModule proxy_http_module {{ httpd_modules_path }}/mod_proxy_http.so
+</IfModule>
+{% endif %}
+
+<VirtualHost *:{{ httpd_port }}>
+   ServerName {{ item.servername }}
+
+{% if item.serveralias is defined %}
+   ServerAlias {{ item.serveralias | join(' ') }}
+{% endif %}
+
+{% if item.options is defined %}
+   Options {{ item.options|join(' ') }}
+{% endif %}
+{% if item.documentroot is defined %}
+   DocumentRoot "{{ item.documentroot }}"
+{% endif %}
+{% if item.backend_url is defined %}
+{% if "https" in item.backend_url %}
+   SSLProxyEngine on
+{% endif %}
+   {% if item.proxy_preserve_host is defined and item.proxy_preserve_host is sameas true %}
+ProxyPreserveHost On
+   {% elif item.proxy_preserve_host is defined and item.proxy_preserve_host is sameas false %}
+ProxyPreserveHost Off
+   {% endif %}
+ProxyPass / {{ item.backend_url }}
+   ProxyPassReverse / {{ item.backend_url }}
+{% endif %}
+{% if item.remote is defined %}
+  ProxyRemote * {{ item.remote }}
+{% endif %}
+{% if item.proxy_requests is defined and item.proxy_requests is sameas true %}
+   ProxyRequests On
+{% elif item.proxy_requests is defined and item.proxy_requests is sameas false %}
+   ProxyRequests Off
+{% endif %}
+{% if item.setenv is defined %}
+{% for env in item.setenv %}
+   SetEnv {{ env.name }} {{ env.value | default("") }}
+{% endfor %}
+{% endif %}
+</VirtualHost>

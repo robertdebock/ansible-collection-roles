@@ -1,0 +1,52 @@
+{{ ansible_managed | comment }}
+global
+    log         127.0.0.1 local2
+    chroot      /var/lib/haproxy
+    pidfile     /var/run/haproxy.pid
+    maxconn     4000
+    user        haproxy
+    group       haproxy
+    daemon
+    stats       socket /var/lib/haproxy/stats
+
+defaults
+    mode                    http
+    log                     global
+    option                  httplog
+    option                  dontlognull
+    option                  http-server-close
+    option                  forwardfor except 127.0.0.0/8
+    option                  redispatch
+    retries                 {{ haproxy_retries }}
+    timeout http-request    {{ haproxy_timeout_http_request }}
+    timeout queue           {{ haproxy_timeout_check }}
+    timeout connect         {{ haproxy_timeout_connect }}
+    timeout client          {{ haproxy_timeout_client }}
+    timeout server          {{ haproxy_timeout_server }}
+    timeout http-keep-alive {{ haproxy_timeout_http_keep_alive }}
+    timeout check           {{ haproxy_timeout_check }}
+    maxconn                 {{ haproxy_maxconn }}
+
+{% if haproxy_stats == true %}
+listen stats
+    bind                 :{{ haproxy_stats_port }}
+    mode                 http
+    stats                enable
+    stats                uri /stats
+{% endif %}
+
+{% for frontend in haproxy_frontends %}
+frontend {{ frontend.name }}
+    bind {{ frontend.address }}:{{ frontend.port }}{% if frontend.ssl is defined and frontend.ssl == true %} ssl{% endif %}{% if frontend.crts is defined and frontend.crts | length >0 %}{% for crt in frontend.crts %} crt {{ crt }}{% endfor %}{% endif %}
+
+    default_backend {{ frontend.default_backend }}
+
+{% endfor %}
+{% for backend in haproxy_backends %}
+backend {{ backend.name }}
+    balance {{ backend.balance | default(haproxy_backend_default_balance) }}
+{% for server in backend.servers %}
+    server {{ server }} {{ hostvars[server]['ansible_default_ipv4']['address'] }}:{{ backend.port }} {{ backend.options | join(' ') }}
+{% endfor %}
+
+{% endfor %}

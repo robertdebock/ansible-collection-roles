@@ -1,0 +1,32 @@
+{{ ansible_managed | comment }}
+## Path:        Network/WWW/Memcached
+## Description: start parameters for memcached.
+## Type:        string
+## Default:     "-l 127.0.0.1"
+## Config:      memcached
+#
+# start parameters for memcached.
+#
+# see man 1 memcached for more
+#
+MEMCACHED_PARAMS="-l {{ memcached_listenon }}"
+
+## Path:        Network/WWW/Memcached
+## Description: username memcached should run as
+## Type:        string
+## Default:     "memcached"
+## Config:      memcached
+#
+# username memcached should run as
+#
+MEMCACHED_USER="{{ memcached_user }}"
+
+## Path:        Network/WWW/Memcached
+## Description: group memcached should be run as
+## Type:        string
+## Default:     "memcached"
+## Config:      memcached
+#
+# group memcached should be run as
+#
+MEMCACHED_GROUP="{{ memcached_user }}"

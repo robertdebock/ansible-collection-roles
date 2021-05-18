@@ -50,6 +50,7 @@
       - consul_encrypt is string
       - consul_encrypt | length == 32
     quiet: yes
+    fail_msg: "consul_encrypt must be 32 characters, it's {{ consul_encrypt | length }}."
   when:
     - consul_encrypt is defined
 
@@ -60,3 +61,41 @@
     quiet: yes
   when:
     - consul_retry_join is defined
+
+- name: test if consul_bind_addr is set correctly
+  ansible.builtin.assert:
+    that:
+      - consul_bind_addr is string
+    quiet: yes
+  when:
+    - consul_bind_addr is defined
+
+- name: test if consul_advertise_addr is set correctly
+  ansible.builtin.assert:
+    that:
+      - consul_advertise_addr is string
+    quiet: yes
+  when:
+    - consul_advertise_addr is defined
+
+- name: test if consul_services is set correctly
+  ansible.builtin.assert:
+    that:
+      - consul_services is iterable
+    quiet: yes
+  when:
+    - consul_services is defined
+
+- name: test if item in consul_services is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.name is defined
+      - item.name is string
+      - item.port is defined
+      - item.port is number
+      - item.port > 0
+      - item.port =< 65536
+    quiet: yes
+  when:
+    - consul_services is defined
+  loop: "{{ consul_services }}"

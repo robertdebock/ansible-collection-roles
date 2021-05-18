@@ -1,0 +1,93 @@
+{{ ansible_managed | comment }}
+# rsyslog configuration file
+
+# For more information see /usr/share/doc/rsyslog-*/rsyslog_conf.html
+# or latest version online at http://www.rsyslog.com/doc/rsyslog_conf.html
+# If you experience problems, see http://www.rsyslog.com/doc/troubleshoot.html
+
+#### GLOBAL DIRECTIVES ####
+
+# Where to place auxiliary files
+global(workDirectory="{{ rsyslog_work_directory }}")
+
+# Use default timestamp format
+module(load="builtin:omfile" Template="RSYSLOG_TraditionalFileFormat")
+
+# Include all config files in /etc/rsyslog.d/
+include(file="/etc/rsyslog.d/*.conf" mode="optional")
+
+#### MODULES ####
+
+# Provides support for local system logging (e.g. via logger command)
+# And turns off message reception via local log socket;
+# Local messages are retrieved through imjournal now.
+{{ '' if 'imuxsock' in rsyslog_mods else '#' }}module(load="imuxsock" SysSock.Use="off")
+
+# Provides access to the systemd journal
+# And provides file to store the position in the journal
+{{ '' if 'imjournal' in rsyslog_mods else '#' }}module(load="imjournal" StateFile="imjournal.state")
+
+# reads kernel messages (the same are read from journald)
+{{ '' if 'imklog' in rsyslog_mods else '#' }}module(load="imklog")
+
+# provides --MARK-- message capability
+{{ '' if 'immark' in rsyslog_mods else '#' }}module(load="immark")
+
+# Provides UDP syslog reception
+# for parameters see http://www.rsyslog.com/doc/imudp.html
+{{ '' if rsyslog_receiver is defined else '#' }}module(load="imudp") # needs to be done just once
+{{ '' if rsyslog_receiver is defined else '#' }}input(type="imudp" port="514")
+
+# Provides TCP syslog reception
+# for parameters see http://www.rsyslog.com/doc/imtcp.html
+{{ '' if rsyslog_receiver is defined else '#' }}module(load="imtcp") # needs to be done just once
+{{ '' if rsyslog_receiver is defined else '#' }}input(type="imtcp" port="514")
+
+{% if rsyslog_deploy_default_config %}
+#### RULES ####
+
+# Log all kernel messages to the console.
+# Logging much else clutters up the screen.
+#kern.*                                                 /dev/console
+
+# Log anything (except mail) of level info or higher.
+# Don't log private authentication messages!
+*.info;mail.none;authpriv.none;cron.none                /var/log/messages
+
+# The authpriv file has restricted access.
+authpriv.*                                              /var/log/secure
+
+# Log all the mail messages in one place.
+mail.*                                                  -/var/log/maillog
+
+
+# Log cron stuff
+cron.*                                                  /var/log/cron
+
+# Everybody gets emergency messages
+*.emerg                                                 :omusrmsg:*
+
+# Save news errors of level crit and higher in a special file.
+uucp,news.crit                                          /var/log/spooler
+
+# Save boot messages also to boot.log
+local7.*                                                /var/log/boot.log
+
+
+{% if rsyslog_remote is defined %}
+# ### sample forwarding rule ###
+action(type="omfwd"
+# # An on-disk queue is created for this action. If the remote host is
+# # down, messages are spooled to disk and sent when it is up again.
+#queue.filename="fwdRule1"       # unique name prefix for spool files
+#queue.maxdiskspace="1g"         # 1gb space limit (use as much as possible)
+#queue.saveonshutdown="on"       # save messages to disk on shutdown
+#queue.type="LinkedList"         # run asynchronously
+#action.resumeRetryCount="-1"    # infinite retries if host is down
+# # Remote Logging (we use TCP for reliable delivery)
+# # remote_host is: name/ip, e.g. 192.168.0.1, port optional e.g. 10514
+#Target="remote_host" Port="XXX" Protocol="tcp")
+Target="{{ rsyslog_remote }}" Port="{{ rsyslog_remote_port }}" Protocol="{{ 'tcp' if rsyslog_remote_tcp else 'udp' }}")
+{% endif %}
+# ### end of the forwarding rule ###
+{% endif %}

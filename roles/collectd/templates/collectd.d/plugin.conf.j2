@@ -1,0 +1,22 @@
+{{ ansible_managed | comment }}
+{% if collectd_conf_autoloadplugin -%}
+LoadPlugin {{ plugin.name }}
+{%- endif %}
+
+{% if plugin.config is defined -%}
+<Plugin {{ plugin.name }}>
+  {% if plugin.interval is defined -%}
+  Interval {{ plugin.interval }}
+  {%- endif %}
+
+  {% if plugin.flush_interval is defined -%}
+  FlushInterval {{ plugin.flush_interval }}
+  {%- endif %}
+
+  {% if plugin.flush_timeout is defined -%}
+  FlushTimeout {{ plugin.flush_timeout }}
+  {%- endif %}
+
+{{ plugin.config | indent(2, first=True) }}
+</Plugin>
+{% endif %}

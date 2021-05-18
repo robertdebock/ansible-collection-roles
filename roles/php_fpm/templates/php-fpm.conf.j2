@@ -1,0 +1,6 @@
+{{ ansible_managed | comment(decoration='; ') }}
+
+include={{ php_fpm_include_directory }}/*.conf
+
+[global]
+pid = {{ php_fpm_pid_directory }}/php-fpm.pid

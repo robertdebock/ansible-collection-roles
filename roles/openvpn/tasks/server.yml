@@ -1,8 +1,8 @@
 ---
 
-- name: ensure /etc/openvpn/easy-rsa exists
+- name: ensure /etc/openvpn/easy-rsa/pki exists
   ansible.builtin.file:
-    path: /etc/openvpn/easy-rsa
+    path: /etc/openvpn/easy-rsa/pki
     state: directory
     mode: "0755"
 

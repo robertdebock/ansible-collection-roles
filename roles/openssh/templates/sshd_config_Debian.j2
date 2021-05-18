@@ -1,0 +1,84 @@
+{{ ansible_managed | comment }}
+
+Port {{ openssh_port }}
+
+AddressFamily {{ openssh_address_family }}
+
+{% for address in openssh_listen_addresses %}
+ListenAddress {{ address }}
+{% endfor %}
+
+{% for hostkey in openssh_host_keys %}
+HostKey {{ hostkey }}
+{% endfor %}
+
+RekeyLimit {{ openssh_rekey_limit }}
+
+SyslogFacility {{ openssh_syslog_facility }}
+LogLevel {{ openssh_loglevel }}
+
+LoginGraceTime {{ openssh_login_grace_time }}
+PermitRootLogin {{ openssh_permit_root_login }}
+StrictModes {{ openssh_strict_modes }}
+MaxAuthTries {{ openssh_max_auth_tries }}
+MaxSessions {{ openssh_max_sessions }}
+
+PubkeyAuthentication {{ openssh_pub_key_authentication }}
+
+AuthorizedKeysFile {{ openssh_authorized_key_file }}
+
+AuthorizedPrincipalsFile {{ openssh_authorized_prinicpals_file }}
+
+AuthorizedKeysCommand {{ openssh_authorized_keys_command }}
+AuthorizedKeysCommandUser {{ openssh_authorized_keys_command_user }}
+
+HostbasedAuthentication {{ openssh_host_based_authentication }}
+IgnoreUserKnownHosts {{ openssh_ignore_user_known_hosts }}
+IgnoreRhosts {{ openssh_ignore_rhosts }}
+
+PermitEmptyPasswords {{ openssh_permit_empty_passwords }}
+PasswordAuthentication {{ openssh_password_authentication }}
+
+ChallengeResponseAuthentication {{ openssh_challenge_response_authentication }}
+
+GSSAPIAuthentication {{ openssh_gssapi_authentication }}
+GSSAPICleanupCredentials {{ openssh_gssapi_cleanup_credentials }}
+GSSAPIStrictAcceptorCheck {{ openssh_gssapi_strict_acceptor_check }}
+GSSAPIKeyExchange {{ openssh_gssapi_key_exchange }}
+
+UsePAM {{ openssh_use_pam }}
+
+AllowAgentForwarding {{ openssh_allow_agent_forwarding }}
+AllowTcpForwarding  {{ openssh_allow_tcp_forwarding }}
+GatewayPorts {{ openssh_gateway_ports }}
+X11Forwarding {{ openssh_x11_forwarding }}
+X11DisplayOffset {{ openssh_x11_display_offset }}
+X11UseLocalhost {{ openssh_x11_use_localhost }}
+PermitTTY {{ openssh_permit_tty }}
+
+PrintMotd {{ openssh_print_motd }}
+
+PrintLastLog {{ openssh_print_last_log }}
+TCPKeepAlive {{ openssh_tcp_keep_alive }}
+PermitUserEnvironment {{ openssh_permit_user_environment }}
+Compression {{ openssh_compression }}
+ClientAliveInterval {{ openssh_client_alive_interval }}
+ClientAliveCountMax {{ openssh_client_alive_count_max }}
+UseDNS {{ openssh_use_dns }}
+PidFile {{ openssh_pid_file }}
+MaxStartups {{ openssh_max_startups }}
+PermitTunnel {{ openssh_permit_tunnel }}
+ChrootDirectory {{ openssh_chroot_directory }}
+VersionAddendum {{ openssh_version_addendum }}
+
+Banner {{ openssh_banner }}
+
+{% for item in openssh_accept_envs %}
+AcceptEnv {{ item }}
+{% endfor %}
+
+Subsystem {{ openssh_subsystem }}
+
+{% if openssh_allow_users is defined %}
+AllowUsers {{ openssh_allow_users }}
+{% endif %}

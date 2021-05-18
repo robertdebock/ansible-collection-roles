@@ -1,0 +1,125 @@
+{{ ansible_managed | comment }}
+#
+# Config file for collectd(1).
+# Please read collectd.conf(5) for a list of options.
+# http://collectd.org/
+#
+
+##############################################################################
+# Global                                                                     #
+#----------------------------------------------------------------------------#
+# Global settings for the daemon.                                            #
+##############################################################################
+
+{% if collectd_conf_hostname is defined %}
+Hostname    "{{ collectd_conf_hostname }}"
+{% endif %}
+FQDNLookup   {{ collectd_conf_fqdnlookup }}
+BaseDir     "{{ collectd_conf_basedir }}"
+PIDFile     "{{ collectd_conf_pidfile }}"
+PluginDir   "{{ collectd_conf_plugin_path }}"
+TypesDB     "{{ collectd_conf_typesdb }}"
+
+#----------------------------------------------------------------------------#
+# When enabled, plugins are loaded automatically with the default options    #
+# when an appropriate <Plugin ...> block is encountered.                     #
+# Disabled by default.                                                       #
+#----------------------------------------------------------------------------#
+AutoLoadPlugin {{ collectd_conf_autoloadplugin }}
+
+#----------------------------------------------------------------------------#
+# When enabled, internal statistics are collected, using "collectd" as the   #
+# plugin name.                                                               #
+# Disabled by default.                                                       #
+#----------------------------------------------------------------------------#
+CollectInternalStats {{ collectd_conf_collectinternalstats }}
+
+#----------------------------------------------------------------------------#
+# Interval at which to query values. This may be overwritten on a per-plugin #
+# base by using the 'Interval' option of the LoadPlugin block:               #
+#   <LoadPlugin foo>                                                         #
+#       Interval 60                                                          #
+#   </LoadPlugin>                                                            #
+#----------------------------------------------------------------------------#
+Interval     {{ collectd_conf_interval }}
+
+MaxReadInterval {{ collectd_conf_maxreadinterval }}
+Timeout         {{ collectd_conf_timeout }}
+ReadThreads     {{ collectd_conf_readthreads }}
+WriteThreads    {{ collectd_conf_writethreads }}
+
+# Limit the size of the write queue. Default is no limit. Setting up a limit is
+# recommended for servers handling a high volume of traffic.
+{% if collectd_conf_writequeuelimithigh is defined %}
+WriteQueueLimitHigh {{ collectd_conf_writequeuelimithigh }}
+{% endif -%}
+{% if collectd_conf_writequeuelimitlow is defined %}
+WriteQueueLimitLow	{{ collectd_conf_writequeuelimitlow }}
+{% endif -%}
+
+##############################################################################
+# Logging                                                                    #
+#----------------------------------------------------------------------------#
+# Plugins which provide logging functions should be loaded first, so log     #
+# messages generated when loading or configuring other plugins can be        #
+# accessed.                                                                  #
+##############################################################################
+
+LoadPlugin {{ collectd_plugin_logging }}
+
+{% if collectd_plugin_logging == "logfile" %}
+<Plugin logfile>
+  LogLevel {{ collectd_plugin_logfile_loglevel }}
+  File "{{ collectd_plugin_logfile_file }}"
+  Timestamp {{ collectd_plugin_logfile_timestamp }}
+  PrintSeverity {{ collectd_plugin_logfile_printseverity }}
+</Plugin>
+{% endif -%}
+
+{% if collectd_plugin_logging== "log_logstash" %}
+<Plugin log_logstash>
+  LogLevel {{ collectd_plugin_logstash_loglevel }}
+  File "{{ collectd_plugin_logstash_file }}"
+</Plugin>
+{% endif -%}
+
+{% if collectd_plugin_logging== "syslog" %}
+<Plugin syslog>
+  LogLevel {{ collectd_plugin_syslog_loglevel }}
+{% if collectd_plugin_syslog_notifylevel is defined %}
+  NotifyLevel {{ collectd_plugin_syslog_notifylevel }}
+{% endif %}
+</Plugin>
+{% endif %}
+
+{% if collectd_conf_autoloadplugin -%}
+#----------------------------------------------------------------------------#
+# LoadPlugin section
+#----------------------------------------------------------------------------#
+{% for plugin in collectd_basic_plugins -%}
+LoadPlugin {{ plugin }}
+{% endfor %}
+{%- endif %}
+
+##############################################################################
+# Filter configuration                                                       #
+#----------------------------------------------------------------------------#
+# The following configures collectd's filtering mechanism. Before changing   #
+# anything in this section, please read the `FILTER CONFIGURATION' section   #
+# in the collectd.conf(5) manual page.                                       #
+##############################################################################
+
+##############################################################################
+# Threshold configuration                                                    #
+#----------------------------------------------------------------------------#
+# The following outlines how to configure collectd's threshold checking      #
+# plugin. The plugin and possible configuration options are documented in    #
+# the collectd-threshold(5) manual page.                                     #
+##############################################################################
+
+<Include "{{ collectd_conf_include_dir }}">
+    {% for filter in collectd_conf_fnmatch_filters -%}
+        Filter "{{ filter }}"
+    {%- endfor %}
+
+</Include>

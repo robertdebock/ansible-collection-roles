@@ -1,0 +1,37 @@
+
+module my-roundcubemail 1.0;
+
+require {
+	type postfix_etc_t;
+	type postfix_spool_t;
+        type postfix_public_t;
+	type httpd_t;
+        class file create;
+	class file getattr;
+	class file open;
+	class file read;
+	class file write;
+	class file rename;
+	class file setattr;
+	class file unlink;
+	class dir write;
+	class dir add_name;
+	class dir remove_name;
+        class sock_file getattr;
+        class sock_file write;
+}
+
+#============= httpd_t ==============
+allow httpd_t postfix_etc_t:file read;
+allow httpd_t postfix_etc_t:file open;
+allow httpd_t postfix_etc_t:file getattr;
+allow httpd_t postfix_spool_t:dir write;
+allow httpd_t postfix_spool_t:dir add_name;
+allow httpd_t postfix_spool_t:file create;
+allow httpd_t postfix_spool_t:file { open read write };
+allow httpd_t postfix_spool_t:file getattr;
+allow httpd_t postfix_spool_t:dir remove_name;
+allow httpd_t postfix_spool_t:file rename;
+allow httpd_t postfix_spool_t:file { setattr unlink };
+allow httpd_t postfix_public_t:sock_file getattr;
+allow httpd_t postfix_public_t:sock_file write;

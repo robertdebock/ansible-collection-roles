@@ -1,0 +1,41 @@
+{{ ansible_managed | comment }}
+
+http_port {{ squid_port }}
+
+cache_effective_user {{ squid_user }}
+cache_effective_group {{ squid_group }}
+
+{% if squid_acls is defined %}
+{% for acl in squid_acls %}
+acl {{ acl.name }} {{ acl.classifier }} {{ acl.value }}
+{% endfor %}
+{% endif %}
+
+{% if squid_rules is defined %}
+{% for rule in squid_rules %}
+http_access {{ rule.decision }} {{ rule.acl }}
+{% endfor %}
+{% endif %}
+
+{% if squid_http_access is defined %}
+{% for http_access in squid_http_access %}
+http_access {{ http_access.state }} {{ http_access.acls | join(' ') }}
+{% endfor %}
+{% endif %}
+
+cache_dir {{ squid_cache_dir }}
+
+coredump_dir /var/spool/squid
+
+refresh_pattern ^ftp:		1440	20%	10080
+refresh_pattern ^gopher:	1440	0%	1440
+refresh_pattern -i (/cgi-bin/|\?) 0	0%	0
+refresh_pattern .		0	20%	4320
+
+{% if squid_cache_replacement_policy is defined %}
+cache_replacement_policy {{ squid_cache_replacement_policy }}
+{% endif %}
+
+{% if squid_maximum_object_size_mb is defined %}
+maximum_object_size {{ squid_maximum_object_size_mb }} MB
+{% endif %}

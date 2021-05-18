@@ -1,0 +1,10 @@
+{{ ansible_managed | comment }}
+
+# The path where the binary 'go' can be found.
+export PATH=$PATH:{{ go_destination }}/go/bin
+
+# Set the GOPATH.
+export GOPATH={{ go_path }}
+
+# Where packages installed with 'go get' can be found.
+export PATH={{ go_path }}/bin:$PATH
