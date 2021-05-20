@@ -7,7 +7,8 @@
   delegate_to: localhost
 
 - name: find site-package location
-  ansible.builtin.command: "python{{ ansible_python.version.major }} -c 'import site; print(site.getsitepackages()[0])'"
+  ansible.builtin.command:
+    cmd: "python{{ ansible_python.version.major }} -c 'import site; print(site.getsitepackages()[0])'"
   register: mitogen_site_packages_path
   changed_when: no
   check_mode: no

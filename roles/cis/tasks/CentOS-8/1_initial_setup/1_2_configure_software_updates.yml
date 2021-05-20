@@ -1,7 +1,7 @@
 ---
 - name: 1.2.1 Ensure GPG keys are configured (Not Scored)
-  command: rpm -q gpg-pubkey --qf '%{name}-%{version}-%{release} --> %{summary}\n'  # noqa 303 Need a list of keys, not supported by module.
-  args:
+  command:
+    cmd: rpm -q gpg-pubkey --qf '%{name}-%{version}-%{release} --> %{summary}\n'  # noqa 303 Need a list of keys, not supported by module.
     warn: no
   register: cis_gpg_keys
   failed_when:
@@ -40,8 +40,8 @@
     - cis_gpgcheck_enabled | bool
 
 - name: 1.2.3 Ensure package manager repositories are configured (Not Scored)
-  command: dnf repolist
-  args:
+  command:
+    cmd: dnf repolist
     warn: no
   register: cis_repositories
   changed_when: false

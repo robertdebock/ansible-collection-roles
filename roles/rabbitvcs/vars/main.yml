@@ -1,0 +1,13 @@
+---
+# vars file for rabbitvcs
+
+_rabbitvcs_packages:
+  default:
+    - rabbitvcs
+  Debian:
+    - rabbitvcs-nautilus
+    - rabbitvcs-nautilus
+    - rabbitvcs-gedit
+    - rabbitvcs-cli
+
+rabbitvcs_packages: "{{ _rabbitvcs_packages[ansible_os_family] | default(_rabbitvcs_packages['default']) }}"

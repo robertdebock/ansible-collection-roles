@@ -36,8 +36,8 @@
     mode: "0755"
 
 - name: generate tls key
-  ansible.builtin.command: "{{ irslackd_dest }}/bin/create_tls_key.sh"
-  args:
+  ansible.builtin.command:
+    cmd: "{{ irslackd_dest }}/bin/create_tls_key.sh"
     creates: ~/.irslackd/cert.pem
     chdir: "{{ irslackd_dest }}"
 

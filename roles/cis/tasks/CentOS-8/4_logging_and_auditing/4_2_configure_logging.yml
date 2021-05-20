@@ -81,13 +81,15 @@
     - cis_journald_write_logfiles_to_disk | bool
 
 - name: 4.2.3 Ensure permissions on all logfiles are configured (Scored)
-  command: find /var/log -type f -perm /037
+  command:
+    cmd: find /var/log -type f -perm /037
   register: cis_permissions_on_logfiles_files
   when:
     - cis_permissions_on_logfiles | bool
 
 - name: 4.2.3 Ensure permissions on all logfiles are configured (Scored)
-  command: find /var/log -type d -perm /026
+  command:
+    cmd: find /var/log -type d -perm /026
   register: cis_permissions_on_logfiles_directories
   when:
     - cis_permissions_on_logfiles | bool

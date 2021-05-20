@@ -12,7 +12,8 @@
     state: present
 
 - name: set theshold
-  ansible.builtin.command: tlp setcharge {{ item.start_threshold }} {{ item.stop_threshold }} {{ item.name }}
+  ansible.builtin.command:
+    cmd: tlp setcharge {{ item.start_threshold }} {{ item.stop_threshold }} {{ item.name }}
   loop: "{{ tlp_batteries }}"
   loop_control:
     label: "{{ item.name }}"

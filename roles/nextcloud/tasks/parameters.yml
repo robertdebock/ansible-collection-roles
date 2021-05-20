@@ -3,8 +3,8 @@
 - name: set value
   block:
     - name: list value
-      ansible.builtin.command: php occ config:app:get {{ item.section }} {{ item.name }} --output yaml
-      args:
+      ansible.builtin.command:
+        cmd: php occ config:app:get {{ item.section }} {{ item.name }} --output yaml
         chdir: "{{ nextcloud_destination }}/nextcloud"
       register: nextcloud_list_value
       changed_when: no
@@ -14,8 +14,8 @@
         - nextcloud_list_value.stdout | from_yaml != item.value
   rescue:
     - name: set nextcloud parameter
-      ansible.builtin.command: php occ config:app:set {{ item.section }} {{ item.name }} --value {{ item.value }}
-      args:
+      ansible.builtin.command::
+        cmd: php occ config:app:set {{ item.section }} {{ item.name }} --value {{ item.value }}
         chdir: "{{ nextcloud_destination }}/nextcloud"
       become: yes
       become_user: "{{ nextcloud_httpd_owner }}"

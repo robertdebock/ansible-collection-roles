@@ -22,8 +22,8 @@
     - ansible_selinux.status == "enabled"
 
 - name: generate host key
-  ansible.builtin.command: "/usr/bin/ssh-keygen -q -t {{ item }} -f /etc/ssh/ssh_host_{{ item }}_key -C '' -N ''"
-  args:
+  ansible.builtin.command:
+    cmd: "/usr/bin/ssh-keygen -q -t {{ item }} -f /etc/ssh/ssh_host_{{ item }}_key -C '' -N ''"
     creates: "/etc/ssh/ssh_host_{{ item }}_key"
   loop: "{{ openssh_key_types }}"
 

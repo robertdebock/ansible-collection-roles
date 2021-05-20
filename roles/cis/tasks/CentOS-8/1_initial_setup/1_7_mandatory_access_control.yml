@@ -44,7 +44,8 @@
     - reboot
 
 - name: 1.7.1.5 Ensure no unconfined services exist (Scored)
-  command: ps -eZ | grep unconfined_service_t
+  command:
+    cmd: ps -eZ | grep unconfined_service_t
   register: cis_no_unconfined_services_test
   failed_when:
     - cis_no_unconfined_services_test.stdout | length > 0

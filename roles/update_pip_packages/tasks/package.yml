@@ -4,5 +4,7 @@
   ansible.builtin.pip:
     name: "{{ package.key }}"
     state: latest
+  environment:
+    path: "/bin:/usr/local/bin"
   when:
     - package.key not in update_pip_package_ignore

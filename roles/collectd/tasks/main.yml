@@ -45,7 +45,8 @@
   register: collectd_plugins_configured
 
 - name: configure collectd plugins
-  ansible.builtin.include_tasks: plugins.yml
+  ansible.builtin.include_tasks:
+    file: plugins.yml
   loop: "{{ collectd_plugins }}"
   loop_control:
     label: "{{ plugin.name }}"

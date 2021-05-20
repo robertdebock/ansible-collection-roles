@@ -50,7 +50,8 @@
     enabled: true
 
 - name: check status of vault
-  ansible.builtin.command: vault status -format=yaml
+  ansible.builtin.command:
+    cmd: vault status -format=yaml
   environment:
     VAULT_ADDR: "{{ vault_api_addr }}"
   register: vault_status_raw

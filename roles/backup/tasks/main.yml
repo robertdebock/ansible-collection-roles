@@ -21,7 +21,8 @@
   become: no
 
 - name: loop over objects in backup_objects
-  ansible.builtin.include_tasks: object.yml
+  ansible.builtin.include_tasks:
+    file: object.yml
   loop: "{{ backup_objects }}"
   loop_control:
     loop_var: object

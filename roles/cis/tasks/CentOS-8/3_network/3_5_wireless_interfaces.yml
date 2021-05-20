@@ -1,6 +1,7 @@
 ---
 - name: 3.5 Ensure wireless interfaces are disabled (Scored)
-  command: nmcli radio all
+  command:
+    cmd: nmcli radio all
   changed_when: no
   check_mode: no
   register: cis_wireless_interface_disabled_before
@@ -8,14 +9,16 @@
     - cis_wireless_interface_disabled | bool
 
 - name: 3.5 Ensure wireless interfaces are disabled (Scored)
-  command: nmcli radio all off
+  command:
+    cmd: nmcli radio all off
   changed_when: no
   check_mode: no
   when:
     - cis_wireless_interface_disabled | bool
 
 - name: 3.5 Ensure wireless interfaces are disabled (Scored)
-  command: nmcli radio all
+  command:
+    cmd: nmcli radio all
   check_mode: no
   register: cis_wireless_interface_disabled_after
   changed_when:

@@ -17,12 +17,12 @@
     version: "{{ lynis_version }}"
 
 - name: audit system
-  ansible.builtin.shell: "set -o pipefail ; {{ lynis_destination }}/lynis audit system | tee -a {{ lynis_output }}"
-  register: lynix_audit_system
-  args:
+  ansible.builtin.shell:
+    cmd: "set -o pipefail ; {{ lynis_destination }}/lynis audit system | tee -a {{ lynis_output }}"
     creates: "{{ lynis_output }}"
     chdir: "{{ lynis_destination }}"
     executable: /bin/bash
+  register: lynix_audit_system
   when:
     - lynis_run_now | bool
 

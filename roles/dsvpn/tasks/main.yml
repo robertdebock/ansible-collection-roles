@@ -31,8 +31,8 @@
     mode: "750"
 
 - name: generate key
-  ansible.builtin.command: dd if=/dev/urandom of={{ dsvpn_key_directory }}/vpn.key count=1 bs=32
-  args:
+  ansible.builtin.command:
+    cmd: dd if=/dev/urandom of={{ dsvpn_key_directory }}/vpn.key count=1 bs=32
     creates: "{{ dsvpn_key_directory }}/vpn.key"
   delegate_to: localhost
 
@@ -67,16 +67,18 @@
     mode: "0755"
 
 - name: create character device /dev/net/tun
-  ansible.builtin.command: mknod /dev/net/tun c 10 200
-  args:
+  ansible.builtin.command:
+    cmd: mknod /dev/net/tun c 10 200
     creates: /dev/net/tun
 
 - name: create server
-  ansible.builtin.include_tasks: server.yml
+  ansible.builtin.include_tasks:
+    file: server.yml
   when:
     - dsvpn_role == "server"
 
 - name: create client
-  ansible.builtin.include_tasks: client.yml
+  ansible.builtin.include_tasks:
+    name: client.yml
   when:
     - dsvpn_role == "client"

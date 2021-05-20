@@ -28,8 +28,8 @@
     - ansible_os_family == "RedHat"
 
 - name: start minikube once
-  ansible.builtin.command: "{{ minikube_command }}"
-  args:
+  ansible.builtin.command:
+    cmd: "{{ minikube_command }}"
     creates: nothing
   when:
     - ansible_connection != "docker"

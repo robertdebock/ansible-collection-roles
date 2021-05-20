@@ -66,10 +66,9 @@
         start_command: /usr/sbin/cntlm -c /etc/cntlm.conf -f
         status_pattern: cntlm
 
-
 - name: generate hash
-  ansible.builtin.shell: "set -o pipefail ; {{ cntlm_hash_command }} | tee /etc/cntlm.hash"
-  args:
+  ansible.builtin.shell:
+    cmd: "set -o pipefail ; {{ cntlm_hash_command }} | tee /etc/cntlm.hash"
     creates: /etc/cntlm.hash
     executable: /bin/bash
   register: cntlm_generate_hash

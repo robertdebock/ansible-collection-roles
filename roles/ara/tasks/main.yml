@@ -24,7 +24,8 @@
 - name: find callback_plugins path
   block:
     - name: try python2
-      ansible.builtin.command: "{{ ara_setup_command_python2 }}"
+      ansible.builtin.command:
+        cmd: "{{ ara_setup_command_python2 }}"
       register: ara_callback_plugins
       changed_when: no
       check_mode: no

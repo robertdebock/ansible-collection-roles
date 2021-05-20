@@ -7,19 +7,23 @@
   delegate_to: localhost
 
 - name: run shared tasks
-  ansible.builtin.include_tasks: shared.yml
+  ansible.builtin.include_tasks:
+    file: shared.yml
 
 - name: run leader tasks
-  ansible.builtin.include_tasks: leader.yml
+  ansible.builtin.include_tasks:
+    file: leader.yml
 
 - name: run follower tasks
-  ansible.builtin.include_tasks: follower.yml
+  ansible.builtin.include_tasks:
+    file: follower.yml
   when:
     - not ansible_check_mode | bool
     - inventory_hostname != vault_leader
 
 - name: run provisioning tasks
-  ansible.builtin.include_tasks: provisioning.yml
+  ansible.builtin.include_tasks:
+    file: provisioning.yml
   when:
     - vault_kv_secrets is defined
     - vault_root_token is defined or

@@ -12,8 +12,8 @@
     state: present
 
 - name: create requested repositories
-  ansible.builtin.command: svnadmin create {{ subversion_path }}/{{ item.name }}
-  args:
+  ansible.builtin.command:
+    cmd: svnadmin create {{ subversion_path }}/{{ item.name }}
     creates: "{{ subversion_path }}/{{ item.name }}"
   loop: "{{ subversion_repositories }}"
   when:

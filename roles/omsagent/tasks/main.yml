@@ -34,8 +34,8 @@
     - omsagent_proxy is defined
 
 - name: run script (can take a couple of minutes)
-  ansible.builtin.command: "{{ omsagent_tmp }}/onboard_agent.sh"
-  args:
+  ansible.builtin.command:
+    cmd: "{{ omsagent_tmp }}/onboard_agent.sh"
     creates: omsagent-{{ omsagent_version }}.universal.{{ omsagent_creates_pattern }}.sh
     chdir: "{{ omsagent_tmp }}"
   notify:

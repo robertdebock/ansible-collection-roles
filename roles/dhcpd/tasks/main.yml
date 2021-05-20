@@ -46,7 +46,8 @@
         state: present
 
     - name: stop dhcpd
-      ansible.builtin.command: pkill dhcpd
+      ansible.builtin.command:
+        cmd: pkill dhcpd
 
     - name: remove pid file
       ansible.builtin.file:

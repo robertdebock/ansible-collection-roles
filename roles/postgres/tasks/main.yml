@@ -20,8 +20,8 @@
     mode: "700"
 
 - name: initialize database
-  ansible.builtin.command: initdb -D {{ postgres_dir }}
-  args:
+  ansible.builtin.command:i
+    cmd: initdb -D {{ postgres_dir }}
     creates: "{{ postgres_dir }}/PG_VERSION"
   when:
     - ansible_os_family != "Debian"

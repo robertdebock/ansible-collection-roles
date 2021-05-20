@@ -8,10 +8,13 @@
 
 - name: check if pip is used
   block:
-    - name: which pip
-      ansible.builtin.command: which pip
+    - name: pip
+      ansible.builtin.command:
+        cmd: pip --version
       changed_when: no
       register: update_pip_packages_pip
+      environment:
+        path: "/bin:/usr/local/bin"
   rescue:
     - name: no pip
       ansible.builtin.debug:
@@ -19,10 +22,12 @@
 
 - name: check if pip3 is used
   block:
-    - name: which pip3
-      command: which pip3
+    - name: pip3
+      command: pip3 --version
       changed_when: no
       register: update_pip_packages_pip3
+      environment:
+        path: "/bin:/usr/local/bin"
   rescue:
     - name: no pip3
       ansible.builtin.debug:

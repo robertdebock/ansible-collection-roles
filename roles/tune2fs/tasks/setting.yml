@@ -1,13 +1,15 @@
 ---
 - name: get values
-  ansible.builtin.command: tune2fs -l "{{ setting.device }}"
+  ansible.builtin.command:
+    cmd: tune2fs -l "{{ setting.device }}"
   changed_when: no
   register: tune2fs_values
   when:
     - ansible_connection != "docker"
 
 - name: set maximum_count_mount
-  ansible.builtin.command: tune2fs -c {{ setting.maximum_count_mount }} {{ setting.device }}
+  ansible.builtin.command:
+    cmd: tune2fs -c {{ setting.maximum_count_mount }} {{ setting.device }}
   when:
     - tune2fs_values is defined and tune2fs_values | length > 0
     - setting.maximum_count_mount is defined

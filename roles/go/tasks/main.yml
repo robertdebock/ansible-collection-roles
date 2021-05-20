@@ -61,16 +61,16 @@
         mode: "0755"
 
     - name: get requested packages
-      ansible.builtin.command: "go get {{ item }}"
-      args:
+      ansible.builtin.command:
+        cmd: "go get {{ item }}"
         creates: "{{ go_path }}/src/{{ item }}"
       loop: "{{ go_packages }}"
       environment:
         GOPATH: "{{ go_path }}"
 
     - name: install requested packages
-      ansible.builtin.command: make install
-      args:
+      ansible.builtin.command:
+        cmd: make install
         chdir: "{{ go_path }}/src/{{ item }}"
         creates: "{{ go_path }}/bin/{{ item | basename }}"
       loop: "{{ go_packages }}"

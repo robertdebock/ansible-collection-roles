@@ -82,7 +82,8 @@
     enabled: yes
 
 - name: peer with other nodes
-  ansible.builtin.command: "gluster peer probe {{ hostvars[item]['ansible_default_ipv4']['address'] }}"
+  ansible.builtin.command:
+    cmd: "gluster peer probe {{ hostvars[item]['ansible_default_ipv4']['address'] }}"
   loop: "{{ groups.all }}"
   run_once: yes
   register: glusterfs_peer_with_other_nodes

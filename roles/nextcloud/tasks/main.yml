@@ -42,8 +42,8 @@
     mode: "0775"
 
 - name: configure nextcloud
-  ansible.builtin.command: "{{ nextcloud_command }}"
-  args:
+  ansible.builtin.command:
+    cmd: "{{ nextcloud_command }}"
     creates: "{{ nextcloud_destination }}/nextcloud/data/index.html"
     chdir: "{{ nextcloud_destination }}/nextcloud"
   no_log: yes
@@ -58,8 +58,8 @@
     - add missing indices
 
 - name: install nextcloud app
-  ansible.builtin.command: php occ app:install {{ item.name }}
-  args:
+  ansible.builtin.command:
+    cmd: php occ app:install {{ item.name }}
     chdir: "{{ nextcloud_destination }}/nextcloud"
     creates: "{{ nextcloud_destination }}/nextcloud/apps/{{ item.name }}"
   become: yes
@@ -73,7 +73,8 @@
     - set permissions
 
 - name: include parameters
-  ansible.builtin.include_tasks: parameters.yml
+  ansible.builtin.include_tasks:
+    file: parameters.yml
   loop: "{{ nextcloud_settings }}"
   loop_control:
     label: "{{ item.name }}"

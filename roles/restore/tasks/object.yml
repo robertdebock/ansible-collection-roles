@@ -22,8 +22,8 @@
     - latest_file is defined
 
 - name: unarchive directory object
-  ansible.builtin.command: unzip "{{ restore_remote_directory }}/{{ latest_file.path | basename }}"
-  args:
+  ansible.builtin.command:
+    cmd: unzip "{{ restore_remote_directory }}/{{ latest_file.path | basename }}"
     warn: no
   when:
     - latest_file is defined

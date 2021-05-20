@@ -32,8 +32,8 @@
     dest: "{{ anaconda_download_dest }}"
 
 - name: install anaconda
-  ansible.builtin.command: bash {{ anaconda_download_dest }}/{{ anaconda_file }} -b -p {{ anaconda_prefix }}
-  args:
+  ansible.builtin.command:
+    cmd: bash {{ anaconda_download_dest }}/{{ anaconda_file }} -b -p {{ anaconda_prefix }}
     creates: "{{ anaconda_prefix }}"
 
 - name: create anaconda service
@@ -48,7 +48,8 @@
 - name: change selinux settings
   block:
     - name: check for domain_can_mmap_files seboolean
-      ansible.builtin.command: getsebool domain_can_mmap_files
+      ansible.builtin.command:
+        cmd: getsebool domain_can_mmap_files
       register: anaconda_getsebool_domain_can_mmap_files
       check_mode: no
       changed_when: no

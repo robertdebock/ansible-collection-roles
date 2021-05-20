@@ -22,8 +22,8 @@
     dest: "{{ rundeck_rdeckbase }}/rundeck-{{ rundeck_version }}-{{ rundeck_release_date }}.war"
 
 - name: unpack rundeck
-  ansible.builtin.command: "java -jar {{ rundeck_war }} --installonly"
-  args:
+  ansible.builtin.command:
+    cmd: "java -jar {{ rundeck_war }} --installonly"
     chdir: "{{ rundeck_rdeckbase }}"
     creates: "{{ rundeck_rdeckbase }}/server"
 

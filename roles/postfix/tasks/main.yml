@@ -17,8 +17,17 @@
 
 - name: install postfix
   ansible.builtin.package:
-    name: "{{ postfix_packages }}"
+    name: postfix
     state: present
+
+- name: install postfix-mysql
+  ansible.builtin.package:
+    name: postfix-mysql
+    state: present
+  when:
+    - (postfix_virtual_mailbox_maps is defined and "'mysql' in postfix_virtual_mailbox_maps) or
+      (postfix_virtual_mailbox_domains is defined and 'mysql' in postfix_virtual_mailbox_domains) or
+      (postix_virtual_alias_maps is defined and 'mysql' in postix_virtual_alias_maps")
 
 - name: configure postfix (transport_maps)
   ansible.builtin.template:

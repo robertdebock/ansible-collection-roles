@@ -24,7 +24,8 @@
     - cis_nftables_not_enabled | bool
 
 - name: 3.4.2.3 Ensure default zone is set (Scored)
-  command: firewall-cmd --set-default-zone={{ cis_default_zone }}
+  command:
+    cmd: firewall-cmd --set-default-zone={{ cis_default_zone }}
   register: cis_default_zone_set_test
   changed_when:
     - "'ZONE_ALREADY_SET' not in cis_default_zone_set_test.stderr"

@@ -22,8 +22,8 @@
     enabled: yes
 
 - name: create pools
-  ansible.builtin.command: stratis pool create {{ item.name }} {{ item.devices | join(' ') }}
-  args:
+  ansible.builtin.command:
+    cmd: stratis pool create {{ item.name }} {{ item.devices | join(' ') }}
     creates: /stratis/{{ item.name }}
   loop: "{{ stratis_pools }}"
   when:
@@ -32,8 +32,8 @@
     label: "{{ item.name }}"
 
 - name: create filesystems
-  ansible.builtin.command: stratis fs create {{ item.pool }} {{ item.name }}
-  args:
+  ansible.builtin.command:
+    cmd: stratis fs create {{ item.pool }} {{ item.name }}
     creates: /stratis/{{ item.pool }}/{{ item.name }}
   loop: "{{ stratis_filesystems }}"
   when:

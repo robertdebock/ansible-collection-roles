@@ -2,7 +2,8 @@
 - name: collect commands
   block:
     - name: run command {{ object }}
-      ansible.builtin.command: "{{ object }}"
+      ansible.builtin.command:
+        cmd: "{{ object }}"
       changed_when: no
       register: forensics_run_command
     - name: save output to {{ object | replace(' ','-') }}.txt

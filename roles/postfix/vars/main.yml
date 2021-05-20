@@ -1,9 +1,6 @@
 ---
 # vars file for postfix
 
-postfix_packages:
-  - postfix
-
 postfix_service: postfix
 
 _postfix_daemon_directory:

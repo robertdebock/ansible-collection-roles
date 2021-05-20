@@ -55,7 +55,7 @@
     - ansible_pkg_mgr == "zypper"
 
 - name: install apm packages
-  ansible.builtin.command: apm install {{ item }}
-  args:
+  ansible.builtin.command:
+    cmd: apm install {{ item }}
     creates: /root/.atom/packages/linter
   loop: "{{ atom_apm_packages }}"

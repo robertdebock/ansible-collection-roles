@@ -18,8 +18,8 @@
     mode: "750"
 
 - name: run repository installation script
-  ansible.builtin.command: /tmp/gitlab-runner-script.sh
-  args:
+  ansible.builtin.command:
+    cmd: /tmp/gitlab-runner-script.sh
     creates: "{{ gitlab_runner_repository_file }}"
 
 - name: install gitlab-runner
@@ -30,19 +30,21 @@
 - name: register runner
   block:
     - name: get registration status
-      ansible.builtin.command: gitlab-runner list
+      ansible.builtin.command:
+        cmd: gitlab-runner list
       register: gitlab_runner_get_registration_status
       changed_when: no
 
     - name: register gitlab runner
-      ansible.builtin.command: >
-        gitlab-runner register --non-interactive
-        --name "{{ gitlab_runner_name }}"
-        --url "{{ gitlab_runner_url }}"
-        --registration-token "{{ gitlab_runner_token }}"
-        --tag-list "{{ gitlab_runner_tags }}"
-        --executor "{{ gitlab_runner_executor }}"
-        --docker-image "{{ gitlab_runner_docker_image }}"
+      ansible.builtin.command:
+        cmd: >
+          gitlab-runner register --non-interactive
+          --name "{{ gitlab_runner_name }}"
+          --url "{{ gitlab_runner_url }}"
+          --registration-token "{{ gitlab_runner_token }}"
+          --tag-list "{{ gitlab_runner_tags }}"
+          --executor "{{ gitlab_runner_executor }}"
+          --docker-image "{{ gitlab_runner_docker_image }}"
       when:
         - gitlab_runner_name not in gitlab_runner_get_registration_status.stderr
   when:

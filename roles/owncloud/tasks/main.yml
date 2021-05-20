@@ -45,8 +45,8 @@
     - restart httpd
 
 - name: configure owncloud
-  ansible.builtin.command: "{{ owncloud_command }}"
-  args:
+  ansible.builtin.command:
+    cmd: "{{ owncloud_command }}"
     creates: "{{ owncloud_destination }}/owncloud/config/config.php"
     chdir: "{{ owncloud_destination }}/owncloud"
   notify:

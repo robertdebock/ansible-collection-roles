@@ -24,7 +24,8 @@
   register: sosreport_find_sosreports
 
 - name: run sosreport
-  ansible.builtin.command: "{{ sosreport_command }}"
+  ansible.builtin.command:
+    cmd: "{{ sosreport_command }}"
   tags:
     - skip_ansible_lint
   when:

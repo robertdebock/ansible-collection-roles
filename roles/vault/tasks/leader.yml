@@ -2,7 +2,8 @@
 - name: configure leader
   block:
     - name: initialize vault on leader
-      ansible.builtin.command: vault operator init -key-shares={{ vault_key_shares }} -key-threshold={{ vault_key_threshold }} -format=yaml
+      ansible.builtin.command:
+        cmd: vault operator init -key-shares={{ vault_key_shares }} -key-threshold={{ vault_key_threshold }} -format=yaml
       register: vault_operator_init
       environment:
         VAULT_ADDR: "{{ vault_api_addr }}"
@@ -35,7 +36,8 @@
             - vault_show_unseal_information | bool
 
         - name: unseal vault leader
-          ansible.builtin.command: vault operator unseal {{ item }}
+          ansible.builtin.command:
+            cmd: vault operator unseal {{ item }}
           environment:
             VAULT_ADDR: "{{ vault_api_addr }}"
           loop: "{{ vault_init_output.unseal_keys_b64 | default(vault_unseal_keys) }}"
@@ -52,7 +54,8 @@
   run_once: yes
 
 - name: make a snapshot
-  ansible.builtin.command: vault operator raft snapshot save "{{ vault_backup_path }}"
+  ansible.builtin.command:
+    cmd: vault operator raft snapshot save "{{ vault_backup_path }}"
   register: vault_make_a_snapshot
   retries: 5
   until:

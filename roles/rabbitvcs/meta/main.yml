@@ -1,0 +1,23 @@
+---
+galaxy_info:
+  author: Robert de Bock
+  role_name: rabbitvcs
+  namespace: robertdebock
+  description: Install and configure rabbitvcs on your system.
+  license: Apache-2.0
+  company: none
+  min_ansible_version: 2.9
+
+  platforms:
+    - name: Debian
+      versions:
+        - all
+    - name: Ubuntu
+      versions:
+        - focal
+        - bionic
+
+  galaxy_tags:
+    - rabbitvcs
+
+dependencies: []

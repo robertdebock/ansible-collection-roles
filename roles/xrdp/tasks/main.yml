@@ -24,6 +24,20 @@
   notify:
     - restart xrdp
 
+- name: place 45-allow-colord
+  block:
+    - name: place 45-allow-colord.pkla
+      ansible.builtin.copy:
+        src: 45-allow-colord
+        dest: /etc/polkit-1/localauthority/50-local.d/45-allow-colord.pkla
+
+    - name: place 45-allow-colord.conf
+      ansible.builtin.copy:
+        src: 45-allow-colord
+        dest: /etc/polkit-1/localauthority/50-local.d/45-allow-colord.conf
+  when:
+    - ansible_os_family == "Debian"
+
 - name: start and enable xrdp
   ansible.builtin.service:
     name: "{{ xrdp_service }}"

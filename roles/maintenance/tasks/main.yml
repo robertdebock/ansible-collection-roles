@@ -13,7 +13,8 @@
     - ansible_pkg_mgr == "apt"
 
 - name: cleanup dnf cache
-  ansible.builtin.command: dnf clean all
+  ansible.builtin.command:
+    cmd: dnf clean all
   when:
     - ansible_pkg_mgr == "dnf"
   register: maintenance_cleanup_dnf
@@ -21,15 +22,15 @@
     - "'0 files removed' not in maintenance_cleanup_dnf.stdout"
 
 - name: cleanup yum cache
-  ansible.builtin.command: yum clean all  # noqa 303 yum module has not `clean` feature.
-  args:
+  ansible.builtin.command:
+    cmd: yum clean all  # noqa 303 yum module has not `clean` feature.
     removes: /var/cache/yum/{{ ansible_architecture }}/{{ ansible_distribution_major_version }}/base/repomd.xml
   when:
     - ansible_pkg_mgr == "yum"
 
 - name: cleanup zypper cache
-  ansible.builtin.command: zypper clean --all
-  args:
+  ansible.builtin.command:
+    cmd: zypper clean --all
     removes: "/var/cache/zypp/solv/@System"
   when:
     - ansible_pkg_mgr == "zypper"
@@ -40,7 +41,8 @@
   register: maintenance_journalctl
 
 - name: cleanup journalctl logs
-  ansible.builtin.command: journalctl --vacuum-time={{ maintenance_journalctl_vacuum }}
+  ansible.builtin.command:
+    cmd: journalctl --vacuum-time={{ maintenance_journalctl_vacuum }}
   when:
     - maintenance_journalctl.stat.exists | bool
   register: maintenance_cleanup_journalctl

@@ -20,8 +20,8 @@
     mode: "755"
 
 - name: generate vnc password
-  ansible.builtin.shell: set -o pipefail ; printf "{{ tigervnc_password }}\n{{ tigervnc_password }}\n" | vncpasswd
-  args:
+  ansible.builtin.shell:
+    cmd: set -o pipefail ; printf "{{ tigervnc_password }}\n{{ tigervnc_password }}\n" | vncpasswd
     creates: /home/{{ tigervnc_username }}/.vnc/passwd
     executable: /bin/bash
   become: yes

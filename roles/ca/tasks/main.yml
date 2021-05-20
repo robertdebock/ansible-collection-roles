@@ -14,7 +14,8 @@
         ca_filename: rootCA
 
     - name: init root CA
-      ansible.builtin.include_tasks: init_ca.yml
+      ansible.builtin.include_tasks:
+        file: init_ca.yml
   when:
     - ca_init | bool
     - ca_own_root | bool
@@ -27,10 +28,12 @@
 - name: create ca
   block:
     - name: init CA
-      ansible.builtin.include_tasks: init_ca.yml
+      ansible.builtin.include_tasks:
+        file: init_ca.yml
 
     - name: generate ca certificates
-      ansible.builtin.include_tasks: generate_ca_certs.yml
+      ansible.builtin.include_tasks:
+        file: generate_ca_certs.yml
       when:
         - ca_own_root | bool
   when:
@@ -47,7 +50,8 @@
     - ca_publication_location is defined
 
 - name: handle requests
-  ansible.builtin.include_tasks: requests.yml
+  ansible.builtin.include_tasks:
+    file: requests.yml
   loop: "{{ ca_requests }}"
   loop_control:
     loop_var: request

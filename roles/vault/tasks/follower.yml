@@ -2,7 +2,8 @@
 - name: configure follower
   block:
     - name: join follower to leader
-      ansible.builtin.command: vault operator raft join -tls-skip-verify http://{{ vault_leader }}:8200
+      ansible.builtin.command:
+        cmd: vault operator raft join -tls-skip-verify http://{{ vault_leader }}:8200
       changed_when: no
       register: vault_join_member_to_leader
       until:
@@ -12,7 +13,8 @@
         VAULT_ADDR: "{{ vault_api_addr }}"
 
     - name: unseal vault follower
-      ansible.builtin.command: vault operator unseal {{ item }}
+      ansible.builtin.command:
+        cmd: vault operator unseal {{ item }}
       changed_when: no
       environment:
         VAULT_ADDR: "{{ vault_api_addr }}"

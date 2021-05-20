@@ -40,7 +40,8 @@
     group: root
 
 - name: include create.yml
-  ansible.builtin.include_tasks: create.yml
+  ansible.builtin.include_tasks:
+    file: create.yml
   loop: "{{ openssl_items }}"
   when:
     - openssl_items is defined

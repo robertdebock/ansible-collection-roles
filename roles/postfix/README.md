@@ -67,6 +67,7 @@ postfix_banner: "$myhostname ESMTP $mail_name"
 # The distination tells Postfix what mails to accept mail for.
 postfix_mydestination: $mydomain, $myhostname, localhost.$mydomain, localhost
 
+# TODO: This should be a list.
 # To accept email from other machines, set the mynetworks to something like
 # "192.168.0.0/24".
 postfix_mynetworks: "127.0.0.0/8"
@@ -230,9 +231,6 @@ postfix_smtp_tls_security_level: none
 
 # The default mail delivery transport and next-hop destination for final delivery to domains listed with $virtual_mailbox_domains.
 # postfix_virtual_transport: maildrop1
-
-# TODO: maildrop_destination_recipient_limit is undocuments in Postfix's documentation.
-# postfix_maildrop_destination_recipient_limit: 1
 
 # Optional pathname of a mailbox file relative to a local(8) user's home directory.
 # postfix_home_mailbox: Maildir/

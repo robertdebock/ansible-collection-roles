@@ -13,7 +13,8 @@
     mode: "0755"
 
 - name: loop over objects in restore_objects
-  ansible.builtin.include_tasks: object.yml
+  ansible.builtin.include_tasks:
+    file: object.yml
   loop: "{{ restore_objects }}"
   loop_control:
     loop_var: object

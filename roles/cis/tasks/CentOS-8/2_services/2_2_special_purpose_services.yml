@@ -33,8 +33,8 @@
     - cis_chrony_pools | length > 0
 
 - name: 2.2.2 Ensure X Window System is not installed (Scored)
-  command: rpm -qa --qf '%{NAME}\n' xorg-x11*
-  args:
+  command:
+    cmd: rpm -qa --qf '%{NAME}\n' xorg-x11*
     warn: no
   changed_when:
     - no

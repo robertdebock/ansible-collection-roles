@@ -20,8 +20,8 @@
     mode: "0755"
 
 - name: make defconfig
-  ansible.builtin.command: make defconfig
-  args:
+  ansible.builtin.command:
+    cmd: make defconfig
     chdir: "{{ kernel_build_location }}/linux-{{ kernel_version }}"
     creates: "{{ kernel_build_location }}/linux-{{ kernel_version }}/.config"
 
@@ -36,8 +36,8 @@
     - kernel_parameters is defined
 
 - name: make
-  ansible.builtin.command: make -j {{ ansible_processor_vcpus * 2 }}
-  args:
+  ansible.builtin.command:
+    cmd: make -j {{ ansible_processor_vcpus * 2 }}
     chdir: "{{ kernel_build_location }}/linux-{{ kernel_version }}"
     creates: "{{ kernel_build_location }}/linux-{{ kernel_version }}/vmlinux"
   async: 1800
@@ -55,8 +55,8 @@
   delay: 30
 
 - name: make modules_install
-  ansible.builtin.command: make modules_install
-  args:
+  ansible.builtin.command:
+    cmd: make modules_install
     chdir: "{{ kernel_build_location }}/linux-{{ kernel_version }}"
     creates: "{{ kernel_modules_location }}"
 
@@ -67,7 +67,7 @@
     mode: "0750"
 
 - name: make install
-  ansible.builtin.command: make install
-  args:
+  ansible.builtin.command:
+    cmd: make install
     chdir: "{{ kernel_build_location }}/linux-{{ kernel_version }}"
     creates: "{{ kernel_installation_location }}"

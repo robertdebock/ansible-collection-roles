@@ -188,7 +188,7 @@
 - name: test if postfix_smtpd_sasl_authenticated_header is set correctly
   ansible.builtin.assert:
     that:
-      - postfix_smtpd_sasl_authenticated_header is string
+      - postfix_smtpd_sasl_authenticated_header is boolean
     quiet: yes
   when:
     - postfix_smtpd_sasl_authenticated_header is defined
@@ -196,7 +196,7 @@
 - name: test if postfix_broken_sasl_auth_clients is set correctly
   ansible.builtin.assert:
     that:
-      - postfix_broken_sasl_auth_clients is string
+      - postfix_broken_sasl_auth_clients is boolean
     quiet: yes
   when:
     - postfix_broken_sasl_auth_clients is defined
@@ -220,7 +220,7 @@
 - name: test if postfix_smtpd_tls_received_header is set correctly
   ansible.builtin.assert:
     that:
-      - postfix_smtpd_tls_received_header is string
+      - postfix_smtpd_tls_received_header is boolean
     quiet: yes
   when:
     - postfix_smtpd_tls_received_header is defined
@@ -316,14 +316,6 @@
     quiet: yes
   when:
     - postfix_virtual_transport is defined
-
-- name: test if postfix_maildrop_destination_recipient_limit is set correctly
-  ansible.builtin.assert:
-    that:
-      - postfix_maildrop_destination_recipient_limit is string
-    quiet: yes
-  when:
-    - postfix_maildrop_destination_recipient_limit is defined
 
 - name: test if postfix_home_mailbox is set correctly
   ansible.builtin.assert:
