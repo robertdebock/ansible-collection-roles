@@ -8,8 +8,5 @@
 update_pip_packages_clients: []
 
 # You can indicate to ignore a list of packages. Packages listed here will not be updated.
-update_pip_package_ignore:
-  - libcomps
-  - PyGObject
-  - pygobject
-  - pyxdg
+# update_pip_package_ignore:
+#   - some_pip_package

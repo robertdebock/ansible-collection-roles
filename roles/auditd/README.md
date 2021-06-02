@@ -107,6 +107,8 @@ auditd_freq: 50
 auditd_max_log_file: 8
 auditd_num_logs: 5
 auditd_priority_boost: 4
+auditd_disp_qos: lossy
+auditd_dispatcher: /sbin/audispd
 auditd_name_format: none
 auditd_max_log_file_action: rotate
 auditd_space_left: 75

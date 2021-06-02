@@ -20,7 +20,7 @@
     - restart turn
 
 - name: enable coturn
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/default/coturn
     regexp: '^TURNSERVER_ENABLED='
     line: "TURNSERVER_ENABLED=1"
@@ -28,7 +28,7 @@
     - ansible_distribution_release == "bionic"
 
 - name: ensure /etc/systemd/system/coturn.service.d exists
-  file:
+  ansible.builtin.file:
     path: /etc/systemd/system/coturn.service.d
     state: directory
     owner: root
@@ -36,7 +36,7 @@
     mode: "0755"
 
 - name: place systemd override
-  copy:
+  ansible.builtin.copy:
     src: override.conf
     dest: /etc/systemd/system/coturn.service.d/override.conf
     owner: root

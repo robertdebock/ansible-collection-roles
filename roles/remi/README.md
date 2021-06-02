@@ -18,8 +18,7 @@ This example is taken from `molecule/resources/converge.yml` and is tested on ea
 
   roles:
     - role: robertdebock.remi
-      remi_enabled_repositories:
-        - php73
+      remi_enabled_repositories: php74
 ```
 
 The machine needs to be prepared in CI this is done using `molecule/resources/prepare.yml`:

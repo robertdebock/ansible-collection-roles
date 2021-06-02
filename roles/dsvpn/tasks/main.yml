@@ -79,6 +79,6 @@
 
 - name: create client
   ansible.builtin.include_tasks:
-    name: client.yml
+    file: client.yml
   when:
     - dsvpn_role == "client"

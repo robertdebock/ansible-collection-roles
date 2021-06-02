@@ -7,3 +7,6 @@ roles:
   - name: robertdebock.python_pip
   - name: robertdebock.selinux
   - name: robertdebock.httpd
+collections:
+  - name: ansible.posix
+  - name: community.crypto

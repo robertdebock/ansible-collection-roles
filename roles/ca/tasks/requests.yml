@@ -19,7 +19,7 @@
         - request.keyfile_path is defined
 
     - name: generate requested key
-      openssl_privatekey:
+      community.crypto.openssl_privatekey:
         path: "{{ ca_path }}/{{ ca_subject_keys_path }}/{{ request.name | default(request) }}.pem"
         passphrase: "{{ request.passphrase | default(omit) }}"
         cipher: "{{ request.cipher | default(omit) }}"
@@ -28,7 +28,7 @@
         - request.keyfile_path is not defined
 
     - name: generate requested certificate signing request
-      openssl_csr:
+      community.crypto.openssl_csr:
         path: "{{ ca_path }}/{{ ca_requests_path }}/{{ request.name | default(request) }}.csr"
         privatekey_path: "{{ ca_path }}/{{ ca_subject_keys_path }}/{{ request.name | default(request) }}.pem"
         privatekey_passphrase: "{{ request.passphrase | default(omit) }}"

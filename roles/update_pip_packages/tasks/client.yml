@@ -1,6 +1,11 @@
 ---
 
-- name: get all installed packages
+- name: check for broken requirements before changes
+  ansible.builtin.command:
+    cmd: "{{ client }} check"
+  changed_when: no
+
+- name: get all installed packages for {{ client }}
   community.general.pip_package_info:
     clients: "{{ client }}"
   register: update_pip_packages
@@ -13,3 +18,8 @@
   loop_control:
     loop_var: package
     label: "{{ package.key }}"
+
+- name: check for broken requirements after changes
+  ansible.builtin.command:
+    cmd: "{{ client }} check"
+  changed_when: no

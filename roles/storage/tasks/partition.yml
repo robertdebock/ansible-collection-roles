@@ -9,7 +9,7 @@
     quiet: yes
 
 - name: create partitions
-  parted:
+  community.general.parted:
     device: "{{ partition.name }}"
     number: "{{ partition.number }}"
     flags: "{{ partition.flags | default(omit) }}"

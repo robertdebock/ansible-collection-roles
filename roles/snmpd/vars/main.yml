@@ -1,0 +1,16 @@
+---
+# vars file for snmpd
+
+_snmpd_packages:
+  default:
+    - snmpd
+  Alpine:
+    - net-snmp
+  RedHat:
+    - net-snmp
+  Suse:
+    - net-snmp
+
+snmpd_packages: "{{ _snmpd_packages[ansible_os_family] | default(_snmpd_packages['default']) }}"
+
+snmpd_service: snmpd

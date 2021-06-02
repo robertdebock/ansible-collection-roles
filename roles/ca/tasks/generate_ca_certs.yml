@@ -4,7 +4,7 @@
     ca_root_path: "{{ ca_path }}/rootCA"
 
 - name: generate root ca certificate signing request
-  openssl_csr:
+  community.crypto.openssl_csr:
     path: "{{ ca_root_path }}/{{ ca_root_csr_path }}"
     privatekey_path: "{{ ca_root_path }}/{{ ca_root_privatekey_path }}"
     privatekey_passphrase: "{{ ca_passphrase }}"
@@ -22,12 +22,12 @@
     creates: "{{ ca_root_path }}/{{ ca_root_certificate_path }}"
 
 - name: save root ca certificate
-  slurp:
+  ansible.builtin.slurp:
     src: "{{ ca_root_path }}/{{ ca_root_certificate_path }}"
   register: _cacert_root
 
 - name: generate ca certificate signing request
-  openssl_csr:
+  community.crypto.openssl_csr:
     path: "{{ ca_root_path }}/{{ ca_csr_path }}"
     privatekey_path: "{{ ca_path }}/{{ ca_privatekey_path }}"
     privatekey_passphrase: "{{ ca_passphrase }}"
@@ -45,7 +45,7 @@
     creates: "{{ ca_root_path }}/{{ ca_certificate_path }}"
 
 - name: save ca certificate
-  slurp:
+  ansible.builtin.slurp:
     src: "{{ ca_root_path }}/{{ ca_certificate_path }}"
   register: _cacert
 

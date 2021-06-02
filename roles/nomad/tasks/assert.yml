@@ -64,7 +64,7 @@
   ansible.builtin.assert:
     that:
       - nomad_agent_log_level is defined
-      - nomad_agent_log_level is sting
+      - nomad_agent_log_level is string
       - nomad_agent_log_level in [ "DEBUG", "INFO", "WARN" ]
     quiet: yes
   when:

@@ -12,3 +12,4 @@ roles:
   - name: robertdebock.selinux
 collections:
   - name: ansible.posix
+  - name: community.crypto

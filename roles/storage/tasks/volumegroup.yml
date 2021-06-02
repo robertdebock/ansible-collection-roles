@@ -7,7 +7,7 @@
     quiet: yes
 
 - name: create volume groups
-  lvg:
+  community.general.lvg:
     vg: "{{ volumegroup.name }}"
     pvs: "{{ volumegroup.devices | join(', ') }}"
     pesize: "{{ volumegroup.size | default(omit) }}"

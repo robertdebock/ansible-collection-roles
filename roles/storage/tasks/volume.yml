@@ -8,7 +8,7 @@
     quiet: yes
 
 - name: create logical volume
-  lvol:
+  community.general.lvol:
     lv: "{{ volume.name }}"
     vg: "{{ volume.vg }}"
     size: "{{ volume.size }}"

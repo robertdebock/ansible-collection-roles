@@ -7,7 +7,7 @@
   delegate_to: localhost
 
 - name: configure consul
-  template:
+  ansible.builtin.template:
     src: consul.hcl.j2
     dest: /etc/consul.d/consul.hcl
     owner: consul
@@ -17,7 +17,7 @@
     - restart consul
 
 - name: configure consul service
-  template:
+  ansible.builtin.template:
     src: service.hcl.j2
     dest: /etc/cosul.d/service-{{ item.name }}-{{ item.port }}.hcl
     owner: consul
@@ -30,7 +30,7 @@
     - consul_services is defined
 
 - name: start and enable consul
-  service:
+  ansible.builtin.service:
     name: consul
     state: started
     enabled: true

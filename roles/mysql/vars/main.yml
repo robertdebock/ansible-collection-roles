@@ -89,12 +89,6 @@ mysql_configuration_options:
     option: innodb_io_capacity
     value: "{{ mysql_innodb_io_capacity }}"
 
-_mysql_user:
-  default: root
-  Fedora-34: mysql
-
-mysql_user: "{{ _mysql_user[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_mysql_user['default']) }}"
-
 _mysql_configuration_destination:
   default: /etc/mysql/mariadb.conf.d
   RedHat: /etc/my.cnf.d

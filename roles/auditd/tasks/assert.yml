@@ -323,3 +323,19 @@
     - auditd_rules is string
     - item.filters is defined
     - item.filters is string
+
+- name: test if auditd_disp_qos is set correctly
+  ansible.builtin.assert:
+    that:
+      - auditd_disp_qos is defined
+      - auditd_disp_qos is string
+      - auditd_disp_qos in [ "lossy", "lossless" ]
+    fail_msg: "auditd_disp_qos must be one of 'lossy', 'lossless'."
+    quiet: yes
+
+- name: test if auditd_dispatcher is set correctly
+  ansible.builtin.assert:
+    that:
+      - auditd_dispatcher is defined
+      - auditd_dispatcher is string
+    quiet: yes

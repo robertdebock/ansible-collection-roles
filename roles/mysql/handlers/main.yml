@@ -16,5 +16,4 @@
     name: root
     password: "{{ mysql_root_password }}"
     state: present
-  become: yes
-  become_user: "{{ mysql_user }}"
+  no_log: yes

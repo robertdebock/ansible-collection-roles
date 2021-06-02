@@ -14,7 +14,7 @@
         - nextcloud_list_value.stdout | from_yaml != item.value
   rescue:
     - name: set nextcloud parameter
-      ansible.builtin.command::
+      ansible.builtin.command:
         cmd: php occ config:app:set {{ item.section }} {{ item.name }} --value {{ item.value }}
         chdir: "{{ nextcloud_destination }}/nextcloud"
       become: yes

@@ -46,17 +46,43 @@ These variables are set in `defaults/main.yml`:
 ---
 # defaults file for consul
 
+# This flag controls the datacenter in which the agent is running.
 consul_datacenter: dc1
+
+# This flag provides a data directory for the agent to store state.
 consul_data_dir: /opt/consul
+
+# The address to which Consul will bind client interfaces, including the HTTP and DNS servers
 consul_client_addr: 0.0.0.0
+
+# Enables the built-in web UI server and the required HTTP routes.
 consul_ui: yes
+
+# This flag is used to control if an agent is in server or client mode.
 consul_server: yes
+
+# This flag provides the number of expected servers in the datacenter.
 # consul_bootstrap_expect: 3
+
+# Specifies the secret key to use for encryption of Consul network traffic.
 # consul_encrypt: "GEZzRM+2P+FiUcyrx9Fte8NbwtTlX3NA"
+
+# Similar to -join but allows retrying a join until it is successful.
 # consul_retry_join:
 #   - consul.domain.internal
+
+# The address that should be bound to for internal cluster communications.
 # consul_bind_addr: "{{ ansible_default_ipv4.address }}"
+
+# The advertise address is used to change the address that we advertise to other nodes in the cluster.
 # consul_advertise_addr: "{{ ansible_default_ipv4.address }}"
+
+# You can define service that Consul should manage.
+# consul_services:
+#   - name: web
+#     tags:
+#       - rails
+#     port: 80
 ```
 
 ## [Requirements](#requirements)

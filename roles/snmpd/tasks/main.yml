@@ -1,0 +1,28 @@
+---
+# tasks file for snmpd
+
+- name: include assert.yml
+  import_tasks: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+- name: install snmpd
+  ansible.builtin.package:
+    name: "{{ snmpd_packages }}"
+    state: present
+
+- name: configure snmpd
+  ansible.builtin.template:
+    src: snmpd.conf.j2
+    dest: /etc/snmp/snmpd.conf
+    mode: "0600"
+    owner: root
+    group: root
+  notify:
+    - restart snmpd
+
+- name: start snmpd
+  ansible.builtin.service:
+    name: "{{ snmpd_service }}"
+    state: started
+    enabled: yes

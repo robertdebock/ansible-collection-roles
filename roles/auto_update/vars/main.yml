@@ -20,7 +20,7 @@ _auto_update_config_directory:
 auto_update_config_directory: "{{ _auto_update_config_directory[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_auto_update_config_directory[ansible_os_family] | default(_auto_update_config_directory['default'])) }}"
 
 _auto_update_config_file:
-  Debian: 02periodic
+  Debian: 10periodic
   RedHat-7: yum-cron.conf
   RedHat: automatic.conf
 

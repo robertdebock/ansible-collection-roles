@@ -1,18 +1,18 @@
 ---
 - name: create ssl key
-  openssl_privatekey:
+  community.crypto.openssl_privatekey:
     path: "{{ openssl_key_directory }}/{{ item.name }}.key"
     mode: "640"
 
 - name: create ssl csr
-  openssl_csr:
+  community.crypto.openssl_csr:
     path: "{{ openssl_csr_directory }}/{{ item.name }}.csr"
     privatekey_path: "{{ openssl_key_directory }}/{{ item.name }}.key"
     common_name: "{{ item.common_name }}"
     mode: "644"
 
 - name: create ssl certificates
-  openssl_certificate:
+  community.crypto.openssl_certificate:
     path: "{{ openssl_crt_directory }}/{{ item.name }}.crt"
     privatekey_path: "{{ openssl_key_directory }}/{{ item.name }}.key"
     csr_path: "{{ openssl_csr_directory }}/{{ item.name }}.csr"
@@ -20,7 +20,7 @@
     mode: "644"
 
 - name: create PKCS#12 file
-  openssl_pkcs12:
+  community.crypto.openssl_pkcs12:
     action: export
     path: "{{ openssl_key_directory }}/{{ item.name }}.p12"
     friendly_name: "{{ item.name }}"
@@ -30,12 +30,12 @@
     mode: "640"
 
 - name: read private key
-  slurp:
+  ansible.builtin.slurp:
     src: "{{ openssl_key_directory }}/{{ item.name }}.key"
   register: openssl_private_key
 
 - name: read certificate
-  slurp:
+  ansible.builtin.slurp:
     src: "{{ openssl_crt_directory }}/{{ item.name }}.crt"
   register: openssl_certifcate
 

@@ -1,6 +1,6 @@
 ---
 - name: archive directory object
-  archive:
+  community.general.archive:
     path: "{{ object.source }}"
     dest: "{{ backup_remote_directory }}/{{ object.type }}-{{ object.name }}-{{ backup_timestamp }}.{{ object.format | default(backup_format) }}"
     exclude_path: "{{ object.exclude_path | default(omit) }}"
@@ -28,7 +28,7 @@
     - object.type == "postgres"
 
 - name: compress object
-  archive:
+  community.general.archive:
     path: "{{ backup_remote_directory }}/{{ object.type }}-{{ object.name }}-{{ backup_timestamp }}.sql"
     dest: "{{ backup_remote_directory }}/{{ object.type }}-{{ object.name }}-{{ backup_timestamp }}.{{ object.format | default(backup_format) }}"
     format: "{{ object.format | default(backup_format) }}"

@@ -1,0 +1,53 @@
+{{ ansible_managed | comment }}
+
+{% if snmpd_security_names is defined %}
+{% for security_name in snmpd_security_names %}
+com2sec {{ security_name.name }} {{ security_name.source }} {{ security_name.community }}
+{% endfor %}
+{% endif %}
+
+{% if snmpd_groups is defined %}
+{% for group in snmpd_groups %}
+group {{ group.name }} {{ group.security_model }} {{ group.security_name }}
+{% endfor %}
+{% endif %}
+
+{% if snmpd_views is defined %}
+{% for view in snmpd_views %}
+view {{ view.name }} {{ view.type }} {{ view.subtree }} {% if view.mask is defined %}{{ view.mask }}{% endif %}
+
+{% endfor %}
+{% endif %}
+
+{% if snmpd_accesses is defined %}
+{% for access in snmpd_accesses %}
+access {{ access.group }} "{{ access.context }}" {{ access.security_model }} {{ access.security_level }} {{ access.prefix }} {{ access.read }} {{ access.write }} {{ access.notif }}
+{% endfor %}
+{% endif %}
+
+syslocation {{ snmpd_syslocation }}
+syscontact {{ snmpd_syscontact }}
+
+dontLogTCPWrappersConnects {{ snmpd_dontlogtcpwrappersconnects }}
+
+{% if snmpd_processes is defined %}
+{% for process in snmpd_processes %}
+proc {{ process.name }} {% if process.maximum is defined %}{{ process.maximum }}{% endif %} {% if process.minimum is defined %}{{ process.minimum }}{% endif %}
+{% endfor %}
+{% endif %}
+
+{% if snmpd_scripts is defined %}
+{% for script in snmpd_scripts %}
+exec {{ script.name }} {{ script.program }} {{ script.arguments }}
+{% endfor %}
+{% endif %}
+
+{% if snmpd_disks is defined %}
+{% for disk in snmpd_disks %}
+exec {{ disk.path }} {{ disk.minimum }}
+{% endfor %}
+{% endif %}
+
+{% if snmpd_load is defined %}
+load {{ snmpd_load.one_minute_average }} {{ snmpd_load.five_minute_average }} {{ snmpd_load.fifteen_minute_average }}
+{% endif %}

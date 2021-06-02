@@ -85,7 +85,7 @@
     quiet: yes
 
 - name: test if turn_lt_cred_mech and turn_use_auth_secret are exclusive
-  assert:
+  ansible.builtin.assert:
     that:
       - (turn_lt_cred_mech and not turn_use_auth_secret) or
         (not turn_lt_cred_mech and turn_use_auth_secret)

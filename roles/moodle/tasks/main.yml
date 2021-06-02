@@ -17,8 +17,8 @@
     dest: "{{ moodle_httpd_data_directory }}"
     creates: "{{ moodle_httpd_data_directory }}/moodle"
     remote_src: yes
-    owner: root
-    group: root
+    owner: "{{ moodle_httpd_owner }}"
+    group: "{{ moodle_httpd_group }}"
     mode: "0755"
   register: moodle_download_and_unpack
   until:
@@ -43,3 +43,4 @@
   ansible.builtin.cron:
     name: moodle
     job: "/usr/bin/php {{ moodle_httpd_data_directory }}/moodle/admin/cli/cron.php >/dev/null"
+    user: "{{ moodle_httpd_owner }}"

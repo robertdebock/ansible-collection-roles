@@ -20,7 +20,7 @@
     mode: "700"
 
 - name: initialize database
-  ansible.builtin.command:i
+  ansible.builtin.command:
     cmd: initdb -D {{ postgres_dir }}
     creates: "{{ postgres_dir }}/PG_VERSION"
   when:

@@ -18,6 +18,13 @@ This example is taken from `molecule/resources/converge.yml` and is tested on ea
 
   roles:
     - role: robertdebock.update_pip_packages
+      update_pip_package_ignore:
+        - libcomps
+        - PyGObject
+        - pygobject
+        - pyxdg
+        - ansible
+        - resolvelib
 ```
 
 The machine needs to be prepared in CI this is done using `molecule/resources/prepare.yml`:
@@ -53,11 +60,8 @@ These variables are set in `defaults/main.yml`:
 update_pip_packages_clients: []
 
 # You can indicate to ignore a list of packages. Packages listed here will not be updated.
-update_pip_package_ignore:
-  - libcomps
-  - PyGObject
-  - pygobject
-  - pyxdg
+# update_pip_package_ignore:
+#   - some_pip_package
 ```
 
 ## [Requirements](#requirements)
@@ -88,11 +92,11 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|debian|all|
+|debian|bullseye|
 |el|8|
 |fedora|all|
 |opensuse|all|
-|ubuntu|focal, bionic|
+|ubuntu|bionic|
 
 The minimum version of Ansible required is 2.9, tests have been done to:
 

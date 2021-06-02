@@ -17,7 +17,7 @@
     line: "SHELL={{ cron_shell }}"
     regexp: "^SHELL"
     create: yes
-    mode: "0644"
+    mode: "0600"
   notify:
     - restart cron
 
@@ -27,7 +27,7 @@
     line: "PATH={{ cron_path }}"
     regexp: "^PATH"
     create: yes
-    mode: "0644"
+    mode: "0600"
   notify:
     - restart cron
 
@@ -37,7 +37,7 @@
     line: "MAILTO={{ cron_mailto }}"
     regexp: "^MAILTO"
     create: yes
-    mode: "0644"
+    mode: "0600"
   notify:
     - restart cron
 

@@ -36,7 +36,7 @@
         src: 45-allow-colord
         dest: /etc/polkit-1/localauthority/50-local.d/45-allow-colord.conf
   when:
-    - ansible_os_family == "Debian"
+    - ansible_distribution == "Ubuntu"
 
 - name: start and enable xrdp
   ansible.builtin.service:

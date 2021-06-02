@@ -16,3 +16,4 @@ roles:
 collections:
   - name: community.zabbix
   - name: ansible.posix
+  - name: community.crypto

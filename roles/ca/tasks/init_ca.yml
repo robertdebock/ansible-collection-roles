@@ -39,7 +39,7 @@
     mode: "0644"
 
 - name: generate ca key
-  openssl_privatekey:
+  community.crypto.openssl_privatekey:
     path: "{{ ca_path }}/{{ ca_privatekey_path }}"
     passphrase: "{{ ca_passphrase }}"
     cipher: auto
