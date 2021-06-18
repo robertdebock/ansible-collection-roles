@@ -11,3 +11,9 @@ _turn_configuration:
 turn_configuration: "{{ _turn_configuration[ansible_os_family] | default(_turn_configuration['default']) }}"
 
 turn_service: coturn
+
+_turn_pidfile:
+  default: /var/run/coturn/turnserver.pid
+  RedHat-7: /run/coturn/turnserver.pid
+
+turn_pidfile: "{{ _turn_pidfile[ansible_os_family ~ '-' ~ ansible_distribution_major_version ] | default(_turn_pidfile[ansible_os_family] | default(_turn_pidfile['default'])) }}"

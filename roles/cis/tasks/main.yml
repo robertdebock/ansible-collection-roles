@@ -2,7 +2,7 @@
 # tasks file for cis
 
 - name: import assert.yml
-  import_tasks: assert.yml
+  ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
@@ -15,4 +15,5 @@
   ansible.builtin.package_facts:
 
 - name: include distribution specific version
-  ansible.builtin.include: "{{ ansible_distribution ~ '-' ~ ansible_distribution_major_version }}/main.yml"
+  ansible.builtin.include_tasks:
+    file: "{{ ansible_distribution ~ '-' ~ ansible_distribution_major_version }}/main.yml"

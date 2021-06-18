@@ -2,3 +2,5 @@
 roles:
   - name: robertdebock.bootstrap
   - name: robertdebock.sysctl
+collections:
+  - name: ansible.posix

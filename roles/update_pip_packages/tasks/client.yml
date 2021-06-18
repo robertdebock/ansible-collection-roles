@@ -13,7 +13,8 @@
     path: "/bin:/usr/local/bin"
 
 - name: include package.yml
-  include: package.yml
+  ansible.builtin.include_tasks:
+    file: package.yml
   with_dict: "{{ update_pip_packages.packages[client] }}"
   loop_control:
     loop_var: package

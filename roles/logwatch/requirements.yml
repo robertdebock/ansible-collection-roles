@@ -1,3 +1,5 @@
 ---
 roles:
   - name: robertdebock.bootstrap
+  - name: robertdebock.core_dependencies
+  - name: robertdebock.postfix

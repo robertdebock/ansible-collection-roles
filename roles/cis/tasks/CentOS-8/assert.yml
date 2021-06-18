@@ -1,7 +1,7 @@
 ---
 # 1.1.1.1 Ensure mounting of cramfs filesystems is disabled (Scored)
 - name: test if cis_cramfs_disabled is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_cramfs_disabled is defined
       - cis_cramfs_disabled is boolean
@@ -9,7 +9,7 @@
 
 # 1.1.1.2 Ensure mounting of vFAT filesystems is limited (Not Scored)
 - name: test if cis_vfat_disabled is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_vfat_disabled is defined
       - cis_vfat_disabled is boolean
@@ -17,7 +17,7 @@
 
 # 1.1.1.3 Ensure mounting of squashfs filesystems is disabled (Scored)
 - name: test if cis_squashfs_disabled is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_squashfs_disabled is defined
       - cis_squashfs_disabled is boolean
@@ -25,7 +25,7 @@
 
 # 1.1.1.4 Ensure mounting of udf filesystems is disabled (Scored)
 - name: test if cis_udf_disabled is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_udf_disabled is defined
       - cis_udf_disabled is boolean
@@ -33,7 +33,7 @@
 
 # 1.1.2 Ensure /tmp is configured (Scored)
 - name: test if cis_tmp_configured is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_tmp_configured is defined
       - cis_tmp_configured is boolean
@@ -41,7 +41,7 @@
 
 # 1.1.3 Ensure nodev option set on /tmp partition (Scored)
 - name: test if cis_tmp_nodev is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_tmp_nodev is defined
       - cis_tmp_nodev is boolean
@@ -49,7 +49,7 @@
 
 # 1.1.4 Ensure nosuid option set on /tmp partition (Scored)
 - name: test if cis_tmp_nosuid is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_tmp_nosuid is defined
       - cis_tmp_nosuid is boolean
@@ -57,7 +57,7 @@
 
 # 1.1.5 Ensure noexec option set on /tmp partition (Scored)
 - name: test if cis_tmp_noexec is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_tmp_noexec is defined
       - cis_tmp_noexec is boolean
@@ -65,7 +65,7 @@
 
 # 1.1.6 Ensure separate partition exists for /var (Scored)
 - name: test if cis_var_partition is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_var_partition is defined
       - cis_var_partition is boolean
@@ -73,7 +73,7 @@
 
 # 1.1.7 Ensure separate partition exists for /var/tmp (Scored)
 - name: test if cis_var_tmp_partition is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_var_tmp_partition is defined
       - cis_var_tmp_partition is boolean
@@ -81,7 +81,7 @@
 
 # 1.1.8 Ensure nodev option set on /var/tmp partition (Scored)
 - name: test if cis_var_tmp_nodev is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_var_tmp_nodev is defined
       - cis_var_tmp_nodev is boolean
@@ -89,7 +89,7 @@
 
 # 1.1.9 Ensure nosuid option set on /var/tmp partition (Scored)
 - name: test if cis_var_tmp_nosuid is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_var_tmp_nosuid is defined
       - cis_var_tmp_nosuid is boolean
@@ -97,7 +97,7 @@
 
 # 1.1.10 Ensure noexec option set on /var/tmp partition (Scored)
 - name: test if cis_var_tmp_noexec is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_var_tmp_noexec is defined
       - cis_var_tmp_noexec is boolean
@@ -105,7 +105,7 @@
 
 # 1.1.11 Ensure separate partition exists for /var/log (Scored)
 - name: test if cis_var_log_partition is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_var_log_partition is defined
       - cis_var_log_partition is boolean
@@ -113,7 +113,7 @@
 
 # 1.1.12 Ensure separate partition exists for /var/log/audit (Scored)
 - name: test if cis_var_log_audit_partition is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_var_log_audit_partition is defined
       - cis_var_log_audit_partition is boolean
@@ -121,7 +121,7 @@
 
 # 1.1.13 Ensure separate partition exists for /home (Scored)
 - name: test if cis_home_partition is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_home_partition is defined
       - cis_home_partition is boolean
@@ -129,7 +129,7 @@
 
 # 1.1.14 Ensure nodev option set on /home partition (Scored)
 - name: test if cis_home_nodev is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_home_nodev is defined
       - cis_home_nodev is boolean
@@ -138,7 +138,7 @@
 
 # 1.1.15 Ensure nodev option set on /dev/shm partition (Scored)
 - name: test if cis_dev_shm_nodev is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_dev_shm_nodev is defined
       - cis_dev_shm_nodev is boolean
@@ -146,7 +146,7 @@
 
 # 1.1.16 Ensure nosuid option set on /dev/shm partition (Scored)
 - name: test if cis_dev_shm_nosuid is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_dev_shm_nosuid is defined
       - cis_dev_shm_nosuid is boolean
@@ -154,7 +154,7 @@
 
 # 1.1.17 Ensure noexec option set on /dev/shm partition (Scored)
 - name: test if cis_dev_shm_noexec is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_dev_shm_noexec is defined
       - cis_dev_shm_noexec is boolean
@@ -162,7 +162,7 @@
 
 # 1.1.18 Ensure nodev option set on removable media partitions (Not Scored)
 - name: test if cis_removable_media_nodev is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_removable_media_nodev is defined
       - cis_removable_media_nodev is boolean
@@ -170,7 +170,7 @@
 
 # 1.1.19 Ensure nosuid option set on removable media partitions (Not Scored)
 - name: test if cis_removable_media_nosuid is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_removable_media_nosuid is defined
       - cis_removable_media_nosuid is boolean
@@ -178,7 +178,7 @@
 
 # 1.1.20 Ensure noexec option set on removable media partitions (Not Scored)
 - name: test if cis_removable_media_noexec is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_removable_media_noexec is defined
       - cis_removable_media_noexec is boolean
@@ -186,7 +186,7 @@
 
 # 1.1.21 Ensure sticky bit is set on all world-writable directories (Scored)
 - name: test if cis_fix_sticky_bit is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_fix_sticky_bit is defined
       - cis_fix_sticky_bit is boolean
@@ -194,7 +194,7 @@
 
 # 1.1.22 Disable Automounting (Scored)
 - name: test if cis_disable_automount is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_disable_automount is defined
       - cis_disable_automount is boolean
@@ -202,7 +202,7 @@
 
 # 1.1.23 Disable USB Storage (Scored)
 - name: test if cis_usb_storage_disabled is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_usb_storage_disabled is defined
       - cis_usb_storage_disabled is boolean
@@ -210,7 +210,7 @@
 
 # 1.2.1 Ensure GPG keys are configured (Not Scored)
 - name: test if cis_gpg_keys_configured is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_gpg_keys_configured is defined
       - cis_gpg_keys_configured is boolean
@@ -218,7 +218,7 @@
 
 # 1.2.2 Ensure gpgcheck is globally activated (Scored)
 - name: test if cis_gpgcheck_enabled is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_gpgcheck_enabled is defined
       - cis_gpgcheck_enabled is boolean
@@ -226,7 +226,7 @@
 
 # 1.2.3 Ensure package manager repositories are configured (Not Scored)
 - name: test if cis_repositories_configured is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_repositories_configured is defined
       - cis_repositories_configured is boolean
@@ -234,7 +234,7 @@
 
 # 1.3.1 Ensure sudo is installed (Scored)
 - name: test if cis_sudo_installed is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_sudo_installed is defined
       - cis_sudo_installed is boolean
@@ -242,7 +242,7 @@
 
 # 1.3.2 Ensure sudo commands use pty (Scored)
 - name: test if cis_sudo_use_pty is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_sudo_use_pty is defined
       - cis_sudo_use_pty is boolean
@@ -250,7 +250,7 @@
 
 # 1.3.3 Ensure sudo log file exists (Scored)
 - name: test if cis_sudo_logfile is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_sudo_logfile is defined
       - cis_sudo_logfile is boolean
@@ -258,7 +258,7 @@
 
 # 1.4.1 Ensure AIDE is installed (Scored)
 - name: test if cis_aide_installed is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_aide_installed is defined
       - cis_aide_installed is boolean
@@ -266,7 +266,7 @@
 
 # 1.4.2 Ensure filesystem integrity is regularly checked (Scored)
 - name: test if cis_filesystem_integrity_checked is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_filesystem_integrity_checked is defined
       - cis_filesystem_integrity_checked is boolean
@@ -274,7 +274,7 @@
 
 # 1.5.1 Ensure permissions on bootloader config are configured (Scored)
 - name: test if cis_permissions_bootloader is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_permissions_bootloader is defined
       - cis_permissions_bootloader is boolean
@@ -282,7 +282,7 @@
 
 # 1.5.2 Ensure bootloader password is set (Scored)
 - name: test if cis_bootloader_password_set is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_bootloader_password_set is defined
       - cis_bootloader_password_set is boolean
@@ -290,7 +290,7 @@
 
 # 1.5.2 Ensure bootloader password is set (Scored)
 - name: test if cis_bootloader_password is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_bootloader_password is defined
       - cis_bootloader_password | length > 0
@@ -300,7 +300,7 @@
 
 # 1.5.3 Ensure authentication required for single user mode (Scored)
 - name: test if cis_authentication_single_user_mode is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_authentication_single_user_mode is defined
       - cis_authentication_single_user_mode is boolean
@@ -308,7 +308,7 @@
 
 # 1.6.1 Ensure core dumps are restricted (Scored)
 - name: test if cis_core_dumps_restricted is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_core_dumps_restricted is defined
       - cis_core_dumps_restricted is boolean
@@ -316,7 +316,7 @@
 
 # 1.6.2 Ensure address space layout randomization (ASLR) is enabled (Scored)
 - name: test if cis_aslr_enabled is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_aslr_enabled is defined
       - cis_aslr_enabled is boolean
@@ -324,7 +324,7 @@
 
 # 1.7.1.1 Ensure SELinux is installed (Scored)
 - name: test if cis_selinux_installed is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_selinux_installed is defined
       - cis_selinux_installed is boolean
@@ -332,7 +332,7 @@
 
 # 1.7.1.2 Ensure SELinux is not disabled in bootloader configuration (Scored)
 - name: test if cis_selinux_not_disabled is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_selinux_not_disabled is defined
       - cis_selinux_not_disabled is boolean
@@ -340,7 +340,7 @@
 
 # 1.7.1.3 Ensure SELinux policy is configured (Scored)
 - name: test if cis_selinux_policy_configured is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_selinux_policy_configured is defined
       - cis_selinux_policy_configured is boolean
@@ -348,7 +348,7 @@
 
 # 1.7.1.3 Ensure SELinux policy is configured (Scored)
 - name: test if cis_selinux_policy is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_selinux_policy_configured is defined
       - cis_selinux_policy in ["targeted", "mls"]
@@ -356,7 +356,7 @@
 
 # 1.7.1.4 Ensure the SELinux state is enforcing (Scored)
 - name: test if cis_selinux_state_enforcing is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_selinux_state_enforcing is defined
       - cis_selinux_state_enforcing is boolean
@@ -364,7 +364,7 @@
 
 # 1.7.1.5 Ensure no unconfined services exist (Scored)
 - name: test if cis_no_unconfined_services is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_no_unconfined_services is defined
       - cis_no_unconfined_services is boolean
@@ -372,7 +372,7 @@
 
 # 1.7.1.6 Ensure SETroubleshoot is not installed (Scored)
 - name: test if cis_setroubleshoot_not_installed is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_setroubleshoot_not_installed is defined
       - cis_setroubleshoot_not_installed is boolean
@@ -380,7 +380,7 @@
 
 # 1.7.1.7 Ensure the MCS Translation Service (mcstrans) is not installed (Scored)
 - name: test if cis_mcs_translation_service_not_installed is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_mcs_translation_service_not_installed is defined
       - cis_mcs_translation_service_not_installed is boolean
@@ -388,7 +388,7 @@
 
 # 1.8.1.1 Ensure message of the day is configured properly (Scored)
 - name: test if cis_message_of_the_day_configured is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_message_of_the_day_configured is defined
       - cis_message_of_the_day_configured is boolean
@@ -396,7 +396,7 @@
 
 # 1.8.1.1 Ensure message of the day is configured properly (Scored)
 - name: test if cis_message_of_the_day is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_message_of_the_day is defined
       - cis_message_of_the_day | length > 0
@@ -404,7 +404,7 @@
 
 # 1.8.1.2 Ensure local login warning banner is configured properly (Scored)
 - name: test if cis_local_login_banner_configured is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_local_login_banner_configured is defined
       - cis_local_login_banner_configured is boolean
@@ -412,7 +412,7 @@
 
 # 1.8.1.3 Ensure remote login warning banner is configured properly (Scored)
 - name: test if cis_remote_login_banner_configured is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_remote_login_banner_configured is defined
       - cis_remote_login_banner_configured is boolean
@@ -420,7 +420,7 @@
 
 # 1.8.1.4 Ensure permissions on /etc/motd are configured (Scored)
 - name: test if cis_permissions_etc_motd is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_permissions_etc_motd is defined
       - cis_permissions_etc_motd is boolean
@@ -428,7 +428,7 @@
 
 # 1.8.1.5 Ensure permissions on /etc/issue are configured (Scored)
 - name: test if cis_permissions_etc_issue is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_permissions_etc_issue is defined
       - cis_permissions_etc_issue is boolean
@@ -436,7 +436,7 @@
 
 # 1.8.1.6 Ensure permissions on /etc/issue.net are configured (Scored)
 - name: test if cis_permissions_etc_issue_net is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_permissions_etc_issue_net is defined
       - cis_permissions_etc_issue_net is boolean
@@ -444,7 +444,7 @@
 
 # 1.8.2 Ensure GDM login banner is configured (Scored)
 - name: test if cis_gdm_login_banner_configured is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_gdm_login_banner_configured is defined
       - cis_gdm_login_banner_configured is boolean
@@ -452,7 +452,7 @@
 
 # 1.9 Ensure updates, patches, and additional security software are installed (Not Scored)
 - name: test if cis_updates_installed is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_updates_installed is defined
       - cis_updates_installed is boolean
@@ -460,7 +460,7 @@
 
 # 1.10 Ensure system-wide crypto policy is not legacy (Scored)
 - name: test if cis_crypto_policy_not_legacy is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_crypto_policy_not_legacy is defined
       - cis_crypto_policy_not_legacy is boolean
@@ -468,7 +468,7 @@
 
 # 1.10 Ensure system-wide crypto policy is not legacy (Scored)
 - name: test if cis_crypto_policy is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_crypto_policy is defined
       - cis_crypto_policy in ["LEGACY", "DEFAULT", "FUTURE", "FIPS", "EMPTY"]
@@ -476,7 +476,7 @@
 
 # 1.11 Ensure system-wide crypto policy is FUTURE or FIPS (Scored)
 - name: test if cis_ensure_crypto_policy is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_ensure_crypto_policy is defined
       - cis_ensure_crypto_policy is boolean
@@ -484,7 +484,7 @@
 
 # 2.1.1 Ensure xinetd is not installed (Scored)
 - name: test if cis_xinet_not_installed is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_xinet_not_installed is defined
       - cis_xinet_not_installed is boolean
@@ -492,7 +492,7 @@
 
 # 2.2.1.1 Ensure time synchronization is in use (Not Scored)
 - name: test if cis_time_synchronization is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_time_synchronization is defined
       - cis_time_synchronization is boolean
@@ -500,7 +500,7 @@
 
 # 2.2.1.2 Ensure chrony is configured (Scored)
 - name: test if cis_chrony_configured is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_chrony_configured is defined
       - cis_chrony_configured is boolean
@@ -508,7 +508,7 @@
 
 # 2.2.1.2 Ensure chrony is configured (Scored)
 - name: test if cis_chrony_servers is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_chrony_servers is defined
       - cis_chrony_servers is iterable
@@ -516,7 +516,7 @@
 
 # 2.2.1.2 Ensure chrony is configured (Scored)
 - name: test if cis_chrony_pools is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_chrony_pools is defined
       - cis_chrony_pools is iterable
@@ -524,7 +524,7 @@
 
 # 2.2.1.2 Ensure chrony is configured (Scored)
 - name: test if cis_chrony_servers and cis_chrony_pools is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_chrony_servers | length > 0 or
         cis_chrony_pools | length > 0
@@ -532,7 +532,7 @@
 
 # 2.2.2 Ensure X Window System is not installed (Scored)
 - name: test if cis_x_windows_system_not_installed is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_x_windows_system_not_installed is defined
       - cis_x_windows_system_not_installed is boolean
@@ -540,7 +540,7 @@
 
 # 2.2.3 Ensure rsync service is not enabled (Scored)
 - name: test if cis_rsync_service_not_enabled is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_rsync_service_not_enabled is defined
       - cis_rsync_service_not_enabled is boolean
@@ -548,7 +548,7 @@
 
 # 2.2.4 Ensure Avahi Server is not enabled (Scored)
 - name: test if cis_avahi_server_not_enabled is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_avahi_server_not_enabled is defined
       - cis_avahi_server_not_enabled is boolean
@@ -556,7 +556,7 @@
 
 # 2.2.5 Ensure SNMP Server is not enabled (Scored)
 - name: test if cis_snmp_server_not_enabled is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_snmp_server_not_enabled is defined
       - cis_snmp_server_not_enabled is boolean
@@ -564,7 +564,7 @@
 
 # 2.2.6 Ensure HTTP Proxy Server is not enabled (Scored)
 - name: test if cis_http_proxy_server_not_enabled is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_http_proxy_server_not_enabled is defined
       - cis_http_proxy_server_not_enabled is boolean
@@ -572,7 +572,7 @@
 
 # 2.2.7 Ensure Samba is not enabled (Scored)
 - name: test if cis_samba_server_not_enabled is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_samba_server_not_enabled is defined
       - cis_samba_server_not_enabled is boolean
@@ -580,7 +580,7 @@
 
 # 2.2.8 Ensure IMAP and POP3 server is not enabled (Scored)
 - name: test if cis_imap_and_pop3_server_not_enabled is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_imap_and_pop3_server_not_enabled is defined
       - cis_imap_and_pop3_server_not_enabled is boolean
@@ -588,7 +588,7 @@
 
 # 2.2.9 Ensure HTTP server is not enabled (Scored)
 - name: test if cis_http_server_not_enabled is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_http_server_not_enabled is defined
       - cis_http_server_not_enabled is boolean
@@ -596,7 +596,7 @@
 
 # 2.2.10 Ensure FTP Server is not enabled (Scored)
 - name: test if cis_ftp_server_not_enabled is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_ftp_server_not_enabled is defined
       - cis_ftp_server_not_enabled is boolean
@@ -604,7 +604,7 @@
 
 # 2.2.11 Ensure DNS Server is not enabled (Scored)
 - name: test if cis_dns_server_not_enabled is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_dns_server_not_enabled is defined
       - cis_dns_server_not_enabled is boolean
@@ -612,7 +612,7 @@
 
 # 2.2.12 Ensure NFS is not enabled (Scored)
 - name: test if cis_nfs_server_not_enabled is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_nfs_server_not_enabled is defined
       - cis_nfs_server_not_enabled is boolean
@@ -620,7 +620,7 @@
 
 # 2.2.13 Ensure RPC is not enabled (Scored)
 - name: test if cis_rpc_not_enabled is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_rpc_not_enabled is defined
       - cis_rpc_not_enabled is boolean
@@ -628,7 +628,7 @@
 
 # 2.2.14 Ensure LDAP server is not enabled (Scored)
 - name: test if cis_ldap_server_not_enabled is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_ldap_server_not_enabled is defined
       - cis_ldap_server_not_enabled is boolean
@@ -636,7 +636,7 @@
 
 # 2.2.15 Ensure DHCP Server is not enabled (Scored)
 - name: test if cis_dhcp_server_not_enabled is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_dhcp_server_not_enabled is defined
       - cis_dhcp_server_not_enabled is boolean
@@ -644,7 +644,7 @@
 
 # 2.2.16 Ensure CUPS is not enabled (Scored)
 - name: test if cis_cups_not_enabled is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_cups_not_enabled is defined
       - cis_cups_not_enabled is boolean
@@ -652,7 +652,7 @@
 
 # 2.2.17 Ensure NIS Server is not enabled (Scored)
 - name: test if cis_nis_server_not_enabled is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_nis_server_not_enabled is defined
       - cis_nis_server_not_enabled is boolean
@@ -660,7 +660,7 @@
 
 # 2.2.18 Ensure mail transfer agent is configured for local-only mode (Scored)
 - name: test if cis_mta_local_only_mode is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_mta_local_only_mode is defined
       - cis_mta_local_only_mode is boolean
@@ -668,7 +668,7 @@
 
 # 2.3.1 Ensure NIS Client is not installed (Scored)
 - name: test if cis_nis_client_not_installed is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_nis_client_not_installed is defined
       - cis_nis_client_not_installed is boolean
@@ -676,7 +676,7 @@
 
 # 2.3.2 Ensure telnet client is not installed (Scored)
 - name: test if cis_telnet_client_not_installed is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_telnet_client_not_installed is defined
       - cis_telnet_client_not_installed is boolean
@@ -684,7 +684,7 @@
 
 # 2.3.3 Ensure LDAP client is not installed (Scored)
 - name: test if cis_ldap_client_not_installed is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_ldap_client_not_installed is defined
       - cis_ldap_client_not_installed is boolean
@@ -692,7 +692,7 @@
 
 # 3.1.1 Ensure IP forwarding is disabled (Scored)
 - name: test if cis_ip_forwarding_disabled is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_ip_forwarding_disabled is defined
       - cis_ip_forwarding_disabled is boolean
@@ -700,7 +700,7 @@
 
 # 3.1.2 Ensure packet redirect sending is disabled (Scored)
 - name: test if cis_packet_redirect_sending_disabled is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_packet_redirect_sending_disabled is defined
       - cis_packet_redirect_sending_disabled is boolean
@@ -708,7 +708,7 @@
 
 # 3.2.1 Ensure source routed packets are not accepted (Scored)
 - name: test if cis_source_routed_packets_not_accepted is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_source_routed_packets_not_accepted is defined
       - cis_source_routed_packets_not_accepted is boolean
@@ -716,7 +716,7 @@
 
 # 3.2.2 Ensure ICMP redirects are not accepted (Scored)
 - name: test if cis_icmp_redirects_not_accepted is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_icmp_redirects_not_accepted is defined
       - cis_icmp_redirects_not_accepted is boolean
@@ -724,7 +724,7 @@
 
 # 3.2.3 Ensure secure ICMP redirects are not accepted (Scored)
 - name: test if cis_secure_icmp_redirects_not_accepted is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_secure_icmp_redirects_not_accepted is defined
       - cis_secure_icmp_redirects_not_accepted is boolean
@@ -732,7 +732,7 @@
 
 # 3.2.4 Ensure suspicious packets are logged (Scored)
 - name: test if cis_suspicious_packets_logged is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_suspicious_packets_logged is defined
       - cis_suspicious_packets_logged is boolean
@@ -740,7 +740,7 @@
 
 # 3.2.5 Ensure broadcast ICMP requests are ignored (Scored)
 - name: test if cis_broadcast_icmp_requests_ignored is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_broadcast_icmp_requests_ignored is defined
       - cis_broadcast_icmp_requests_ignored is boolean
@@ -748,7 +748,7 @@
 
 # 3.2.6 Ensure bogus ICMP responses are ignored (Scored)
 - name: test if cis_bogus_icmp_responses_ignored is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_bogus_icmp_responses_ignored is defined
       - cis_bogus_icmp_responses_ignored is boolean
@@ -756,7 +756,7 @@
 
 # 3.2.7 Ensure Reverse Path Filtering is enabled (Scored)
 - name: test if cis_reverse_path_filtering is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_reverse_path_filtering is defined
       - cis_reverse_path_filtering is boolean
@@ -764,7 +764,7 @@
 
 # 3.2.8 Ensure TCP SYN Cookies is enabled (Scored)
 - name: test if cis_tcp_syn_cookies_enabled is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_tcp_syn_cookies_enabled is defined
       - cis_tcp_syn_cookies_enabled is boolean
@@ -772,7 +772,7 @@
 
 # 3.2.9 Ensure IPv6 router advertisements are not accepted (Scored)
 - name: test if cis_ipv6_router_advertisements_not_accepted is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_ipv6_router_advertisements_not_accepted is defined
       - cis_ipv6_router_advertisements_not_accepted is boolean
@@ -780,7 +780,7 @@
 
 # 3.3.1 Ensure DCCP is disabled (Scored)
 - name: test if cis_dccp_disabled is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_dccp_disabled is defined
       - cis_dccp_disabled is boolean
@@ -788,7 +788,7 @@
 
 # 3.3.2 Ensure SCTP is disabled (Scored)
 - name: test if cis_sctp_disabled is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_sctp_disabled is defined
       - cis_sctp_disabled is boolean
@@ -796,7 +796,7 @@
 
 # 3.3.3 Ensure RDS is disabled (Scored)
 - name: test if cis_rds_disabled is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_rds_disabled is defined
       - cis_rds_disabled is boolean
@@ -804,7 +804,7 @@
 
 # 3.3.4 Ensure TIPC is disabled (Scored)
 - name: test if cis_tipc_disabled is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_tipc_disabled is defined
       - cis_tipc_disabled is boolean
@@ -812,7 +812,7 @@
 
 # 3.4.1.1 Ensure a Firewall package is installed (Scored)
 - name: test if cis_firewall_package_installed is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_firewall_package_installed is defined
       - cis_firewall_package_installed is boolean
@@ -820,7 +820,7 @@
 
 # 3.4.1.1 Ensure a Firewall package is installed (Scored)
 - name: test if cis_firewall_package is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_firewall_package is defined
       - cis_firewall_package | length > 0
@@ -829,7 +829,7 @@
 
 # 3.4.2.1 Ensure firewalld service is enabled and running (Scored)
 - name: test if cis_firewalld_enabled_and_running is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_firewalld_enabled_and_running is defined
       - cis_firewalld_enabled_and_running is boolean
@@ -837,7 +837,7 @@
 
 # 3.4.2.2 Ensure nftables is not enabled (Scored)
 - name: test if cis_nftables_not_enabled is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_nftables_not_enabled is defined
       - cis_nftables_not_enabled is boolean
@@ -845,7 +845,7 @@
 
 # 3.4.2.3 Ensure default zone is set (Scored)
 - name: test if cis_default_zone_set is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_default_zone_set is defined
       - cis_default_zone_set is boolean
@@ -853,7 +853,7 @@
 
 # 3.4.2.3 Ensure default zone is set (Scored)
 - name: test if cis_default_zone is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_default_zone is defined
       - cis_default_zone | length > 0
@@ -862,7 +862,7 @@
 
 # 3.4.2.4 Ensure network interfaces are assigned to appropriate zone (Not Scored)
 - name: test if cis_firewalld_network_interface_assigned_zones is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_firewalld_network_interface_assigned_zones is defined
       - cis_firewalld_network_interface_assigned_zones is boolean
@@ -870,7 +870,7 @@
 
 # 3.4.2.4 Ensure network interfaces are assigned to appropriate zone (Not Scored)
 - name: test if cis_firewalld_zone_interface_mapping is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_firewalld_zone_interface_mapping is defined
       - cis_firewalld_zone_interface_mapping | length > 0
@@ -878,7 +878,7 @@
 
 # 3.4.2.5 Ensure unnecessary services and ports are not accepted (Not Scored)
 - name: test if cis_unnecessary_services_ports_not_accepted is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_unnecessary_services_ports_not_accepted is defined
       - cis_unnecessary_services_ports_not_accepted is boolean
@@ -886,7 +886,7 @@
 
 # 3.4.2.5 Ensure unnecessary services and ports are not accepted (Not Scored)
 - name: test if cis_unnecessary_services is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_unnecessary_services | length > 0
       - cis_unnecessary_services is iterable
@@ -895,7 +895,7 @@
 
 # 3.4.2.5 Ensure unnecessary services and ports are not accepted (Not Scored)
 - name: test if cis_unnecessary_ports is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_unnecessary_ports | length > 0
       - cis_unnecessary_ports is iterable
@@ -904,7 +904,7 @@
 
 # 3.4.2.6 Ensure iptables is not enabled (Scored)
 - name: test if cis_iptables_not_enabled is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_iptables_not_enabled is defined
       - cis_iptables_not_enabled is boolean
@@ -912,7 +912,7 @@
 
 # 3.5 Ensure wireless interfaces are disabled (Scored)
 - name: test if cis_wireless_interface_disabled is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_wireless_interface_disabled is defined
       - cis_wireless_interface_disabled is boolean
@@ -920,7 +920,7 @@
 
 # 3.6 Disable IPv6 (Not Scored)
 - name: test if cis_disable_ipv6 is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_disable_ipv6 is defined
       - cis_disable_ipv6 is boolean
@@ -928,7 +928,7 @@
 
 # 4.1.1.1 Ensure auditd is installed (Scored)
 - name: test if cis_auditd_installed is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_auditd_installed is defined
       - cis_auditd_installed is boolean
@@ -936,7 +936,7 @@
 
 # 4.1.1.2 Ensure auditd service is enabled (Scored)
 - name: test if cis_auditd_service_enabled is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_auditd_service_enabled is defined
       - cis_auditd_service_enabled is boolean
@@ -944,7 +944,7 @@
 
 # 4.1.1.3 Ensure auditing for processes that start prior to auditd is enabled (Scored)
 - name: test if cis_auditing_processes_prior_start is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_auditing_processes_prior_start is defined
       - cis_auditing_processes_prior_start is boolean
@@ -952,7 +952,7 @@
 
 # 4.1.1.4 Ensure audit_backlog_limit is sufficient (Scored)
 - name: test if cis_audit_backlog_limit_sufficient is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_audit_backlog_limit_sufficient is defined
       - cis_audit_backlog_limit_sufficient is boolean
@@ -960,7 +960,7 @@
 
 # 4.1.2.1 Ensure audit log storage size is configured (Scored)
 - name: test if cis_audit_log_storage_size_configured is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_audit_log_storage_size_configured is defined
       - cis_audit_log_storage_size_configured is boolean
@@ -968,7 +968,7 @@
 
 # 4.1.2.1 Ensure audit log storage size is configured (Scored)
 - name: test if cis_audit_log_storage_size is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_audit_log_storage_size is defined
       - cis_audit_log_storage_size | int
@@ -977,7 +977,7 @@
 
 # 4.1.2.2 Ensure audit logs are not automatically deleted (Scored)
 - name: test if cis_audit_logs_no_automatically_deleted is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_audit_logs_no_automatically_deleted is defined
       - cis_audit_logs_no_automatically_deleted is boolean
@@ -985,7 +985,7 @@
 
 # 4.1.2.3 Ensure system is disabled when audit logs are full (Scored)
 - name: test if cis_system_disabled_audit_logs_full is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_system_disabled_audit_logs_full is defined
       - cis_system_disabled_audit_logs_full is boolean
@@ -993,7 +993,7 @@
 
 # 4.1.3 Ensure changes to system administration scope (sudoers) is collected (Scored)
 - name: test if cis_changed_to_system_administrator_scope_collected is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_changed_to_system_administrator_scope_collected is defined
       - cis_changed_to_system_administrator_scope_collected is boolean
@@ -1001,7 +1001,7 @@
 
 # 4.1.4 Ensure login and logout events are collected (Scored)
 - name: test if cis_login_and_login_events_collected is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_login_and_login_events_collected is defined
       - cis_login_and_login_events_collected is boolean
@@ -1009,7 +1009,7 @@
 
 # 4.1.5 Ensure session initiation information is collected (Scored)
 - name: test if cis_session_initiation_information_collected is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_session_initiation_information_collected is defined
       - cis_session_initiation_information_collected is boolean
@@ -1017,7 +1017,7 @@
 
 # 4.1.6 Ensure events that modify date and time information are collected (Scored)
 - name: test if cis_events_modify_time_and_date_collected is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_events_modify_time_and_date_collected is defined
       - cis_events_modify_time_and_date_collected is boolean
@@ -1025,7 +1025,7 @@
 
 # 4.1.7 Ensure events that modify the system's Mandatory Access Controls are collected (Scored)
 - name: test if cis_events_modifying_mac_collected is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_events_modifying_mac_collected is defined
       - cis_events_modifying_mac_collected is boolean
@@ -1033,7 +1033,7 @@
 
 # 4.1.8 Ensure events that modify the system's network environment are collected (Scored)
 - name: test if cis_events_modifying_systems_network_collected is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_events_modifying_systems_network_collected is defined
       - cis_events_modifying_systems_network_collected is boolean
@@ -1041,7 +1041,7 @@
 
 # 4.1.9 Ensure discretionary access control permission modification events are collected (Scored)
 - name: test if cis_dac_permission_modification_collected is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_dac_permission_modification_collected is defined
       - cis_dac_permission_modification_collected is boolean
@@ -1049,7 +1049,7 @@
 
 # 4.1.10 Ensure unsuccessful unauthorized file access attempts are collected (Scored)
 - name: test if cis_unsuccessful_files_access_collected is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_unsuccessful_files_access_collected is defined
       - cis_unsuccessful_files_access_collected is boolean
@@ -1057,7 +1057,7 @@
 
 # 4.1.11 Ensure events that modify user/group information are collected (Scored)
 - name: test if cis_events_modifying_user_group_collected is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_events_modifying_user_group_collected is defined
       - cis_events_modifying_user_group_collected is boolean
@@ -1065,7 +1065,7 @@
 
 # 4.1.12 Ensure successful file system mounts are collected (Scored)
 - name: test if cis_successful_mounts_collected is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_successful_mounts_collected is defined
       - cis_successful_mounts_collected is boolean
@@ -1073,7 +1073,7 @@
 
 # 4.1.13 Ensure use of privileged commands is collected (Scored)
 - name: test if cis_privileged_commands_collected is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_privileged_commands_collected is defined
       - cis_privileged_commands_collected is boolean
@@ -1081,7 +1081,7 @@
 
 # 4.1.13 Ensure use of privileged commands is collected (Scored)
 - name: test if cis_privileged_commands_collected_partitions is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_privileged_commands_collected_partitions is defined
       - cis_privileged_commands_collected_partitions | length > 0
@@ -1090,7 +1090,7 @@
 
 # 4.1.14 Ensure file deletion events by users are collected (Scored)
 - name: test if cis_file_deletion_users_collected is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_file_deletion_users_collected is defined
       - cis_file_deletion_users_collected is boolean
@@ -1098,7 +1098,7 @@
 
 # 4.1.15 Ensure kernel module loading and unloading is collected (Scored)
 - name: test if cis_kernel_module_loading_unloading_collected is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_kernel_module_loading_unloading_collected is defined
       - cis_kernel_module_loading_unloading_collected is boolean
@@ -1106,7 +1106,7 @@
 
 # 4.1.16 Ensure system administrator actions (sudolog) are collected (Scored)
 - name: test if cis_system_administrator_actions_collected is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_system_administrator_actions_collected is defined
       - cis_system_administrator_actions_collected is boolean
@@ -1114,7 +1114,7 @@
 
 # 4.1.17 Ensure the audit configuration is immutable (Scored)
 - name: test if cis_audit_configuration_immutable is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_audit_configuration_immutable is defined
       - cis_audit_configuration_immutable is boolean
@@ -1122,7 +1122,7 @@
 
 # 4.2.1.1 Ensure rsyslog is installed (Scored)
 - name: test if cis_syslog_installed is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_syslog_installed is defined
       - cis_syslog_installed is boolean
@@ -1130,7 +1130,7 @@
 
 # 4.2.1.2 Ensure rsyslog Service is enabled (Scored)
 - name: test if cis_rsyslog_enabled is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_rsyslog_enabled is defined
       - cis_rsyslog_enabled is boolean
@@ -1138,7 +1138,7 @@
 
 # 4.2.1.3 Ensure rsyslog default file permissions configured (Scored)
 - name: test if cis_rsyslog_file_permissions_configured is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_rsyslog_file_permissions_configured is defined
       - cis_rsyslog_file_permissions_configured is boolean
@@ -1146,7 +1146,7 @@
 
 # 4.2.1.4 Ensure logging is configured (Not Scored)
 - name: test if cis_logging_configured is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_logging_configured is defined
       - cis_logging_configured is boolean
@@ -1154,7 +1154,7 @@
 
 # 4.2.1.4 Ensure logging is configured (Not Scored)
 - name: test if cis_logging_site_policy is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_logging_site_policy is defined
       - cis_logging_site_policy | length > 0
@@ -1163,7 +1163,7 @@
 
 # 4.2.1.5 Ensure rsyslog is configured to send logs to a remote log host (Scored)
 - name: test if cis_rsyslog_configured_remote_log_host is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_rsyslog_configured_remote_log_host is defined
       - cis_rsyslog_configured_remote_log_host is boolean
@@ -1171,7 +1171,7 @@
 
 # 4.2.1.5 Ensure rsyslog is configured to send logs to a remote log host (Scored)
 - name: test if cis_rsyslog_site_policy_host is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_rsyslog_site_policy_host is defined
       - cis_rsyslog_site_policy_host | length > 0
@@ -1179,7 +1179,7 @@
 
 # 4.2.2.1 Ensure journald is configured to send logs to rsyslog (Scored)
 - name: test if cis_journald_send_to_rsyslog is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_journald_send_to_rsyslog is defined
       - cis_journald_send_to_rsyslog is boolean
@@ -1187,7 +1187,7 @@
 
 # 4.2.2.2 Ensure journald is configured to compress large log files (Scored)
 - name: test if cis_journald_compless_log_files is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_journald_compless_log_files is defined
       - cis_journald_compless_log_files is boolean
@@ -1195,7 +1195,7 @@
 
 # 4.2.2.3 Ensure journald is configured to write logfiles to persistent disk (Scored)
 - name: test if cis_journald_write_logfiles_to_disk is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_journald_write_logfiles_to_disk is defined
       - cis_journald_write_logfiles_to_disk is boolean
@@ -1203,7 +1203,7 @@
 
 # 4.2.3 Ensure permissions on all logfiles are configured (Scored)
 - name: test if cis_permissions_on_logfiles is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_permissions_on_logfiles is defined
       - cis_permissions_on_logfiles is boolean
@@ -1211,7 +1211,7 @@
 
 # 4.2.3 Ensure permissions on all logfiles are configured (Scored)
 - name: test if cis_logrotate_configured is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_logrotate_configured is defined
       - cis_logrotate_configured is boolean
@@ -1219,7 +1219,7 @@
 
 # 4.2.3 Ensure permissions on all logfiles are configured (Scored)
 - name: test if cis_logrotate_policy is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_logrotate_policy is defined
       - cis_logrotate_policy is iterable
@@ -1227,7 +1227,7 @@
 
 # 4.2.3 Ensure permissions on all logfiles are configured (Scored)
 - name: test if item in cis_logrotate_policy is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - item.name is defined
       - item.name is string
@@ -1238,7 +1238,7 @@
 
 # 5.1.1 Ensure cron daemon is enabled (Scored)
 - name: test if cis_cron_enabled is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_cron_enabled is defined
       - cis_cron_enabled is boolean
@@ -1246,7 +1246,7 @@
 
 # 5.1.2 Ensure permissions on /etc/crontab are configured (Scored)
 - name: test if cis_cron_permissions_configured is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_cron_permissions_configured is defined
       - cis_cron_permissions_configured is boolean
@@ -1254,7 +1254,7 @@
 
 # 5.1.3 Ensure permissions on /etc/cron.hourly are configured (Scored)
 - name: test if cis_cron_hourly_permissions_configured is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_cron_hourly_permissions_configured is defined
       - cis_cron_hourly_permissions_configured is boolean
@@ -1262,7 +1262,7 @@
 
 # 5.1.4 Ensure permissions on /etc/cron.daily are configured (Scored)
 - name: test if cis_cron_daily_permissions_configured is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_cron_daily_permissions_configured is defined
       - cis_cron_daily_permissions_configured is boolean
@@ -1270,7 +1270,7 @@
 
 # 5.1.5 Ensure permissions on /etc/cron.weekly are configured (Scored)
 - name: test if cis_cron_weekly_permissions_configured is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_cron_weekly_permissions_configured is defined
       - cis_cron_weekly_permissions_configured is boolean
@@ -1278,7 +1278,7 @@
 
 # 5.1.6 Ensure permissions on /etc/cron.monthly are configured (Scored)
 - name: test if cis_cron_monthly_permissions_configured is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_cron_monthly_permissions_configured is defined
       - cis_cron_monthly_permissions_configured is boolean
@@ -1286,7 +1286,7 @@
 
 # 5.1.7 Ensure permissions on /etc/cron.d are configured (Scored)
 - name: test if cis_cron_d_permissions_configured is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - cis_cron_d_permissions_configured is defined
       - cis_cron_d_permissions_configured is boolean

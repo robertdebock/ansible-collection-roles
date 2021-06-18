@@ -2,7 +2,7 @@
 # tasks file for storage
 
 - name: import assert.yml
-  import_tasks: assert.yml
+  ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
@@ -26,7 +26,8 @@
   changed_when: no
 
 - name: include partition
-  ansible.builtin.include: partition.yml
+  ansible.builtin.include_tasks:
+    file: partition.yml
   loop: "{{ storage_partitions }}"
   loop_control:
     loop_var: partition
@@ -34,7 +35,8 @@
     - storage_partitions is defined
 
 - name: include volumegroup
-  ansible.builtin.include: volumegroup.yml
+  ansible.builtin.include_tasks:
+    file: volumegroup.yml
   loop: "{{ storage_volumegroups }}"
   loop_control:
     loop_var: volumegroup
@@ -42,7 +44,8 @@
     - storage_volumegroups is defined
 
 - name: include volume
-  ansible.builtin.include: volume.yml
+  ansible.builtin.include_tasks:
+    file: volume.yml
   loop: "{{ storage_volumes }}"
   loop_control:
     loop_var: volume
@@ -50,7 +53,8 @@
     - storage_volumes is defined
 
 - name: include filesystem
-  ansible.builtin.include: filesystem.yml
+  ansible.builtin.include_tasks:
+    file: filesystem.yml
   loop: "{{ storage_filesystems }}"
   loop_control:
     loop_var: filesystem
@@ -58,7 +62,8 @@
     - storage_filesystems is defined
 
 - name: include mount
-  ansible.builtin.include: mount.yml
+  ansible.builtin.include_tasks:
+    file: mount.yml
   loop: "{{ storage_mounts }}"
   loop_control:
     loop_var: mount

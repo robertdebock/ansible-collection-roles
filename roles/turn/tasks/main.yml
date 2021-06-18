@@ -2,7 +2,7 @@
 # tasks file for turn
 
 - name: import assert.yml
-  import_tasks: assert.yml
+  ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
@@ -26,24 +26,6 @@
     line: "TURNSERVER_ENABLED=1"
   when:
     - ansible_distribution_release == "bionic"
-
-- name: ensure /etc/systemd/system/coturn.service.d exists
-  ansible.builtin.file:
-    path: /etc/systemd/system/coturn.service.d
-    state: directory
-    owner: root
-    group: root
-    mode: "0755"
-
-- name: place systemd override
-  ansible.builtin.copy:
-    src: override.conf
-    dest: /etc/systemd/system/coturn.service.d/override.conf
-    owner: root
-    group: root
-    mode: "0644"
-  when:
-    - ansible_os_family == "Debian"
 
 - name: start turn
   ansible.builtin.service:

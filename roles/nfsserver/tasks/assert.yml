@@ -23,7 +23,8 @@
     - nfsserver_exports is defined
 
 - name: test if item in nfsserver_exports.hosts is set correctly
-  ansible.builtin.include: assert_export.yml
+  ansible.builtin.include_tasks:
+    file: assert_export.yml
   loop: "{{ nfsserver_exports }}"
   loop_control:
     label: "{{ export.share }}"

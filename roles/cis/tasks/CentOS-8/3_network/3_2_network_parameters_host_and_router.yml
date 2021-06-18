@@ -1,6 +1,6 @@
 ---
 - name: 3.2.1 Ensure source routed packets are not accepted (Scored)
-  sysctl:
+  ansible.posix.sysctl:
     name: net.ipv4.conf.all.accept_source_route
     value: "0"
     state: present
@@ -10,7 +10,7 @@
     - cis_source_routed_packets_not_accepted | bool
 
 - name: 3.2.1 Ensure source routed packets are not accepted (Scored)
-  sysctl:
+  ansible.posix.sysctl:
     name: net.ipv4.conf.default.accept_source_route
     value: "0"
     state: present
@@ -20,7 +20,7 @@
     - cis_source_routed_packets_not_accepted | bool
 
 - name: 3.2.1 Ensure source routed packets are not accepted (Scored)
-  sysctl:
+  ansible.posix.sysctl:
     name: net.ipv6.conf.all.accept_source_route
     value: "0"
     state: present
@@ -30,7 +30,7 @@
     - cis_source_routed_packets_not_accepted | bool
 
 - name: 3.2.1 Ensure source routed packets are not accepted (Scored)
-  sysctl:
+  ansible.posix.sysctl:
     name: net.ipv6.conf.default.accept_source_route
     value: "0"
     state: present
@@ -40,7 +40,7 @@
     - cis_source_routed_packets_not_accepted | bool
 
 - name: 3.2.2 Ensure ICMP redirects are not accepted (Scored)
-  sysctl:
+  ansible.posix.sysctl:
     name: net.ipv4.conf.all.accept_redirects
     value: "0"
     state: present
@@ -50,7 +50,7 @@
     - cis_icmp_redirects_not_accepted | bool
 
 - name: 3.2.2 Ensure ICMP redirects are not accepted (Scored)
-  sysctl:
+  ansible.posix.sysctl:
     name: net.ipv4.conf.default.accept_redirects
     value: "0"
     state: present
@@ -60,7 +60,7 @@
     - cis_icmp_redirects_not_accepted | bool
 
 - name: 3.2.2 Ensure ICMP redirects are not accepted (Scored)
-  sysctl:
+  ansible.posix.sysctl:
     name: net.ipv6.conf.all.accept_redirects
     value: "0"
     state: present
@@ -70,7 +70,7 @@
     - cis_icmp_redirects_not_accepted | bool
 
 - name: 3.2.2 Ensure ICMP redirects are not accepted (Scored)
-  sysctl:
+  ansible.posix.sysctl:
     name: net.ipv6.conf.default.accept_redirects
     value: "0"
     state: present
@@ -80,7 +80,7 @@
     - cis_icmp_redirects_not_accepted | bool
 
 - name: 3.2.3 Ensure secure ICMP redirects are not accepted (Scored)
-  sysctl:
+  ansible.posix.sysctl:
     name: net.ipv4.conf.all.secure_redirects
     value: "0"
     state: present
@@ -90,7 +90,7 @@
     - cis_secure_icmp_redirects_not_accepted | bool
 
 - name: 3.2.3 Ensure secure ICMP redirects are not accepted (Scored)
-  sysctl:
+  ansible.posix.sysctl:
     name: net.ipv4.conf.default.secure_redirects
     value: "0"
     state: present
@@ -100,7 +100,7 @@
     - cis_secure_icmp_redirects_not_accepted | bool
 
 - name: 3.2.4 Ensure suspicious packets are logged (Scored)
-  sysctl:
+  ansible.posix.sysctl:
     name: net.ipv4.conf.all.log_martians
     value: "1"
     state: present
@@ -110,7 +110,7 @@
     - cis_suspicious_packets_logged | bool
 
 - name: 3.2.4 Ensure suspicious packets are logged (Scored)
-  sysctl:
+  ansible.posix.sysctl:
     name: net.ipv4.conf.default.log_martians
     value: "1"
     state: present
@@ -120,7 +120,7 @@
     - cis_suspicious_packets_logged | bool
 
 - name: 3.2.5 Ensure broadcast ICMP requests are ignored (Scored)
-  sysctl:
+  ansible.posix.sysctl:
     name: net.ipv4.icmp_echo_ignore_broadcasts
     value: "1"
     state: present
@@ -130,7 +130,7 @@
     - cis_broadcast_icmp_requests_ignored | bool
 
 - name: 3.2.6 Ensure bogus ICMP responses are ignored (Scored)
-  sysctl:
+  ansible.posix.sysctl:
     name: net.ipv4.icmp_ignore_bogus_error_responses
     value: "1"
     state: present
@@ -140,7 +140,7 @@
     - cis_bogus_icmp_responses_ignored | bool
 
 - name: 3.2.7 Ensure Reverse Path Filtering is enabled (Scored)
-  sysctl:
+  ansible.posix.sysctl:
     name: net.ipv4.conf.all.rp_filter
     value: "1"
     state: present
@@ -150,7 +150,7 @@
     - cis_reverse_path_filtering | bool
 
 - name: 3.2.7 Ensure Reverse Path Filtering is enabled (Scored)
-  sysctl:
+  ansible.posix.sysctl:
     name: net.ipv4.conf.default.rp_filter
     value: "1"
     state: present
@@ -160,7 +160,7 @@
     - cis_reverse_path_filtering | bool
 
 - name: 3.2.8 Ensure TCP SYN Cookies is enabled (Scored)
-  sysctl:
+  ansible.posix.sysctl:
     name: net.ipv4.tcp_syncookies
     value: "1"
     state: present
@@ -168,7 +168,7 @@
     - cis_tcp_syn_cookies_enabled | bool
 
 - name: 3.2.9 Ensure IPv6 router advertisements are not accepted (Scored)
-  sysctl:
+  ansible.posix.sysctl:
     name: net.ipv6.conf.all.accept_ra
     value: "0"
     state: present
@@ -178,7 +178,7 @@
     - cis_ipv6_router_advertisements_not_accepted | bool
 
 - name: 3.2.9 Ensure IPv6 router advertisements are not accepted (Scored)
-  sysctl:
+  ansible.posix.sysctl:
     name: net.ipv6.conf.default.accept_ra
     value: "0"
     state: present

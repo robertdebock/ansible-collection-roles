@@ -1,13 +1,13 @@
 ---
 - name: 3.4.1.1 Ensure a Firewall package is installed (Scored)
-  package:
+  ansible.builtin.package:
     name: "{{ cis_firewall_package }}"
     state: present
   when:
     - cis_firewall_package_installed | bool
 
 - name: 3.4.2.1 Ensure firewalld service is enabled and running (Scored)
-  service:
+  ansible.builtin.service:
     name: firewalld
     state: started
     enabled: yes
@@ -15,7 +15,7 @@
     - cis_firewalld_enabled_and_running | bool
 
 - name: 3.4.2.2 Ensure nftables is not enabled (Scored)
-  service:
+  ansible.builtin.service:
     name: nftables
     state: stopped
     enabled: false
@@ -24,7 +24,7 @@
     - cis_nftables_not_enabled | bool
 
 - name: 3.4.2.3 Ensure default zone is set (Scored)
-  command:
+  ansible.builtin.command:
     cmd: firewall-cmd --set-default-zone={{ cis_default_zone }}
   register: cis_default_zone_set_test
   changed_when:
@@ -33,7 +33,7 @@
     - cis_default_zone_set | bool
 
 - name: 3.4.2.4 Ensure network interfaces are assigned to appropriate zone (Not Scored)
-  firewalld:
+  ansible.posix.firewalld:
     zone: "{{ item.zone }}"
     interface: "{{ item.interface }}"
     permanent: yes
@@ -43,7 +43,7 @@
     - cis_firewalld_network_interface_assigned_zones | bool
 
 - name: 3.4.2.5 Ensure unnecessary services and ports are not accepted (Not Scored)
-  firewalld:
+  ansible.posix.firewalld:
     service: "{{ item }}"
     permanent: yes
     state: disabled
@@ -53,7 +53,7 @@
     - cis_unnecessary_services is defined
 
 - name: 3.4.2.5 Ensure unnecessary services and ports are not accepted (Not Scored)
-  firewalld:
+  ansible.posix.firewalld:
     port: "{{ item }}"
     permanent: yes
     state: disabled
@@ -63,7 +63,7 @@
     - cis_unnecessary_ports is defined
 
 - name: 3.4.2.6 Ensure iptables is not enabled (Scored)
-  service:
+  ansible.builtin.service:
     name: iptables
     state: stopped
     masked: yes

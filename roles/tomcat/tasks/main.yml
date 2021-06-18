@@ -2,12 +2,13 @@
 # tasks file for tomcat
 
 - name: import assert.yml
-  import_tasks: assert.yml
+  ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
 - name: loop over tomcat_instances
-  ansible.builtin.include: instance.yml
+  ansible.builtin.include_tasks:
+    file: instance.yml
   loop: "{{ tomcat_instances }}"
   loop_control:
     label: "{{ instance.name }}"

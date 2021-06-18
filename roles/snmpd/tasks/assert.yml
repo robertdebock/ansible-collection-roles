@@ -202,7 +202,16 @@
     that:
       - item.path is defined
       - item.path is string
-      - item.minimum is defined
+    quiet: yes
+  loop: "{{ snmpd_disks }}"
+  loop_control:
+    label: "{{ item.path }}"
+  when:
+    - snmpd_disks is defined
+
+- name: test if optional item.minimum in snmpd_disks is set correctly
+  ansible.builtin.assert:
+    that:
       - item.minimum is number
     quiet: yes
   loop: "{{ snmpd_disks }}"
@@ -210,6 +219,7 @@
     label: "{{ item.path }}"
   when:
     - snmpd_disks is defined
+    - item.minimum is defined
 
 - name: test if snmpd_load is set correctly
   ansible.builtin.assert:

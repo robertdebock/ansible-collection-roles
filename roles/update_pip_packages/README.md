@@ -25,6 +25,7 @@ This example is taken from `molecule/resources/converge.yml` and is tested on ea
         - pyxdg
         - ansible
         - resolvelib
+        - dbus-python
 ```
 
 The machine needs to be prepared in CI this is done using `molecule/resources/prepare.yml`:

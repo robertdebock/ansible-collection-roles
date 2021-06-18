@@ -31,7 +31,8 @@
     label: "{{ item.name }}"
 
 - name: loop over keepalived_vrrp_instances
-  ansible.builtin.include: assert_instances.yml
+  ansible.builtin.include_tasks:
+    file: assert_instances.yml
   loop: "{{ keepalived_vrrp_instances }}"
   loop_control:
     label: "{{ instance.name }}"

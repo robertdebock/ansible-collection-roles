@@ -6,3 +6,5 @@
     owner: "{{ instance.user | default(tomcat_user) }}"
     group: "{{ instance.group | default(tomcat_group) }}"
     mode: "{{ config_file.mode }}"
+  notify:
+    - restart tomcat instance

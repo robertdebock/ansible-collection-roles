@@ -1,20 +1,20 @@
 ---
 - name: 2.3.1 Ensure NIS Client is not installed (Scored)
-  package:
+  ansible.builtin.package:
     name: ypbind
     state: absent
   when:
     - cis_nis_client_not_installed | bool
 
 - name: 2.3.2 Ensure telnet client is not installed (Scored)
-  package:
+  ansible.builtin.package:
     name: telnet
     state: absent
   when:
     - cis_telnet_client_not_installed | bool
 
 - name: 2.3.3 Ensure LDAP client is not installed (Scored)
-  package:
+  ansible.builtin.package:
     name: openldap-clients
     state: absent
   when:

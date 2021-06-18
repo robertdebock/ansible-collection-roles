@@ -2,7 +2,7 @@
 # tasks file for minikube
 
 - name: import assert.yml
-  import_tasks: assert.yml
+  ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
@@ -31,5 +31,7 @@
   ansible.builtin.command:
     cmd: "{{ minikube_command }}"
     creates: nothing
+  become: true
+  become_user: "{{ minikube_user }}"
   when:
     - ansible_connection != "docker"

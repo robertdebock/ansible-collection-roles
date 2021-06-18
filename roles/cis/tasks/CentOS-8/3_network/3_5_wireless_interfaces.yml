@@ -1,6 +1,6 @@
 ---
 - name: 3.5 Ensure wireless interfaces are disabled (Scored)
-  command:
+  ansible.builtin.command:
     cmd: nmcli radio all
   changed_when: no
   check_mode: no
@@ -9,7 +9,7 @@
     - cis_wireless_interface_disabled | bool
 
 - name: 3.5 Ensure wireless interfaces are disabled (Scored)
-  command:
+  ansible.builtin.command:
     cmd: nmcli radio all off
   changed_when: no
   check_mode: no
@@ -17,7 +17,7 @@
     - cis_wireless_interface_disabled | bool
 
 - name: 3.5 Ensure wireless interfaces are disabled (Scored)
-  command:
+  ansible.builtin.command:
     cmd: nmcli radio all
   check_mode: no
   register: cis_wireless_interface_disabled_after

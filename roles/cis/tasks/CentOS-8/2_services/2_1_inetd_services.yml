@@ -1,6 +1,6 @@
 ---
 - name: 2.1.1 Ensure xinetd is not installed (Scored)
-  package:
+  ansible.builtin.package:
     name: xinetd
     state: absent
   when:

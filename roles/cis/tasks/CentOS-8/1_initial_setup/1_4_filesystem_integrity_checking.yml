@@ -1,13 +1,13 @@
 ---
 - name: 1.4.1 Ensure AIDE is installed (Scored)
-  package:
+  ansible.builtin.package:
     name: aide
     state: present
   when:
     - cis_aide_installed | bool
 
 - name: 1.4.1 Ensure AIDE is installed (Scored)
-  command:
+  ansible.builtin.command:
     cmd: aide --init
     creates: /var/lib/aide/aide.db.new.gz
   notify:
@@ -16,7 +16,7 @@
     - cis_aide_installed | bool
 
 - name: 1.4.2 Ensure filesystem integrity is regularly checked (Scored)
-  cron:
+  ansible.builtin.cron:
     name: "1.4.2 Ensure filesystem integrity is regularly checked (Scored)"
     hour: "0"
     minute: "5"

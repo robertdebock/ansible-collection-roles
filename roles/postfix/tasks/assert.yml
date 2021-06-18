@@ -47,7 +47,7 @@
   ansible.builtin.assert:
     that:
       - postfix_mynetworks is defined
-      - postfix_mynetworks is string
+      - postfix_mynetworks is iterable
     quiet: yes
 
 - name: test if postfix_smtpd_recipient_restrictions is set correctly

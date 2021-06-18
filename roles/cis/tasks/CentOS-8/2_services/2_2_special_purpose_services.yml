@@ -1,13 +1,13 @@
 ---
 - name: 2.2.1.1 Ensure time synchronization is in use (Not Scored)
-  package:
+  ansible.builtin.package:
     name: chrony
     state: present
   when:
     - cis_time_synchronization | bool
 
 - name: 2.2.1.2 Ensure chrony is configured (Scored)
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/chrony.conf
     mode: "0644"
     line: server {{ item }}
@@ -19,7 +19,7 @@
     - cis_chrony_servers | length > 0
 
 - name: 2.2.1.2 Ensure chrony is configured (Scored)
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/chrony.conf
     mode: "0644"
     line: pool {{ item.name }} {{ item.options }}
@@ -33,7 +33,7 @@
     - cis_chrony_pools | length > 0
 
 - name: 2.2.2 Ensure X Window System is not installed (Scored)
-  command:
+  ansible.builtin.command:
     cmd: rpm -qa --qf '%{NAME}\n' xorg-x11*
     warn: no
   changed_when:
@@ -44,7 +44,7 @@
     - cis_x_windows_system_not_installed | bool
 
 - name: 2.2.2 Ensure X Window System is not installed (Scored)
-  package:
+  ansible.builtin.package:
     name: "{{ item }}"
     state: absent
   loop: "{{ cis_x_windows_system_not_installed_test_one.stdout_lines }}"
@@ -52,7 +52,7 @@
     - cis_x_windows_system_not_installed | bool
 
 - name: 2.2.3 Ensure rsync service is not enabled (Scored)
-  service:
+  ansible.builtin.service:
     name: rsycnd
     state: stopped
     enabled: no
@@ -61,7 +61,7 @@
     - "'rsyncd' in services"
 
 - name: 2.2.4 Ensure Avahi Server is not enabled (Scored)
-  service:
+  ansible.builtin.service:
     name: avahi-daemon
     state: stopped
     enabled: no
@@ -70,7 +70,7 @@
     - services["avahi-daemon.service"] is defined
 
 - name: 2.2.5 Ensure SNMP Server is not enabled (Scored)
-  service:
+  ansible.builtin.service:
     name: snmpd
     state: stopped
     enabled: no
@@ -79,7 +79,7 @@
     - services["snmpd.service"] is defined
 
 - name: 2.2.6 Ensure HTTP Proxy Server is not enabled (Scored)
-  service:
+  ansible.builtin.service:
     name: squid
     state: stopped
     enabled: no
@@ -88,7 +88,7 @@
     - services["squid.service"] is defined
 
 - name: 2.2.7 Ensure Samba is not enabled (Scored)
-  service:
+  ansible.builtin.service:
     name: smb
     state: stopped
     enabled: no
@@ -97,7 +97,7 @@
     - services["smb.service"] is defined
 
 - name: 2.2.8 Ensure IMAP and POP3 server is not enabled (Scored)
-  service:
+  ansible.builtin.service:
     name: dovecot
     state: stopped
     enabled: no
@@ -106,7 +106,7 @@
     - services["dovecot.service"] is defined
 
 - name: 2.2.9 Ensure HTTP server is not enabled (Scored)
-  service:
+  ansible.builtin.service:
     name: httpd
     state: stopped
     enabled: no
@@ -115,7 +115,7 @@
     - services["httpd.service"] is defined
 
 - name: 2.2.10 Ensure FTP Server is not enabled (Scored)
-  service:
+  ansible.builtin.service:
     name: vsftpd
     state: stopped
     enabled: no
@@ -124,7 +124,7 @@
     - services["vsftpd.service"] is defined
 
 - name: 2.2.11 Ensure DNS Server is not enabled (Scored)
-  service:
+  ansible.builtin.service:
     name: named
     state: stopped
     enabled: no
@@ -133,7 +133,7 @@
     - services["named.service"] is defined
 
 - name: 2.2.12 Ensure NFS is not enabled (Scored)
-  service:
+  ansible.builtin.service:
     name: nfs
     state: stopped
     enabled: no
@@ -142,7 +142,7 @@
     - services["nfs.service"] is defined
 
 - name: 2.2.13 Ensure RPC is not enabled (Scored)
-  service:
+  ansible.builtin.service:
     name: rpcbind
     state: stopped
     enabled: no
@@ -151,7 +151,7 @@
     - services["rpcbind.service"] is defined
 
 - name: 2.2.14 Ensure LDAP server is not enabled (Scored)
-  service:
+  ansible.builtin.service:
     name: slapd
     state: stopped
     enabled: no
@@ -160,7 +160,7 @@
     - services["slapd.service"] is defined
 
 - name: 2.2.15 Ensure DHCP Server is not enabled (Scored)
-  service:
+  ansible.builtin.service:
     name: dhcpd
     state: stopped
     enabled: no
@@ -169,7 +169,7 @@
     - services["dhcpd.service"] is defined
 
 - name: 2.2.16 Ensure CUPS is not enabled (Scored)
-  service:
+  ansible.builtin.service:
     name: cups
     state: stopped
     enabled: no
@@ -178,7 +178,7 @@
     - services["cups.service"] is defined
 
 - name: 2.2.17 Ensure NIS Server is not enabled (Scored)
-  service:
+  ansible.builtin.service:
     name: ypserv
     state: stopped
     enabled: no
@@ -187,7 +187,7 @@
     - services["ypserv.service"] is defined
 
 - name: 2.2.18 Ensure mail transfer agent is configured for local-only mode (Scored)
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/postfix/main.cf
     mode: "0644"
     line: "inet_interfaces = loopback-only"

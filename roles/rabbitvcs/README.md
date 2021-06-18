@@ -4,7 +4,7 @@ Install and configure rabbitvcs on your system.
 
 |GitHub|GitLab|Quality|Downloads|Version|
 |------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-rabbitvcs/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-rabbitvcs/actions)|[![gitlab](https://gitlab.com/robertdebock/ansible-role-rabbitvcs/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-rabbitvcs)|[![quality](https://img.shields.io/ansible/quality/)](https://galaxy.ansible.com/robertdebock/rabbitvcs)|[![downloads](https://img.shields.io/ansible/role/d/)](https://galaxy.ansible.com/robertdebock/rabbitvcs)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-rabbitvcs.svg)](https://github.com/robertdebock/ansible-role-rabbitvcs/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-rabbitvcs/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-rabbitvcs/actions)|[![gitlab](https://gitlab.com/robertdebock/ansible-role-rabbitvcs/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-rabbitvcs)|[![quality](https://img.shields.io/ansible/quality/54959)](https://galaxy.ansible.com/robertdebock/rabbitvcs)|[![downloads](https://img.shields.io/ansible/role/d/54959)](https://galaxy.ansible.com/robertdebock/rabbitvcs)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-rabbitvcs.svg)](https://github.com/robertdebock/ansible-role-rabbitvcs/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

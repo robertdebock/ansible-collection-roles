@@ -5,3 +5,5 @@ roles:
   - name: robertdebock.epel
   - name: robertdebock.sysctl
   - name: robertdebock.grub
+collections:
+  - name: ansible.posix

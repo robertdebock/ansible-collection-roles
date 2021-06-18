@@ -115,6 +115,7 @@
     </Connector>
     -->
 
+{% if instance.ajp_enabled | default(tomcat_ajp_enabled) %}
     <!-- Define an AJP 1.3 Connector on port 8009 -->
     <Connector port="{{ instance.ajp_port | default (tomcat_ajp_port) }}"
               address="{{ instance.address | default(tomcat_address) }}"
@@ -129,6 +130,7 @@
 	      packetSize="{{ instance.packet_size }}"
 {% endif %}
     />
+{% endif %}
 
     <!-- An Engine represents the entry point (within Catalina) that processes
          every request.  The Engine implementation for Tomcat stand alone

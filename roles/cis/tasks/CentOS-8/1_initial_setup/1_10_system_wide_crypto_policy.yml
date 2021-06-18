@@ -1,13 +1,13 @@
 ---
 - name: 1.10 Ensure system-wide crypto policy is not legacy (Scored)
-  package:
+  ansible.builtin.package:
     name: crypto-policies-scripts
     state: present
   when:
     - cis_crypto_policy_not_legacy | bool
 
 - name: 1.10 Ensure system-wide crypto policy is not legacy (Scored)
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/crypto-policies/config
     mode: "0644"
     regexp: '^(?!#)(\S+)$'

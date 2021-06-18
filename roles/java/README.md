@@ -102,7 +102,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |amazon|Candidate|
 |el|7, 8|
 |debian|buster, bullseye|
-|fedora|33, 34|
+|fedora|all|
 |opensuse|all|
 |ubuntu|focal, bionic|
 

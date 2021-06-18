@@ -83,7 +83,7 @@
     that:
       - tomcat_non_ssl_connector_port is defined
       - tomcat_non_ssl_connector_port is number
-      - tomcat_non_ssl_connector_port > 0
+      - tomcat_non_ssl_connector_port >= -1
       - tomcat_non_ssl_connector_port < 65536
     quiet: yes
 
@@ -92,7 +92,7 @@
     that:
       - tomcat_ssl_connector_port is defined
       - tomcat_ssl_connector_port is number
-      - tomcat_ssl_connector_port > 0
+      - tomcat_ssl_connector_port >= -1
       - tomcat_ssl_connector_port < 65536
     quiet: yes
 
@@ -101,8 +101,15 @@
     that:
       - tomcat_shutdown_port is defined
       - tomcat_shutdown_port is number
-      - tomcat_shutdown_port > 0
+      - tomcat_shutdown_port >= -1
       - tomcat_shutdown_port < 65536
+    quiet: yes
+
+- name: test if tomcat_ajp_enabled is set correctly
+  ansible.builtin.assert:
+    that:
+      - tomcat_ajp_enabled is defined
+      - tomcat_ajp_enabled is boolean
     quiet: yes
 
 - name: test if tomcat_ajp_port is set correctly
@@ -110,7 +117,7 @@
     that:
       - tomcat_ajp_port is defined
       - tomcat_ajp_port is number
-      - tomcat_ajp_port > 0
+      - tomcat_ajp_port >= -1
       - tomcat_ajp_port < 65536
     quiet: yes
 
@@ -230,7 +237,7 @@
   ansible.builtin.assert:
     that:
       - item.non_ssl_connector_port is number
-      - item.non_ssl_connector_port > 0
+      - item.non_ssl_connector_port >= -1
       - item.non_ssl_connector_port < 65536
     quiet: yes
   loop: "{{ tomcat_instances }}"
@@ -243,7 +250,7 @@
   ansible.builtin.assert:
     that:
       - item.ssl_connector_port is number
-      - item.ssl_connector_port > 0
+      - item.ssl_connector_port >= -1
       - item.ssl_connector_port < 65536
     quiet: yes
   loop: "{{ tomcat_instances }}"
@@ -256,7 +263,7 @@
   ansible.builtin.assert:
     that:
       - item.shutdown_port is number
-      - item.shutdown_port > 0
+      - item.shutdown_port >= -1
       - item.shutdown_port < 65536
     quiet: yes
   loop: "{{ tomcat_instances }}"
@@ -265,11 +272,22 @@
   when:
     - item.shutdown_port is defined
 
+- name: test if item.ajp_enabled in tomcat_instances is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.ajp_enabled is boolean
+    quiet: yes
+  loop: "{{ tomcat_instances }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - item.ajp_enabled is defined
+
 - name: test if item.ajp_port in tomcat_instances is set correctly
   ansible.builtin.assert:
     that:
       - item.ajp_port is number
-      - item.ajp_port > 0
+      - item.ajp_port >= -1
       - item.ajp_port < 65536
     quiet: yes
   loop: "{{ tomcat_instances }}"

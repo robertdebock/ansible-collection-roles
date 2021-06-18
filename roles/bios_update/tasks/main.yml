@@ -2,7 +2,7 @@
 # tasks file for bios_update
 
 - name: import assert.yml
-  import_tasks: assert.yml
+  ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
@@ -38,6 +38,6 @@
     cmd: dd if={{ bios_update_temporary_directory }}/bios_update.img of={{ bios_update_flash_drive }} bs=64K
     creates: "{{ bios_update_flash_drive }}1"
   when:
-    - not ci
+    - not ci | bool
   vars:
     ci: "{{ lookup('env', 'CI') }}"

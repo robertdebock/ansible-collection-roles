@@ -1,6 +1,6 @@
 ---
 - name: 1.2.1 Ensure GPG keys are configured (Not Scored)
-  command:
+  ansible.builtin.command:
     cmd: rpm -q gpg-pubkey --qf '%{name}-%{version}-%{release} --> %{summary}\n'  # noqa 303 Need a list of keys, not supported by module.
     warn: no
   register: cis_gpg_keys
@@ -10,7 +10,7 @@
   check_mode: no
 
 - name: 1.2.2 Ensure gpgcheck is globally activated (Scored)
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/yum.conf
     mode: "0644"
     regexp: '^gpgcheck='
@@ -19,7 +19,7 @@
     - cis_gpgcheck_enabled | bool
 
 - name: 1.2.2 Ensure gpgcheck is globally activated (Scored)
-  find:
+  ansible.builtin.find:
     paths: /etc/yum.repos.d/
     patterns: '*'
     excludes: CentOS-Vault.repo
@@ -28,7 +28,7 @@
     - cis_gpgcheck_enabled | bool
 
 - name: 1.2.2 Ensure gpgcheck is globally activated (Scored)
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: "{{ item.path }}"
     mode: "0644"
     regexp: '^gpgcheck='
@@ -40,7 +40,7 @@
     - cis_gpgcheck_enabled | bool
 
 - name: 1.2.3 Ensure package manager repositories are configured (Not Scored)
-  command:
+  ansible.builtin.command:
     cmd: dnf repolist
     warn: no
   register: cis_repositories

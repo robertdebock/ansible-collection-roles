@@ -4,7 +4,7 @@ Install and configure snmpd on your system.
 
 |GitHub|GitLab|Quality|Downloads|Version|
 |------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-snmpd/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-snmpd/actions)|[![gitlab](https://gitlab.com/robertdebock/ansible-role-snmpd/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-snmpd)|[![quality](https://img.shields.io/ansible/quality/)](https://galaxy.ansible.com/robertdebock/snmpd)|[![downloads](https://img.shields.io/ansible/role/d/)](https://galaxy.ansible.com/robertdebock/snmpd)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-snmpd.svg)](https://github.com/robertdebock/ansible-role-snmpd/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-snmpd/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-snmpd/actions)|[![gitlab](https://gitlab.com/robertdebock/ansible-role-snmpd/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-snmpd)|[![quality](https://img.shields.io/ansible/quality/55193)](https://galaxy.ansible.com/robertdebock/snmpd)|[![downloads](https://img.shields.io/ansible/role/d/55193)](https://galaxy.ansible.com/robertdebock/snmpd)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-snmpd.svg)](https://github.com/robertdebock/ansible-role-snmpd/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -146,6 +146,10 @@ If you find issues, please register them in [GitHub](https://github.com/robertde
 ## [License](#license)
 
 Apache-2.0
+
+## [Contributors](#contributors)
+
+I'd like to thank everybody that made contributions to this repository. It motivates me, improves the code and is just fun to collaborate.
 
 
 ## [Author Information](#author-information)

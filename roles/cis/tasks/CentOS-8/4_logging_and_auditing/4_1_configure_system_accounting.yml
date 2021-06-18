@@ -1,13 +1,13 @@
 ---
 - name: 4.1.1.1 Ensure auditd is installed (Scored)
-  package:
+  ansible.builtin.package:
     name: audit
     state: present
   when:
     - cis_auditd_installed | bool
 
 - name: 4.1.1.2 Ensure auditd service is enabled (Scored)
-  service:
+  ansible.builtin.service:
     name: auditd
     state: started
     enabled: yes
@@ -15,7 +15,7 @@
     - cis_auditd_service_enabled | bool
 
 - name: 4.1.1.3 Ensure auditing for processes that start prior to auditd is enabled (Scored)
-  replace:
+  ansible.builtin.replace:
     path: /etc/default/grub
     regexp: '^GRUB_CMDLINE_LINUX="((:?(?!audit=1).)*?)"$'
     replace: 'GRUB_CMDLINE_LINUX="\1 audit=1"'
@@ -27,7 +27,7 @@
     - cis_auditing_processes_prior_start | bool
 
 - name: 4.1.1.4 Ensure audit_backlog_limit is sufficient (Scored)
-  replace:
+  ansible.builtin.replace:
     path: /etc/default/grub
     regexp: '^GRUB_CMDLINE_LINUX="((:?(?!audit_backlog_limit=.*).)*?)"$'
     replace: 'GRUB_CMDLINE_LINUX="\1 audit_backlog_limit=8192"'
@@ -39,7 +39,7 @@
     - cis_audit_backlog_limit_sufficient | bool
 
 - name: 4.1.2.1 Ensure audit log storage size is configured (Scored)
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/audit/auditd.conf
     mode: "0640"
     regexp: '^max_log_file = '
@@ -50,7 +50,7 @@
     - cis_audit_log_storage_size_configured | bool
 
 - name: 4.1.2.2 Ensure audit logs are not automatically deleted (Scored)
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/audit/auditd.conf
     regexp: '^max_log_file_action = '
     line: "max_log_file_action = keep_logs"
@@ -60,7 +60,7 @@
     - cis_audit_logs_no_automatically_deleted | bool
 
 - name: 4.1.2.3 Ensure system is disabled when audit logs are full (Scored)
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/audit/auditd.conf
     regexp: '^space_left_action = '
     line: "space_left_action = email"
@@ -70,7 +70,7 @@
     - cis_system_disabled_audit_logs_full | bool
 
 - name: 4.1.2.3 Ensure system is disabled when audit logs are full (Scored)
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/audit/auditd.conf
     regexp: '^action_mail_acct = '
     line: "action_mail_acct = root"
@@ -80,7 +80,7 @@
     - cis_system_disabled_audit_logs_full | bool
 
 - name: 4.1.2.3 Ensure system is disabled when audit logs are full (Scored)
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/audit/auditd.conf
     regexp: '^admin_space_left_action = '
     line: "admin_space_left_action = halt"
@@ -90,7 +90,7 @@
     - cis_system_disabled_audit_logs_full | bool
 
 - name: 4.1.3 Ensure changes to system administration scope (sudoers) is collected (Scored)
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/audit/rules.d/scope.rules
     create: yes
     mode: "0600"
@@ -104,7 +104,7 @@
     - cis_changed_to_system_administrator_scope_collected | bool
 
 - name: 4.1.4 Ensure login and logout events are collected (Scored)
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/audit/rules.d/audit.rules
     create: yes
     mode: "0600"
@@ -118,7 +118,7 @@
     - cis_login_and_login_events_collected | bool
 
 - name: 4.1.5 Ensure session initiation information is collected (Scored)
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/audit/rules.d/logins.rules
     create: yes
     mode: "0600"
@@ -133,7 +133,7 @@
     - cis_session_initiation_information_collected | bool
 
 - name: 4.1.6 Ensure events that modify date and time information are collected (Scored)
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/audit/rules.d/time-change.rules
     create: yes
     mode: "0600"
@@ -150,7 +150,7 @@
     - cis_events_modify_time_and_date_collected | bool
 
 - name: 4.1.7 Ensure events that modify the system's Mandatory Access Controls are collected (Scored)
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/audit/rules.d/MAC-policy.rules
     create: yes
     mode: "0600"
@@ -164,7 +164,7 @@
     - cis_events_modifying_mac_collected | bool
 
 - name: 4.1.8 Ensure events that modify the system's network environment are collected (Scored)
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/audit/rules.d/system-locale.rules
     create: yes
     mode: "0600"
@@ -182,7 +182,7 @@
     - cis_events_modifying_systems_network_collected | bool
 
 - name: 4.1.9 Ensure discretionary access control permission modification events are collected (Scored)
-  command:
+  ansible.builtin.command:
     cmd: awk '/^\s*UID_MIN/{print $2}' /etc/login.defs
   register: cis_dac_permission_modification_collected_test_one
   changed_when: no
@@ -190,7 +190,7 @@
     - cis_dac_permission_modification_collected | bool
 
 - name: 4.1.9 Ensure discretionary access control permission modification events are collected (Scored)
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/audit/rules.d/perm-mod.rules
     create: yes
     mode: "0600"
@@ -208,7 +208,7 @@
     - cis_dac_permission_modification_collected | bool
 
 - name: 4.1.10 Ensure unsuccessful unauthorized file access attempts are collected (Scored)
-  command:
+  ansible.builtin.command:
     cmd: awk '/^\s*UID_MIN/{print $2}' /etc/login.defs
   register: cis_unsuccessful_files_access_collected_test_one
   changed_when: no
@@ -216,7 +216,7 @@
     - cis_unsuccessful_files_access_collected | bool
 
 - name: 4.1.10 Ensure unsuccessful unauthorized file access attempts are collected (Scored)
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/audit/rules.d/access.rules
     create: yes
     mode: "0600"
@@ -232,7 +232,7 @@
     - cis_unsuccessful_files_access_collected | bool
 
 - name: 4.1.11 Ensure events that modify user/group information are collected (Scored)
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/audit/rules.d/identity.rules
     create: yes
     mode: "0600"
@@ -249,7 +249,7 @@
     - cis_events_modifying_user_group_collected | bool
 
 - name: 4.1.12 Ensure successful file system mounts are collected (Scored)
-  command:
+  ansible.builtin.command:
     cmd: awk '/^\s*UID_MIN/{print $2}' /etc/login.defs
   register: cis_successful_mounts_collected_test_one
   changed_when: no
@@ -257,7 +257,7 @@
     - cis_successful_mounts_collected | bool
 
 - name: 4.1.12 Ensure successful file system mounts are collected (Scored)
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/audit/rules.d/mounts.rules
     create: yes
     mode: "0600"
@@ -271,7 +271,7 @@
     - cis_successful_mounts_collected | bool
 
 - name: 4.1.13 Ensure use of privileged commands is collected (Scored)
-  command:
+  ansible.builtin.command:
     cmd: awk '/^\s*UID_MIN/{print $2}' /etc/login.defs
   register: cis_privileged_commands_collected_test_one
   changed_when: no
@@ -279,7 +279,7 @@
     - cis_privileged_commands_collected | bool
 
 - name: 4.1.13 Ensure use of privileged commands is collected (Scored)
-  command:
+  ansible.builtin.command:
     cmd: find {{ item }} -xdev \( -perm -4000 -o -perm -2000 \) -type f
   register: cis_privileged_commands_collected_test_two
   changed_when: no
@@ -288,14 +288,14 @@
     - cis_privileged_commands_collected | bool
 
 - name: 4.1.13 Ensure use of privileged commands is collected (Scored)
-  include_tasks:
+  ansible.builtin.include_tasks:
     file: 4_1_13.yml
   loop: "{{ cis_privileged_commands_collected_test_two.results }}"
   loop_control:
     label: "{{ item.stdout }}"
 
 - name: 4.1.14 Ensure file deletion events by users are collected (Scored)
-  command:
+  ansible.builtin.command:
     cmd: awk '/^\s*UID_MIN/{print $2}' /etc/login.defs
   register: cis_file_deletion_users_collected_test_one
   changed_when: no
@@ -303,7 +303,7 @@
     - cis_file_deletion_users_collected | bool
 
 - name: 4.1.14 Ensure file deletion events by users are collected (Scored)
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/audit/rules.d/delete.rules
     create: yes
     mode: "0600"
@@ -317,7 +317,7 @@
     - cis_file_deletion_users_collected | bool
 
 - name: 4.1.15 Ensure kernel module loading and unloading is collected (Scored)
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/audit/rules.d/modules.rules
     create: yes
     mode: "0600"
@@ -340,7 +340,7 @@
 #     - cis_system_administrator_actions_collected | bool
 
 - name: 4.1.17 Ensure the audit configuration is immutable (Scored)
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/audit/rules.d/99-finalize.rules
     create: yes
     mode: "0600"

@@ -1,6 +1,6 @@
 ---
 - name: 1.5.1 Ensure permissions on bootloader config are configured (Scored)
-  file:
+  ansible.builtin.file:
     path: "{{ item }}"
     owner: root
     group: root
@@ -12,14 +12,14 @@
     - cis_permissions_bootloader | bool
 
 - name: 1.5.2 Ensure bootloader password is set (Scored)
-  pip:
+  ansible.builtin.pip:
     name: pexpect
     state: present
   when:
     - cis_bootloader_password_set | bool
 
 - name: 1.5.2 Ensure bootloader password is set (Scored)
-  package:
+  ansible.builtin.package:
     name: "{{ item }}"
     state: present
   loop:
@@ -29,7 +29,7 @@
     - cis_bootloader_password_set | bool
 
 - name: 1.5.2 Ensure bootloader password is set (Scored)
-  expect:
+  ansible.builtin.expect:
     command: grub2-setpassword
     responses:
       "Enter password: ": "{{ cis_bootloader_password }}"
@@ -42,7 +42,7 @@
     - run grub2-mkconfig
 
 - name: 1.5.3 Ensure authentication required for single user mode (Scored)
-  ini_file:
+  community.general.ini_file:
     section: Service
     path: "{{ item.path }}"
     mode: "0644"

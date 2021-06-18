@@ -1,13 +1,13 @@
 ---
 - name: 1.3.1 Ensure sudo is installed (Scored)
-  package:
+  ansible.builtin.package:
     name: sudo
     state: installed
   when:
     - cis_sudo_installed | bool
 
 - name: 1.3.2 Ensure sudo commands use pty (Scored)
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/sudoers.d/use_pty.conf
     mode: "0600"
     line: 'Defaults use_pty'
@@ -16,7 +16,7 @@
     - cis_sudo_use_pty | bool
 
 - name: 1.3.3 Ensure sudo log file exists (Scored)
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/sudoers.d/logfile.conf
     mode: "0600"
     line: 'Defaults logfile="/var/log/sudo.log"'

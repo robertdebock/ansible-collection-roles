@@ -130,6 +130,7 @@ tomcat_non_ssl_connector_port: 8080
 tomcat_ssl_connector_port: 8443
 tomcat_shutdown_port: 8005
 tomcat_shutdown_pass: SHUTDOWN
+tomcat_ajp_enabled: yes
 tomcat_ajp_port: 8009
 tomcat_jre_home: /usr
 tomcat_service_state: started
@@ -162,6 +163,7 @@ tomcat_instances:
     non_ssl_connector_port: "{{ tomcat_non_ssl_connector_port }}"
     ssl_connector_port: "{{ tomcat_ssl_connector_port }}"
     shutdown_port: "{{ tomcat_shutdown_port }}"
+    ajp_enabled: "{{ tomcat_ajp_enabled }}"
     ajp_port: "{{ tomcat_ajp_port }}"
     ajp_secret: ""
     # You can pick an address per instance:
@@ -266,11 +268,6 @@ Apache-2.0
 
 I'd like to thank everybody that made contributions to this repository. It motivates me, improves the code and is just fun to collaborate.
 
-- [gaima8](https://github.com/gaima8)
-- [brunoleon](https://github.com/brunoleon)
-- [javid90khan](https://github.com/javid90khan)
-- [patsevanton](https://github.com/patsevanton)
-- [till](https://github.com/till)
 
 ## [Author Information](#author-information)
 

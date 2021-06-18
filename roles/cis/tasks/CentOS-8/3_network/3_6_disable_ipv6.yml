@@ -1,6 +1,6 @@
 ---
 - name: 3.6 Disable IPv6 (Not Scored)
-  replace:
+  ansible.builtin.replace:
     path: /boot/grub2/grubenv
     regexp: '^kernelopts="((:?(?!ipv6\.disable=1).)*?)"$'
     replace: 'kernelopts="\1 ipv6.disable=1"'

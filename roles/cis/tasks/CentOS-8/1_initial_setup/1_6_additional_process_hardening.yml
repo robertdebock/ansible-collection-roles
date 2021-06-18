@@ -1,6 +1,6 @@
 ---
 - name: 1.6.1 Ensure core dumps are restricted (Scored)
-  copy:
+  ansible.builtin.copy:
     dest: /etc/security/limits.d/coredumps.conf
     content: "* hard core 0"
     mode: "0600"
@@ -8,14 +8,14 @@
     - cis_core_dumps_restricted | bool
 
 - name: 1.6.1 Ensure core dumps are restricted (Scored)
-  sysctl:
+  ansible.posix.sysctl:
     name: fs.suid_dumpable
     value: "0"
   when:
     - cis_core_dumps_restricted | bool
 
 - name: 1.6.1 Ensure core dumps are restricted (Scored)
-  ini_file:
+  community.general.ini_file:
     path: /etc/systemd/coredump.conf
     mode: "0644"
     section: Coredump
@@ -33,7 +33,7 @@
     - systemctl daemon-reload
 
 - name: 1.6.2 Ensure address space layout randomization (ASLR) is enabled (Scored)
-  sysctl:
+  ansible.posix.sysctl:
     name: kernel.randomize_va_space
     value: "2"
   when:

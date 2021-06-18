@@ -1,6 +1,6 @@
 ---
 - name: 1.7.1.1 Ensure SELinux is installed (Scored)
-  package:
+  ansible.builtin.package:
     name: libselinux
     state: present
   register: cis_selinux_installed_test
@@ -8,7 +8,7 @@
     - cis_selinux_installed | bool
 
 - name: 1.7.1.2 Ensure SELinux is not disabled in bootloader configuration (Scored)
-  replace:
+  ansible.builtin.replace:
     path: /etc/default/grub
     mode: "0644"
     regexp: '^GRUB_CMDLINE_LINUX="((:?(?!selinux=1).)*?)"$'
@@ -20,7 +20,7 @@
     - run grub2-mkconfig
 
 - name: 1.7.1.2 Ensure SELinux is not disabled in bootloader configuration (Scored)
-  replace:
+  ansible.builtin.replace:
     path: /etc/default/grub
     regexp: '^GRUB_CMDLINE_LINUX="((:?(?!enforcing=1).)*?)"$'
     replace: 'GRUB_CMDLINE_LINUX="\1 enforcing=1"'
@@ -32,7 +32,7 @@
     - run grub2-mkconfig
 
 - name: 1.7.1.3 Ensure SELinux policy is configured (Scored)
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/selinux/config
     mode: "0644"
     regexp: '^SELINUXTYPE='
@@ -44,7 +44,7 @@
     - reboot
 
 - name: 1.7.1.5 Ensure no unconfined services exist (Scored)
-  command:
+  ansible.builtin.command:
     cmd: ps -eZ | grep unconfined_service_t
   register: cis_no_unconfined_services_test
   failed_when:
@@ -55,14 +55,14 @@
     - cis_no_unconfined_services | bool
 
 - name: 1.7.1.6 Ensure SETroubleshoot is not installed (Scored)
-  package:
+  ansible.builtin.package:
     name: setroubleshoot
     state: absent
   when:
     - cis_setroubleshoot_not_installed | bool
 
 - name: 1.7.1.7 Ensure the MCS Translation Service (mcstrans) is not installed (Scored)
-  package:
+  ansible.builtin.package:
     name: mcstrans
     state: absent
   when:

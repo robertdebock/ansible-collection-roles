@@ -1,6 +1,6 @@
 ---
 - name: 4.1.13 Ensure use of privileged commands is collected (Scored)
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/audit/rules.d/privileged.rules
     create: yes
     mode: "0600"

@@ -1,6 +1,6 @@
 ---
 - name: 3.3.1 Ensure DCCP is disabled (Scored)
-  copy:
+  ansible.builtin.copy:
     content: "install dccp /bin/true"
     dest: /etc/modprobe.d/dccp.conf
     mode: "0644"
@@ -8,14 +8,14 @@
     - cis_dccp_disabled | bool
 
 - name: 3.3.1 Ensure DCCP is disabled (Scored)
-  modprobe:
+  community.general.modprobe:
     name: dccp
     state: absent
   when:
     - cis_dccp_disabled | bool
 
 - name: 3.3.2 Ensure SCTP is disabled (Scored)
-  copy:
+  ansible.builtin.copy:
     content: "install sctp /bin/true"
     dest: /etc/modprobe.d/sctp.conf
     mode: "0644"
@@ -23,14 +23,14 @@
     - cis_sctp_disabled | bool
 
 - name: 3.3.2 Ensure SCTP is disabled (Scored)
-  modprobe:
+  community.general.modprobe:
     name: sctp
     state: absent
   when:
     - cis_sctp_disabled | bool
 
 - name: 3.3.3 Ensure RDS is disabled (Scored)
-  copy:
+  ansible.builtin.copy:
     content: "install rds /bin/true"
     dest: /etc/modprobe.d/rds.conf
     mode: "0644"
@@ -38,14 +38,14 @@
     - cis_rds_disabled | bool
 
 - name: 3.3.3 Ensure RDS is disabled (Scored)
-  modprobe:
+  community.general.modprobe:
     name: rds
     state: absent
   when:
     - cis_rds_disabled | bool
 
 - name: 3.3.4 Ensure TIPC is disabled (Scored)
-  copy:
+  ansible.builtin.copy:
     content: "install tipc /bin/true"
     dest: /etc/modprobe.d/tipc.conf
     mode: "0644"
@@ -53,7 +53,7 @@
     - cis_tipc_disabled | bool
 
 - name: 3.3.4 Ensure TIPC is disabled (Scored)
-  modprobe:
+  community.general.modprobe:
     name: tipc
     state: absent
   when:
