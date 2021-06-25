@@ -60,6 +60,11 @@ This example is taken from `molecule/resources/converge.yml` and is tested on ea
             - "https://raw.githubusercontent.com/shaanr/smdb/master/file.pub"
         - name: systemuser
           system: yes
+        - name: multisudo
+          sudo_options:
+            - "ALL= NOPASSWD: /usr/bin/systemctl restart httpd"
+            - "ALL= NOPASSWD: /usr/bin/systemctl start httpd"
+            - "ALL= NOPASSWD: /usr/bin/systemctl stop httpd"
 ```
 
 The machine needs to be prepared in CI this is done using `molecule/resources/prepare.yml`:
@@ -154,6 +159,7 @@ I'd like to thank everybody that made contributions to this repository. It motiv
 - [markgraf](https://github.com/markgraf)
 - [gotmax23](https://github.com/gotmax23)
 - [icklers](https://github.com/icklers)
+- [i-mtz](https://github.com/i-mtz)
 
 ## [Author Information](#author-information)
 

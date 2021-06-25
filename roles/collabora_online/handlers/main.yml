@@ -1,0 +1,7 @@
+---
+# handlers file for collabora_online
+
+- name: restart service
+  ansible.builtin.systemd:
+    name: loolwsd
+    state: restarted

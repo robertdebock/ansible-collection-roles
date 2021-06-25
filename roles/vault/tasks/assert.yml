@@ -113,6 +113,7 @@
     that:
       - vault_show_unseal_information is defined
       - vault_show_unseal_information is boolean
+    quiet: yes
 
 - name: test if vault_unseal_keys is set correctly
   ansible.builtin.assert:

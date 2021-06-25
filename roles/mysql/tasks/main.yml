@@ -12,6 +12,7 @@
     state: present
   notify:
     - set root password
+    - systemctl daemon-reexec
 
 - name: configure mysql server
   community.general.ini_file:

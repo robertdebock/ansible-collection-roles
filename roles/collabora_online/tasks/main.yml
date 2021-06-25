@@ -1,0 +1,52 @@
+---
+# tasks file for collabora_online
+
+- name: include assert.yml
+  ansible.builtin.import_tasks: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+- name: prepare debian
+  block:
+    - name: add collabora key (apt)
+      ansible.builtin.apt_key:
+        keyserver: keyserver.ubuntu.com
+        id: "{{ collabora_online_key }}"
+    - name: add repository (apt)
+      ansible.builtin.apt_repository:
+        repo: "{{ collabora_online_repo }}"
+  when:
+    - ansible_pkg_mgr == "apt"
+
+- name: prepare redhat
+  block:
+    - name: add collabora key (dnf and yum)
+      ansible.builtin.rpm_key:
+        key: "{{ collabora_online_key }}"
+    - name: add repository (dnf and yum)
+      ansible.builtin.yum_repository:
+        name: collabora_online
+        description: Collabora Online CODE
+        baseurl: "{{ collabora_online_repo }}"
+  when:
+    - ansible_pkg_mgr in [ "dnf", "yum" ]
+
+- name: install packages
+  ansible.builtin.package:
+    name: "{{ collabora_online_packages }}"
+
+- name: configure collabora online
+  ansible.builtin.template:
+    src: loolwsd.xml.j2
+    dest: /etc/loolwsd/loolwsd.xml
+    owner: lool
+    group: root
+    mode: "0640"
+  notify:
+    - restart service
+
+- name: start and enable service
+  ansible.builtin.systemd:
+    name: loolwsd
+    state: started
+    enabled: yes

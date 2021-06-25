@@ -1,6 +1,10 @@
 ---
 # handlers file for mysql
 
+- name: systemctl daemon-reexec
+  ansible.builtin.systemd:
+    daemon_reexec: yes
+
 - name: restart mysql server
   ansible.builtin.service:
     name: "{{ mysql_service }}"

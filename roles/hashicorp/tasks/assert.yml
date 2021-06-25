@@ -5,6 +5,7 @@
     that:
       - hashicorp_installation_method is defined
       - hashicorp_installation_method in [ "package", "manual" ]
+    quiet: yes
 
 - name: test if hashicorp_products is set correctly
   ansible.builtin.assert:

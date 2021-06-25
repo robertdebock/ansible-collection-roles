@@ -1,0 +1,29 @@
+---
+# vars file for collabora_online
+
+_collabora_online_key:
+  Debian: 0C54D189F4BA284D
+  RedHat: "https://www.collaboraoffice.com/repos/CollaboraOnline/CODE-centos7/repodata/repomd.xml.key"
+
+collabora_online_key: "{{ _collabora_online_key[ansible_os_family] }}"
+
+_collabora_online_repo:
+  Debian: "deb https://www.collaboraoffice.com/repos/CollaboraOnline/CODE-debian{{ ansible_distribution_major_version }} ./"
+  Ubuntu-16: "deb https://www.collaboraoffice.com/repos/CollaboraOnline/CODE ./"
+  Ubuntu-18: "deb https://www.collaboraoffice.com/repos/CollaboraOnline/CODE-ubuntu1804 ./"
+  Ubuntu-20: "deb https://www.collaboraoffice.com/repos/CollaboraOnline/CODE-ubuntu2004 ./"
+  RedHat: "https://www.collaboraoffice.com/repos/CollaboraOnline/CODE-centos{{ ansible_distribution_major_version }}"
+
+collabora_online_repo: "{{ _collabora_online_repo[ansible_distribution ~ '-' ~ ansible_distribution_major_version ] | default(_collabora_online_repo[ansible_os_family]) }}"
+
+_collabora_online_packages:
+  default: []
+  Debian:
+    - dirmngr
+    - loolwsd
+    - code-brand
+  RedHat:
+    - loolwsd
+    - CODE-brand
+
+collabora_online_packages: "{{ _collabora_online_packages[ansible_os_family] | default(_collabora_online_packages['default']) }}"

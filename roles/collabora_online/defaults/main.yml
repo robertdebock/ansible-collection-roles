@@ -1,0 +1,5 @@
+---
+# defaults file for collabora_online
+
+# Manage SSL capabilities, either "false" or "true". (As a string.)
+collabora_online_ssl_enabled: "false"
