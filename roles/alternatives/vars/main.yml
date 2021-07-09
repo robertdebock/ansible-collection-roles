@@ -6,9 +6,10 @@ _alternatives_packages:
     - alternatives
   Alpine:
     - dpkg
-  RedHat:
-    - chkconfig
   Debian:
     - dpkg
+  RedHat: &redhat_packages
+    - chkconfig
+  Rocky: *redhat_packages
 
 alternatives_packages: "{{ _alternatives_packages[ansible_os_family] | default(_alternatives_packages['default']) }}"

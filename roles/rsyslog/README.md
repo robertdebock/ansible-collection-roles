@@ -89,6 +89,11 @@ rsyslog_config_file_format: legacy
 # Configure the rsyslog package to be `present`, or set to `latest` to install
 # the latest available version.
 rsyslog_package_state: present
+
+# if set to false (legacy default to remain compatible to sysklogd), the domain
+# part from a name that is within the same domain as the receiving system is
+# stripped. If set to on, full names are always used.
+rsyslog_preservefqdn: false
 ```
 
 ## [Requirements](#requirements)
@@ -118,7 +123,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |---------|----|
 |alpine|all|
 |amazon|Candidate|
-|el|7, 8|
+|el|8|
 |debian|buster, bullseye|
 |fedora|all|
 |opensuse|all|
@@ -149,6 +154,11 @@ Apache-2.0
 
 I'd like to thank everybody that made contributions to this repository. It motivates me, improves the code and is just fun to collaborate.
 
+- [foonix](https://github.com/foonix)
+- [billmetangmo](https://github.com/billmetangmo)
+- [benformosa](https://github.com/benformosa)
+- [chancez](https://github.com/chancez)
+- [wzzrd](https://github.com/wzzrd)
 
 ## [Author Information](#author-information)
 

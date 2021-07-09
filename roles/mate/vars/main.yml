@@ -2,17 +2,19 @@
 # vars file for mate
 
 _mate_packages:
-  RedHat:
-    - "@mate-desktop"
-    - NetworkManager
   Debian:
     - mate-desktop-environment
+  RedHat: &redhat_packages
+    - "@mate-desktop"
+    - NetworkManager
+  Rocky: *redhat_packages
   Suse:
     - patterns-mate-mate
 
 mate_packages: "{{ _mate_packages[ansible_os_family] }}"
 
 _mate_exclude:
-  RedHat: "{{ ansible_distribution | lower }}-release-matecompiz"
+  RedHat: &redhat_exclude "{{ ansible_distribution | lower }}-release-matecompiz"
+  Rocky: *redhat_exclude
 
 mate_exclude: "{{ _mate_exclude[ansible_os_family] }}"

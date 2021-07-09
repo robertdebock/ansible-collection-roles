@@ -1,0 +1,42 @@
+---
+galaxy_info:
+  author: Robert de Bock
+  role_name: diskspace
+  namespace: robertdebock
+  description: Check diskspace (or inodes) available, fail if too low.
+  license: Apache-2.0
+  company: none
+  min_ansible_version: 2.9
+
+  platforms:
+    - name: Alpine
+      versions:
+        - all
+    - name: Amazon
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - all
+    - name: EL
+      versions:
+        - 7
+        - 8
+    - name: Fedora
+      versions:
+        - all
+    - name: OpenSUSE
+      versions:
+        - all
+    - name: Ubuntu
+      versions:
+        - focal
+        - bionic
+
+  galaxy_tags:
+    - diskspace
+    - inodes
+    - assert
+    - check
+
+dependencies: []

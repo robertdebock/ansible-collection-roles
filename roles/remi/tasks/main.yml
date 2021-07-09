@@ -15,7 +15,7 @@
     - reset php stream
     - enable repository
   when:
-    - ansible_distribution in [ "CentOS", "Fedora", "RedHat" ]
+    - ansible_distribution in [ "CentOS", "Fedora", "RedHat", "Rocky" ]
 
 - name: flush handlers
   ansible.builtin.meta: flush_handlers

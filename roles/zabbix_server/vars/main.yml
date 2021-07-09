@@ -4,10 +4,11 @@
 _zabbix_server_requirements:
   Debian:
     - python3-mysqldb
-  RedHat:
+  RedHat-7:
     - MySQL-python
-  RedHat-8:
+  RedHat: &redhat_requirements
     - python3-PyMySQL
+  Rocky: *redhat_requirements
   Suse:
     - python3-PyMySQL
 

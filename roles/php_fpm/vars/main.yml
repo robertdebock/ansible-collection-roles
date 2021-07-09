@@ -30,7 +30,8 @@ _php_fpm_pid_directory:
   default: /run/php-fpm
   Alpine: /run/php-fpm7
   Debian: /run/php
-  RedHat: /run/php-fpm
+  RedHat: &redhat_fpm_pid_directory /run/php-fpm
+  Rocky: *redhat_fpm_pid_directory
   Suse: /var/run
 
 php_fpm_pid_directory: "{{ _php_fpm_pid_directory[ansible_os_family] | default(_php_fpm_pid_directory['default']) }}"

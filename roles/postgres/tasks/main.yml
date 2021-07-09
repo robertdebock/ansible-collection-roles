@@ -74,7 +74,7 @@
   loop_control:
     label: "{{ item.name }}"
   when:
-    - ansible_os_family != "RedHat"
+    - ansible_os_family not in [ "RedHat", "Rocky" ]
     - ansible_distribution_major_version != "7"
 
 - name: create pg_hba.conf

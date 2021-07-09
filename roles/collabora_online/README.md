@@ -4,7 +4,7 @@ Install and configure Collabora Online CODE on your system.
 
 |GitHub|GitLab|Quality|Downloads|Version|
 |------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-collabora_online/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-collabora_online/actions)|[![gitlab](https://gitlab.com/robertdebock/ansible-role-collabora_online/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-collabora_online)|[![quality](https://img.shields.io/ansible/quality/)](https://galaxy.ansible.com/robertdebock/collabora_online)|[![downloads](https://img.shields.io/ansible/role/d/)](https://galaxy.ansible.com/robertdebock/collabora_online)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-collabora_online.svg)](https://github.com/robertdebock/ansible-role-collabora_online/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-collabora_online/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-collabora_online/actions)|[![gitlab](https://gitlab.com/robertdebock/ansible-role-collabora_online/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-collabora_online)|[![quality](https://img.shields.io/ansible/quality/55445)](https://galaxy.ansible.com/robertdebock/collabora_online)|[![downloads](https://img.shields.io/ansible/role/d/55445)](https://galaxy.ansible.com/robertdebock/collabora_online)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-collabora_online.svg)](https://github.com/robertdebock/ansible-role-collabora_online/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -73,7 +73,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |container|tags|
 |---------|----|
 |debian|buster|
-|el|7, 8|
+|el|8|
 |ubuntu|focal, bionic|
 
 The minimum version of Ansible required is 2.9, tests have been done to:

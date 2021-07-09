@@ -1,0 +1,11 @@
+---
+# defaults file for diskspace
+
+# You can pass a list of mountpoint and their minimum required space of inodes.
+# diskspace_mounts:
+#   - name: /
+#     megabytes_available: 64
+#   - name: /var
+#     gigabytes_available: 4
+#   - name: /home
+#     inodes_available: 65536

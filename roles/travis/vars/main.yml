@@ -7,8 +7,9 @@ _travis_requirements:
     - ruby-dev
   Debian:
     - ruby-dev
-  RedHat:
+  RedHat: &redhat_requirements
     - ruby-devel
+  Rocky: *redhat_requirements
   Suse:
     - ruby-devel
 

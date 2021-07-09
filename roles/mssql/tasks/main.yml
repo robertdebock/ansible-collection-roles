@@ -15,7 +15,7 @@
     gpgkey: "{{ mssql_gpgkey }}"
     gpgcheck: yes
   when:
-    - ansible_distribution in [ "CentOS", "RedHat", "Fedora" ]
+    - ansible_distribution in [ "CentOS", "Fedora", "RedHat", "Rocky" ]
     - mssql_add_repositories | bool
   loop: "{{ mssql_rhel_repositories }}"
   loop_control:

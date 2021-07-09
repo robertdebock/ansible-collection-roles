@@ -37,21 +37,6 @@ _owncloud_requirements:
     - php7-xmlwriter
     - php7-xml
     - php7-zip
-  RedHat:
-    - php-curl
-    - php-fpm
-    - php-gd
-    - php-intl
-    - php-json
-    - php-ldap
-    - php-mbstring
-    - php-mysqlnd
-    - php-pecl-apcu
-    # Does not exist for CentOS 8.
-    # - php-pecl-redis
-    - php-process
-    - php-xml
-    - php-zip
   Debian:
     - php-apcu
     - php-common
@@ -64,6 +49,20 @@ _owncloud_requirements:
     - php-mysql
     - php-xml
     - php-zip
+  RedHat: &redhat_requirements
+    - php-curl
+    - php-fpm
+    - php-gd
+    - php-intl
+    - php-json
+    - php-ldap
+    - php-mbstring
+    - php-mysqlnd
+    - php-pecl-apcu
+    - php-process
+    - php-xml
+    - php-zip
+  Rocky: *redhat_requirements
   Suse:
     - php-posix
     - php7-ctype

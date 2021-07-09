@@ -9,6 +9,7 @@ hashicorp_installation_method: package
 # You can install hashicorp products using this list.
 # hashicorp_products:
 #   - name: consul
+#   - name: consul-template
 #   - name: nomad
 #   - name: packer
 #   - name: terraform

@@ -18,7 +18,7 @@ _investigate_packages:
     - bash-completion
     - curl
     - screen
-  RedHat:
+  RedHat: &redhat_packages
     - net-tools
     - tcpdump
     - telnet
@@ -26,6 +26,7 @@ _investigate_packages:
     - bash-completion
     - curl
     - screen
+  Rocky: *redhat_packages
   Suse:
     - net-tools
     - tcpdump

@@ -15,13 +15,13 @@ galaxy_info:
     - name: Amazon
       versions:
         - Candidate
-    - name: EL
-      versions:
-        - 7
     - name: Debian
       versions:
         - buster
         - bullseye
+    - name: EL
+      versions:
+        - 8
     - name: Fedora
       versions:
         - all

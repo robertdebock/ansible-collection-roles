@@ -26,6 +26,7 @@ This example is taken from `molecule/resources/converge.yml` and is tested on ea
         - name: my_user
           password: my_pass
           priv: "my_db.*:ALL"
+          update_password: on_create
 ```
 
 The machine needs to be prepared in CI this is done using `molecule/resources/prepare.yml`:
@@ -88,7 +89,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |container|tags|
 |---------|----|
 |debian|buster|
-|el|7, 8|
+|el|8|
 |fedora|all|
 |opensuse|all|
 |ubuntu|focal, bionic|
@@ -120,6 +121,7 @@ Apache-2.0
 I'd like to thank everybody that made contributions to this repository. It motivates me, improves the code and is just fun to collaborate.
 
 - [Obihoernchen](https://github.com/Obihoernchen)
+- [aconitumnapellus](https://github.com/aconitumnapellus)
 - [jeffcpullen](https://github.com/jeffcpullen)
 
 ## [Author Information](#author-information)

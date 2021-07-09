@@ -20,7 +20,20 @@ _nextcloud_requirements:
     - php7-mbstring
     - php7-mysqlnd
     - php7-zip
-  RedHat:
+  Debian:
+    - php-bcmath
+    - php-curl
+    - php-dom
+    - php-gd
+    - php-gmp
+    - php-imagick
+    - php-intl
+    - php-mbstring
+    - php-mysql
+    - php-posix
+    - php-redis
+    - php-zip
+  RedHat: &redhat_requirements
     - php-dom
     - php-gd
     - php-imagick
@@ -37,19 +50,7 @@ _nextcloud_requirements:
     - php-xmlreader
     - php-xmlwriter
     - php-zip
-  Debian:
-    - php-bcmath
-    - php-curl
-    - php-dom
-    - php-gd
-    - php-gmp
-    - php-imagick
-    - php-intl
-    - php-mbstring
-    - php-mysql
-    - php-posix
-    - php-redis
-    - php-zip
+  Rocky: *redhat_requirements
   Suse:
     - php7-curl
     - php7-dom

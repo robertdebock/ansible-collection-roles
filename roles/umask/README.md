@@ -75,7 +75,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |---------|----|
 |alpine|all|
 |debian|all|
-|el|7, 8|
+|el|8|
 |fedora|all|
 |opensuse|all|
 |ubuntu|focal, bionic|

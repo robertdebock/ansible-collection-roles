@@ -8,16 +8,18 @@ _gitlab_runner_requirements:
     - apt-transport-https
     - git
     - openssl
-  RedHat:
+  RedHat: &redhat_requirements
     - curl
     - yum-utils
     - openssl
+  Rocky: *redhat_requirements
 
 gitlab_runner_requirements: "{{ _gitlab_runner_requirements[ansible_os_family] }}"
 
 _gitlab_runner_package_type:
   Debian: deb
-  RedHat: rpm
+  RedHat: &redhat_package_type rpm
+  Rocky: *redhat_package_type
 
 gitlab_runner_package_type: "{{ _gitlab_runner_package_type[ansible_os_family] }}"
 
@@ -25,7 +27,8 @@ gitlab_runner_script_url: "https://packages.gitlab.com/install/repositories/runn
 
 _gitlab_runner_repository_file:
   Debian: /etc/apt/sources.list.d/runner_gitlab-runner.list
-  RedHat: /etc/yum.repos.d/runner_gitlab-runner.repo
+  RedHat: &redhat_repository_file /etc/yum.repos.d/runner_gitlab-runner.repo
+  Rocky: *redhat_repository_file
 
 gitlab_runner_repository_file: "{{ _gitlab_runner_repository_file[ansible_os_family] }}"
 

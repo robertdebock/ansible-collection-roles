@@ -28,15 +28,16 @@ _collectd_plugin_dependencies:
   postgresql:
     default:
       - collectd-postgresql
+    Debian: []
     Suse:
       - collectd-plugin-postgresql
-    Debian: []
   write_http:
     default: []
     Alpine:
       - collectd-write_http
     Amazon: []
-    RedHat:
+    RedHat: &redhat_plugin_dependencies
       - collectd-write_http
+    Rocky: *redhat_plugin_dependencies
 
 collectd_service: collectd

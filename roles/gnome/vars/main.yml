@@ -13,13 +13,14 @@ _gnome_packages:
     - "@Fedora Workstation"
     - "@Fonts"
     - dbus-x11
-  RedHat:
-    - "@Server with GUI"
   openSUSE Leap:
     - gnome-desktop
     - gnome-session
     - gdm
     - gdm-systemd
+  RedHat: &redhat_packages
+    - "@Server with GUI"
+  Rocky: *redhat_packages
 
 gnome_packages: "{{ _gnome_packages[ansible_distribution] | default(_gnome_packages[ansible_os_family] | default(_gnome_packages['default'] )) }}"
 

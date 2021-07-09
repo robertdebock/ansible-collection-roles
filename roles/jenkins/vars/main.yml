@@ -3,9 +3,10 @@
 
 _jenkins_requirements:
   default: []
-  RedHat:
+  RedHat: &redhat_requirements
     - initscripts
     - chkconfig
+  Rocky: *redhat_requirements
   Suse:
     - insserv-compat
 
@@ -14,7 +15,8 @@ jenkins_requirements: "{{ _jenkins_requirements[ansible_os_family] | default(_je
 _jenkins_configuration_directory:
   default: /etc/default
   Alpine: /etc/conf.d
-  RedHat: /etc/sysconfig
+  RedHat: &redhat_configuration_directory /etc/sysconfig
+  Rocky: *redhat_configuration_directory
   Suse: /etc/sysconfig
 
 jenkins_configuration_directory: "{{ _jenkins_configuration_directory[ansible_os_family] | default(_jenkins_configuration_directory['default']) }}"

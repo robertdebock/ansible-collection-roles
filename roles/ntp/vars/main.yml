@@ -8,8 +8,9 @@ _ntp_packages:
     - anacron
   RedHat-7:
     - ntp
-  RedHat:
+  RedHat: &redhat_packages
     - chrony
+  Rocky: *redhat_packages
 
 ntp_packages: "{{ _ntp_packages[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_ntp_packages[ansible_os_family] | default(_ntp_packages['default'])) }}"
 
@@ -17,7 +18,8 @@ _ntp_configuration_file:
   default: ntp.conf
   Alpine: ntpd.conf
   RedHat-7: ntp.conf
-  RedHat: chrony.conf
+  RedHat: &redhat_configuration_file chrony.conf
+  Rocky: *redhat_configuration_file
 
 ntp_configuration_file: "{{ _ntp_configuration_file[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_ntp_configuration_file[ansible_os_family] | default(_ntp_configuration_file['default'])) }}"
 
@@ -26,7 +28,8 @@ _ntp_service:
   Debian: ntp
   Alpine: openntpd
   RedHat-7: ntpd
-  RedHat: chronyd
+  RedHat: &redhat_service chronyd
+  Rocky: *redhat_service
 
 ntp_service: "{{ _ntp_service[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_ntp_service[ansible_os_family] | default(_ntp_service['default'])) }}"
 
@@ -41,6 +44,7 @@ ntp_timezone_packages: "{{ _ntp_timezone_packages[ansible_os_family] | default(_
 _ntp_timezone_supported:
   default: no
   Debian: yes
-  CentOS: yes
+  CentOS: &redhat_timezone_supported yes
+  Rocky: *redhat_timezone_supported
 
 ntp_timezone_supported: "{{ _ntp_timezone_supported[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_ntp_timezone_supported[ansible_distribution] | default(_ntp_timezone_supported['default'])) }}"

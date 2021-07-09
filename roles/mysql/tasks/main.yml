@@ -42,6 +42,10 @@
   when:
     - ansible_distribution in [ "Alpine", "Archlinux" ]
 
+- name: show mysql service
+  debug:
+    msg: "mysql_service: {{ mysql_service }}"
+
 - name: start and enable mysql
   ansible.builtin.service:
     name: "{{ mysql_service }}"
@@ -82,7 +86,7 @@
     priv: "{{ item.priv | default(omit) }}"
     host: "{{ item.host | default(omit) }}"
     host_all: "{{ item.host_all | default(omit) }}"
-    update_password: "{{ item.update_password | default('on_create') }}"
+    update_password: "{{ item.update_password | default(omit) }}"
     login_unix_socket: "{{ mysql_socket }}"
     login_user: root
     login_password: "{{ mysql_root_password }}"

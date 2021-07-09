@@ -67,10 +67,10 @@ postfix_banner: "$myhostname ESMTP $mail_name"
 # The distination tells Postfix what mails to accept mail for.
 postfix_mydestination: $mydomain, $myhostname, localhost.$mydomain, localhost
 
-# TODO: This should be a list.
 # To accept email from other machines, set the mynetworks to something like
-# "192.168.0.0/24".
-postfix_mynetworks: "127.0.0.0/8"
+# "- 192.168.0.0/24".
+postfix_mynetworks:
+  - 127.0.0.0/8
 
 # These settings change the role of the postfix server to a relay host.
 # postfix_relay_domains: "$mydestination"
@@ -287,7 +287,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |container|tags|
 |---------|----|
 |amazon|2018.03|
-|el|7, 8|
+|el|8|
 |debian|buster, bullseye|
 |fedora|all|
 |ubuntu|focal, bionic|

@@ -24,7 +24,8 @@ docker_ce_apt_repository_repo: "deb [arch={{ docker_ce_apt_repository_arch }}] h
 # CentOS / Fedora / RedHat repo
 _docker_ce_dist:
   default: "{{ ansible_distribution | lower }}"
-  RedHat: rhel
+  RedHat: &redhat_dist rhel
+  Rocky: *redhat_dist
 
 docker_ce_dist: "{{ _docker_ce_dist[ansible_distribution] | default(_docker_ce_dist['default']) }}"
 

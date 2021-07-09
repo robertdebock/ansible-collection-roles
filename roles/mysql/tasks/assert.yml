@@ -151,7 +151,8 @@
 - name: test item.update_password in mysql_users is set correctly
   ansible.builtin.assert:
     that:
-      - item.update_password is boolean
+      - item.update_password is string
+      - item.update_password in [ "always", "on_create" ]
     quiet: yes
   loop: "{{ mysql_users }}"
   loop_control:

@@ -9,8 +9,9 @@ _service_required_packages:
     - procps
   Debian:
     - psmisc
-  RedHat:
+  RedHat: &redhat_package
     - psmisc
+  Rocky: *redhat_package
   Suse:
     - psmisc
 

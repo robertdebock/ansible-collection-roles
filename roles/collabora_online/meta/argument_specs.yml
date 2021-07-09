@@ -1,0 +1,15 @@
+---
+
+argument_specs:
+  main:
+    short_description: "Install and configure Collabora Online CODE on your system."
+    description: "Collabora Online Development Edition (CODE) installation an configuration."
+    author: Robert de Bock
+    options:
+      collabora_online_ssl_enabled:
+        type: "str"
+        default: false
+        description: "Configure SSL? This is a string, not a boolean."
+        choices:
+          - "false"
+          - "true"

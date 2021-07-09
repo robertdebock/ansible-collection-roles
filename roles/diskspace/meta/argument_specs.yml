@@ -1,0 +1,9 @@
+---
+argument_specs:
+  main:
+    short_description: "Test for sufficient diskspace and/or inodes."
+    options:
+      diskspace_mounts:
+        type: "list"
+        required: true
+        description: "A list of `name`s and one or more `megabytes_available`, `gigabytes_available` and/or `inodes_available`."

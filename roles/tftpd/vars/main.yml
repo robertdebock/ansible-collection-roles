@@ -6,8 +6,9 @@ _tftpd_packages:
     - tftpd
   Debian:
     - tftpd-hpa
-  RedHat:
+  RedHat: &redhat_packages
     - tftp-server
+  Rocky: *redhat_packages
   Suse:
     - tftp
 

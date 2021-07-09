@@ -13,7 +13,7 @@
         url: "{{ hashicorp_repository_url }}"
         dest: /etc/yum.repos.d/hashicorp.repo
       when:
-        - ansible_os_family == "RedHat"
+        - ansible_os_family in [ "RedHat", "Rocky" ]
 
     - name: configure debian
       block:

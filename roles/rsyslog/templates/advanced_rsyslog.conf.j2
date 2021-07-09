@@ -16,6 +16,10 @@ module(load="builtin:omfile" Template="RSYSLOG_TraditionalFileFormat")
 # Include all config files in /etc/rsyslog.d/
 include(file="/etc/rsyslog.d/*.conf" mode="optional")
 
+{% if rsyslog_preservefqdn %}
+$PreserveFQDN on
+{% endif %}
+
 #### MODULES ####
 
 # Provides support for local system logging (e.g. via logger command)
@@ -32,6 +36,9 @@ include(file="/etc/rsyslog.d/*.conf" mode="optional")
 
 # provides --MARK-- message capability
 {{ '' if 'immark' in rsyslog_mods else '#' }}module(load="immark")
+
+# Provides access to specific log file
+{{ '' if 'imfile' in rsyslog_mods else '#' }}module(load="imfile")
 
 # Provides UDP syslog reception
 # for parameters see http://www.rsyslog.com/doc/imudp.html

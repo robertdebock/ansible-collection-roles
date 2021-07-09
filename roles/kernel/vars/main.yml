@@ -25,15 +25,13 @@ _kernel_requirements:
     - flex
     - libelf-dev
     - libssl-dev
-  RedHat:
+  RedHat: &redhat_requirements
     - bc
-    # - bison
-    # - elfutils-libelf-devel
     - diffutils
     - flex
     - hostname
-    # - kernel-devel
     - openssl-devel
+  Rocky: *redhat_requirements
   Suse:
     - bc
     - bison
@@ -47,7 +45,8 @@ _kernel_modules_location:
   default: /usr/lib/modules/{{ kernel_version }}*
   Alpine: /lib/modules/{{ kernel_version }}*
   Debian: /lib/modules/{{ kernel_version }}*
-  RedHat: /usr/lib/modules/{{ kernel_version }}*
+  RedHat: &redhat_module_location /usr/lib/modules/{{ kernel_version }}*
+  Rocky: *redhat_module_location
   Suse: /lib/modules/{{ kernel_version }}*
 
 kernel_modules_location: "{{ _kernel_modules_location[ansible_os_family] | default(_kernel_modules_location['default']) }}"
@@ -56,6 +55,7 @@ _kernel_installation_location:
   default: /boot/vmlinuz
   Alpine: /boot/vmlinuz
   Debian: /boot/vmlinuz-{{ kernel_version }}*
-  RedHat: /boot/vmlinuz
+  RedHat: &redhat_installation_location /boot/vmlinuz
+  Rocky: *redhat_installation_location
 
 kernel_installation_location: "{{ _kernel_installation_location[ansible_os_family] | default(_kernel_installation_location['default']) }}"

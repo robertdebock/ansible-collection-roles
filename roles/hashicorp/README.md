@@ -59,6 +59,7 @@ hashicorp_installation_method: package
 # You can install hashicorp products using this list.
 # hashicorp_products:
 #   - name: consul
+#   - name: consul-template
 #   - name: nomad
 #   - name: packer
 #   - name: terraform
@@ -105,7 +106,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |container|tags|
 |---------|----|
 |amazon|Candidate|
-|el|7, 8|
+|el|8|
 |debian|buster|
 |fedora|33, 34|
 |ubuntu|bionic, focal|

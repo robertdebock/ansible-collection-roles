@@ -9,6 +9,13 @@
   when:
     - rsyslog_receiver is defined
 
+- name: test if rsyslog_preservefqdn is set correctly
+  ansible.builtin.assert:
+    that:
+      - rsyslog_preservefqdn is defined
+      - rsyslog_preservefqdn is boolean
+    quiet: yes
+
 - name: test if rsyslog_remote_selector is set correctly
   ansible.builtin.assert:
     that:

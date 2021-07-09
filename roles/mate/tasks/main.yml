@@ -6,7 +6,7 @@
     name: "{{ mate_packages }}"
     state: present
   when:
-    - ansible_os_family != "RedHat"
+    - ansible_os_family not in [ "RedHat", "Rocky" ]
 
 - name: configure redhat
   block:
@@ -22,4 +22,4 @@
         state: started
         enabled: yes
   when:
-    - ansible_os_family == "RedHat"
+    - ansible_os_family in [ "RedHat", "Rocky" ]

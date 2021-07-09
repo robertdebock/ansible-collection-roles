@@ -31,7 +31,7 @@
         - reboot_rhel_needs_restarting_executable.stat.exists
   when:
     - ansible_connection != "docker"
-    - ansible_os_family == "RedHat"
+    - ansible_os_family in [ "RedHat", "Rocky" ]
 
 - name: configure debian
   block:

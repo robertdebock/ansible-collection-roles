@@ -9,7 +9,8 @@ _java_default_version:
   Debian: 11
   Fedora: 11
   Gentoo: 8
-  RedHat: 8
+  RedHat: &redhat_default_version 8
+  Rocky: *redhat_default_version
   Ubuntu: 11
   Ubuntu-16: 8
   openSUSE Leap: 8
@@ -39,7 +40,8 @@ _java_openjdk_package:
       Gentoo: jre
       Ubuntu: openjdk-8-jre
       openSUSE Leap: java-1_8_0-openjdk
-      RedHat: java-1.8.0-openjdk
+      RedHat: &redhat_8_openjdk_package java-1.8.0-openjdk
+      Rocky: *redhat_8_openjdk_package
     9:
       # Fedora: java-9-openjdk
       Ubuntu: openjdk-9-jre
@@ -51,7 +53,8 @@ _java_openjdk_package:
       Debian: openjdk-11-jre
       Fedora: java-11-openjdk-headless
       Ubuntu: openjdk-11-jre
-      RedHat: java-11-openjdk
+      RedHat: &redhat_11_openjdk_package java-11-openjdk
+      Rocky: *redhat_11_openjdk_package
     12:
       Ubuntu: openjdk-12-jre
     13:
@@ -77,6 +80,7 @@ _java_openjdk_package:
       Ubuntu: openjdk-8-jdk
       openSUSE Leap: java-1_8_0-openjdk-devel
       RedHat: java-1.8.0-openjdk-devel
+      Rocky: java-1.8.0-openjdk-devel
     9:
       Fedora: java-9-openjdk-devel
       Ubuntu: openjdk-9-jdk
@@ -89,6 +93,7 @@ _java_openjdk_package:
       Fedora: java-11-openjdk-devel
       Ubuntu: openjdk-11-jdk
       RedHat: java-11-openjdk-devel
+      Rocky: java-11-openjdk-devel
     12:
       Ubuntu: openjdk-12-jdk
     13:

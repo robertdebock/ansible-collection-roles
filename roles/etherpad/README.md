@@ -83,7 +83,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|el|7, 8|
+|el|8|
 |debian|buster|
 |fedora|all|
 |ubuntu|focal|

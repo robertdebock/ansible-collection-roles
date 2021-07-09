@@ -31,7 +31,7 @@ _buildtools_packages:
     - openssl-devel
     - perl-Digest-SHA
     - python-devel
-  CentOS:
+  CentOS: &centos_packages
     - "@Development Tools"
     - elfutils-libelf-devel
     - libffi-devel
@@ -46,6 +46,7 @@ _buildtools_packages:
     - perl-Digest-SHA
     - python3-devel
     - libffi-devel
+  Rocky: *centos_packages
   Suse:
     - bison
     - gcc

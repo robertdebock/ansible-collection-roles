@@ -4,6 +4,10 @@
 # For more information see /usr/share/doc/rsyslog-*/rsyslog_conf.html
 # If you experience problems, see http://www.rsyslog.com/doc/troubleshoot.html
 
+{% if rsyslog_preservefqdn %}
+$PreserveFQDN on
+{% endif %}
+
 #### MODULES ####
 
 # The imjournal module bellow is now used as a message source instead of imuxsock.
@@ -11,6 +15,7 @@
 {{ '#' if not 'imjournal' in rsyslog_mods else '' }}$ModLoad imjournal # provides access to the systemd journal
 {{ '#' if not 'imklog'    in rsyslog_mods else '' }}$ModLoad imklog    # reads kernel messages (the same are read from journald)
 {{ '#' if not 'immark'    in rsyslog_mods else '' }}$ModLoad immark    # provides --MARK-- message capability
+{{ '#' if not 'imfile'    in rsyslog_mods else '' }}$ModLoad imfile    # provides access to specific log file
 
 # Provides UDP syslog reception
 {{ '' if rsyslog_receiver is defined else '#' }}$ModLoad imudp

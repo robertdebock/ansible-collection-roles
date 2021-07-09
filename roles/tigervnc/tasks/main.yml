@@ -49,7 +49,7 @@
   notify:
     - restart tigervnc
   when:
-    - ansible_distribution in ["CentOS", "RedHat"]
+    - ansible_distribution in [ "CentOS", "RedHat", "Rocky" ]
 
 - name: place .Xclients
   ansible.builtin.copy:
@@ -64,7 +64,6 @@
     path: /etc/tigervnc/vncserver.users
     line: :1={{ tigervnc_username }}
   when:
-    # - ansible_distribution in ["CentOS", "Fedora", "RedHat"]
     - ansible_os_family == "RedHat"
   notify:
     - restart tigervnc

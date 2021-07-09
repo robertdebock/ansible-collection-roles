@@ -6,7 +6,6 @@ _omsagent_requirements:
     - glibc
     - openssl
     - curl
-    # - python-ctypes
     - pam
     - wget
     - which
@@ -31,6 +30,7 @@ omsagent_url: "https://raw.githubusercontent.com/Microsoft/OMS-Agent-for-Linux/m
 
 _omsagent_service_state:
   default: started
-  RedHat: ""
+  RedHat: &redhat_service_state ""
+  Rocky: *redhat_service_state
 
 omsagent_service_state: "{{ _omsagent_service_state[ansible_os_family] | default(_omsagent_service_state['default']) }}"

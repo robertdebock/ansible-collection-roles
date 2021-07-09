@@ -25,7 +25,7 @@
     state: present
     disable_gpg_check: yes
   when:
-    - ansible_os_family == "RedHat"
+    - ansible_os_family in [ "RedHat", "Rocky" ]
 
 - name: start minikube once
   ansible.builtin.command:

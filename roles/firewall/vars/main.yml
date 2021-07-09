@@ -1,8 +1,6 @@
 ---
 # vars file for firewall
 
-# firewall_ansible_python_interpreter: "{{ _firewall_ansible_python_interpreter[ansible_distribution] |default(_firewall_ansible_python_interpreter['default']) }}"
-
 _firewall_packages:
   conflicting:
     default:
@@ -15,7 +13,8 @@ _firewall_packages:
     CentOS-8: []
     RedHat-7:
       - ufw
-    RedHat-8: []
+    RedHat-8: &redhat8_conflicting_packages []
+    Rocky-8: *redhat8_conflicting_packages
     Fedora:
       - ufw
     openSUSE Leap:
@@ -35,8 +34,9 @@ _firewall_packages:
       - firewalld
       - iptables
       - iptables-services
-    RedHat-8:
+    RedHat-8: &redhat8_required_packages
       - firewalld
+    Rocky-8: *redhat8_required_packages
     Fedora:
       - firewalld
       - python3-firewall
@@ -53,7 +53,8 @@ _firewall_service:
   CentOS-7: firewalld
   CentOS-8: firewalld
   RedHat-7: firewalld
-  RedHat-8: firewalld
+  RedHat-8: &redhat8_service firewalld
+  Rocky-8: *redhat8_service
   Fedora: firewalld
   openSUSE Leap: firewalld
 

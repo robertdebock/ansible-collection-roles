@@ -19,7 +19,7 @@
   ansible.builtin.assert:
     that:
       - item.name is string
-      - item.name in [ "consul", "nomad", "packer", "terraform", "vagrant", "vault" ]
+      - item.name in [ "consul", "consul-template", "nomad", "packer", "terraform", "vagrant", "vault" ]
       - item.version is not defined
     quiet: yes
   loop: "{{ hashicorp_products }}"
