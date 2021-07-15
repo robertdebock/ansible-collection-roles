@@ -2,7 +2,8 @@
 # vars file for remi
 _remi_repository:
   Fedora: "https://rpms.remirepo.net/fedora/remi-release-{{ ansible_distribution_major_version | int }}.rpm"
-  CentOS: "https://rpms.remirepo.net/enterprise/remi-release-{{ ansible_distribution_major_version | int }}.rpm"
+  CentOS: &centos_repository "https://rpms.remirepo.net/enterprise/remi-release-{{ ansible_distribution_major_version | int }}.rpm"
+  Rocky: *centos_repository
 
 remi_repository: "{{ _remi_repository[ansible_distribution] }}"
 

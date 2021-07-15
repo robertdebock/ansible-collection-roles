@@ -42,10 +42,6 @@
   when:
     - ansible_distribution in [ "Alpine", "Archlinux" ]
 
-- name: show mysql service
-  debug:
-    msg: "mysql_service: {{ mysql_service }}"
-
 - name: start and enable mysql
   ansible.builtin.service:
     name: "{{ mysql_service }}"
