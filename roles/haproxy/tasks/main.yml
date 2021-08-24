@@ -34,16 +34,30 @@
   when:
     - ansible_default_ipv4 is defined
 
-- name: add haproxy_stats_port to http_port_t selinux type
-  community.general.seport:
-    ports: "{{ haproxy_stats_port }}"
-    proto: tcp
-    setype: http_port_t
-    state: present
+- name: modify selinux settings
+  block:
+    - name: add haproxy_stats_port to http_port_t selinux type
+      community.general.seport:
+        ports: "{{ haproxy_stats_port }}"
+        proto: tcp
+        setype: http_port_t
+        state: present
+      when:
+        - haproxy_stats_port is defined
+    - name: allow haproxy to open any port
+      ansible.posix.seboolean:
+        name: haproxy_connect_any
+        state: yes
+        persistent: yes
+      notify:
+        - reboot
   when:
-    - haproxy_stats_port is defined
     - ansible_selinux.status is defined
     - ansible_selinux.status == "enabled"
+
+- name: flush handlers
+  meta: flush_handlers
+
 
 - name: start and enable haproxy
   ansible.builtin.service:

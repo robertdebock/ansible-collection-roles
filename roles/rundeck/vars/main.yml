@@ -4,7 +4,7 @@
 # The `rundeck_url` is a combination of variables set in `defaults/main.yml`.
 rundeck_url: "http://{{ rundeck_address }}:{{ rundeck_port }}{{ rundeck_server_web_context }}"
 
-rundeck_download_url: "https://dl.bintray.com/rundeck/rundeck-maven/org/rundeck/rundeck/rundeck-{{ rundeck_version }}-{{ rundeck_release_date }}.war"
+rundeck_download_url: "https://packagecloud.io/pagerduty/rundeck/packages/java/org.rundeck/rundeck-{{ rundeck_version }}-{{ rundeck_release_date }}.war/artifacts/rundeck-{{ rundeck_version }}-{{ rundeck_release_date }}.war/download"
 
 rundeck_war: "{{ rundeck_rdeckbase }}/rundeck-{{ rundeck_version }}-{{ rundeck_release_date }}.war"
 

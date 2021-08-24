@@ -2,10 +2,12 @@
 # vars file for openssl
 
 _openssl_requirements:
-  default: []
+  default:
+    - openssl
   Alpine:
     - rust
     - cargo
+    - openssl
 
 openssl_requirements: "{{ _openssl_requirements[ansible_os_family] | default(_openssl_requirements['default']) }}"
 

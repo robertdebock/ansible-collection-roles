@@ -8,7 +8,7 @@ Install and configure Nextcloud on your system.
 
 ## [Example Playbook](#example-playbook)
 
-This example is taken from `molecule/resources/converge.yml` and is tested on each push, pull request and release.
+This example is taken from `molecule/default/converge.yml` and is tested on each push, pull request and release.
 ```yaml
 ---
 - name: converge
@@ -27,7 +27,7 @@ This example is taken from `molecule/resources/converge.yml` and is tested on ea
           value: 0
 ```
 
-The machine needs to be prepared in CI this is done using `molecule/resources/prepare.yml`:
+The machine needs to be prepared in CI this is done using `molecule/default/prepare.yml`:
 ```yaml
 ---
 - name: prepare
@@ -78,7 +78,7 @@ These variables are set in `defaults/main.yml`:
 # defaults file for nextcloud
 
 # The version of nextcloud to install.
-nextcloud_version: 20.0.7
+nextcloud_version: 22.0.0
 
 # The domain under which this server will be available. For example:
 # "localhost" or "nextcloud.example.com". Does not include protocol identifier,
@@ -146,7 +146,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |el|8|
 |fedora|33|
 |opensuse|all|
-|ubuntu|focal, bionic|
+|ubuntu|focal|
 
 The minimum version of Ansible required is 2.10, tests have been done to:
 
@@ -171,6 +171,11 @@ If you find issues, please register them in [GitHub](https://github.com/robertde
 
 Apache-2.0
 
+## [Contributors](#contributors)
+
+I'd like to thank everybody that made contributions to this repository. It motivates me, improves the code and is just fun to collaborate.
+
+- [gotmax23](https://github.com/gotmax23)
 
 ## [Author Information](#author-information)
 

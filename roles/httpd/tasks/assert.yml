@@ -16,6 +16,13 @@
       - httpd_port < 65536
     quiet: yes
 
+- name: test if https_ssl_enable is set correctly
+  ansible.builtin.assert:
+    that:
+      - https_ssl_enable is defined
+      - https_ssl_enable is boolean
+    quiet: yes
+
 - name: test if httpd_ssl_servername is set correctly
   ansible.builtin.assert:
     that:

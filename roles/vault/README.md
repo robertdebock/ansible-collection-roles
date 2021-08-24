@@ -8,7 +8,7 @@ Install, configure, initialize and unseal Hashicorp Vault.
 
 ## [Example Playbook](#example-playbook)
 
-This example is taken from `molecule/resources/converge.yml` and is tested on each push, pull request and release.
+This example is taken from `molecule/default/converge.yml` and is tested on each push, pull request and release.
 ```yaml
 ---
 - name: converge
@@ -27,7 +27,7 @@ This example is taken from `molecule/resources/converge.yml` and is tested on ea
             zip: zap
 ```
 
-The machine needs to be prepared in CI this is done using `molecule/resources/prepare.yml`:
+The machine needs to be prepared in CI this is done using `molecule/default/prepare.yml`:
 ```yaml
 ---
 - name: prepare
@@ -51,6 +51,13 @@ These variables are set in `defaults/main.yml`:
 ```yaml
 ---
 # defaults file for vault
+
+# Set the owner and group of the Vault installation. This user and group
+# should exist before running this role. The service file (vault.service)
+# also refers to a user, `vault` by default. When using another value,
+# please also update the service file.
+vault_owner: vault
+vault_group: vault
 
 # Configure clustering.
 vault_disable_clustering: "false"
@@ -126,6 +133,10 @@ vault_kv_delete_version_after: 3h25m19s
 #     data:
 #       foo: bar
 #       zip: zap
+
+# The license is required for Vault enterprise. You can use a trail license:
+# https://www.hashicorp.com/products/vault/trial
+# vault_license: "PLEASE_DOWNLOAD_ONE_YOURSELF"
 ```
 
 ## [Requirements](#requirements)

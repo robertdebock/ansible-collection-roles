@@ -21,3 +21,6 @@ disable_mlock      = {{ vault_disable_mlock }}
 disable_clustering = "{{ vault_disable_clustering }}"
 plugin_directory   = "{{ vault_plugin_directory }}"
 ui                 = {{ vault_ui }}
+{% if vault_license is defined %}
+license_path       = "/etc/vault.d/vault.hclic"
+{% endif %}

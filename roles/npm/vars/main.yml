@@ -11,7 +11,7 @@ _npm_packages:
   default:
     - npm
   Alpine:
-    - nodejs-npm
+    - npm
   Debian:
     - nodejs
   Ubuntu:

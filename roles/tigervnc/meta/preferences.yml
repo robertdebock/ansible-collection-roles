@@ -2,3 +2,5 @@
 tox_parallel: yes
 tox_versions:
   - "2.10"
+  - "2.11"
+enterprise_linux: centos

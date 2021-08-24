@@ -15,7 +15,7 @@ bios_update_requirements: "{{ _bios_update_requirements[ansible_os_family] | def
 
 _bios_update_command:
   default: geteltorito
-  RedHat: &redhat_command genisoimageQ
+  RedHat: &redhat_command genisoimage
   Rocky: *redhat_command
 
 bios_update_command: "{{ _bios_update_command[ansible_os_family] | default(_bios_update_command['default']) }} -o {{ bios_update_temporary_directory }}/bios_update.img {{ bios_update_temporary_directory }}/{{ bios_update_url | basename }}"

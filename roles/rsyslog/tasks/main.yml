@@ -42,6 +42,18 @@
   notify:
     - restart rsyslog
 
+- name: configuring additional config files
+  ansible.builtin.copy:
+    content: "{{ item.value.content | default('') }}"
+    dest: "/etc/rsyslog.d/{{ item.key }}.conf"
+    validate: "{{ 'rsyslogd -N1 -f %s' if item.value.validate | default(false) else 'true %s' }}"
+    owner: root
+    group: root
+    mode: 0440
+  with_dict: "{{ rsyslog_rsyslog_d_files }}"
+  when: item.value.state | default('present') == 'present'
+  notify: restart rsyslog
+
 - name: start and enable rsyslog
   ansible.builtin.service:
     name: "{{ rsyslog_service }}"

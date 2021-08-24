@@ -1,6 +1,13 @@
 ---
 # defaults file for vault
 
+# Set the owner and group of the Vault installation. This user and group
+# should exist before running this role. The service file (vault.service)
+# also refers to a user, `vault` by default. When using another value,
+# please also update the service file.
+vault_owner: vault
+vault_group: vault
+
 # Configure clustering.
 vault_disable_clustering: "false"
 
@@ -75,3 +82,7 @@ vault_kv_delete_version_after: 3h25m19s
 #     data:
 #       foo: bar
 #       zip: zap
+
+# The license is required for Vault enterprise. You can use a trail license:
+# https://www.hashicorp.com/products/vault/trial
+# vault_license: "PLEASE_DOWNLOAD_ONE_YOURSELF"

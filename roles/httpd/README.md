@@ -8,7 +8,7 @@ Install and configure httpd on your system.
 
 ## [Example Playbook](#example-playbook)
 
-This example is taken from `molecule/resources/converge.yml` and is tested on each push, pull request and release.
+This example is taken from `molecule/default/converge.yml` and is tested on each push, pull request and release.
 ```yaml
 ---
 - name: Converge
@@ -18,6 +18,7 @@ This example is taken from `molecule/resources/converge.yml` and is tested on ea
 
   roles:
     - role: robertdebock.httpd
+      # https_ssl_enable: yes
       httpd_port: 8080
       httpd_ssl_port: 8443
       httpd_locations:
@@ -37,25 +38,25 @@ This example is taken from `molecule/resources/converge.yml` and is tested on ea
         - name: remote
           servername: www3.example.com
           remote: "http://localhost:3128/"
-        - name: backend_https
-          servername: www4.example.com
-          backend_url: "https://www.example.com/"
-        - name: piratebay
-          servername: piratebay.nl
-          backend_url: "https://thepirate-bay.org/"
-          proxy_preserve_host: Off
-          proxy_requests: Off
-          setenv:
-            - name: force-proxy-request-1.0
-              value: 1
-            - name: proxy-nokeepalive
-              value: 1
-            - name: proxy-initial-not-pooled
-            - name: proxy-sendchunks
-              value: 1
+        # - name: backend_https
+        #   servername: www4.example.com
+        #   backend_url: "https://www.example.com/"
+        # - name: piratebay
+        #   servername: piratebay.nl
+        #   backend_url: "https://thepirate-bay.org/"
+        #   proxy_preserve_host: Off
+        #   proxy_requests: Off
+        #   setenv:
+        #     - name: force-proxy-request-1.0
+        #       value: 1
+        #     - name: proxy-nokeepalive
+        #       value: 1
+        #     - name: proxy-initial-not-pooled
+        #     - name: proxy-sendchunks
+        #       value: 1
 ```
 
-The machine needs to be prepared in CI this is done using `molecule/resources/prepare.yml`:
+The machine needs to be prepared in CI this is done using `molecule/default/prepare.yml`:
 ```yaml
 ---
 - name: Prepare
@@ -88,6 +89,9 @@ httpd_servername: "{{ ansible_fqdn }}"
 
 # The non-SSL port to use.
 httpd_port: 80
+
+# Enable (self-signed certificates) SSL?
+https_ssl_enable: no
 
 # To configure https, set the hostname to listen to.
 httpd_ssl_servername: "{{ ansible_fqdn }}"

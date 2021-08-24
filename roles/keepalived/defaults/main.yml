@@ -19,6 +19,10 @@
 #     state: MASTER
 #   # `interface` defines the interface that VRRP runs on.
 #     interface: eth0
+#   # `unicast_src_ip` contains the primary address for unicasts.
+#     unicast_src_ip: 192.168.1.1
+#   # `secondary_private_ip` refers the the peer's unicast address.
+#     secondary_private_ip: 192.168.1.2
 #   # `virtual_router_id` is the unique identifier.
 #     virtual_router_id: 51
 #   # `priority` is the advertised priority.

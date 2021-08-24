@@ -1,5 +1,19 @@
 ---
 
+- name: test if vault_owner is set correctly
+  ansible.builtin.assert:
+    that:
+      - vault_owner is defined
+      - vault_owner is string
+    quiet: yes
+
+- name: test if vault_group is set correctly
+  ansible.builtin.assert:
+    that:
+      - vault_group is defined
+      - vault_group is string
+    quiet: yes
+
 - name: test if vault_disable_clustering is set correctly
   ansible.builtin.assert:
     that:
@@ -209,3 +223,11 @@
       - vault_kv_delete_version_after is defined
       - vault_kv_delete_version_after is string
     quiet: yes
+
+- name: test if vault_license is set correctly
+  ansible.builtin.assert:
+    that:
+      - vault_license is string
+    quiet: yes
+  when:
+    - vault_license is defined

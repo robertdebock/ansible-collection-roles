@@ -8,7 +8,7 @@ Install and configure Node RED on your system.
 
 ## [Example Playbook](#example-playbook)
 
-This example is taken from `molecule/resources/converge.yml` and is tested on each push, pull request and release.
+This example is taken from `molecule/default/converge.yml` and is tested on each push, pull request and release.
 ```yaml
 ---
 - name: converge
@@ -20,7 +20,7 @@ This example is taken from `molecule/resources/converge.yml` and is tested on ea
     - role: robertdebock.node_red
 ```
 
-The machine needs to be prepared in CI this is done using `molecule/resources/prepare.yml`:
+The machine needs to be prepared in CI this is done using `molecule/default/prepare.yml`:
 ```yaml
 ---
 - name: prepare
@@ -95,7 +95,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |debian|buster|
 |el|8|
 |fedora|all|
-|ubuntu|bionic, focal|
+|ubuntu|focal|
 
 The minimum version of Ansible required is 2.10, tests have been done to:
 

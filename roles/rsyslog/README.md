@@ -8,7 +8,7 @@ Install and configure rsyslog on your system.
 
 ## [Example Playbook](#example-playbook)
 
-This example is taken from `molecule/resources/converge.yml` and is tested on each push, pull request and release.
+This example is taken from `molecule/default/converge.yml` and is tested on each push, pull request and release.
 ```yaml
 ---
 - name: Converge
@@ -20,7 +20,7 @@ This example is taken from `molecule/resources/converge.yml` and is tested on ea
     - role: robertdebock.rsyslog
 ```
 
-The machine needs to be prepared in CI this is done using `molecule/resources/prepare.yml`:
+The machine needs to be prepared in CI this is done using `molecule/default/prepare.yml`:
 ```yaml
 ---
 - name: Prepare
@@ -75,6 +75,16 @@ rsyslog_mods:
 # Configure rsyslog minimally (may be in conflict with custom configuration files)
 rsyslog_deploy_default_config: yes
 
+# Default rsyslogd rules
+rsyslog_default_rules:
+  - { rule: '*.info;mail.none;authpriv.none;cron.none', logpath: '/var/log/messages' }
+  - { rule: 'authpriv.*', logpath: '/var/log/secure' }
+  - { rule: 'mail.*', logpath: '-/var/log/maillog' }
+  - { rule: 'cron.*', logpath: '/var/log/cron' }
+  - { rule: '*.emerg', logpath: ':omusrmsg:*' }
+  - { rule: 'uucp,news.crit', logpath: '/var/log/spooler' }
+  - { rule: 'local7.*', logpath: '/var/log/boot.log' }
+
 # Use the (obsolete) legacy, pre-v6 configuration file format, or the more
 # modern # 'advanced' configuration file format available in v6 and up. The
 # default is to use the 'legacy' format to not change config files for
@@ -94,6 +104,24 @@ rsyslog_package_state: present
 # part from a name that is within the same domain as the receiving system is
 # stripped. If set to on, full names are always used.
 rsyslog_preservefqdn: false
+
+# Configure additional config files in /etc/rsyslog.d
+# Example:
+# rsyslog_rsyslog_d_files:
+#   000-splunk:
+#     content: |
+#       auth,authpriv.* action(type="omfwd"
+#                              target="splunk"
+#                              port="514"
+#                              protocol="tcp")
+rsyslog_rsyslog_d_files: []
+
+# Avoid sd_journal_get_cursor() failed: Cannot assign requested address messages
+# due to logrotate
+rsyslog_workaroundjournalbug: false
+
+# Turns off message reception via local log socket
+rsyslog_imuxsock_syssock: false
 ```
 
 ## [Requirements](#requirements)
@@ -154,6 +182,7 @@ Apache-2.0
 
 I'd like to thank everybody that made contributions to this repository. It motivates me, improves the code and is just fun to collaborate.
 
+- [smutel](https://github.com/smutel)
 - [foonix](https://github.com/foonix)
 - [billmetangmo](https://github.com/billmetangmo)
 - [benformosa](https://github.com/benformosa)

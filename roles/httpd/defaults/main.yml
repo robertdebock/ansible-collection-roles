@@ -7,6 +7,9 @@ httpd_servername: "{{ ansible_fqdn }}"
 # The non-SSL port to use.
 httpd_port: 80
 
+# Enable (self-signed certificates) SSL?
+https_ssl_enable: no
+
 # To configure https, set the hostname to listen to.
 httpd_ssl_servername: "{{ ansible_fqdn }}"
 

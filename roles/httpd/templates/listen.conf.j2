@@ -20,7 +20,7 @@
 
 Listen {{ httpd_port }}
 
-
+{% if https_ssl_enable %}
 <IfDefine SSL>
 	<IfDefine !NOSSL>
 	<IfModule mod_ssl.c>
@@ -30,3 +30,4 @@ Listen {{ httpd_port }}
 	</IfModule>
 	</IfDefine>
 </IfDefine>
+{% endif %}

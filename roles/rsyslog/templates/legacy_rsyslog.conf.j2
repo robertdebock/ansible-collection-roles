@@ -1,88 +1,95 @@
 {{ ansible_managed | comment }}
-# rsyslog configuration file
+# /etc/rsyslog.conf configuration file for rsyslog
+#
+# For more information install rsyslog-doc and see
+# /usr/share/doc/rsyslog-doc/html/configuration/index.html
 
-# For more information see /usr/share/doc/rsyslog-*/rsyslog_conf.html
-# If you experience problems, see http://www.rsyslog.com/doc/troubleshoot.html
 
-{% if rsyslog_preservefqdn %}
-$PreserveFQDN on
-{% endif %}
-
+#################
 #### MODULES ####
+#################
 
 # The imjournal module bellow is now used as a message source instead of imuxsock.
 {{ '#' if not 'imuxsock'  in rsyslog_mods else '' }}$ModLoad imuxsock  # provides support for local system logging (e.g. via logger command)
 {{ '#' if not 'imjournal' in rsyslog_mods else '' }}$ModLoad imjournal # provides access to the systemd journal
-{{ '#' if not 'imklog'    in rsyslog_mods else '' }}$ModLoad imklog    # reads kernel messages (the same are read from journald)
+{{ '#' if not 'imklog'    in rsyslog_mods else '' }}$ModLoad imklog    # provides kernel logging support
 {{ '#' if not 'immark'    in rsyslog_mods else '' }}$ModLoad immark    # provides --MARK-- message capability
 {{ '#' if not 'imfile'    in rsyslog_mods else '' }}$ModLoad imfile    # provides access to specific log file
 
-# Provides UDP syslog reception
+# provides UDP syslog reception
 {{ '' if rsyslog_receiver is defined else '#' }}$ModLoad imudp
 {{ '' if rsyslog_receiver is defined else '#' }}$UDPServerRun 514
 
-# Provides TCP syslog reception
+# provides TCP syslog reception
 {{ '' if rsyslog_receiver is defined else '#' }}$ModLoad imtcp
 {{ '' if rsyslog_receiver is defined else '#' }}$InputTCPServerRun 514
 
+
+###########################
 #### GLOBAL DIRECTIVES ####
+###########################
 
-# Where to place auxiliary files
-$WorkDirectory {{ rsyslog_work_directory }}
-
-# Use default timestamp format
+#
+# Use traditional timestamp format.
+# To enable high precision timestamps, comment out the following line.
+#
 $ActionFileDefaultTemplate RSYSLOG_TraditionalFileFormat
 
-# File syncing capability is disabled by default. This feature is usually not required,
-# not useful and an extreme performance hit
-#$ActionFileEnableSync on
+#
+# Set the default permissions for all log files.
+#
+$FileCreateMode {{ rsyslog_filecreatemode }}
+$DirCreateMode {{ rsyslog_dircreatemode }}
 
+#
+# Where to place spool and state files
+#
+$WorkDirectory {{ rsyslog_work_directory }}
+
+#
 # Include all config files in /etc/rsyslog.d/
+#
 $IncludeConfig /etc/rsyslog.d/*.conf
 
+{% if rsyslog_preservefqdn %}
+#
+# Use FQDN (usefull when sending logs to another system)
+#
+$PreserveFQDN on
+{% endif %}
+
+#
+# File syncing capability is disabled by default. This feature is usually not required,
+# not useful and an extreme performance hit
+#
+#$ActionFileEnableSync on
+
+#
 # Turn off message reception via local log socket;
 # local messages are retrieved through imjournal now.
+#
 {{ '#' if 'imuxsock' in rsyslog_mods else '' }}$OmitLocalLogging on
 
+#
 # File to store the position in the journal
+#
 {{ '#' if not 'imjournal' in rsyslog_mods else '' }}$IMJournalStateFile imjournal.state
 
-# Set mode for new files and directories
-$DirCreateMode {{ rsyslog_dircreatemode }}
-$FileCreateMode {{ rsyslog_filecreatemode }}
-
-{% if rsyslog_deploy_default_config %}
+###############
 #### RULES ####
+###############
 
-# Log all kernel messages to the console.
-# Logging much else clutters up the screen.
-#kern.*                                                 /dev/console
+{% if rsyslog_default_rules is defined %}
+{% for item in rsyslog_default_rules %}
+{{ item.rule }} {{ item.logpath }}
+{% endfor %}
+{% endif %}
 
-# Log anything (except mail) of level info or higher.
-# Don't log private authentication messages!
-*.info;mail.none;authpriv.none;cron.none                /var/log/messages
+{% if rsyslog_remote is defined %}
+#########################
+#### FORWARDING RULE ####
+#########################
 
-# The authpriv file has restricted access.
-authpriv.*                                              /var/log/secure
-
-# Log all the mail messages in one place.
-mail.*                                                  -/var/log/maillog
-
-
-# Log cron stuff
-cron.*                                                  /var/log/cron
-
-# Everybody gets emergency messages
-*.emerg                                                 :omusrmsg:*
-
-# Save news errors of level crit and higher in a special file.
-uucp,news.crit                                          /var/log/spooler
-
-# Save boot messages also to boot.log
-local7.*                                                /var/log/boot.log
-
-
-# ### begin forwarding rule ###
 # The statement between the begin ... end define a SINGLE forwarding
 # rule. They belong together, do NOT split them. If you create multiple
 # forwarding rules, duplicate the whole block!
@@ -97,8 +104,6 @@ local7.*                                                /var/log/boot.log
 #$ActionResumeRetryCount -1    # infinite retries if host is down
 # remote host is: name/ip:port, e.g. 192.168.0.1:514, port optional
 #*.* @@remote-host:514
-{% if rsyslog_remote is defined %}
 {{ rsyslog_remote_selector }} {{ '@@' if rsyslog_remote_tcp else '@' }}{{ rsyslog_remote }}:{{ rsyslog_remote_port }}
-{% endif %}
 # ### end of the forwarding rule ###
 {% endif %}

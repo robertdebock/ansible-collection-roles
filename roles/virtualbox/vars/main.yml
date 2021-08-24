@@ -16,6 +16,7 @@ _virtualbox_repo_mapping:
   Fedora: fedora
   CentOS: el
   EL: el
+  Rocky: el
   openSUSE Leap: opensuse
 
 virtualbox_repo_mapping: "{{ _virtualbox_repo_mapping[ansible_distribution] }}"

@@ -7,11 +7,8 @@ httpd_sebooleans:
 _httpd_packages:
   default:
     - httpd
-    - mod_ssl
-    - openssl
   Alpine:
     - apache2
-    - apache2-ssl
     - apache2-proxy
   Debian:
     - apache2
@@ -20,6 +17,15 @@ _httpd_packages:
     - httpd
 
 httpd_packages: "{{ _httpd_packages[ansible_os_family] | default(_httpd_packages['default']) }}"
+
+_httpd_ssl_packages:
+  default:
+    - mod_ssl
+    - openssl
+  Alpine:
+    - apache2-ssl
+
+httpd_ssl_packages: "{{ _httpd_ssl_packages[ansible_os_family] | default(_httpd_ssl_packages['default']) }}"
 
 _httpd_service:
   default: httpd

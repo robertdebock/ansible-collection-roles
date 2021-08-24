@@ -13,24 +13,15 @@
 
 - name: install zabbix_server
   ansible.builtin.package:
-    name: zabbix-server-mysql
+    name:
+      - zabbix-server-mysql
+      - zabbix-sql-scripts
     state: present
-
-- name: find zabbix_documentation_directory
-  ansible.builtin.find:
-    paths:
-      - "{{ zabbix_server_docdir }}"
-    file_type: directory
-    use_regex: yes
-    patterns:
-      - '^zabbix-server-mysql'
-      - '^zabbix-server-mysql-.*'
-  register: zabbix_documentation_directory_found
 
 - name: unarchive zabbix schema
   ansible.builtin.command:
-    cmd: gunzip {{ zabbix_documentation_directory_found.files[-1].path }}/create.sql.gz
-    creates: "{{ zabbix_documentation_directory_found.files[-1].path }}/create.sql"
+    cmd: gunzip {{ zabbix_server_docdir }}/zabbix-sql-scripts/mysql/create.sql.gz
+    creates: "{{ zabbix_server_docdir }}/zabbix-sql-scripts/mysql/create.sql"
   notify:
     - import zabbix schema
     - restart zabbix_server

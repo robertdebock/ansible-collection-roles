@@ -62,6 +62,7 @@ _nextcloud_requirements:
     - php7-openssl
     - php7-pcntl
     - php7-posix
+    - php7-redis
     - php7-xmlreader
     - php7-xmlwriter
     - php7-zip

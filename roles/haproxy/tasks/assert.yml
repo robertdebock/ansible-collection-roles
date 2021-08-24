@@ -24,7 +24,7 @@
       - haproxy_retries >= 0
     quiet: yes
 
-- name: test if {{ item }} is set correctly
+- name: test if timeouts are set correctly
   ansible.builtin.assert:
     that:
       - item is defined
@@ -119,3 +119,26 @@
   loop: "{{ haproxy_backends }}"
   loop_control:
     label: "{{ item.name }}"
+
+- name: test if httpcheck item in haproxy_backends is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.httpcheck is boolean
+    quiet: yes
+  loop: "{{ haproxy_backends }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - item.httpcheck is defined
+
+- name: test if httpcheck_method item in haproxy_backends is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.httpcheck_method is string
+      - item.httpcheck is defined
+    quiet: yes
+  loop: "{{ haproxy_backends }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - item.httpcheck_method is defined

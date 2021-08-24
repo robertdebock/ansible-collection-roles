@@ -1,88 +1,88 @@
 {{ ansible_managed | comment }}
-# rsyslog configuration file
+# /etc/rsyslog.conf configuration file for rsyslog
+#
+# For more information install rsyslog-doc and see
+# /usr/share/doc/rsyslog-doc/html/configuration/index.html
 
-# For more information see /usr/share/doc/rsyslog-*/rsyslog_conf.html
-# or latest version online at http://www.rsyslog.com/doc/rsyslog_conf.html
-# If you experience problems, see http://www.rsyslog.com/doc/troubleshoot.html
 
-#### GLOBAL DIRECTIVES ####
-
-# Where to place auxiliary files
-global(workDirectory="{{ rsyslog_work_directory }}")
-
-# Use default timestamp format
-module(load="builtin:omfile" Template="RSYSLOG_TraditionalFileFormat")
-
-# Include all config files in /etc/rsyslog.d/
-include(file="/etc/rsyslog.d/*.conf" mode="optional")
-
-{% if rsyslog_preservefqdn %}
-$PreserveFQDN on
-{% endif %}
-
+#################
 #### MODULES ####
+#################
 
 # Provides support for local system logging (e.g. via logger command)
 # And turns off message reception via local log socket;
 # Local messages are retrieved through imjournal now.
-{{ '' if 'imuxsock' in rsyslog_mods else '#' }}module(load="imuxsock" SysSock.Use="off")
+{{ '' if 'imuxsock' in rsyslog_mods else '#' }}module(load="imuxsock"{{ ' SysSock.Use="off"' if not rsyslog_imuxsock_syssock else '' }})
 
 # Provides access to the systemd journal
 # And provides file to store the position in the journal
-{{ '' if 'imjournal' in rsyslog_mods else '#' }}module(load="imjournal" StateFile="imjournal.state")
+{{ '' if 'imjournal' in rsyslog_mods else '#' }}module(load="imjournal" StateFile="imjournal.state"{{ ' WorkAroundJournalBug="on"' if rsyslog_workaroundjournalbug else '' }})
 
-# reads kernel messages (the same are read from journald)
+# provides kernel logging support
 {{ '' if 'imklog' in rsyslog_mods else '#' }}module(load="imklog")
 
 # provides --MARK-- message capability
 {{ '' if 'immark' in rsyslog_mods else '#' }}module(load="immark")
 
-# Provides access to specific log file
+# provides access to specific log file
 {{ '' if 'imfile' in rsyslog_mods else '#' }}module(load="imfile")
 
-# Provides UDP syslog reception
-# for parameters see http://www.rsyslog.com/doc/imudp.html
+# provides UDP syslog reception
 {{ '' if rsyslog_receiver is defined else '#' }}module(load="imudp") # needs to be done just once
 {{ '' if rsyslog_receiver is defined else '#' }}input(type="imudp" port="514")
 
-# Provides TCP syslog reception
-# for parameters see http://www.rsyslog.com/doc/imtcp.html
+# provides TCP syslog reception
 {{ '' if rsyslog_receiver is defined else '#' }}module(load="imtcp") # needs to be done just once
 {{ '' if rsyslog_receiver is defined else '#' }}input(type="imtcp" port="514")
 
-{% if rsyslog_deploy_default_config %}
+###########################
+#### GLOBAL DIRECTIVES ####
+###########################
+
+#
+# Use traditional timestamp format.
+# To enable high precision timestamps, comment out the following line.
+#
+module(load="builtin:omfile" Template="RSYSLOG_TraditionalFileFormat")
+
+#
+# Set the default permissions for all log files.
+#
+$FileCreateMode {{ rsyslog_filecreatemode }}
+$DirCreateMode {{ rsyslog_dircreatemode }}
+
+#
+# Where to place spool and state files
+#
+global(workDirectory="{{ rsyslog_work_directory }}")
+
+{% if rsyslog_preservefqdn %}
+#
+# Use FQDN (usefull when sending logs to another system)
+#
+$PreserveFQDN on
+{% endif %}
+
+#
+# Include all config files in /etc/rsyslog.d/
+#
+include(file="/etc/rsyslog.d/*.conf" mode="optional")
+
+###############
 #### RULES ####
+###############
 
-# Log all kernel messages to the console.
-# Logging much else clutters up the screen.
-#kern.*                                                 /dev/console
-
-# Log anything (except mail) of level info or higher.
-# Don't log private authentication messages!
-*.info;mail.none;authpriv.none;cron.none                /var/log/messages
-
-# The authpriv file has restricted access.
-authpriv.*                                              /var/log/secure
-
-# Log all the mail messages in one place.
-mail.*                                                  -/var/log/maillog
-
-
-# Log cron stuff
-cron.*                                                  /var/log/cron
-
-# Everybody gets emergency messages
-*.emerg                                                 :omusrmsg:*
-
-# Save news errors of level crit and higher in a special file.
-uucp,news.crit                                          /var/log/spooler
-
-# Save boot messages also to boot.log
-local7.*                                                /var/log/boot.log
-
+{% if rsyslog_default_rules is defined %}
+{% for item in rsyslog_default_rules %}
+{{ item.rule }} {{ item.logpath }}
+{% endfor %}
+{% endif %}
 
 {% if rsyslog_remote is defined %}
-# ### sample forwarding rule ###
+#########################
+#### FORWARDING RULE ####
+#########################
+
 action(type="omfwd"
 # # An on-disk queue is created for this action. If the remote host is
 # # down, messages are spooled to disk and sent when it is up again.
@@ -95,6 +95,5 @@ action(type="omfwd"
 # # remote_host is: name/ip, e.g. 192.168.0.1, port optional e.g. 10514
 #Target="remote_host" Port="XXX" Protocol="tcp")
 Target="{{ rsyslog_remote }}" Port="{{ rsyslog_remote_port }}" Protocol="{{ 'tcp' if rsyslog_remote_tcp else 'udp' }}")
-{% endif %}
 # ### end of the forwarding rule ###
 {% endif %}

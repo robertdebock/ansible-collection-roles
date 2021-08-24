@@ -108,17 +108,17 @@ argument_specs:
             type: str
       snmpd_syslocation:
         type: str
-        required: yes
+        required: no
         default: Unknown
         description: "The location for a system."
       snmpd_syscontact:
         type: str
-        required: yes
+        required: no
         default: "Root <root@localhost>"
         description: "The contact for a system."
       snmpd_dontlogtcpwrappersconnects:
         type: str
-        required: yes
+        required: no
         default: "yes"
         description: "Prevent log entries."
         choices:
@@ -175,8 +175,7 @@ argument_specs:
             required: no
             type: int
       snmpd_load:
-        type: dics
-        elements: int
+        type: dict
         required: no
         description: "The load thresholds."
         suboptions:

@@ -3,8 +3,8 @@
   ansible.builtin.file:
     path: "{{ item.path }}"
     mode: "0750"
-    owner: vault
-    group: vault
+    owner: "{{ vault_owner }}"
+    group: "{{ vault_group }}"
     state: directory
   loop: "{{ vault_storages }}"
   loop_control:
@@ -14,8 +14,8 @@
   ansible.builtin.file:
     path: "{{ vault_plugin_directory }}"
     state: directory
-    owner: vault
-    group: vault
+    owner: "{{ vault_owner }}"
+    group: "{{ vault_group }}"
     mode: "0755"
 
 - name: select leader if vault_leader is unset
@@ -29,19 +29,31 @@
   ansible.builtin.file:
     path: /etc/vault.d
     state: directory
-    owner: vault
-    group: vault
+    owner: "{{ vault_owner }}"
+    group: "{{ vault_group }}"
     mode: "0755"
 
 - name: place /etc/vaultd.d/config.hcl
   ansible.builtin.template:
     src: config.hcl.j2
     dest: /etc/vault.d/vault.hcl
-    owner: vault
-    group: vault
+    owner: "{{ vault_owner }}"
+    group: "{{ vault_group }}"
     mode: "0640"
   notify:
     - restart vault
+
+- name: place vault license
+  ansible.builtin.copy:
+    content: "{{ vault_license }}"
+    dest: /etc/vault.d/vault.hclic
+    owner: "{{ vault_owner }}"
+    group: "{{ vault_group }}"
+    mode: "0400"
+  notify:
+    - restart vault
+  when:
+    - vault_license is defined
 
 - name: start vault
   ansible.builtin.service:

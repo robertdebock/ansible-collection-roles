@@ -1,4 +1,5 @@
 ---
 roles:
   - name: robertdebock.bootstrap
+  - name: robertdebock.ca_certificates
   - name: robertdebock.zabbix_repository
