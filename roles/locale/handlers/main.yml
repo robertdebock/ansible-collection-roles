@@ -4,6 +4,6 @@
 - name: localectl set-locale
   ansible.builtin.command: localectl set-locale LANG={{ locale_lang }}
   when:
-    - ansible_connection != "docker"
+    - ansible_connection not in [ "container", "docker", "community.docker.docker" ]
     - ansible_distribution != "Ubuntu"
     - ansible_distribution  != "Debian"

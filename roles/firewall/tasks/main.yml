@@ -27,7 +27,7 @@
     proto: "{{ item.protocol | default(firewall_default_protocol) }}"
   loop: "{{ firewall_services }}"
   when:
-    - ansible_connection != "docker"
+    - ansible_connection not in [ "container", "docker", "community.docker.docker" ]
     - firewall_services is defined
     - firewall_service == "ufw"
   loop_control:
@@ -41,7 +41,7 @@
     delete: yes
   loop: "{{ firewall_services }}"
   when:
-    - ansible_connection != "docker"
+    - ansible_connection not in [ "container", "docker", "community.docker.docker" ]
     - firewall_services is defined
     - firewall_service == "ufw"
     - item.state is defined
@@ -56,7 +56,7 @@
     state: enabled
   loop: "{{ firewall_services }}"
   when:
-    - ansible_connection != "docker"
+    - ansible_connection not in [ "container", "docker", "community.docker.docker" ]
     - firewall_services is defined
     - firewall_service == "firewalld"
     - item.name is number
@@ -72,7 +72,7 @@
     state: disabled
   loop: "{{ firewall_services }}"
   when:
-    - ansible_connection != "docker"
+    - ansible_connection not in [ "container", "docker", "community.docker.docker" ]
     - firewall_services is defined
     - firewall_service == "firewalld"
     - item.name is number
@@ -90,7 +90,7 @@
     state: enabled
   loop: "{{ firewall_services }}"
   when:
-    - ansible_connection != "docker"
+    - ansible_connection not in [ "container", "docker", "community.docker.docker" ]
     - firewall_services is defined
     - firewall_service == "firewalld"
     - item.name is not number
@@ -106,7 +106,7 @@
     state: disabled
   loop: "{{ firewall_services }}"
   when:
-    - ansible_connection != "docker"
+    - ansible_connection not in [ "container", "docker", "community.docker.docker" ]
     - firewall_services is defined
     - firewall_service == "firewalld"
     - item.name is not number
@@ -121,7 +121,7 @@
   community.general.ufw:
     state: enabled
   when:
-    - ansible_connection != "docker"
+    - ansible_connection not in [ "container", "docker", "community.docker.docker" ]
     - firewall_service == "ufw"
 
 - name: configure iptables
@@ -131,7 +131,7 @@
     validate: "iptables-restore --test %s"
     mode: "0640"
   when:
-    - ansible_connection != "docker"
+    - ansible_connection not in [ "container", "docker", "community.docker.docker" ]
     - firewall_services is defined
     - firewall_service == "iptables"
   loop_control:
@@ -145,5 +145,5 @@
     state: started
     enabled: yes
   when:
-    - ansible_connection != "docker"
+    - ansible_connection not in [ "container", "docker", "community.docker.docker" ]
     - firewall_service is defined

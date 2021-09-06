@@ -231,3 +231,11 @@
     quiet: yes
   when:
     - vault_license is defined
+
+- name: test if vault_log_level is set correctly
+  ansible.builtin.assert:
+    that:
+      - vault_log_level is defined
+      - vault_log_level is string
+      - vault_log_level in [ "trace", "debug", "info", "warn", "err" ]
+    quiet: yes

@@ -5,7 +5,7 @@
   changed_when: no
   register: tune2fs_values
   when:
-    - ansible_connection != "docker"
+    - ansible_connection not in [ "container", "docker", "community.docker.docker" ]
 
 - name: set maximum_count_mount
   ansible.builtin.command:

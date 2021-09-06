@@ -8,7 +8,7 @@ Install and configure selinux and its required libraries on your system.
 
 ## [Example Playbook](#example-playbook)
 
-This example is taken from `molecule/resources/converge.yml` and is tested on each push, pull request and release.
+This example is taken from `molecule/default/converge.yml` and is tested on each push, pull request and release.
 ```yaml
 ---
 - name: Converge
@@ -18,6 +18,7 @@ This example is taken from `molecule/resources/converge.yml` and is tested on ea
 
   roles:
     - role: robertdebock.selinux
+      selinux_reboot: no
       selinux_booleans:
         - name: http_can_network_connect
         - name: abrt_anon_write
@@ -25,7 +26,7 @@ This example is taken from `molecule/resources/converge.yml` and is tested on ea
           persistent: no
 ```
 
-The machine needs to be prepared in CI this is done using `molecule/resources/prepare.yml`:
+The machine needs to be prepared in CI this is done using `molecule/default/prepare.yml`:
 ```yaml
 ---
 - name: Prepare

@@ -42,4 +42,4 @@
     state: started
     enabled: yes
   when:
-    - ansible_connection != "docker"
+    - ansible_connection not in [ "container", "docker", "community.docker.docker" ]

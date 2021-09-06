@@ -15,6 +15,7 @@ tomcat_shutdown_port: 8005
 tomcat_shutdown_pass: SHUTDOWN
 tomcat_ajp_enabled: yes
 tomcat_ajp_port: 8009
+tomcat_ajp_secret: "SoMe-SeCrEt"
 tomcat_jre_home: /usr
 tomcat_service_state: started
 tomcat_service_enabled: yes
@@ -48,7 +49,7 @@ tomcat_instances:
     shutdown_port: "{{ tomcat_shutdown_port }}"
     ajp_enabled: "{{ tomcat_ajp_enabled }}"
     ajp_port: "{{ tomcat_ajp_port }}"
-    ajp_secret: ""
+    ajp_secret: "{{ tomcat_ajp_secret }}"
     # You can pick an address per instance:
     # address: 127.0.0.1
     packet_size: "8192"

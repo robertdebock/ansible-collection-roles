@@ -102,6 +102,14 @@ nextcloud_admin_pass: N3x4Cl0ud
 #   - name: max_chunk_size
 #     section: files
 #     value: 0
+
+# You can install nextcloud on a location of your choice. Distribution specific
+# destinations are set in `vars/main.yml`, which are looked-up here. Feel free
+# to overwrite the destination to some destination you prefer. For example:
+#
+# nextcloud_destination: /opt
+#
+nextcloud_destination: "{{ _nextcloud_destination[ansible_distribution] | default(_nextcloud_destination['default']) }}"
 ```
 
 ## [Requirements](#requirements)

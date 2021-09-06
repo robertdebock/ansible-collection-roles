@@ -8,7 +8,7 @@
 - name: load rules
   ansible.builtin.command: augenrules --load
   when:
-    - ansible_connection != "docker"
+    - ansible_connection not in [ "container", "docker", "community.docker.docker" ]
 
 - name: restart auditd
   ansible.builtin.service:

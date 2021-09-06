@@ -3,6 +3,8 @@
   community.crypto.openssl_privatekey:
     path: "{{ openssl_key_directory }}/{{ item.name }}.key"
     mode: "640"
+    owner: "{{ openssl_file_owner }}"
+    group: "{{ openssl_file_group }}"
 
 - name: create ssl csr
   community.crypto.openssl_csr:
@@ -10,6 +12,8 @@
     privatekey_path: "{{ openssl_key_directory }}/{{ item.name }}.key"
     common_name: "{{ item.common_name }}"
     mode: "644"
+    owner: "{{ openssl_file_owner }}"
+    group: "{{ openssl_file_group }}"
 
 - name: create ssl certificates
   community.crypto.openssl_certificate:
@@ -18,6 +22,8 @@
     csr_path: "{{ openssl_csr_directory }}/{{ item.name }}.csr"
     provider: selfsigned
     mode: "644"
+    owner: "{{ openssl_file_owner }}"
+    group: "{{ openssl_file_group }}"
 
 - name: create PKCS#12 file
   community.crypto.openssl_pkcs12:
@@ -28,6 +34,8 @@
     certificate_path: "{{ openssl_crt_directory }}/{{ item.name }}.crt"
     state: present
     mode: "640"
+    owner: "{{ openssl_file_owner }}"
+    group: "{{ openssl_file_group }}"
 
 - name: read private key
   ansible.builtin.slurp:
@@ -46,3 +54,5 @@
       {{ openssl_private_key.content | b64decode | trim }}
       {{ openssl_certifcate.content | b64decode | trim }}
     mode: "640"
+    owner: "{{ openssl_file_owner }}"
+    group: "{{ openssl_file_group }}"

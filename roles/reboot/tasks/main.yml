@@ -30,7 +30,7 @@
       when:
         - reboot_rhel_needs_restarting_executable.stat.exists
   when:
-    - ansible_connection != "docker"
+    - ansible_connection not in [ "container", "docker", "community.docker.docker" ]
     - ansible_os_family in [ "RedHat", "Rocky" ]
 
 - name: configure debian
@@ -50,14 +50,14 @@
       when:
         - reboot_debian_needsrestart_executable.stat.exists
   when:
-    - ansible_connection != "docker"
+    - ansible_connection not in [ "container", "docker", "community.docker.docker" ]
     - ansible_os_family == "Debian"
 
 - name: include reboot
   ansible.builtin.include_tasks:
     file: reboot.yml
   when:
-    - ansible_connection != "docker"
+    - ansible_connection not in [ "container", "docker", "community.docker.docker" ]
     - (reboot_always | bool)
       or (reboot_rhel_needsrestarting.changed | default(no))
       or (reboot_debian_needrestarting.changed | default(no))

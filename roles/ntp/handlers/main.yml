@@ -1,9 +1,10 @@
 ---
 # handlers file for ntp
 
-- name: restart ntp/chrony
+- name: restart {{ ntp_service }}
   ansible.builtin.service:
     name: "{{ ntp_service }}"
     state: restarted
   when:
     - not ansible_check_mode | bool
+    - ntp_state == "started"

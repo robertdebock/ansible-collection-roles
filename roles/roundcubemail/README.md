@@ -16,8 +16,15 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
   become: yes
   gather_facts: yes
 
+  vars_files:
+    ../../vars/main.yml
+
   roles:
     - role: robertdebock.httpd
+      httpd_vhosts:
+        - name: docroot
+          servername: roundcubemail.example.com
+          documentroot: "{{ roundcubemail_install_directory }}"
     - role: robertdebock.roundcubemail
 ```
 

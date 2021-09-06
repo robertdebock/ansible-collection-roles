@@ -408,3 +408,15 @@
     label: "{{ item.name }}"
   when:
     - item.packet_size is defined
+
+- name: test if item.ajp_secret in tomcat_instances is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.ajp_secret is string
+      - item.ajp_secret | length > 0
+    quiet: yes
+  loop: "{{ tomcat_instances }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - item.ajp_secret is defined

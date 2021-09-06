@@ -4,6 +4,8 @@
 - name: test httpd configuration validity
   ansible.builtin.command: "{{ httpd_binary }} -t"
   changed_when: no
+  when:
+    - ansible_os_family != "Suse"
 
 - name: restart httpd
   ansible.builtin.service:

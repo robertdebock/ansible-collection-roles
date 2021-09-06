@@ -26,4 +26,4 @@
   loop: "{{ vdo_devices }}"
   when:
     - vdo_devices is defined
-    - ansible_connection != "docker"
+    - ansible_connection not in [ "container", "docker", "community.docker.docker" ]

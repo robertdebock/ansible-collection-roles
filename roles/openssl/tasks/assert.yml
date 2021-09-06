@@ -20,3 +20,17 @@
       - openssl_crt_directory is defined
       - openssl_crt_directory is string
     quiet: yes
+
+- name: test if openssl_file_owner is set correctly
+  ansible.builtin.assert:
+    that:
+      - openssl_file_owner is defined
+      - openssl_file_owner is string
+    quiet: yes
+
+- name: test if openssl_file_group is set correctly
+  ansible.builtin.assert:
+    that:
+      - openssl_file_group is defined
+      - openssl_file_group is string
+    quiet: yes

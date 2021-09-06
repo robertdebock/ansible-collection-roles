@@ -28,12 +28,12 @@
 {{ '' if 'imfile' in rsyslog_mods else '#' }}module(load="imfile")
 
 # provides UDP syslog reception
-{{ '' if rsyslog_receiver is defined else '#' }}module(load="imudp") # needs to be done just once
-{{ '' if rsyslog_receiver is defined else '#' }}input(type="imudp" port="514")
+{{ '' if rsyslog_receiver else '#' }}module(load="imudp") # needs to be done just once
+{{ '' if rsyslog_receiver else '#' }}input(type="imudp" port="514")
 
 # provides TCP syslog reception
-{{ '' if rsyslog_receiver is defined else '#' }}module(load="imtcp") # needs to be done just once
-{{ '' if rsyslog_receiver is defined else '#' }}input(type="imtcp" port="514")
+{{ '' if rsyslog_receiver else '#' }}module(load="imtcp") # needs to be done just once
+{{ '' if rsyslog_receiver else '#' }}input(type="imtcp" port="514")
 
 ###########################
 #### GLOBAL DIRECTIVES ####

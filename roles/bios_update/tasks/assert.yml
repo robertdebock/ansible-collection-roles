@@ -20,3 +20,10 @@
       - bios_update_flash_drive is defined
       - bios_update_flash_drive is string
     quiet: yes
+
+- name: test if bios_update_write is set correctly
+  ansible.builtin.assert:
+    that:
+      - bios_update_write is defined
+      - bios_update_write is boolean
+    quiet: yes

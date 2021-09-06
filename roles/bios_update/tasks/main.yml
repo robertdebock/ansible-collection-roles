@@ -38,6 +38,4 @@
     cmd: dd if={{ bios_update_temporary_directory }}/bios_update.img of={{ bios_update_flash_drive }} bs=64K
     creates: "{{ bios_update_flash_drive }}1"
   when:
-    - not ci | bool
-  vars:
-    ci: "{{ lookup('env', 'CI') }}"
+    - bios_update_write

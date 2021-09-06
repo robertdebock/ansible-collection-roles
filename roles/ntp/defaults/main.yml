@@ -1,6 +1,12 @@
 ---
 # defaults file for ntp
 
+# The state of the NTP service.
+ntp_state: started
+
+# The state of the NTP service at boot.
+ntp_enabled: yes
+
 # A list of IP addresses to listen on.
 ntp_interfaces:
   - address: 127.0.0.1

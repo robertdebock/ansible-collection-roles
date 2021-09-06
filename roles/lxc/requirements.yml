@@ -1,0 +1,8 @@
+---
+roles:
+  - name: robertdebock.bootstrap
+  - name: robertdebock.epel
+  - name: robertdebock.buildtools
+  - name: robertdebock.python_pip
+collections:
+  - name: community.general

@@ -8,7 +8,7 @@ Install and configure Collabora Online CODE on your system.
 
 ## [Example Playbook](#example-playbook)
 
-This example is taken from `molecule/resources/converge.yml` and is tested on each push, pull request and release.
+This example is taken from `molecule/default/converge.yml` and is tested on each push, pull request and release.
 ```yaml
 ---
 - name: converge
@@ -20,7 +20,7 @@ This example is taken from `molecule/resources/converge.yml` and is tested on ea
     - role: robertdebock.collabora_online
 ```
 
-The machine needs to be prepared in CI this is done using `molecule/resources/prepare.yml`:
+The machine needs to be prepared in CI this is done using `molecule/default/prepare.yml`:
 ```yaml
 ---
 - name: prepare
@@ -31,6 +31,15 @@ The machine needs to be prepared in CI this is done using `molecule/resources/pr
   roles:
     - role: robertdebock.bootstrap
     - role: robertdebock.ca_certificates
+    - role: robertdebock.users
+      users_group_list:
+        - name: lool
+      users_user_list:
+        - name: lool
+          group: lool
+          home: /opt/lool
+          shell: /usr/sbin/nologin
+          system: yes
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.
@@ -42,8 +51,41 @@ These variables are set in `defaults/main.yml`:
 ---
 # defaults file for collabora_online
 
+# You can set the type of installation; either "code" or "licensed".
+collabora_online_type: code
+
+# In case "LICENSED" is set for `collabora_online_type`, a version is required.
+collabora_online_version: "6.4"
+
+# When using `collabora_online_type: licensed` and running on RHEL systems, you
+# need to set this variable. Get it from https://support.collaboraoffice.com/ .
+# collabora_online_secret_key: "abc-def-ghi-jkl-mno"
+
+# The languages allowed.
+# collabora_online_allowed_languages: "de_DE en_GB en_US es_ES fr_FR it nl pt_BR pt_PT ru"
+
 # Manage SSL capabilities, either "false" or "true". (As a string.)
 collabora_online_ssl_enabled: "false"
+
+# These settings become relevant when `collabora_online_ssl_enabled` is set to
+# `yes`.
+collabora_online_ssl_cert: /etc/loolwsd/loolwsd.crt
+collabora_online_ssl_key: /etc/loolwsd/loolwsd.key
+collabora_online_ssl_ca: /etc/loolwsd/loolwsd.keycrt
+collabora_online_ciphers: "ALL:!ADH:!LOW:!EXP:!MD5:@STRENGTH"
+
+# You can manage the mounting feature. Either "false" or "true". (As a string.)
+collabora_online_mount_jail_tree: "true"
+
+# Set the log level. Can be 0 through 8, none or "fatal", "critical", "error",
+# "warning", "notice", "information", "debug", "trace".
+collabora_online_log_level: warning
+
+# Set the username for the admin console.
+collabora_online_admin_username: "admin"
+
+# Set the password for the admin console.
+collabora_online_admin_password: "50m3-53cu23-p455w02d."
 ```
 
 ## [Requirements](#requirements)
@@ -58,6 +100,7 @@ The following roles are used to prepare a system. You may choose to prepare your
 |-------------|--------|--------|
 |[robertdebock.bootstrap](https://galaxy.ansible.com/robertdebock/bootstrap)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-bootstrap/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-bootstrap/actions)|[![Build Status GitLab ](https://gitlab.com/robertdebock/ansible-role-bootstrap/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-bootstrap)|
 |[robertdebock.ca_certificates](https://galaxy.ansible.com/robertdebock/ca_certificates)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-ca_certificates/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-ca_certificates/actions)|[![Build Status GitLab ](https://gitlab.com/robertdebock/ansible-role-ca_certificates/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-ca_certificates)|
+|[robertdebock.users](https://galaxy.ansible.com/robertdebock/users)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-users/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-users/actions)|[![Build Status GitLab ](https://gitlab.com/robertdebock/ansible-role-users/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-users)|
 
 ## [Context](#context)
 
@@ -73,7 +116,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |container|tags|
 |---------|----|
 |debian|buster|
-|el|8|
+|el|7, 8|
 |ubuntu|focal, bionic|
 
 The minimum version of Ansible required is 2.9, tests have been done to:

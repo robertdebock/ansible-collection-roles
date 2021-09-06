@@ -41,9 +41,8 @@ These variables are set in `defaults/main.yml`:
 ---
 # defaults file for rsyslog
 
-# To configure a server to reveice logs, set rsyslog_receiver to yes.
-# Not setting this value will not configure the server tor receive logs.
-# rsyslog_receiver: yes
+# To configure a server to receive logs, set rsyslog_receiver to yes.
+rsyslog_receiver: no
 
 # To forward logs to another server, set rsyslog_remote to the hostname or
 # the ipaddress of the receiving rsyslog server.
@@ -187,6 +186,7 @@ I'd like to thank everybody that made contributions to this repository. It motiv
 - [billmetangmo](https://github.com/billmetangmo)
 - [benformosa](https://github.com/benformosa)
 - [chancez](https://github.com/chancez)
+- [bajzekm](https://github.com/bajzekm)
 - [wzzrd](https://github.com/wzzrd)
 
 ## [Author Information](#author-information)

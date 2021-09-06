@@ -6,7 +6,7 @@
     name: "{{ firewall_service }}"
     state: reloaded
   when:
-    - ansible_connection != "docker"
+    - ansible_connection not in [ "container", "docker", "community.docker.docker" ]
     - not ansible_check_mode | bool
 
 - name: reload firewalld

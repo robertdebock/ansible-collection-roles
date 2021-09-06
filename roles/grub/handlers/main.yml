@@ -4,7 +4,7 @@
 - name: update grub
   ansible.builtin.command: "{{ grub_update_grub_command }}"
   when:
-    - ansible_connection != "docker"
+    - ansible_connection not in [ "container", "docker", "community.docker.docker" ]
   notify:
     - reboot
 

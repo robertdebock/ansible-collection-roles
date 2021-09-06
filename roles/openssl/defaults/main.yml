@@ -18,3 +18,7 @@ openssl_csr_directory: "{{ _openssl_csr_directory[ansible_os_family] | default(_
 
 # This directory stores public, persistent objects. (crt)
 openssl_crt_directory: "{{ _openssl_crt_directory[ansible_os_family] | default(_openssl_crt_directory['default']) }}"
+
+# You can change the owner and group of file created by this role.
+openssl_file_owner: root
+openssl_file_group: root

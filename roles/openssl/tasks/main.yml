@@ -20,24 +20,24 @@
     path: "{{ openssl_key_directory }}"
     state: directory
     mode: "750"
-    owner: root
-    group: root
+    owner: "{{ openssl_file_owner }}"
+    group: "{{ openssl_file_group }}"
 
 - name: create csr directory
   ansible.builtin.file:
     path: "{{ openssl_csr_directory }}"
     state: directory
     mode: "755"
-    owner: root
-    group: root
+    owner: "{{ openssl_file_owner }}"
+    group: "{{ openssl_file_group }}"
 
 - name: create crt directory
   ansible.builtin.file:
     path: "{{ openssl_crt_directory }}"
     state: directory
     mode: "755"
-    owner: root
-    group: root
+    owner: "{{ openssl_file_owner }}"
+    group: "{{ openssl_file_group }}"
 
 - name: include create.yml
   ansible.builtin.include_tasks:

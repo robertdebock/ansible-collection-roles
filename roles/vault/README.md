@@ -137,6 +137,9 @@ vault_kv_delete_version_after: 3h25m19s
 # The license is required for Vault enterprise. You can use a trail license:
 # https://www.hashicorp.com/products/vault/trial
 # vault_license: "PLEASE_DOWNLOAD_ONE_YOURSELF"
+
+# Set the log_level. Either "trace", "debug", "info", "warn" or "err".
+vault_log_level: "info"
 ```
 
 ## [Requirements](#requirements)

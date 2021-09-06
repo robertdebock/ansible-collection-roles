@@ -1,0 +1,25 @@
+---
+
+- name: create docroot
+  ansible.builtin.file:
+    path: "{{ item.documentroot }}"
+    state: directory
+    mode: "0755"
+  loop: "{{ httpd_vhosts }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - httpd_vhosts is defined
+    - item.documentroot is defined
+
+- name: configure vhosts
+  ansible.builtin.template:
+    src: vhost.conf.j2
+    dest: "{{ httpd_config_directory }}/{{ item.name }}.conf"
+    mode: "0644"
+  loop: "{{ httpd_vhosts }}"
+  loop_control:
+    label: "{{ item.name }}"
+  notify:
+    - test httpd configuration validity
+    - restart httpd

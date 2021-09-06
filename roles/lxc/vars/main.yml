@@ -1,0 +1,19 @@
+---
+# vars file for lxc
+
+lxc_packages:
+  - lxc
+  - lxc-templates
+  - python3-lxc
+  - dnsmasq
+  - libvirt
+  - iproute
+  - debootstrap
+  - perl
+  - gpg
+  - bridge-utils
+
+lxc_services:
+  - libvirtd
+  - lxc
+  - lxc-net

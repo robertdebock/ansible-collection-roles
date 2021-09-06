@@ -36,59 +36,6 @@
     - ansible_selinux.status is defined
     - ansible_selinux.status == "enabled"
 
-- name: configure ssl
-  block:
-    - name: install ssl packages
-      package:
-        name: "{{ httpd_ssl_packages }}"
-        state: present
-    - name: place configuration
-      ansible.builtin.template:
-        src: ssl.conf.j2
-        dest: "{{ httpd_config_directory }}/ssl.conf"
-        mode: "0644"
-      notify:
-        - test httpd configuration validity
-        - restart httpd
-    - name: configure redirect from http to https
-      ansible.builtin.template:
-        src: default_vhost.conf.j2
-        dest: "{{ httpd_config_directory }}/default_vhost.conf"
-        mode: "0644"
-      notify:
-        - test httpd configuration validity
-        - restart httpd
-  when:
-    - https_ssl_enable
-
-- name: configure locations
-  ansible.builtin.template:
-    src: location.conf.j2
-    dest: "{{ httpd_config_directory }}/{{ item.name }}.conf"
-    mode: "0644"
-  loop: "{{ httpd_locations }}"
-  loop_control:
-    label: "{{ item.name }}"
-  notify:
-    - test httpd configuration validity
-    - restart httpd
-  when:
-    - httpd_locations is defined
-
-- name: configure vhosts
-  ansible.builtin.template:
-    src: vhost.conf.j2
-    dest: "{{ httpd_config_directory }}/{{ item.name }}.conf"
-    mode: "0644"
-  loop: "{{ httpd_vhosts }}"
-  loop_control:
-    label: "{{ item.name }}"
-  notify:
-    - test httpd configuration validity
-    - restart httpd
-  when:
-    - httpd_vhosts is defined
-
 - name: configure httpd
   ansible.builtin.template:
     src: "{{ httpd_config_src }}"
@@ -98,7 +45,22 @@
     - test httpd configuration validity
     - restart httpd
 
-- name: configure listening ports
+- name: import ssl.yml
+  ansible.builtin.import_tasks: ssl.yml
+  when:
+    - https_ssl_enable
+
+- name: import locations.yml
+  ansible.builtin.import_tasks: locations.yml
+  when:
+    - httpd_locations is defined
+
+- name: import vhosts.yml
+  ansible.builtin.import_tasks: vhosts.yml
+  when:
+    - httpd_vhosts is defined
+
+- name: configure ports
   ansible.builtin.template:
     src: "{{ httpd_ports_conf }}.j2"
     dest: "{{ httpd_server_root }}/{{ httpd_ports_conf }}"
@@ -109,17 +71,10 @@
   when:
     - ansible_os_family in [ "Debian", "Suse" ]
 
-- name: create docroot
-  ansible.builtin.file:
-    path: "{{ item.documentroot }}"
-    state: directory
-    mode: "0755"
-  loop: "{{ httpd_vhosts }}"
-  loop_control:
-    label: "{{ item.name }}"
+- name: import directories.yml
+  ansible.builtin.import_tasks: directories.yml
   when:
-    - httpd_vhosts is defined
-    - item.documentroot is defined
+    - httpd_directories is defined
 
 - name: flush handlers
   ansible.builtin.meta: flush_handlers

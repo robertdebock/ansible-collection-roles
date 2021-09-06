@@ -17,12 +17,12 @@
 {{ '#' if not 'imfile'    in rsyslog_mods else '' }}$ModLoad imfile    # provides access to specific log file
 
 # provides UDP syslog reception
-{{ '' if rsyslog_receiver is defined else '#' }}$ModLoad imudp
-{{ '' if rsyslog_receiver is defined else '#' }}$UDPServerRun 514
+{{ '' if rsyslog_receiver else '#' }}$ModLoad imudp
+{{ '' if rsyslog_receiver else '#' }}$UDPServerRun 514
 
 # provides TCP syslog reception
-{{ '' if rsyslog_receiver is defined else '#' }}$ModLoad imtcp
-{{ '' if rsyslog_receiver is defined else '#' }}$InputTCPServerRun 514
+{{ '' if rsyslog_receiver else '#' }}$ModLoad imtcp
+{{ '' if rsyslog_receiver else '#' }}$InputTCPServerRun 514
 
 
 ###########################

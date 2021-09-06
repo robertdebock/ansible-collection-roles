@@ -1,0 +1,22 @@
+---
+
+- name: install ssl packages
+  ansible.builtin.package:
+    name: "{{ httpd_ssl_packages }}"
+    state: present
+- name: place configuration
+  ansible.builtin.template:
+    src: ssl.conf.j2
+    dest: "{{ httpd_config_directory }}/ssl.conf"
+    mode: "0644"
+  notify:
+    - test httpd configuration validity
+    - restart httpd
+- name: configure redirect from http to https
+  ansible.builtin.template:
+    src: default_vhost.conf.j2
+    dest: "{{ httpd_config_directory }}/default_vhost.conf"
+    mode: "0644"
+  notify:
+    - test httpd configuration validity
+    - restart httpd

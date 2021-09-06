@@ -23,6 +23,6 @@
     - sysctl_items is defined
     - item.name is defined
     - item.value is defined
-    - ansible_connection != "docker"
+    - ansible_connection not in [ "container", "docker", "community.docker.docker" ]
   loop_control:
     label: "{{ item.name }}"

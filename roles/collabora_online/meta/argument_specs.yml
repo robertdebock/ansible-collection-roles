@@ -6,6 +6,25 @@ argument_specs:
     description: "Collabora Online Development Edition (CODE) installation an configuration."
     author: Robert de Bock
     options:
+      collabora_online_type:
+        type: "str"
+        default: code
+        description: "The type of installation."
+        choices:
+          - "code"
+          - "licensed"
+      collabora_online_version:
+        type: "str"
+        default: "6.4"
+        description: "The version to install, only required for licensed installation."
+      collabora_online_secret_key:
+        type: "str"
+        required: no
+        description: "The secret key as handed out by Collabora."
+      collabora_online_allowed_languages:
+        type: "str"
+        required: no
+        description: "The languages allowed."
       collabora_online_ssl_enabled:
         type: "str"
         default: false
@@ -13,3 +32,19 @@ argument_specs:
         choices:
           - "false"
           - "true"
+      collabora_online_ssl_cert:
+        type: "str"
+        default: /etc/loolwsd/cert.pem
+        description: "The absolute path to the SSL certificate."
+      collabora_online_ssl_key:
+        type: "str"
+        default: /etc/loolwsd/key.pem
+        description: "The absolute path to the SSL key."
+      collabora_online_ssl_ca:
+        type: "str"
+        default: /etc/loolwsd/ca-chain.cert.pem
+        description: "The absolute path to the SSL certificate."
+      collabora_online_ssl_ciphers:
+        type: "str"
+        default: "ALL:!ADH:!LOW:!EXP:!MD5:@STRENGTH"
+        description: "A list of ciphers."

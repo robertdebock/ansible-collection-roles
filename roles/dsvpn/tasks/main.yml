@@ -58,7 +58,7 @@
     name: tun
     state: present
   when:
-    - ansible_connection != "docker"
+    - ansible_connection not in [ "container", "docker", "community.docker.docker" ]
 
 - name: create /dev/net directory
   ansible.builtin.file:

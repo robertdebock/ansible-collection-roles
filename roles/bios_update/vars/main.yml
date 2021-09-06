@@ -9,7 +9,7 @@ _bios_update_requirements:
     - libperl4-corelibs-perl
   RedHat: &redhat_requirements
     - genisoimage
-  Rokcy: *redhat_requirements
+  Rocky: *redhat_requirements
 
 bios_update_requirements: "{{ _bios_update_requirements[ansible_os_family] | default(_bios_update_requirements['default']) }}"
 

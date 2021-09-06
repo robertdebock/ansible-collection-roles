@@ -24,3 +24,4 @@ ui                 = {{ vault_ui }}
 {% if vault_license is defined %}
 license_path       = "/etc/vault.d/vault.hclic"
 {% endif %}
+log_level          = "{{ vault_log_level }}"

@@ -8,7 +8,7 @@ Install and configure tomcat on your system.
 
 ## [Example Playbook](#example-playbook)
 
-This example is taken from `molecule/resources/converge.yml` and is tested on each push, pull request and release.
+This example is taken from `molecule/default/converge.yml` and is tested on each push, pull request and release.
 ```yaml
 ---
 - name: converge
@@ -86,6 +86,7 @@ This example is taken from `molecule/resources/converge.yml` and is tested on ea
         non_ssl_connector_port: 8090
         ssl_connector_port: 8452
         ajp_port: 8019
+        ajp_secret: "SoMe-SeCrEt"
         config_files:
           - src: "{{ role_path }}/files/dummy.properties"
             dest: "./"
@@ -95,7 +96,7 @@ This example is taken from `molecule/resources/converge.yml` and is tested on ea
     - role: robertdebock.tomcat
 ```
 
-The machine needs to be prepared in CI this is done using `molecule/resources/prepare.yml`:
+The machine needs to be prepared in CI this is done using `molecule/default/prepare.yml`:
 ```yaml
 ---
 - name: prepare
@@ -132,6 +133,7 @@ tomcat_shutdown_port: 8005
 tomcat_shutdown_pass: SHUTDOWN
 tomcat_ajp_enabled: yes
 tomcat_ajp_port: 8009
+tomcat_ajp_secret: "SoMe-SeCrEt"
 tomcat_jre_home: /usr
 tomcat_service_state: started
 tomcat_service_enabled: yes
@@ -165,7 +167,7 @@ tomcat_instances:
     shutdown_port: "{{ tomcat_shutdown_port }}"
     ajp_enabled: "{{ tomcat_ajp_enabled }}"
     ajp_port: "{{ tomcat_ajp_port }}"
-    ajp_secret: ""
+    ajp_secret: "{{ tomcat_ajp_secret }}"
     # You can pick an address per instance:
     # address: 127.0.0.1
     packet_size: "8192"

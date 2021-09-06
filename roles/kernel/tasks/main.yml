@@ -51,7 +51,7 @@
   register: kernel_wait_for_make
   until:
     - kernel_wait_for_make.finished
-  retries: 90
+  retries: 120
   delay: 30
 
 - name: make modules_install

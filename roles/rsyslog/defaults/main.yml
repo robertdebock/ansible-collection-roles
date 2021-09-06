@@ -1,9 +1,8 @@
 ---
 # defaults file for rsyslog
 
-# To configure a server to reveice logs, set rsyslog_receiver to yes.
-# Not setting this value will not configure the server tor receive logs.
-# rsyslog_receiver: yes
+# To configure a server to receive logs, set rsyslog_receiver to yes.
+rsyslog_receiver: no
 
 # To forward logs to another server, set rsyslog_remote to the hostname or
 # the ipaddress of the receiving rsyslog server.

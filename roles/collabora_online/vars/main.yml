@@ -8,25 +8,43 @@ _collabora_online_key:
 
 collabora_online_key: "{{ _collabora_online_key[ansible_os_family] }}"
 
-_collabora_online_repo:
-  Debian: "deb https://www.collaboraoffice.com/repos/CollaboraOnline/CODE-debian{{ ansible_distribution_major_version }} ./"
-  Ubuntu-16: "deb https://www.collaboraoffice.com/repos/CollaboraOnline/CODE ./"
-  Ubuntu-18: "deb https://www.collaboraoffice.com/repos/CollaboraOnline/CODE-ubuntu1804 ./"
-  Ubuntu-20: "deb https://www.collaboraoffice.com/repos/CollaboraOnline/CODE-ubuntu2004 ./"
-  RedHat: &redhat_repo "https://www.collaboraoffice.com/repos/CollaboraOnline/CODE-centos{{ ansible_distribution_major_version }}"
-  Rocky: *redhat_repo
+collabora_online_base_url: "https://www.collaboraoffice.com/repos/CollaboraOnline"
 
-collabora_online_repo: "{{ _collabora_online_repo[ansible_distribution ~ '-' ~ ansible_distribution_major_version ] | default(_collabora_online_repo[ansible_os_family]) }}"
+_collabora_online_repo:
+  code:
+    Debian: "{{ collabora_online_base_url }}/{{ collabora_online_type | upper }}-{{ ansible_distribution | lower }}{{ ansible_distribution_major_version }}"
+    Ubuntu-16: "{{ collabora_online_base_url }}/{{ collabora_online_type | upper }}"
+    Ubuntu-18: "{{ collabora_online_base_url }}/{{ collabora_online_type | upper }}-{{ ansible_distribution | lower }}1804"
+    Ubuntu-20: "{{ collabora_online_base_url }}/{{ collabora_online_type | upper }}-{{ ansible_distribution | lower }}2004"
+    RedHat: &redhat_code_repo "{{ collabora_online_base_url }}/{{ collabora_online_type | upper }}-centos{{ ansible_distribution_major_version }}"
+    Rocky: *redhat_code_repo
+  licensed:
+    Debian: "{{ collabora_online_base_url }}/{{ collabora_online_version }}-key/"
+    RedHat: &redhat_licensed_repo "{{ collabora_online_base_url }}/{{ collabora_online_version }}/customer-centos{{ ansible_distribution_major_version }}-{{ collabora_online_secret_key | default('no-secret-key-set' )}}"
+    Rocky: *redhat_licensed_repo
+
+collabora_online_repo: "{{ _collabora_online_repo[collabora_online_type][ansible_distribution ~ '-' ~ ansible_distribution_major_version ] | default(_collabora_online_repo[collabora_online_type][ansible_os_family]) }}"
 
 _collabora_online_packages:
-  default: []
-  Debian:
-    - dirmngr
-    - loolwsd
-    - code-brand
-  RedHat: &redhat_packages
-    - loolwsd
-    - CODE-brand
-  Rocky: *redhat_packages
+  code:
+    default: []
+    Debian:
+      - dirmngr
+      - loolwsd
+      - code-brand
+    RedHat: &redhat_code_packages
+      - loolwsd
+      - CODE-brand
+    Rocky: *redhat_code_packages
+  licensed:
+    default: []
+    Debian:
+      - dirmngr
+      - loolwsd
+      - collabora-online-brand
+    RedHat: &redhat_licensed_packages
+      - loolwsd
+      - collabora-online-brand
+    Rocky: *redhat_licensed_packages
 
-collabora_online_packages: "{{ _collabora_online_packages[ansible_os_family] | default(_collabora_online_packages['default']) }}"
+collabora_online_packages: "{{ _collabora_online_packages[collabora_online_type][ansible_os_family] | default(_collabora_online_packages[collabora_online_type]['default']) }}"

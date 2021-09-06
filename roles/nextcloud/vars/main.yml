@@ -95,8 +95,6 @@ _nextcloud_destination:
   Alpine: /var/www
   openSUSE Leap: /srv/www/htdocs
 
-nextcloud_destination: "{{ _nextcloud_destination[ansible_distribution] | default(_nextcloud_destination['default']) }}"
-
 _nextcloud_config_directory:
   default: /etc/httpd/conf.d
   Alpine: /etc/apache2/conf.d

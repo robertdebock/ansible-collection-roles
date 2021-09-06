@@ -1,0 +1,23 @@
+---
+
+- name: enable modules
+  community.general.apache2_module:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - proxy
+    - proxy_http
+  when:
+    - ansible_os_family in [ "Debian", "Suse" ]
+
+- name: configure locations
+  ansible.builtin.template:
+    src: location.conf.j2
+    dest: "{{ httpd_config_directory }}/{{ item.name }}.conf"
+    mode: "0644"
+  loop: "{{ httpd_locations }}"
+  loop_control:
+    label: "{{ item.name }}"
+  notify:
+    - test httpd configuration validity
+    - restart httpd

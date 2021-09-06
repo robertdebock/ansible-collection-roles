@@ -33,12 +33,6 @@
   notify:
     - restart rsyslog
 
-- name: configure logrotate
-  ansible.builtin.template:
-    src: spamassassin.j2
-    dest: /etc/logrotate.d/spamassassin
-    mode: "0644"
-
 - name: configure software
   ansible.builtin.copy:
     src: spamassassin

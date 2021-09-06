@@ -14,7 +14,8 @@
         id: "{{ collabora_online_key }}"
     - name: add repository (apt)
       ansible.builtin.apt_repository:
-        repo: "{{ collabora_online_repo }}"
+        filename: collabora
+        repo: "deb {{ collabora_online_repo }} ./"
   when:
     - ansible_pkg_mgr == "apt"
 

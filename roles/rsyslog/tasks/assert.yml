@@ -6,8 +6,6 @@
       - rsyslog_receiver is defined
       - rsyslog_receiver is boolean
     quiet: yes
-  when:
-    - rsyslog_receiver is defined
 
 - name: test if rsyslog_preservefqdn is set correctly
   ansible.builtin.assert:

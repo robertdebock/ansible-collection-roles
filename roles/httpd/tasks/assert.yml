@@ -97,3 +97,50 @@
   when:
     - httpd_vhosts is defined
     - item.serveralias is defined
+
+- name: test if httpd_directories is set correctly
+  ansible.builtin.assert:
+    that:
+      - httpd_directories is iterable
+    quiet: yes
+  when:
+    - httpd_directories is defined
+
+- name: test if item.name in httpd_directories is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.name is defined
+      - item.name is string
+      - item.path is defined
+      - item.path is string
+      - item.option is defined or item.allow_override is defined
+    quiet: yes
+  loop: "{{ httpd_directories }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - httpd_directories is defined
+
+- name: test if item.options in httpd_directories is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.options is iterable
+    quiet: yes
+  loop: "{{ httpd_directories }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - httpd_directories is defined
+    - item.options is defined
+
+- name: test if item.allow_override in httpd_directories is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.allow_override is string
+    quiet: yes
+  loop: "{{ httpd_directories }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - httpd_directories is defined
+    - item.allow_override is defined

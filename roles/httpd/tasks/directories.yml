@@ -1,0 +1,22 @@
+---
+
+- name: create directories
+  ansible.builtin.file:
+    path: "{{ item.path }}"
+    state: directory
+    mode: "0755"
+  loop: "{{ httpd_directories }}"
+  loop_control:
+    label: "{{ item.path }}"
+
+- name: configure directories
+  ansible.builtin.template:
+    src: directory.conf.j2
+    dest: "{{ httpd_config_directory }}/{{ item.name }}.conf"
+    mode: "0644"
+  loop: "{{ httpd_directories }}"
+  loop_control:
+    label: "{{ item.name }}"
+  notify:
+    - test httpd configuration validity
+    - restart httpd

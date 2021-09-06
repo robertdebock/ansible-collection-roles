@@ -8,7 +8,7 @@ Create encrypted devices using luks and open them at boot.
 
 ## [Example Playbook](#example-playbook)
 
-This example is taken from `molecule/resources/converge.yml` and is tested on each push, pull request and release.
+This example is taken from `molecule/default/converge.yml` and is tested on each push, pull request and release.
 ```yaml
 ---
 - name: converge
@@ -24,7 +24,7 @@ This example is taken from `molecule/resources/converge.yml` and is tested on ea
           keyfile: /etc/luksdisk0.keyfile
 ```
 
-The machine needs to be prepared in CI this is done using `molecule/resources/prepare.yml`:
+The machine needs to be prepared in CI this is done using `molecule/default/prepare.yml`:
 ```yaml
 ---
 - name: prepare
@@ -37,7 +37,7 @@ The machine needs to be prepared in CI this is done using `molecule/resources/pr
 
   tasks:
     - name: create disk0.img
-      command: dd if=/dev/zero of=/disk0.img bs=1M count=100
+      command: dd if=/dev/zero of=/disk0.img bs=1 count=1G
       args:
         creates: /disk0.img
 

@@ -1,0 +1,8 @@
+---
+# handlers file for lxc
+
+- name: restart lxc-net
+  service:
+    name: "{{ item }}"
+    state: restarted
+  loop: "{{ lxc_services }}"

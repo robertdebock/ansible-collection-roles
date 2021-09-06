@@ -16,44 +16,55 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
   become: yes
   gather_facts: yes
 
+  vars_files:
+    - ../../vars/main.yml
+    - ../../defaults/main.yml
+
   roles:
     - role: robertdebock.httpd
       # https_ssl_enable: yes
       httpd_port: 8080
       httpd_ssl_port: 8443
       httpd_locations:
-        - name: mylocation1
-          location: /mylocation1
+        - name: my_location
+          location: /my_location
           backend_url: "http://localhost:8080/myapplication"
-      httpd_vhosts:
-        - name: docroot
-          servername: www1.example.com
-          documentroot: /var/www/html/www1.example.com
-        - name: backend_http
-          servername: www2.example.com
-          backend_url: "http://www.example.com/"
-          serveralias:
-            - example.com
-            - www.example.com
-        - name: remote
-          servername: www3.example.com
-          remote: "http://localhost:3128/"
-        # - name: backend_https
-        #   servername: www4.example.com
-        #   backend_url: "https://www.example.com/"
-        # - name: piratebay
-        #   servername: piratebay.nl
-        #   backend_url: "https://thepirate-bay.org/"
-        #   proxy_preserve_host: Off
-        #   proxy_requests: Off
-        #   setenv:
-        #     - name: force-proxy-request-1.0
-        #       value: 1
-        #     - name: proxy-nokeepalive
-        #       value: 1
-        #     - name: proxy-initial-not-pooled
-        #     - name: proxy-sendchunks
-        #       value: 1
+      # httpd_vhosts:
+      #   - name: my_vhost_docroot
+      #     servername: www1.example.com
+      #     documentroot: "{{ httpd_data_directory }}/www1.example.com"
+      #   - name: my_vhost_backend_http
+      #     servername: www2.example.com
+      #     backend_url: "http://www.example.com/"
+      #     serveralias:
+      #       - example.com
+      #       - www.example.com
+      #   - name: my_vhost_remote
+      #     servername: www3.example.com
+      #     remote: "http://localhost:3128/"
+      #   - name: my_vhost_backend_https
+      #     servername: www4.example.com
+      #     backend_url: "https://www.example.com/"
+      #   - name: my_vhost_piratebay
+      #     servername: piratebay.nl
+      #     backend_url: "https://thepirate-bay.org/"
+      #     proxy_preserve_host: Off
+      #     proxy_requests: Off
+      #     setenv:
+      #       - name: force-proxy-request-1.0
+      #         value: 1
+      #       - name: proxy-nokeepalive
+      #         value: 1
+      #       - name: proxy-initial-not-pooled
+      #       - name: proxy-sendchunks
+      #         value: 1
+      httpd_directories:
+        - name: my_directory
+          path: "{{ httpd_data_directory }}/my_directory"
+          # options:
+          #   - Indexes
+          #   - FollowSymLinks
+          allow_override: All
 ```
 
 The machine needs to be prepared in CI this is done using `molecule/default/prepare.yml`:

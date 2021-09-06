@@ -57,7 +57,7 @@
   loop: "{{ zabbix_web_groups }}"
   when:
     - zabbix_web_groups is defined
-    - ansible_connection != "docker"
+    - ansible_connection not in [ "container", "docker", "community.docker.docker" ]
   run_once: yes
 
 - name: add zabbix hosts
@@ -84,7 +84,7 @@
   loop: "{{ zabbix_web_hosts }}"
   when:
     - zabbix_web_hosts is defined
-    - ansible_connection != "docker"
+    - ansible_connection not in [ "container", "docker", "community.docker.docker" ]
   run_once: yes
   loop_control:
     label: "{{ item.name }}"

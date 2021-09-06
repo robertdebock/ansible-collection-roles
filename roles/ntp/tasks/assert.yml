@@ -1,5 +1,19 @@
 ---
 
+- name: test if ntp_state is set correctly
+  ansible.builtin.assert:
+    that:
+      - ntp_state is defined
+      - ntp_state in [ "started", "stopped" ]
+    quiet: yes
+
+- name: test if ntp_enabled is set correctly
+  ansible.builtin.assert:
+    that:
+      - ntp_enabled is defined
+      - ntp_enabled is boolean
+    quiet: yes
+
 - name: test if ntp_interfaces is set correctly
   ansible.builtin.assert:
     that:

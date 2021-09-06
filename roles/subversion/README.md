@@ -8,7 +8,7 @@ Install subversion and create repositories on your system.
 
 ## [Example Playbook](#example-playbook)
 
-This example is taken from `molecule/resources/converge.yml` and is tested on each push, pull request and release.
+This example is taken from `molecule/default/converge.yml` and is tested on each push, pull request and release.
 ```yaml
 ---
 - name: converge
@@ -22,7 +22,7 @@ This example is taken from `molecule/resources/converge.yml` and is tested on ea
         - name: my_svn_repository
 ```
 
-The machine needs to be prepared in CI this is done using `molecule/resources/prepare.yml`:
+The machine needs to be prepared in CI this is done using `molecule/default/prepare.yml`:
 ```yaml
 ---
 - name: prepare
@@ -92,6 +92,10 @@ If you find issues, please register them in [GitHub](https://github.com/robertde
 ## [License](#license)
 
 Apache-2.0
+
+## [Contributors](#contributors)
+
+I'd like to thank everybody that made contributions to this repository. It motivates me, improves the code and is just fun to collaborate.
 
 
 ## [Author Information](#author-information)

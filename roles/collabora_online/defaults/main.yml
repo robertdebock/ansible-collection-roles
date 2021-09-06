@@ -1,5 +1,38 @@
 ---
 # defaults file for collabora_online
 
+# You can set the type of installation; either "code" or "licensed".
+collabora_online_type: code
+
+# In case "LICENSED" is set for `collabora_online_type`, a version is required.
+collabora_online_version: "6.4"
+
+# When using `collabora_online_type: licensed` and running on RHEL systems, you
+# need to set this variable. Get it from https://support.collaboraoffice.com/ .
+# collabora_online_secret_key: "abc-def-ghi-jkl-mno"
+
+# The languages allowed.
+# collabora_online_allowed_languages: "de_DE en_GB en_US es_ES fr_FR it nl pt_BR pt_PT ru"
+
 # Manage SSL capabilities, either "false" or "true". (As a string.)
 collabora_online_ssl_enabled: "false"
+
+# These settings become relevant when `collabora_online_ssl_enabled` is set to
+# `yes`.
+collabora_online_ssl_cert: /etc/loolwsd/loolwsd.crt
+collabora_online_ssl_key: /etc/loolwsd/loolwsd.key
+collabora_online_ssl_ca: /etc/loolwsd/loolwsd.keycrt
+collabora_online_ciphers: "ALL:!ADH:!LOW:!EXP:!MD5:@STRENGTH"
+
+# You can manage the mounting feature. Either "false" or "true". (As a string.)
+collabora_online_mount_jail_tree: "true"
+
+# Set the log level. Can be 0 through 8, none or "fatal", "critical", "error",
+# "warning", "notice", "information", "debug", "trace".
+collabora_online_log_level: warning
+
+# Set the username for the admin console.
+collabora_online_admin_username: "admin"
+
+# Set the password for the admin console.
+collabora_online_admin_password: "50m3-53cu23-p455w02d."

@@ -39,7 +39,7 @@
 - name: reboot
   ansible.builtin.reboot:
   when:
-    - ansible_connection != "docker"
+    - ansible_connection not in [ "container", "docker", "community.docker.docker" ]
 
 - name: update-crypto-policies
   ansible.builtin.command: update-crypto-policies

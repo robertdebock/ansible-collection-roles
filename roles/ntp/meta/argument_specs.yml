@@ -1,0 +1,44 @@
+---
+
+argument_specs:
+  main:
+    short_description: "Install and configure ntp on your system."
+    description: >
+      Install all required packages, configure required files and manage services to use NTP services.
+    author: Robert de Bock
+    options:
+      ntp_state:
+        type: "str"
+        default: started
+        description: "The state of the NTP service."
+        choises:
+          - started
+          - stopped
+      ntp_enabled:
+        type: "bool"
+        default: yes
+        description: "The state of the NTP service at boot."
+      ntp_interfaces:
+        type: "list"
+        elements: str
+        default:
+          - address: 127.0.0.1
+        description: "A list of IP addresses to listen on."
+      ntp_pool:
+        type: "list"
+        elements: str
+        default:
+          - name: 0.pool.ntp.org iburst
+          - name: 1.pool.ntp.org iburst
+          - name: 2.pool.ntp.org iburst
+          - name: 3.pool.ntp.org iburst
+        description: "A list of NTP pools and their options."
+      ntp_servers:
+        type: "list"
+        elements: str
+        required: no
+        description: "A list of NTP servers and their options."
+      ntp_timezone:
+        type: "str"
+        default: "Europe/Amsterdam"
+        description: "The timezone."

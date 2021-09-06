@@ -8,7 +8,7 @@ Install and configure spamassassin on your system.
 
 ## [Example Playbook](#example-playbook)
 
-This example is taken from `molecule/resources/converge.yml` and is tested on each push, pull request and release.
+This example is taken from `molecule/default/converge.yml` and is tested on each push, pull request and release.
 ```yaml
 ---
 - name: Converge
@@ -20,7 +20,7 @@ This example is taken from `molecule/resources/converge.yml` and is tested on ea
     - role: robertdebock.spamassassin
 ```
 
-The machine needs to be prepared in CI this is done using `molecule/resources/prepare.yml`:
+The machine needs to be prepared in CI this is done using `molecule/default/prepare.yml`:
 ```yaml
 ---
 - name: Prepare
@@ -33,6 +33,10 @@ The machine needs to be prepared in CI this is done using `molecule/resources/pr
     - role: robertdebock.core_dependencies
     - role: robertdebock.cron
     - role: robertdebock.logrotate
+      logrotate_entries:
+        - name: spamassassin
+          path: /var/log/spamassassin
+          missingok: yes
     - role: robertdebock.rsyslog
 ```
 
@@ -65,7 +69,6 @@ The following roles are used to prepare a system. You may choose to prepare your
 |[robertdebock.cron](https://galaxy.ansible.com/robertdebock/cron)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-cron/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-cron/actions)|[![Build Status GitLab ](https://gitlab.com/robertdebock/ansible-role-cron/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-cron)|
 |[robertdebock.logrotate](https://galaxy.ansible.com/robertdebock/logrotate)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-logrotate/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-logrotate/actions)|[![Build Status GitLab ](https://gitlab.com/robertdebock/ansible-role-logrotate/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-logrotate)|
 |[robertdebock.rsyslog](https://galaxy.ansible.com/robertdebock/rsyslog)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-rsyslog/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-rsyslog/actions)|[![Build Status GitLab ](https://gitlab.com/robertdebock/ansible-role-rsyslog/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-rsyslog)|
-|[robertdebock.spamassassin](https://galaxy.ansible.com/robertdebock/spamassassin)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-spamassassin/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-spamassassin/actions)|[![Build Status GitLab ](https://gitlab.com/robertdebock/ansible-role-spamassassin/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-spamassassin)|
 
 ## [Dependencies](#dependencies)
 

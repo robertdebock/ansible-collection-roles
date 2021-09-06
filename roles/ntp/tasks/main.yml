@@ -6,7 +6,7 @@
   run_once: yes
   delegate_to: localhost
 
-- name: install ntp packages
+- name: install packages
   ansible.builtin.package:
     name: "{{ ntp_packages }}"
     state: present
@@ -32,8 +32,8 @@
   notify:
     - restart cron
 
-- name: start and enable {{ ntp_service }}
+- name: manage {{ ntp_service }}
   ansible.builtin.service:
     name: "{{ ntp_service }}"
-    state: started
-    enabled: yes
+    state: "{{ ntp_state }}"
+    enabled: "{{ ntp_enabled }}"

@@ -4,4 +4,4 @@
 - name: reload exports
   ansible.builtin.command: exportfs -ra
   when:
-    - ansible_connection != "docker"
+    - ansible_connection not in [ "container", "docker", "community.docker.docker" ]
