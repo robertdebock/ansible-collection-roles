@@ -314,14 +314,6 @@ If you find issues, please register them in [GitHub](https://github.com/robertde
 
 Apache-2.0
 
-## [Contributors](#contributors)
-
-I'd like to thank everybody that made contributions to this repository. It motivates me, improves the code and is just fun to collaborate.
-
-- [benformosa](https://github.com/benformosa)
-- [justin-p](https://github.com/justin-p)
-- [Obihoernchen](https://github.com/Obihoernchen)
-
 ## [Author Information](#author-information)
 
 [Robert de Bock](https://robertdebock.nl/)

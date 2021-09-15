@@ -12,20 +12,15 @@ galaxy_info:
     - name: Alpine
       versions:
         - all
-    - name: EL
-      versions:
-        - 8
     - name: Debian
       versions:
-        - buster
-        - bullseye
+        - all
     - name: Fedora
       versions:
         - all
     - name: Ubuntu
       versions:
-        - focal
-        - bionic
+        - all
 
   galaxy_tags:
     - docker

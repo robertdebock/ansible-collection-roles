@@ -20,7 +20,7 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
     - role: robertdebock.apt_repository
 ```
 
-The machine needs to be prepared in CI this is done using `molecule/default/prepare.yml`:
+The machine needs to be prepared. In CI this is done using `molecule/default/prepare.yml`:
 ```yaml
 ---
 - name: prepare
@@ -36,7 +36,7 @@ Also see a [full explanation and example](https://robertdebock.nl/how-to-use-the
 
 ## [Role Variables](#role-variables)
 
-These variables are set in `defaults/main.yml`:
+The default values for the variables are set in `defaults/main.yml`:
 ```yaml
 ---
 # defaults file for apt_repositories
@@ -52,9 +52,9 @@ These variables are set in `defaults/main.yml`:
 
 - pip packages listed in [requirements.txt](https://github.com/robertdebock/ansible-role-apt_repository/blob/master/requirements.txt).
 
-## [Status of requirements](#status-of-requirements)
+## [Status of used roles](#status-of-requirements)
 
-The following roles are used to prepare a system. You may choose to prepare your system in another way, I have tested these roles as well.
+The following roles are used to prepare a system. You can prepare your system in another way.
 
 | Requirement | GitHub | GitLab |
 |-------------|--------|--------|
@@ -88,7 +88,6 @@ If you find issues, please register them in [GitHub](https://github.com/robertde
 ## [License](#license)
 
 Apache-2.0
-
 
 ## [Author Information](#author-information)
 

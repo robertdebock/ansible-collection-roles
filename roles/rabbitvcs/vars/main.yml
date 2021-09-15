@@ -10,4 +10,4 @@ _rabbitvcs_packages:
     - rabbitvcs-gedit
     - rabbitvcs-cli
 
-rabbitvcs_packages: "{{ _rabbitvcs_packages[ansible_os_family] | default(_rabbitvcs_packages['default']) }}"
+rabbitvcs_packages: "{{ _rabbitvcs_packages[ansible_os_family] | default(_rabbitvcs_packages['default'] ) }}"

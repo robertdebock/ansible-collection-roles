@@ -15,11 +15,11 @@ _locale_requirements:
   Suse:
     - timezone
 
-locale_requirements: "{{ _locale_requirements[ansible_distribution] | default(_locale_requirements[ansible_os_family] | default(_locale_requirements['default'])) }}"
+locale_requirements: "{{ _locale_requirements[ansible_distribution] | default(_locale_requirements[ansible_os_family] | default(_locale_requirements['default'] )) }}"
 
 _locale_configuration_file:
   default: /etc/locale.conf
   Debian: /etc/default/locale
   Ubuntu: /etc/default/locale
 
-locale_configuration_file: "{{ _locale_configuration_file[ansible_distribution] | default(_locale_configuration_file['default']) }}"
+locale_configuration_file: "{{ _locale_configuration_file[ansible_distribution] | default(_locale_configuration_file['default'] ) }}"

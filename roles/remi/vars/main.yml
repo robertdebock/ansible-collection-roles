@@ -29,4 +29,4 @@ _remi_enable_repository_command:
   default: dnf --assumeyes module install {{ remi_argument }}
   CentOS-7: yum-config-manager --enable {{ remi_argument }}
 
-remi_enable_repository_command: "{{ _remi_enable_repository_command[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_remi_enable_repository_command['default']) }}"
+remi_enable_repository_command: "{{ _remi_enable_repository_command[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_remi_enable_repository_command['default'] ) }}"

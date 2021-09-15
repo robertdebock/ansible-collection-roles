@@ -12,7 +12,7 @@ _ntp_packages:
     - chrony
   Rocky: *redhat_packages
 
-ntp_packages: "{{ _ntp_packages[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_ntp_packages[ansible_os_family] | default(_ntp_packages['default'])) }}"
+ntp_packages: "{{ _ntp_packages[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_ntp_packages[ansible_os_family] | default(_ntp_packages['default'] )) }}"
 
 _ntp_configuration_file:
   default: ntp.conf
@@ -21,7 +21,7 @@ _ntp_configuration_file:
   RedHat: &redhat_configuration_file chrony.conf
   Rocky: *redhat_configuration_file
 
-ntp_configuration_file: "{{ _ntp_configuration_file[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_ntp_configuration_file[ansible_os_family] | default(_ntp_configuration_file['default'])) }}"
+ntp_configuration_file: "{{ _ntp_configuration_file[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_ntp_configuration_file[ansible_os_family] | default(_ntp_configuration_file['default'] )) }}"
 
 _ntp_service:
   default: ntpd
@@ -31,7 +31,7 @@ _ntp_service:
   RedHat: &redhat_service chronyd
   Rocky: *redhat_service
 
-ntp_service: "{{ _ntp_service[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_ntp_service[ansible_os_family] | default(_ntp_service['default'])) }}"
+ntp_service: "{{ _ntp_service[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_ntp_service[ansible_os_family] | default(_ntp_service['default'] )) }}"
 
 _ntp_timezone_packages:
   default:
@@ -39,12 +39,12 @@ _ntp_timezone_packages:
   Suse:
     - timezone
 
-ntp_timezone_packages: "{{ _ntp_timezone_packages[ansible_os_family] | default(_ntp_timezone_packages['default']) }}"
+ntp_timezone_packages: "{{ _ntp_timezone_packages[ansible_os_family] | default(_ntp_timezone_packages['default'] ) }}"
 
 _ntp_timezone_supported:
   default: no
   Debian: yes
-  CentOS: &redhat_timezone_supported yes
+  RedHat: &redhat_timezone_supported yes
   Rocky: *redhat_timezone_supported
 
-ntp_timezone_supported: "{{ _ntp_timezone_supported[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_ntp_timezone_supported[ansible_distribution] | default(_ntp_timezone_supported['default'])) }}"
+ntp_timezone_supported: "{{ _ntp_timezone_supported[ansible_os_family] | default(_ntp_timezone_supported['default'] ) }}"

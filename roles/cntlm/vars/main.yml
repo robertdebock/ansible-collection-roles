@@ -17,7 +17,7 @@ _cntlm_requirements:
     - tar
     - gzip
 
-cntlm_requirements: "{{ _cntlm_requirements[ansible_os_family] | default(_cntlm_requirements['default']) }}"
+cntlm_requirements: "{{ _cntlm_requirements[ansible_os_family] | default(_cntlm_requirements['default'] ) }}"
 
 cntlm_rpm_repository: "https://{{ cntlm_download_mirror }}/project/cntlm/cntlm/cntlm%20{{ cntlm_version }}/cntlm-{{ cntlm_version }}-{{ cntlm_release }}.x86_64.rpm"
 

@@ -20,7 +20,7 @@ galaxy_info:
         - 8
     - name: Debian
       versions:
-        - buster
+        - bullseye
     - name: Fedora
       versions:
         - all
@@ -29,8 +29,7 @@ galaxy_info:
         - all
     - name: Ubuntu
       versions:
-        - focal
-        - bionic
+        - all
 
   galaxy_tags:
     - nfs

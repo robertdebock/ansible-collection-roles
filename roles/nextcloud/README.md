@@ -49,9 +49,23 @@ The machine needs to be prepared in CI this is done using `molecule/default/prep
     - role: robertdebock.selinux
     - role: robertdebock.httpd
     - role: robertdebock.redis
-    - role: robertdebock.remi
-      remi_enabled_repositories:
-        - php74
+
+- name: continue prepare with facts
+  hosts: all
+  become: yes
+  gather_facts: yes
+
+  pre_tasks:
+    - name: include remi
+      include_role:
+        name: robertdebock.remi
+      when:
+        - ansible_distribution != "Fedora"
+      vars:
+        remi_enabled_repositories:
+          - php74
+
+  roles:
     - role: robertdebock.php
       php_memory_limit: 512M
       php_upload_max_filesize: 8G
@@ -83,7 +97,7 @@ nextcloud_version: 22.0.0
 # The domain under which this server will be available. For example:
 # "localhost" or "nextcloud.example.com". Does not include protocol identifier,
 # (https://) or directories. (/nextcloud)
-nextcloud_domain_url: "{{ ansible_default_ipv4.address|default(ansible_all_ipv4_addresses[0]) }}"
+nextcloud_domain_url: "{{ ansible_default_ipv4.address|default(ansible_all_ipv4_addresses[0] ) }}"
 
 # Database connection details.
 nextcloud_database_name: nextcloud
@@ -109,7 +123,7 @@ nextcloud_admin_pass: N3x4Cl0ud
 #
 # nextcloud_destination: /opt
 #
-nextcloud_destination: "{{ _nextcloud_destination[ansible_distribution] | default(_nextcloud_destination['default']) }}"
+nextcloud_destination: "{{ _nextcloud_destination[ansible_distribution] | default(_nextcloud_destination['default'] ) }}"
 ```
 
 ## [Requirements](#requirements)
@@ -178,12 +192,6 @@ If you find issues, please register them in [GitHub](https://github.com/robertde
 ## [License](#license)
 
 Apache-2.0
-
-## [Contributors](#contributors)
-
-I'd like to thank everybody that made contributions to this repository. It motivates me, improves the code and is just fun to collaborate.
-
-- [gotmax23](https://github.com/gotmax23)
 
 ## [Author Information](#author-information)
 

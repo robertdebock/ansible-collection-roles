@@ -19,6 +19,7 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
   roles:
     - role: robertdebock.cron
     - role: robertdebock.ntp
+      ntp_state: stopped
 ```
 
 The machine needs to be prepared in CI this is done using `molecule/default/prepare.yml`:
@@ -41,6 +42,12 @@ These variables are set in `defaults/main.yml`:
 ```yaml
 ---
 # defaults file for ntp
+
+# The state of the NTP service.
+ntp_state: started
+
+# The state of the NTP service at boot.
+ntp_enabled: yes
 
 # A list of IP addresses to listen on.
 ntp_interfaces:
@@ -117,12 +124,6 @@ If you find issues, please register them in [GitHub](https://github.com/robertde
 ## [License](#license)
 
 Apache-2.0
-
-## [Contributors](#contributors)
-
-I'd like to thank everybody that made contributions to this repository. It motivates me, improves the code and is just fun to collaborate.
-
-- [cadusk](https://github.com/cadusk)
 
 ## [Author Information](#author-information)
 

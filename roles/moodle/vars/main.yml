@@ -39,7 +39,7 @@ _moodle_requirements:
     - php7-xmlrpc
     - php7-soap
 
-moodle_requirements: "{{ _moodle_requirements[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_moodle_requirements[ansible_os_family] | default(_moodle_requirements['default'])) }}"
+moodle_requirements: "{{ _moodle_requirements[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_moodle_requirements[ansible_os_family] | default(_moodle_requirements['default'] )) }}"
 
 moodle_src: "https://download.moodle.org/download.php/direct/stable{{ moodle_version }}/moodle-latest-{{ moodle_version }}.zip"
 
@@ -48,18 +48,18 @@ _moodle_httpd_data_directory:
   Alpine: /var/www/{{ httpd_servername | default(ansible_fqdn) }}
   Suse: /srv/www/htdocs
 
-moodle_httpd_data_directory: "{{ _moodle_httpd_data_directory[ansible_os_family] | default(_moodle_httpd_data_directory['default']) }}"
+moodle_httpd_data_directory: "{{ _moodle_httpd_data_directory[ansible_os_family] | default(_moodle_httpd_data_directory['default'] ) }}"
 
 _moodle_httpd_owner:
   default: apache
   Debian: www-data
   Suse: wwwrun
 
-moodle_httpd_owner: "{{ _moodle_httpd_owner[ansible_os_family] | default(_moodle_httpd_owner['default']) }}"
+moodle_httpd_owner: "{{ _moodle_httpd_owner[ansible_os_family] | default(_moodle_httpd_owner['default'] ) }}"
 
 _moodle_httpd_group:
   default: apache
   Debian: www-data
   Suse: www
 
-moodle_httpd_group: "{{ _moodle_httpd_group[ansible_os_family] | default(_moodle_httpd_group['default']) }}"
+moodle_httpd_group: "{{ _moodle_httpd_group[ansible_os_family] | default(_moodle_httpd_group['default'] ) }}"

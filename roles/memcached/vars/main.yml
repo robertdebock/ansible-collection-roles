@@ -6,7 +6,7 @@ _memcached_user:
   default: memcached
   Debian: memcache
 
-memcached_user: "{{ _memcached_user[ansible_os_family] | default(_memcached_user['default']) }}"
+memcached_user: "{{ _memcached_user[ansible_os_family] | default(_memcached_user['default'] ) }}"
 
 _memcached_configfile:
   default: /etc/sysconfig/memcached
@@ -15,4 +15,4 @@ _memcached_configfile:
   RedHat: &redhat_configfile /etc/sysconfig/memcached
   Rocky: *redhat_configfile
 
-memcached_configfile: "{{ _memcached_configfile[ansible_os_family] | default(_memcached_configfile['default']) }}"
+memcached_configfile: "{{ _memcached_configfile[ansible_os_family] | default(_memcached_configfile['default'] ) }}"

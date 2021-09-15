@@ -61,6 +61,8 @@
     version: "{{ item.version | default('HEAD') }}"
     force: "{{ item.force | default(git_force) }}"
   loop: "{{ git_repositories }}"
+  loop_control:
+    label: "{{ item.dest }}"
   become: yes
   become_user: "{{ git_username }}"
   when:
@@ -68,5 +70,3 @@
     - git_repository_destination is defined
     - git_username is defined
     - getent_passwd[git_username] != none
-  loop_control:
-    label: "{{ item.dest }}"

@@ -9,7 +9,7 @@ _php_fpm_packages:
   Suse:
     - php7-fpm
 
-php_fpm_packages: "{{ _php_fpm_packages[ansible_os_family] | default(_php_fpm_packages['default']) }}"
+php_fpm_packages: "{{ _php_fpm_packages[ansible_os_family] | default(_php_fpm_packages['default'] ) }}"
 
 _php_fpm_directory:
   default: /etc
@@ -25,7 +25,7 @@ _php_fpm_directory:
   Ubuntu-19: /etc/php/7.2/fpm
   Ubuntu: /etc/php/7.4/fpm
 
-php_fpm_directory: "{{ _php_fpm_directory[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_php_fpm_directory[ansible_distribution] | default(_php_fpm_directory['default'])) }}"
+php_fpm_directory: "{{ _php_fpm_directory[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_php_fpm_directory[ansible_distribution] | default(_php_fpm_directory['default'] )) }}"
 
 _php_fpm_pid_directory:
   default: /run/php-fpm
@@ -35,20 +35,20 @@ _php_fpm_pid_directory:
   Rocky: *redhat_pid_directory
   Suse: /var/run
 
-php_fpm_pid_directory: "{{ _php_fpm_pid_directory[ansible_os_family] | default(_php_fpm_pid_directory['default']) }}"
+php_fpm_pid_directory: "{{ _php_fpm_pid_directory[ansible_os_family] | default(_php_fpm_pid_directory['default'] ) }}"
 
 _php_fpm_user:
   default: nobody
   Debian: daemon
   Suse: wwwrun
 
-php_fpm_user: "{{ _php_fpm_user[ansible_os_family] | default(_php_fpm_user['default']) }}"
+php_fpm_user: "{{ _php_fpm_user[ansible_os_family] | default(_php_fpm_user['default'] ) }}"
 
 _php_fpm_include_directory:
   default: "{{ php_fpm_directory }}/php-fpm.d"
   Debian: "{{ php_fpm_directory }}/conf.d"
 
-php_fpm_include_directory: "{{ _php_fpm_include_directory[ansible_os_family] | default(_php_fpm_include_directory['default']) }}"
+php_fpm_include_directory: "{{ _php_fpm_include_directory[ansible_os_family] | default(_php_fpm_include_directory['default'] ) }}"
 
 _php_fpm_service:
   default: php-fpm
@@ -65,18 +65,18 @@ _php_fpm_service:
   Ubuntu-19: php7.2-fpm.service
   Ubuntu: php7.4-fpm.service
 
-php_fpm_service: "{{ _php_fpm_service[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_php_fpm_service[ansible_distribution] | default(_php_fpm_service['default'])) }}"
+php_fpm_service: "{{ _php_fpm_service[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_php_fpm_service[ansible_distribution] | default(_php_fpm_service['default'] )) }}"
 
 _php_fpm_owner:
   default: apache
   Debian: www-data
   Suse: wwwrun
 
-php_fpm_owner: "{{ _php_fpm_owner[ansible_os_family] | default(_php_fpm_owner['default']) }}"
+php_fpm_owner: "{{ _php_fpm_owner[ansible_os_family] | default(_php_fpm_owner['default'] ) }}"
 
 _php_fpm_group:
   default: apache
   Debian: www-data
   Suse: www
 
-php_fpm_group: "{{ _php_fpm_group[ansible_os_family] | default(_php_fpm_group['default']) }}"
+php_fpm_group: "{{ _php_fpm_group[ansible_os_family] | default(_php_fpm_group['default'] ) }}"

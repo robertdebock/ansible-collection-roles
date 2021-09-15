@@ -12,7 +12,7 @@
     state: present
 
 - name: enable lxc bridge
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/sysconfig/lxc
     regexp: '^USE_LXC_BRIDGE='
     line: 'USE_LXC_BRIDGE="true"'
@@ -20,7 +20,7 @@
     - restart lxc-net
 
 - name: start lxc services
-  service:
+  ansible.builtin.service:
     name: "{{ item }}"
     state: started
     enabled: yes

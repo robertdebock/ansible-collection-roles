@@ -9,4 +9,4 @@ _spamassassin_service:
   Alpine: spamd
   Suse: spamd
 
-spamassassin_service: "{{ _spamassassin_service[ansible_os_family] | default(_spamassassin_service['default']) }}"
+spamassassin_service: "{{ _spamassassin_service[ansible_os_family] | default(_spamassassin_service['default'] ) }}"

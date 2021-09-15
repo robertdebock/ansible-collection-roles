@@ -17,7 +17,7 @@
     dest: /etc/{{ ntp_configuration_file }}
     mode: "0644"
   notify:
-    - restart ntp/chrony
+    - restart ntp
 
 - name: install timezone information
   ansible.builtin.package:

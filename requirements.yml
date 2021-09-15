@@ -8,4 +8,3 @@ collections:
   - name: community.zabbix
   - name: f5networks.f5_modules
   - name: gluster.gluster
-#   - name: community.crypto

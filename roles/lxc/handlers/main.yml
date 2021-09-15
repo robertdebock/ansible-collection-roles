@@ -2,7 +2,7 @@
 # handlers file for lxc
 
 - name: restart lxc-net
-  service:
+  ansible.builtin.service:
     name: "{{ item }}"
     state: restarted
   loop: "{{ lxc_services }}"

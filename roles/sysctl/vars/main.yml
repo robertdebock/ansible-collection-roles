@@ -8,4 +8,4 @@ _sysctl_requirements:
     - procps-ng
   Rocky: *redhat_requirements
 
-sysctl_requirements: "{{ _sysctl_requirements[ansible_os_family] | default(_sysctl_requirements['default']) }}"
+sysctl_requirements: "{{ _sysctl_requirements[ansible_os_family] | default(_sysctl_requirements['default'] ) }}"

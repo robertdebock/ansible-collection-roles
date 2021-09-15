@@ -6,7 +6,7 @@ _autofs_requirements:
   Debian:
     - procps
 
-autofs_requirements: "{{ _autofs_requirements[ansible_os_family] | default(_autofs_requirements['default']) }}"
+autofs_requirements: "{{ _autofs_requirements[ansible_os_family] | default(_autofs_requirements['default'] ) }}"
 
 autofs_packages:
   - autofs

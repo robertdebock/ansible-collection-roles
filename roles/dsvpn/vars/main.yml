@@ -12,6 +12,6 @@ _dsvpn_requirements:
     - iproute
   Rocky: *redhat_requirements
 
-dsvpn_requirements: "{{ _dsvpn_requirements[ansible_os_family] | default(_dsvpn_requirements['default']) }}"
+dsvpn_requirements: "{{ _dsvpn_requirements[ansible_os_family] | default(_dsvpn_requirements['default'] ) }}"
 
 dsvpn_release_url: "https://github.com/jedisct1/dsvpn/archive/{{ dsvpn_version }}.tar.gz"

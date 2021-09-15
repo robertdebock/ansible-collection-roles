@@ -8,7 +8,7 @@ Install and configure Docker (non-CE) on your system.
 
 ## [Example Playbook](#example-playbook)
 
-This example is taken from `molecule/resources/converge.yml` and is tested on each push, pull request and release.
+This example is taken from `molecule/default/converge.yml` and is tested on each push, pull request and release.
 ```yaml
 ---
 - name: Converge
@@ -20,7 +20,7 @@ This example is taken from `molecule/resources/converge.yml` and is tested on ea
     - role: robertdebock.docker
 ```
 
-The machine needs to be prepared in CI this is done using `molecule/resources/prepare.yml`:
+The machine needs to be prepared in CI this is done using `molecule/default/prepare.yml`:
 ```yaml
 ---
 - name: Prepare
@@ -69,7 +69,6 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |container|tags|
 |---------|----|
 |alpine|all|
-|el|8|
 |debian|buster, bullseye|
 |fedora|all|
 |ubuntu|focal, bionic|
@@ -86,8 +85,10 @@ Some variarations of the build matrix do not work. These are the variations and 
 
 | variation                 | reason                 |
 |---------------------------|------------------------|
-| Ubuntu | Unable to find any of pip2, pip to use. |
+| ubuntu | Unable to find any of pip2, pip to use. |
 | amazonlinux | Required dependency (python_pip) does not work on amazonlinux. |
+| centos:7 | python-pip broken. |
+| centos:8 | No docker or moby available. |
 
 
 If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-docker/issues)
@@ -95,7 +96,6 @@ If you find issues, please register them in [GitHub](https://github.com/robertde
 ## [License](#license)
 
 Apache-2.0
-
 
 ## [Author Information](#author-information)
 

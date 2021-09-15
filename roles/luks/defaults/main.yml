@@ -6,3 +6,9 @@ luks_default_state: opened
 
 # A list of devices to encrypt.
 luks_devices: []
+
+# For example:
+# luks_devices:
+#   - device: /dev/loop0
+#     name: luksdisk0
+#     keyfile: /etc/luksdisk0.keyfile

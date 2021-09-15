@@ -79,7 +79,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |alpine|all|
 |amazon|Candidate|
 |el|8|
-|debian|buster, bullseye|
+|debian|all|
 |fedora|all|
 |opensuse|all|
 |ubuntu|focal, bionic|
@@ -104,7 +104,6 @@ If you find issues, please register them in [GitHub](https://github.com/robertde
 ## [License](#license)
 
 Apache-2.0
-
 
 ## [Author Information](#author-information)
 

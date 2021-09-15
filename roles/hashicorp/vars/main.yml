@@ -8,11 +8,11 @@ _hashicorp_repository_url:
   RedHat: &redhat_repository_url "https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo"
   Rocky: *redhat_repository_url
 
-hashicorp_repository_url: "{{ _hashicorp_repository_url[ansible_distribution] | default(_hashicorp_repository_url[ansible_os_family] | default(_hashicorp_repository_url['default'])) }}"
+hashicorp_repository_url: "{{ _hashicorp_repository_url[ansible_distribution] | default(_hashicorp_repository_url[ansible_os_family] | default(_hashicorp_repository_url['default'] )) }}"
 
 _hashicorp_src:
   oss: "https://releases.hashicorp.com/{{ item.name }}/{{ item.version }}/{{ item.name }}_{{ item.version }}_linux_amd64.zip"
   ent: "https://releases.hashicorp.com/{{ item.name }}/{{ item.version }}+ent/{{ item.name }}_{{ item.version }}+ent_linux_amd64.zip"
   hsm: "https://releases.hashicorp.com/{{ item.name }}/{{ item.version }}+ent.hsm/{{ item.name }}_{{ item.version }}+ent.hsm_linux_amd64.zip"
 
-hashicorp_src: "{{ _hashicorp_src[item.type] | default(_hashicorp_src['oss']) }}"
+hashicorp_src: "{{ _hashicorp_src[item.type] | default(_hashicorp_src['oss'] ) }}"

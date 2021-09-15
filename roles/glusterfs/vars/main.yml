@@ -9,7 +9,7 @@ _glusterfs_requirements:
     - xfsprogs
     - rpcbind
 
-glusterfs_requirements: "{{ _glusterfs_requirements[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_glusterfs_requirements[ansible_os_family] | default(_glusterfs_requirements['default'])) }}"
+glusterfs_requirements: "{{ _glusterfs_requirements[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_glusterfs_requirements[ansible_os_family] | default(_glusterfs_requirements['default'] )) }}"
 
 _glusterfs_packages:
   default:
@@ -22,7 +22,7 @@ _glusterfs_packages:
     - glusterfs
   Rocky: *redhat_packages
 
-glusterfs_packages: "{{ _glusterfs_packages[ansible_distribution] | default(_glusterfs_packages[ansible_os_family] | default(_glusterfs_packages['default'])) }}"
+glusterfs_packages: "{{ _glusterfs_packages[ansible_distribution] | default(_glusterfs_packages[ansible_os_family] | default(_glusterfs_packages['default'] )) }}"
 
 glusterfs_selinux_local_policies:
   - my-glusterfsd

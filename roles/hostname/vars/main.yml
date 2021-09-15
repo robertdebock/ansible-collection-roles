@@ -9,4 +9,4 @@ _hostname_requirements:
   Alpine:
     - net-tools
 
-hostname_requirements: "{{ _hostname_requirements[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_hostname_requirements[ansible_distribution] | default(_hostname_requirements['default'])) }}"
+hostname_requirements: "{{ _hostname_requirements[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_hostname_requirements[ansible_distribution] | default(_hostname_requirements['default'] )) }}"

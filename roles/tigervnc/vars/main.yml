@@ -8,6 +8,6 @@ _tigervnc_packages:
     - tigervnc-standalone-server
     - tigervnc-xorg-extension
 
-tigervnc_packages: "{{ _tigervnc_packages[ansible_os_family] | default(_tigervnc_packages['default']) }}"
+tigervnc_packages: "{{ _tigervnc_packages[ansible_os_family] | default(_tigervnc_packages['default'] ) }}"
 
 tigervnc_service: "vncserver@:1.service"

@@ -1,10 +1,7 @@
 ---
 roles:
   - name: robertdebock.bootstrap
-  # - name: robertdebock.buildtools
   - name: robertdebock.ca_certificates
-  # - name: robertdebock.openssl
-  # - name: robertdebock.python_pip
   - name: robertdebock.users
-# collections:
-#   - name: community.crypto
+collections:
+  - name: ansible.posix

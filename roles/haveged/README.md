@@ -76,7 +76,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |---------|----|
 |alpine|all|
 |el|8|
-|debian|bullseye|
+|debian|all|
 |fedora|all|
 
 The minimum version of Ansible required is 2.10, tests have been done to:
@@ -101,12 +101,6 @@ If you find issues, please register them in [GitHub](https://github.com/robertde
 ## [License](#license)
 
 Apache-2.0
-
-## [Contributors](#contributors)
-
-I'd like to thank everybody that made contributions to this repository. It motivates me, improves the code and is just fun to collaborate.
-
-- [hollow](https://github.com/hollow)
 
 ## [Author Information](#author-information)
 

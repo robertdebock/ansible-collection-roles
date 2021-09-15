@@ -18,10 +18,6 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
 
   roles:
     - role: robertdebock.luks
-      luks_devices:
-        - device: /dev/loop0
-          name: luksdisk0
-          keyfile: /etc/luksdisk0.keyfile
 ```
 
 The machine needs to be prepared in CI this is done using `molecule/default/prepare.yml`:
@@ -35,22 +31,22 @@ The machine needs to be prepared in CI this is done using `molecule/default/prep
   roles:
     - role: robertdebock.bootstrap
 
-  tasks:
-    - name: create disk0.img
-      command: dd if=/dev/zero of=/disk0.img bs=1 count=1G
-      args:
-        creates: /disk0.img
+  # tasks:
+  #   - name: create disk0.img
+  #     command: dd if=/dev/zero of=/disk0.img bs=1 count=1G
+  #     args:
+  #       creates: /disk0.img
 
-    - name: create /dev/loop0
-      command: mknod /dev/loop0 b 7 8
-      args:
-        creates: /dev/loop0
-      notify:
-        - link disk0.img to /dev/loop0
+  #   - name: create /dev/loop0
+  #     command: mknod /dev/loop0 b 7 8
+  #     args:
+  #       creates: /dev/loop0
+  #     notify:
+  #       - link disk0.img to /dev/loop0
 
-  handlers:
-    - name: link disk0.img to /dev/loop0
-      command: losetup /dev/loop0 /disk0.img
+  # handlers:
+  #   - name: link disk0.img to /dev/loop0
+  #     command: losetup /dev/loop0 /disk0.img
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.
@@ -67,6 +63,12 @@ luks_default_state: opened
 
 # A list of devices to encrypt.
 luks_devices: []
+
+# For example:
+# luks_devices:
+#   - device: /dev/loop0
+#     name: luksdisk0
+#     keyfile: /etc/luksdisk0.keyfile
 ```
 
 ## [Requirements](#requirements)
@@ -114,7 +116,6 @@ If you find issues, please register them in [GitHub](https://github.com/robertde
 ## [License](#license)
 
 Apache-2.0
-
 
 ## [Author Information](#author-information)
 

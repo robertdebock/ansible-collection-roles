@@ -39,7 +39,7 @@ _kernel_requirements:
     - flex
     - openssl-devel
 
-kernel_requirements: "{{ _kernel_requirements[ansible_os_family] | default(_kernel_requirements['default']) }}"
+kernel_requirements: "{{ _kernel_requirements[ansible_os_family] | default(_kernel_requirements['default'] ) }}"
 
 _kernel_modules_location:
   default: /usr/lib/modules/{{ kernel_version }}*
@@ -49,7 +49,7 @@ _kernel_modules_location:
   Rocky: *redhat_module_location
   Suse: /lib/modules/{{ kernel_version }}*
 
-kernel_modules_location: "{{ _kernel_modules_location[ansible_os_family] | default(_kernel_modules_location['default']) }}"
+kernel_modules_location: "{{ _kernel_modules_location[ansible_os_family] | default(_kernel_modules_location['default'] ) }}"
 
 _kernel_installation_location:
   default: /boot/vmlinuz
@@ -58,4 +58,4 @@ _kernel_installation_location:
   RedHat: &redhat_installation_location /boot/vmlinuz
   Rocky: *redhat_installation_location
 
-kernel_installation_location: "{{ _kernel_installation_location[ansible_os_family] | default(_kernel_installation_location['default']) }}"
+kernel_installation_location: "{{ _kernel_installation_location[ansible_os_family] | default(_kernel_installation_location['default'] ) }}"

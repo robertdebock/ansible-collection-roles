@@ -5,4 +5,4 @@ _ca_certificates_packages:
   default:
     - ca-certificates
 
-ca_certificates_packages: "{{ _ca_certificates_packages[ansible_os_family] | default(_ca_certificates_packages['default']) }}"
+ca_certificates_packages: "{{ _ca_certificates_packages[ansible_os_family] | default(_ca_certificates_packages['default'] ) }}"

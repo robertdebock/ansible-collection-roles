@@ -6,7 +6,7 @@ _go_requirements:
   Alpine:
     - bash
 
-go_requirements: "{{ _go_requirements[ansible_os_family] | default(_go_requirements['default']) }}"
+go_requirements: "{{ _go_requirements[ansible_os_family] | default(_go_requirements['default'] ) }}"
 
 _go_architecture:
   x86_64: amd64

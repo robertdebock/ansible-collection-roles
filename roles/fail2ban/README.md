@@ -65,6 +65,9 @@ fail2ban_jail_configuration: []
 #  - option: ignoreself
 #    value: "true"
 #    section: DEFAULT
+
+# Path to directory containing filters to copy in filter.d
+# fail2ban_filterd_path:
 ```
 
 ## [Requirements](#requirements)
@@ -121,15 +124,6 @@ If you find issues, please register them in [GitHub](https://github.com/robertde
 ## [License](#license)
 
 Apache-2.0
-
-## [Contributors](#contributors)
-
-I'd like to thank everybody that made contributions to this repository. It motivates me, improves the code and is just fun to collaborate.
-
-- [j8r](https://github.com/j8r)
-- [gotmax23](https://github.com/gotmax23)
-- [Pandemonium1986](https://github.com/Pandemonium1986)
-- [rgevaert](https://github.com/rgevaert)
 
 ## [Author Information](#author-information)
 

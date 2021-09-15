@@ -15,7 +15,7 @@ _java_default_version:
   Ubuntu-16: 8
   openSUSE Leap: 8
 
-java_default_version: "{{ _java_default_version[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_java_default_version[ansible_distribution]) }}"
+java_default_version: "{{ _java_default_version[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_java_default_version[ansible_distribution] ) }}"
 
 # This part maps the type of java package (jre/jdk) to a package name
 # for the distribution.
@@ -99,7 +99,7 @@ _java_openjdk_package:
     13:
       Ubuntu: openjdk-13-jdk
 
-java_openjdk_package: "{{ _java_openjdk_package[java_type][java_default_version|int][ansible_distribution] | default(_java_openjdk_package[java_type][java_default_version|int]['default'] | default([])) }}"
+java_openjdk_package: "{{ _java_openjdk_package[java_type][java_default_version|int][ansible_distribution] | default(_java_openjdk_package[java_type][java_default_version|int]['default'] | default([] )) }}"
 
 _java_package:
   oracle:
@@ -122,6 +122,6 @@ _java_package:
         rpm: jdk-10.0.2_linux-x64_bin.rpm
         directory: jdk-10.0.2
 
-java_oracle_package: "{{ _java_oracle_package[java_type][java_version][java_format] | default([]) }}"
+java_oracle_package: "{{ _java_oracle_package[java_type][java_version][java_format] | default([] ) }}"
 
 java_oracle_directory: "{{ _java_oracle_package[java_type][java_version]['directory] }}"

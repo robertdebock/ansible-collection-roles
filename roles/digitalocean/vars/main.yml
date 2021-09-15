@@ -7,7 +7,7 @@ _digitalocean_agent_validate_certs:
   default: yes
   Debian: no
 
-digitalocean_agent_validate_certs: "{{ _digitalocean_agent_validate_certs[ansible_os_family] | default(_digitalocean_agent_validate_certs['default']) }}"
+digitalocean_agent_validate_certs: "{{ _digitalocean_agent_validate_certs[ansible_os_family] | default(_digitalocean_agent_validate_certs['default'] ) }}"
 
 _digitalocean_agent_repository_src:
   default: []
@@ -15,7 +15,7 @@ _digitalocean_agent_repository_src:
   dnf: digitalocean-agent.repo
   yum: digitalocean-agent.repo
 
-digitalocean_agent_repository_src: "{{ _digitalocean_agent_repository_src[ansible_pkg_mgr] | default(_digitalocean_agent_repository_src['default']) }}"
+digitalocean_agent_repository_src: "{{ _digitalocean_agent_repository_src[ansible_pkg_mgr] | default(_digitalocean_agent_repository_src['default'] ) }}"
 
 _digitalocean_agent_repository_dest:
   default: []
@@ -23,4 +23,4 @@ _digitalocean_agent_repository_dest:
   dnf: /etc/yum.repos.d/digitalocean-agent.repo
   yum: /etc/yum.repos.d/digitalocean-agent.repo
 
-digitalocean_agent_repository_dest: "{{ _digitalocean_agent_repository_dest[ansible_pkg_mgr] | default(_digitalocean_agent_repository_dest['default']) }}"
+digitalocean_agent_repository_dest: "{{ _digitalocean_agent_repository_dest[ansible_pkg_mgr] | default(_digitalocean_agent_repository_dest['default'] ) }}"

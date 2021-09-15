@@ -5,4 +5,4 @@ _cups_service:
   default: cups
   Alpine: cupsd
 
-cups_service: "{{ _cups_service[ansible_os_family] | default(_cups_service['default']) }}"
+cups_service: "{{ _cups_service[ansible_os_family] | default(_cups_service['default'] ) }}"

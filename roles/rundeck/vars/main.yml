@@ -12,4 +12,4 @@ _rundeck_java_home:
   default: /usr
   Fedora: /usr/lib/jvm/jre
 
-rundeck_java_home: "{{ _rundeck_java_home[ansible_distribution] | default(_rundeck_java_home['default']) }}"
+rundeck_java_home: "{{ _rundeck_java_home[ansible_distribution] | default(_rundeck_java_home['default'] ) }}"

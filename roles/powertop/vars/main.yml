@@ -5,9 +5,9 @@ _powertop_packages:
   default:
     - powertop
 
-powertop_packages: "{{ _powertop_packages[ansible_distribution] | default(_powertop_packages['default']) }}"
+powertop_packages: "{{ _powertop_packages[ansible_distribution] | default(_powertop_packages['default'] ) }}"
 
 _powertop_service:
   default: powertop
 
-powertop_service: "{{ _powertop_service[ansible_distribution] | default(_powertop_service['default']) }}"
+powertop_service: "{{ _powertop_service[ansible_distribution] | default(_powertop_service['default'] ) }}"

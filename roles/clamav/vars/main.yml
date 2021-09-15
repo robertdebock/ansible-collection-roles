@@ -31,7 +31,7 @@ _clamav_packages:
   Suse:
     - clamav
 
-clamav_packages: "{{ _clamav_packages[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_clamav_packages[ansible_distribution] | default(_clamav_packages[ansible_os_family])) }}"
+clamav_packages: "{{ _clamav_packages[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_clamav_packages[ansible_distribution] | default(_clamav_packages[ansible_os_family] )) }}"
 
 _clamav_config_dir:
   default: /etc/clamd.d
@@ -50,7 +50,7 @@ _clamav_config_file:
   Debian: clamd.conf
   Suse: clamd.conf
 
-clamav_config_file: "{{ _clamav_config_file[ansible_distribution] | default(_clamav_config_file[ansible_os_family]) }}"
+clamav_config_file: "{{ _clamav_config_file[ansible_distribution] | default(_clamav_config_file[ansible_os_family] ) }}"
 
 clamav_database_directory: /var/lib/clamav
 
@@ -83,7 +83,7 @@ _clamav_services:
   Suse:
     - clamd
 
-clamav_services: "{{ _clamav_services[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_clamav_services[ansible_distribution] | default(_clamav_services[ansible_os_family])) }}"
+clamav_services: "{{ _clamav_services[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_clamav_services[ansible_distribution] | default(_clamav_services[ansible_os_family] )) }}"
 
 _clamav_owner:
   Alpine: clamav
@@ -93,7 +93,7 @@ _clamav_owner:
   Rocky: *centos_owner
   Suse: vscan
 
-clamav_owner: "{{ _clamav_owner[ansible_distribution] | default(_clamav_owner[ansible_os_family]) }}"
+clamav_owner: "{{ _clamav_owner[ansible_distribution] | default(_clamav_owner[ansible_os_family] ) }}"
 
 _clamav_group:
   Alpine: clamav
@@ -103,9 +103,9 @@ _clamav_group:
   Rocky: *centos_group
   Suse: vscan
 
-clamav_group: "{{ _clamav_group[ansible_distribution] | default(_clamav_group[ansible_os_family]) }}"
+clamav_group: "{{ _clamav_group[ansible_distribution] | default(_clamav_group[ansible_os_family] ) }}"
 
-clamav_requirements: "{{ _clamav_requirements[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_clamav_requirements[ansible_distribution] | default(_clamav_requirements[ansible_os_family])) | default(_clamav_requirements['default']) }}"
+clamav_requirements: "{{ _clamav_requirements[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_clamav_requirements[ansible_distribution] | default(_clamav_requirements[ansible_os_family] )) | default(_clamav_requirements['default'] ) }}"
 
 _clamav_requirements:
   default:
@@ -125,4 +125,4 @@ _freshclam_mode:
   Rocky: *centos_mode
   Suse: "0640"
 
-freshclam_mode: "{{ _freshclam_mode[ansible_distribution] | default(_freshclam_mode[ansible_os_family]) }}"
+freshclam_mode: "{{ _freshclam_mode[ansible_distribution] | default(_freshclam_mode[ansible_os_family] ) }}"

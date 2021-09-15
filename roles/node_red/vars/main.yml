@@ -11,6 +11,6 @@ _node_red_start_command:
   CentOS-7: /usr/bin/node-red
   Debian-10: /usr/bin/node-red
 
-node_red_start_command: "{{ _node_red_start_command[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_node_red_start_command[ansible_os_family] | default(_node_red_start_command['default'])) }}"
+node_red_start_command: "{{ _node_red_start_command[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_node_red_start_command[ansible_os_family] | default(_node_red_start_command['default'] )) }}"
 
 node_red_service: nodered

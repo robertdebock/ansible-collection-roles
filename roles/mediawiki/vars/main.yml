@@ -28,7 +28,7 @@ _mediawiki_requirements:
     - php-mysqlnd
     - php-xml
 
-mediawiki_requirements: "{{ _mediawiki_requirements[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default (_mediawiki_requirements[ansible_distribution] | default(_mediawiki_requirements['default'])) }}"
+mediawiki_requirements: "{{ _mediawiki_requirements[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default (_mediawiki_requirements[ansible_distribution] | default(_mediawiki_requirements['default'] )) }}"
 
 mediawiki_source: "https://releases.wikimedia.org/mediawiki/{{ mediawiki_major}}.{{ mediawiki_minor }}/mediawiki-{{ mediawiki_version }}.tar.gz"
 
@@ -37,4 +37,4 @@ _mediawiki_destination:
   Alpine: /var/www/{{ httpd_servername | default(ansible_fqdn) }}
   Suse: /srv/www/htdocs
 
-mediawiki_docroot: "{{ _mediawiki_destination[ansible_os_family] | default(_mediawiki_destination['default']) }}"
+mediawiki_docroot: "{{ _mediawiki_destination[ansible_os_family] | default(_mediawiki_destination['default'] ) }}"

@@ -11,14 +11,14 @@ _bios_update_requirements:
     - genisoimage
   Rocky: *redhat_requirements
 
-bios_update_requirements: "{{ _bios_update_requirements[ansible_os_family] | default(_bios_update_requirements['default']) }}"
+bios_update_requirements: "{{ _bios_update_requirements[ansible_os_family] | default(_bios_update_requirements['default'] ) }}"
 
 _bios_update_command:
   default: geteltorito
   RedHat: &redhat_command genisoimage
   Rocky: *redhat_command
 
-bios_update_command: "{{ _bios_update_command[ansible_os_family] | default(_bios_update_command['default']) }} -o {{ bios_update_temporary_directory }}/bios_update.img {{ bios_update_temporary_directory }}/{{ bios_update_url | basename }}"
+bios_update_command: "{{ _bios_update_command[ansible_os_family] | default(_bios_update_command['default'] ) }} -o {{ bios_update_temporary_directory }}/bios_update.img {{ bios_update_temporary_directory }}/{{ bios_update_url | basename }}"
 
 # A mapping from computer model type to "bootable cd".
 _bios_update_url:
@@ -28,4 +28,4 @@ _bios_update_url:
   ThinkPad X260: "https://download.lenovo.com/pccbbs/mobiles/r02uj73d.iso"
   ThinkPad X270: "https://download.lenovo.com/pccbbs/mobiles/r0iuj27wd.iso"
 
-bios_update_url: "{{ _bios_update_url[ansible_product_version] | default(_bios_update_url['default']) }}"
+bios_update_url: "{{ _bios_update_url[ansible_product_version] | default(_bios_update_url['default'] ) }}"

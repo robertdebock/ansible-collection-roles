@@ -5,19 +5,10 @@ _npm_validate_certs:
   default: yes
   Debian: no
 
-npm_validate_certs: "{{ _npm_validate_certs[ansible_os_family] | default(_npm_validate_certs['default']) }}"
+npm_validate_certs: "{{ _npm_validate_certs[ansible_os_family] | default(_npm_validate_certs['default'] ) }}"
 
-_npm_packages:
-  default:
-    - npm
-  Alpine:
-    - npm
-  Debian:
-    - nodejs
-  Ubuntu:
-    - npm
-
-npm_packages: "{{ _npm_packages[ansible_distribution] | default(_npm_packages['default']) }}"
+npm_packages:
+  - npm
 
 npm_gpg_key: https://rpm.nodesource.com/pub/el/NODESOURCE-GPG-SIGNING-KEY-EL
 

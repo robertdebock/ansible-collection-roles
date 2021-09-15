@@ -8,18 +8,18 @@ _aide_init_command:
   default: aide --init
   Debian: aideinit
 
-aide_init_command: "{{ _aide_init_command[ansible_os_family] | default(_aide_init_command['default']) }}"
+aide_init_command: "{{ _aide_init_command[ansible_os_family] | default(_aide_init_command['default'] ) }}"
 
 _aide_db_new:
   default: /var/lib/aide/aide.db.new.gz
   Debian: /var/lib/aide/aide.db.new
   Suse: /var/lib/aide/aide.db.new
 
-aide_db_new: "{{ _aide_db_new[ansible_os_family] | default(_aide_db_new['default']) }}"
+aide_db_new: "{{ _aide_db_new[ansible_os_family] | default(_aide_db_new['default'] ) }}"
 
 _aide_db:
   default: /var/lib/aide/aide.db.gz
   Debian: /var/lib/aide/aide.db
   Suse: /var/lib/aide/aide.db
 
-aide_db: "{{ _aide_db[ansible_os_family] | default(_aide_db['default']) }}"
+aide_db: "{{ _aide_db[ansible_os_family] | default(_aide_db['default'] ) }}"

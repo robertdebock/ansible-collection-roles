@@ -20,8 +20,7 @@ galaxy_info:
         - all
     - name: Ubuntu
       versions:
-        - bionic
-        - focal
+        - all
 
   galaxy_tags:
     - roundcubemail

@@ -9,7 +9,7 @@ _openssl_requirements:
     - cargo
     - openssl
 
-openssl_requirements: "{{ _openssl_requirements[ansible_os_family] | default(_openssl_requirements['default']) }}"
+openssl_requirements: "{{ _openssl_requirements[ansible_os_family] | default(_openssl_requirements['default'] ) }}"
 
 openssl_pip_packages:
   - pyOpenSSL

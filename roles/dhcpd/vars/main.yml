@@ -18,7 +18,7 @@ _dhcpd_packages:
   Suse:
     - dhcp-server
 
-dhcpd_packages: "{{ _dhcpd_packages[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_dhcpd_packages[ansible_distribution] | default(_dhcpd_packages[ansible_os_family] | default(_dhcpd_packages['default']))) }}"
+dhcpd_packages: "{{ _dhcpd_packages[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_dhcpd_packages[ansible_distribution] | default(_dhcpd_packages[ansible_os_family] | default(_dhcpd_packages['default'] ))) }}"
 
 _dhcpd_defaults_src:
   Debian: isc-dhcp-server.j2

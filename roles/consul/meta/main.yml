@@ -14,7 +14,7 @@ galaxy_info:
         - Candidate
     - name: Debian
       versions:
-        - buster
+        - bullseye
     - name: EL
       versions:
         - 7
@@ -25,8 +25,7 @@ galaxy_info:
         - 34
     - name: Ubuntu
       versions:
-        - focal
-        - bionic
+        - all
 
   galaxy_tags:
     - consul

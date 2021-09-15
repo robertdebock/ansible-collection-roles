@@ -13,20 +13,20 @@ _zabbix_web_packages:
     - zabbix-web-mysql
     - zabbix-apache-conf
 
-zabbix_web_packages: "{{ _zabbix_web_packages[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_zabbix_web_packages[ansible_os_family]) }}"
+zabbix_web_packages: "{{ _zabbix_web_packages[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_zabbix_web_packages[ansible_os_family] ) }}"
 
 _zabbix_configuration_path:
   default: /etc/zabbix/web
   Ubuntu-16: /usr/share/zabbix/conf
 
-zabbix_configuration_path: "{{ _zabbix_configuration_path[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_zabbix_configuration_path['default']) }}"
+zabbix_configuration_path: "{{ _zabbix_configuration_path[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_zabbix_configuration_path['default'] ) }}"
 
 _zabbix_web_httpd_service:
   default: apache2
   RedHat: &redhat_httpd_service httpd
   Rocky: *redhat_httpd_service
 
-zabbix_web_httpd_service: "{{ _zabbix_web_httpd_service[ansible_os_family] | default(_zabbix_web_httpd_service['default']) }}"
+zabbix_web_httpd_service: "{{ _zabbix_web_httpd_service[ansible_os_family] | default(_zabbix_web_httpd_service['default'] ) }}"
 
 _zabbix_web_mysql_socket:
   default: /var/run/mysql/mysql.sock
@@ -34,4 +34,4 @@ _zabbix_web_mysql_socket:
   RedHat: &redhat_mysql_socket /var/lib/mysql/mysql.sock
   Rocky: *redhat_mysql_socket
 
-zabbix_web_mysql_socket: "{{ _zabbix_web_mysql_socket[ansible_os_family] | default(_zabbix_web_mysql_socket['default']) }}"
+zabbix_web_mysql_socket: "{{ _zabbix_web_mysql_socket[ansible_os_family] | default(_zabbix_web_mysql_socket['default'] ) }}"

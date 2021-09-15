@@ -6,7 +6,7 @@ _dnsmasq_packages:
   Alpine:
     - dnsmasq-dnssec
 
-dnsmasq_packages: "{{ _dnsmasq_packages[ansible_os_family] | default(_dnsmasq_packages['default']) }}"
+dnsmasq_packages: "{{ _dnsmasq_packages[ansible_os_family] | default(_dnsmasq_packages['default'] ) }}"
 
 dnsmasq_service: dnsmasq
 
@@ -16,7 +16,7 @@ _dnsmasq_set_user:
   default: root
   Suse: dnsmasq
 
-dnsmasq_set_user: "{{ _dnsmasq_set_user[ansible_os_family] | default(_dnsmasq_set_user['default']) }}"
+dnsmasq_set_user: "{{ _dnsmasq_set_user[ansible_os_family] | default(_dnsmasq_set_user['default'] ) }}"
 
 _dnsmasq_set_group:
   default: dnsmasq
@@ -26,7 +26,7 @@ _dnsmasq_set_group:
   Rocky: *redhat_set_group
   Suse: root
 
-dnsmasq_set_group: "{{ _dnsmasq_set_group[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_dnsmasq_set_group[ansible_os_family] | default(_dnsmasq_set_group['default'])) }}"
+dnsmasq_set_group: "{{ _dnsmasq_set_group[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_dnsmasq_set_group[ansible_os_family] | default(_dnsmasq_set_group['default'] )) }}"
 
 _dnsmasq_documentation_path:
   default: /usr/share/dnsmasq
@@ -34,4 +34,4 @@ _dnsmasq_documentation_path:
   RedHat: &redhat_documentation_path /usr/share/dnsmasq
   Rocky: *redhat_documentation_path
 
-dnsmasq_documentation_path: "{{ _dnsmasq_documentation_path[ansible_os_family] | default(_dnsmasq_documentation_path['default']) }}"
+dnsmasq_documentation_path: "{{ _dnsmasq_documentation_path[ansible_os_family] | default(_dnsmasq_documentation_path['default'] ) }}"

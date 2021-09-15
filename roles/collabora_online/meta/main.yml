@@ -11,15 +11,14 @@ galaxy_info:
   platforms:
     - name: Debian
       versions:
-        - buster
+        - bullseye
     - name: EL
       versions:
         - 7
         - 8
     - name: Ubuntu
       versions:
-        - focal
-        - bionic
+        - all
 
   galaxy_tags:
     - collaboraonline

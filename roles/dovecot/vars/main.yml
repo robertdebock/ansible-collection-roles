@@ -12,6 +12,6 @@ _dovecot_packages:
     - dovecot-imapd
     - dovecot-pop3d
 
-dovecot_packages: "{{ _dovecot_packages[ansible_os_family] | default(_dovecot_packages['default']) }}"
+dovecot_packages: "{{ _dovecot_packages[ansible_os_family] | default(_dovecot_packages['default'] ) }}"
 
 dovecot_service: dovecot

@@ -6,4 +6,4 @@ _restore_mysql_socket:
   RedHat: &redhat_mysql_socket /var/lib/mysql/mysql.sock
   Rocky: *redhat_mysql_socket
 
-restore_mysql_socket: "{{ _restore_mysql_socket[ansible_os_family] | default(_restore_mysql_socket['default']) }}"
+restore_mysql_socket: "{{ _restore_mysql_socket[ansible_os_family] | default(_restore_mysql_socket['default'] ) }}"

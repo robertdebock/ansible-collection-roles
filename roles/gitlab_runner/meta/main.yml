@@ -15,11 +15,10 @@ galaxy_info:
         - 8
     - name: Debian
       versions:
-        - buster
+        - bullseye
     - name: Ubuntu
       versions:
-        - focal
-        - bionic
+        - all
 
   galaxy_tags:
     - gitlabrunner

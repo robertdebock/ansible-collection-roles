@@ -4,3 +4,5 @@ roles:
   - name: robertdebock.core_dependencies
   - name: robertdebock.gnome
   - name: robertdebock.users
+collections:
+  - name: ansible.posix

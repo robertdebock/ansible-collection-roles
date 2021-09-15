@@ -42,7 +42,7 @@ _roundcubemail_requirements:
     - python3-PyMySQL
   Rocky: *redhat_requirements
 
-roundcubemail_requirements: "{{ _roundcubemail_requirements[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_roundcubemail_requirements[ansible_os_family] | default(_roundcubemail_requirements['default'])) }}"
+roundcubemail_requirements: "{{ _roundcubemail_requirements[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_roundcubemail_requirements[ansible_os_family] | default(_roundcubemail_requirements['default'] )) }}"
 
 _roundcubemail_packages:
   default:
@@ -50,13 +50,13 @@ _roundcubemail_packages:
   Debian:
     - roundcube
 
-roundcubemail_packages: "{{ _roundcubemail_packages[ansible_os_family] | default(_roundcubemail_packages['default']) }}"
+roundcubemail_packages: "{{ _roundcubemail_packages[ansible_os_family] | default(_roundcubemail_packages['default'] ) }}"
 
 _roundcubemail_conf_dir:
   default: /etc/roundcubemail
   Debian: /etc/roundcube
 
-roundcubemail_conf_dir: "{{ _roundcubemail_conf_dir[ansible_os_family] | default(_roundcubemail_conf_dir['default']) }}"
+roundcubemail_conf_dir: "{{ _roundcubemail_conf_dir[ansible_os_family] | default(_roundcubemail_conf_dir['default'] ) }}"
 
 _roundcubemail_owner:
   default: http
@@ -66,7 +66,7 @@ _roundcubemail_owner:
   Rocky: *redhat_owner
   Suse: root
 
-roundcubemail_owner: "{{ _roundcubemail_owner[ansible_os_family] | default(_roundcubemail_owner['default']) }}"
+roundcubemail_owner: "{{ _roundcubemail_owner[ansible_os_family] | default(_roundcubemail_owner['default'] ) }}"
 
 _roundcubemail_group:
   default: apache
@@ -76,21 +76,21 @@ _roundcubemail_group:
   Rocky: *redhat_group
   Suse: root
 
-roundcubemail_group: "{{ _roundcubemail_group[ansible_os_family] | default(_roundcubemail_group['default']) }}"
+roundcubemail_group: "{{ _roundcubemail_group[ansible_os_family] | default(_roundcubemail_group['default'] ) }}"
 
 _roundcubemail_mode:
   default: "640"
   Alpine: "644"
   Suse: "644"
 
-roundcubemail_mode: "{{ _roundcubemail_mode[ansible_os_family] | default(_roundcubemail_mode['default']) }}"
+roundcubemail_mode: "{{ _roundcubemail_mode[ansible_os_family] | default(_roundcubemail_mode['default'] ) }}"
 
 _roundcubemail_install_directory:
   default: /usr/share/roundcubemail
   Debian: /usr/share/roundcube
   Suse: /srv/www/roundcubemail
 
-roundcubemail_install_directory: "{{ _roundcubemail_install_directory[ansible_os_family] | default(_roundcubemail_install_directory['default']) }}"
+roundcubemail_install_directory: "{{ _roundcubemail_install_directory[ansible_os_family] | default(_roundcubemail_install_directory['default'] ) }}"
 
 roundcubemail_database_url: mysql://{{ roundcubemail_database_user }}:{{ roundcubemail_database_password }}@{{ roundcubemail_database_host }}/{{ roundcubemail_database_name }}
 
@@ -106,4 +106,4 @@ _roundcubemail_httpd_configuration:
   Rocky: *redhat_httpd_configuration
   Suse: /etc/apache2/conf.d/roundcubemail.conf
 
-roundcubemail_httpd_configuration: "{{ _roundcubemail_httpd_configuration[ansible_os_family] | default(_roundcubemail_httpd_configuration['default']) }}"
+roundcubemail_httpd_configuration: "{{ _roundcubemail_httpd_configuration[ansible_os_family] | default(_roundcubemail_httpd_configuration['default'] ) }}"

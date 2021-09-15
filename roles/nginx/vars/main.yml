@@ -7,4 +7,4 @@ _nginx_user:
   RedHat: &redhat_user nginx
   Rocky: *redhat_user
 
-nginx_user: "{{ _nginx_user[ansible_os_family] | default(_nginx_user['default']) }}"
+nginx_user: "{{ _nginx_user[ansible_os_family] | default(_nginx_user['default'] ) }}"

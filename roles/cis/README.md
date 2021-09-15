@@ -23,7 +23,7 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
     - role: robertdebock.cis
 ```
 
-The machine needs to be prepared in CI this is done using `molecule/default/prepare.yml`:
+The machine needs to be prepared. In CI this is done using `molecule/default/prepare.yml`:
 ```yaml
 ---
 - name: prepare
@@ -41,7 +41,7 @@ Also see a [full explanation and example](https://robertdebock.nl/how-to-use-the
 
 ## [Role Variables](#role-variables)
 
-These variables are set in `defaults/main.yml`:
+The default values for the variables are set in `defaults/main.yml`:
 ```yaml
 ---
 # defaults file for cis
@@ -568,9 +568,9 @@ cis_cron_d_permissions_configured: yes
 
 - pip packages listed in [requirements.txt](https://github.com/robertdebock/ansible-role-cis/blob/master/requirements.txt).
 
-## [Status of requirements](#status-of-requirements)
+## [Status of used roles](#status-of-requirements)
 
-The following roles are used to prepare a system. You may choose to prepare your system in another way, I have tested these roles as well.
+The following roles are used to prepare a system. You can prepare your system in another way.
 
 | Requirement | GitHub | GitLab |
 |-------------|--------|--------|
@@ -606,12 +606,6 @@ If you find issues, please register them in [GitHub](https://github.com/robertde
 ## [License](#license)
 
 Apache-2.0
-
-## [Contributors](#contributors)
-
-I'd like to thank everybody that made contributions to this repository. It motivates me, improves the code and is just fun to collaborate.
-
-- [arturmartins](https://github.com/arturmartins)
 
 ## [Author Information](#author-information)
 

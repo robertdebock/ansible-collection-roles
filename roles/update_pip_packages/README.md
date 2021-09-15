@@ -93,7 +93,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|debian|bullseye|
+|debian|all|
 |el|8|
 |fedora|all|
 |opensuse|all|
@@ -111,7 +111,6 @@ If you find issues, please register them in [GitHub](https://github.com/robertde
 ## [License](#license)
 
 Apache-2.0
-
 
 ## [Author Information](#author-information)
 

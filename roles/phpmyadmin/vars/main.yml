@@ -7,21 +7,21 @@ _phpmyadmin_httpd_directory:
   default: /var/www/html
   Suse: /srv/www/htdocs
 
-phpmyadmin_httpd_directory: "{{ _phpmyadmin_httpd_directory[ansible_os_family] | default(_phpmyadmin_httpd_directory['default']) }}"
+phpmyadmin_httpd_directory: "{{ _phpmyadmin_httpd_directory[ansible_os_family] | default(_phpmyadmin_httpd_directory['default'] ) }}"
 
 _phpmyadmin_httpd_user:
   default: apache
   Debian: www-data
   Suse: wwwrun
 
-phpmyadmin_httpd_user: "{{ _phpmyadmin_httpd_user[ansible_os_family] | default(_phpmyadmin_httpd_user['default']) }}"
+phpmyadmin_httpd_user: "{{ _phpmyadmin_httpd_user[ansible_os_family] | default(_phpmyadmin_httpd_user['default'] ) }}"
 
 _phpmyadmin_httpd_group:
   default: apache
   Debian: www-data
   Suse: www
 
-phpmyadmin_httpd_group: "{{ _phpmyadmin_httpd_group[ansible_os_family] | default(_phpmyadmin_httpd_group['default']) }}"
+phpmyadmin_httpd_group: "{{ _phpmyadmin_httpd_group[ansible_os_family] | default(_phpmyadmin_httpd_group['default'] ) }}"
 
 _phpmyadmin_requirements:
   Alpine:

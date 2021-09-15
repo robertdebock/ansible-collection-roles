@@ -15,7 +15,7 @@
     gpgkey: "{{ mssql_gpgkey }}"
     gpgcheck: yes
   when:
-    - ansible_distribution in [ "CentOS", "Fedora", "RedHat", "Rocky" ]
+    - ansible_distribution in [ "CentOS", "Fedora", "RedHat", "Rocky", "Amazon" ]
     - mssql_add_repositories | bool
   loop: "{{ mssql_rhel_repositories }}"
   loop_control:
@@ -84,7 +84,7 @@
   environment:
     ACCEPT_EULA: Y
   when:
-    - ansible_distribution != "Ubuntu"
+    - ansible_distribution != "Ubuntu" and mssql_version == 2017
   notify:
     - restart mssql-server
 
@@ -96,7 +96,7 @@
   environment:
     ACCEPT_EULA: Y
   when:
-    - ansible_distribution == "Ubuntu"
+    - ansible_distribution == "Ubuntu" and mssql_version == 2017
   notify:
     - restart mssql-server
 
