@@ -1,0 +1,14 @@
+---
+# vars file for podman
+
+podman_packages:
+  - podman
+
+podman_configuration_files:
+  containers: /etc/containers/containers.conf
+  mounts: /usr/share/containers/mounts.conf
+  policy: /etc/containers/policy.json
+  registries: /etc/containers/registries.conf
+  storage: /etc/containers/storage.conf
+
+podman_service: podman

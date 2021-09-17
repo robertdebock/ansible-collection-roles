@@ -1,0 +1,6 @@
+---
+roles:
+  - name: robertdebock.bootstrap
+collections:
+  - name: containers.podman
+  - name: community.general

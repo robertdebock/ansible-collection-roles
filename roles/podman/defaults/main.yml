@@ -1,0 +1,11 @@
+---
+# defaults file for podman
+
+# You can modify the `storage.conf` file using this list.
+# podman_storage:
+#   - option: driver
+#     value: overlay
+#     section: storage
+
+# You can start docker as a specific user other than "root".
+# podman_user: my_user

@@ -28,7 +28,7 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
     - role: robertdebock.roundcubemail
 ```
 
-The machine needs to be prepared in CI this is done using `molecule/default/prepare.yml`:
+The machine needs to be prepared. In CI this is done using `molecule/default/prepare.yml`:
 ```yaml
 ---
 - name: Prepare
@@ -66,7 +66,7 @@ Also see a [full explanation and example](https://robertdebock.nl/how-to-use-the
 
 ## [Role Variables](#role-variables)
 
-These variables are set in `defaults/main.yml`:
+The default values for the variables are set in `defaults/main.yml`:
 ```yaml
 ---
 # defaults file for roundcubemail
@@ -90,9 +90,9 @@ roundcubemail_spellcheck_engine: pspell
 
 - pip packages listed in [requirements.txt](https://github.com/robertdebock/ansible-role-roundcubemail/blob/master/requirements.txt).
 
-## [Status of requirements](#status-of-requirements)
+## [Status of used roles](#status-of-requirements)
 
-The following roles are used to prepare a system. You may choose to prepare your system in another way, I have tested these roles as well.
+The following roles are used to prepare a system. You can prepare your system in another way.
 
 | Requirement | GitHub | GitLab |
 |-------------|--------|--------|
@@ -128,7 +128,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |debian|all|
 |fedora|all|
 |opensuse|all|
-|ubuntu|bionic, focal|
+|ubuntu|all|
 
 The minimum version of Ansible required is 2.10, tests have been done to:
 
@@ -138,7 +138,7 @@ The minimum version of Ansible required is 2.10, tests have been done to:
 
 ## [Exceptions](#exceptions)
 
-Some variarations of the build matrix do not work. These are the variations and reasons why the build won't work:
+Some roles can't run on a specific distribution or version. Here are some exceptions.
 
 | variation                 | reason                 |
 |---------------------------|------------------------|

@@ -1,0 +1,7 @@
+---
+# handlers file for podman
+
+- name: restart podman
+  ansible.builtin.service:
+    name: "{{ podman_service }}"
+    state: restarted

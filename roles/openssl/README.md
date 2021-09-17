@@ -23,7 +23,7 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
           common_name: my.example.com
 ```
 
-The machine needs to be prepared in CI this is done using `molecule/default/prepare.yml`:
+The machine needs to be prepared. In CI this is done using `molecule/default/prepare.yml`:
 ```yaml
 ---
 - name: prepare
@@ -42,7 +42,7 @@ Also see a [full explanation and example](https://robertdebock.nl/how-to-use-the
 
 ## [Role Variables](#role-variables)
 
-These variables are set in `defaults/main.yml`:
+The default values for the variables are set in `defaults/main.yml`:
 ```yaml
 ---
 # defaults file for openssl
@@ -57,13 +57,13 @@ These variables are set in `defaults/main.yml`:
 # location is set in `vars/main.yml`.
 
 # This directory stores sensitive objects. (key, p12 and pkcs12)
-openssl_key_directory: "{{ _openssl_key_directory[ansible_os_family] | default(_openssl_key_directory['default']) }}"
+openssl_key_directory: "{{ _openssl_key_directory[ansible_os_family] | default(_openssl_key_directory['default'] ) }}"
 
 # This directory stores public, non-persistent objects. (csr)
-openssl_csr_directory: "{{ _openssl_csr_directory[ansible_os_family] | default(_openssl_csr_directory['default']) }}"
+openssl_csr_directory: "{{ _openssl_csr_directory[ansible_os_family] | default(_openssl_csr_directory['default'] ) }}"
 
 # This directory stores public, persistent objects. (crt)
-openssl_crt_directory: "{{ _openssl_crt_directory[ansible_os_family] | default(_openssl_crt_directory['default']) }}"
+openssl_crt_directory: "{{ _openssl_crt_directory[ansible_os_family] | default(_openssl_crt_directory['default'] ) }}"
 
 # You can change the owner and group of file created by this role.
 openssl_file_owner: root
@@ -74,9 +74,9 @@ openssl_file_group: root
 
 - pip packages listed in [requirements.txt](https://github.com/robertdebock/ansible-role-openssl/blob/master/requirements.txt).
 
-## [Status of requirements](#status-of-requirements)
+## [Status of used roles](#status-of-requirements)
 
-The following roles are used to prepare a system. You may choose to prepare your system in another way, I have tested these roles as well.
+The following roles are used to prepare a system. You can prepare your system in another way.
 
 | Requirement | GitHub | GitLab |
 |-------------|--------|--------|
@@ -100,10 +100,10 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |---------|----|
 |alpine|all|
 |el|8|
-|debian|buster, bullseye|
+|debian|all|
 |fedora|all|
 |opensuse|all|
-|ubuntu|focal, bionic|
+|ubuntu|all|
 
 The minimum version of Ansible required is 2.10, tests have been done to:
 

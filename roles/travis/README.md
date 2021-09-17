@@ -20,7 +20,7 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
     - role: robertdebock.travis
 ```
 
-The machine needs to be prepared in CI this is done using `molecule/default/prepare.yml`:
+The machine needs to be prepared. In CI this is done using `molecule/default/prepare.yml`:
 ```yaml
 ---
 - name: Prepare
@@ -41,9 +41,9 @@ Also see a [full explanation and example](https://robertdebock.nl/how-to-use-the
 
 - pip packages listed in [requirements.txt](https://github.com/robertdebock/ansible-role-travis/blob/master/requirements.txt).
 
-## [Status of requirements](#status-of-requirements)
+## [Status of used roles](#status-of-requirements)
 
-The following roles are used to prepare a system. You may choose to prepare your system in another way, I have tested these roles as well.
+The following roles are used to prepare a system. You can prepare your system in another way.
 
 | Requirement | GitHub | GitLab |
 |-------------|--------|--------|
@@ -66,9 +66,9 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |---------|----|
 |alpine|all|
 |el|8|
-|debian|buster, bullseye|
+|debian|all|
 |opensuse|all|
-|ubuntu|focal, bionic|
+|ubuntu|all|
 
 The minimum version of Ansible required is 2.10, tests have been done to:
 
@@ -78,7 +78,7 @@ The minimum version of Ansible required is 2.10, tests have been done to:
 
 ## [Exceptions](#exceptions)
 
-Some variarations of the build matrix do not work. These are the variations and reasons why the build won't work:
+Some roles can't run on a specific distribution or version. Here are some exceptions.
 
 | variation                 | reason                 |
 |---------------------------|------------------------|

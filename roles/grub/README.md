@@ -25,7 +25,7 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
           value: 0
 ```
 
-The machine needs to be prepared in CI this is done using `molecule/default/prepare.yml`:
+The machine needs to be prepared. In CI this is done using `molecule/default/prepare.yml`:
 ```yaml
 ---
 - name: prepare
@@ -53,7 +53,7 @@ Also see a [full explanation and example](https://robertdebock.nl/how-to-use-the
 
 ## [Role Variables](#role-variables)
 
-These variables are set in `defaults/main.yml`:
+The default values for the variables are set in `defaults/main.yml`:
 ```yaml
 ---
 # defaults file for grub
@@ -72,9 +72,9 @@ grub_recordfail_timeout: "{{ grub_timeout }}"
 
 - pip packages listed in [requirements.txt](https://github.com/robertdebock/ansible-role-grub/blob/master/requirements.txt).
 
-## [Status of requirements](#status-of-requirements)
+## [Status of used roles](#status-of-requirements)
 
-The following roles are used to prepare a system. You may choose to prepare your system in another way, I have tested these roles as well.
+The following roles are used to prepare a system. You can prepare your system in another way.
 
 | Requirement | GitHub | GitLab |
 |-------------|--------|--------|
@@ -95,10 +95,10 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |---------|----|
 |alpine|all|
 |el|8|
-|debian|buster, bullseye|
+|debian|all|
 |fedora|all|
 |opensuse|all|
-|ubuntu|focal, bionic|
+|ubuntu|all|
 
 The minimum version of Ansible required is 2.10, tests have been done to:
 
