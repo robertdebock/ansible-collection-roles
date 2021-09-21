@@ -4,3 +4,5 @@ roles:
   - name: robertdebock.buildtools
   - name: robertdebock.core_dependencies
   - name: robertdebock.git
+collections:
+  - name: community.general

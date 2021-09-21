@@ -12,15 +12,11 @@ galaxy_info:
     - name: Alpine
       versions:
         - all
-    - name: Amazon
-      versions:
-        - all
     - name: Debian
       versions:
         - all
     - name: EL
       versions:
-        - 7
         - 8
     - name: Fedora
       versions:
@@ -28,10 +24,6 @@ galaxy_info:
     - name: OpenSUSE
       versions:
         - all
-    - name: Ubuntu
-      versions:
-        - focal
-        - bionic
 
   galaxy_tags:
     - podman

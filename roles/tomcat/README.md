@@ -170,7 +170,7 @@ tomcat_instances:
     ajp_secret: "{{ tomcat_ajp_secret }}"
     # You can pick an address per instance:
     # address: 127.0.0.1
-    packet_size: "8192"
+    packet_size: 8192
     java_opts:
       - name: JRE_HOME
         value: "{{ tomcat_jre_home }}"

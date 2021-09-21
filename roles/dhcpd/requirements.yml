@@ -3,3 +3,5 @@ roles:
   - name: robertdebock.apt_autostart
   - name: robertdebock.bootstrap
   - name: robertdebock.core_dependencies
+collections:
+  - name: community.general

@@ -6,3 +6,4 @@ roles:
   - name: robertdebock.python_pip
 collections:
   - name: community.crypto
+  - name: community.general

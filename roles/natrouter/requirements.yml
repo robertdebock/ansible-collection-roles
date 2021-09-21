@@ -4,3 +4,4 @@ roles:
   - name: robertdebock.sysctl
 collections:
   - name: ansible.posix
+  - name: community.general

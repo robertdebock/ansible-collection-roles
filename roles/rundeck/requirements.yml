@@ -5,3 +5,5 @@ roles:
   - name: robertdebock.core_dependencies
   - name: robertdebock.java
   - name: robertdebock.service
+collections:
+  - name: community.general

@@ -3,3 +3,5 @@ roles:
   - name: robertdebock.bootstrap
   - name: robertdebock.cron
   - name: robertdebock.postfix
+collections:
+  - name: community.general

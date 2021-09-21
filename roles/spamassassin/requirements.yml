@@ -5,3 +5,5 @@ roles:
   - name: robertdebock.cron
   - name: robertdebock.logrotate
   - name: robertdebock.rsyslog
+collections:
+  - name: community.general
