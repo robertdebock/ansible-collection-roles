@@ -79,6 +79,13 @@
 - name: flush handlers
   ansible.builtin.meta: flush_handlers
 
+- name: removing default html
+  ansible.builtin.file:
+    path: "{{ httpd_data_directory }}/index.html"
+    state: absent
+  when:
+    - httpd_remove_example
+
 - name: start and enable httpd
   ansible.builtin.service:
     name: "{{ httpd_service }}"

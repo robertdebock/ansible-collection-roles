@@ -100,7 +100,6 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|el|8|
 |debian|all|
 |fedora|all|
 |ubuntu|all|
@@ -111,13 +110,6 @@ The minimum version of Ansible required is 2.10, tests have been done to:
 - The current version.
 - The development version.
 
-## [Exceptions](#exceptions)
-
-Some roles can't run on a specific distribution or version. Here are some exceptions.
-
-| variation                 | reason                 |
-|---------------------------|------------------------|
-| CentOS 6 | Depending role (python_pip) does not work on CentOS 6. |
 
 ## [Included version(s)](#included-versions)
 

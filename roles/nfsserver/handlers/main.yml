@@ -2,6 +2,7 @@
 # handlers file for nfsserver
 
 - name: reload exports
-  ansible.builtin.command: exportfs -ra
+  ansible.builtin.command:
+    cmd: exportfs -ra
   when:
     - ansible_connection not in [ "container", "docker", "community.docker.docker" ]

@@ -2,7 +2,8 @@
 # handlers file for grub
 
 - name: update grub
-  ansible.builtin.command: "{{ grub_update_grub_command }}"
+  ansible.builtin.command:
+    cmd: "{{ grub_update_grub_command }}"
   when:
     - ansible_connection not in [ "container", "docker", "community.docker.docker" ]
   notify:

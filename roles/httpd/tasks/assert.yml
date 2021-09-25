@@ -144,3 +144,10 @@
   when:
     - httpd_directories is defined
     - item.allow_override is defined
+
+- name: test if httpd_remove_example is set correctly
+  ansible.builtin.assert:
+    that:
+      - httpd_remove_example is defined
+      - httpd_remove_example is boolean
+    quiet: yes

@@ -2,13 +2,16 @@
 # handlers file for zabbix_agent
 
 - name: create selinux mod for zabbix_agent
-  ansible.builtin.command: checkmodule -M -m -o /etc/zabbix/my-zabbixagent.mod /etc/zabbix/my-zabbixagent.te
+  ansible.builtin.command:
+    cmd: checkmodule -M -m -o /etc/zabbix/my-zabbixagent.mod /etc/zabbix/my-zabbixagent.te
 
 - name: create selinux pp for zabbix_agent
-  ansible.builtin.command: semodule_package -o /etc/zabbix/my-zabbixagent.pp -m /etc/zabbix/my-zabbixagent.mod
+  ansible.builtin.command:
+    cmd: semodule_package -o /etc/zabbix/my-zabbixagent.pp -m /etc/zabbix/my-zabbixagent.mod
 
 - name: load selinux pp for zabbix_agent
-  ansible.builtin.command: semodule -i /etc/zabbix/my-zabbixagent.pp
+  ansible.builtin.command:
+    cmd: semodule -i /etc/zabbix/my-zabbixagent.pp
 
 - name: restart zabbix-agent
   ansible.builtin.service:

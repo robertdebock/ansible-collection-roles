@@ -6,6 +6,6 @@ _revealmd_path:
   RedHat: &redhat_path /usr/local/bin
   Rocky: *redhat_path
   Suse: /usr/local/bin
-  Ubuntu: /usr/local/bin
+  Debian: /usr/local/bin
 
-revealmd_path: "{{ _revealmd_path[ansible_distribution] | default(_revealmd_path[ansible_os_family] | default(_revealmd_path['default'] )) }}"
+revealmd_path: "{{ _revealmd_path[ansible_os_family] | default(_revealmd_path['default'] ) }}"

@@ -2,13 +2,16 @@
 # handlers file for zabbix_server
 
 - name: create selinux mod for zabbix_server
-  ansible.builtin.command: checkmodule -M -m -o /etc/zabbix/my-zabbixserver.mod /etc/zabbix/my-zabbixserver.te
+  ansible.builtin.command:
+    cmd: checkmodule -M -m -o /etc/zabbix/my-zabbixserver.mod /etc/zabbix/my-zabbixserver.te
 
 - name: create selinux pp for zabbix_server
-  ansible.builtin.command: semodule_package -o /etc/zabbix/my-zabbixserver.pp -m /etc/zabbix/my-zabbixserver.mod
+  ansible.builtin.command:
+    cmd: semodule_package -o /etc/zabbix/my-zabbixserver.pp -m /etc/zabbix/my-zabbixserver.mod
 
 - name: load selinux pp for zabbix_server
-  ansible.builtin.command: semodule -i /etc/zabbix/my-zabbixserver.pp
+  ansible.builtin.command:
+    cmd: semodule -i /etc/zabbix/my-zabbixserver.pp
 
 - name: import zabbix schema
   community.mysql.mysql_db:

@@ -1,4 +1,5 @@
 ---
 # vars file for ca_certificates
 
-ca_certificates_packages: ca-certificates
+ca_certificates_packages:
+  - ca-certificates

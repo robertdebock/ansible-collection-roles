@@ -115,6 +115,9 @@ httpd_openssl_crt: "{{ httpd_openssl_crt_directory }}/apache-httpd.crt"
 
 # SSL Key
 httpd_openssl_key: "{{ httpd_openssl_key_directory }}/apache-httpd.key"
+
+# If the "it works" page should be kept
+httpd_remove_example: no
 ```
 
 ## [Requirements](#requirements)

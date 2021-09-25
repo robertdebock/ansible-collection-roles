@@ -1,5 +1,0 @@
----
-# vars file for backup
-
-# The format to use to compress objects.
-backup_format: zip

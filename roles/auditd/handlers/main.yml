@@ -2,11 +2,13 @@
 # handlers file for auditd
 
 - name: run augenrules
-  ansible.builtin.command: augenrules
+  ansible.builtin.command:
+    cmd: augenrules
   notify: load rules
 
 - name: load rules
-  ansible.builtin.command: augenrules --load
+  ansible.builtin.command:
+    cmd: augenrules --load
   when:
     - ansible_connection not in [ "container", "docker", "community.docker.docker" ]
 

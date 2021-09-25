@@ -2,7 +2,8 @@
 # handlers file for httpd
 
 - name: test httpd configuration validity
-  ansible.builtin.command: "{{ httpd_binary }} -t"
+  ansible.builtin.command:
+    cmd: "{{ httpd_binary }} -t"
   changed_when: no
   when:
     - ansible_os_family != "Suse"

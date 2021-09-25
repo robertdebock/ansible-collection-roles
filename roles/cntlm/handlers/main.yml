@@ -8,13 +8,15 @@
     - restart software
 
 - name: configure cntlm
-  ansible.builtin.command: ./configure
+  ansible.builtin.command:
+    cmd: ./configure
   args:
     chdir: "{{ cntlm_tmp }}/cntlm-{{ cntlm_version }}"
     creates: "{{ cntlm_tmp }}/cntlm/config/config.h"
 
 - name: make cntlm
-  ansible.builtin.command: make -j {{ ansible_processor_vcpus * 2 }}
+  ansible.builtin.command:
+    cmd: make -j {{ ansible_processor_vcpus * 2 }}
   args:
     chdir: "{{ cntlm_tmp }}/cntlm-{{ cntlm_version }}"
 

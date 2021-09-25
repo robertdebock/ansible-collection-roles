@@ -29,7 +29,8 @@
     - not ansible_check_mode | bool
 
 - name: update virus definitions
-  ansible.builtin.command: freshclam
+  ansible.builtin.command:
+    cmd: freshclam
   args:
     creates: /var/lib/clamav/main.cvd
   async: 900
@@ -39,10 +40,13 @@
     - not ansible_check_mode | bool
 
 - name: create selinux mod for clamav
-  ansible.builtin.command: checkmodule -M -m -o /etc/my-clamd.mod /etc/my-clamd.te
+  ansible.builtin.command:
+    cmd: checkmodule -M -m -o /etc/my-clamd.mod /etc/my-clamd.te
 
 - name: create selinux pp for clamav
-  ansible.builtin.command: semodule_package -o /etc/my-clamd.pp -m /etc/my-clamd.mod
+  ansible.builtin.command:
+    cmd: semodule_package -o /etc/my-clamd.pp -m /etc/my-clamd.mod
 
 - name: load selinux pp for clamav
-  ansible.builtin.command: semodule -i /etc/my-clamd.pp
+  ansible.builtin.command:
+    cmd: semodule -i /etc/my-clamd.pp

@@ -10,4 +10,5 @@
     - not ansible_check_mode | bool
 
 - name: reload firewalld
-  ansible.builtin.command: firewall-cmd --reload
+  ansible.builtin.command:
+    cmd: firewall-cmd --reload
