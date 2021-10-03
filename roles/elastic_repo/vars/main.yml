@@ -1,0 +1,22 @@
+---
+# vars file for elastic_repo
+
+# The gpg url is mentioned a few times in `tasks/main.yml`, so better
+# use a variable for it.
+elastic_repo_gpg_url: "https://artifacts.elastic.co/GPG-KEY-elasticsearch"
+
+# There are two versions of the repository;
+# - `elastic` uses the "Elastic" license.
+# - `oss` uses the "Apache 2.0" license.
+_elastic_repo_apt_repo:
+  elastic: "deb https://artifacts.elastic.co/packages/7.x/apt stable main"
+  oss: "deb https://artifacts.elastic.co/packages/oss-7.x/apt stable main"
+elastic_repo_apt_repo: "{{ _elastic_repo_apt_repo[elastic_repo_license] }}"
+
+# There are two versions of the repository;
+# - `elastic` uses the "Elastic" license.
+# - `oss` uses the "Apache 2.0" license.
+_elastic_repo_rpm_repo:
+  elastic: "https://artifacts.elastic.co/packages/7.x/yum"
+  oss: "https://artifacts.elastic.co/packages/oss-7.x/yum"
+elastic_repo_rpm_repo: "{{ _elastic_repo_rpm_repo[elastic_repo_license] }}"

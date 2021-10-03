@@ -1,0 +1,9 @@
+---
+
+- name: test if elastic_repo_license is set correctly
+  ansible.builtin.assert:
+    that:
+      - elastic_repo_license is defined
+      - elastic_repo_license is string
+      - elastic_repo_license in [ "elastic", "oss" ]
+    quiet: yes
