@@ -1,0 +1,17 @@
+---
+# tasks file for kibana
+
+- name: include assert.yml
+  ansible.builtin.import_tasks: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+- name: install kibana
+  package:
+    name: "{{ kibana_package }}"
+    state: present
+
+- name: start kibana
+  service:
+    name: kibana
+    state: started

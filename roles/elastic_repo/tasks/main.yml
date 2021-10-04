@@ -24,12 +24,12 @@
 - name: run ym steps
   block:
     - name: add gpg key
-      rpm_key:
+      ansible.builtin.rpm_key:
         key: "{{ elastic_repo_gpg_url }}"
         state: present
 
     - name: add yum repository
-      yum_repository:
+      ansible.builtin.yum_repository:
         name: elastic-7.x
         description: Elastic repository for 7.x packages
         baseurl: "{{ elastic_repo_rpm_repo }}"

@@ -1,0 +1,9 @@
+---
+
+- name: test if logstash_type is set correctly
+  ansible.builtin.assert:
+    that:
+      - logstash_type is defined
+      - logstash_type is string
+      - logstash_type in [ "enterprise", "oss" ]
+    quiet: yes

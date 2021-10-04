@@ -1,0 +1,8 @@
+---
+# vars file for kibana
+
+_kibana_package:
+  oss: kibana-oss
+  elastic: kibana
+
+kibana_package: "{{ _kibana_package[kibana_type] }}"
