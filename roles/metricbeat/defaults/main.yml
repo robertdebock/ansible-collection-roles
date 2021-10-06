@@ -1,0 +1,18 @@
+---
+# defaults file for metricbeat
+
+# A list of modules to enable.
+metricbeat_modules: []
+
+# A list of elasticsearch hosts.
+metricbeat_elasticsearch_hosts:
+  - "http://localhost:9200"
+
+# The username for elasicsearch.
+metricbeat_elasticsearch_username: elastic
+
+# The password for elasicsearch.
+metricbeat_elasticsearch_password: ""
+
+# The URL for Kibana.
+metricbeat_kibana_host: "http://localhost:5601"

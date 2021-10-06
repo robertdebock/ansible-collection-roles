@@ -1,0 +1,11 @@
+---
+metricbeat.config.modules:
+      path: ${path.config}/modules.d/*.yml
+
+output:
+  elasticsearch:
+    hosts: [{% for host in metricbeat_elasticsearch_hosts %}"{{ host}}"{% if not loop.last %},{% endif %}{% endfor %}]
+    username: "{{ metricbeat_elasticsearch_username }}"
+    password: "{{ metricbeat_elasticsearch_password }}"
+setup.kibana:
+  host: "{{ metricbeat_kibana_host }}"
