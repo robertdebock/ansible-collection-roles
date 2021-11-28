@@ -46,6 +46,7 @@ The default values for the variables are set in `defaults/main.yml`:
 # You can pass a list of modules to this role to be loaded. For example:
 # modprobe_modules:
 #   - br_netfilter
+modprobe_modules: []
 ```
 
 ## [Requirements](#requirements)

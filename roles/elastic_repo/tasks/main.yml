@@ -8,7 +8,7 @@
 
 - name: run apt steps
   block:
-    - name: add gpg key
+    - name: add gpg key (apt)
       ansible.builtin.apt_key:
         url: "{{ elastic_repo_gpg_url }}"
         state: present
@@ -21,9 +21,9 @@
   when:
     - ansible_pkg_mgr == "apt"
 
-- name: run ym steps
+- name: run yum steps
   block:
-    - name: add gpg key
+    - name: add gpg key (rpm)
       ansible.builtin.rpm_key:
         key: "{{ elastic_repo_gpg_url }}"
         state: present

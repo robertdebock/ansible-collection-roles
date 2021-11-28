@@ -31,7 +31,6 @@
       when:
         - not common_check_for_network_manager.stat.exists
         - ansible_connection not in [ "container", "docker", "community.docker.docker" ]
-
       rescue:
         - name: comfort users
           ansible.builtin.debug:

@@ -215,6 +215,8 @@
     that:
       - item.name is defined
       - item.name is string
+      - item.name is match("^[a-zA-Z0-9_-]*$")
+    fail_msg: "Please use alphanumeric characters only."
     quiet: yes
   loop: "{{ tomcat_instances }}"
   loop_control:

@@ -7,11 +7,12 @@
   delegate_to: localhost
 
 - name: install logstash
-  package:
+  ansible.builtin.package:
     name: "{{ logstash_package }}"
     state: present
 
 - name: start logstash
-  service:
+  ansible.builtin.service:
     name: logstash
     state: started
+    enabled: yes

@@ -25,7 +25,7 @@ _rpmfusion_gpgkey:
 
 rpmfusion_gpgkey: "{{ _rpmfusion_gpgkey[ansible_distribution] | default(_rpmfusion_gpgkey['default'] ) }}"
 
-rpmfusion_free_repository: "https://download1.rpmfusion.org/free/{{ rpmfusion_distribution }}/rpmfusion-free-release-{{ rpmfusion_distribution_major_version  }}.noarch.rpm"
+rpmfusion_free_repository: "https://download1.rpmfusion.org/free/{{ rpmfusion_distribution }}/rpmfusion-free-release-{{ rpmfusion_distribution_major_version }}.noarch.rpm"
 rpmfusion_nonfree_repository: "https://download1.rpmfusion.org/nonfree/{{ rpmfusion_distribution }}/rpmfusion-nonfree-release-{{ rpmfusion_distribution_major_version }}.noarch.rpm"
 
 rpmfusion_free_gpgp_key: "https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-free-{{ rpmfusion_distribution }}-{{ rpmfusion_gpgkey }}"

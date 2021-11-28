@@ -58,6 +58,7 @@ The default values for the variables are set in `defaults/main.yml`:
 #     gigabytes_available: 4
 #   - name: /home
 #     inodes_available: 65536
+diskspace_mounts: []
 ```
 
 ## [Requirements](#requirements)

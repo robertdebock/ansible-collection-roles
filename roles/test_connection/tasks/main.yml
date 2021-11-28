@@ -15,7 +15,8 @@
         connect_timeout: "{{ test_connection_timeout }}"
         timeout: "{{ test_connection_timeout }}"
       delegate_to: "{{ test_connection_report_host }}"
-    - name: save results
+
+    - name: save success results port 22
       ansible.builtin.lineinfile:
         path: "{{ test_connection_report_directory }}/connection_succeeded.txt"
         line: "{{ ansible_ssh_host | default(ansible_host | default(inventory_hostname)) }}"
@@ -23,7 +24,7 @@
         mode: "0644"
       delegate_to: "{{ test_connection_report_host }}"
   rescue:
-    - name: save results
+    - name: save failed results port 22
       ansible.builtin.lineinfile:
         path: "{{ test_connection_report_directory }}/connection_failed.txt"
         line: "{{ ansible_ssh_host | default(ansible_host | default(inventory_hostname)) }}"
@@ -35,7 +36,8 @@
   block:
     - name: wait_for_connection
       ansible.builtin.wait_for_connection:
-    - name: save results
+
+    - name: save success results wait_for_connection
       ansible.builtin.lineinfile:
         path: "{{ test_connection_report_directory }}/wait_for_connection_succeeded.txt"
         line: "{{ ansible_ssh_host | default(ansible_host | default(inventory_hostname)) }}"
@@ -43,7 +45,7 @@
         mode: "0644"
       delegate_to: "{{ test_connection_report_host }}"
   rescue:
-    - name: save results
+    - name: save failed results wait_for_connection
       ansible.builtin.lineinfile:
         path: "{{ test_connection_report_directory }}/wait_for_connection_failed.txt"
         line: "{{ ansible_ssh_host | default(ansible_host | default(inventory_hostname)) }}"
@@ -57,7 +59,8 @@
       ansible.builtin.ping:
       become: yes
       become_user: root
-    - name: save results
+
+    - name: save success results ping
       ansible.builtin.lineinfile:
         path: "{{ test_connection_report_directory }}/become_succeeded.txt"
         line: "{{ ansible_ssh_host | default(ansible_host | default(inventory_hostname)) }}"
@@ -65,7 +68,7 @@
         mode: "0644"
       delegate_to: "{{ test_connection_report_host }}"
   rescue:
-    - name: save results
+    - name: save failed results ping
       ansible.builtin.lineinfile:
         path: "{{ test_connection_report_directory }}/become_failed.txt"
         line: "{{ ansible_ssh_host | default(ansible_host | default(inventory_hostname)) }}"

@@ -272,7 +272,6 @@
     - dnsmasq_dhcp_ranges is defined
   loop: "{{ dnsmasq_dhcp_ranges }}"
 
-
 - name: test if item.sets in dnsmasq_dhcp_ranges  is set correctly
   ansible.builtin.assert:
     that:

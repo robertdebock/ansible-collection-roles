@@ -6,3 +6,5 @@
 #   - repo: ppa:rabbitvcs/ppa
 #   - repo: ppa:something/ppa
 #     state: absent
+
+apt_repositories: []

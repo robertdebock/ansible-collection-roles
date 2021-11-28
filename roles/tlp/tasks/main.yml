@@ -27,4 +27,4 @@
   ansible.builtin.service:
     name: "{{ tlp_service }}"
     state: started
-    enabled: true
+    enabled: yes

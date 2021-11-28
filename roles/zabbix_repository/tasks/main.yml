@@ -54,6 +54,7 @@
         path: /etc/zabbix
         state: directory
         mode: "0755"
+
     - name: enable zabbix-frontend
       community.general.ini_file:
         path: /etc/yum.repos.d/zabbix.repo

@@ -62,7 +62,7 @@ rsyslog_package_state: present
 # if set to false (legacy default to remain compatible to sysklogd), the domain
 # part from a name that is within the same domain as the receiving system is
 # stripped. If set to on, full names are always used.
-rsyslog_preservefqdn: false
+rsyslog_preservefqdn: no
 
 # Configure additional config files in /etc/rsyslog.d
 # Example:
@@ -77,7 +77,7 @@ rsyslog_rsyslog_d_files: []
 
 # Avoid sd_journal_get_cursor() failed: Cannot assign requested address messages
 # due to logrotate
-rsyslog_workaroundjournalbug: false
+rsyslog_workaroundjournalbug: no
 
 # Turns off message reception via local log socket
-rsyslog_imuxsock_syssock: false
+rsyslog_imuxsock_syssock: no

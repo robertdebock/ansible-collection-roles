@@ -67,7 +67,7 @@ ntp_pool:
 #       - iburst
 
 # The timezone.
-ntp_timezone: Europe/Amsterdam
+ntp_timezone: Etc/UTC
 ```
 
 ## [Requirements](#requirements)

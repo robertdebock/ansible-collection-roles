@@ -22,6 +22,9 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
       postfix_myhostname: "smtp.example.com"
       postfix_mydomain: "example.com"
       postfix_myorigin: "example.com"
+      postfix_mynetworks:
+        - 127.0.0.0/8
+        - 192.168.0.0/16
       postfix_aliases:
         - name: root
           destination: test@example.com

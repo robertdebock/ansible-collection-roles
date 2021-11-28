@@ -46,6 +46,8 @@ The default values for the variables are set in `defaults/main.yml`:
 #   - repo: ppa:rabbitvcs/ppa
 #   - repo: ppa:something/ppa
 #     state: absent
+
+apt_repositories: []
 ```
 
 ## [Requirements](#requirements)

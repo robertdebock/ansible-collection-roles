@@ -17,6 +17,11 @@
   ansible.builtin.command:
     cmd: postmap /etc/postfix/transport
 
+- name: validate configuration
+  ansible.builtin.command:
+    cmd: postconf
+  changed_when: no
+
 - name: reload postfix
   ansible.builtin.service:
     name: "{{ postfix_service }}"

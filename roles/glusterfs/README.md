@@ -47,6 +47,7 @@ The default values for the variables are set in `defaults/main.yml`:
 #   - name: brick1
 #     device: /dev/vdb
 #     mountpoint: /data/brick1
+gluster_bricks: []
 
 # A list of volumes and their properties.
 # glusterfs_volumes:
@@ -55,6 +56,7 @@ The default values for the variables are set in `defaults/main.yml`:
 #     replicas: 3
 #     mountpoint: /mnt/gv0
 #     rebalance: no
+gluster_volumes: []
 ```
 
 ## [Requirements](#requirements)

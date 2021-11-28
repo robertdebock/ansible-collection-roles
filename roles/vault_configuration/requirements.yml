@@ -1,0 +1,5 @@
+---
+roles:
+  - name: robertdebock.bootstrap
+  - name: robertdebock.hashicorp
+  - name: robertdebock.vault

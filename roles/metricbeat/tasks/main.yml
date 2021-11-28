@@ -7,12 +7,12 @@
   delegate_to: localhost
 
 - name: intall metricbeat
-  package:
-    name: metricbeat
+  ansible.builtin.package:
+    name: "{{ metricbeat_package }}"
     state: present
 
 - name: configure metricbeat
-  template:
+  ansible.builtin.template:
     src: metricbeat.yml.j2
     dest: /etc/metricbeat/metricbeat.yml
     owner: root
@@ -22,19 +22,22 @@
     - restart metricbeat
 
 - name: enable metricbeat module
-  command:
+  ansible.builtin.command:
     cmd: metricbeat modules enable {{ item.name }}
     creates: /etc/metricbeat/modules.d/{{ item.name }}.yml
+  notify:
+    - metricbeat setup
+    - restart metricbeat
   loop: "{{ metricbeat_modules }}"
   loop_control:
     label: "{{ item.name }}"
   when:
-    - item.state == "enabled"
+    - item.state is not defined or item.state == "enabled"
 
 - name: disable metricbeat module
-  command:
+  ansible.builtin.command:
     cmd: metricbeat modules disable {{ item.name }}
-    removes: /etc/metricbeat/modules.d/{{ item.name }}.yml
+    creates: /etc/metricbeat/modules.d/{{ item.name }}.yml.disabled
   loop: "{{ metricbeat_modules }}"
   loop_control:
     label: "{{ item.name }}"
@@ -42,7 +45,7 @@
     - item.state == "disabled"
 
 - name: start and enable metricbeat
-  service:
+  ansible.builtin.service:
     name: metricbeat
     state: started
     enabled: yes

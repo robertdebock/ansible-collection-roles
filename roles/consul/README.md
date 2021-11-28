@@ -33,8 +33,6 @@ The machine needs to be prepared. In CI this is done using `molecule/default/pre
     - role: robertdebock.bootstrap
     - role: robertdebock.core_dependencies
     - role: robertdebock.hashicorp
-      hashicorp_products:
-        - name: consul
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.
@@ -115,7 +113,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |amazon|Candidate|
 |debian|bullseye|
 |el|all|
-|fedora|33, 34|
+|fedora|34, 35|
 |ubuntu|all|
 
 The minimum version of Ansible required is 2.9, tests have been done to:

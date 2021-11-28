@@ -1,0 +1,62 @@
+---
+
+- name: get auth engines
+  ansible.builtin.uri:
+    url: "{{ vault_configuration_url }}/v1/sys/auth"
+    method: GET
+    headers: "{{ vault_configuration_headers }}"
+  register: vault_configuration_auths
+
+- name: enable auth engine
+  ansible.builtin.uri:
+    url: "{{ vault_configuration_url }}/v1/sys/auth/{{ item.path }}"
+    method: POST
+    headers: "{{ vault_configuration_headers }}"
+    body:
+      type: "{{ item.type }}"
+      description: "{{ item.description | default(omit) }}"
+      config: "{{ item.config | default(omit) }}"
+      local: "{{ item.local | default(omit) }}"
+      seal_wrap: "{{ item.seal_wrap | default(omit) }}"
+    body_format: json
+    status_code:
+      - 400
+      - 204
+  register: enable_auths_engine
+  changed_when:
+    - enable_auths_engine.status == 204
+  when:
+    - vault_configuration_auth_engines is defined
+  loop: "{{ vault_configuration_auth_engines }}"
+  loop_control:
+    label: "{{ item.path }}"
+
+- name: get tuning setting
+  ansible.builtin.uri:
+    url: "{{ vault_configuration_url }}/v1/sys/auth/{{ item.path }}/tune"
+    headers: "{{ vault_configuration_headers }}"
+  register: get_tuning_setting
+  loop: "{{ vault_configuration_auth_engines }}"
+  loop_control:
+    label: "{{ item.path }}"
+
+- name: set tuning setting
+  ansible.builtin.uri:
+    url: "{{ vault_configuration_url }}/v1/sys/auth/{{ item.item.path }}/tune"
+    method: POST
+    headers: "{{ vault_configuration_headers }}"
+    body:
+      default_lease_ttl: "{{ item.item.config.default_lease_ttl | default(omit) }}"
+      max_lease_ttl: "{{  item.item.config.max_lease_ttl | default(omit) }}"
+    body_format: json
+    status_code:
+      - 204
+  changed_when: yes
+  when:
+    - item.item.config.default_ttl is defined or
+      item.item.config.max_lease_ttl is defined
+    - item.item.config.default_lease_ttl != item.json.data.default_lease_ttl or
+      item.item.config.max_lease_ttl != item.json.data.max_lease_ttl
+  loop: "{{ get_tuning_setting.results }}"
+  loop_control:
+    label: "{{ item.item.path }}"

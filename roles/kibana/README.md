@@ -4,7 +4,7 @@ Install and configure Kibana on your system.
 
 |GitHub|GitLab|Quality|Downloads|Version|
 |------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-kibana/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-kibana/actions)|[![gitlab](https://gitlab.com/robertdebock/ansible-role-kibana/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-kibana)|[![quality](https://img.shields.io/ansible/quality/)](https://galaxy.ansible.com/robertdebock/kibana)|[![downloads](https://img.shields.io/ansible/role/d/)](https://galaxy.ansible.com/robertdebock/kibana)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-kibana.svg)](https://github.com/robertdebock/ansible-role-kibana/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-kibana/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-kibana/actions)|[![gitlab](https://gitlab.com/robertdebock/ansible-role-kibana/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-kibana)|[![quality](https://img.shields.io/ansible/quality/56421)](https://galaxy.ansible.com/robertdebock/kibana)|[![downloads](https://img.shields.io/ansible/role/d/56421)](https://galaxy.ansible.com/robertdebock/kibana)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-kibana.svg)](https://github.com/robertdebock/ansible-role-kibana/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -32,7 +32,6 @@ The machine needs to be prepared. In CI this is done using `molecule/default/pre
     - role: robertdebock.bootstrap
     - role: robertdebock.core_dependencies
     - role: robertdebock.elastic_repo
-    - role: robertdebock.elasticsearch
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.
@@ -47,6 +46,16 @@ The default values for the variables are set in `defaults/main.yml`:
 # Elastic offers both "oss" (Apache 2.0 license) and "elastic"
 # (Elastic license). Select the type here. Either "oss" or "elastic"
 kibana_type: oss
+
+# The IP addres to bind on.
+kibana_server_host: 0.0.0.0
+
+# The TCP port to bind on.
+kibana_server_port: 5601
+
+# A list of elasticsearch urls.
+kibana_elasticsearch_hosts:
+  - "http://localhost:9200"
 ```
 
 ## [Requirements](#requirements)
@@ -62,7 +71,6 @@ The following roles are used to prepare a system. You can prepare your system in
 |[robertdebock.bootstrap](https://galaxy.ansible.com/robertdebock/bootstrap)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-bootstrap/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-bootstrap/actions)|[![Build Status GitLab ](https://gitlab.com/robertdebock/ansible-role-bootstrap/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-bootstrap)|
 |[robertdebock.core_dependencies](https://galaxy.ansible.com/robertdebock/core_dependencies)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-core_dependencies/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-core_dependencies/actions)|[![Build Status GitLab ](https://gitlab.com/robertdebock/ansible-role-core_dependencies/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-core_dependencies)|
 |[robertdebock.elastic_repo](https://galaxy.ansible.com/robertdebock/elastic_repo)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-elastic_repo/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-elastic_repo/actions)|[![Build Status GitLab ](https://gitlab.com/robertdebock/ansible-role-elastic_repo/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-elastic_repo)|
-|[robertdebock.elasticsearch](https://galaxy.ansible.com/robertdebock/elasticsearch)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-elasticsearch/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-elasticsearch/actions)|[![Build Status GitLab ](https://gitlab.com/robertdebock/ansible-role-elasticsearch/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-elasticsearch)|
 
 ## [Context](#context)
 

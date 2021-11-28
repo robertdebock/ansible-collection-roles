@@ -26,8 +26,6 @@
 - name: run sosreport
   ansible.builtin.command:
     cmd: "{{ sosreport_command }}"
-  tags:
-    - skip_ansible_lint
   when:
     - sosreport_find_sosreports.matched | int == 0
 
@@ -40,7 +38,7 @@
   run_once: yes
   become: no
 
-- name: find sosreports
+- name: find sosreports after running
   ansible.builtin.find:
     paths: "{{ sosreport_remote_location }}"
     patterns: "{{ sosreport_patterns }}"

@@ -264,7 +264,7 @@
   when:
     - auditd_rules is defined
 
-- name: test if item in auditd_rules is set correctly
+- name: test if item.file in auditd_rules is set correctly
   ansible.builtin.assert:
     that:
       - item.keyname is defined

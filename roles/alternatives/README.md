@@ -57,6 +57,8 @@ The default values for the variables are set in `defaults/main.yml`:
 #   - name: python
 #     link: /usr/bin/python3.7
 #     path: /usr/bin/python
+
+alternatives_list: []
 ```
 
 ## [Requirements](#requirements)

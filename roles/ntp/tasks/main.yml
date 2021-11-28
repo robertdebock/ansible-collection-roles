@@ -29,8 +29,6 @@
     name: "{{ ntp_timezone }}"
   when:
     - ntp_timezone_supported | bool
-  notify:
-    - restart cron
 
 - name: manage {{ ntp_service }}
   ansible.builtin.service:

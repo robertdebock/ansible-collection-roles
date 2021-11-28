@@ -35,6 +35,7 @@
     dest: /etc/postfix/transport
     mode: "0644"
   notify:
+    - validate configuration
     - rebuild transport_maps database
   when:
     - postfix_transport_maps_template is defined
@@ -45,6 +46,7 @@
     dest: /etc/postfix/header_checks
     mode: "0644"
   notify:
+    - validate configuration
     - reload postfix
   when:
     - postfix_header_checks_template is defined
@@ -56,6 +58,7 @@
     validate: postconf -d -c %s
     mode: "0644"
   notify:
+    - validate configuration
     - reload postfix
 
 - name: configure postfix (master.cf)
@@ -65,9 +68,10 @@
     validate: postconf -d -c %s
     mode: "0644"
   notify:
+    - validate configuration
     - restart postfix
 
-- name: force all notified handlers to run
+- name: flush handlers
   ansible.builtin.meta: flush_handlers
 
 - name: configure aliases
@@ -112,12 +116,13 @@
     - postfix_recipient_access is defined
   loop: "{{ postfix_recipient_access }}"
   notify:
+    - validate configuration
     - rebuild recipient_access database
     - reload postfix
   loop_control:
     label: "{{ item.domain }}"
 
-- name: force all notified handlers to run
+- name: flush handlers again
   ansible.builtin.meta: flush_handlers
 
 - name: start and enable postfix

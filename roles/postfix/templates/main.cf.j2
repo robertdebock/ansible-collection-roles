@@ -272,7 +272,7 @@ unknown_local_recipient_reject_code = 550
 #mynetworks = 168.100.189.0/28, 127.0.0.0/8
 #mynetworks = $config_directory/mynetworks
 #mynetworks = hash:/etc/postfix/network_table
-mynetworks = [{% for network in postfix_mynetworks %}{{ network }}{% if not loop.last %}, {% endif %}{% endfor %}]
+mynetworks = {% for network in postfix_mynetworks %}{{ network }}{% if not loop.last %}, {% endif %}{% endfor %}
 
 # The relay_domains parameter restricts what destinations this system will
 # relay mail to.  See the smtpd_recipient_restrictions description in
@@ -744,7 +744,7 @@ smtp_tls_security_level = {{ postfix_smtp_tls_security_level }}
 # Optional lookup tables with mappings from recipient address to (message delivery transport, next-hop destination).
 # transport_maps = hash:/etc/postfix/transport
 {% if postfix_transport_maps_template is defined %}
-transport_maps = {{ postfix_transport_maps_template }}
+transport_maps = hash:/etc/postfix/transport
 {% endif %}
 
 {% if postfix_biff is defined %}

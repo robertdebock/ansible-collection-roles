@@ -25,4 +25,3 @@
     label: "{{ item.item }}"
   when:
     - upgrade_check_if_package_is_installed.results is defined
-    - not item.changed | bool

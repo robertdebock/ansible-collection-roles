@@ -10,3 +10,4 @@
 #           - ro
 #           - no_subtree_check
 #           - nohide
+nfsserver_exports: []

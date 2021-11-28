@@ -47,6 +47,7 @@ The default values for the variables are set in `defaults/main.yml`:
 # If you need to give extra options to pip, use `molecule_extra_args`. For
 # example:
 # molecule_extra_args: "--user"
+molecule_extra_args: ""
 ```
 
 ## [Requirements](#requirements)

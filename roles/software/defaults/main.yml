@@ -6,3 +6,4 @@
 #   - name: screen
 #   - name: tcpdump
 #     state: absent
+software_packages: []

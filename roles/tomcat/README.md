@@ -233,7 +233,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |---------|----|
 |el|8|
 |debian|all|
-|fedora|33, 34|
+|fedora|all|
 |opensuse|all|
 |ubuntu|all|
 

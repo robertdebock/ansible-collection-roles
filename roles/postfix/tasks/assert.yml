@@ -64,7 +64,7 @@
       - postfix_smtpd_sender_restrictions is iterable
     quiet: yes
 
-- name: test if postfix_smtpd_sender_restrictions is set correctly
+- name: test if postfix_tls_protocols is set correctly
   ansible.builtin.assert:
     that:
       - postfix_tls_protocols is string

@@ -19,6 +19,7 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
   roles:
     - role: robertdebock.vault
       vault_show_unseal_information: yes
+      vault_store_root_token: yes
       vault_make_backup: yes
       vault_kv_secrets:
         - name: my-secret
@@ -39,8 +40,6 @@ The machine needs to be prepared. In CI this is done using `molecule/default/pre
     - role: robertdebock.bootstrap
     - role: robertdebock.core_dependencies
     - role: robertdebock.hashicorp
-      hashicorp_products:
-        - name: vault
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.
@@ -51,6 +50,10 @@ The default values for the variables are set in `defaults/main.yml`:
 ```yaml
 ---
 # defaults file for vault
+
+# Configure some general parameters
+vault_max_lease_ttl: "10h"
+vault_default_lease_ttl: "10h"
 
 # Set the owner and group of the Vault installation. This user and group
 # should exist before running this role. The service file (vault.service)
@@ -88,6 +91,8 @@ vault_listeners:
     address: 127.0.0.1:8200
     cluster_address: 127.0.0.1:8201
     tls_disable: "true"
+    tls_cert_file: "fullchain.pem"
+    tls_key_file: "privkey.pem"
 
 # Have the web ui be made available.
 vault_ui: "true"
@@ -116,7 +121,7 @@ vault_make_backup: no
 
 # Where should backups be saved? A full path, including file, for example:
 # vault_backup_path: /tmp/my_backup.yml
-vault_backup_path: "/root/vault-raft_{{ ansible_date_time.date}}-{{ ansible_date_time.hour }}{{ ansible_date_time.minute }}.snapshot"
+vault_backup_path: "/root/vault-raft_{{ ansible_date_time.date }}-{{ ansible_date_time.hour }}{{ ansible_date_time.minute }}.snapshot"
 
 # To provision resources, a namespace can be set.
 # vault_namespace: ""
@@ -140,6 +145,9 @@ vault_kv_delete_version_after: 3h25m19s
 
 # Set the log_level. Either "trace", "debug", "info", "warn" or "err".
 vault_log_level: "info"
+
+# You can store the root token in a file to make using Vault easier.
+vault_store_root_token: no
 ```
 
 ## [Requirements](#requirements)
@@ -169,9 +177,9 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|el|8|
 |debian|bullseye|
-|fedora|33, 34|
+|el|8|
+|fedora|34, 35|
 |ubuntu|all|
 
 The minimum version of Ansible required is 2.10, tests have been done to:

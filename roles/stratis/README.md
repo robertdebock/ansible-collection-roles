@@ -66,11 +66,13 @@ The machine needs to be prepared. In CI this is done using `molecule/default/pre
         label: "/{{ item.name }}"
 
   handlers:
+
     - name: create loopback device
       command: mknod /dev/{{ item.name }} b {{ item.major }} {{ item.minor }}
       loop: "{{ devices }}"
       loop_control:
         label: "/dev/{{ item.name }}"
+      changed_when: no
 
     - name: loopback device to storage file
       command: losetup /dev/{{ item.name }} /{{ item.name }}
@@ -78,6 +80,7 @@ The machine needs to be prepared. In CI this is done using `molecule/default/pre
       failed_when: no
       loop_control:
         label: "/dev/{{ item.name }} to /{{ item.name }}"
+      changed_when: no
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.

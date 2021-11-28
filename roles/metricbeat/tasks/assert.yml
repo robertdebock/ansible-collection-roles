@@ -1,5 +1,12 @@
 ---
 
+- name: test if metricbeat_version is set correctly
+  ansible.builtin.assert:
+    that:
+      - metricbeat_version is defined
+      - metricbeat_version is string
+    quiet: yes
+
 - name: test if metricbeat_modules is set correctly
   ansible.builtin.assert:
     that:
@@ -12,8 +19,7 @@
   ansible.builtin.assert:
     that:
       - item.name is defined
-      - item.state is defined
-      - item.state in [ "disabled", "enabled" ]
+      - item.state is defined and item.state in [ "disabled", "enabled" ] or item.state is not defined
     quiet: yes
   loop: "{{ metricbeat_modules }}"
   loop_control:

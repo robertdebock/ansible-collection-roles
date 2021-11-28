@@ -6,3 +6,4 @@
 #   - name: vdo1
 #     device: /dev/sdz1
 #     logicalsize: 1G
+vdo_devices: []

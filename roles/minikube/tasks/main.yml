@@ -31,7 +31,7 @@
   ansible.builtin.command:
     cmd: "{{ minikube_command }}"
     creates: nothing
-  become: true
+  become: yes
   become_user: "{{ minikube_user }}"
   when:
     - ansible_connection not in [ "container", "docker", "community.docker.docker" ]

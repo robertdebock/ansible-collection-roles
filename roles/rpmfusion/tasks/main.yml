@@ -25,7 +25,6 @@
       when:
         - rpmfusion_free | bool
 
-
     - name: configure non-free
       block:
         - name: install nonfree gpg key

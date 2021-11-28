@@ -25,6 +25,6 @@ locale_configuration_file: "{{ _locale_configuration_file[ansible_os_family] | d
 
 _locale_notify_command:
   default: localectl set-locale LANG={{ locale_lang }}
-  Debian: update-local LANG={{ locale_lang }}
+  Debian: update-locale LANG={{ locale_lang }}
 
 locale_notify_command: "{{ _locale_notify_command[ansible_os_family] | default(_locale_notify_command['default'] ) }}"

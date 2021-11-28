@@ -70,7 +70,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |---------|----|
 |debian|bullseye|
 |el|8|
-|fedora|33, 34|
+|fedora|34, 35|
 |ubuntu|all|
 
 The minimum version of Ansible required is 2.10, tests have been done to:

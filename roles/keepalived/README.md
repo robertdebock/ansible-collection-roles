@@ -89,6 +89,7 @@ The default values for the variables are set in `defaults/main.yml`:
 #     virtual_ipaddresses:
 #       - name: 192.168.122.200
 #         cidr: 24
+keepalived_vrrp_instances: []
 ```
 
 ## [Requirements](#requirements)

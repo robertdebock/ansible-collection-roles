@@ -6,3 +6,4 @@
 #   - package
 #   - screen
 #   - kernel
+upgrade_packages: []

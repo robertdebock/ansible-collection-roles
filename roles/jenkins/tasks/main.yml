@@ -10,6 +10,7 @@
   ansible.builtin.get_url:
     url: "{{ jenkins_yum_repository_baseurl }}"
     dest: /etc/yum.repos.d/jenkins.repo
+    validate_certs: no
   when:
     - ansible_pkg_mgr in [ "dnf", "yum" ]
 

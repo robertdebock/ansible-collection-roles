@@ -11,3 +11,4 @@
 #   - name: BAT1
 #     start_threshold: 70
 #     stop_threshold: 90
+tlp_batteries: []

@@ -5,5 +5,5 @@
     that:
       - remi_repository_selection is defined
       - remi_repository_selection is string
-      - remi_repository_selection in [ "php54", "php70", "php71", "php72", "php73", "php74" ]
+      - remi_repository_selection in [ "php54", "php70", "php71", "php72", "php73", "php74", "php81" ]
     quiet: yes

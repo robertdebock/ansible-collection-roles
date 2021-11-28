@@ -44,7 +44,7 @@
   when:
     - nomad_server | bool
 
-- name: test if nomad_server_bootstrap_expect is set correctly
+- name: test if nomad_server_bootstrap_expect is odd
   ansible.builtin.assert:
     that:
       - nomad_server_bootstrap_expect is not divisibleby 2

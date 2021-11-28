@@ -4,7 +4,7 @@ Install and configure Metricbeat, manage Metricbeat modules.
 
 |GitHub|GitLab|Quality|Downloads|Version|
 |------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-metricbeat/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-metricbeat/actions)|[![gitlab](https://gitlab.com/robertdebock/ansible-role-metricbeat/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-metricbeat)|[![quality](https://img.shields.io/ansible/quality/)](https://galaxy.ansible.com/robertdebock/metricbeat)|[![downloads](https://img.shields.io/ansible/role/d/)](https://galaxy.ansible.com/robertdebock/metricbeat)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-metricbeat.svg)](https://github.com/robertdebock/ansible-role-metricbeat/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-metricbeat/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-metricbeat/actions)|[![gitlab](https://gitlab.com/robertdebock/ansible-role-metricbeat/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-metricbeat)|[![quality](https://img.shields.io/ansible/quality/56439)](https://galaxy.ansible.com/robertdebock/metricbeat)|[![downloads](https://img.shields.io/ansible/role/d/56439)](https://galaxy.ansible.com/robertdebock/metricbeat)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-metricbeat.svg)](https://github.com/robertdebock/ansible-role-metricbeat/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -46,6 +46,9 @@ The default values for the variables are set in `defaults/main.yml`:
 ```yaml
 ---
 # defaults file for metricbeat
+
+# The version of metricbeat to install.
+metricbeat_version: 7.10.2
 
 # A list of modules to enable.
 metricbeat_modules: []

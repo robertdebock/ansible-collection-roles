@@ -103,7 +103,7 @@
     - postgres_databases is defined or
       postgres_users is defined
 
-- name: flush handlers
+- name: flush handlers again
   ansible.builtin.meta: flush_handlers
 
 - name: create postgres database

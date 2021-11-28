@@ -5,6 +5,7 @@
   ansible.builtin.package:
     name: "{{ core_dependencies }}"
     state: present
+    update_cache: yes
   notify:
     - gather facts
 

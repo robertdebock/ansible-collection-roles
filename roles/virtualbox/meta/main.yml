@@ -17,7 +17,6 @@ galaxy_info:
         - bullseye
     - name: Fedora
       versions:
-        - 33
         - 34
     - name: Ubuntu
       versions:

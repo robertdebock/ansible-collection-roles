@@ -48,7 +48,7 @@ mysql_initialize_command: "{{ _mysql_initialize_command[ansible_os_family] }}"
 
 _mysql_service:
   default: "{{ mysql_name }}"
-  RedHat-8: &redhat_service "{{ mysql_name}}d"
+  RedHat-8: &redhat_service "{{ mysql_name }}d"
   Rocky-8: *redhat_service
 
 mysql_service: "{{ _mysql_service[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_mysql_service['default'] ) }}"

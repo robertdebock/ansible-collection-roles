@@ -1,4 +1,10 @@
 ---
+
+- name: install vault
+  ansible.builtin.package:
+    name: vault
+    state: present
+
 - name: create vault storage path
   ansible.builtin.file:
     path: "{{ item.path }}"
@@ -59,7 +65,7 @@
   ansible.builtin.service:
     name: vault
     state: started
-    enabled: true
+    enabled: yes
 
 - name: check status of vault
   ansible.builtin.command:
@@ -75,3 +81,9 @@
 - name: save vault_status
   ansible.builtin.set_fact:
     vault_status: "{{ vault_status_raw.stdout | from_yaml }}"
+
+- name: safe VAULT_ADDR /etc/environment
+  ansible.builtin.lineinfile:
+    regexp: "^export VAULT_ADDR="
+    path: /etc/environment
+    line: "export VAULT_ADDR={{ vault_api_addr }}"

@@ -46,6 +46,7 @@ The default values for the variables are set in `defaults/main.yml`:
 #   - package
 #   - screen
 #   - kernel
+upgrade_packages: []
 ```
 
 ## [Requirements](#requirements)

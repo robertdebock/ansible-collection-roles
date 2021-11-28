@@ -1,0 +1,6 @@
+---
+# vars file for vault_configuration
+
+vault_configuration_headers:
+  X-Vault-Token: "{{ vault_configuration_token }}"
+  X-Vault-Namespace: "{{ vault_namespace | default(omit) }}"

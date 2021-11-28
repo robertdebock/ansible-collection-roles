@@ -76,7 +76,7 @@ owncloud_version: 10.5.0
 # The domain under which this server will be available. For example:
 # "localhost" or "owncloud.example.com". Does not include protocol identifier,
 # (https://) or directories. (/owncloud)
-owncloud_domain_url: "{{ ansible_default_ipv4.address|default(ansible_all_ipv4_addresses[0] ) }}"
+owncloud_domain_url: "{{ ansible_default_ipv4.address | default(ansible_all_ipv4_addresses[0] ) }}"
 
 # Database connection details.
 owncloud_database_name: owncloud
@@ -132,7 +132,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |---------|----|
 |el|8|
 |debian|bullseye|
-|fedora|33|
+|fedora|all|
 |opensuse|all|
 |ubuntu|bionic|
 

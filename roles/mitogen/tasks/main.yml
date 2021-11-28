@@ -35,6 +35,7 @@
     value: "{{ mitogen_site_packages_path.stdout }}/mitogen-stable/ansible_mitogen/plugins/strategy"
     mode: "0644"
   become: yes
+  become_user: root
 
 - name: configure ansible to use mitogen strategy
   community.general.ini_file:
@@ -44,3 +45,4 @@
     value: mitogen_linear
     mode: "0644"
   become: yes
+  become_user: root

@@ -38,7 +38,6 @@
         start_command: "{{ etherpad_working_directory }}/bin/run.sh --root"
         working_directory: "{{ etherpad_working_directory }}"
 
-
 - name: start and enable etherpad
   ansible.builtin.service:
     name: "{{ etherpad_service }}"

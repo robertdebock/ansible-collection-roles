@@ -9,3 +9,4 @@
 #     gigabytes_available: 4
 #   - name: /home
 #     inodes_available: 65536
+diskspace_mounts: []

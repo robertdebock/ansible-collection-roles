@@ -28,7 +28,8 @@
     - name: gather bootstrap facts
       ansible.builtin.include_tasks:
         file: gather_facts.yml
-    - name: install bootstrap packages
+
+    - name: install bootstrap packages (raw)
       ansible.builtin.raw: "{{ bootstrap_install.raw }}"
       register: bootstrap_install_packages
       changed_when:
@@ -57,10 +58,10 @@
     - name: gather ansible facts
       ansible.builtin.setup:
 
-    - name: install bootstrap packages
+    - name: install bootstrap packages (package)
       ansible.builtin.package:
         name: "{{ item }}"
         state: present
       loop: "{{ bootstrap_facts_packages.split() }}"
-  vars:
-    ansible_user: "{{ bootstrap_ansible_user | default(omit) }}"
+  become: yes
+  become_user: "{{ bootstrap_ansible_user | default(bootstrap_user) }}"

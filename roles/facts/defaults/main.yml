@@ -9,12 +9,14 @@
 #     value: Amsterdam
 #   - key: availability_zone
 #     value: west
-
+#
 # Would make these facts available:
-
+#
 #         "ansible_local": {
 #             "custom": {
 #                 "availability_zone": "west",
 #                 "datacenter": "Amsterdam"
 #             }
 #         },
+
+facts: []

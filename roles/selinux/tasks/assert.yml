@@ -55,7 +55,7 @@
     - selinux_booleans is defined
     - item.state is defined
 
-- name: test if item.state in selinux_booleans is set correctly
+- name: test if item.persistent in selinux_booleans is set correctly
   ansible.builtin.assert:
     that:
       - item.persistent is boolean

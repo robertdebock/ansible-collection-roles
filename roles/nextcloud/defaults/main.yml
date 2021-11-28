@@ -7,7 +7,7 @@ nextcloud_version: 22.0.0
 # The domain under which this server will be available. For example:
 # "localhost" or "nextcloud.example.com". Does not include protocol identifier,
 # (https://) or directories. (/nextcloud)
-nextcloud_domain_url: "{{ ansible_default_ipv4.address|default(ansible_all_ipv4_addresses[0] ) }}"
+nextcloud_domain_url: "{{ ansible_default_ipv4.address | default(ansible_all_ipv4_addresses[0] ) }}"
 
 # Database connection details.
 nextcloud_database_name: nextcloud

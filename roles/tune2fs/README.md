@@ -45,6 +45,7 @@ The default values for the variables are set in `defaults/main.yml`:
 # tune2fs_settings:
 #   - device: /dev/mapper/system-root
 #     maximum_count_mount: 1
+tune2fs_settings: []
 ```
 
 ## [Requirements](#requirements)

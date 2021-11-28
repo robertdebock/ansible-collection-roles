@@ -1,6 +1,6 @@
 # [memcached](#memcached)
 
-Install and configure memcached on your system.
+Install and configure Memcached on your system.
 
 |GitHub|GitLab|Quality|Downloads|Version|
 |------|------|-------|---------|-------|

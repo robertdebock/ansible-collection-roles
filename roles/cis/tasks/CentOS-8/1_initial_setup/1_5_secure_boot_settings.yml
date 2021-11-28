@@ -35,7 +35,7 @@
       "Enter password: ": "{{ cis_bootloader_password }}"
       "Confirm password: ": "{{ cis_bootloader_password }}"
     creates: /boot/grub2/user.cfg
-  no_log: true
+  no_log: yes
   when:
     - cis_bootloader_password_set | bool
   notify:

@@ -8,7 +8,7 @@ _postfix_daemon_directory:
   Debian: /usr/lib/postfix/sbin
   Suse: /usr/lib/postfix/bin
 
-postfix_daemon_directory: "{{_postfix_daemon_directory[ansible_os_family] | default(_postfix_daemon_directory['default'] ) }}"
+postfix_daemon_directory: "{{ _postfix_daemon_directory[ansible_os_family] | default(_postfix_daemon_directory['default'] ) }}"
 
 _postfix_alias_path:
   default: /etc/aliases

@@ -5,3 +5,4 @@
 # tune2fs_settings:
 #   - device: /dev/mapper/system-root
 #     maximum_count_mount: 1
+tune2fs_settings: []

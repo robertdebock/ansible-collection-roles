@@ -75,7 +75,6 @@ ca_locality_name: Utrecht
 # ca_requests:
 #   - name: certificate1.example.com
 #     passphrase: S3creT
-#     cipher: aes256
 #
 # 2. Without details: (Does not include `name:`)
 # ca_requests:
@@ -85,7 +84,6 @@ ca_locality_name: Utrecht
 # ca_requests:
 #   - name: certificate1.example.com
 #     passphrase: S3creT
-#     cipher: aes256
 #   - "{{ ansible_fqdn }}"
 
 # Where to publish the certificates, normally a webserver location.

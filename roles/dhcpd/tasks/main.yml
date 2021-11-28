@@ -38,8 +38,6 @@
         state: started
         enabled: yes
   rescue:
-    # On Debian, the service starts, but reports broken.
-    # This rescue block fixes just that.
     - name: install procps
       ansible.builtin.package:
         name: procps

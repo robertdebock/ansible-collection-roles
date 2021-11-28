@@ -1,0 +1,31 @@
+---
+
+argument_specs:
+  main:
+    short_description: Install and configure Elasticsearch on your system.
+    description: Install and configure Elasticsearch on your system.
+    author: Robert de Bock
+    options:
+      elasticsearch_type:
+        type: "str"
+        default: oss
+        description: "The license to use, `elastic` uses the \"Elastic\" license, `oss` uses the \"Apache 2.0\" license."
+        choises:
+          - elastic
+          - oss
+      elasticsearch_network_host:
+        type: "str"
+        default: "0.0.0.0"
+        description: The IP address to bind on.
+      elasticsearch_network_port:
+        type: "str"
+        default: "9200"
+        description: The port to bind on.
+      elasticsearch_discovery_seed_hosts:
+        type: "list"
+        default: []
+        description: Provides a list of the addresses of the master-eligible nodes in the cluster.
+      elasticsearch_cluster_initial_master_nodes:
+        type: "list"
+        default: []
+        description: Sets the initial set of master-eligible nodes in a brand-new cluster.

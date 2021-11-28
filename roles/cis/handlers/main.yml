@@ -63,6 +63,7 @@
       loop:
         - journalxtl -xe
         - systemctl status chronyd
+
     - name: show information
       ansible.builtin.debug:
         msg: "{{ item }}"

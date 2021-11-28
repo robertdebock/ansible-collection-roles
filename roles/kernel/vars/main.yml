@@ -35,8 +35,9 @@ _kernel_requirements:
   Suse:
     - bc
     - bison
-    - libelf-devel
     - flex
+    - hostname
+    - libelf-devel
     - openssl-devel
 
 kernel_requirements: "{{ _kernel_requirements[ansible_os_family] | default(_kernel_requirements['default'] ) }}"

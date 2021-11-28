@@ -42,6 +42,7 @@ The machine needs to be prepared. In CI this is done using `molecule/default/pre
         path: /etc/default
         state: directory
         mode: "0755"
+
     - name: place bogus /etc/default/grub
       ansible.builtin.copy:
         content: 'GRUB_CMDLINE_LINUX="a=1"'

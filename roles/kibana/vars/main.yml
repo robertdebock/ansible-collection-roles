@@ -1,8 +1,13 @@
 ---
 # vars file for kibana
 
+kibana_requirements:
+  - findutils
+
 _kibana_package:
-  oss: kibana-oss
-  elastic: kibana
+  oss:
+    - kibana-oss
+  elastic:
+    - kibana
 
 kibana_package: "{{ _kibana_package[kibana_type] }}"

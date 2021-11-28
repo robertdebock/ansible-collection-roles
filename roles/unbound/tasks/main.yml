@@ -74,7 +74,7 @@
   notify:
     - restart unbound
 
-- name: flush handlers
+- name: flush handlers again
   ansible.builtin.meta: flush_handlers
 
 - name: start and enable unbound

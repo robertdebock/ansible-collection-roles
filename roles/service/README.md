@@ -122,6 +122,7 @@ The default values for the variables are set in `defaults/main.yml`:
 # - after: Start after the mentioned service.
 # - restart_mode: The mode to use, for example "always".
 # - restart_seconds: The time to allow restart to finish.
+service_list: []
 ```
 
 ## [Requirements](#requirements)

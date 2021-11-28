@@ -18,7 +18,7 @@
   ansible.builtin.service:
     name: nftables
     state: stopped
-    enabled: false
+    enabled: no
     masked: yes
   when:
     - cis_nftables_not_enabled | bool

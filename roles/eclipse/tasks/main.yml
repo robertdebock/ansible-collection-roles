@@ -23,7 +23,7 @@
 
 - name: install plugins
   ansible.builtin.command:
-    cmd: "{{ eclipse_plugin_install_command }} {{ item.name }}"
+    cmd: "{{ eclipse_plugin_install_command }} \"{{ item.name }}\""
     creates: "{{ eclipse_install_path }}/eclipse/features/{{ item.name | regex_replace('.feature.group.*') }}*"
   loop: "{{ eclipse_plugins }}"
   loop_control:

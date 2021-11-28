@@ -12,9 +12,6 @@ galaxy_info:
     - name: EL
       versions:
         - 8
-    - name: OpenSUSE
-      versions:
-        - all
 
   galaxy_tags:
     - omsagent

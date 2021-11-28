@@ -6,6 +6,7 @@
     name: "{{ molecule_requirements }}"
     state: present
   become: yes
+  become_user: root
 
 - name: install molecule
   ansible.builtin.pip:

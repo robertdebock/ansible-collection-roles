@@ -1,0 +1,15 @@
+---
+
+argument_specs:
+  main:
+    short_description: Install and configure Logstash on your system.
+    description: Install and configure Logstash on your system.
+    author: Robert de Bock
+    options:
+      logstash_type:
+        type: "str"
+        default: oss
+        description: "The license to use, `elastic` uses the \"Elastic\" license, `oss` uses the \"Apache 2.0\" license."
+        choises:
+          - elastic
+          - oss

@@ -57,7 +57,7 @@ The machine needs to be prepared. In CI this is done using `molecule/default/pre
 
   pre_tasks:
     - name: include remi
-      include_role:
+      ansible.builtin.include_role:
         name: robertdebock.remi
       when:
         - ansible_distribution != "Fedora"
@@ -97,7 +97,7 @@ nextcloud_version: 22.0.0
 # The domain under which this server will be available. For example:
 # "localhost" or "nextcloud.example.com". Does not include protocol identifier,
 # (https://) or directories. (/nextcloud)
-nextcloud_domain_url: "{{ ansible_default_ipv4.address|default(ansible_all_ipv4_addresses[0] ) }}"
+nextcloud_domain_url: "{{ ansible_default_ipv4.address | default(ansible_all_ipv4_addresses[0] ) }}"
 
 # Database connection details.
 nextcloud_database_name: nextcloud
@@ -166,7 +166,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |---------|----|
 |debian|bullseye|
 |el|8|
-|fedora|33|
+|fedora|all|
 |opensuse|all|
 |ubuntu|focal|
 

@@ -52,6 +52,7 @@ The default values for the variables are set in `defaults/main.yml`:
 #   - name: BAT1
 #     start_threshold: 70
 #     stop_threshold: 90
+tlp_batteries: []
 ```
 
 ## [Requirements](#requirements)

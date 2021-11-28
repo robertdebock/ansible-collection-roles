@@ -63,6 +63,9 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
         keep: 4
         frequency: weekly
         create: yes
+      - name: example-sharedscripts
+        path: "/var/log/example-sharedscripts/*.log"
+        sharedscripts: yes
 
   roles:
     - role: robertdebock.logrotate
@@ -91,6 +94,7 @@ The machine needs to be prepared. In CI this is done using `molecule/default/pre
         - /var/log/example-keep
         - /var/log/example-compress
         - /var/log/example-script
+        - /var/log/example-sharedscripts
 
     - name: create log file
       ansible.builtin.copy:
@@ -102,6 +106,7 @@ The machine needs to be prepared. In CI this is done using `molecule/default/pre
         - /var/log/example-keep/app.log
         - /var/log/example-compress/app.log
         - /var/log/example-script/app.log
+        - /var/log/example-sharedscripts/app.log
         - /var/log/btmp
         - /var/log/wtmp
         - /var/log/hawkey.log
@@ -158,7 +163,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |---------|----|
 |alpine|all|
 |amazon|Candidate|
-|el|8|
+|el|all|
 |debian|all|
 |fedora|all|
 |opensuse|all|

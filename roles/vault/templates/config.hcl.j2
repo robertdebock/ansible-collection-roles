@@ -12,11 +12,32 @@ listener "{{ listener.name }}" {
   address         = "{{ listener.address }}"
   cluster_address = "{{ listener.cluster_address }}"
   tls_disable     = {{ listener.tls_disable }}
+{% if listener.tls_disable == 'false' %}
+  tls_cert_file   = "{{ listener.tls_cert_file }}"
+  tls_key_file    = "{{ listener.tls_key_file }}"
+{% endif %}
 }
 {% endfor %}
 
+{% if vault_transit is defined and vault_transit %}
+seal "transit" {
+  address            = "{{ kvaas_protocol }}://{{ kvaas_server }}:{{ kvaas_port }}"
+  token              = "{{ kvaas_token }}"
+  disable_renewal    = "false"
+
+  key_name           = "autounseal"
+  mount_path         = "transit/"
+  tls_skip_verify    = "true"
+}
+{% endif %}
+
+max_lease_ttl      = "{{ vault_max_lease_ttl }}"
+default_lease_ttl  = "{{ vault_default_lease_ttl }}"
 api_addr           = "{{ vault_api_addr }}"
 cluster_addr       = "{{ vault_cluster_addr }}"
+{% if vault_disable_cache is defined %}
+disable_cache      = {{ vault_disable_cache }}
+{% endif %}
 disable_mlock      = {{ vault_disable_mlock }}
 disable_clustering = "{{ vault_disable_clustering }}"
 plugin_directory   = "{{ vault_plugin_directory }}"

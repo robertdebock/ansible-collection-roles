@@ -2,7 +2,8 @@
 galaxy_info:
   author: Robert de Bock
   namespace: robertdebock
-  description: Install and configure memcached on your system.
+  role_name: memcached
+  description: Install and configure Memcached on your system.
   license: Apache-2.0
   company: none
   min_ansible_version: "2.10"

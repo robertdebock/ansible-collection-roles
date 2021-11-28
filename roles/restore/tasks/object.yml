@@ -28,8 +28,6 @@
   when:
     - latest_file is defined
     - object.type == "directory"
-  tags:
-    - skip_ansible_lint
 
 - name: find extension
   ansible.builtin.set_fact:

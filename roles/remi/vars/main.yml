@@ -15,6 +15,7 @@ _remi_argument:
     php72: php:remi-7.2
     php73: php:remi-7.3
     php74: php:remi-7.4
+    php81: php:remi-8.1
   yum:
     php54: remi-php54
     php70: remi-php70
@@ -22,6 +23,7 @@ _remi_argument:
     php72: remi-php72
     php73: remi-php73
     php74: remi-php74
+    php81: remi-php81
 
 remi_argument: "{{ _remi_argument[ansible_pkg_mgr][remi_repository_selection] }}"
 

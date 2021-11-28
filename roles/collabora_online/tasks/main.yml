@@ -12,6 +12,7 @@
       ansible.builtin.apt_key:
         keyserver: keyserver.ubuntu.com
         id: "{{ collabora_online_key }}"
+
     - name: add repository (apt)
       ansible.builtin.apt_repository:
         filename: collabora
@@ -24,6 +25,8 @@
     - name: add collabora key (dnf and yum)
       ansible.builtin.rpm_key:
         key: "{{ collabora_online_key }}"
+        validate_certs: no
+
     - name: add repository (dnf and yum)
       ansible.builtin.yum_repository:
         name: collabora_online

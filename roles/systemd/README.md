@@ -63,36 +63,43 @@ The default values for the variables are set in `defaults/main.yml`:
 # Select the target to boot into. Either "multiuser.target",
 # "graphical.target" or "rescue.target".
 # systemd_default_target: multi-user.target
+systemd_default_target: ""
 
 # Set options in coredump.conf. For example:
 # systemd_coredump:
 #   - option: Compress
 #     value: "yes"
+systemd_coredump: []
 
 # Set options in journald.conf. For example:
 # systemd_journald:
 #   - option: LineMax
 #     value: 48k
+systemd_journald: []
 
 # Set options in logind.conf. For example:
 # systemd_logind:
 #   - option: HandleLidSwitch
 #     value: ignore
+systemd_logind: []
 
 # Set options in resolved.conf. For example:
 # systemd_resolved:
 #   - option: DNSOverTLS
 #     value: "no"
+systemd_resolved: []
 
 # Set options in system.conf. For example:
 # systemd_system:
 #   - option: LogLevel
 #     value: info
+systemd_system: []
 
 # Set options in user.conf. For example:
 # systemd_logind:
 #   - option: DefaultStartLimitBurst
 #     value: 5
+systemd_logind: []
 ```
 
 ## [Requirements](#requirements)

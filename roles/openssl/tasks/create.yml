@@ -16,7 +16,7 @@
     group: "{{ openssl_file_group }}"
 
 - name: create ssl certificates
-  community.crypto.openssl_certificate:
+  community.crypto.x509_certificate:
     path: "{{ openssl_crt_directory }}/{{ item.name }}.crt"
     privatekey_path: "{{ openssl_key_directory }}/{{ item.name }}.key"
     csr_path: "{{ openssl_csr_directory }}/{{ item.name }}.csr"

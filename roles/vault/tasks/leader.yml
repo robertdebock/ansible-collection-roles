@@ -35,6 +35,19 @@
           when:
             - vault_show_unseal_information | bool
 
+        - name: save login token to /root/.vault-token
+          ansible.builtin.copy:
+            content: "{{ vault_init_output.root_token | default(vault_root_token) }}"
+            dest: /root/.vault-token
+            owner: root
+            group: root
+            mode: "0640"
+          when:
+            - vault_store_root_token | bool
+            - vault_init_output is defined and
+              vault_init_output.root_token is defined or
+              vault_root_token is defined
+
         - name: unseal vault leader
           ansible.builtin.command:
             cmd: vault operator unseal {{ item }}

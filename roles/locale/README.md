@@ -18,6 +18,7 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
 
   roles:
     - role: robertdebock.locale
+      locale_lang: de_AT.UTF-8
 ```
 
 The machine needs to be prepared. In CI this is done using `molecule/default/prepare.yml`:
@@ -61,7 +62,7 @@ locale_lc_response: "{{ locale_lang }}"
 locale_lc_telephone: "{{ locale_lang }}"
 locale_lc_time: "{{ locale_lang }}"
 
-locale_timezone: Europe/Amsterdam
+locale_timezone: Etc/UTC
 ```
 
 ## [Requirements](#requirements)

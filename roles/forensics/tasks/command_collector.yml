@@ -6,6 +6,7 @@
         cmd: "{{ object }}"
       changed_when: no
       register: forensics_run_command
+
     - name: save output to {{ object | replace(' ','-') }}.txt
       ansible.builtin.copy:
         content: "{{ forensics_run_command.stdout }}"

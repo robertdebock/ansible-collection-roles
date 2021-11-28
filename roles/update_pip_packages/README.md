@@ -23,7 +23,6 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
         - PyGObject
         - pygobject
         - pyxdg
-        - ansible
         - resolvelib
         - dbus-python
 ```

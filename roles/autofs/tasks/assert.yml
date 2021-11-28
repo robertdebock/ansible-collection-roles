@@ -44,7 +44,7 @@
     - autofs_maps is defined
     - item.name is defined
 
-- name: test if item in autofs_maps is set correctly
+- name: test if item.state in autofs_maps is set correctly
   ansible.builtin.assert:
     that:
       - item.mountpoint is defined

@@ -43,7 +43,7 @@ The default values for the variables are set in `defaults/main.yml`:
 ---
 # defaults file for kernel
 
-kernel_version: "5.5"
+kernel_version: "5.15.5"
 
 kernel_build_location: /tmp
 

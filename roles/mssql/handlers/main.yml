@@ -25,4 +25,4 @@
 
 - name: set network.ipaddress
   ansible.builtin.command:
-    cmd: /opt/mssql/bin/mssql-conf set network.ipaddress {{ ansible_default_ipv4.address|default(ansible_all_ipv4_addresses[0]) }}
+    cmd: /opt/mssql/bin/mssql-conf set network.ipaddress {{ ansible_default_ipv4.address | default(ansible_all_ipv4_addresses[0]) }}

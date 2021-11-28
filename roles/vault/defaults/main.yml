@@ -1,6 +1,10 @@
 ---
 # defaults file for vault
 
+# Configure some general parameters
+vault_max_lease_ttl: "10h"
+vault_default_lease_ttl: "10h"
+
 # Set the owner and group of the Vault installation. This user and group
 # should exist before running this role. The service file (vault.service)
 # also refers to a user, `vault` by default. When using another value,
@@ -37,6 +41,8 @@ vault_listeners:
     address: 127.0.0.1:8200
     cluster_address: 127.0.0.1:8201
     tls_disable: "true"
+    tls_cert_file: "fullchain.pem"
+    tls_key_file: "privkey.pem"
 
 # Have the web ui be made available.
 vault_ui: "true"
@@ -65,7 +71,7 @@ vault_make_backup: no
 
 # Where should backups be saved? A full path, including file, for example:
 # vault_backup_path: /tmp/my_backup.yml
-vault_backup_path: "/root/vault-raft_{{ ansible_date_time.date}}-{{ ansible_date_time.hour }}{{ ansible_date_time.minute }}.snapshot"
+vault_backup_path: "/root/vault-raft_{{ ansible_date_time.date }}-{{ ansible_date_time.hour }}{{ ansible_date_time.minute }}.snapshot"
 
 # To provision resources, a namespace can be set.
 # vault_namespace: ""
@@ -89,3 +95,6 @@ vault_kv_delete_version_after: 3h25m19s
 
 # Set the log_level. Either "trace", "debug", "info", "warn" or "err".
 vault_log_level: "info"
+
+# You can store the root token in a file to make using Vault easier.
+vault_store_root_token: no

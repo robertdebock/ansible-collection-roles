@@ -4,7 +4,7 @@ Install and configure Elasticsearch on your system.
 
 |GitHub|GitLab|Quality|Downloads|Version|
 |------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-elasticsearch/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-elasticsearch/actions)|[![gitlab](https://gitlab.com/robertdebock/ansible-role-elasticsearch/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-elasticsearch)|[![quality](https://img.shields.io/ansible/quality/)](https://galaxy.ansible.com/robertdebock/elasticsearch)|[![downloads](https://img.shields.io/ansible/role/d/)](https://galaxy.ansible.com/robertdebock/elasticsearch)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-elasticsearch.svg)](https://github.com/robertdebock/ansible-role-elasticsearch/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-elasticsearch/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-elasticsearch/actions)|[![gitlab](https://gitlab.com/robertdebock/ansible-role-elasticsearch/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-elasticsearch)|[![quality](https://img.shields.io/ansible/quality/56420)](https://galaxy.ansible.com/robertdebock/elasticsearch)|[![downloads](https://img.shields.io/ansible/role/d/56420)](https://galaxy.ansible.com/robertdebock/elasticsearch)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-elasticsearch.svg)](https://github.com/robertdebock/ansible-role-elasticsearch/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -46,6 +46,18 @@ The default values for the variables are set in `defaults/main.yml`:
 # Elastic offers both "oss" (Apache 2.0 license) and "elastic"
 # (Elastic license). Select the type here. Either "oss" or "elastic"
 elasticsearch_type: oss
+
+# The IP address to bind on.
+elasticsearch_network_host: 0.0.0.0
+
+# The port to bind on.
+elasticsearch_http_port: 9200
+
+# Provides a list of the addresses of the master-eligible nodes in the cluster
+elasticsearch_discovery_seed_hosts: []
+
+# Sets the initial set of master-eligible nodes in a brand-new cluster.
+elasticsearch_cluster_initial_master_nodes: []
 ```
 
 ## [Requirements](#requirements)

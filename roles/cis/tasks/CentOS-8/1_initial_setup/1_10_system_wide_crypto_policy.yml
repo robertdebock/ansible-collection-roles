@@ -12,7 +12,7 @@
     mode: "0644"
     regexp: '^(?!#)(\S+)$'
     line: '{{ cis_crypto_policy }}'
-    create: true
+    create: yes
   notify:
     - update-crypto-policies
   when:

@@ -15,7 +15,7 @@
   ansible.builtin.service:
     name: "{{ vdo_service }}"
     state: started
-    enabled: true
+    enabled: yes
 
 - name: create vdo device
   community.general.vdo:

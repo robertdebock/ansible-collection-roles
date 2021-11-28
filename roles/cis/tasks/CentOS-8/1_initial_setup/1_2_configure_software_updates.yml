@@ -6,7 +6,7 @@
   register: cis_gpg_keys
   failed_when:
     - cis_gpg_keys.stdout | length < 1
-  changed_when: false
+  changed_when: no
   check_mode: no
 
 - name: 1.2.2 Ensure gpgcheck is globally activated (Scored)
@@ -44,7 +44,7 @@
     cmd: dnf repolist
     warn: no
   register: cis_repositories
-  changed_when: false
+  changed_when: no
   check_mode: no
   failed_when:
     - cis_repositories.stdout | length < 2

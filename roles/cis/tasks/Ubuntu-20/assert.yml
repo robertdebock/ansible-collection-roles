@@ -1,4 +1,8 @@
 ---
+
+- name: do nothing
+  ansible.builtin.wait_for:
+
 # - name: test if cis_X is set correctly
 #   assert:
 #     that:

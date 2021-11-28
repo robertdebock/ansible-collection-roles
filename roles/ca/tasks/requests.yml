@@ -19,10 +19,20 @@
         - request.keyfile_path is defined
 
     - name: generate requested key
-      community.crypto.openssl_privatekey:
-        path: "{{ ca_path }}/{{ ca_subject_keys_path }}/{{ request.name | default(request) }}.pem"
-        passphrase: "{{ request.passphrase | default(omit) }}"
-        cipher: "{{ request.cipher | default(omit) }}"
+      block:
+        - name: generate requested key (passphrase set)
+          community.crypto.openssl_privatekey:
+            path: "{{ ca_path }}/{{ ca_subject_keys_path }}/{{ request.name | default(request) }}.pem"
+            passphrase: "{{ request.passphrase }}"
+            cipher: "auto"
+          when:
+            - request.passphrase is defined
+
+        - name: generate requested key (passphrase not set)
+          community.crypto.openssl_privatekey:
+            path: "{{ ca_path }}/{{ ca_subject_keys_path }}/{{ request.name | default(request) }}.pem"
+          when:
+            - request.passphrase is not defined
       when:
         - request.upload_keyfile is not defined
         - request.keyfile_path is not defined

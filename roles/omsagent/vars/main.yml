@@ -15,6 +15,7 @@ _omsagent_requirements:
     - curl
     - python3-base
     - pam
+    - sysvinit-tools
     - wget
     - which
 

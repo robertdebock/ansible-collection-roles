@@ -46,6 +46,7 @@ The default values for the variables are set in `defaults/main.yml`:
 #   - name: screen
 #   - name: tcpdump
 #     state: absent
+software_packages: []
 ```
 
 ## [Requirements](#requirements)

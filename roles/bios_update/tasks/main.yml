@@ -25,6 +25,7 @@
           - "The model '{{ ansible_product_version }}' is unknown."
           - "Please set bios_update_url to proceed."
           - "Error: {{ bios_update_download_bios_update_bootable_cd }}"
+
     - name: stop play
       meta: end_play
 

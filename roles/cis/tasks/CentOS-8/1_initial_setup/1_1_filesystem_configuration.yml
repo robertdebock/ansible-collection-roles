@@ -77,7 +77,7 @@
   failed_when:
     - no
   register: cis_tmp_nodev_output
-  changed_when: false
+  changed_when: no
   check_mode: no
   when:
     - cis_tmp_nodev | bool
@@ -101,7 +101,7 @@
   failed_when:
     - no
   register: cis_tmp_nosuid_output
-  changed_when: false
+  changed_when: no
   check_mode: no
   when:
     - cis_tmp_nodev | bool
@@ -125,7 +125,7 @@
   failed_when:
     - no
   register: cis_tmp_noexec_output
-  changed_when: false
+  changed_when: no
   check_mode: no
   when:
     - cis_tmp_noexec | bool
@@ -149,7 +149,7 @@
   register: cis_var
   failed_when:
     - cis_var | length != 1
-  changed_when: false
+  changed_when: no
   check_mode: no
   when:
     - cis_var_partition | bool
@@ -160,7 +160,7 @@
   register: cis_var_tmp
   failed_when:
     - cis_var_tmp | length != 1
-  changed_when: false
+  changed_when: no
   check_mode: no
   when:
     - cis_var_tmp_partition | bool
@@ -345,7 +345,7 @@
     - cis_removable_media_nodev | bool
   failed_when:
     - output.stdout_lines | length > 0
-  changed_when: false
+  changed_when: no
   check_mode: no
   loop: "{{ cis_removable_media_partitions }}"
 
@@ -357,7 +357,7 @@
     - cis_removable_media_nosuid | bool
   failed_when:
     - output.stdout_lines | length > 0
-  changed_when: false
+  changed_when: no
   check_mode: no
   loop: "{{ cis_removable_media_partitions }}"
 
@@ -369,7 +369,7 @@
     - cis_removable_media_noexec | bool
   failed_when:
     - output.stdout_lines | length > 0
-  changed_when: false
+  changed_when: no
   check_mode: no
   loop: "{{ cis_removable_media_partitions }}"
 
@@ -378,7 +378,7 @@
     cmd: find / -xdev -type d \( -perm -0002 -a ! -perm -1000 \) -print
   when:
     - cis_fix_sticky_bit | bool
-  changed_when: false
+  changed_when: no
   check_mode: no
   register: cis_world_writable_directories
 
@@ -395,7 +395,7 @@
   ansible.builtin.service:
     name: autofs
     state: stopped
-    enabled: true
+    enabled: yes
   when:
     - cis_disable_automount | bool
     - services.autofs is defined

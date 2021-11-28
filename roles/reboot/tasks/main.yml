@@ -61,3 +61,5 @@
     - (reboot_always | bool)
       or (reboot_rhel_needsrestarting.changed | default(no))
       or (reboot_debian_needrestarting.changed | default(no))
+  tags:
+    - skip_ansible_later

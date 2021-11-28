@@ -4,7 +4,7 @@ Install and configure Logstash on your system.
 
 |GitHub|GitLab|Quality|Downloads|Version|
 |------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-logstash/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-logstash/actions)|[![gitlab](https://gitlab.com/robertdebock/ansible-role-logstash/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-logstash)|[![quality](https://img.shields.io/ansible/quality/)](https://galaxy.ansible.com/robertdebock/logstash)|[![downloads](https://img.shields.io/ansible/role/d/)](https://galaxy.ansible.com/robertdebock/logstash)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-logstash.svg)](https://github.com/robertdebock/ansible-role-logstash/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-logstash/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-logstash/actions)|[![gitlab](https://gitlab.com/robertdebock/ansible-role-logstash/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-logstash)|[![quality](https://img.shields.io/ansible/quality/56422)](https://galaxy.ansible.com/robertdebock/logstash)|[![downloads](https://img.shields.io/ansible/role/d/56422)](https://galaxy.ansible.com/robertdebock/logstash)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-logstash.svg)](https://github.com/robertdebock/ansible-role-logstash/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

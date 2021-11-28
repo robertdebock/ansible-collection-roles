@@ -54,15 +54,17 @@ The default values for the variables are set in `defaults/main.yml`:
 #     value: Amsterdam
 #   - key: availability_zone
 #     value: west
-
+#
 # Would make these facts available:
-
+#
 #         "ansible_local": {
 #             "custom": {
 #                 "availability_zone": "west",
 #                 "datacenter": "Amsterdam"
 #             }
 #         },
+
+facts: []
 ```
 
 ## [Requirements](#requirements)
