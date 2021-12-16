@@ -28,7 +28,7 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
         force: yes
       - repo: https://github.com/robertdebock/robertdebock.bootstrap
         dest: bootstrap-version
-        version: 2.11.1
+        version: "2.11.1"
 
   roles:
     - role: robertdebock.git
@@ -77,7 +77,7 @@ git_force: no
 # git_repositories:
 #   - repo: https://github.com/robertdebock/ansible-role-bootstrap.git
 #     dest: bootstrap
-#     version: 2.2.4
+#     version: "2.2.4"
 #   - repo: ssh://git@github.com/robertdebock/ansible-role-java.git
 #     dest: java
 #   - repo: ssh://git@github.com/robertdebock/ansible-role-tomcat.git

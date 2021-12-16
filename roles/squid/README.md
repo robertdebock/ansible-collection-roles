@@ -18,13 +18,13 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
 
   roles:
     - role: robertdebock.squid
-      squid_cache_dir: aufs /var/spool/squid 16000 16 256 max-size=8589934592
+      squid_cache_dir: "aufs /var/spool/squid 16000 16 256 max-size=8589934592"
       squid_cache_replacement_policy: heap LFUDA
       squid_maximum_object_size_mb: 256
       squid_acls:
         - name: localnet
           classifier: src
-          value: 0.0.0.1-0.255.255.255
+          value: "0.0.0.1-0.255.255.255"
       squid_rules:
         - acl: to_localhost
           decision: deny

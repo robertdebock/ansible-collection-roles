@@ -46,7 +46,7 @@ The default values for the variables are set in `defaults/main.yml`:
 # defaults file for vagrant
 
 # The version of vagrant to install. See https://releases.hashicorp.com/vagrant/ .
-vagrant_version: 2.2.9
+vagrant_version: "2.2.19"
 
 # The location to unpack the .tar.xz, if applicable.
 vagrant_unarchive_dest: /usr/local/bin

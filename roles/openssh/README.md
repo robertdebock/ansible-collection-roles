@@ -49,8 +49,8 @@ openssh_port: 22
 openssh_address_family: any
 
 openssh_listen_addresses:
-  - '0.0.0.0'
-  - '::'
+  - "0.0.0.0"
+  - "::"
 
 openssh_host_keys:
   - /etc/ssh/ssh_host_rsa_key
@@ -71,7 +71,7 @@ openssh_max_sessions: 10
 
 openssh_pub_key_authentication: "yes"
 
-openssh_authorized_key_file: .ssh/authorized_keys
+openssh_authorized_key_file: ".ssh/authorized_keys"
 
 openssh_authorized_prinicpals_file: none
 openssh_authorized_keys_command: none
@@ -113,7 +113,7 @@ openssh_client_alive_count_max: 3
 openssh_show_patch_level: "no"
 openssh_use_dns: "no"
 openssh_pid_file: /var/run/sshd.pid
-openssh_max_startups: 10:30:100
+openssh_max_startups: "10:30:100"
 openssh_permit_tunnel: "no"
 openssh_chroot_directory: none
 openssh_version_addendum: none
@@ -141,7 +141,7 @@ openssh_accept_envs:
 openssh_subsystem: sftp {{ openssh_sftp_server }}
 
 # Restrict access to this (space separated list) of users.
-# For example: `openssh_allow_users: root my_user`
+# For example: "openssh_allow_users: root my_user"
 # openssh_allow_users: root
 ```
 

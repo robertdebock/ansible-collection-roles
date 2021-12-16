@@ -41,8 +41,6 @@
     src: owncloud.conf.j2
     dest: "{{ owncloud_config_directory }}/owncloud.conf"
     mode: "0644"
-  notify:
-    - restart httpd
 
 - name: configure owncloud
   ansible.builtin.command:

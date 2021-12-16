@@ -30,8 +30,6 @@
     src: spamassassin.conf.j2
     dest: /etc/rsyslog.d/spamassassin.conf
     mode: "0644"
-  notify:
-    - restart rsyslog
 
 - name: configure software
   ansible.builtin.copy:
@@ -41,8 +39,6 @@
   when:
     - ansible_distribution == "Ubuntu"
     - ansible_distribution_release == "trusty"
-  notify:
-    - restart spamassassin
 
 - name: set permission on /var/log/spamassassin
   ansible.builtin.file:

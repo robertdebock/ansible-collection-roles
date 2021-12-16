@@ -9,7 +9,7 @@ anaconda_python_version: 3
 anaconda_version: "2018.12"
 
 # What ip and port to let anaconda listen to.
-anaconda_ip: 0.0.0.0
+anaconda_ip: "0.0.0.0"
 anaconda_port: 8888
 
 # Where to save the (large) download file

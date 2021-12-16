@@ -1,0 +1,8 @@
+---
+# vars file for powertools
+
+_powertools_repo_file:
+  EL: CentOS-Linux-PowerTools.repo
+  CentOS: CentOS-Linux-PowerTools.repo
+  Rocky: Rocky-PowerTools.repo
+  AlmaLinux: almalinux-powertools.repo

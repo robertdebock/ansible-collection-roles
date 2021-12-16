@@ -121,4 +121,4 @@ nextcloud_permissions:
     group: "{{ nextcloud_httpd_group }}"
     mode: "0660"
 
-nextcloud_command: php occ maintenance:install --database "mysql" --database-name "{{ nextcloud_database_name }}" --database-user "{{ nextcloud_database_user }}" --database-pass "{{ nextcloud_database_pass }}" --database-host "{{ nextcloud_database_host }}" --admin-user "{{ nextcloud_admin_user }}" --admin-pass "{{ nextcloud_admin_pass }}"
+nextcloud_command: 'php occ maintenance:install --database "mysql" --database-name "{{ nextcloud_database_name }}" --database-user "{{ nextcloud_database_user }}" --database-pass "{{ nextcloud_database_pass }}" --database-host "{{ nextcloud_database_host }}" --admin-user "{{ nextcloud_admin_user }}" --admin-pass "{{ nextcloud_admin_pass }}"'

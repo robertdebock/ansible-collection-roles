@@ -1,11 +1,11 @@
 ---
 # Values used to configure zabbix_agent.
 
-zabbix_agent_server_address: 127.0.0.1
+zabbix_agent_server_address: "127.0.0.1"
 zabbix_agent_listen_port: 10050
-zabbix_agent_server_active_address: 127.0.0.1
+zabbix_agent_server_active_address: "127.0.0.1"
 # Not mandatory, but possible to overwrite.
-# zabbix_agent_source_ip: 127.0.0.1
+# zabbix_agent_source_ip: "127.0.0.1"
 
 zabbix_agent_hostname: "{{ ansible_fqdn }}"
 zabbix_agent_hostmetadata: system.uname

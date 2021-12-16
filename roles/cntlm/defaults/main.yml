@@ -2,7 +2,7 @@
 # defaults file for cntlm
 
 # The version of CNTLM to install.
-cntlm_version: 0.92.3
+cntlm_version: "0.92.3"
 
 # What release to install.
 cntlm_release: 1
@@ -14,7 +14,7 @@ cntlm_download_mirror: netcologne.dl.sourceforge.net
 cntlm_username: changeme
 cntlm_password: changeme
 cntlm_domain: example.com
-cntlm_proxy: changeme.example.com:3128
+cntlm_proxy: "changeme.example.com:3128"
 
 # To what port should CNTLM listen?
 cntlm_listen: 3128
@@ -31,11 +31,11 @@ cntlm_tmp: /root
 # Which IPs or CIDR subnets CNTLM is accessible from.  Items other than 127.0.0.1 are only effective if gateway_enabled
 # is yes
 cntlm_allows:
-  - 127.0.0.1
+  - "127.0.0.1"
 
 # By default ("0/0"), CNTLM is inaccessible from all other IP addresses.
 cntlm_denies:
-  - 0/0
+  - "0/0"
 
 # If yes, access to CNTLM is possible from outside of the local host, subject to cntlm_allows and cntlm_denies:
 gateway_enabled: "no"

@@ -1,9 +1,14 @@
 ---
 # tasks file for powertools
 
+- name: import assert.yml
+  ansible.builtin.import_tasks: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
 - name: enable powertools
   community.general.ini_file:
-    path: /etc/yum.repos.d/CentOS-Linux-PowerTools.repo
+    path: "{{ powertools_repo_path }}"
     section: powertools
     option: enabled
     value: "1"
@@ -11,5 +16,5 @@
   notify:
     - yum update cache
   when:
-    - ansible_distribution in [ "CentOS", "EL" ]
+    - ansible_distribution in [ "CentOS", "EL", "Rocky", "AlmaLinux" ]
     - ansible_distribution_major_version >= "8"

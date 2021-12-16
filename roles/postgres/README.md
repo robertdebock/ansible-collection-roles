@@ -46,7 +46,7 @@ The default values for the variables are set in `defaults/main.yml`:
 # defaults file for postgres
 
 postgres_port: 5432
-postgres_listen_addresses: 127.0.0.1
+postgres_listen_addresses: "127.0.0.1"
 postgres_unix_socket_directories: "{{ postgres_socket_directory }}"
 postgres_max_wal_size: 1GB
 postgres_min_wal_size: 80MB
@@ -63,12 +63,12 @@ postgres_hba_entries:
   - type: host
     database: all
     user: all
-    address: 127.0.0.1/32
+    address: "127.0.0.1/32"
     method: ident
   - type: host
     database: all
     user: all
-    address: ::1/128
+    address: "::1/128"
     method: ident
   - type: local
     database: replication
@@ -77,12 +77,12 @@ postgres_hba_entries:
   - type: host
     database: replication
     user: all
-    address: 127.0.0.1/32
+    address: "127.0.0.1/32"
     method: ident
   - type: host
     database: replication
     user: all
-    address: ::1/128
+    address: "::1/128"
     method: ident
 ```
 

@@ -48,7 +48,7 @@
   ansible.builtin.assert:
     that:
       - dhcpd_domain_name_servers is defined
-      - dhcpd_domain_name_servers is string
+      - dhcpd_domain_name_servers is iterable
     quiet: yes
 
 - name: test if dhcpd_domain_search is set correctly

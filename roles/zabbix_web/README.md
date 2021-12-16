@@ -28,7 +28,7 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
       # https://docs.ansible.com/ansible/latest/modules/zabbix_host_module.html
       zabbix_web_hosts:
         - name: Example server 1
-          interface_ip: 192.168.127.127
+          interface_ip: "192.168.127.127"
           interface_dns: server1.example.com
           visible_name: Example server 1 name
           description: Example server 1 description

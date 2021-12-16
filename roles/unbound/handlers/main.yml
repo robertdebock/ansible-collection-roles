@@ -3,7 +3,7 @@
 
 - name: configure
   ansible.builtin.command:
-    cmd: ./configure --enable-systemd
+    cmd: "./configure --enable-systemd"
   args:
     chdir: "{{ unbound_temporary_directory }}/unbound-{{ unbound_version }}"
     creates: "{{ unbound_temporary_directory }}/unbound-{{ unbound_version }}/Makefile"

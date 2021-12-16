@@ -48,7 +48,7 @@ The default values for the variables are set in `defaults/main.yml`:
 # defaults file for metricbeat
 
 # The version of metricbeat to install.
-metricbeat_version: 7.10.2
+metricbeat_version: "7.15.2"
 
 # A list of modules to enable.
 metricbeat_modules: []
@@ -100,7 +100,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |fedora|all|
 |ubuntu|focal, bionic|
 
-The minimum version of Ansible required is 2.9, tests have been done to:
+The minimum version of Ansible required is 2.10, tests have been done to:
 
 - The previous version.
 - The current version.

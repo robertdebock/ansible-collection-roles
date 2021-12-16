@@ -88,8 +88,8 @@ vault_storages:
 # Where vault should listen on.
 vault_listeners:
   - name: tcp
-    address: 127.0.0.1:8200
-    cluster_address: 127.0.0.1:8201
+    address: "127.0.0.1:8200"
+    cluster_address: "127.0.0.1:8201"
     tls_disable: "true"
     tls_cert_file: "fullchain.pem"
     tls_key_file: "privkey.pem"

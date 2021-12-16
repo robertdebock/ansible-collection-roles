@@ -25,7 +25,7 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
       hashicorp_installation_method: manual
       hashicorp_products:
         - name: vault
-          version: 1.4.2
+          version: "1.9.0"
           type: ent
 ```
 
@@ -70,7 +70,7 @@ hashicorp_installation_method: package
 # specify the version to install.
 # hashicorp_products:
 #   - name: vault
-#     version: 1.6.0
+#     version: "1.10.4"
 
 # For `vault` you can choose what type you want to install, either:
 # `oss` (default), `ent` or `hsm`.

@@ -49,7 +49,7 @@ The default values for the variables are set in `defaults/main.yml`:
 irslackd_port: 6697
 
 # The address that irslackd should bind to.
-irslackd_address: 0.0.0.0
+irslackd_address: "0.0.0.0"
 
 # Where to install irslackd.
 irslackd_dest: /opt/irslackd

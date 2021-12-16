@@ -47,7 +47,7 @@ The default values for the variables are set in `defaults/main.yml`:
 ---
 # defaults file for etherpad
 
-etherpad_version: 1.7.5
+etherpad_version: "1.8.16"
 
 etherpad_installation_destination: /opt
 

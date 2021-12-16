@@ -43,7 +43,7 @@ The default values for the variables are set in `defaults/main.yml`:
 # defaults file for packer
 
 # The version of Packer to install.
-packer_version: 1.4.5
+packer_version: "1.7.8"
 ```
 
 ## [Requirements](#requirements)

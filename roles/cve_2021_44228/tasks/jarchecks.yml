@@ -1,0 +1,75 @@
+---
+
+- name: check jar files
+  block:
+    - name: find jar files
+      find:
+        paths: "{{ cve_2021_44228_paths_to_check }}"
+        patterns:
+          - "*.jar"
+      register: cve_2021_44228_jar_files
+
+    - name: inspect jars
+      block:
+        - name: install unzip
+          package:
+            name: unzip
+          notify:
+            - uninstall unzip
+
+        - name: unzip found jar files
+          command:
+            cmd: unzip -l {{ item.path }}
+          changed_when: no
+          register: unzipped_jars
+          loop: "{{ cve_2021_44228_jar_files.files }}"
+          loop_control:
+            label: "{{ item.path }}"
+          failed_when:
+            - '"log4j" in unzipped_jars'
+      rescue:
+        - name: show results
+          debug:
+            msg:
+              - "Found log4j in jar files."
+              - "{{ unzipped_jars }}"
+      when:
+        cve_2021_44228_jar_files.matched > 0
+
+    - name: inspect log4j.class files
+      block:
+        - name: find log4j.class files
+          find:
+            paths: "{{ cve_2021_44228_paths_to_check }}"
+            patterns:
+              - "log4j.class"
+          register: cve_2021_44228_class_files
+          failed_when:
+            - cve_2021_44228_class_files.matched > 0
+      rescue:
+        - name: show .class files
+          debug:
+            msg: "{{ item.path }}"
+          loop: "{{ cve_2021_44228_class_files.files }}"
+          loop_control:
+            label: "{{ item.path }}"
+
+# for path in "$@"; do
+#   echo "# Scanning $path"
+#   (find "$path" -type f | while read file; do
+#     case "$file" in
+#       *.jar)
+#         unzip -l "$file" | while read j; do
+#           case "$content" in
+#             *.class)
+#               echo "$content"
+#             ;;
+#           esac
+#         done
+#       ;;
+#       *.class)
+#         echo "$file"
+#       ;;
+#     esac
+#   done) | grep log4j
+# done

@@ -2,7 +2,7 @@
 # defaults file for mysql
 
 # The address mysql should bind to.
-mysql_bind_address: 127.0.0.1
+mysql_bind_address: "127.0.0.1"
 
 # The password to set for the root user. Also stored in my.cnf
 mysql_root_password: "s3Cur31t4."

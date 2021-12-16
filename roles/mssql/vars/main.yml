@@ -1,19 +1,19 @@
 ---
 # vars file for mssql
 
-mssql_gpgkey: https://packages.microsoft.com/keys/microsoft.asc
+mssql_gpgkey: "https://packages.microsoft.com/keys/microsoft.asc"
 
 mssql_rhel_repositories:
   - name: packages-microsoft-com-mssql-server-{{ mssql_version }}
     description: Microsoft MSSQL server
-    baseurl: https://packages.microsoft.com/rhel/7/mssql-server-{{ mssql_version }}/
+    baseurl: "https://packages.microsoft.com/rhel/7/mssql-server-{{ mssql_version }}/"
   - name: packages-microsoft-com-prod
     description: Microsoft tools
-    baseurl: https://packages.microsoft.com/rhel/7/prod/
+    baseurl: "https://packages.microsoft.com/rhel/7/prod/"
 
 mssql_ubuntu_repositories:
-  - repo: https://packages.microsoft.com/ubuntu/16.04/prod
-  - repo: https://packages.microsoft.com/ubuntu/16.04/mssql-server-2019
+  - repo: "https://packages.microsoft.com/ubuntu/16.04/prod"
+  - repo: "https://packages.microsoft.com/ubuntu/16.04/mssql-server-2019"
 
 _mssql_server_package:
   Debian: mssql-server={{ mssql_server_version }}

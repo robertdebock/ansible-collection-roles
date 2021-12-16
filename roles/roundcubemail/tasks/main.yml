@@ -10,8 +10,6 @@
   ansible.builtin.package:
     name: "{{ roundcubemail_requirements }}"
     state: present
-  notify:
-    - restart httpd
 
 - name: install roundcubemail
   ansible.builtin.package:
@@ -63,5 +61,3 @@
     src: roundcube.conf.j2
     dest: "{{ roundcubemail_httpd_configuration }}"
     mode: "0644"
-  notify:
-    - restart httpd

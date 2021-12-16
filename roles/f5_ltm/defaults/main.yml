@@ -3,7 +3,7 @@
 
 # Connection details for the F5 LTM.
 # f5_ltm_provider:
-#   server: 192.168.1.254
+#   server: "192.168.1.254"
 #   user: root
 #   password: password
 #   server_port: 8443
@@ -14,15 +14,15 @@ f5_ltm_partition: Common
 f5_ltm_hostname: f5.example.com
 f5_ltm_timezone: "Europe/Amsterdam"
 f5_ltm_ntp_servers:
-  - 1.1.1.1
-  - 8.8.8.8
+  - "1.1.1.1"
+  - "8.8.8.8"
 
 # The list of nodes.
 # f5_ltm_nodes:
 #   - name: node1.example.com
-#     host: 192.168.1.1
+#     host: "192.168.1.1"
 #   - name: node2.example.com
-#     host: 192.168.1.2
+#     host: "192.168.1.2"
 
 # The list of pools.
 # f5_ltm_pools:
@@ -44,7 +44,7 @@ f5_ltm_ntp_servers:
 # f5_ltm_virtual_servers:
 #   - name: virtual_server1.example.com
 #     pool: pool1.example.com
-#     destination: 192.168.1.254
+#     destination: "192.168.1.254"
 #     port: 443
 #     enable_vlans: all
 #     all_profiles:

@@ -20,7 +20,7 @@
 
 - name: run installer rustup
   ansible.builtin.command:
-    cmd: ./rustup.sh -y
+    cmd: "./rustup.sh -y"
     chdir: "{{ cargo_tmp }}"
     creates: "{{ cargo_prefix }}/bin/cargo"
   environment:

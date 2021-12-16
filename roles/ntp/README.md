@@ -51,14 +51,14 @@ ntp_enabled: yes
 
 # A list of IP addresses to listen on.
 ntp_interfaces:
-  - address: 127.0.0.1
+  - address: "127.0.0.1"
 
 # A list of NTP pools and their options.
 ntp_pool:
-  - name: 0.pool.ntp.org iburst
-  - name: 1.pool.ntp.org iburst
-  - name: 2.pool.ntp.org iburst
-  - name: 3.pool.ntp.org iburst
+  - name: "0.pool.ntp.org iburst"
+  - name: "1.pool.ntp.org iburst"
+  - name: "2.pool.ntp.org iburst"
+  - name: "3.pool.ntp.org iburst"
 
 # A list of NTP servers and their options.
 # ntp_server:

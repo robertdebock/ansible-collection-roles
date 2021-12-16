@@ -57,14 +57,12 @@ The default values for the variables are set in `defaults/main.yml`:
 ---
 # defaults file for minikube
 
-minikube_version: 1.20.0-0
-
 # `minikube start` should start as a non-root-user. This should be an exising
 # user on the Linux system. (Hint: robertdebock.users)
 minikube_user: minikube
 
-minikube_command: /usr/bin/minikube start --driver=none
-# minikube_command: /usr/bin/minikube start --vm-driver=none --apiserver-ips 127.0.0.1 --apiserver-name localhost --extra-config=kubelet.cgroup-driver=systemd
+minikube_command: "/usr/bin/minikube start --driver=none"
+# minikube_command: "/usr/bin/minikube start --vm-driver=none --apiserver-ips 127.0.0.1 --apiserver-name localhost --extra-config=kubelet.cgroup-driver=systemd"
 ```
 
 ## [Requirements](#requirements)

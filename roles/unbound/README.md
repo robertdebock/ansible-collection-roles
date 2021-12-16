@@ -44,13 +44,13 @@ The default values for the variables are set in `defaults/main.yml`:
 # defaults file for unbound
 
 # What version to download/install.
-unbound_version: 1.9.6
+unbound_version: "1.13.2"
 
 # Where to unpack unbound.
 unbound_temporary_directory: /tmp
 
 # The interface to listen on.
-unbound_interface: 127.0.0.1
+unbound_interface: "127.0.0.1"
 
 # The port to listen on.
 unbound_port: 53

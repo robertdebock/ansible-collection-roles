@@ -11,6 +11,7 @@
   when:
     - httpd_vhosts is defined
     - item.documentroot is defined
+    - item.create_docroot is not defined or item.create_docroot
 
 - name: configure vhosts
   ansible.builtin.template:

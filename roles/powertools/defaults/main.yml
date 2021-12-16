@@ -1,0 +1,4 @@
+---
+# defaults file for powertools
+
+powertools_repo_path: "/etc/yum.repos.d/{{ _powertools_repo_file[ansible_distribution] }}"

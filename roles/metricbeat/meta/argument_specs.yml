@@ -8,7 +8,7 @@ argument_specs:
     options:
       metricbeat_version:
         type: "str"
-        default: 7.10.2
+        default: "7.15.2"
         description: "The version of metricbeat to install."
       metricbeat_modules:
         type: "list"

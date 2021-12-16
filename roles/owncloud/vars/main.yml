@@ -134,4 +134,4 @@ owncloud_permissions:
     mode: "0770"
     group: "{{ owncloud_httpd_group }}"
 
-owncloud_command: php occ maintenance:install --database "mysql" --database-name "{{ owncloud_database_name }}" --database-user "{{ owncloud_database_user }}" --database-pass "{{ owncloud_database_pass }}" --database-host "{{ owncloud_database_host }}" --admin-user "{{ owncloud_admin_user }}" --admin-pass "{{ owncloud_admin_pass }}"
+owncloud_command: 'php occ maintenance:install --database "mysql" --database-name "{{ owncloud_database_name }}" --database-user "{{ owncloud_database_user }}" --database-pass "{{ owncloud_database_pass }}" --database-host "{{ owncloud_database_host }}" --admin-user "{{ owncloud_admin_user }}" --admin-pass "{{ owncloud_admin_pass }}"'

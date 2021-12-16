@@ -1,5 +1,4 @@
 ---
-
 - name: test if dnsmasq_port is set correctly
   ansible.builtin.assert:
     that:
@@ -84,14 +83,22 @@
 - name: test if item in dnsmasq_servers is set correctly
   ansible.builtin.assert:
     that:
-      - item.domain is defined
-      - item.domain is string
       - item.nameserver is defined
       - item.nameserver is string
     quiet: yes
   loop: "{{ dnsmasq_servers }}"
   when:
     - dnsmasq_servers is defined
+
+- name: test if item.domain in dnsmasq_servers is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.domain is string
+    quiet: yes
+  loop: "{{ dnsmasq_servers }}"
+  when:
+    - dnsmasq_servers is defined
+    - item.domain is defined
 
 - name: test if item.port in dnsmasq_servers is set correctly
   ansible.builtin.assert:

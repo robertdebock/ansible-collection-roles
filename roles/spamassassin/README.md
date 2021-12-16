@@ -70,11 +70,6 @@ The following roles are used to prepare a system. You can prepare your system in
 |[robertdebock.logrotate](https://galaxy.ansible.com/robertdebock/logrotate)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-logrotate/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-logrotate/actions)|[![Build Status GitLab ](https://gitlab.com/robertdebock/ansible-role-logrotate/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-logrotate)|
 |[robertdebock.rsyslog](https://galaxy.ansible.com/robertdebock/rsyslog)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-rsyslog/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-rsyslog/actions)|[![Build Status GitLab ](https://gitlab.com/robertdebock/ansible-role-rsyslog/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-rsyslog)|
 
-## [Dependencies](#dependencies)
-
-Most roles require some kind of preparation, this is done in `molecule/default/prepare.yml`. This role has a "hard" dependency on the following roles:
-
-- robertdebock.rsyslog
 ## [Context](#context)
 
 This role is a part of many compatible roles. Have a look at [the documentation of these roles](https://robertdebock.nl/) for further information.

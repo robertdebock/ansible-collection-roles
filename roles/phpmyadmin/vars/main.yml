@@ -1,7 +1,7 @@
 ---
 # vars file for phpmyadmin
 
-phpmyadmin_archive: https://files.phpmyadmin.net/phpMyAdmin/{{ phpmyadmin_version }}/phpMyAdmin-{{ phpmyadmin_version }}-all-languages.tar.gz
+phpmyadmin_archive: "https://files.phpmyadmin.net/phpMyAdmin/{{ phpmyadmin_version }}/phpMyAdmin-{{ phpmyadmin_version }}-all-languages.tar.gz"
 
 _phpmyadmin_httpd_directory:
   default: /var/www/html

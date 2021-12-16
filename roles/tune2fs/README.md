@@ -80,7 +80,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |opensuse|all|
 |ubuntu|all|
 
-The minimum version of Ansible required is 2.8, tests have been done to:
+The minimum version of Ansible required is 2.10, tests have been done to:
 
 - The previous version.
 - The current version.

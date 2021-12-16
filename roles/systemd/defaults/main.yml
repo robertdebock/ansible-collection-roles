@@ -35,9 +35,3 @@ systemd_resolved: []
 #   - option: LogLevel
 #     value: info
 systemd_system: []
-
-# Set options in user.conf. For example:
-# systemd_logind:
-#   - option: DefaultStartLimitBurst
-#     value: 5
-systemd_logind: []

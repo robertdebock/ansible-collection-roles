@@ -48,7 +48,7 @@ The default values for the variables are set in `defaults/main.yml`:
 kibana_type: oss
 
 # The IP addres to bind on.
-kibana_server_host: 0.0.0.0
+kibana_server_host: "0.0.0.0"
 
 # The TCP port to bind on.
 kibana_server_port: 5601
@@ -91,7 +91,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |fedora|all|
 |ubuntu|focal, bionic|
 
-The minimum version of Ansible required is 2.9, tests have been done to:
+The minimum version of Ansible required is 2.10, tests have been done to:
 
 - The previous version.
 - The current version.

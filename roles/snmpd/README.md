@@ -57,10 +57,10 @@ snmpd_groups:
 snmpd_views:
   - name: systemview
     type: included
-    subtree: .1.3.6.1.2.1.1
+    subtree: ".1.3.6.1.2.1.1"
   - name: systemview
     type: included
-    subtree: .1.3.6.1.2.1.25.1.1
+    subtree: ".1.3.6.1.2.1.25.1.1"
 
 snmpd_accesses:
   - group: notConfigGroup
@@ -133,7 +133,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |opensuse|all|
 |ubuntu|all|
 
-The minimum version of Ansible required is 2.9, tests have been done to:
+The minimum version of Ansible required is 2.10, tests have been done to:
 
 - The previous version.
 - The current version.

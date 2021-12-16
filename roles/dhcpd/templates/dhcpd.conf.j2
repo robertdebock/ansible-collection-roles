@@ -4,7 +4,7 @@ max-lease-time {{ dhcpd_max_lease_time }};
 option subnet-mask {{ dhcpd_subnet_mask }};
 option broadcast-address {{ dhcpd_broadcast_address }};
 option routers {{ dhcpd_routers }};
-option domain-name-servers {{ dhcpd_domain_name_servers }};
+option domain-name-servers {{ dhcpd_domain_name_servers | join(', ') }};
 option domain-search "{{ dhcpd_domain_search }}";
 
 {% for subnet in dhcpd_subnets %}

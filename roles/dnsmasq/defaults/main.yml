@@ -15,20 +15,20 @@ dnsmasq_no_resolv: no
 dnsmasq_no_poll: no
 # dnsmasq_servers:
 #   - domain: localnet
-#     nameserver: 192.168.0.1
-#   - domain: 3.168.192.in-addr.arpa
-#     nameserver: 10.1.2.3
-#   - domain: 10.1.2.3
+#     nameserver: "192.168.0.1"
+#   - domain: "3.168.192.in-addr.arpa"
+#     nameserver: "10.1.2.3"
+#   - domain: "10.1.2.3"
 #     interface: eth1
-#   - destination: 10.2.3.4
-#     nameserver: 192.168.1.1
-#     interface: 192.168.1.1
+#   - destination: "10.2.3.4"
+#     nameserver: "192.168.1.1"
+#     interface: "192.168.1.1"
 #     port: 55
 # dnsmasq_locals:
 #   - domain: localnet
 # dnsmasq_addresses:
 #   - domain: double-click.net
-#     address: 127.0.0.1
+#     address: "127.0.0.1"
 #   - domain: www.thekelleys.org.uk
 #     address: "fe80::20d:60ff:fe36:f83"
 # dnsmasq_ipsets:
@@ -44,7 +44,7 @@ dnsmasq_group: "{{ dnsmasq_set_group }}"
 #   - name: eth0
 # dnsmasq_except_interface: eth0
 # dnsmasq_listen_addresses:
-#   - name: 127.0.0.1
+#   - name: "127.0.0.1"
 dnsmasq_no_dhcp_interface: ""
 dnsmasq_local_service: no
 dnsmasq_bind_interfaces: no
@@ -54,28 +54,28 @@ dnsmasq_expand_hosts: no
 # dnsmasq_domains:
 #   - name: thekelleys.org.uk
 #   - name: wireless.thekelleys.org.uk
-#     subnet: 192.168.2.0/24
+#     subnet: "192.168.2.0/24"
 #   - name: reserved.thekelleys.org.uk
-#     from: 192.68.3.100
-#     until: 192.168.3.200
+#     from: "192.68.3.100"
+#     until: "192.168.3.200"
 # dnsmasq_dhcp_ranges:
-#   - from: 192.168.0.50
-#     until: 192.168.0.150
+#   - from: "192.168.0.50"
+#     until: "192.168.0.150"
 #     leasetime: 12h
-#   - from: 192.168.0.50
-#     until: 192.168.0.150
-#     subnet: 255.255.255.0
+#   - from: "192.168.0.50"
+#     until: "192.168.0.150"
+#     subnet: "255.255.255.0"
 #     leasetime: 12h
-#   - from: 192.168.0.50
-#     until: 192.168.0.150
+#   - from: "192.168.0.50"
+#     until: "192.168.0.150"
 #     sets:
 #       - name: red
-#   - from: 192.168.0.50
-#     until: 192.168.0.150
+#   - from: "192.168.0.50"
+#     until: "192.168.0.150"
 #     leasetime: 12h
 #     tags:
 #       - name: green
-#   - from: 192.168.0.0
+#   - from: "192.168.0.0"
 #     options:
 #       - name: static
 #     static: yes
@@ -107,32 +107,32 @@ dnsmasq_expand_hosts: no
 dnsmasq_enable_ra: no
 # dnsmasq_hosts:
 #   - name: "11:22:33:44:55:66"
-#     value: 192.168.0.60
+#     value: "192.168.0.60"
 #   - name: "11:22:33:44:55:66"
 #     value: fred
 #   - name: "11:22:33:44:55:66"
-#     value: fred,192.168.0.60,45m
+#     value: "fred,192.168.0.60,45m"
 #   - name: "11:22:33:44:55:66,12:34:56:78:90:12"
-#     value: 192.168.0.60
+#     value: "192.168.0.60"
 #   - name: bert
-#     value: 192.168.0.70,infinite
+#     value: "192.168.0.70,infinite"
 #   - name: "id:01:02:02:04"
-#     value: 192.168.0.60
+#     value: "192.168.0.60"
 #   - name: "id:ff:00:00:00:00:00:02:00:00:02:c9:00:f4:52:14:03:00:28:05:81"
-#     value: 192.168.0.61
-# dnsmasq_dhcp_ignore: tag:!known
-# dnsmasq_dhcp_vendorclass: set:red,Linux
-# dnsmasq_dhcp_userclass: set:red,accounts
+#     value: "192.168.0.61"
+# dnsmasq_dhcp_ignore: "tag:!known"
+# dnsmasq_dhcp_vendorclass: "set:red,Linux"
+# dnsmasq_dhcp_userclass: "set:red,accounts"
 dnsmasq_dhcp_mac: "set:red,00:60:8C:*:*:*"
 dnsmasq_read_ethers: no
 # dnsmasq_dhcp_options:
 #   - name: 3
-#     value: 1.2.3.4
+#     value: "1.2.3.4"
 #   - name: "option:router"
-#     value: 1.2.3.4
+#     value: "1.2.3.4"
 #   - name: 3
 #   - name: "option:ntp-server"
-#     value: 192.168.0.4,10.10.0.5
+#     value: "192.168.0.4,10.10.0.5"
 #   - name: "option6:dns-server"
 #     value: "[1234::77],[1234::88]"
 #   - name: "option6:dns-server"
@@ -144,7 +144,7 @@ dnsmasq_read_ethers: no
 #   - name: "option:T2"
 #     value: 2m
 #   - name: 42
-#     value: 0.0.0.0
+#     value: "0.0.0.0"
 #   - name: 40
 #     value: welly
 #   - name: 23
@@ -155,15 +155,15 @@ dnsmasq_read_ethers: no
 #     value: "e4:45:74:68:00:00"
 #   - name: 129
 #     value: NIC=eepro100
-#   - name: option:ntp-server
+#   - name: "option:ntp-server"
 #     tag: red
-#     value: 192.168.1.1
+#     value: "192.168.1.1"
 #   - name: 19
 #     value: 0
 #   - name: 44
-#     value: 0.0.0.0
+#     value: "0.0.0.0"
 #   - name: 45
-#     value: 0.0.0.0
+#     value: "0.0.0.0"
 #   - name: 46
 #     value: 8
 #   - name: 252
@@ -171,9 +171,9 @@ dnsmasq_read_ethers: no
 #   - name: "option:domain-search"
 #     value: eng.apple.com,marketing.apple.com
 #   - name: 121
-#     value: 192.168.1.0/24,1.2.3.4,10.0.0.0/8,5.6.7.8
+#     value: "192.168.1.0/24,1.2.3.4,10.0.0.0/8,5.6.7.8"
 #   - name: "vendor:PXEClient"
-#     value: 1,0.0.0.0
+#     value: "1,0.0.0.0"
 #   - name: "vendor:MSFT"
 #     value: 2,1i
 #   - name: "vendor:Etherboot"
@@ -188,7 +188,7 @@ dnsmasq_read_ethers: no
 #   - name: 211
 #     value: 30i
 # dnsmasq_dhcp_boot: pxelinux.0
-# dnsmasq_dhcp_boot: pxelinux.0,server.name,192.168.1.100
+# dnsmasq_dhcp_boot: "pxelinux.0,server.name,192.168.1.100"
 dnsmasq_enable_tftp: no
 # dnsmasq_tftp_root: /var/ftpd
 dnsmasq_tftp_no_fail: no
@@ -202,16 +202,16 @@ dnsmasq_dhcp_script: /bin/echo
 # dnsmasq_cache_size: 150
 dnsmasq_no_negcache: no
 # dnsmasq_local_ttl: 3600
-# dnsmasq_bogus_nxdomain: 64.94.110.11
+# dnsmasq_bogus_nxdomain: "64.94.110.11"
 # dnsmasq_aliases:
-#   - from: 1.2.3.4
-#     until: 4.5.6.7
-#   - from: 1.2.3.0
-#     until: 5.6.7.0
-#     subnet: 255.255.255.0
-#   - from: 192.168.0.10-192.168.0.40
-#     until: 10.0.0.0
-#     subnet: 255.255.255.0
+#   - from: "1.2.3.4"
+#     until: "4.5.6.7"
+#   - from: "1.2.3.0"
+#     until: "5.6.7.0"
+#     subnet: "255.255.255.0"
+#   - from: "192.168.0.10-192.168.0.40"
+#     until: "10.0.0.0"
+#     subnet: "255.255.255.0"
 # dnsmasq_mx_hosts:
 #   - domain: maildomain.com
 #     host: servermacine.com
@@ -235,5 +235,5 @@ dnsmasq_selfmx: no
 dnsmasq_log_queries: no
 dnsmasq_log_dhcp: no
 # dnsmasq_conf_dir: /etc/dnsmasq.d
-# dnsmasq_dhcp_name_match: set:wpad-ignore,wpad
-# dnsmasq_ignore_names: tag:wpad-ignore
+# dnsmasq_dhcp_name_match: "set:wpad-ignore,wpad"
+# dnsmasq_ignore_names: "tag:wpad-ignore"

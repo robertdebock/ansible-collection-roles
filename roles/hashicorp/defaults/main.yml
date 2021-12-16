@@ -20,7 +20,7 @@ hashicorp_installation_method: package
 # specify the version to install.
 # hashicorp_products:
 #   - name: vault
-#     version: 1.6.0
+#     version: "1.10.4"
 
 # For `vault` you can choose what type you want to install, either:
 # `oss` (default), `ent` or `hsm`.

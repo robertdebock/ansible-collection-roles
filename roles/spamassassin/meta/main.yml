@@ -33,5 +33,4 @@ galaxy_info:
     - installer
     - package
 
-dependencies:
-  - robertdebock.rsyslog
+dependencies: []

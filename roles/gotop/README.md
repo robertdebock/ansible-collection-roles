@@ -44,7 +44,7 @@ The default values for the variables are set in `defaults/main.yml`:
 # defaults file for gotop
 
 # The version of gotop to install.
-gotop_version: 4.0.1
+gotop_version: "4.1.2"
 
 # Where to install gotop.
 gotop_installation_path: /usr/local/bin

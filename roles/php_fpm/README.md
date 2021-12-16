@@ -50,7 +50,7 @@ The default values for the variables are set in `defaults/main.yml`:
 # defaults file for php_fpm
 
 # The `php_fpm_listen` parameter can be an address:port combination or a path
-# if you want to use a socket. For example: 127.0.0.1:9000
+# if you want to use a socket. For example: "127.0.0.1:9000"
 
 php_fpm_listen: "{{ php_fpm_pid_directory }}/www.sock"
 

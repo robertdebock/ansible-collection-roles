@@ -6,7 +6,7 @@ galaxy_info:
   description: Configure HashiCorp Vault.
   license: Apache-2.0
   company: none
-  min_ansible_version: 2.9
+  min_ansible_version: "2.10"
 
   platforms:
     - name: Debian

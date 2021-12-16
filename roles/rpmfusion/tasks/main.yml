@@ -42,4 +42,4 @@
       when:
         - rpmfusion_nonfree | bool
   when:
-    - ansible_distribution in [ "Amazon", "Fedora", "CentOS", "RedHat", "Rocky" ]
+    - ansible_os_family == "RedHat"

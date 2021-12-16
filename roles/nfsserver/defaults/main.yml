@@ -5,7 +5,7 @@
 # nfsserver_exports:
 #   - share: /mnt/export
 #     hosts:
-#       - name: 10.0.0.0/24
+#       - name: "10.0.0.0/24"
 #         options:
 #           - ro
 #           - no_subtree_check

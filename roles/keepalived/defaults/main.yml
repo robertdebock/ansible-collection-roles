@@ -20,9 +20,9 @@
 #   # `interface` defines the interface that VRRP runs on.
 #     interface: eth0
 #   # `unicast_src_ip` contains the primary address for unicasts.
-#     unicast_src_ip: 192.168.1.1
+#     unicast_src_ip: "192.168.1.1"
 #   # `secondary_private_ip` refers the the peer's unicast address.
-#     secondary_private_ip: 192.168.1.2
+#     secondary_private_ip: "192.168.1.2"
 #   # `virtual_router_id` is the unique identifier.
 #     virtual_router_id: 51
 #   # `priority` is the advertised priority.
@@ -33,6 +33,6 @@
 #       auth_pass: 12345
 #   # `virtual_ipaddress` defines the IP addresses (there can be multiple) that VRRP is responsible for.
 #     virtual_ipaddresses:
-#       - name: 192.168.122.200
+#       - name: "192.168.122.200"
 #         cidr: 24
 keepalived_vrrp_instances: []

@@ -9,7 +9,7 @@
 
 - name: configure cntlm
   ansible.builtin.command:
-    cmd: ./configure
+    cmd: "./configure"
   args:
     chdir: "{{ cntlm_tmp }}/cntlm-{{ cntlm_version }}"
     creates: "{{ cntlm_tmp }}/cntlm/config/config.h"

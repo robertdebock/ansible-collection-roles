@@ -2,21 +2,21 @@
 # defaults file for phpmyadmin
 
 # The version of PHPMyAdmin to install
-phpmyadmin_version: 4.9.0.1
+phpmyadmin_version: "5.1.1"
 
 # Where to connect to for the database.
 phpmyadmin_database_host: localhost
 
 # To authenticate to the database using a user/pass requested in the browser,
 # ensure you set phpmyadmin_blowfish_secret.
-phpmyadmin_blowfish_secret: x7GD9DBEE32bAWd2sTHKBfYiqOfnj82neaPD3wrDTs0K
+phpmyadmin_blowfish_secret: "x7GD9DBEE32bAWd2sTHKBfYiqOfnj82neaPD3wrDTs0K"
 
 # Only set these (and unset phpmyadmin_blowfish_secret) to save the login
 # credentials in the configuration file.
 # This role does not setup a MySQL user and/or password, it just uses these
 # settings.
 phpmyadmin_database_user: admin
-phpmyadmin_database_pass: P@s5-W0rd
+phpmyadmin_database_pass: "P@s5-W0rd"
 
 phpmyadmin_database_compress: no
 phpmyadmin_database_allownopassword: no

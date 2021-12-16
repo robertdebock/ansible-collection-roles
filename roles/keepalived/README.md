@@ -22,15 +22,15 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
         - name: VI_1
           state: MASTER
           interface: eth0
-          unicast_src_ip: 172.17.0.6
-          secondary_private_ip: 172.17.0.7
+          unicast_src_ip: "172.17.0.6"
+          secondary_private_ip: "172.17.0.7"
           virtual_router_id: 51
           priority: 255
           authentication:
             auth_type: PASS
             auth_pass: "12345"
           virtual_ipaddresses:
-            - name: 172.17.0.8
+            - name: "172.17.0.8"
               cidr: 16
 ```
 
@@ -74,9 +74,9 @@ The default values for the variables are set in `defaults/main.yml`:
 #   # `interface` defines the interface that VRRP runs on.
 #     interface: eth0
 #   # `unicast_src_ip` contains the primary address for unicasts.
-#     unicast_src_ip: 192.168.1.1
+#     unicast_src_ip: "192.168.1.1"
 #   # `secondary_private_ip` refers the the peer's unicast address.
-#     secondary_private_ip: 192.168.1.2
+#     secondary_private_ip: "192.168.1.2"
 #   # `virtual_router_id` is the unique identifier.
 #     virtual_router_id: 51
 #   # `priority` is the advertised priority.
@@ -87,7 +87,7 @@ The default values for the variables are set in `defaults/main.yml`:
 #       auth_pass: 12345
 #   # `virtual_ipaddress` defines the IP addresses (there can be multiple) that VRRP is responsible for.
 #     virtual_ipaddresses:
-#       - name: 192.168.122.200
+#       - name: "192.168.122.200"
 #         cidr: 24
 keepalived_vrrp_instances: []
 ```

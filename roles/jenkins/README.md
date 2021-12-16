@@ -49,7 +49,7 @@ The default values for the variables are set in `defaults/main.yml`:
 jenkins_port: 8080
 
 # What address Jenkins should bind to.
-jenkins_listen_address: 0.0.0.0
+jenkins_listen_address: "0.0.0.0"
 ```
 
 ## [Requirements](#requirements)

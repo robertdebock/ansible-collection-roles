@@ -1,0 +1,25 @@
+---
+
+- name: check processes
+  block:
+    - name: install ps
+      package:
+        name: "{{ cve_2021_44228_ps_package }}"
+      notify:
+        - uninstall ps
+
+    - name: get list of java pids
+      command:
+        cmd: ps -ef
+      register: cve_2021_44228_processes
+      changed_when: no
+
+    - name: check for java processes
+      assert:
+        that:
+          - '"java" not in cve_2021_44228_processes'
+        quiet: yes
+  rescue:
+    - name: show matched pids
+      debug:
+        msg: "Potentially vulneralble: {{ cve_2021_44228_processes }}"

@@ -21,19 +21,19 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
       nfsserver_exports:
         - share: /mnt/export
           hosts:
-            - name: 10.0.0.0/24
+            - name: "10.0.0.0/24"
               options:
                 - ro
                 - no_subtree_check
                 - nohide
-            - name: 172.16.0.0/24
+            - name: "172.16.0.0/24"
               options:
                 - rw
                 - sync
                 - no_wdelay
         - share: /mnt/export2
           hosts:
-            - name: 10.2.3.0/24
+            - name: "10.2.3.0/24"
               options:
                 - ro
 ```
@@ -63,7 +63,7 @@ The default values for the variables are set in `defaults/main.yml`:
 # nfsserver_exports:
 #   - share: /mnt/export
 #     hosts:
-#       - name: 10.0.0.0/24
+#       - name: "10.0.0.0/24"
 #         options:
 #           - ro
 #           - no_subtree_check

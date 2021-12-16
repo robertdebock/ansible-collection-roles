@@ -1,0 +1,17 @@
+---
+# vars file for cve_2021_44228
+
+_cve_2021_44228_ps_package:
+  default: psmisc
+  Amazon-2: procps-ng
+  Amazon-2018: procps
+
+cve_2021_44228_ps_package: "{{ _cve_2021_44228_ps_package[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_cve_2021_44228_ps_package[ansible_os_family] | default(_cve_2021_44228_ps_package['default'] )) }}"
+
+cve_2021_44228_vulnerable_packages:
+  - solr
+  - elastic
+  - log4j
+
+cve_2021_44228_vulnerable_files:
+  - "*log4j*"

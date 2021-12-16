@@ -44,7 +44,7 @@ The default values for the variables are set in `defaults/main.yml`:
 # defaults file for terraform
 
 # The version of Terraform to install.
-terraform_version: 0.13.4
+terraform_version: "1.0.11"
 
 # Where to place the binary.
 terraform_destination: /usr/local/bin

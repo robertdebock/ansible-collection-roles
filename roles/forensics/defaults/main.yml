@@ -6,44 +6,44 @@ forensics_local_storage_path: /tmp/forensics
 
 # A list of commands to run.
 forensics_command_list:
-  - journalctl -xe
-  - ps -ef
-  - lsof
-  - systemctl status
-  - netstat -an
-  - netstat -tulpen
+  - "journalctl -xe"
+  - "ps -ef"
+  - "lsof"
+  - "systemctl status"
+  - "netstat -an"
+  - "netstat -tulpen"
 
 # A list of directories to collect all files from.
 forensics_directory_list:
-  - /var/log
-  - /tmp
-  - /var/tmp
-  - /var/spool/cron
-  - /var/spool/anacron
-  - /etc/cron.d
-  - /etc/cron.daily
-  - /etc/cron.hourly
-  - /etc/cron.monthly
-  - /etc/cron.weekly
-  - /var/spool/at
+  - "/var/log"
+  - "/tmp"
+  - "/var/tmp"
+  - "/var/spool/cron"
+  - "/var/spool/anacron"
+  - "/etc/cron.d"
+  - "/etc/cron.daily"
+  - "/etc/cron.hourly"
+  - "/etc/cron.monthly"
+  - "/etc/cron.weekly"
+  - "/var/spool/at"
 
 # A list of files to collect.
 forensics_file_list:
-  - /etc/passwd
-  - /etc/group
-  - /etc/shadow
+  - "/etc/passwd"
+  - "/etc/group"
+  - "/etc/shadow"
 
 # A list of directories and patterns to collect.
 forensics_specific_file_list:
-  - path: /root
-    pattern: .authorized_keys
-  - path: /root
-    pattern: .bash_history
-  - path: /root
-    pattern: .history
-  - path: /home
-    pattern: .authorized_keys
-  - path: /home
-    pattern: .bash_history
-  - path: /home
-    pattern: .history
+  - path: "/root"
+    pattern: ".authorized_keys"
+  - path: "/root"
+    pattern: ".bash_history"
+  - path: "/root"
+    pattern: ".history"
+  - path: "/home"
+    pattern: ".authorized_keys"
+  - path: "/home"
+    pattern: ".bash_history"
+  - path: "/home"
+    pattern: ".history"

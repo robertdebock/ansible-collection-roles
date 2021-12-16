@@ -16,7 +16,7 @@
     cmd: |
       certbot certonly --noninteractive
       --{{ certbot_system }}
-      --domain {{ certbot_domains | join(' --domain ') }}
+      --domain {{ certbot_domains | join(',') }}
       --agree-tos
       --email {{ certbot_email }}
     creates: /etc/letsencrypt/accounts
@@ -29,7 +29,7 @@
     cmd: |
       certbot --noninteractive
       --{{ certbot_system }}
-      --domain {{ certbot_domains | join(' --domain ') }}
+      --domain {{ certbot_domains | join(',') }}
       --agree-tos
       --email {{ certbot_email }}
       --no-redirect

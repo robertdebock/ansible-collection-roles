@@ -21,6 +21,7 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
       certbot_email: robert@meinit.nl
       certbot_domains:
         - meinit.nl
+        - robertdebock.nl
       certbot_ci_mode: yes
 ```
 

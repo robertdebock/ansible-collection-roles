@@ -14,7 +14,7 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
 - name: converge
   hosts: all
   become: yes
-  gather_facts: yes
+  gather_facts: no
 
   pre_tasks:
     - name: read the vault token
@@ -52,8 +52,8 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
           type: userpass
           description: My userpass auth engine.
           config:
-            default_lease_ttl: 8h  # 1 working day
-            max_lease_ttl: 24h  # 1 day
+            default_lease_ttl: 28800  # 1 working day
+            max_lease_ttl: 864000  # 1 day
         - path: kubernetes
           type: kubernetes
           description: My kubernetes auth engine.
@@ -152,10 +152,10 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |---------|----|
 |debian|all|
 |el|7, 8|
-|fedora|all|
+|fedora|34, 35|
 |ubuntu|focal, bionic|
 
-The minimum version of Ansible required is 2.9, tests have been done to:
+The minimum version of Ansible required is 2.10, tests have been done to:
 
 - The previous version.
 - The current version.

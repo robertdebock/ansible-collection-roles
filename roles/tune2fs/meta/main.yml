@@ -6,7 +6,7 @@ galaxy_info:
   description: tune ext3 and ext4 filesystems using tune2fs.
   license: Apache-2.0
   company: none
-  min_ansible_version: 2.8
+  min_ansible_version: "2.10"
 
   platforms:
     - name: Alpine

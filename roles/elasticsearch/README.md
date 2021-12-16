@@ -48,7 +48,7 @@ The default values for the variables are set in `defaults/main.yml`:
 elasticsearch_type: oss
 
 # The IP address to bind on.
-elasticsearch_network_host: 0.0.0.0
+elasticsearch_network_host: "0.0.0.0"
 
 # The port to bind on.
 elasticsearch_http_port: 9200
@@ -93,7 +93,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |fedora|all|
 |ubuntu|focal, bionic|
 
-The minimum version of Ansible required is 2.9, tests have been done to:
+The minimum version of Ansible required is 2.10, tests have been done to:
 
 - The previous version.
 - The current version.

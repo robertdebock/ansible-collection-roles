@@ -1,0 +1,8 @@
+---
+
+- name: test if powertools_repo_path is set correctly
+  ansible.builtin.assert:
+    that:
+      - powertools_repo_path is defined
+      - powertools_repo_path is string
+    quiet: yes

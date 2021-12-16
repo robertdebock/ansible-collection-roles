@@ -12,7 +12,7 @@ ara_user: root
 #   - option: port
 #     value: 9191
 #   - option: host
-#     value: 0.0.0.0
+#     value: "0.0.0.0"
 #   - option: playbook_per_page
 #     value: 10
 #   - option: result_per_page

@@ -22,7 +22,7 @@ tomcat_service_enabled: yes
 # You can bind Tomcat to a specified address globally using this variable, or
 # in the `tomcat_instances`. The `tomcat_instances.address` is more specific
 # so it takes priority over `tomcat_address`.
-tomcat_address: 0.0.0.0
+tomcat_address: "0.0.0.0"
 
 # Configure tomcat access logs
 tomcat_access_log_enabled: yes
@@ -51,7 +51,7 @@ tomcat_instances:
     ajp_port: "{{ tomcat_ajp_port }}"
     ajp_secret: "{{ tomcat_ajp_secret }}"
     # You can pick an address per instance:
-    # address: 127.0.0.1
+    # address: "127.0.0.1"
     packet_size: 8192
     java_opts:
       - name: JRE_HOME
@@ -65,9 +65,9 @@ tomcat_instances:
     service_enabled: "{{ tomcat_service_enabled }}"
 
 # The explicit version to use when referring to the short name.
-tomcat_version7: 7.0.107
-tomcat_version8: 8.5.60
-tomcat_version9: 9.0.40
+tomcat_version7: "7.0.109"
+tomcat_version8: "8.5.73"
+tomcat_version9: "9.0.55"
 
 # The location where to download Apache Tomcat from.
 tomcat_mirror: "https://archive.apache.org"

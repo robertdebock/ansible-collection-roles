@@ -10,16 +10,12 @@
   ansible.builtin.package:
     name: "{{ nextcloud_requirements }}"
     state: present
-  notify:
-    - restart httpd
 
 - name: place apache configuration
   ansible.builtin.template:
     src: nextcloud.conf.j2
     dest: "{{ nextcloud_config_directory }}/nextcloud.conf"
     mode: "0644"
-  notify:
-    - restart httpd
 
 - name: modify selinux settings
   ansible.posix.seboolean:

@@ -1,7 +1,7 @@
 ---
 # vars file for etherpad
 
-etherpad_url: https://github.com/ether/etherpad-lite/archive/{{ etherpad_version }}.zip
+etherpad_url: "https://github.com/ether/etherpad-lite/archive/{{ etherpad_version }}.zip"
 
 etherpad_configuration_file: settings.json
 

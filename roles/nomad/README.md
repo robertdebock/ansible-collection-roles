@@ -48,7 +48,7 @@ nomad_server: yes
 
 # Configuration items for the Nomad server
 nomad_server_data_dir: /tmp/server
-nomad_server_bind_addr: 0.0.0.0
+nomad_server_bind_addr: "0.0.0.0"
 nomad_server_log_level: INFO
 
 # How many servers and agents are expected?
@@ -63,7 +63,7 @@ nomad_agent_data_dir: /tmp/agent
 nomad_agent_name: "{{ inventory_hostname }}"
 
 nomad_agent_servers:
-  - name: 127.0.0.1
+  - name: "127.0.0.1"
     port: 4647
 ```
 

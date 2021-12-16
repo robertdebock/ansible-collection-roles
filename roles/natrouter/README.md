@@ -49,10 +49,10 @@ The default values for the variables are set in `defaults/main.yml`:
 natrouter_public_interface: eth0
 
 # The network address to translate.
-natrouter_private_network: 192.168.1.0/24
+natrouter_private_network: "192.168.1.0/24"
 
 # The destination.
-natrouter_destination: 0.0.0.0/0
+natrouter_destination: "0.0.0.0/0"
 
 # The protocols to NAT.
 natrouter_protocols:

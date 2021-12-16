@@ -8,7 +8,7 @@ consul_datacenter: dc1
 consul_data_dir: /opt/consul
 
 # The address to which Consul will bind client interfaces, including the HTTP and DNS servers
-consul_client_addr: 0.0.0.0
+consul_client_addr: "0.0.0.0"
 
 # Enables the built-in web UI server and the required HTTP routes.
 consul_ui: yes
