@@ -1,0 +1,43 @@
+---
+
+argument_specs:
+  main:
+    short_description: "Check and report for cve_2021_44228 (log4shell)."
+    description: >
+      Check for vulnerable files/packages/processes for log4shell. This role
+      does not fix a system, it just reports suspicious objects.
+    author: Robert de Bock
+    options:
+      cve_2021_44228_check_processes:
+        type: "bool"
+        default: yes
+        description: "Check suspicous processes."
+      cve_2021_44228_check_packages:
+        type: "bool"
+        default: yes
+        description: "Check suspicous packages."
+      cve_2021_44228_check_files:
+        type: "bool"
+        default: yes
+        description: "Check suspicous files."
+      cve_2021_44228_check_archives:
+        type: "bool"
+        default: yes
+        description: "Check suspicous jars."
+      cve_2021_44228_paths_to_check:
+        type: "list"
+        default:
+          - /var
+          - /etc
+          - /usr
+          - /opt
+          - /lib64
+        description: "Paths to find files and jars in."
+      cve_2021_44228_archive_patterns:
+        type: "list"
+        default:
+          - "*.jar"
+          - "*.war"
+          - "*.ear"
+          - "*.aar"
+        description: "The types of archives to scan."

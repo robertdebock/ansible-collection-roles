@@ -1,0 +1,60 @@
+---
+# vars file for gitlab
+
+_gitlab_requirements:
+  Debian:
+    - apt-transport-https
+    - ca-certificates
+    - curl
+    - debian-archive-keyring
+    - gnupg
+    - openssh-server
+    - perl
+  Ubuntu:
+    - apt-transport-https
+    - ca-certificates
+    - curl
+    - debian-archive-keyring
+    - gnupg
+    - openssh-server
+    - perl
+    - tzdata
+  RedHat: &redhat_requirements
+    - curl
+    - net-tools
+    - openssh-server
+    - perl
+    - policycoreutils
+    - procps-ng
+    - yum-utils
+  CentOS: *redhat_requirements
+  Rocky: *redhat_requirements
+
+gitlab_requirements: "{{ _gitlab_requirements[ansible_distribution] }}"
+
+_gitlab_distribution_abbreviation:
+  community: ce
+  enterprise: ee
+
+gitlab_distribution_abbreviation: "{{ _gitlab_distribution_abbreviation[gitlab_distribution] }}"
+
+_gitlab_repository_url:
+  Debian: "https://packages.gitlab.com/gitlab/gitlab-{{ gitlab_distribution_abbreviation }}/{{ ansible_distribution | lower }}/"
+  RedHat: "https://packages.gitlab.com/gitlab/gitlab-{{ gitlab_distribution_abbreviation }}/el/{{ ansible_distribution_major_version }}/$basearch"
+gitlab_repository_url: "{{ _gitlab_repository_url[ansible_os_family] }}"
+
+gitlab_repository_name: gitlab_gitlab-{{ gitlab_distribution_abbreviation }}
+
+_gitlab_package_version_connector:
+  Debian: "="
+  RedHat: "-"
+
+gitlab_package_version_connector: "{{ _gitlab_package_version_connector[ansible_os_family] }}"
+
+_gitlab_package:
+  Debian: "gitlab-{{ gitlab_distribution_abbreviation }}{{ gitlab_package_version_connector }}{{ gitlab_version }}-{{ gitlab_distribution_abbreviation }}.{{ gitlab_release }}"
+  RedHat: "gitlab-{{ gitlab_distribution_abbreviation }}{{ gitlab_package_version_connector }}{{ gitlab_version }}"
+
+gitlab_package: "{{ _gitlab_package[ansible_os_family] }}"
+
+gitlab_root_password_command: "gitlab-rails runner 'user = User.where(id: 1).first; user.password = {{ gitlab_root_password }}; user.password_confirmation = {{ gitlab_root_password }}; user.save!'"

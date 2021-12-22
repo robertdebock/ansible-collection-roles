@@ -1,20 +1,36 @@
 ---
 # defaults file for cve_2021_44228
 
-# You can disable certain checks using these variables:
+# You can disable certain checks using these variables.
+
+# Check suspicous processes.
 cve_2021_44228_check_processes: yes
+
+# Check suspicous packages.
 cve_2021_44228_check_packages: yes
 
 # This check uses `find`, which may use the disk intensively.
+# Check suspicous files.
 cve_2021_44228_check_files: yes
 
 # This check uses `find`, which may use the disk intensively.
-cve_2021_44228_check_jars: yes
+# Check suspicous jars
+cve_2021_44228_check_archives: yes
 
-# Add your own paths if you want to.
+# Add your own paths if you want to. The more paths you add, the more
+# the disk will be used, but not having enough paths poses a risk of
+# not finding vulnerable files.
+# Paths to find files and jars in.
 cve_2021_44228_paths_to_check:
   - /var
   - /etc
   - /usr
   - /opt
   - /lib64
+
+# The types of archives to scan.
+cve_2021_44228_archive_patterns:
+  - "*.jar"
+  - "*.war"
+  - "*.ear"
+  - "*.aar"

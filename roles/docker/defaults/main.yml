@@ -1,0 +1,8 @@
+---
+# defaults file for docker
+
+# Add users to the privileged docker group. For example:
+# docker_privileged_users:
+#  - UserA
+#  - UserB
+docker_privileged_users: []

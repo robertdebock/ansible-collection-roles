@@ -45,6 +45,17 @@
   when:
     - item.authtype is defined
 
+- name: test if item.allow in cups_locations is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.allow is string
+    quiet: yes
+  loop: "{{ cups_locations }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - item.allow is defined
+
 - name: test if cups_preserve_job_history is set correctly
   ansible.builtin.assert:
     that:

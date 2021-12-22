@@ -3,16 +3,16 @@
 - name: check packages
   block:
     - name: get a list of packages
-      package_facts:
+      ansible.builtin.package_facts:
 
     - name: check if package is installed
-      assert:
+      ansible.builtin.assert:
         that:
           - item not in ansible_facts.packages
         quiet: yes
       loop: "{{ cve_2021_44228_vulnerable_packages }}"
   rescue:
-    - name: show vulnerable package
-      debug:
+    - name: show potential vulnerable package
+      ansible.builtin.debug:
         msg: "Potentially vulneralble: {{ item }}"
       loop: "{{ cve_2021_44228_vulnerable_packages }}"

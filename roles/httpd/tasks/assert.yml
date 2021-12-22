@@ -96,7 +96,7 @@
     label: "{{ item.name }}"
   when:
     - httpd_vhosts is defined
-    - item.create_docroot
+    - item.create_docroot is defined
 
 - name: test if item.serveralias in httpd_vhosts is set correctly
   ansible.builtin.assert:

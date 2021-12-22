@@ -38,6 +38,9 @@ WebInterface {{ cups_web_interface }}
 {% if location.require is defined %}
   require {{ location.require }}
 {% endif %}
+{% if location.allow is defined %}
+  Allow {{ location.allow }}
+{% endif %}
 </Location>
 
 {% endfor %}

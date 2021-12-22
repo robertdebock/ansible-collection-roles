@@ -21,11 +21,11 @@
       - cve_2021_44228_check_files is boolean
     quiet: yes
 
-- name: test if cve_2021_44228_check_jars s set correctly
+- name: test if cve_2021_44228_check_archives s set correctly
   ansible.builtin.assert:
     that:
-      - cve_2021_44228_check_jars is defined
-      - cve_2021_44228_check_jars is boolean
+      - cve_2021_44228_check_archives is defined
+      - cve_2021_44228_check_archives is boolean
     quiet: yes
 
 - name: test if cve_2021_44228_paths_to_check is set correctly

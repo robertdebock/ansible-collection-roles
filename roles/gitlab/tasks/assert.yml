@@ -1,0 +1,23 @@
+---
+
+- name: test if gitlab_version is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_version is defined
+      - gitlab_version is string
+    quiet: yes
+
+- name: test if gitlab_external_url is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_external_url is defined
+      - gitlab_external_url is string
+    quiet: yes
+
+- name: test if gitlab_distribution is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_distribution is defined
+      - gitlab_distribution is string
+      - gitlab_distribution in [ "community", "enterprise" ]
+    quiet: yes

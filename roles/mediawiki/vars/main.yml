@@ -3,26 +3,31 @@
 
 _mediawiki_requirements:
   default:
+    - php-intl
     - php-json
     - php-mbstring
     - php-xml
     - php-mysql
   Alpine:
+    - php-intl
     - php-json
     - php-mysqli
     - php-mbstring
     - php-xml
   Fedora:
+    - php-intl
     - php-json
     - php-mbstring
     - php-pdo_mysql
     - php-xml
   CentOS-7:
+    - php-intl
     - php-json
     - php-mbstring
     - php-mysql
     - php-xml
   CentOS:
+    - php-intl
     - php-json
     - php-mbstring
     - php-mysqlnd
@@ -38,3 +43,11 @@ _mediawiki_destination:
   Suse: /srv/www/htdocs
 
 mediawiki_docroot: "{{ _mediawiki_destination[ansible_os_family] | default(_mediawiki_destination['default'] ) }}"
+
+_mediawiki_owner:
+  default: apache
+  Debian: www-data
+  Suse: wwwrun
+
+mediawiki_owner: "{{ _mediawiki_owner[ansible_os_family] | default(_mediawiki_owner['default'] ) }}"
+mediawiki_group: "{{ _mediawiki_owner[ansible_os_family] | default(_mediawiki_owner['default'] ) }}"

@@ -1,0 +1,57 @@
+---
+
+- name: check archive files
+  block:
+    - name: find archive files
+      ansible.builtin.find:
+        paths: "{{ cve_2021_44228_paths_to_check }}"
+        patterns: "{{ cve_2021_44228_archive_patterns }}"
+      register: cve_2021_44228_archive_files
+
+    - name: inspect archives
+      block:
+        - name: install unzip
+          ansible.builtin.package:
+            name: unzip
+          notify:
+            - uninstall unzip
+
+        - name: unzip found archives files
+          ansible.builtin.command:
+            cmd: unzip -l {{ item.path }}
+          changed_when: no
+          register: unzipped_archives
+          loop: "{{ cve_2021_44228_archive_files.files }}"
+          loop_control:
+            label: "{{ item.path }}"
+          failed_when:
+            - '"log4j" in unzipped_archives'
+          # TODO: change the `failed_when` to an assert with a regex.
+          # {{ VERSION is version('2.17', '<=') }} and
+          # {{ VERSION is version('1.99', '>=') }}
+      rescue:
+        - name: show results
+          ansible.builtin.debug:
+            msg:
+              - "Found log4j in archive files."
+              - "{{ unzipped_archives }}"
+      when:
+        cve_2021_44228_archive_files.matched > 0
+
+    - name: inspect log4j.class files
+      block:
+        - name: find log4j.class files
+          ansible.builtin.find:
+            paths: "{{ cve_2021_44228_paths_to_check }}"
+            patterns:
+              - "log4j.class"
+          register: cve_2021_44228_class_files
+          failed_when:
+            - cve_2021_44228_class_files.matched > 0
+      rescue:
+        - name: show .class files
+          ansible.builtin.debug:
+            msg: "{{ item.path }}"
+          loop: "{{ cve_2021_44228_class_files.files }}"
+          loop_control:
+            label: "{{ item.path }}"

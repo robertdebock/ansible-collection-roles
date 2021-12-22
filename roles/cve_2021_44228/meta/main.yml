@@ -3,12 +3,15 @@ galaxy_info:
   author: Robert de Bock
   role_name: cve_2021_44228
   namespace: robertdebock
-  description: Check for cve_2021_44228 on your system.
+  description: Check and report for cve_2021_44228 (log4shell) on your system.
   license: Apache-2.0
   company: none
   min_ansible_version: "2.10"
 
   platforms:
+    - name: Alpine
+      versions:
+        - all
     - name: Amazon
       versions:
         - all
@@ -22,6 +25,9 @@ galaxy_info:
     - name: Fedora
       versions:
         - all
+    - name: OpenSUSE
+      versions:
+        - all
     - name: Ubuntu
       versions:
         - focal
@@ -29,5 +35,7 @@ galaxy_info:
 
   galaxy_tags:
     - cve202144228
+    - log4shell
+    - log4j
 
 dependencies: []

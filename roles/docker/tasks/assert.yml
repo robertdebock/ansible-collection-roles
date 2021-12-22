@@ -1,0 +1,9 @@
+---
+
+- name: test if docker_privileged_users is set correctly
+  ansible.builtin.assert:
+    that:
+      - docker_privileged_users is iterable
+    quiet: yes
+  when:
+    - docker_privileged_users is defined

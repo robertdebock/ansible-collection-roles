@@ -1,3 +1,5 @@
 ---
 roles:
   - name: robertdebock.bootstrap
+collections:
+  - community.general

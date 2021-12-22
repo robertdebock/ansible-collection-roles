@@ -27,6 +27,8 @@
     creates: "{{ mediawiki_destination }}/mediawiki-{{ mediawiki_version }}"
     setype: httpd_sys_script_rw_t
     mode: "0755"
+    owner: "{{ mediawiki_owner }}"
+    group: "{{ mediawiki_group }}"
 
 - name: link mediawiki to versioned directory
   ansible.builtin.file:

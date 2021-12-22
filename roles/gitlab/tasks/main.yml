@@ -1,0 +1,51 @@
+---
+# tasks file for gitlab
+
+- name: include assert.yml
+  ansible.builtin.import_tasks: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+- name: install requirements
+  package:
+    name: "{{ gitlab_requirements }}"
+
+- name: execute apt tasks
+  block:
+    - name: install apt repository key
+      apt_key:
+        url: "https://packages.gitlab.com/gpg.key"
+
+    - name: install apt repository
+      ansible.builtin.apt_repository:
+        repo: "deb {{ gitlab_repository_url }} {{ ansible_distribution_release | lower }} main"
+        filename: "{{ gitlab_repository_name }}"
+  when:
+    - ansible_pkg_mgr == "apt"
+
+- name: execute yum/dnf tasks
+  block:
+    - name: install rpm repository key
+      rpm_key:
+        key: "https://packages.gitlab.com/gitlab/gitlab-{{ gitlab_distribution_abbreviation }}/gpgkey/gitlab-gitlab-{{ gitlab_distribution_abbreviation }}-3D645A26AB9FBD22.pub.gpg"
+
+    - name: install yum/dnf repository
+      yum_repository:
+        name: "{{ gitlab_repository_name }}"
+        description: "{{ gitlab_repository_name }}"
+        file: /etc/yum.repos.d/{{ gitlab_repository_name }}.repo
+        baseurl: "{{ gitlab_repository_url }}"
+        gpgcheck: yes
+        sslverify: yes
+        sslcacert: /etc/pki/tls/certs/ca-bundle.crt
+        metadata_expire: 300
+  when:
+    - ansible_pkg_mgr in [ "dnf", "yum" ]
+
+- name: install gitlab
+  package:
+    name: "{{ gitlab_package }}"
+  environment:
+    EXTERNAL_URL: "{{ gitlab_external_url }}"
+  notify:
+    - run gitlab-ctl reconfigure

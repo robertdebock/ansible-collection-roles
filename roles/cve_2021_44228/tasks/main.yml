@@ -7,9 +7,9 @@
   delegate_to: localhost
 
 # The intent it to fail on found vulnerabilities, but proceed.
-# So `block` and `rescue`.
+# So `block` to check (and fail) and `rescue` to report.
 
-- name: include proces checks
+- name: include process checks
   include_tasks: processes.yml
   when:
     - cve_2021_44228_check_processes
@@ -24,7 +24,7 @@
   when:
     - cve_2021_44228_check_files
 
-- name: include jar checks
-  include_tasks: jarchecks.yml
+- name: include archives checks
+  include_tasks: archives.yml
   when:
-    - cve_2021_44228_check_jars
+    - cve_2021_44228_check_archives

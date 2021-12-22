@@ -8,6 +8,7 @@ _locale_requirements:
   Amazon:
     - util-linux
   Debian:
+    - locales
     - locales-all
     - tzdata
   Fedora:

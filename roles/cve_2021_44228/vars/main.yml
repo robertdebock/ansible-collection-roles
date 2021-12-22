@@ -12,6 +12,3 @@ cve_2021_44228_vulnerable_packages:
   - solr
   - elastic
   - log4j
-
-cve_2021_44228_vulnerable_files:
-  - "*log4j*"

@@ -1,0 +1,19 @@
+---
+# defaults file for gitlab
+
+# Specify a specific version for GitLab to install.
+# Please have a look at this repository for available package version:
+# community: https://packages.gitlab.com/gitlab/gitlab-ce
+# enterprise: https://packages.gitlab.com/gitlab/gitlab-ee
+# gitlab_version: 14.5.2
+gitlab_version: 14.1.8
+
+# A part of the version is the "release", mostly "0". See repositories above.
+gitlab_release: 0
+
+# The URL where the gitlab installation will be made available on.
+# For "https", let's encrypt will be used.
+gitlab_external_url: "http://localhost"
+
+# Choose to install "enterprise" or "community".
+gitlab_distribution: community
