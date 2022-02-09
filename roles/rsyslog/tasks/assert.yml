@@ -91,3 +91,11 @@
       - rsyslog_package_state is string
       - rsyslog_package_state in [ "present", "latest" ]
     quiet: yes
+
+- name: test if rsyslog_features is set correctly
+  ansible.builtin.assert:
+    that:
+      - rsyslog_features is iterable
+    quiet: yes
+  when:
+    - rsyslog_features is defined

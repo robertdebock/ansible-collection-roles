@@ -7,4 +7,3 @@ roles:
   - name: robertdebock.epel
   - name: robertdebock.git
 collections:
-  - name: community.general

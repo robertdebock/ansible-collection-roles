@@ -9,10 +9,13 @@ galaxy_info:
   min_ansible_version: "2.10"
 
   platforms:
-    - name: EL
+    - name: Alpine
       versions:
-        - 8
+        - all
     - name: Debian
+      versions:
+        - all
+    - name: EL
       versions:
         - all
     - name: Fedora

@@ -409,3 +409,10 @@
       - openssh_subsystem is defined
       - openssh_subsystem is string
     quiet: yes
+
+- name: test if openssh_restart_immediately is set correctly
+  ansible.builtin.assert:
+    that:
+      - openssh_restart_immediately is defined
+      - openssh_restart_immediately is boolean
+    quiet: yes

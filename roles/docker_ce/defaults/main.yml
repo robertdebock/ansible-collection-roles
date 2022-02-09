@@ -1,0 +1,8 @@
+---
+# defaults file for docker_ce
+
+# Add users to the privileged docker group. For example:
+# docker_ce_privileged_users:
+#  - UserA
+#  - UserB
+docker_ce_privileged_users: []

@@ -2,7 +2,7 @@
 # vars file for docker_ce
 
 _docker_ce_requirements:
-  default: ""
+  default: []
   RedHat-7:
     - iptables
 

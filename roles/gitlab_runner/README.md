@@ -18,8 +18,9 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
 
   roles:
     - role: robertdebock.gitlab_runner
-      gitlab_runner_token: fake-token
-      gitlab_runner_register_runner: no
+      gitlab_runner_tags:
+        - docker
+        - my_runner
 ```
 
 The machine needs to be prepared. In CI this is done using `molecule/default/prepare.yml`:
@@ -46,17 +47,14 @@ The default values for the variables are set in `defaults/main.yml`:
 # These are the setting you need to register a runner.
 # gitlab_runner_token: 123ABC
 
-# Should this role register the gitlab runner?
-gitlab_runner_register_runner: yes
-
 # The name as shown in the GitLab webinterface.
 gitlab_runner_name: "{{ ansible_fqdn }}"
 
 # The URL to register the runner to.
 gitlab_runner_url: "https://gitlab.com/"
 
-# The tags, comma separated.
-gitlab_runner_tags: "docker,my_runner"
+# The list of tags.
+gitlab_runner_tags: []
 
 # The type of executor. Choose from: "ssh", "shell", "parallels", "virtualbox",
 # "docker", "docker_machine", "kubernetes" or "custom"

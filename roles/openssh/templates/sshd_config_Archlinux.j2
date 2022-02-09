@@ -81,3 +81,7 @@ Subsystem {{ openssh_subsystem }}
 {% if openssh_allow_users is defined %}
 AllowUsers {{ openssh_allow_users }}
 {% endif %}
+
+{% if openssh_allow_groups is defined %}
+AllowGroups {{ openssh_allow_groups }}
+{% endif %}

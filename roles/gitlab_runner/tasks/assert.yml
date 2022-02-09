@@ -1,12 +1,5 @@
 ---
 
-- name: test if gitlab_runner_register_runner is set correctly
-  ansible.builtin.assert:
-    that:
-      - gitlab_runner_register_runner is defined
-      - gitlab_runner_register_runner is boolean
-    quiet: yes
-
 - name: test if gitlab_runner_name is set correctly
   ansible.builtin.assert:
     that:
@@ -17,9 +10,10 @@
 - name: test if gitlab_runner_token is set correctly
   ansible.builtin.assert:
     that:
-      - gitlab_runner_token is defined
       - gitlab_runner_token is string
     quiet: yes
+  when:
+    - gitlab_runner_token is defined
 
 - name: test if gitlab_runner_url is set correctly
   ansible.builtin.assert:
@@ -31,9 +25,10 @@
 - name: test if gitlab_runner_tags is set correctly
   ansible.builtin.assert:
     that:
-      - gitlab_runner_tags is defined
-      - gitlab_runner_tags is string
+      - gitlab_runner_tags is iterable
     quiet: yes
+  when:
+    - gitlab_runner_tags is defined
 
 - name: test if gitlab_runner_executor is set correctly
   ansible.builtin.assert:

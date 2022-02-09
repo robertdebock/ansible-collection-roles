@@ -19,6 +19,7 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
   roles:
     - role: robertdebock.openssh
       openssh_allow_users: root
+      openssh_allow_groups: root
 ```
 
 The machine needs to be prepared. In CI this is done using `molecule/default/prepare.yml`:
@@ -140,9 +141,16 @@ openssh_accept_envs:
 
 openssh_subsystem: sftp {{ openssh_sftp_server }}
 
-# Restrict access to this (space separated list) of users.
+# Restrict access to this (space separated list) of users or groups.
 # For example: "openssh_allow_users: root my_user"
 # openssh_allow_users: root
+
+# For example: "openssh_allow_groups: wheel my_group"
+# openssh_allow_groups: wheel
+
+# Whether to restart openssh immediately or after
+# all other Ansible tasks have been completed.
+openssh_restart_immediately: no
 ```
 
 ## [Requirements](#requirements)

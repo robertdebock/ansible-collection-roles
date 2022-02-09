@@ -19,14 +19,14 @@ _core_dependencies_packages:
     - xz
   Amazon-2018:
     - iproute
-    - python-pip
-    - python-setuptools
+    # - python-pip
+    # - python-setuptools
     - shadow-utils
     - xz
   Amazon-2:
     - iproute
-    - python3-pip
-    - python3-setuptools
+    # - python3-pip
+    # - python3-setuptools
     - shadow-utils
     - xz
   Debian:
@@ -51,18 +51,18 @@ _core_dependencies_packages:
     - python3-dnf
     - python3-libselinux
     - python3-libsemanage
-    - python3-pip
-    - python3-setuptools
-    - python3-virtualenv
+    # - python3-pip
+    # - python3-setuptools
+    # - python3-virtualenv
     - shadow-utils
     - xz
   Rocky: *redhat_packages
   Suse:
     - iproute2
     - libselinux1
-    - python3-pip
+    # - python3-pip
     - python3-selinux
-    - python3-setuptools
+    # - python3-setuptools
     - shadow
     - subversion
     - xz

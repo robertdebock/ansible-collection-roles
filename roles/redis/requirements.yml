@@ -7,4 +7,3 @@ roles:
   - name: robertdebock.grub
 collections:
   - name: ansible.posix
-  - name: community.general

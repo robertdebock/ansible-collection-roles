@@ -4,7 +4,7 @@ Install and configure mssql on your system.
 
 |GitHub|GitLab|Quality|Downloads|Version|
 |------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-mssql/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-mssql/actions)|[![gitlab](https://gitlab.com/robertdebock/ansible-role-mssql/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-mssql)|[![quality](https://img.shields.io/ansible/quality/24094)](https://galaxy.ansible.com/robertdebock/mssql)|[![downloads](https://img.shields.io/ansible/role/d/24094)](https://galaxy.ansible.com/robertdebock/mssql)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-mssql.svg)](https://github.com/robertdebock/ansible-role-mssql/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-mssql/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-mssql/actions)|[![gitlab](https://gitlab.com/robertdebock/ansible-role-mssql/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-mssql)|[![quality](https://img.shields.io/ansible/quality/)](https://galaxy.ansible.com/robertdebock/mssql)|[![downloads](https://img.shields.io/ansible/role/d/)](https://galaxy.ansible.com/robertdebock/mssql)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-mssql.svg)](https://github.com/robertdebock/ansible-role-mssql/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

@@ -26,9 +26,9 @@
             label: "{{ item.path }}"
           failed_when:
             - '"log4j" in unzipped_archives'
-          # TODO: change the `failed_when` to an assert with a regex.
-          # {{ VERSION is version('2.17', '<=') }} and
-          # {{ VERSION is version('1.99', '>=') }}
+      # TODO: change the `failed_when` to an assert with a regex.
+      # {{ VERSION is version('2.17', '<=') }} and
+      # {{ VERSION is version('1.99', '>=') }}
       rescue:
         - name: show results
           ansible.builtin.debug:

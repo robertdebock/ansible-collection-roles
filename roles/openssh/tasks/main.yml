@@ -51,3 +51,8 @@
     name: "{{ openssh_service }}"
     state: started
     enabled: yes
+
+- name: flush handlers
+  meta: flush_handlers
+  when:
+    - openssh_restart_immediately

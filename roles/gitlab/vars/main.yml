@@ -19,6 +19,15 @@ _gitlab_requirements:
     - openssh-server
     - perl
     - tzdata
+  RedHat-7: &redhat_7_requirements
+    - curl
+    - initscripts
+    - net-tools
+    - openssh-server
+    - perl
+    - policycoreutils
+    - procps-ng
+    - yum-utils
   RedHat: &redhat_requirements
     - curl
     - net-tools
@@ -27,10 +36,12 @@ _gitlab_requirements:
     - policycoreutils
     - procps-ng
     - yum-utils
+  CentOS-7: *redhat_7_requirements
+  Rocky-7: *redhat_7_requirements
   CentOS: *redhat_requirements
   Rocky: *redhat_requirements
 
-gitlab_requirements: "{{ _gitlab_requirements[ansible_distribution] }}"
+gitlab_requirements: "{{ _gitlab_requirements[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_gitlab_requirements[ansible_distribution]) }}"
 
 _gitlab_distribution_abbreviation:
   community: ce
@@ -58,3 +69,17 @@ _gitlab_package:
 gitlab_package: "{{ _gitlab_package[ansible_os_family] }}"
 
 gitlab_root_password_command: "gitlab-rails runner 'user = User.where(id: 1).first; user.password = {{ gitlab_root_password }}; user.password_confirmation = {{ gitlab_root_password }}; user.save!'"
+
+_gitlab_default_theme_number:
+  indigo: 1
+  dark: 2
+  light: 3
+  blue: 4
+  green: 5
+  lightindigo: 6
+  lightblue: 7
+  lightgreen: 8
+  red: 9
+  lightred: 10
+
+gitlab_default_theme_number: "{{ _gitlab_default_theme_number[gitlab_default_theme] }}"

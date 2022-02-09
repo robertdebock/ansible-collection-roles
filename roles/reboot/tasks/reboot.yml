@@ -14,7 +14,7 @@
     seconds: "{{ reboot_delay }}"
 
 - name: 2 wait for the machine to be up
-  ansible.builtin.wait_for:
+  ansible.builtin.wait_for_connection:
     delay: "{{ reboot_up_delay }}"
 
 - name: 3 gather facts after reboot

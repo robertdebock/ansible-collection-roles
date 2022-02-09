@@ -2,4 +2,4 @@
 # handlers file for vault_configuration
 
 - name: something
-  setup:
+  ansible.builtin.setup:

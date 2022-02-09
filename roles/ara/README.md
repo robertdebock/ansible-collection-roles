@@ -50,6 +50,10 @@ ara_configuration_file: /etc/ansible/ansible.cfg
 # The user to run ara as. Typically root, but if you run playbooks under your username, ara saves data in your homedirectory. In that case change the ara_user to your username.
 ara_user: root
 
+# This role tries to "find" python. If you are using a specific path to python,
+# you can set `ara_callback_plugins`. For example:
+# ara_python_plugins_path: /home/username/venv/site-packages/ara/plugins/callback
+
 # Extra options can be set using this structure.
 # ara_configuration:
 #   - option: port

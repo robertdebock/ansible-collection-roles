@@ -58,6 +58,10 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
       #       - name: proxy-initial-not-pooled
       #       - name: proxy-sendchunks
       #         value: 1
+      #   - name: no_doc_root
+      #     servername: nodocroot.example.com
+      #     documentroot: /var/www/html/nodocroot
+      #     create_docroot: no
       httpd_directories:
         - name: my_directory
           path: "{{ httpd_data_directory }}/my_directory"

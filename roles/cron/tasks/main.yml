@@ -64,7 +64,5 @@
   loop: "{{ cron_jobs }}"
   loop_control:
     label: "{{ item.name }}"
-  notify:
-    - restart cron
   when:
     - cron_jobs is defined

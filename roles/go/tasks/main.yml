@@ -67,7 +67,7 @@
       loop: "{{ go_packages }}"
       environment:
         GOPATH: "{{ go_path }}"
-        GO111MODULE: off
+        GO111MODULE: "off"
 
     - name: install requested packages
       ansible.builtin.command:

@@ -29,7 +29,8 @@ $config['db_dsnw'] = '{{ roundcubemail_database_url }}';
 // For example %n = mail.domain.tld, %t = domain.tld
 // WARNING: After hostname change update of mail_host column in users table is
 //          required to match old user data records with the new host.
-$config['default_host'] = '{{ ansible_fqdn }}';
+$config['default_host'] = '{{ roundcubemail_default_host }}';
+$config['default_port'] = {{ roundcubemail_default_port }};
 
 // provide an URL where a user can get support for this Roundcube installation
 // PLEASE DO NOT LINK TO THE ROUNDCUBE.NET WEBSITE HERE!
@@ -55,3 +56,8 @@ $config['plugins'] = array();
 // connect to http://spell.roundcube.net which is a hosted service provided by Roundcube.
 // You can connect to any other googie-compliant service by setting 'spellcheck_uri' accordingly.
 $config['spellcheck_engine'] = '{{ roundcubemail_spellcheck_engine }}';
+
+$config['smtp_server'] = '{{ roundcubemail_smtp_server }}';
+$config['smtp_port'] = {{ roundcubemail_smtp_port }};
+$config['smtp_user'] = '{{ roundcubemail_smtp_user }}';
+$config['smtp_pass'] = '{{ roundcubemail_smtp_pass }}';

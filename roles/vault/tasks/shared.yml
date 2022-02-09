@@ -85,5 +85,9 @@
 - name: safe VAULT_ADDR /etc/environment
   ansible.builtin.lineinfile:
     regexp: "^export VAULT_ADDR="
-    path: /etc/environment
+    path: /etc/profile.d/vault.sh
+    create: yes
     line: "export VAULT_ADDR={{ vault_api_addr }}"
+    mode: "0644"
+    owner: root
+    group: root

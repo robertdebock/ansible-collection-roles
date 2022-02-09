@@ -18,6 +18,18 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
 
   roles:
     - role: robertdebock.cron
+      cron_jobs:
+        - name: my_job
+          # Every 10 minutes
+          minute: "*/10"
+          # In the 23rd hour.
+          hour: 23
+          # For the first part of the month.
+          day: "1-15"
+          # Run "ls -l"
+          job: "ls -l"
+          # For a specific user
+          user: root
 ```
 
 The machine needs to be prepared. In CI this is done using `molecule/default/prepare.yml`:

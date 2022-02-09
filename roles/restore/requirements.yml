@@ -11,4 +11,3 @@ roles:
 collections:
   - name: community.postgresql
   - name: community.mysql
-  - name: community.general

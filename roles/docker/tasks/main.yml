@@ -17,7 +17,7 @@
     state: present
 
 - name: add privileged users to the docker user group
-  user:
+  ansible.builtin.user:
     name: "{{ user }}"
     groups: docker
     append: yes

@@ -24,7 +24,7 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
 
   tasks:
     - name: Create test case users
-      user:
+      ansible.builtin.user:
         name: "{{ user }}"
       loop:
         - woody

@@ -1,7 +1,7 @@
 ---
 namespace: robertdebock
 name: roles
-version: 1.9.3
+version: 1.9.4
 readme: README.md
 authors:
   - Robert de Bock <robert@meinit.nl>

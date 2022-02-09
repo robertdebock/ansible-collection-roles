@@ -6,4 +6,3 @@ roles:
   - name: robertdebock.users
 collections:
   - name: ansible.posix
-  - name: community.general

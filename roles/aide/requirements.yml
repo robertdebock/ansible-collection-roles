@@ -4,4 +4,3 @@ roles:
   - name: robertdebock.cron
   - name: robertdebock.postfix
 collections:
-  - name: community.general

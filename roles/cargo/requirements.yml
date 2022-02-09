@@ -4,4 +4,3 @@ roles:
   - name: robertdebock.buildtools
   - name: robertdebock.epel
 collections:
-  - name: community.general

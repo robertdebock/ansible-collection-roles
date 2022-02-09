@@ -40,7 +40,7 @@ frontend {{ frontend.name }}
     bind {{ frontend.address }}:{{ frontend.port }}{% if frontend.ssl is defined and frontend.ssl == true %} ssl{% endif %}{% if frontend.crts is defined and frontend.crts | length >0 %}{% for crt in frontend.crts %} crt {{ crt }}{% endfor %}{% endif %}
 
     default_backend {{ frontend.default_backend }}
-
+    mode {{ frontend.mode | default('http') }}
 {% endfor %}
 {% for backend in haproxy_backends %}
 backend {{ backend.name }}
@@ -48,8 +48,12 @@ backend {{ backend.name }}
     option httpchk {% if backend.httpcheck_method is defined %}{{ backend.httpcheck_method }}{% endif %}{% endif %}
 
     balance {{ backend.balance | default(haproxy_backend_default_balance) }}
+    mode {{ backend.mode | default('http') }}
 {% for server in backend.servers %}
+{% if server.name is defined %}
+    server {{ server.name }} {{ server.address | default(hostvars[server.name]['ansible_default_ipv4']['address']) }}:{{ server.port | default(backend.port) }} {{ backend.options | join(' ') }}
+{% else %}
     server {{ server }} {{ hostvars[server]['ansible_default_ipv4']['address'] }}:{{ backend.port }} {{ backend.options | join(' ') }}
+{% endif %}
 {% endfor %}
-
 {% endfor %}

@@ -9,6 +9,6 @@ roles:
   - name: robertdebock.openssl
   - name: robertdebock.python_pip
 collections:
-  - name: community.general
   - name: ansible.posix
   - name: community.crypto
+  - name: community.general

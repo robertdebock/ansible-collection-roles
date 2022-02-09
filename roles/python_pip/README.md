@@ -86,8 +86,9 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|el|8|
+|alpine|all|
 |debian|all|
+|el|all|
 |fedora|all|
 |opensuse|all|
 |ubuntu|all|

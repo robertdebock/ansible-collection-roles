@@ -6,4 +6,5 @@
     name: "{{ openssh_service }}"
     state: restarted
   when:
-    - not ansible_check_mode | bool
+    - not ansible_check_mode
+    - not openssh_restart_immediately

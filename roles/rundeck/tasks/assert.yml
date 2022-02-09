@@ -11,8 +11,8 @@
   ansible.builtin.assert:
     that:
       - rundeck_release_date is defined
-      - rundeck_release_date is number
-      - rundeck_release_date > 0
+      - (rundeck_release_date is number and rundeck_release_date > 0) or
+        rundeck_release_date is string
     quiet: yes
 
 - name: test if rundeck_rdeckbase is set correctly

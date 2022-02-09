@@ -6,4 +6,3 @@ roles:
   - name: robertdebock.java
   - name: robertdebock.service
 collections:
-  - name: community.general

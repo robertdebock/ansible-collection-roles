@@ -62,7 +62,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |---------|----|
 |alpine|all|
 |amazon|Candidate|
-|el|8|
+|el|7, 8|
 |debian|all|
 |fedora|all|
 |opensuse|all|

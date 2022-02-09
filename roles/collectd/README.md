@@ -325,7 +325,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |alpine|all|
 |amazon|Candidate|
 |el|8|
-|debian|all|
+|debian|bullseye|
 |fedora|all|
 |opensuse|all|
 |ubuntu|all|

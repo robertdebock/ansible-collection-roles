@@ -12,7 +12,7 @@
     state: present
 
 - name: create consul data directory
-  file:
+  ansible.builtin.file:
     path: "{{ consul_data_dir }}"
     state: directory
     owner: consul
@@ -20,7 +20,7 @@
     mode: "0750"
 
 - name: create consul.env
-  file:
+  ansible.builtin.file:
     path: /etc/consul.d/consul.env
     state: touch
     owner: consul

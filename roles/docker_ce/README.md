@@ -18,6 +18,9 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
 
   roles:
     - role: robertdebock.docker_ce
+      docker_ce_privileged_users:
+        - woody
+        - buzz
 ```
 
 The machine needs to be prepared. In CI this is done using `molecule/default/prepare.yml`:
@@ -34,10 +37,33 @@ The machine needs to be prepared. In CI this is done using `molecule/default/pre
     - role: robertdebock.buildtools
     - role: robertdebock.python_pip
     - role: robertdebock.core_dependencies
+
+  tasks:
+    - name: Create test case users
+      ansible.builtin.user:
+        name: "{{ user }}"
+      loop:
+        - woody
+        - buzz
+      loop_control:
+        loop_var: user
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.
 
+## [Role Variables](#role-variables)
+
+The default values for the variables are set in `defaults/main.yml`:
+```yaml
+---
+# defaults file for docker_ce
+
+# Add users to the privileged docker group. For example:
+# docker_ce_privileged_users:
+#  - UserA
+#  - UserB
+docker_ce_privileged_users: []
+```
 
 ## [Requirements](#requirements)
 

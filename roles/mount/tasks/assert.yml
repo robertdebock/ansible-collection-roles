@@ -54,7 +54,7 @@
   ansible.builtin.assert:
     that:
       - item.fstype is string
-      - item.fstype in [ "ext3", "ext4", "iso9660", "nfs", "none", "xfs" ]
+      - item.fstype in [ "ext3", "ext4", "iso9660", "nfs", "none", "swap", "xfs" ]
     quiet: yes
   loop: "{{ mount_requests }}"
   loop_control:
@@ -75,10 +75,11 @@
 - name: test if item.state in mount_requests is set correctly
   ansible.builtin.assert:
     that:
-      - item.state is defined
       - item.state is string
       - item.state in [ "absent", "mounted", "present", "remounted", "unmounted" ]
     quiet: yes
+  when:
+    - item.state is defined
   loop: "{{ mount_requests }}"
   loop_control:
     label: "{{ item.path }}"

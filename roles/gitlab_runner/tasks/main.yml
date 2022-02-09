@@ -42,13 +42,14 @@
           --name "{{ gitlab_runner_name }}"
           --url "{{ gitlab_runner_url }}"
           --registration-token "{{ gitlab_runner_token }}"
-          --tag-list "{{ gitlab_runner_tags }}"
+          --tag-list "{{ gitlab_runner_tags | join(',') }}"
           --executor "{{ gitlab_runner_executor }}"
           --docker-image "{{ gitlab_runner_docker_image }}"
+          --locked="false"
       when:
         - gitlab_runner_name not in gitlab_runner_get_registration_status.stderr
   when:
-    - gitlab_runner_register_runner | bool
+    - gitlab_runner_token is defined
 
 - name: start and enable gitlab-runner
   ansible.builtin.service:

@@ -9,6 +9,9 @@
   notify:
     - gather facts
 
+- name: reset connetion
+  ansible.builtin.meta: reset_connection
+
 - name: try to install pip packages
   ansible.builtin.pip:
     name: "{{ core_dependencies_pip_packages }}"

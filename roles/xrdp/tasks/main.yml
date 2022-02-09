@@ -30,11 +30,17 @@
       ansible.builtin.copy:
         src: 45-allow-colord
         dest: /etc/polkit-1/localauthority/50-local.d/45-allow-colord.pkla
+        owner: root
+        group: root
+        mode: "0644"
 
     - name: place 45-allow-colord.conf
       ansible.builtin.copy:
         src: 45-allow-colord
         dest: /etc/polkit-1/localauthority/50-local.d/45-allow-colord.conf
+        owner: root
+        group: root
+        mode: "0644"
   when:
     - ansible_distribution == "Ubuntu"
 

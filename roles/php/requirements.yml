@@ -9,5 +9,4 @@ roles:
   - name: robertdebock.scl
 collections:
   - name: ansible.posix
-  - name: community.general
   - name: community.crypto

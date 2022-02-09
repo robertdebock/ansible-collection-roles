@@ -18,6 +18,7 @@
     label: "{{ item.path }}"
   when:
     - mount_requests is defined
+    - item.fstype != "swap"
 
 - name: mount requested mounts
   ansible.posix.mount:
@@ -30,9 +31,11 @@
     passno: "{{ item.passno | default(omit) }}"
     path: "{{ item.path }}"
     src: "{{ item.src | default(omit) }}"
-    state: "{{ item.state }}"
+    state: "{{ item.state | default('mounted') }}"
   loop: "{{ mount_requests }}"
   loop_control:
     label: "{{ item.path }}"
   when:
     - mount_requests is defined
+  notify:
+    - run swapon

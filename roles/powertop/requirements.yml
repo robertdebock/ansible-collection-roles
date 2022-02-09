@@ -3,4 +3,3 @@ roles:
   - name: robertdebock.bootstrap
   - name: robertdebock.service
 collections:
-  - name: community.general

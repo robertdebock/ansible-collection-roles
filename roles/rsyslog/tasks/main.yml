@@ -16,6 +16,12 @@
     name: "{{ rsyslog_packages }}"
     state: "{{ rsyslog_package_state }}"
 
+- name: install additional rsyslog packages
+  ansible.builtin.package:
+    name: "rsyslog-{{ item }}"
+    state: "{{ rsyslog_package_state }}"
+  loop: "{{ rsyslog_features }}"
+
 - name: configuring default rsyslog
   ansible.builtin.template:
     src: "{{ rsyslog_config_file_format }}_rsyslog.conf.j2"

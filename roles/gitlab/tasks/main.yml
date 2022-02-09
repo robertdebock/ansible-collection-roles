@@ -7,13 +7,19 @@
   delegate_to: localhost
 
 - name: install requirements
-  package:
+  ansible.builtin.package:
     name: "{{ gitlab_requirements }}"
+
+- name: install ruby to allow syntax check of gitlab.rb
+  ansible.builtin.package:
+    name: ruby
+  notify:
+    - uninstall ruby
 
 - name: execute apt tasks
   block:
     - name: install apt repository key
-      apt_key:
+      ansible.builtin.apt_key:
         url: "https://packages.gitlab.com/gpg.key"
 
     - name: install apt repository
@@ -26,11 +32,11 @@
 - name: execute yum/dnf tasks
   block:
     - name: install rpm repository key
-      rpm_key:
+      ansible.builtin.rpm_key:
         key: "https://packages.gitlab.com/gitlab/gitlab-{{ gitlab_distribution_abbreviation }}/gpgkey/gitlab-gitlab-{{ gitlab_distribution_abbreviation }}-3D645A26AB9FBD22.pub.gpg"
 
     - name: install yum/dnf repository
-      yum_repository:
+      ansible.builtin.yum_repository:
         name: "{{ gitlab_repository_name }}"
         description: "{{ gitlab_repository_name }}"
         file: /etc/yum.repos.d/{{ gitlab_repository_name }}.repo
@@ -38,14 +44,67 @@
         gpgcheck: yes
         sslverify: yes
         sslcacert: /etc/pki/tls/certs/ca-bundle.crt
-        metadata_expire: 300
+        metadata_expire: "300"
   when:
     - ansible_pkg_mgr in [ "dnf", "yum" ]
 
 - name: install gitlab
-  package:
+  ansible.builtin.package:
     name: "{{ gitlab_package }}"
-  environment:
-    EXTERNAL_URL: "{{ gitlab_external_url }}"
+
+- name: configure ssl
+  block:
+    - name: make ssl directories
+      ansible.builtin.file:
+        path: /etc/gitlab/ssl
+        state: directory
+        recurse: yes
+        owner: root
+        group: root
+        mode: "0750"
+
+    - name: place ssl certificate
+      ansible.builtin.copy:
+        src: "{{ gitlab_ssl_crt }}"
+        dest: /etc/gitlab/ssl/{{ gitlab_external_url | urlsplit('hostname') }}.crt
+        owner: root
+        group: root
+        mode: "0644"
+
+    - name: place ssl key
+      ansible.builtin.copy:
+        src: "{{ gitlab_ssl_key }}"
+        dest: /etc/gitlab/ssl/{{ gitlab_external_url | urlsplit('hostname') }}.key
+        owner: root
+        group: root
+        mode: "0640"
+  when:
+    - gitlab_configuration_file is not defined
+    - gitlab_letsencrypt is defined and not gitlab_letsencrypt
+    - '"https" in gitlab_external_url'
+
+- name: place configuration templated
+  ansible.builtin.template:
+    src: gitlab.rb.j2
+    dest: /etc/gitlab/gitlab.rb
+    owner: root
+    group: root
+    mode: "0600"
+    validate: ruby -c %s
   notify:
     - run gitlab-ctl reconfigure
+  when:
+    - gitlab_configuration_file is not defined
+
+- name: place configuration static
+  ansible.builtin.copy:
+    src: "{{ gitlab_configuration_file }}"
+    dest: /etc/gitlab/gitlab.rb
+    owner: root
+    group: root
+    mode: "0600"
+    validate: ruby -c %s
+  notify:
+    - run gitlab-ctl reconfigure
+  when:
+    - gitlab_configuration_file is defined

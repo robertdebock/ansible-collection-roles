@@ -74,6 +74,8 @@ filesystem_list: []
 #     opts: -cc
 #   - dev: /dev/sdb3
 #     state: absent
+#   - dev /dev/sdb4
+#     fstype: swap
 ```
 
 ## [Requirements](#requirements)

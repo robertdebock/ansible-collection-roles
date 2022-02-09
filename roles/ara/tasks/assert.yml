@@ -14,6 +14,14 @@
       - ara_user is string
     quiet: yes
 
+- name: test if ara_python_plugins_path is set correctly
+  ansible.builtin.assert:
+    that:
+      - ara_python_plugins_path is iterable
+    quiet: yes
+  when:
+    - ara_python_plugins_path is defined
+
 - name: test if ara_configuration is set correctly
   ansible.builtin.assert:
     that:

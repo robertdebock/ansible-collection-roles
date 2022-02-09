@@ -121,6 +121,13 @@ rsyslog_workaroundjournalbug: no
 
 # Turns off message reception via local log socket
 rsyslog_imuxsock_syssock: no
+
+# Install additional rsyslog packages
+# Example for installing rsyslog-elastisearch:
+# rsyslog_features:
+#   - gnutls
+#   - elastisearch
+rsyslog_features: []
 ```
 
 ## [Requirements](#requirements)

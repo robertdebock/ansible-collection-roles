@@ -84,6 +84,18 @@
   when:
     - item.ssl is defined
 
+- name: test if optional item haproxy_frontends is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.mode is string
+      - item.mode in [ "http", "tcp" ]
+    quiet: yes
+  loop: "{{ haproxy_frontends }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - item.mode is defined
+
 - name: test if haproxy_backends is set correctly
   ansible.builtin.assert:
     that:
@@ -119,6 +131,18 @@
   loop: "{{ haproxy_backends }}"
   loop_control:
     label: "{{ item.name }}"
+
+- name: test if optional item haproxy_backends is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.mode is string
+      - item.mode in [ "http", "tcp" ]
+    quiet: yes
+  loop: "{{ haproxy_backends }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - item.mode is defined
 
 - name: test if httpcheck item in haproxy_backends is set correctly
   ansible.builtin.assert:

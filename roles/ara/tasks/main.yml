@@ -34,33 +34,46 @@
       ansible.builtin.command: "{{ ara_setup_command_python3 }}"
       register: ara_callback_plugins
       changed_when: no
+  when:
+    - ara_callback_plugins is not defined
 
-- name: configure ansible and ara
-  block:
-    - name: configure ansible to use ara
-      community.general.ini_file:
-        path: "{{ ara_configuration_file }}"
-        section: defaults
-        option: callback_plugins
-        value: "{{ ara_callback_plugins.stdout }}"
-        mode: "0644"
-      notify:
-        - restart ara
-      when:
-        - ara_callback_plugins.stdout is defined
+- name: configure ansible to use ara with found path
+  community.general.ini_file:
+    path: "{{ ara_configuration_file }}"
+    section: defaults
+    option: callback_plugins
+    value: "{{ ara_callback_plugins.stdout }}"
+    mode: "0644"
+  notify:
+    - restart ara
+  when:
+    - ara_python_plugins_path is not defined
+    - ara_callback_plugins is defined
 
-    - name: configure ara
-      community.general.ini_file:
-        path: "{{ ara_configuration_file }}"
-        section: ara
-        option: "{{ item.option }}"
-        value: "{{ item.value }}"
-        mode: "0644"
-      notify:
-        - restart ara
-      loop: "{{ ara_configuration }}"
-      loop_control:
-        label: "{{ item.option }}"
+- name: configure ansible to use ara with defined path
+  community.general.ini_file:
+    path: "{{ ara_configuration_file }}"
+    section: defaults
+    option: callback_plugins
+    value: "{{ ara_python_plugins_path }}"
+    mode: "0644"
+  notify:
+    - restart ara
+  when:
+    - ara_python_plugins_path is defined
+
+- name: configure ara
+  community.general.ini_file:
+    path: "{{ ara_configuration_file }}"
+    section: ara
+    option: "{{ item.option }}"
+    value: "{{ item.value }}"
+    mode: "0644"
+  notify:
+    - restart ara
+  loop: "{{ ara_configuration }}"
+  loop_control:
+    label: "{{ item.option }}"
   when:
     - ara_configuration is defined
 

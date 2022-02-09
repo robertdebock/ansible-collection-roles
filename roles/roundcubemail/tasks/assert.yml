@@ -49,3 +49,46 @@
       - roundcubemail_spellcheck_engine is string
       - roundcubemail_spellcheck_engine in [ "atd", "enchant", "google", "pspell" ]
     quiet: yes
+
+- name: test if roundcubemail_default_host is set correctly
+  ansible.builtin.assert:
+    that:
+      - roundcubemail_default_host is defined
+      - roundcubemail_default_host is string
+    quiet: yes
+
+- name: test if roundcubemail_default_port is set correctly
+  ansible.builtin.assert:
+    that:
+      - roundcubemail_default_port is defined
+      - roundcubemail_default_port is number
+    quiet: yes
+
+- name: test if roundcubemail_smtp_server is set correctly
+  ansible.builtin.assert:
+    that:
+      - roundcubemail_smtp_server is defined
+      - roundcubemail_smtp_server is string
+    quiet: yes
+
+- name: test if roundcubemail_smtp_port is set correctly
+  ansible.builtin.assert:
+    that:
+      - roundcubemail_smtp_port is defined
+      - roundcubemail_smtp_port is number
+    quiet: yes
+
+
+- name: test if roundcubemail_smtp_user is set correctly
+  ansible.builtin.assert:
+    that:
+      - roundcubemail_smtp_user is defined
+      - roundcubemail_smtp_user is string
+    quiet: yes
+
+- name: test if roundcubemail_smtp_pass is set correctly
+  ansible.builtin.assert:
+    that:
+      - roundcubemail_smtp_pass is defined
+      - roundcubemail_smtp_pass is string
+    quiet: yes

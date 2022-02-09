@@ -11,10 +11,10 @@ metricbeat_modules: []
 metricbeat_elasticsearch_hosts:
   - "http://localhost:9200"
 
-# The username for elasicsearch.
+# The username for elasticsearch.
 metricbeat_elasticsearch_username: elastic
 
-# The password for elasicsearch.
+# The password for elasticsearch.
 metricbeat_elasticsearch_password: ""
 
 # The URL for Kibana.

@@ -4,4 +4,3 @@ roles:
   - name: robertdebock.cron
   - name: robertdebock.git
 collections:
-  - name: community.general

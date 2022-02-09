@@ -8,4 +8,3 @@ roles:
   - name: robertdebock.service
 collections:
   - name: ansible.posix
-  - name: community.general

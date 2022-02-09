@@ -21,11 +21,11 @@ argument_specs:
       metricbeat_elasticsearch_username:
         type: "str"
         default: elastic
-        description: "The username for elasicsearch."
+        description: "The username for elasticsearch."
       metricbeat_elasticsearch_password:
         type: "str"
         default: ""
-        description: "The password for elasicsearch."
+        description: "The password for elasticsearch."
       metricbeat_kibana_host:
         type: "str"
         default: "http://localhost:5601"

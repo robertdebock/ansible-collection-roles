@@ -5,8 +5,6 @@
   ansible.builtin.package:
     name: "{{ docker_ce_requirements }}"
     state: present
-  when:
-    - docker_ce_requirements | length
 
 - name: configure debian like systems
   block:
@@ -35,6 +33,22 @@
   ansible.builtin.package:
     name: "{{ docker_ce_packages }}"
     state: present
+
+- name: create privileged docker user group
+  ansible.builtin.group:
+    name: docker
+    state: present
+
+- name: add privileged users to the docker user group
+  ansible.builtin.user:
+    name: "{{ user }}"
+    groups: docker
+    append: yes
+  loop: "{{ docker_ce_privileged_users }}"
+  loop_control:
+    loop_var: user
+  when:
+    - docker_ce_privileged_users is defined
 
 - name: start and enable docker_ce
   ansible.builtin.service:

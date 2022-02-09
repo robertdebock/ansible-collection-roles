@@ -7,11 +7,11 @@
       - gitlab_version is string
     quiet: yes
 
-- name: test if gitlab_external_url is set correctly
+- name: test if gitlab_release is set correctly
   ansible.builtin.assert:
     that:
-      - gitlab_external_url is defined
-      - gitlab_external_url is string
+      - gitlab_release is defined
+      - gitlab_release is number
     quiet: yes
 
 - name: test if gitlab_distribution is set correctly
@@ -21,3 +21,872 @@
       - gitlab_distribution is string
       - gitlab_distribution in [ "community", "enterprise" ]
     quiet: yes
+
+- name: test if gitlab_configuration_file is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_configuration_file is string
+    quiet: yes
+  when:
+    - gitlab_configuration_file is defined
+
+- name: test variables
+  block:
+    - name: test if gitlab_external_url is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_external_url is defined
+          - gitlab_external_url is string
+        quiet: yes
+
+    - name: test if gitlab_rails_time_zone is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_rails_time_zone is defined
+          - gitlab_rails_time_zone is string
+        quiet: yes
+
+    - name: test if gitlab_cleanup_ruby is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_cleanup_ruby is defined
+          - gitlab_cleanup_ruby is boolean
+        quiet: yes
+
+    - name: test if gitlab_roles is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_roles is iterable
+        quiet: yes
+      when:
+        - gitlab_roles is defined
+
+    - name: test if item in gitlab_roles is set correctly
+      ansible.builtin.assert:
+        that:
+          - item in [ "redis_sentinel_role", "redis_master_role", "redis_replica_role", "geo_primary_role", "geo_secondary_role", "postgres_role", "consul_role", "application_role", "monitoring_role" ]
+        quiet: yes
+      loop: "{{ gitlab_roles }}"
+      when:
+        - gitlab_roles is defined
+
+    - name: test if gitlab_default_theme is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_default_theme is defined
+          - gitlab_default_theme is string
+          - gitlab_default_theme in [ "indigo", "dark", "light", "blue", "green", "lightindigo", "lightblue", "lightgreen", "red", "lightred" ]
+        quiet: yes
+
+    - name: test if gitlab_default_projects_feature_* are set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_default_projects_features_issues is defined
+          - gitlab_default_projects_features_issues is boolean
+          - gitlab_default_projects_features_merge_requests is defined
+          - gitlab_default_projects_features_merge_requests is boolean
+          - gitlab_default_projects_features_wiki is defined
+          - gitlab_default_projects_features_wiki is boolean
+          - gitlab_default_projects_features_snippets is defined
+          - gitlab_default_projects_features_snippets is boolean
+          - gitlab_default_projects_features_builds is defined
+          - gitlab_default_projects_features_builds is boolean
+          - gitlab_default_projects_features_container_registry is defined
+          - gitlab_default_projects_features_container_registry
+        quiet: yes
+
+    - name: test if gitlab_rails_ldap_enabled is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_rails_ldap_enabled is defined
+          - gitlab_rails_ldap_enabled is boolean
+        quiet: yes
+
+    - name: test if gitlab_rails_prevent_ldap_sign_in is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_rails_prevent_ldap_sign_in is defined
+          - gitlab_rails_prevent_ldap_sign_in is boolean
+        quiet: yes
+
+    - name: test if gitlab_rails_ldap_servers is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_rails_ldap_servers is iterable
+        quiet: yes
+      when:
+        - gitlab_rails_ldap_enabled
+
+    - name: test if item in gitlab_rails_ldap_servers is set correctly
+      ansible.builtin.assert:
+        that:
+          - item.name is defined
+          - item.name is string
+          - item.label is defined
+          - item.port is defined
+          - item.port is number
+          - item.uid is defined
+          - item.uid is string
+          - item.bind_dn is defined
+          - item.bind_dn is string
+          - item.password is defined
+          - item.password is string
+          - item.encryption is defined
+          - item.encryption is string
+          - item.encryption in [ "plain", "simple_tls", "start_tls" ]
+          - item.verify_certificates is defined
+          - item.verify_certificates is boolean
+          - item.smartcard_auth is defined
+          - item.smartcard_auth is boolean
+          - item.active_directory is defined
+          - item.active_directory is boolean
+          - item.allow_username_or_email_login is defined
+          - item.allow_username_or_email_login is boolean
+          - item.lowercase_usernames is defined
+          - item.lowercase_usernames is boolean
+          - item.block_auto_created_users is defined
+          - item.block_auto_created_users is boolean
+          - item.base is defined
+          - item.base is string
+          - item.user_filter is defined
+          - item.user_filter is string
+        quiet: yes
+      loop: "{{ gitlab_rails_ldap_servers }}"
+      loop_control:
+        label: "{{ item.name }}"
+      when:
+        - gitlab_rails_ldap_enabled
+
+    - name: test if enterprise item in gitlab_rails_ldap_servers is set correctly
+      ansible.builtin.assert:
+        that:
+          - item.group_base is defined
+          - item.group_base is string
+          - item.admin_group is defined
+          - item.admin_group is string
+          - item.sync_ssh_keys is defined
+          - item.sync_ssh_keys is boolean
+        quiet: yes
+      loop: "{{ gitlab_rails_ldap_servers }}"
+      loop_control:
+        label: "{{ item.name }}"
+      when:
+        - gitlab_rails_ldap_enabled
+
+    - name: test if enterprise item in gitlab_rails_ldap_servers is not set
+      ansible.builtin.assert:
+        that:
+          - item.group_base is not defined
+          - item.group_base is not string
+          - item.admin_group is not defined
+          - item.admin_group is not string
+          - item.sync_ssh_keys not is defined
+          - item.sync_ssh_keys not is boolean
+        quiet: yes
+      loop: "{{ gitlab_rails_ldap_servers }}"
+      loop_control:
+        label: "{{ item.name }}"
+      when:
+        - gitlab_rails_ldap_server is defined
+        - gitlab_distribution == "community"
+
+    ##########
+
+    - name: test if gitlab_rails_manage_backup_path is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_rails_manage_backup_path is boolean
+        quiet: yes
+      when:
+        - gitlab_rails_manage_backup_path is defined
+
+    - name: test if gitlab_rails_backup_path is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_rails_backup_path is string
+        quiet: yes
+      when:
+        - gitlab_rails_backup_path is defined
+
+    - name: test if gitlab_rails_backup_gitaly_backup_path is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_rails_backup_gitaly_backup_path is string
+        quiet: yes
+      when:
+        - gitlab_rails_backup_gitaly_backup_path is defined
+
+    - name: test if gitlab_rails_backup_archive_permissions is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_rails_backup_archive_permissions is string
+        quiet: yes
+      when:
+        - gitlab_rails_backup_archive_permissions is defined
+
+    - name: test if gitlab_rails_backup_pg_schema is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_rails_backup_pg_schema is string
+        quiet: yes
+      when:
+        - gitlab_rails_backup_pg_schema is defined
+
+    - name: test if gitlab_rails_backup_keep_time is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_rails_backup_keep_time is number
+        quiet: yes
+      when:
+        - gitlab_rails_backup_keep_time is defined
+
+    - name: test if items in gitlab_rails_backup_upload_connection is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_rails_backup_upload_connection is mapping
+          - gitlab_rails_backup_upload_connection.provider is defined
+          - gitlab_rails_backup_upload_connection.provider is string
+          - gitlab_rails_backup_upload_connection.provider in [ "AWS", "AzureRM", "Google", "Local" ]
+        quiet: yes
+      when:
+        - gitlab_rails_backup_upload_connection is defined
+
+    - name: test if aws items in gitlab_rails_backup_upload_connection is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_rails_backup_upload_connection.aws_access_key_id is defined
+          - gitlab_rails_backup_upload_connection.aws_access_key_id is string
+          - gitlab_rails_backup_upload_connection.aws_secret_access_key is defined
+          - gitlab_rails_backup_upload_connection.aws_secret_access_key is string
+          - gitlab_rails_backup_upload_connection.use_iam_profile is defined
+          - gitlab_rails_backup_upload_connection.use_iam_profile is boolean
+        quiet: yes
+      when:
+        - gitlab_rails_backup_upload_connection is defined
+        - gitlab_rails_backup_upload_connection.provider == "AWS"
+
+    - name: test if azure items in gitlab_rails_backup_upload_connection is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_rails_backup_upload_connection.azure_storage_account_name is defined
+          - gitlab_rails_backup_upload_connection.azure_storage_account_name is string
+          - gitlab_rails_backup_upload_connection.azure_storage_access_key is defined
+          - gitlab_rails_backup_upload_connection.azure_storage_access_key is string
+        quiet: yes
+      when:
+        - gitlab_rails_backup_upload_connection is defined
+        - gitlab_rails_backup_upload_connection.provider == "AzureRM"
+
+    - name: test if azure_storage_domain in gitlab_rails_backup_upload_connection is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_rails_backup_upload_connection.azure_storage_domain is boolean
+        quiet: yes
+      when:
+        - gitlab_rails_backup_upload_connection is defined
+        - gitlab_rails_backup_upload_connection.azure_storage_domain is defined
+
+    - name: test if google items in gitlab_rails_backup_upload_connection is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_rails_backup_upload_connection.google_storage_access_key_id is defined
+          - gitlab_rails_backup_upload_connection.google_storage_access_key_id is string
+          - gitlab_rails_backup_upload_connection.google_storage_secret_access_key is defined
+          - gitlab_rails_backup_upload_connection.google_storage_secret_access_key is string
+        quiet: yes
+      when:
+        - gitlab_rails_backup_upload_connection is defined
+        - gitlab_rails_backup_upload_connection.provider == "Google"
+
+    - name: test if gitlab_rails_backup_upload_connection is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_rails_backup_upload_connection.local_root is defined
+          - gitlab_rails_backup_upload_connection.local_root is string
+        quiet: yes
+      when:
+        - gitlab_rails_backup_upload_connection is defined
+        - gitlab_rails_backup_upload_connection.provider == "Local"
+
+    - name: test if gitlab_rails_backup_upload_remote_directory is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_rails_backup_upload_remote_directory is string
+        quiet: yes
+      when:
+        - gitlab_rails_backup_upload_remote_directory is defined
+
+    - name: test if gitlab_rails_backup_multipart_chunk_size is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_rails_backup_multipart_chunk_size is number
+        quiet: yes
+      when:
+        - gitlab_rails_backup_multipart_chunk_size is defined
+
+    - name: test if gitlab_rails_backup_encryption is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_rails_backup_encryption is string
+        quiet: yes
+      when:
+        - gitlab_rails_backup_encryption is defined
+
+    - name: test if gitlab_rails_backup_encryption_key is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_rails_backup_encryption_key is string
+        quiet: yes
+      when:
+        - gitlab_rails_backup_encryption_key is defined
+
+    - name: test if gitlab_rails_backup_upload_storage_options is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_rails_backup_upload_storage_options is defined
+          - gitlab_rails_backup_upload_storage_options is mapping
+          - gitlab_rails_backup_upload_storage_options.server_side_encryption is defined
+          - gitlab_rails_backup_upload_storage_options.server_side_encryption is string
+          - gitlab_rails_backup_upload_storage_options.server_side_encryption_kms_key_id is defined
+          - gitlab_rails_backup_upload_storage_options.server_side_encryption_kms_key_id is string
+        quiet: yes
+      when:
+        - gitlab_rails_backup_encryption_key is defined
+
+    - name: test if gitlab_rails_backup_storage_class is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_rails_backup_storage_class is string
+          - gitlab_rails_backup_storage_class in [ "REDUCED_REDUNDANCY", "STANDARD", "STANDARD_IA" ]
+        quiet: yes
+      when:
+        - gitlab_rails_backup_storage_class is defined
+
+    - name: test if gitlab_rails_env is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_rails_env is mapping
+        quiet: yes
+      when:
+        - gitlab_rails_env is defined
+
+    - name: test if gitlab_rails_smtp_enable is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_rails_smtp_enable is defined
+          - gitlab_rails_smtp_enable is boolean
+        quiet: yes
+
+    - name: test if gitlab_rails_smtp_address is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_rails_smtp_address is defined
+          - gitlab_rails_smtp_address is string
+        quiet: yes
+      when:
+        - gitlab_rails_smtp_enable
+
+    - name: test if gitlab_rails_smtp_port is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_rails_smtp_port is defined
+          - gitlab_rails_smtp_port is number
+        quiet: yes
+      when:
+        - gitlab_rails_smtp_enable
+
+    - name: test if gitlab_rails_smtp_user_name is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_rails_smtp_user_name is defined
+          - gitlab_rails_smtp_user_name is string
+        quiet: yes
+      when:
+        - gitlab_rails_smtp_enable
+
+    - name: test if gitlab_rails_smtp_password is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_rails_smtp_password is defined
+          - gitlab_rails_smtp_password is string
+        quiet: yes
+      when:
+        - gitlab_rails_smtp_enable
+
+    - name: test if gitlab_rails_smtp_domain is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_rails_smtp_domain is defined
+          - gitlab_rails_smtp_domain is string
+        quiet: yes
+      when:
+        - gitlab_rails_smtp_enable
+
+    - name: test if gitlab_rails_smtp_authentication is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_rails_smtp_authentication is defined
+          - gitlab_rails_smtp_authentication is string
+        quiet: yes
+      when:
+        - gitlab_rails_smtp_enable
+
+    - name: test if gitlab_rails_smtp_enable_starttls_auto is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_rails_smtp_enable_starttls_auto is defined
+          - gitlab_rails_smtp_enable_starttls_auto is boolean
+        quiet: yes
+      when:
+        - gitlab_rails_smtp_enable
+
+    - name: test if gitlab_rails_smtp_tls is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_rails_smtp_tls is defined
+          - gitlab_rails_smtp_tls is boolean
+        quiet: yes
+      when:
+        - gitlab_rails_smtp_enable
+
+    - name: test if gitlab_rails_smtp_pool is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_rails_smtp_pool is defined
+          - gitlab_rails_smtp_pool is boolean
+        quiet: yes
+      when:
+        - gitlab_rails_smtp_enable
+
+    - name: test if gitlab_rails_smtp_openssl_verify_mode is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_rails_smtp_openssl_verify_mode is defined
+          - gitlab_rails_smtp_openssl_verify_mode is string
+          - gitlab_rails_smtp_openssl_verify_mode in [ "client_once", "fail_if_no_peer_cert", "none", "peer" ]
+        quiet: yes
+      when:
+        - gitlab_rails_smtp_enable
+
+    - name: test if gitlab_rails_smtp_ca_path is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_rails_smtp_ca_path is defined
+          - gitlab_rails_smtp_ca_path is string
+        quiet: yes
+      when:
+        - gitlab_rails_smtp_enable
+
+    - name: test if gitlab_rails_smtp_ca_file is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_rails_smtp_ca_file is defined
+          - gitlab_rails_smtp_ca_file is string
+        quiet: yes
+      when:
+        - gitlab_rails_smtp_enable
+
+    - name: test if gitlab_rails_gitlab_email_enabled is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_rails_gitlab_email_enabled is defined
+          - gitlab_rails_gitlab_email_enabled is boolean
+        quiet: yes
+
+    - name: test if gitlab_rails_gitlab_email_from is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_rails_gitlab_email_from is defined
+          - gitlab_rails_gitlab_email_from is string
+        quiet: yes
+      when:
+        - gitlab_rails_gitlab_email_enabled
+
+    - name: test if gitlab_rails_gitlab_email_display_name is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_rails_gitlab_email_display_name is defined
+          - gitlab_rails_gitlab_email_display_name is string
+        quiet: yes
+      when:
+        - gitlab_rails_gitlab_email_enabled
+
+    - name: test if gitlab_rails_gitlab_email_reply_to is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_rails_gitlab_email_reply_to is defined
+          - gitlab_rails_gitlab_email_reply_to is string
+        quiet: yes
+      when:
+        - gitlab_rails_gitlab_email_enabled
+
+    - name: test if gitlab_rails_gitlab_email_subject_suffix is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_rails_gitlab_email_subject_suffix is defined
+          - gitlab_rails_gitlab_email_subject_suffix is string
+        quiet: yes
+      when:
+        - gitlab_rails_gitlab_email_enabled
+
+    - name: test if gitlab_rails_gitlab_email_smime_enabled is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_rails_gitlab_email_smime_enabled is defined
+          - gitlab_rails_gitlab_email_smime_enabled is boolean
+        quiet: yes
+      when:
+        - gitlab_rails_gitlab_email_enabled
+
+    - name: test if gitlab_rails_gitlab_email_smime_key_file is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_rails_gitlab_email_smime_key_file is defined
+          - gitlab_rails_gitlab_email_smime_key_file is string
+        quiet: yes
+      when:
+        - gitlab_rails_gitlab_email_enabled
+        - gitlab_rails_gitlab_email_smime_enabled
+
+    - name: test if gitlab_rails_gitlab_email_smime_cert_file is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_rails_gitlab_email_smime_cert_file is defined
+          - gitlab_rails_gitlab_email_smime_cert_file is string
+        quiet: yes
+      when:
+        - gitlab_rails_gitlab_email_enabled
+        - gitlab_rails_gitlab_email_smime_enabled
+
+    - name: test if gitlab_rails_gitlab_email_smime_ca_certs_file is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_rails_gitlab_email_smime_ca_certs_file is defined
+          - gitlab_rails_gitlab_email_smime_ca_certs_file is string
+        quiet: yes
+      when:
+        - gitlab_rails_gitlab_email_enabled
+        - gitlab_rails_gitlab_email_smime_enabled
+
+    - name: test if gitlab_rails_db_adapter is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_rails_db_adapter is defined
+          - gitlab_rails_db_adapter is string
+          - gitlab_rails_db_adapter == "postgresql"
+        quiet: yes
+
+    - name: test if gitlab_rails_db_encoding is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_rails_db_encoding is defined
+          - gitlab_rails_db_encoding is string
+          - gitlab_rails_db_encoding in [ "unicode", "utf8" ]
+        quiet: yes
+
+    - name: test if gitlab_rails_db_collation is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_rails_db_collation is boolean
+        quiet: yes
+      when:
+        - gitlab_rails_db_collation is defined
+
+    - name: test if gitlab_rails_db_database is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_rails_db_database is defined
+          - gitlab_rails_db_database is string
+        quiet: yes
+
+    - name: test if gitlab_rails_db_username is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_rails_db_username is defined
+          - gitlab_rails_db_username is string
+        quiet: yes
+
+    - name: test if gitlab_rails_db_password is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_rails_db_password is defined
+          - gitlab_rails_db_password is string
+        quiet: yes
+
+    - name: test if gitlab_rails_db_host is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_rails_db_host is defined
+          - gitlab_rails_db_host is string
+        quiet: yes
+      when:
+        - gitlab_rails_db_socket is not defined
+
+    - name: test if gitlab_rails_db_port is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_rails_db_port is defined
+          - gitlab_rails_db_port is number
+        quiet: yes
+
+    - name: test if gitlab_rails_db_socket is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_rails_db_socket is defined
+          - gitlab_rails_db_socket is string
+        quiet: yes
+      when:
+        - gitlab_rails_db_host is not defined
+
+    - name: test if gitlab_rails_db_sslmode is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_rails_db_sslmode is string
+          - gitlab_rails_db_sslmode in [ "disable", "enable" ]
+        quiet: yes
+      when:
+        - gitlab_rails_db_sslmode is defined
+
+    - name: test if gitlab_rails_db_sslcompression is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_rails_db_sslcompression is number
+          - gitlab_rails_db_sslcompression in [ 0, 1 ]
+        quiet: yes
+      when:
+        - gitlab_rails_db_sslcompression is defined
+
+    - name: test if gitlab_rails_db_sslrootcert is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_rails_db_sslrootcert is string
+        quiet: yes
+      when:
+        - gitlab_rails_db_sslrootcert is defined
+
+    - name: test if gitlab_rails_db_sslcert is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_rails_db_sslcert is string
+        quiet: yes
+      when:
+        - gitlab_rails_db_sslcert is defined
+
+    - name: test if gitlab_rails_db_sslkey is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_rails_db_sslkey is string
+        quiet: yes
+      when:
+        - gitlab_rails_db_sslkey is defined
+
+    - name: test if gitlab_rails_db_prepared_statements is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_rails_db_prepared_statements is boolean
+        quiet: yes
+      when:
+        - gitlab_rails_db_prepared_statements is defined
+
+    - name: test if gitlab_rails_db_statements_limit is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_rails_db_statements_limit is number
+        quiet: yes
+      when:
+        - gitlab_rails_db_statements_limit is defined
+
+    - name: test if gitlab_rails_db_connect_timeout is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_rails_db_connect_timeout is number
+        quiet: yes
+      when:
+        - gitlab_rails_db_connect_timeout is defined
+
+    - name: test if gitlab_rails_db_keepalives is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_rails_db_keepalives is number
+        quiet: yes
+      when:
+        - gitlab_rails_db_keepalives is defined
+
+    - name: test if gitlab_rails_db_keepalives_idle is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_rails_db_keepalives_idle is number
+        quiet: yes
+      when:
+        - gitlab_rails_db_keepalives_idle is defined
+
+    - name: test if gitlab_rails_db_keepalives_interval is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_rails_db_keepalives_interval is number
+        quiet: yes
+      when:
+        - gitlab_rails_db_keepalives_interval is defined
+
+    - name: test if gitlab_rails_db_keepalives_count is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_rails_db_keepalives_count is number
+        quiet: yes
+      when:
+        - gitlab_rails_db_keepalives_count is defined
+
+    - name: test if gitlab_rails_db_tcp_user_timeout is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_rails_db_tcp_user_timeout is number
+        quiet: yes
+      when:
+        - gitlab_rails_db_tcp_user_timeout is defined
+
+    - name: test if gitlab_rails_db_application_name is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_rails_db_application_name is string
+        quiet: yes
+      when:
+        - gitlab_rails_db_application_name is defined
+
+    - name: test if gitlab_letsencrypt is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_letsencrypt is boolean
+        quiet: yes
+      when:
+        - gitlab_letsencrypt is defined
+
+    - name: test if gitlab_letsencrypt no is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_ssl_key is defined
+          - gitlab_ssl_key is string
+          - gitlab_ssl_crt is defined
+          - gitlab_ssl_crt is string
+        quiet: yes
+      when:
+        - gitlab_letsencrypt is defined
+        - not gitlab_letsencrypt
+        - '"https" in gitlab_external_url'
+
+    - name: test if gitlab_letsencrypt_contact_emails is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_letsencrypt_contact_emails is defined
+          - gitlab_letsencrypt_contact_emails is iterable
+        quiet: yes
+      when:
+        - gitlab_letsencrypt is defined
+        - gitlab_letsencrypt
+
+    - name: test if gitlab_letsencrypt_group is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_letsencrypt_group is defined
+          - gitlab_letsencrypt_group is string
+        quiet: yes
+      when:
+        - gitlab_letsencrypt is defined
+        - gitlab_letsencrypt
+
+    - name: test if gitlab_letsencrypt_key_size is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_letsencrypt_key_size is defined
+          - gitlab_letsencrypt_key_size is number
+        quiet: yes
+      when:
+        - gitlab_letsencrypt is defined
+        - gitlab_letsencrypt
+
+    - name: test if gitlab_letsencrypt_owner is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_letsencrypt_owner is defined
+          - gitlab_letsencrypt_owner is string
+        quiet: yes
+      when:
+        - gitlab_letsencrypt is defined
+        - gitlab_letsencrypt
+
+    - name: test if gitlab_letsencrypt_wwwroot is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_letsencrypt_wwwroot is defined
+          - gitlab_letsencrypt_wwwroot is string
+        quiet: yes
+      when:
+        - gitlab_letsencrypt is defined
+        - gitlab_letsencrypt
+
+    - name: test if gitlab_letsencrypt_auto_renew is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_letsencrypt_auto_renew is boolean
+        quiet: yes
+      when:
+        - gitlab_letsencrypt is defined
+        - gitlab_letsencrypt
+        - gitlab_letsencrypt_auto_renew is defined
+
+    - name: test if gitlab_letsencrypt_auto_renew_hour is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_letsencrypt_auto_renew_hour is defined
+          - (gitlab_letsencrypt_auto_renew_hour is number and
+             gitlab_letsencrypt_auto_renew_hour >= 0 and
+             gitlab_letsencrypt_auto_renew_hour <= 24) or
+            (gitlab_letsencrypt_auto_renew_hour is string and
+             gitlab_letsencrypt_auto_renew_hour == "nil")
+        quiet: yes
+      when:
+        - gitlab_letsencrypt is defined
+        - gitlab_letsencrypt
+        - gitlab_letsencrypt_auto_renew
+
+    - name: test if gitlab_letsencrypt_auto_renew_minute is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_letsencrypt_auto_renew_minute is defined
+          - (gitlab_letsencrypt_auto_renew_minute is number and
+             gitlab_letsencrypt_auto_renew_minute >= 0 and
+             gitlab_letsencrypt_auto_renew_minute <= 59) or
+            (gitlab_letsencrypt_auto_renew_minute is string and
+             gitlab_letsencrypt_auto_renew_minute == "nil")
+        quiet: yes
+      when:
+        - gitlab_letsencrypt is defined
+        - gitlab_letsencrypt
+        - gitlab_letsencrypt_auto_renew
+
+    - name: test if gitlab_letsencrypt_auto_renew_day_of_month is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_letsencrypt_auto_renew_day_of_month is defined
+          - (gitlab_letsencrypt_auto_renew_day_of_month is number and
+             gitlab_letsencrypt_auto_renew_day_of_month >= 0 and
+             gitlab_letsencrypt_auto_renew_day_of_month <= 31) or
+            (gitlab_letsencrypt_auto_renew_day_of_month is string and
+             gitlab_letsencrypt_auto_renew_day_of_month == "nil")
+        quiet: yes
+      when:
+        - gitlab_letsencrypt is defined
+        - gitlab_letsencrypt
+        - gitlab_letsencrypt_auto_renew
+
+    - name: test if gitlab_letsencrypy_auto_renew_log_directory is set correctly
+      ansible.builtin.assert:
+        that:
+          - gitlab_letsencrypy_auto_renew_log_directory is defined
+          - gitlab_letsencrypy_auto_renew_log_directory is string
+        quiet: yes
+      when:
+        - gitlab_letsencrypt is defined
+        - gitlab_letsencrypt
+        - gitlab_letsencrypt_auto_renew
+  when:
+    - gitlab_configuration_file is not defined

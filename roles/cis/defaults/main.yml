@@ -191,7 +191,7 @@ cis_time_synchronization: yes
 cis_chrony_configured: yes
 cis_chrony_servers: []
 cis_chrony_pools:
-  - name: 2.fedora.pool.ntp.org
+  - name: "2.fedora.pool.ntp.org"
     options: iburst
 
 # 2.2.2 Ensure X Window System is not installed (Scored)
