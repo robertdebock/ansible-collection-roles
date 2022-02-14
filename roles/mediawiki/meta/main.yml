@@ -25,4 +25,4 @@ galaxy_info:
     - system
 
 dependencies:
-  - robertdebock.httpd
+  - robertdebock.roles.httpd

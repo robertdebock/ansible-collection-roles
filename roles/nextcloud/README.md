@@ -17,8 +17,8 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
   gather_facts: yes
 
   roles:
-    - role: robertdebock.httpd
-    - role: robertdebock.nextcloud
+    - role: robertdebock.roles.httpd
+    - role: robertdebock.roles.nextcloud
       nextcloud_apps:
         - name: richdocumentscode
       nextcloud_settings:
@@ -36,19 +36,19 @@ The machine needs to be prepared. In CI this is done using `molecule/default/pre
   gather_facts: no
 
   roles:
-    - role: robertdebock.bootstrap
-    - role: robertdebock.core_dependencies
-    - role: robertdebock.cron
-    - role: robertdebock.buildtools
-    - role: robertdebock.epel
-    - role: robertdebock.python_pip
-    - role: robertdebock.openssl
+    - role: robertdebock.roles.bootstrap
+    - role: robertdebock.roles.core_dependencies
+    - role: robertdebock.roles.cron
+    - role: robertdebock.roles.buildtools
+    - role: robertdebock.roles.epel
+    - role: robertdebock.roles.python_pip
+    - role: robertdebock.roles.openssl
       openssl_items:
         - name: apache-httpd
           common_name: "{{ ansible_fqdn }}"
-    - role: robertdebock.selinux
-    - role: robertdebock.httpd
-    - role: robertdebock.redis
+    - role: robertdebock.roles.selinux
+    - role: robertdebock.roles.httpd
+    - role: robertdebock.roles.redis
 
 - name: continue prepare with facts
   hosts: all
@@ -66,12 +66,12 @@ The machine needs to be prepared. In CI this is done using `molecule/default/pre
           - php74
 
   roles:
-    - role: robertdebock.php
+    - role: robertdebock.roles.php
       php_memory_limit: 512M
       php_upload_max_filesize: 8G
       php_post_max_size: 8G
-    - role: robertdebock.php_fpm
-    - role: robertdebock.mysql
+    - role: robertdebock.roles.php_fpm
+    - role: robertdebock.roles.mysql
       mysql_databases:
         - name: nextcloud
           encoding: utf8

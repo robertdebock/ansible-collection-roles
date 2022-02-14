@@ -17,7 +17,7 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
   gather_facts: yes
 
   roles:
-    - role: robertdebock.natrouter
+    - role: robertdebock.roles.natrouter
 ```
 
 The machine needs to be prepared. In CI this is done using `molecule/default/prepare.yml`:
@@ -29,8 +29,8 @@ The machine needs to be prepared. In CI this is done using `molecule/default/pre
   become: yes
 
   roles:
-    - role: robertdebock.bootstrap
-    - role: robertdebock.sysctl
+    - role: robertdebock.roles.bootstrap
+    - role: robertdebock.roles.sysctl
       sysctl_items:
         - name: net.ipv4.ip_forward
           value: 1

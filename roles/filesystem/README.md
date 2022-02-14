@@ -17,7 +17,7 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
   gather_facts: yes
 
   roles:
-    - role: robertdebock.filesystem
+    - role: robertdebock.roles.filesystem
       filesystem_list:
         - dev: disk_1
           fstype: ext4
@@ -37,7 +37,7 @@ The machine needs to be prepared. In CI this is done using `molecule/default/pre
   gather_facts: no
 
   roles:
-    - role: robertdebock.bootstrap
+    - role: robertdebock.roles.bootstrap
 
   tasks:
     - name: make disk image

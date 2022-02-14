@@ -17,7 +17,7 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
   gather_facts: yes
 
   roles:
-    - role: robertdebock.vault
+    - role: robertdebock.roles.vault
       vault_show_unseal_information: yes
       vault_store_root_token: yes
       vault_make_backup: yes
@@ -37,9 +37,9 @@ The machine needs to be prepared. In CI this is done using `molecule/default/pre
   gather_facts: no
 
   roles:
-    - role: robertdebock.bootstrap
-    - role: robertdebock.core_dependencies
-    - role: robertdebock.hashicorp
+    - role: robertdebock.roles.bootstrap
+    - role: robertdebock.roles.core_dependencies
+    - role: robertdebock.roles.hashicorp
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.

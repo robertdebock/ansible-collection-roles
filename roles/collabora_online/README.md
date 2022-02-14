@@ -17,7 +17,7 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
   gather_facts: yes
 
   roles:
-    - role: robertdebock.collabora_online
+    - role: robertdebock.roles.collabora_online
 ```
 
 The machine needs to be prepared. In CI this is done using `molecule/default/prepare.yml`:
@@ -29,9 +29,9 @@ The machine needs to be prepared. In CI this is done using `molecule/default/pre
   gather_facts: no
 
   roles:
-    - role: robertdebock.bootstrap
-    - role: robertdebock.ca_certificates
-    - role: robertdebock.users
+    - role: robertdebock.roles.bootstrap
+    - role: robertdebock.roles.ca_certificates
+    - role: robertdebock.roles.users
       users_group_list:
         - name: lool
       users_user_list:

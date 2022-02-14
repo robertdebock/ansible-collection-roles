@@ -17,7 +17,7 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
   gather_facts: yes
 
   roles:
-    - role: robertdebock.zabbix_proxy
+    - role: robertdebock.roles.zabbix_proxy
 ```
 
 The machine needs to be prepared. In CI this is done using `molecule/default/prepare.yml`:
@@ -29,9 +29,9 @@ The machine needs to be prepared. In CI this is done using `molecule/default/pre
   become: yes
 
   roles:
-    - role: robertdebock.bootstrap
-    - role: robertdebock.ca_certificates
-    - role: robertdebock.zabbix_repository
+    - role: robertdebock.roles.bootstrap
+    - role: robertdebock.roles.ca_certificates
+    - role: robertdebock.roles.zabbix_repository
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.

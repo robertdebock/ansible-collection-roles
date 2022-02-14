@@ -17,7 +17,7 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
   gather_facts: yes
 
   roles:
-    - role: robertdebock.redis
+    - role: robertdebock.roles.redis
 ```
 
 The machine needs to be prepared. In CI this is done using `molecule/default/prepare.yml`:
@@ -29,14 +29,14 @@ The machine needs to be prepared. In CI this is done using `molecule/default/pre
   become: yes
 
   roles:
-    - role: robertdebock.bootstrap
-    - role: robertdebock.epel
-    - role: robertdebock.apt_autostart
-    - role: robertdebock.sysctl
+    - role: robertdebock.roles.bootstrap
+    - role: robertdebock.roles.epel
+    - role: robertdebock.roles.apt_autostart
+    - role: robertdebock.roles.sysctl
       sysctl_items:
         - name: vm.overcommit_memory
           value: 1
-    - role: robertdebock.grub
+    - role: robertdebock.roles.grub
       grub_options:
         - option: transparent_hugepage
           value: never

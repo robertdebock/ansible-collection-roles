@@ -17,7 +17,7 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
   gather_facts: yes
 
   roles:
-    - role: robertdebock.haproxy
+    - role: robertdebock.roles.haproxy
       haproxy_frontends:
         - name: http
           address: "*"
@@ -71,18 +71,18 @@ The machine needs to be prepared. In CI this is done using `molecule/default/pre
   gather_facts: no
 
   roles:
-    - role: robertdebock.bootstrap
-    - role: robertdebock.core_dependencies
-    - role: robertdebock.epel
-    - role: robertdebock.buildtools
-    - role: robertdebock.python_pip
-    - role: robertdebock.openssl
+    - role: robertdebock.roles.bootstrap
+    - role: robertdebock.roles.core_dependencies
+    - role: robertdebock.roles.epel
+    - role: robertdebock.roles.buildtools
+    - role: robertdebock.roles.python_pip
+    - role: robertdebock.roles.openssl
       openssl_key_directory: /tmp
       openssl_items:
         - name: haproxy
           common_name: "{{ ansible_fqdn }}"
     # This role is applied to serve as a mock "backend" server. See `molecule/default/verify.yml`.
-    - role: robertdebock.httpd
+    - role: robertdebock.roles.httpd
       httpd_port: 8080
 ```
 

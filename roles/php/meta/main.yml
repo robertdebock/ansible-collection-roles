@@ -32,4 +32,4 @@ galaxy_info:
     - web
 
 dependencies:
-  - robertdebock.httpd
+  - robertdebock.roles.httpd

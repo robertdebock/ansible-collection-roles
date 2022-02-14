@@ -20,7 +20,7 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
     - defaults.yml
 
   roles:
-    - role: robertdebock.cis
+    - role: robertdebock.roles.cis
 ```
 
 The machine needs to be prepared. In CI this is done using `molecule/default/prepare.yml`:
@@ -32,9 +32,9 @@ The machine needs to be prepared. In CI this is done using `molecule/default/pre
   gather_facts: no
 
   roles:
-    - role: robertdebock.bootstrap
-    - role: robertdebock.cron
-    - role: robertdebock.update
+    - role: robertdebock.roles.bootstrap
+    - role: robertdebock.roles.cron
+    - role: robertdebock.roles.update
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.

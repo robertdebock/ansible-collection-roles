@@ -17,8 +17,8 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
   gather_facts: yes
 
   roles:
-    - role: robertdebock.httpd
-    - role: robertdebock.owncloud
+    - role: robertdebock.roles.httpd
+    - role: robertdebock.roles.owncloud
 ```
 
 The machine needs to be prepared. In CI this is done using `molecule/default/prepare.yml`:
@@ -30,27 +30,27 @@ The machine needs to be prepared. In CI this is done using `molecule/default/pre
   gather_facts: no
 
   roles:
-    - role: robertdebock.bootstrap
-    - role: robertdebock.core_dependencies
-    - role: robertdebock.cron
-    - role: robertdebock.buildtools
-    - role: robertdebock.epel
-    - role: robertdebock.python_pip
-    - role: robertdebock.openssl
+    - role: robertdebock.roles.bootstrap
+    - role: robertdebock.roles.core_dependencies
+    - role: robertdebock.roles.cron
+    - role: robertdebock.roles.buildtools
+    - role: robertdebock.roles.epel
+    - role: robertdebock.roles.python_pip
+    - role: robertdebock.roles.openssl
       openssl_items:
         - name: apache-httpd
           common_name: "{{ ansible_fqdn }}"
-    - role: robertdebock.selinux
-    - role: robertdebock.httpd
-    - role: robertdebock.redis
-    - role: robertdebock.remi
+    - role: robertdebock.roles.selinux
+    - role: robertdebock.roles.httpd
+    - role: robertdebock.roles.redis
+    - role: robertdebock.roles.remi
       remi_enabled_repositories:
         - php73
       when:
         - ansible_distribution != "Fedora"
-    - role: robertdebock.php
-    - role: robertdebock.php_fpm
-    - role: robertdebock.mysql
+    - role: robertdebock.roles.php
+    - role: robertdebock.roles.php_fpm
+    - role: robertdebock.roles.mysql
       mysql_databases:
         - name: owncloud
           encoding: utf8

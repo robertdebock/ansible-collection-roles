@@ -17,7 +17,7 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
   gather_facts: yes
 
   roles:
-    - role: robertdebock.squid
+    - role: robertdebock.roles.squid
       squid_cache_dir: "aufs /var/spool/squid 16000 16 256 max-size=8589934592"
       squid_cache_replacement_policy: heap LFUDA
       squid_maximum_object_size_mb: 256
@@ -45,8 +45,8 @@ The machine needs to be prepared. In CI this is done using `molecule/default/pre
   become: yes
 
   roles:
-    - role: robertdebock.bootstrap
-    - role: robertdebock.core_dependencies
+    - role: robertdebock.roles.bootstrap
+    - role: robertdebock.roles.core_dependencies
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.

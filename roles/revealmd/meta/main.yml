@@ -30,4 +30,4 @@ galaxy_info:
     - slides
 
 dependencies:
-  - robertdebock.npm
+  - robertdebock.roles.npm

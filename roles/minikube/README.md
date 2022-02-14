@@ -17,7 +17,7 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
   gather_facts: yes
 
   roles:
-    - role: robertdebock.minikube
+    - role: robertdebock.roles.minikube
       minikube_user: minikube
 ```
 
@@ -30,19 +30,19 @@ The machine needs to be prepared. In CI this is done using `molecule/default/pre
   gather_facts: no
 
   roles:
-    - role: robertdebock.bootstrap
-    - role: robertdebock.core_dependencies
-    - role: robertdebock.epel
-    - role: robertdebock.python_pip
-    - role: robertdebock.docker
-    - role: robertdebock.kubectl
-    - role: robertdebock.sysctl
+    - role: robertdebock.roles.bootstrap
+    - role: robertdebock.roles.core_dependencies
+    - role: robertdebock.roles.epel
+    - role: robertdebock.roles.python_pip
+    - role: robertdebock.roles.docker
+    - role: robertdebock.roles.kubectl
+    - role: robertdebock.roles.sysctl
       sysctl_items:
         - name: net.bridge.bridge-nf-call-iptables
           value: 1
         - name: fs.protected_regular
           value: 0
-    - role: robertdebock.users
+    - role: robertdebock.roles.users
       users_user_list:
         - name: minikube
           groups: docker

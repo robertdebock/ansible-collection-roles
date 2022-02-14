@@ -31,7 +31,7 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
         version: "2.11.1"
 
   roles:
-    - role: robertdebock.git
+    - role: robertdebock.roles.git
 ```
 
 The machine needs to be prepared. In CI this is done using `molecule/default/prepare.yml`:
@@ -44,7 +44,7 @@ The machine needs to be prepared. In CI this is done using `molecule/default/pre
   serial: 30%
 
   roles:
-    - role: robertdebock.bootstrap
+    - role: robertdebock.roles.bootstrap
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.

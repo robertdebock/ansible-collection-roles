@@ -17,7 +17,7 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
   gather_facts: yes
 
   roles:
-    - role: robertdebock.zabbix_web
+    - role: robertdebock.roles.zabbix_web
       # You can provision Zabbix groups.
       # Most options map directly to the documentation:
       # https://docs.ansible.com/ansible/latest/modules/zabbix_group_module.html
@@ -47,17 +47,17 @@ The machine needs to be prepared. In CI this is done using `molecule/default/pre
   become: yes
 
   roles:
-    - role: robertdebock.bootstrap
-    - role: robertdebock.selinux
-    - role: robertdebock.container_docs
-    - role: robertdebock.buildtools
-    - role: robertdebock.epel
-    - role: robertdebock.python_pip
-    - role: robertdebock.openssl
+    - role: robertdebock.roles.bootstrap
+    - role: robertdebock.roles.selinux
+    - role: robertdebock.roles.container_docs
+    - role: robertdebock.roles.buildtools
+    - role: robertdebock.roles.epel
+    - role: robertdebock.roles.python_pip
+    - role: robertdebock.roles.openssl
       openssl_items:
         - name: apache-httpd
           common_name: "{{ ansible_fqdn }}"
-    - role: robertdebock.mysql
+    - role: robertdebock.roles.mysql
       mysql_databases:
         - name: zabbix
           encoding: utf8
@@ -66,12 +66,12 @@ The machine needs to be prepared. In CI this is done using `molecule/default/pre
         - name: zabbix
           password: zabbix
           priv: "zabbix.*:ALL"
-    - role: robertdebock.php
-    - role: robertdebock.httpd
-    - role: robertdebock.ca_certificates
-    - role: robertdebock.zabbix_repository
-    - role: robertdebock.core_dependencies
-    - role: robertdebock.zabbix_server
+    - role: robertdebock.roles.php
+    - role: robertdebock.roles.httpd
+    - role: robertdebock.roles.ca_certificates
+    - role: robertdebock.roles.zabbix_repository
+    - role: robertdebock.roles.core_dependencies
+    - role: robertdebock.roles.zabbix_server
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.

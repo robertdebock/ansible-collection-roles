@@ -52,11 +52,11 @@ The machine needs to be prepared. In CI this is done using `molecule/default/pre
   become: yes
 
   roles:
-    - role: robertdebock.bootstrap
-    # - role: robertdebock.buildtools
-    - role: robertdebock.epel
-    # - role: robertdebock.python_pip
-    # - role: robertdebock.openssl
+    - role: robertdebock.roles.bootstrap
+    # - role: robertdebock.roles.buildtools
+    - role: robertdebock.roles.epel
+    # - role: robertdebock.roles.python_pip
+    # - role: robertdebock.roles.openssl
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.

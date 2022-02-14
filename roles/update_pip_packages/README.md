@@ -17,7 +17,7 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
   gather_facts: yes
 
   roles:
-    - role: robertdebock.update_pip_packages
+    - role: robertdebock.roles.update_pip_packages
       update_pip_package_ignore:
         - libcomps
         - PyGObject
@@ -36,10 +36,10 @@ The machine needs to be prepared. In CI this is done using `molecule/default/pre
   gather_facts: no
 
   roles:
-    - role: robertdebock.bootstrap
-    - role: robertdebock.epel
-    - role: robertdebock.buildtools
-    - role: robertdebock.python_pip
+    - role: robertdebock.roles.bootstrap
+    - role: robertdebock.roles.epel
+    - role: robertdebock.roles.buildtools
+    - role: robertdebock.roles.python_pip
       python_pip_modules:
         - name: ansible
 ```

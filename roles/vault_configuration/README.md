@@ -27,7 +27,7 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
         vault_configuration_token: "{{ vault_configuration_token_raw.content | b64decode }}"
 
   roles:
-    - role: robertdebock.vault_configuration
+    - role: robertdebock.roles.vault_configuration
       vault_configuration_secret_engines:
         - path: kv1
           type: kv
@@ -74,9 +74,9 @@ The machine needs to be prepared. In CI this is done using `molecule/default/pre
   gather_facts: no
 
   roles:
-    - role: robertdebock.bootstrap
-    - role: robertdebock.hashicorp
-    - role: robertdebock.vault
+    - role: robertdebock.roles.bootstrap
+    - role: robertdebock.roles.hashicorp
+    - role: robertdebock.roles.vault
       vault_store_root_token: yes
       vault_max_lease_ttl: "87600h"  # 10 years.
       vault_default_lease_ttl: "24h"  # 1 day.

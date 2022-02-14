@@ -36,4 +36,4 @@ galaxy_info:
     - pxe
 
 dependencies: []
-# - robertdebock.xinetd
+# - robertdebock.roles.xinetd

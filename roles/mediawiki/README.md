@@ -17,7 +17,7 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
   gather_facts: yes
 
   roles:
-    - role: robertdebock.mediawiki
+    - role: robertdebock.roles.mediawiki
       mediawiki_destination: /opt
 ```
 
@@ -30,18 +30,18 @@ The machine needs to be prepared. In CI this is done using `molecule/default/pre
   become: yes
 
   roles:
-    - role: robertdebock.bootstrap
-    - role: robertdebock.core_dependencies
-    - role: robertdebock.epel
-    - role: robertdebock.python_pip
-    - role: robertdebock.buildtools
-    - role: robertdebock.openssl
+    - role: robertdebock.roles.bootstrap
+    - role: robertdebock.roles.core_dependencies
+    - role: robertdebock.roles.epel
+    - role: robertdebock.roles.python_pip
+    - role: robertdebock.roles.buildtools
+    - role: robertdebock.roles.openssl
       openssl_items:
         - name: apache-httpd
           common_name: "{{ ansible_fqdn }}"
-    - role: robertdebock.httpd
-    - role: robertdebock.php
-    - role: robertdebock.mysql
+    - role: robertdebock.roles.httpd
+    - role: robertdebock.roles.php
+    - role: robertdebock.roles.mysql
       mysql_databases:
         - name: mediawiki
       mysql_users:

@@ -17,7 +17,7 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
   gather_facts: yes
 
   roles:
-    - role: robertdebock.sudo-pair
+    - role: robertdebock.roles.sudo-pair
       sudo_pair_gids_exempted:
         - 123
       sudo_pair_gids_enforced:
@@ -33,11 +33,11 @@ The machine needs to be prepared. In CI this is done using `molecule/default/pre
   gather_facts: no
 
   roles:
-    - role: robertdebock.bootstrap
-    - role: robertdebock.core_dependencies
-    - role: robertdebock.buildtools
-    - role: robertdebock.cargo
-    - role: robertdebock.git
+    - role: robertdebock.roles.bootstrap
+    - role: robertdebock.roles.core_dependencies
+    - role: robertdebock.roles.buildtools
+    - role: robertdebock.roles.cargo
+    - role: robertdebock.roles.git
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.

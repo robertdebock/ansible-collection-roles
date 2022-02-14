@@ -30,7 +30,7 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
   #       device: /stratis/my_pool/my_filesystem
 
   roles:
-    - role: robertdebock.stratis
+    - role: robertdebock.roles.stratis
 ```
 
 The machine needs to be prepared. In CI this is done using `molecule/default/prepare.yml`:
@@ -51,7 +51,7 @@ The machine needs to be prepared. In CI this is done using `molecule/default/pre
         minor: 3
 
   roles:
-    - role: robertdebock.bootstrap
+    - role: robertdebock.roles.bootstrap
 
   tasks:
     - name: create storage file

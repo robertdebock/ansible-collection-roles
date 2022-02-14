@@ -17,7 +17,7 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
   gather_facts: yes
 
   roles:
-    - role: robertdebock.moodle
+    - role: robertdebock.roles.moodle
 ```
 
 The machine needs to be prepared. In CI this is done using `molecule/default/prepare.yml`:
@@ -29,10 +29,10 @@ The machine needs to be prepared. In CI this is done using `molecule/default/pre
   gather_facts: no
 
   roles:
-    - role: robertdebock.bootstrap
-    - role: robertdebock.buildtools
-    - role: robertdebock.epel
-    - role: robertdebock.mysql
+    - role: robertdebock.roles.bootstrap
+    - role: robertdebock.roles.buildtools
+    - role: robertdebock.roles.epel
+    - role: robertdebock.roles.mysql
       mysql_databases:
         - name: moodle
           encoding: utf8mb4
@@ -41,19 +41,19 @@ The machine needs to be prepared. In CI this is done using `molecule/default/pre
         - name: moodle
           password: moodle
           priv: "moodle.*:ALL"
-    - role: robertdebock.python_pip
-    - role: robertdebock.openssl
+    - role: robertdebock.roles.python_pip
+    - role: robertdebock.roles.openssl
       openssl_items:
         - name: apache-httpd
           common_name: "{{ ansible_fqdn }}"
-    - role: robertdebock.php
-    - role: robertdebock.selinux
-    - role: robertdebock.httpd
+    - role: robertdebock.roles.php
+    - role: robertdebock.roles.selinux
+    - role: robertdebock.roles.httpd
       httpd_vhosts:
         - name: moodle
           servername: moodle.example.com
-    - role: robertdebock.cron
-    - role: robertdebock.core_dependencies
+    - role: robertdebock.roles.cron
+    - role: robertdebock.roles.core_dependencies
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.

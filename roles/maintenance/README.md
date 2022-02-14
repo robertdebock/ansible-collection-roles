@@ -17,7 +17,7 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
   gather_facts: yes
 
   roles:
-    - role: robertdebock.maintenance
+    - role: robertdebock.roles.maintenance
       maintenance_files_to_empty:
         - /tmp/some_file.txt
 ```
@@ -31,7 +31,7 @@ The machine needs to be prepared. In CI this is done using `molecule/default/pre
   gather_facts: no
 
   roles:
-    - role: robertdebock.bootstrap
+    - role: robertdebock.roles.bootstrap
 
   tasks:
     - name: create a file

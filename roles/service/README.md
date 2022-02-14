@@ -26,7 +26,7 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
     service_test_command: "{{ _service_test_command[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_service_test_command[ansible_os_family] | default(_service_test_command['default'])) }}"  # noqa 204 Just long.
 
   roles:
-    - role: robertdebock.service
+    - role: robertdebock.roles.service
       service_list:
         - name: simple-service
           description: Simple Service
@@ -80,7 +80,7 @@ The machine needs to be prepared. In CI this is done using `molecule/default/pre
   serial: 30%
 
   roles:
-    - role: robertdebock.bootstrap
+    - role: robertdebock.roles.bootstrap
 
   post_tasks:
     - name: place /environmentfile.txt

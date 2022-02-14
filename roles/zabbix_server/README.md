@@ -17,7 +17,7 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
   gather_facts: yes
 
   roles:
-    - role: robertdebock.zabbix_server
+    - role: robertdebock.roles.zabbix_server
 ```
 
 The machine needs to be prepared. In CI this is done using `molecule/default/prepare.yml`:
@@ -29,10 +29,10 @@ The machine needs to be prepared. In CI this is done using `molecule/default/pre
   become: yes
 
   roles:
-    - role: robertdebock.bootstrap
-    - role: robertdebock.selinux
-    - role: robertdebock.container_docs
-    - role: robertdebock.mysql
+    - role: robertdebock.roles.bootstrap
+    - role: robertdebock.roles.selinux
+    - role: robertdebock.roles.container_docs
+    - role: robertdebock.roles.mysql
       mysql_databases:
         - name: zabbix
           encoding: utf8
@@ -41,9 +41,9 @@ The machine needs to be prepared. In CI this is done using `molecule/default/pre
         - name: zabbix
           password: zabbix
           priv: "zabbix.*:ALL"
-    - role: robertdebock.ca_certificates
-    - role: robertdebock.zabbix_repository
-    - role: robertdebock.core_dependencies
+    - role: robertdebock.roles.ca_certificates
+    - role: robertdebock.roles.zabbix_repository
+    - role: robertdebock.roles.core_dependencies
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.
