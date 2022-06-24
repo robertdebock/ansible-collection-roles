@@ -9,7 +9,7 @@ jobs:
   deploy:
     runs-on: "Ubuntu-20.04"
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Deploy Ansible Galaxy Collection
         uses: artis3n/ansible_galaxy_collection@v2.6.2
         with:
