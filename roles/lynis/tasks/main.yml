@@ -24,7 +24,7 @@
     executable: /bin/bash
   register: lynix_audit_system
   when:
-    - lynis_run_now | bool
+    - lynis_run_now
 
 - name: schedule a run of lynis
   ansible.builtin.cron:
@@ -35,4 +35,4 @@
     cron_file: lynis
     user: root
   when:
-    - lynis_cronjob | bool
+    - lynis_cronjob

@@ -3,19 +3,15 @@
 
 # This part maps a distribution to a version of java.
 _java_default_version:
+  default: 11
   Alpine: 8
-  Amazon: 8
-  CentOS: 8
   Debian: 11
-  Fedora: 11
   Gentoo: 8
-  RedHat: &redhat_default_version 8
-  Rocky: *redhat_default_version
-  Ubuntu: 11
+  RedHat: 8
   Ubuntu-16: 8
-  openSUSE Leap: 8
+  Suse: 8
 
-java_default_version: "{{ _java_default_version[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_java_default_version[ansible_distribution] ) }}"
+java_default_version: "{{ _java_default_version[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_java_default_version[ansible_distribution] | default(_java_default_version[ansible_os_family] | default(_java_default_version['default'] ))) }}"
 
 # This part maps the type of java package (jre/jdk) to a package name
 # for the distribution.
@@ -23,81 +19,58 @@ _java_openjdk_package:
   jre:
     6:
       default: java-1.6.0-openjdk
-      CentOS: java-1.6.0-openjdk
-      RedHat: java-1.6.0-openjdk
     7:
       default: java-1.7.0-openjdk
       Alpine: openjdk7-jre-base
-      CentOS: java-1.7.0-openjdk
       openSUSE Leap: java-1_7_0-openjdk
-      RedHat: java-1.7.0-openjdk
     8:
       default: java-1.8.0-openjdk
       Alpine: openjdk8-jre-base
-      CentOS: java-1.8.0-openjdk
       Debian: openjdk-8-jre
       Fedora: java-1.8.0-openjdk-headless
       Gentoo: jre
       Ubuntu: openjdk-8-jre
       openSUSE Leap: java-1_8_0-openjdk
-      RedHat: &redhat_8_openjdk_package java-1.8.0-openjdk
-      Rocky: *redhat_8_openjdk_package
     9:
-      # Fedora: java-9-openjdk
-      Ubuntu: openjdk-9-jre
+      default: openjdk-9-jre
     10:
-      Debian: openjdk-10-jre
-      Ubuntu: openjdk-10-jre
+      default: openjdk-10-jre
     11:
-      CentOS: java-11-openjdk
+      default: java-11-openjdk
       Debian: openjdk-11-jre
       Fedora: java-11-openjdk-headless
       Ubuntu: openjdk-11-jre
-      RedHat: &redhat_11_openjdk_package java-11-openjdk
-      Rocky: *redhat_11_openjdk_package
     12:
-      Ubuntu: openjdk-12-jre
+      default: openjdk-12-jre
     13:
-      Ubuntu: openjdk-13-jre
+      default: openjdk-13-jre
   jdk:
     6:
       default: java-1.6.0-openjdk-devel
-      CentOS: java-1.6.0-openjdk-devel
-      RedHat: java-1.6.0-openjdk-devel
     7:
       default: java-1.7.0-openjdk-devel
       Alpine: openjdk7
-      CentOS: java-1.7.0-openjdk-devel
       openSUSE Leap: java-1_7_0-openjdk-devel
-      RedHat: java-1.7.0-openjdk-devel
     8:
       default: java-1.8.0-openjdk-devel
       Alpine: openjdk8
-      CentOS: java-1.8.0-openjdk-devel
       Debian: openjdk-8-jdk
-      Fedora: java-1.8.0-openjdk-devel
       Gentoo: jdk
       Ubuntu: openjdk-8-jdk
       openSUSE Leap: java-1_8_0-openjdk-devel
-      RedHat: java-1.8.0-openjdk-devel
-      Rocky: java-1.8.0-openjdk-devel
     9:
-      Fedora: java-9-openjdk-devel
+      default: java-9-openjdk-devel
       Ubuntu: openjdk-9-jdk
     10:
-      Debian: openjdk-10-jdk
-      Ubuntu: openjdk-10-jdk
+      default: openjdk-10-jdk
     11:
-      CentOS: java-11-openjdk-devel
+      default: java-11-openjdk-devel
       Debian: openjdk-11-jdk
-      Fedora: java-11-openjdk-devel
       Ubuntu: openjdk-11-jdk
-      RedHat: java-11-openjdk-devel
-      Rocky: java-11-openjdk-devel
     12:
-      Ubuntu: openjdk-12-jdk
+      default: openjdk-12-jdk
     13:
-      Ubuntu: openjdk-13-jdk
+      default: openjdk-13-jdk
 
 java_openjdk_package: "{{ _java_openjdk_package[java_type][java_default_version | int][ansible_distribution] | default(_java_openjdk_package[java_type][java_default_version | int]['default'] | default([] )) }}"
 

@@ -95,14 +95,6 @@ The minimum version of Ansible required is 2.10, tests have been done to:
 - The current version.
 - The development version.
 
-## [Exceptions](#exceptions)
-
-Some roles can't run on a specific distribution or version. Here are some exceptions.
-
-| variation                 | reason                 |
-|---------------------------|------------------------|
-| amazonlinux | set hostname: [Errno 2] No such file or directory: '/etc/sysconfig/network' |
-
 
 If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-common/issues)
 

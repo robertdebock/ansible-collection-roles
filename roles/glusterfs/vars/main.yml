@@ -18,9 +18,8 @@ _glusterfs_packages:
     - glusterfs-server
   Fedora:
     - glusterfs-server
-  RedHat: &redhat_packages
+  RedHat:
     - glusterfs
-  Rocky: *redhat_packages
 
 glusterfs_packages: "{{ _glusterfs_packages[ansible_distribution] | default(_glusterfs_packages[ansible_os_family] | default(_glusterfs_packages['default'] )) }}"
 

@@ -128,6 +128,9 @@ rsyslog_imuxsock_syssock: no
 #   - gnutls
 #   - elastisearch
 rsyslog_features: []
+
+# Default destination of rsyslog config file
+rsyslog_dest_conf_file: "/etc/rsyslog.conf"
 ```
 
 ## [Requirements](#requirements)
@@ -168,14 +171,6 @@ The minimum version of Ansible required is 2.10, tests have been done to:
 - The previous version.
 - The current version.
 - The development version.
-
-## [Exceptions](#exceptions)
-
-Some roles can't run on a specific distribution or version. Here are some exceptions.
-
-| variation                 | reason                 |
-|---------------------------|------------------------|
-| archlinux/base | target not found: rsyslog |
 
 
 If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-rsyslog/issues)

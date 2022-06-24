@@ -27,7 +27,7 @@
     name: zabbix-server
     state: restarted
   when:
-    - not ansible_check_mode | bool
+    - not ansible_check_mode
     - not ci
   vars:
     ci: "{{ lookup('env', 'CI') }}"

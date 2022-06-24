@@ -29,7 +29,7 @@ defaults
 
 {% if haproxy_stats == true %}
 listen stats
-    bind                 :{{ haproxy_stats_port }}
+    bind                 {{haproxy_stats_bind_addr }}:{{ haproxy_stats_port }}
     mode                 http
     stats                enable
     stats                uri /stats
@@ -41,12 +41,18 @@ frontend {{ frontend.name }}
 
     default_backend {{ frontend.default_backend }}
     mode {{ frontend.mode | default('http') }}
+    option {{ frontend.option | default('httplog') }}
 {% endfor %}
 {% for backend in haproxy_backends %}
 backend {{ backend.name }}
 {% if backend.httpcheck %}
-    option httpchk {% if backend.httpcheck_method is defined %}{{ backend.httpcheck_method }}{% endif %}{% endif %}
+    option httpchk {% if backend.httpcheck_method is defined %}{{ backend.httpcheck_method }}{% endif %}
+{% endif %}
 
+{% if backend.http_check is defined %}
+    http-check send meth {{ backend.http_check.send.method }} uri {{ backend.http_check.send.uri }}
+    http-check expect {{ backend.http_check.expect }}
+{% endif %}
     balance {{ backend.balance | default(haproxy_backend_default_balance) }}
     mode {{ backend.mode | default('http') }}
 {% for server in backend.servers %}

@@ -8,7 +8,7 @@
       environment:
         VAULT_ADDR: "{{ vault_api_addr }}"
       when:
-        - not vault_status.initialized | bool
+        - not vault_status.initialized
 
     - name: save vault_init_output for leader
       ansible.builtin.set_fact:
@@ -33,7 +33,7 @@
                   vault_init_output.root_token is defined or
                   vault_root_token is defined
           when:
-            - vault_show_unseal_information | bool
+            - vault_show_unseal_information
 
         - name: save login token to /root/.vault-token
           ansible.builtin.copy:
@@ -43,7 +43,7 @@
             group: root
             mode: "0640"
           when:
-            - vault_store_root_token | bool
+            - vault_store_root_token
             - vault_init_output is defined and
               vault_init_output.root_token is defined or
               vault_root_token is defined
@@ -58,7 +58,7 @@
             label: "hidden"
           no_log: yes
           when:
-            - vault_status.sealed | bool
+            - vault_status.sealed
       when:
         - (vault_init_output is defined and
           vault_init_output.unseal_keys_b64 is defined and
@@ -77,7 +77,7 @@
     VAULT_ADDR: "{{ vault_api_addr }}"
     VAULT_TOKEN: "{{ vault_init_output.root_token | default(vault_root_token) }}"
   when:
-    - vault_make_backup | bool
+    - vault_make_backup
     - vault_init_output is defined and
       vault_init_output.root_token is defined or
       vault_root_token is defined

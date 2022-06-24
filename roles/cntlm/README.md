@@ -63,6 +63,7 @@ cntlm_listen: 3128
 
 # When you've got a password hash, you may fill it in here.
 # cntlm_passntlmv2: 1234567890abcdef
+cntlm_auth_ntlm: no
 
 # What hosts to omit in the proxy.
 cntlm_noproxy: localhost
@@ -70,17 +71,20 @@ cntlm_noproxy: localhost
 # Where to install temporary files
 cntlm_tmp: /root
 
-# Which IPs or CIDR subnets CNTLM is accessible from.  Items other than 127.0.0.1 are only effective if gateway_enabled
-# is yes
+# Which IPs or CIDR subnets CNTLM is accessible from.
+# Items other than 127.0.0.1 are only effective if gateway_enabled is set to `yes`.
 cntlm_allows:
   - "127.0.0.1"
+
+# If "yes", include the default ansible_default_ipv4 IP in cntlm_allows ([inventory_hostname]['ansible_default_ipv4'] )
+cntlm_allows_include_local_ipv4: no
 
 # By default ("0/0"), CNTLM is inaccessible from all other IP addresses.
 cntlm_denies:
   - "0/0"
 
 # If yes, access to CNTLM is possible from outside of the local host, subject to cntlm_allows and cntlm_denies:
-gateway_enabled: "no"
+gateway_enabled: no
 ```
 
 ## [Requirements](#requirements)
@@ -122,21 +126,6 @@ The minimum version of Ansible required is 2.10, tests have been done to:
 - The current version.
 - The development version.
 
-## [Exceptions](#exceptions)
-
-Some roles can't run on a specific distribution or version. Here are some exceptions.
-
-| variation                 | reason                 |
-|---------------------------|------------------------|
-| EL | No package matching 'bison' found available, installed or updated |
-| Alpine | Cannot make the task 'start and enable cntlm' idempotent. |
-
-## [Included version(s)](#included-versions)
-
-This role [refers to a version](https://github.com/robertdebock/ansible-role-cntlm/blob/master/defaults/main.yml) released by Mavey on SOURCEFORGE. Check the released version(s) here:
-- [cntlm](https://sourceforge.net/projects/cntlm/files/).
-
-This version reference means a role may get outdated. Monthly tests occur to see if [bit-rot](https://en.wikipedia.org/wiki/Software_rot) occured. If you however find a problem, please create an issue, I'll get on it as soon as possible.
 
 If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-cntlm/issues)
 

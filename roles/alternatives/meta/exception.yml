@@ -1,4 +1,0 @@
----
-exceptions:
-  - variation: Archlinux
-    reason: "target not found: alternatives"

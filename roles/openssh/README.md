@@ -141,6 +141,10 @@ openssh_accept_envs:
 
 openssh_subsystem: sftp {{ openssh_sftp_server }}
 
+# Specifies a file containing public keys of certificate authorities that are
+# trusted to sign user certificates for authentication, or none to not use one.
+openssh_trusted_user_ca_keys: none
+
 # Restrict access to this (space separated list) of users or groups.
 # For example: "openssh_allow_users: root my_user"
 # openssh_allow_users: root
@@ -192,7 +196,6 @@ The minimum version of Ansible required is 2.10, tests have been done to:
 - The previous version.
 - The current version.
 - The development version.
-
 
 
 If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-openssh/issues)

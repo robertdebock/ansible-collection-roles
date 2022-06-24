@@ -8,8 +8,7 @@ _alternatives_packages:
     - dpkg
   Debian:
     - dpkg
-  RedHat: &redhat_packages
+  RedHat:
     - chkconfig
-  Rocky: *redhat_packages
 
 alternatives_packages: "{{ _alternatives_packages[ansible_os_family] | default(_alternatives_packages['default'] ) }}"

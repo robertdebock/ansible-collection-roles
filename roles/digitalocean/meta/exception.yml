@@ -1,8 +1,0 @@
----
-exceptions:
-  - variation: alpine
-    reason: "do-agent (missing)"
-  - variation: suse
-    reason: "No provider of '+do-agent"
-  - variation: "centos:latest"
-    reason: "rpm_key is not idempotent..."

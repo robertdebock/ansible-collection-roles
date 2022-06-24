@@ -1,0 +1,7 @@
+---
+- name: Ensure that `epel_next` is set correctly.
+  ansible.builtin.assert:
+    quiet: yes
+    that:
+      - epel_next is defined
+      - epel_next is bool

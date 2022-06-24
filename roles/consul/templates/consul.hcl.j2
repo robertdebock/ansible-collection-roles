@@ -25,14 +25,17 @@ data_dir = "{{ consul_data_dir }}"
 # to, or a go-sockaddr template that can potentially resolve to multiple addresses.
 client_addr = "{{ consul_client_addr }}"
 
-# ui_config.enabled
+# ui
 # Enables the built-in web UI server and the required HTTP routes. This eliminates
 # the need to maintain the Consul web UI files separately from the binary.
+# Version 1.10 deprecated ui=true in favor of ui_config.enabled=true
+ui_config{
 {% if consul_ui %}
-ui = true
+  enabled = true
 {% else %}
-ui = false
+  enabled = false
 {% endif %}
+}
 
 # server
 # This flag is used to control if an agent is in server or client mode. When provided,
@@ -48,6 +51,23 @@ server = true
 {% else %}
 server = false
 {% endif %}
+
+# Bind addr
+# You may use IPv4 or IPv6 but if you have multiple interfaces you must be explicit.
+#bind_addr = "[::]" # Listen on all IPv6
+#bind_addr = "0.0.0.0" # Listen on all IPv4
+{% if consul_bind_addr is defined %}
+bind_addr = "{{ consul_bind_addr }}"
+{% endif %}
+
+# Advertise addr - if you want to point clients to a different address than bind or LB.
+{% if consul_advertise_addr is defined %}
+advertise_addr = "{{ consul_advertise_addr }}"
+{% endif %}
+
+# Enterprise License
+# As of 1.10, Enterprise requires a license_path and does not have a short trial.
+#license_path = "/etc/consul.d/consul.hclic"
 
 # bootstrap_expect
 # This flag provides the number of expected servers in the datacenter. Either this value
@@ -94,11 +114,4 @@ encrypt = "{{ consul_encrypt }}"
 #retry_join = ["provider=gce project_name=... tag_value=..."]
 {% if consul_retry_join is defined %}
 retry_join = [{% for item in consul_retry_join %}"{{ item }}"{% if not loop.last %},{% endif %}{% endfor %}]
-{% endif %}
-
-{% if consul_bind_addr is defined %}
-bind_addr = "{{ consul_bind_addr }}"
-{% endif %}
-{% if consul_advertise_addr is defined %}
-advertise_addr = "{{ consul_advertise_addr }}"
 {% endif %}

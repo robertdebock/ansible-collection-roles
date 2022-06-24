@@ -1,5 +1,13 @@
 ---
 
+
+- name: test if vault_install_package is set correctly
+  ansible.builtin.assert:
+    that:
+      - vault_install_package is defined
+      - vault_install_package is boolean
+    quiet: yes
+
 - name: test if vault_owner is set correctly
   ansible.builtin.assert:
     that:
@@ -174,7 +182,7 @@
       - vault_backup_path is string
     quiet: yes
   when:
-    - vault_make_backup | bool
+    - vault_make_backup
 
 - name: test if vault_namespace is set correctly
   ansible.builtin.assert:

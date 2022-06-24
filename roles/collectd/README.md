@@ -328,21 +328,13 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |debian|bullseye|
 |fedora|all|
 |opensuse|all|
-|ubuntu|all|
+|ubuntu|bionic, focal|
 
 The minimum version of Ansible required is 2.10, tests have been done to:
 
 - The previous version.
 - The current version.
 - The development version.
-
-## [Exceptions](#exceptions)
-
-Some roles can't run on a specific distribution or version. Here are some exceptions.
-
-| variation                 | reason                 |
-|---------------------------|------------------------|
-| centos:7 | Plugin dependency collectd-write_http is missing. |
 
 
 If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-collectd/issues)

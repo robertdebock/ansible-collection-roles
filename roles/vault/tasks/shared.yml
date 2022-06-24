@@ -4,6 +4,25 @@
   ansible.builtin.package:
     name: vault
     state: present
+  when:
+    - vault_install_package
+
+- name: ensure vault user and group exist
+  block:
+    - name: ensure group vault exists
+      ansible.builtin.group:
+        name: "{{ vault_owner }}"
+        state: present
+
+    - name: ensure user vault exist
+      ansible.builtin.user:
+        name: "{{ vault_group }}"
+        home: /home/vault
+        shell: /bin/false
+        group: vault
+        system: yes
+  when:
+    - not vault_install_package
 
 - name: create vault storage path
   ansible.builtin.file:

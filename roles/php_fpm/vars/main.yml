@@ -17,6 +17,7 @@ _php_fpm_directory:
   Debian: /etc/php/7.3/fpm
   Debian-testing: &testing_directory /etc/php/7.4/fpm
   Debian-11: *testing_directory
+  Debian-12: /etc/php/8.1
   Debian-unstable: /etc/php/7.4/fpm
   Fedora: /etc
   openSUSE Leap: /etc/php7/fpm
@@ -31,8 +32,7 @@ _php_fpm_pid_directory:
   default: /run/php-fpm
   Alpine: /run/php-fpm7
   Debian: /run/php
-  RedHat: &redhat_pid_directory /run/php-fpm
-  Rocky: *redhat_pid_directory
+  RedHat: /run/php-fpm
   Suse: /var/run
 
 php_fpm_pid_directory: "{{ _php_fpm_pid_directory[ansible_os_family] | default(_php_fpm_pid_directory['default'] ) }}"

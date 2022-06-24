@@ -62,6 +62,9 @@ gitlab_runner_executor: docker
 
 # The docker image to run.
 gitlab_runner_docker_image: "alpine:latest"
+
+# The version of the GitLab runner to install.
+gitlab_runner_version: "14.7.0"
 ```
 
 ## [Requirements](#requirements)
@@ -90,26 +93,13 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |container|tags|
 |---------|----|
 |el|all|
-|ubuntu|all|
+|ubuntu|bionic, focal|
 
 The minimum version of Ansible required is 2.10, tests have been done to:
 
 - The previous version.
 - The current version.
 - The development version.
-
-## [Exceptions](#exceptions)
-
-Some roles can't run on a specific distribution or version. Here are some exceptions.
-
-| variation                 | reason                 |
-|---------------------------|------------------------|
-| Alpine | Not supported, see https://docs.gitlab.com/ee/install/requirements.html |
-| Archlinux | Not supported, see https://docs.gitlab.com/ee/install/requirements.html |
-| EL 8 | Not supported, see https://docs.gitlab.com/ee/install/requirements.html |
-| Fedora | Not supported, see https://docs.gitlab.com/ee/install/requirements.html |
-| Ubuntu rolling | Not supported, see https://docs.gitlab.com/ee/install/requirements.html |
-| debian:buster | Not supported, see https://docs.gitlab.com/runner/install/linux-repository.html |
 
 
 If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-gitlab_runner/issues)

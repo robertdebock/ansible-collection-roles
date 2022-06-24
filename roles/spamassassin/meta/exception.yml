@@ -1,6 +1,0 @@
----
-exceptions:
-  - variation: Archlinux
-    reason: "target not found: rsyslog"
-  - variation: amazonlinux:1
-    reason: "/etc/init.d/spamassassin: line 17: /etc/sysconfig/network: No such file or directory"

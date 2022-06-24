@@ -7,25 +7,22 @@ _auto_update_packages:
     - apt-listchanges
   RedHat-7:
     - yum-cron
-  RedHat: &redhat_packages
+  RedHat:
     - dnf-automatic
-  Rocky: *redhat_packages
 
 auto_update_packages: "{{ _auto_update_packages[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_auto_update_packages[ansible_os_family] | default(_auto_update_packages['default'] )) }}"
 
 _auto_update_config_directory:
   Debian: /etc/apt/apt.conf.d
   RedHat-7: /etc/yum
-  RedHat: &redhat_config_directory /etc/dnf
-  Rocky: *redhat_config_directory
+  RedHat: /etc/dnf
 
 auto_update_config_directory: "{{ _auto_update_config_directory[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_auto_update_config_directory[ansible_os_family] | default(_auto_update_config_directory['default'] )) }}"
 
 _auto_update_config_file:
   Debian: 10periodic
   RedHat-7: yum-cron.conf
-  RedHat: &redhat_config_file automatic.conf
-  Rocky: *redhat_config_file
+  RedHat: automatic.conf
 
 auto_update_config_file: "{{ _auto_update_config_file[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_auto_update_config_file[ansible_os_family] | default(_auto_update_config_file['default'] )) }}"
 
@@ -35,8 +32,7 @@ _auto_update_services:
     - apt-daily-upgrade.timer
   RedHat-7:
     - yum-cron.service
-  RedHat: &redhat_services
+  RedHat:
     - dnf-automatic.timer
-  Rocky: *redhat_services
 
 auto_update_services: "{{ _auto_update_services[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_auto_update_services[ansible_os_family] | default(_auto_update_services['default'] )) }}"

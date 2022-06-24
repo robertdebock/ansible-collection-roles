@@ -6,7 +6,7 @@
     name: "{{ docker_ce_service }}"
     state: restarted
   when:
-    - not ansible_check_mode | bool
+    - not ansible_check_mode
 
 - name: apt update cache
   ansible.builtin.apt:

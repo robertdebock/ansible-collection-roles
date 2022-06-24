@@ -5,17 +5,17 @@ _clamav_packages:
   Alpine:
     - clamav-daemon
   Amazon-2018:
-    - clamav-server
     - clamav-scanner
+    - clamav-server
     - clamav-update
   Amazon-2:
+    - clamav
+    - clamav-update
     - clamd
+  CentOS:
     - clamav
-    - clamav-update
-  CentOS: &centos_packages
-    - clamav
-    - clamav-update
     - clamav-scanner-systemd
+    - clamav-update
   Debian:
     - clamav
     - clamav-daemon
@@ -27,7 +27,10 @@ _clamav_packages:
     - clamav-scanner
     - clamav-scanner-systemd
     - clamav-update
-  Rocky: *centos_packages
+  Rocky:
+    - clamav
+    - clamav-update
+    - clamd
   Suse:
     - clamav
 
@@ -37,16 +40,14 @@ _clamav_config_dir:
   default: /etc/clamd.d
   Alpine: /etc/clamav
   Debian: /etc/clamav
-  RedHat: &rhel_config_dir /etc/clamd.d
-  Rocky: *rhel_config_dir
+  RedHat: /etc/clamd.d
   Suse: /etc
 
 clamav_config_dir: "{{ _clamav_config_dir[ansible_os_family] }}"
 
 _clamav_config_file:
   Alpine: clamd.conf
-  RedHat: &rhel_config_file scan.conf
-  Rocky: *rhel_config_file
+  RedHat: scan.conf
   Debian: clamd.conf
   Suse: clamd.conf
 
@@ -57,8 +58,7 @@ clamav_database_directory: /var/lib/clamav
 _clamav_freshclam_log_dir:
   Alpine: /var/log
   Debian: /var/log/clamav
-  RedHat: &rhel_freshclam_log_dir /var/log
-  Rocky: *rhel_freshclam_log_dir
+  RedHat: /var/log
   Suse: /var/log
 
 clamav_freshclam_log_dir: "{{ _clamav_freshclam_log_dir[ansible_os_family] }}"
@@ -70,7 +70,7 @@ _clamav_services:
     - clamd.scan
   Amazon-Candidate:
     - clamd@scan
-  CentOS: &centos_service
+  CentOS:
     - clamd@scan
     - clamav-clamonacc
     - clamav-freshclam
@@ -79,7 +79,6 @@ _clamav_services:
     - clamav-freshclam
   RedHat:
     - clamd@scan
-  Rocky: *centos_service
   Suse:
     - clamd
 
@@ -87,20 +86,18 @@ clamav_services: "{{ _clamav_services[ansible_distribution ~ '-' ~ ansible_distr
 
 _clamav_owner:
   Alpine: clamav
-  CentOS: &centos_owner clamupdate
+  CentOS: clamupdate
   Debian: clamav
   RedHat: clamscan
-  Rocky: *centos_owner
   Suse: vscan
 
 clamav_owner: "{{ _clamav_owner[ansible_distribution] | default(_clamav_owner[ansible_os_family] ) }}"
 
 _clamav_group:
   Alpine: clamav
-  CentOS: &centos_group clamupdate
+  CentOS: clamupdate
   Debian: clamav
   RedHat: clamscan
-  Rocky: *centos_group
   Suse: vscan
 
 clamav_group: "{{ _clamav_group[ansible_distribution] | default(_clamav_group[ansible_os_family] ) }}"
@@ -119,10 +116,9 @@ _clamav_requirements:
 
 _freshclam_mode:
   Alpine: "0640"
-  CentOS: &centos_mode "0640"
+  CentOS: "0640"
   Debian: "0444"
   RedHat: "0640"
-  Rocky: *centos_mode
   Suse: "0640"
 
 freshclam_mode: "{{ _freshclam_mode[ansible_distribution] | default(_freshclam_mode[ansible_os_family] ) }}"

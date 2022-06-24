@@ -13,4 +13,4 @@
 - name: reboot
   ansible.builtin.reboot:
   when:
-    - common_reboot | bool
+    - common_reboot

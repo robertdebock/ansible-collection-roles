@@ -25,6 +25,7 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
         - pyxdg
         - resolvelib
         - dbus-python
+        - setuptools
 ```
 
 The machine needs to be prepared. In CI this is done using `molecule/default/prepare.yml`:
@@ -102,7 +103,6 @@ The minimum version of Ansible required is 2.10, tests have been done to:
 - The previous version.
 - The current version.
 - The development version.
-
 
 
 If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-update_pip_packages/issues)

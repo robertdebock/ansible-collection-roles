@@ -49,7 +49,7 @@
     chdir: "{{ owncloud_destination }}/owncloud"
   notify:
     - set owncloud trusted domains
-  no_log: yes
+  # no_log: yes
   become: yes
   become_user: "{{ owncloud_httpd_owner }}"
 

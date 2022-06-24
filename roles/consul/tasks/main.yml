@@ -10,6 +10,8 @@
   ansible.builtin.package:
     name: consul
     state: present
+  when:
+    - consul_install_package
 
 - name: create consul data directory
   ansible.builtin.file:

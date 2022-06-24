@@ -7,16 +7,14 @@ _bios_update_requirements:
   Debian:
     - genisoimage
     - libperl4-corelibs-perl
-  RedHat: &redhat_requirements
+  RedHat:
     - genisoimage
-  Rocky: *redhat_requirements
 
 bios_update_requirements: "{{ _bios_update_requirements[ansible_os_family] | default(_bios_update_requirements['default'] ) }}"
 
 _bios_update_command:
   default: geteltorito
-  RedHat: &redhat_command genisoimage
-  Rocky: *redhat_command
+  RedHat: genisoimage
 
 bios_update_command: "{{ _bios_update_command[ansible_os_family] | default(_bios_update_command['default'] ) }} -o {{ bios_update_temporary_directory }}/bios_update.img {{ bios_update_temporary_directory }}/{{ bios_update_url | basename }}"
 

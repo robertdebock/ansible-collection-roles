@@ -17,6 +17,7 @@
       ansible.builtin.command:
         cmd: php occ config:app:set {{ item.section }} {{ item.name }} --value {{ item.value }}
         chdir: "{{ nextcloud_destination }}/nextcloud"
+      changed_when: no
       become: yes
       become_user: "{{ nextcloud_httpd_owner }}"
       notify:

@@ -34,16 +34,14 @@ _openssh_template_src:
   Debian: sshd_config_Debian.j2
   Fedora: sshd_config_Fedora.j2
   RedHat-7: sshd_config_RedHat-7.j2
-  RedHat: &redhat_template_src sshd_config_RedHat.j2
-  Rocky: *redhat_template_src
+  RedHat: sshd_config_RedHat.j2
   Suse: sshd_config_Suse.j2
 
 openssh_template_src: "{{ _openssh_template_src[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_openssh_template_src[ansible_distribution] | default(_openssh_template_src[ansible_os_family] )) }}"
 
 _openssh_template_mode:
   default: "644"
-  RedHat: &redhat_template_mode "600"
-  Rocky: *redhat_template_mode
+  RedHat: "600"
   Suse: "640"
 
 openssh_template_mode: "{{ _openssh_template_mode[ansible_os_family] | default(_openssh_template_mode['default'] ) }}"

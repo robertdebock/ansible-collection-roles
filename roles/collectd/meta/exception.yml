@@ -1,4 +1,0 @@
----
-exceptions:
-  - variation: centos:7
-    reason: "Plugin dependency collectd-write_http is missing."

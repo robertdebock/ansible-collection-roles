@@ -1,4 +1,0 @@
----
-exceptions:
-  - variation: Alpine
-    reason: "Depencency ansible-role-httpd does not work on Alpine."

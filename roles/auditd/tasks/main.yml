@@ -38,7 +38,7 @@
   notify:
     - run augenrules
   when:
-    - auditd_manage_rules | bool
+    - auditd_manage_rules
 
 - name: start and enable auditd
   ansible.builtin.service:

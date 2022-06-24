@@ -1,6 +1,11 @@
 ---
 # defaults file for vault
 
+# You can install vault using a package in this role. If you have installed
+# vault manually, set this to `no`. Setting this to `no`, also creates the user
+# and group for Vault.
+vault_install_package: yes
+
 # Configure some general parameters
 vault_max_lease_ttl: "10h"
 vault_default_lease_ttl: "10h"
@@ -17,7 +22,7 @@ vault_disable_clustering: "false"
 
 # The leader to use, please use a fqdn, i.e. `vault.example.com`
 # This variable is not required for single-node installations, where the
-# variabel `vault_disable_clustering` is set to `"True"`.
+# variable `vault_disable_clustering` is set to `"True"`.
 # vault_leader: centos-7
 
 # The URL where cluster members can find the leader.

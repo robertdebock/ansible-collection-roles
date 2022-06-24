@@ -16,6 +16,13 @@
       - haproxy_stats_port < 65536
     quiet: yes
 
+- name: test if haproxy_stats_bind_addr is set correctly
+  ansible.builtin.assert:
+    that:
+      - haproxy_stats_bind_addr is defined
+      - haproxy_stats_bind_addr is string
+    quiet: yes
+
 - name: test if haproxy_retries is set correctly
   ansible.builtin.assert:
     that:
@@ -166,3 +173,40 @@
     label: "{{ item.name }}"
   when:
     - item.httpcheck_method is defined
+
+- name: test if http_check item in haproxy_backends is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.http_check is mapping
+    quiet: yes
+  loop: "{{ haproxy_backends }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - item.http_check is defined
+
+- name: test if http_check.send item in haproxy_backends is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.http_check.send is mapping
+      - item.http_check.send.method is defined
+      - item.http_check.send.method in [ "GET", "HEAD" ]
+      - item.http_check.send.uri is defined
+      - item.http_check.send.uri is string
+    quiet: yes
+  loop: "{{ haproxy_backends }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - item.http_check.send is defined
+
+- name: test if http_check.expect item in haproxy_backends is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.http_check.expect is string
+    quiet: yes
+  loop: "{{ haproxy_backends }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - item.http_check.expect is defined

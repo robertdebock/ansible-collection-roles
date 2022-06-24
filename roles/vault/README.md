@@ -51,6 +51,11 @@ The default values for the variables are set in `defaults/main.yml`:
 ---
 # defaults file for vault
 
+# You can install vault using a package in this role. If you have installed
+# vault manually, set this to `no`. Setting this to `no`, also creates the user
+# and group for Vault.
+vault_install_package: yes
+
 # Configure some general parameters
 vault_max_lease_ttl: "10h"
 vault_default_lease_ttl: "10h"
@@ -67,7 +72,7 @@ vault_disable_clustering: "false"
 
 # The leader to use, please use a fqdn, i.e. `vault.example.com`
 # This variable is not required for single-node installations, where the
-# variabel `vault_disable_clustering` is set to `"True"`.
+# variable `vault_disable_clustering` is set to `"True"`.
 # vault_leader: centos-7
 
 # The URL where cluster members can find the leader.
@@ -179,7 +184,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |---------|----|
 |debian|bullseye|
 |el|8|
-|fedora|34, 35|
+|fedora|35, 36|
 |ubuntu|all|
 
 The minimum version of Ansible required is 2.10, tests have been done to:
@@ -187,7 +192,6 @@ The minimum version of Ansible required is 2.10, tests have been done to:
 - The previous version.
 - The current version.
 - The development version.
-
 
 
 If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-vault/issues)

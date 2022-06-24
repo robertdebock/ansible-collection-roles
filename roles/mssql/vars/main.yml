@@ -18,7 +18,6 @@ mssql_ubuntu_repositories:
 _mssql_server_package:
   Debian: mssql-server={{ mssql_server_version }}
   RedHat: &redhat_service_package mssql-server
-  Rocky: *redhat_service_package
   Amazon: *redhat_service_package
   Suse: mssql-server-{{ mssql_server_version }}
 
@@ -27,7 +26,6 @@ mssql_server_package: "{{ _mssql_server_package[ansible_os_family] }}"
 _mssql_server_agent_package:
   Debian: mssql-server-agent={{ mssql_server_agent_version }}
   RedHat: &redhat_server_agent_package mssql-server-agent
-  Rocky: *redhat_server_agent_package
   Amazon: *redhat_server_agent_package
   Suse: mssql-server-agent-{{ mssql_server_agent_version }}
 

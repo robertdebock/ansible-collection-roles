@@ -1,6 +1,0 @@
----
-exceptions:
-  - variation: Alpine
-    reason: php-pecl-zip (missing)
-  - variation: amazonlinux
-    reason: Dependency (python_pip) not available

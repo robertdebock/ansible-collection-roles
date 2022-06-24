@@ -83,27 +83,14 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|el|8|
 |debian|bullseye|
 |fedora|all|
-|ubuntu|focal|
 
 The minimum version of Ansible required is 2.10, tests have been done to:
 
 - The previous version.
 - The current version.
 - The development version.
-
-## [Exceptions](#exceptions)
-
-Some roles can't run on a specific distribution or version. Here are some exceptions.
-
-| variation                 | reason                 |
-|---------------------------|------------------------|
-| alpine | Not idempotent on starting the service. |
-| ubuntu | Your npm version "3.5.2" is too old. npm 3.10.x or higher is required. |
-| amazonlinux | Failed to set execute bit on remote files |
-| debian:testing | The repository 'https://deb.nodesource.com/node_10.x bullseye Release' does not have a Release file. |
 
 
 If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-etherpad/issues)

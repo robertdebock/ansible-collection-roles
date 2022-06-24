@@ -243,23 +243,6 @@ The minimum version of Ansible required is 2.10, tests have been done to:
 - The current version.
 - The development version.
 
-## [Exceptions](#exceptions)
-
-Some roles can't run on a specific distribution or version. Here are some exceptions.
-
-| variation                 | reason                 |
-|---------------------------|------------------------|
-| amazonlinux:1 | Not idempotent. |
-| alpine | Restart fails. |
-
-## [Included version(s)](#included-versions)
-
-This role [refers to a version](https://github.com/robertdebock/ansible-role-tomcat/blob/master/defaults/main.yml) released by Apache Tomcat. Check the released version(s) here:
-- [Tomcat version 7](https://tomcat.apache.org/download-70.cgi).
-- [Tomcat version 8](https://tomcat.apache.org/download-80.cgi).
-- [Tomcat version 9](https://tomcat.apache.org/download-90.cgi).
-
-This version reference means a role may get outdated. Monthly tests occur to see if [bit-rot](https://en.wikipedia.org/wiki/Software_rot) occured. If you however find a problem, please create an issue, I'll get on it as soon as possible.
 
 If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-tomcat/issues)
 

@@ -91,18 +91,6 @@ The minimum version of Ansible required is 2.10, tests have been done to:
 - The current version.
 - The development version.
 
-## [Exceptions](#exceptions)
-
-Some roles can't run on a specific distribution or version. Here are some exceptions.
-
-| variation                 | reason                 |
-|---------------------------|------------------------|
-| alpine | tried to configure name using a file "/etc/sysconfig/clock", but could not write to it |
-| amazonlinux | /etc/rc.d/init.d/jenkins: line 59: /etc/init.d/functions: No such file or directory |
-| ubuntu:bionic | No openjdk 8, with openjdk 11 jenkins returns an error. |
-| ubuntu:focal | No openjdk 8, with openjdk 11 jenkins returns an error. |
-| opensuse | An initscript is not idempotent. |
-
 
 If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-jenkins/issues)
 

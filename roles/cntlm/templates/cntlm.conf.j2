@@ -5,6 +5,9 @@ Proxy {{ cntlm_proxy }}
 Listen {{ cntlm_listen }}
 {% if cntlm_passntlmv2 is defined %}
 PassNTLMv2 {{ cntlm_passntlmv2 }}
+{% elif cntlm_auth_ntlm %}
+Auth NTLM
+{{ cntlm_generate_hash.stdout_lines[2] }}
 {% else %}
 {{ cntlm_generate_hash.stdout_lines[3] }}
 {% endif %}

@@ -33,11 +33,11 @@ The machine needs to be prepared. In CI this is done using `molecule/default/pre
     - role: robertdebock.ca_certificates
     - role: robertdebock.users
       users_group_list:
-        - name: lool
+        - name: cool
       users_user_list:
-        - name: lool
-          group: lool
-          home: /opt/lool
+        - name: cool
+          group: cool
+          home: /opt/cool
           shell: /usr/sbin/nologin
           system: yes
 ```
@@ -69,9 +69,9 @@ collabora_online_ssl_enabled: "false"
 
 # These settings become relevant when `collabora_online_ssl_enabled` is set to
 # `yes`.
-collabora_online_ssl_cert: /etc/loolwsd/loolwsd.crt
-collabora_online_ssl_key: /etc/loolwsd/loolwsd.key
-collabora_online_ssl_ca: /etc/loolwsd/loolwsd.keycrt
+collabora_online_ssl_cert: /etc/coolwsd/coolwsd.crt
+collabora_online_ssl_key: /etc/coolwsd/coolwsd.key
+collabora_online_ssl_ca: /etc/coolwsd/coolwsd.keycrt
 collabora_online_ciphers: "ALL:!ADH:!LOW:!EXP:!MD5:@STRENGTH"
 
 # You can manage the mounting feature. Either "false" or "true". (As a string.)
@@ -116,14 +116,13 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |container|tags|
 |---------|----|
 |el|7, 8|
-|ubuntu|all|
+|ubuntu|bionic, focal|
 
 The minimum version of Ansible required is 2.10, tests have been done to:
 
 - The previous version.
 - The current version.
 - The development version.
-
 
 
 If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-collabora_online/issues)

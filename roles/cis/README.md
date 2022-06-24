@@ -236,7 +236,7 @@ cis_time_synchronization: yes
 cis_chrony_configured: yes
 cis_chrony_servers: []
 cis_chrony_pools:
-  - name: 2.fedora.pool.ntp.org
+  - name: "2.fedora.pool.ntp.org"
     options: iburst
 
 # 2.2.2 Ensure X Window System is not installed (Scored)
@@ -598,7 +598,6 @@ The minimum version of Ansible required is 2.10, tests have been done to:
 - The previous version.
 - The current version.
 - The development version.
-
 
 
 If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-cis/issues)

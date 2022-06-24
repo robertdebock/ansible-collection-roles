@@ -98,6 +98,10 @@ openssh_accept_envs:
 
 openssh_subsystem: sftp {{ openssh_sftp_server }}
 
+# Specifies a file containing public keys of certificate authorities that are
+# trusted to sign user certificates for authentication, or none to not use one.
+openssh_trusted_user_ca_keys: none
+
 # Restrict access to this (space separated list) of users or groups.
 # For example: "openssh_allow_users: root my_user"
 # openssh_allow_users: root

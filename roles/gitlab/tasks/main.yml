@@ -5,6 +5,7 @@
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
+  become:no
 
 - name: install requirements
   ansible.builtin.package:
@@ -48,6 +49,26 @@
   when:
     - ansible_pkg_mgr in [ "dnf", "yum" ]
 
+- name: check database migrations
+  block:
+    - name: check if gitlab-rake is available
+      ansible.builtin.command:
+        cmd: gitlab-rake --version
+      changed_when: no
+      failed_when: no
+      register: gitlab_rake_version
+    - name: use gitlab-rake to check db migrations
+      ansible.builtin.command:
+        cmd: "gitlab-rake db:migrate:status"
+      changed_when: no
+      failed_when: no
+      register: gitlab_rake_database_migrations
+      until: '"  down    " not in gitlab_rake_database_migrations.stdout'
+      retries: "{{ gitlab_database_migrations_retries }}"
+      delay: 60
+      when:
+        - gitlab_rake_version.rc == 0
+
 - name: install gitlab
   ansible.builtin.package:
     name: "{{ gitlab_package }}"
@@ -63,21 +84,26 @@
         group: root
         mode: "0750"
 
-    - name: place ssl certificate
-      ansible.builtin.copy:
-        src: "{{ gitlab_ssl_crt }}"
-        dest: /etc/gitlab/ssl/{{ gitlab_external_url | urlsplit('hostname') }}.crt
-        owner: root
-        group: root
-        mode: "0644"
+    - name: place ssl material
+      block:
+        - name: place ssl certificate
+          ansible.builtin.copy:
+            src: "{{ gitlab_ssl_crt }}"
+            dest: /etc/gitlab/ssl/{{ gitlab_external_url | urlsplit('hostname') }}.crt
+            owner: root
+            group: root
+            mode: "0644"
 
-    - name: place ssl key
-      ansible.builtin.copy:
-        src: "{{ gitlab_ssl_key }}"
-        dest: /etc/gitlab/ssl/{{ gitlab_external_url | urlsplit('hostname') }}.key
-        owner: root
-        group: root
-        mode: "0640"
+        - name: place ssl key
+          ansible.builtin.copy:
+            src: "{{ gitlab_ssl_key }}"
+            dest: /etc/gitlab/ssl/{{ gitlab_external_url | urlsplit('hostname') }}.key
+            owner: root
+            group: root
+            mode: "0640"
+      when:
+        - gitlab_ssl_crt is defined
+        - gitlab_ssl_cey is defined
   when:
     - gitlab_configuration_file is not defined
     - gitlab_letsencrypt is defined and not gitlab_letsencrypt
@@ -96,6 +122,29 @@
   when:
     - gitlab_configuration_file is not defined
 
+- name: place trusted-certs
+  block:
+    - name: make trusted-certs directories
+      ansible.builtin.file:
+        path: /etc/gitlab/trusted-certs
+        state: directory
+        owner: root
+        group: root
+        mode: "0755"
+
+    - name: place trusted certificates
+      ansible.builtin.copy:
+        src: "{{ item }}"
+        dest: /etc/gitlab/trusted-certs/{{ item }}
+        owner: root
+        group: root
+        mode: "0644"
+      notify:
+        - run gitlab-ctl reconfigure
+      loop: "{{ gitlab_trusted_certs }}"
+  when:
+    - gitlab_trusted_certs is defined
+
 - name: place configuration static
   ansible.builtin.copy:
     src: "{{ gitlab_configuration_file }}"
@@ -108,3 +157,15 @@
     - run gitlab-ctl reconfigure
   when:
     - gitlab_configuration_file is defined
+
+- name: show initial root password
+  block:
+    - name: read initial root password
+      ansible.builtin.slurp:
+        src: /etc/gitlab/initial_root_password
+      register: initial_root_password
+    - name: display initial root password
+      ansible.builtin.debug:
+        msg: "{{ initial_root_password['content'] | b64decode }}"
+  when:
+    - gitlab_show_initial_root_password

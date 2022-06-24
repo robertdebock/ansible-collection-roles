@@ -23,7 +23,7 @@
           notify:
             - yum update cache
       when:
-        - rpmfusion_free | bool
+        - rpmfusion_free
 
     - name: configure non-free
       block:
@@ -40,6 +40,6 @@
           notify:
             - yum update cache
       when:
-        - rpmfusion_nonfree | bool
+        - rpmfusion_nonfree
   when:
     - ansible_os_family == "RedHat"

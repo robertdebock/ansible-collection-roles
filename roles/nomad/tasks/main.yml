@@ -10,6 +10,8 @@
   ansible.builtin.package:
     name: nomad
     state: present
+  when:
+    - nomad_install_package
 
 - name: create /etc/nomad.d
   ansible.builtin.file:
@@ -29,7 +31,7 @@
   notify:
     - restart nomad
   when:
-    - nomad_server | bool
+    - nomad_server
 
 - name: configure nomad agent
   ansible.builtin.template:
@@ -41,7 +43,7 @@
   notify:
     - restart nomad
   when:
-    - nomad_agent | bool
+    - nomad_agent
 
 - name: start nomad
   ansible.builtin.service:
@@ -54,7 +56,7 @@
     nomad_leader: "{{ ansible_hostname }}"
   run_once: yes
   when:
-    - nomad_server | bool
+    - nomad_server
 
 - name: list server members
   ansible.builtin.command:
@@ -62,7 +64,7 @@
   register: nomad_list_server_members
   changed_when: no
   when:
-    - nomad_server | bool
+    - nomad_server
 
 - name: join nomad leader
   ansible.builtin.command:

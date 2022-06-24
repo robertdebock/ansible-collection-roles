@@ -34,15 +34,15 @@ argument_specs:
           - "true"
       collabora_online_ssl_cert:
         type: "str"
-        default: /etc/loolwsd/cert.pem
+        default: /etc/coolwsd/cert.pem
         description: "The absolute path to the SSL certificate."
       collabora_online_ssl_key:
         type: "str"
-        default: /etc/loolwsd/key.pem
+        default: /etc/coolwsd/key.pem
         description: "The absolute path to the SSL key."
       collabora_online_ssl_ca:
         type: "str"
-        default: /etc/loolwsd/ca-chain.cert.pem
+        default: /etc/coolwsd/ca-chain.cert.pem
         description: "The absolute path to the SSL certificate."
       collabora_online_ssl_ciphers:
         type: "str"

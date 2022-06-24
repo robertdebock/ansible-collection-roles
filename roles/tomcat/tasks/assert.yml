@@ -181,7 +181,7 @@
       - tomcat_access_log_directory is string
     quiet: yes
   when:
-    - tomcat_access_log_enabled | bool
+    - tomcat_access_log_enabled
 
 - name: test if tomcat_access_log_prefix is set correctly
   ansible.builtin.assert:
@@ -190,7 +190,7 @@
       - tomcat_access_log_prefix is string
     quiet: yes
   when:
-    - tomcat_access_log_enabled | bool
+    - tomcat_access_log_enabled
 
 - name: test if tomcat_access_log_suffix is set correctly
   ansible.builtin.assert:
@@ -199,7 +199,7 @@
       - tomcat_access_log_suffix is string
     quiet: yes
   when:
-    - tomcat_access_log_enabled | bool
+    - tomcat_access_log_enabled
 
 - name: test if tomcat_access_log_pattern is set correctly
   ansible.builtin.assert:
@@ -208,7 +208,7 @@
       - tomcat_access_log_pattern is string
     quiet: yes
   when:
-    - tomcat_access_log_enabled | bool
+    - tomcat_access_log_enabled
 
 - name: test if item.name in tomcat_instances is set correctly
   ansible.builtin.assert:

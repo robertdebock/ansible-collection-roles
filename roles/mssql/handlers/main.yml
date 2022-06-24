@@ -6,14 +6,14 @@
     name: mssql-server
     state: stopped
   when:
-    - not ansible_check_mode | bool
+    - not ansible_check_mode
 
 - name: restart mssql-server
   ansible.builtin.service:
     name: mssql-server
     state: restarted
   when:
-    - not ansible_check_mode | bool
+    - not ansible_check_mode
 
 - name: configure mssql-server using mssql-conf
   ansible.builtin.command:

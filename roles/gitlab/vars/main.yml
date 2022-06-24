@@ -37,11 +37,9 @@ _gitlab_requirements:
     - procps-ng
     - yum-utils
   CentOS-7: *redhat_7_requirements
-  Rocky-7: *redhat_7_requirements
   CentOS: *redhat_requirements
-  Rocky: *redhat_requirements
 
-gitlab_requirements: "{{ _gitlab_requirements[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_gitlab_requirements[ansible_distribution]) }}"
+gitlab_requirements: "{{ _gitlab_requirements[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_gitlab_requirements[ansible_distribution] | default(_gitlab_requirements[ansible_os_family] )) }}"
 
 _gitlab_distribution_abbreviation:
   community: ce

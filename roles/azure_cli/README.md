@@ -80,16 +80,6 @@ The minimum version of Ansible required is 2.10, tests have been done to:
 - The current version.
 - The development version.
 
-## [Exceptions](#exceptions)
-
-Some roles can't run on a specific distribution or version. Here are some exceptions.
-
-| variation                 | reason                 |
-|---------------------------|------------------------|
-| Alpine | fatal error: Python.h: No such file or directory |
-| centos:latest | Depsolve Error occured: Problem: cannot install the best candidate for the job - nothing provides python needed by azure-cli-2.0.76-1.el7.x86_64 |
-| opensuse | Cannot uninstall 'six'. It is a distutils installed project |
-
 
 If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-azure_cli/issues)
 

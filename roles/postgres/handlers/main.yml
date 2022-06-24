@@ -12,11 +12,11 @@
     name: postgresql
     state: restarted
   when:
-    - not ansible_check_mode | bool
+    - not ansible_check_mode
 
 - name: reload postgres
   ansible.builtin.service:
     name: postgresql
     state: reloaded
   when:
-    - not ansible_check_mode | bool
+    - not ansible_check_mode

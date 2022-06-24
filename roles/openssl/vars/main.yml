@@ -18,22 +18,19 @@ _openssl_key_directory:
   default: /tmp
   Alpine: /etc/ssl/private
   Debian: /etc/ssl/private
-  RedHat: &redhat_key_directory /etc/pki/tls/private
-  Rocky: *redhat_key_directory
+  RedHat: /etc/pki/tls/private
   Suse: /etc/ssl/private
 
 _openssl_csr_directory:
   default: /tmp
   Alpine: /etc/ssl/misc
   Debian: /etc/ssl/misc
-  RedHat: &redhat_csr_directory /etc/pki/tls/misc
-  Rocky: *redhat_csr_directory
+  RedHat: /etc/pki/tls/misc
   Suse: /etc/ssl
 
 _openssl_crt_directory:
   default: /tmp
   Alpine: /etc/ssl/certs
   Debian: /etc/ssl/certs
-  RedHat: &redhat_crt_directory /etc/pki/tls/certs
-  Rocky: *redhat_crt_directory
+  RedHat: /etc/pki/tls/certs
   Suse: /etc/ssl/certs

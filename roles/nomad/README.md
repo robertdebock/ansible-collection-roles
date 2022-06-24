@@ -43,6 +43,10 @@ The default values for the variables are set in `defaults/main.yml`:
 ---
 # defaults file for nomad
 
+# You can install nomad using a package in this role. If you have installed
+# nomad manually, set this to `no`.
+nomad_install_package: yes
+
 # Set this to "yes" for a server.
 nomad_server: yes
 
@@ -96,7 +100,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |---------|----|
 |el|8|
 |debian|bullseye|
-|fedora|34, 35|
+|fedora|35, 36|
 |ubuntu|all|
 
 The minimum version of Ansible required is 2.10, tests have been done to:
@@ -104,7 +108,6 @@ The minimum version of Ansible required is 2.10, tests have been done to:
 - The previous version.
 - The current version.
 - The development version.
-
 
 
 If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-nomad/issues)

@@ -1,6 +1,0 @@
----
-exceptions:
-  - variation: Alpine
-    reason: "ImportError: Error loading shared library /tmp/pip-build-env-23ZqyN/lib/python2.7/site-packages/_cffi_backend.so: Operation not permitted"
-  - variation: amazonlinux
-    reason: "Dependency (python_pip) not available."

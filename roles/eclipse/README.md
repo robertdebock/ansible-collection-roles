@@ -45,7 +45,7 @@ The default values for the variables are set in `defaults/main.yml`:
 
 # The release to install.
 # See https://www.eclipse.org/downloads/packages/release
-eclipse_release: 2021-09
+eclipse_release: 2022-06
 
 # The release version to install, either: R, RC1, M3, M2 or M1.
 eclipse_release_version: R
@@ -106,14 +106,6 @@ The minimum version of Ansible required is 2.10, tests have been done to:
 - The previous version.
 - The current version.
 - The development version.
-
-## [Exceptions](#exceptions)
-
-Some roles can't run on a specific distribution or version. Here are some exceptions.
-
-| variation                 | reason                 |
-|---------------------------|------------------------|
-| alpine | [Errno 2] No such file or directory: 'eclipse' |
 
 
 If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-eclipse/issues)

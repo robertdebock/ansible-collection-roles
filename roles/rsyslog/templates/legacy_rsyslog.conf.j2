@@ -38,8 +38,17 @@ $ActionFileDefaultTemplate RSYSLOG_TraditionalFileFormat
 #
 # Set the default permissions for all log files.
 #
+{% if rsyslog_fileowner is defined %}
+$FileOwner {{ rsyslog_fileowner }}
+{% endif %}
+{% if rsyslog_filegroup is defined %}
+$FileGroup {{ rsyslog_filegroup }}
+{% endif %}
 $FileCreateMode {{ rsyslog_filecreatemode }}
 $DirCreateMode {{ rsyslog_dircreatemode }}
+{% if rsyslog_umask is defined %}
+$Umask {{ rsyslog_umask }}
+{% endif %}
 
 #
 # Where to place spool and state files

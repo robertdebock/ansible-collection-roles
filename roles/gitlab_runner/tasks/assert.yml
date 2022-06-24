@@ -45,3 +45,10 @@
     quiet: yes
   when:
     - gitlab_runner_executor == "docker"
+
+- name: test if gitlab_runner_version is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_runner_version is defined
+      - gitlab_runner_version is string
+    quiet: yes

@@ -43,6 +43,7 @@ The default values for the variables are set in `defaults/main.yml`:
 
 # Allow remote access
 cups_listen: "localhost:631"
+cups_serveralias: "*"
 
 # Share local printers on the local network.
 cups_browsing: "Off"
@@ -110,7 +111,6 @@ The minimum version of Ansible required is 2.10, tests have been done to:
 - The previous version.
 - The current version.
 - The development version.
-
 
 
 If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-cups/issues)

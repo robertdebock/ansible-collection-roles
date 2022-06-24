@@ -1,8 +1,0 @@
----
-exceptions:
-  - variation: Alpine
-    reason: glusterfs (missing)
-  - variation: EL
-    reason: No package glusterfs available.
-  - variation: opensuse
-    reason: The package glusterfs requires python2...

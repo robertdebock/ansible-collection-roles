@@ -20,7 +20,7 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
     - role: robertdebock.hashicorp
       hashicorp_products:
         - name: consul
-
+          version: "1.11.3"
     - role: robertdebock.hashicorp
       hashicorp_installation_method: manual
       hashicorp_products:
@@ -108,7 +108,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |amazon|Candidate|
 |el|8|
 |debian|bullseye|
-|fedora|34, 35|
+|fedora|35, 36|
 |ubuntu|all|
 
 The minimum version of Ansible required is 2.10, tests have been done to:
@@ -116,7 +116,6 @@ The minimum version of Ansible required is 2.10, tests have been done to:
 - The previous version.
 - The current version.
 - The development version.
-
 
 
 If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-hashicorp/issues)

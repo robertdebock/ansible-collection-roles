@@ -1,8 +1,0 @@
----
-exceptions:
-  - variation: centos:latest
-    reason: "No package php73 available."
-  - variation: opensuse
-    reason: "This version of ownCloud is not compatible with PHP 7.4"
-  - variation: fedora:32
-    reason: "nothing provides libzip(x86-64) >= 1.7.3 needed by php-pecl-zip-1.19.1-1.fc32.remi.7.4.x86_64"

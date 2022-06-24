@@ -23,7 +23,7 @@
 - name: configure coredump.conf
   community.general.ini_file:
     path: /etc/systemd/coredump.conf
-    section: Login
+    section: Coredump
     option: "{{ item.option }}"
     value: "{{ item.value }}"
     mode: "0644"
@@ -36,7 +36,7 @@
 - name: configure journald.conf
   community.general.ini_file:
     path: /etc/systemd/journald.conf
-    section: Login
+    section: Journal
     option: "{{ item.option }}"
     value: "{{ item.value }}"
     mode: "0644"
@@ -66,7 +66,7 @@
 - name: configure resolved.conf
   community.general.ini_file:
     path: /etc/systemd/resolved.conf
-    section: Login
+    section: Resolve
     option: "{{ item.option }}"
     value: "{{ item.value }}"
     mode: "0644"
@@ -75,11 +75,13 @@
     label: "{{ item.option }}"
   when:
     - systemd_resolved is defined
+  notify:
+    - restart systemd-resolved
 
 - name: configure system.conf
   community.general.ini_file:
     path: /etc/systemd/system.conf
-    section: Login
+    section: Manager
     option: "{{ item.option }}"
     value: "{{ item.value }}"
     mode: "0644"
@@ -92,7 +94,7 @@
 - name: configure user.conf
   community.general.ini_file:
     path: /etc/systemd/user.conf
-    section: Login
+    section: Manager
     option: "{{ item.option }}"
     value: "{{ item.value }}"
     mode: "0644"

@@ -16,7 +16,7 @@
     gpgcheck: yes
   when:
     - ansible_distribution in [ "CentOS", "Fedora", "RedHat", "Rocky", "Amazon" ]
-    - mssql_add_repositories | bool
+    - mssql_add_repositories
   loop: "{{ mssql_rhel_repositories }}"
   loop_control:
     label: "{{ item.name }}"
@@ -27,7 +27,7 @@
     state: present
   when:
     - ansible_os_family == "Debian"
-    - mssql_add_repositories | bool
+    - mssql_add_repositories
   loop: "{{ mssql_ubuntu_repositories }}"
 
 - name: install software mssql-server (package)
@@ -104,7 +104,7 @@
   ansible.builtin.package:
     name: "{{ mssql_fts_package }}"
   when:
-    - mssql_fts | bool
+    - mssql_fts
   notify:
     - restart mssql-server
 

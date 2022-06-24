@@ -1,8 +1,0 @@
----
-exceptions:
-  - variation: Alpine
-    reason: "fatal error: Python.h: No such file or directory"
-  - variation: centos:latest
-    reason: "Depsolve Error occured: Problem: cannot install the best candidate for the job - nothing provides python needed by azure-cli-2.0.76-1.el7.x86_64"
-  - variation: opensuse
-    reason: "Cannot uninstall 'six'. It is a distutils installed project"

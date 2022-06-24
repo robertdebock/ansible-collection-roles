@@ -169,15 +169,6 @@ The minimum version of Ansible required is 2.10, tests have been done to:
 - The current version.
 - The development version.
 
-## [Exceptions](#exceptions)
-
-Some roles can't run on a specific distribution or version. Here are some exceptions.
-
-| variation                 | reason                 |
-|---------------------------|------------------------|
-| alpine | auditd start-stop-daemon: /sbin/auditd does not exist |
-| amazonlinux:1 | /etc/init.d/auditd: line 32: /etc/init.d/functions: No such file or directory |
-
 
 If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-auditd/issues)
 

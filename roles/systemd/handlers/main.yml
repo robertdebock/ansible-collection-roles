@@ -6,7 +6,7 @@
     name: systemd-journald
     state: restarted
   when:
-    - not ansible_check_mode | bool
+    - not ansible_check_mode
 
 - name: restart systemd-logind
   ansible.builtin.service:
@@ -14,4 +14,12 @@
     state: restarted
     masked: no
   when:
-    - not ansible_check_mode | bool
+    - not ansible_check_mode
+
+- name: restart systemd-resolved
+  ansible.builtin.service:
+    name: systemd-resolved
+    state: restarted
+  when:
+    - not ansible_check_mode
+    - ansible_os_family != "Suse"

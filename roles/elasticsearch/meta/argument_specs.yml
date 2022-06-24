@@ -18,6 +18,7 @@ argument_specs:
         default: "0.0.0.0"
         description: The IP address to bind on.
       elasticsearch_network_port:
+        # TODO: Is this a string?
         type: "str"
         default: "9200"
         description: The port to bind on.

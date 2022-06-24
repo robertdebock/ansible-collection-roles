@@ -24,7 +24,7 @@
 
 - name: install gitlab-runner
   ansible.builtin.package:
-    name: gitlab-runner
+    name: "{{ gitlab_runner_package }}"
     state: present
 
 - name: register runner

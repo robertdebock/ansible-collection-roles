@@ -10,7 +10,7 @@
     name: "{{ mysql_service }}"
     state: restarted
   when:
-    - not ansible_check_mode | bool
+    - not ansible_check_mode
 
 - name: set root password
   community.mysql.mysql_user:

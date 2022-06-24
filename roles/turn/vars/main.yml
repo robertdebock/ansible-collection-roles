@@ -6,8 +6,7 @@ turn_packages:
 
 _turn_configuration:
   default: /etc/turnserver.conf
-  RedHat: &redhat_configuration /etc/coturn/turnserver.conf
-  Rocky: *redhat_configuration
+  RedHat: /etc/coturn/turnserver.conf
 
 turn_configuration: "{{ _turn_configuration[ansible_os_family] | default(_turn_configuration['default'] ) }}"
 

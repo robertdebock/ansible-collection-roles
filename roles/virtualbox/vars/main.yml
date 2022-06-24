@@ -14,12 +14,10 @@ virtualbox_requirements: "{{ _virtualbox_requirements[ansible_os_family] | defau
 
 _virtualbox_repo_mapping:
   Fedora: fedora
-  CentOS: el
-  EL: el
-  Rocky: el
-  openSUSE Leap: opensuse
+  RedHat: el
+  Suse: opensuse
 
-virtualbox_repo_mapping: "{{ _virtualbox_repo_mapping[ansible_distribution] }}"
+virtualbox_repo_mapping: "{{ _virtualbox_repo_mapping[ansible_distribution] | default(_virtualbox_repo_mapping[ansible_os_family] ) }}"
 
 virtualbox_yum_baseurl: "http://download.virtualbox.org/virtualbox/rpm/{{ virtualbox_repo_mapping }}/$releasever/$basearch"
 

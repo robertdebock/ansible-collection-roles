@@ -32,7 +32,7 @@ _roundcubemail_requirements:
     - php-pspell
     - php-pecl-imagick
     - MySQL-python
-  RedHat: &redhat_requirements
+  RedHat:
     - php-cli
     - php-gd
     - php-curl
@@ -40,7 +40,6 @@ _roundcubemail_requirements:
     - php-mysqlnd
     - php-mbstring
     - python3-PyMySQL
-  Rocky: *redhat_requirements
 
 roundcubemail_requirements: "{{ _roundcubemail_requirements[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_roundcubemail_requirements[ansible_os_family] | default(_roundcubemail_requirements['default'] )) }}"
 
@@ -62,8 +61,7 @@ _roundcubemail_owner:
   default: http
   Alpine: apache
   Debian: www-data
-  RedHat: &redhat_owner apache
-  Rocky: *redhat_owner
+  RedHat: apache
   Suse: root
 
 roundcubemail_owner: "{{ _roundcubemail_owner[ansible_os_family] | default(_roundcubemail_owner['default'] ) }}"
@@ -72,8 +70,7 @@ _roundcubemail_group:
   default: apache
   Alpine: root
   Debian: www-data
-  RedHat: &redhat_group apache
-  Rocky: *redhat_group
+  RedHat: apache
   Suse: root
 
 roundcubemail_group: "{{ _roundcubemail_group[ansible_os_family] | default(_roundcubemail_group['default'] ) }}"
@@ -102,8 +99,7 @@ _roundcubemail_httpd_configuration:
   default: /etc/httpd/conf.d/roundcube.conf
   Alpine: /etc/apache2/conf.d/roundcube.conf
   Debian: /etc/apache2/conf-enabled/roundcube.conf
-  RedHat: &redhat_httpd_configuration /etc/httpd/conf.d/roundcubemail.conf
-  Rocky: *redhat_httpd_configuration
+  RedHat: /etc/httpd/conf.d/roundcubemail.conf
   Suse: /etc/apache2/conf.d/roundcubemail.conf
 
 roundcubemail_httpd_configuration: "{{ _roundcubemail_httpd_configuration[ansible_os_family] | default(_roundcubemail_httpd_configuration['default'] ) }}"

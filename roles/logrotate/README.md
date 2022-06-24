@@ -32,6 +32,15 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
       - name: example-compress
         path: "/var/log/example-compress/*.log"
         compress: yes
+      - name: example-copylog
+        path: "/var/log/example-copylog/*.log"
+        copylog: yes
+      - name: example-copytruncate
+        path: "/var/log/example-copytruncate/*.log"
+        copytruncate: yes
+      - name: example-delaycompress
+        path: "/var/log/example-delaycompress/*.log"
+        delaycompress: yes
       - name: example-script
         path: "/var/log/example-script/*.log"
         postrotate: killall -HUP some_process_name
@@ -43,6 +52,8 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
         create_mode: "0660"
         create_user: root
         create_group: utmp
+        dateext: yes
+        dateformat: "-%Y-%m-%d"
         keep: 1
       - name: wtmp
         path: /var/log/wtmp
@@ -53,6 +64,8 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
         create_user: root
         create_group: utmp
         minsize: 1M
+        dateext: yes
+        dateformat: "-%Y%m%d"
         keep: 1
       - name: dnf
         path: /var/log/hawkey.log
@@ -91,6 +104,9 @@ The machine needs to be prepared. In CI this is done using `molecule/default/pre
         - /var/log/example-frequency
         - /var/log/example-keep
         - /var/log/example-compress
+        - /var/log/example-copylog
+        - /var/log/example-copytruncate
+        - /var/log/example-delaycompress
         - /var/log/example-script
         - /var/log/example-sharedscripts
 
@@ -103,6 +119,9 @@ The machine needs to be prepared. In CI this is done using `molecule/default/pre
         - /var/log/example-frequency/app.log
         - /var/log/example-keep/app.log
         - /var/log/example-compress/app.log
+        - /var/log/example-copylog/app.log
+        - /var/log/example-copytruncate/app.log
+        - /var/log/example-delaycompress/app.log
         - /var/log/example-script/app.log
         - /var/log/example-sharedscripts/app.log
         - /var/log/btmp
@@ -175,7 +194,6 @@ The minimum version of Ansible required is 2.10, tests have been done to:
 - The previous version.
 - The current version.
 - The development version.
-
 
 
 If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-logrotate/issues)

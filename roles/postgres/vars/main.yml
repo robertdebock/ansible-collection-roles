@@ -10,10 +10,9 @@ _postgres_packages:
   Debian:
     - postgresql
     - postgresql-client
-  RedHat: &redhat_packages
+  RedHat:
     - postgresql-server
     - postgresql-devel
-  Rocky: *redhat_packages
 
 postgres_packages: "{{ _postgres_packages[ansible_os_family] | default(_postgres_packages['default'] ) }}"
 

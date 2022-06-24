@@ -141,17 +141,6 @@ The minimum version of Ansible required is 2.10, tests have been done to:
 - The current version.
 - The development version.
 
-## [Exceptions](#exceptions)
-
-Some roles can't run on a specific distribution or version. Here are some exceptions.
-
-| variation                 | reason                 |
-|---------------------------|------------------------|
-| centos:8 | No package roundcubemail available. |
-| amazonlinux:1 | No package matching 'python3-pip' found available, installed or updated |
-| amazonlinux:latest | The error was: ImportError: No module named pkg_resources (openssl role) |
-| alpine | failed to install mariadb py-mysqldb (mysql role) |
-
 
 If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-roundcubemail/issues)
 

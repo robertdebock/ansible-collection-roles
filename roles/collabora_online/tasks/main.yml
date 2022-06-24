@@ -41,9 +41,9 @@
 
 - name: configure collabora online
   ansible.builtin.template:
-    src: loolwsd.xml.j2
-    dest: /etc/loolwsd/loolwsd.xml
-    owner: lool
+    src: "{{ collabora_online_configuration_template }}"
+    dest: /etc/coolwsd/coolwsd.xml
+    owner: cool
     group: root
     mode: "0640"
   notify:
@@ -51,6 +51,6 @@
 
 - name: start and enable service
   ansible.builtin.systemd:
-    name: loolwsd
+    name: coolwsd
     state: started
     enabled: yes

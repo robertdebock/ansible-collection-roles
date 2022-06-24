@@ -58,7 +58,7 @@
     file: reboot.yml
   when:
     - ansible_connection not in [ "container", "docker", "community.docker.docker" ]
-    - (reboot_always | bool)
+    - reboot_always
       or (reboot_rhel_needsrestarting.changed | default(no))
       or (reboot_debian_needrestarting.changed | default(no))
   tags:

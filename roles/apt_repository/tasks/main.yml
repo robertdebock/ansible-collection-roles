@@ -10,7 +10,7 @@
   ansible.builtin.apt_repository:
     repo: "{{ item.repo }}"
     state: "{{ item.state | default('present') }}"
-    validate_certs: no
+    validate_certs: "{{ item.validate_certs | default('yes') }}"
   loop: "{{ apt_repositories }}"
   loop_control:
     label: "{{ item.repo }}"

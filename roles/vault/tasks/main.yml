@@ -18,7 +18,7 @@
   ansible.builtin.include_tasks:
     file: follower.yml
   when:
-    - not ansible_check_mode | bool
+    - not ansible_check_mode
     - inventory_hostname != vault_leader
 
 - name: run provisioning tasks

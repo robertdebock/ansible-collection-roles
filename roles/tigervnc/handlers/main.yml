@@ -11,4 +11,4 @@
     state: restarted
     daemon_reload: yes
   when:
-    - not ansible_check_mode | bool
+    - not ansible_check_mode

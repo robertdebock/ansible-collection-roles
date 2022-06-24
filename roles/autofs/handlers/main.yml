@@ -6,11 +6,11 @@
     name: "{{ autofs_service }}"
     state: restarted
   when:
-    - not ansible_check_mode | bool
+    - not ansible_check_mode
 
 - name: reload autofs
   ansible.builtin.service:
     name: "{{ autofs_service }}"
     state: reloaded
   when:
-    - not ansible_check_mode | bool
+    - not ansible_check_mode

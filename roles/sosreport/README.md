@@ -83,17 +83,6 @@ The minimum version of Ansible required is 2.10, tests have been done to:
 - The current version.
 - The development version.
 
-## [Exceptions](#exceptions)
-
-Some roles can't run on a specific distribution or version. Here are some exceptions.
-
-| variation                 | reason                 |
-|---------------------------|------------------------|
-| Alpine | sosreport is not available. |
-| Debian | sosreport is not available. |
-| openSUSE Leap | sosreport is not available. |
-| Ubuntu | sosreport is not available. |
-
 
 If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-sosreport/issues)
 

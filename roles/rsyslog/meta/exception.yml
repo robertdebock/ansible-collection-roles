@@ -1,4 +1,0 @@
----
-exceptions:
-  - variation: archlinux/base
-    reason: "target not found: rsyslog"

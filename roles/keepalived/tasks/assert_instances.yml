@@ -48,3 +48,12 @@
     quiet: yes
   when:
     - item.unicast_src_ip is defined
+
+- name: test if item in instance.check_status_command is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.check_status_command is string
+      - item.priority <= 252
+    quiet: yes
+  when:
+    - item.check_status_command is defined

@@ -105,20 +105,6 @@ The minimum version of Ansible required is 2.10, tests have been done to:
 - The current version.
 - The development version.
 
-## [Exceptions](#exceptions)
-
-Some roles can't run on a specific distribution or version. Here are some exceptions.
-
-| variation                 | reason                 |
-|---------------------------|------------------------|
-| Alpine | /tmp/Anaconda3-2018.12-Linux-x86_64.sh: line 377: /root/anaconda3/pkgs/python-3.7.1-h0371630_7/bin/python: No such file or directory |
-
-## [Included version(s)](#included-versions)
-
-This role [refers to a version](https://github.com/robertdebock/ansible-role-anaconda/blob/master/defaults/main.yml) released by Anaconda. Check the released version(s) here:
-- [Anaconda](https://www.anaconda.com/distribution/).
-
-This version reference means a role may get outdated. Monthly tests occur to see if [bit-rot](https://en.wikipedia.org/wiki/Software_rot) occured. If you however find a problem, please create an issue, I'll get on it as soon as possible.
 
 If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-anaconda/issues)
 

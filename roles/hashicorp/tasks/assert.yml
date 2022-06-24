@@ -19,8 +19,7 @@
   ansible.builtin.assert:
     that:
       - item.name is string
-      - item.name in [ "consul", "consul-template", "nomad", "packer", "terraform", "vagrant", "vault" ]
-      - item.version is not defined
+      - item.name is regex('^(consul|consul-template|nomad|packer|terraform|vagrant|vault).*')
     quiet: yes
   loop: "{{ hashicorp_products }}"
   loop_control:
@@ -28,6 +27,20 @@
   when:
     - hashicorp_products is defined
     - hashicorp_installation_method == "package"
+
+- name: test if item in hashicorp_products is set correctly (package with version)
+  ansible.builtin.assert:
+    that:
+      - item.name is string
+      - item.name is regex('^(consul|consul-template|nomad|packer|terraform|vagrant|vault).*')
+    quiet: yes
+  loop: "{{ hashicorp_products }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - hashicorp_products is defined
+    - hashicorp_installation_method == "package"
+    - item.version is defined
 
 - name: test if item in hashicorp_products is set correctly (manual)
   ansible.builtin.assert:

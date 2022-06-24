@@ -8,9 +8,8 @@ _docker_packages:
     - docker.io
   RedHat-7:
     - docker-io
-  RedHat: &redhat_packages
+  RedHat:
     - moby-engine
-  Rocky: *redhat_packages
 
 docker_packages: "{{ _docker_packages[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_docker_packages[ansible_os_family] | default(_docker_packages['default'] )) }}"
 

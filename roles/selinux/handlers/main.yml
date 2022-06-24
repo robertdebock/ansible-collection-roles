@@ -4,7 +4,7 @@
 - name: reboot
   ansible.builtin.reboot:
   when:
-    - selinux_reboot | bool
+    - selinux_reboot
 
 - name: gather facts
   ansible.builtin.setup:

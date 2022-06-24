@@ -1,6 +1,10 @@
 ---
 # defaults file for nomad
 
+# You can install nomad using a package in this role. If you have installed
+# nomad manually, set this to `no`.
+nomad_install_package: yes
+
 # Set this to "yes" for a server.
 nomad_server: yes
 

@@ -68,7 +68,7 @@
     that:
       - auditd_log_format is defined
       - auditd_log_format is string
-      - auditd_log_format in [ "ENRICH", "NOLOG", "RAW" ]
+      - auditd_log_format in [ "ENRICHED", "NOLOG", "RAW" ]
     quiet: yes
 
 - name: test if auditd_flush is set correctly

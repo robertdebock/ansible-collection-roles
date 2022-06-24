@@ -3,6 +3,7 @@
 
 # Allow remote access
 cups_listen: "localhost:631"
+cups_serveralias: "*"
 
 # Share local printers on the local network.
 cups_browsing: "Off"

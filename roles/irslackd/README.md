@@ -107,24 +107,6 @@ The minimum version of Ansible required is 2.10, tests have been done to:
 - The current version.
 - The development version.
 
-## [Exceptions](#exceptions)
-
-Some roles can't run on a specific distribution or version. Here are some exceptions.
-
-| variation                 | reason                 |
-|---------------------------|------------------------|
-| amazonlinux:1 | SyntaxError: Use of const in strict mode. |
-| amazonlinux:latest | SyntaxError: Unexpected identifier |
-| centos:7 | SyntaxError: Unexpected identifier |
-| alpine | Can't get the service to be idempotent. |
-| debian:testing | The repository 'https://deb.nodesource.com/node_10.x bullseye Release' does not have a Release file. |
-
-## [Included version(s)](#included-versions)
-
-This role [refers to a version](https://github.com/robertdebock/ansible-role-irslackd/blob/master/defaults/main.yml) released by adsr on GitHub. Check the released version(s) here:
-- [irslackd](https://github.com/adsr/irslackd/releases).
-
-This version reference means a role may get outdated. Monthly tests occur to see if [bit-rot](https://en.wikipedia.org/wiki/Software_rot) occured. If you however find a problem, please create an issue, I'll get on it as soon as possible.
 
 If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-irslackd/issues)
 

@@ -416,3 +416,10 @@
       - openssh_restart_immediately is defined
       - openssh_restart_immediately is boolean
     quiet: yes
+
+- name: test if openssh_trusted_user_ca_keys is set correctly
+  ansible.builtin.assert:
+    that:
+      - openssh_trusted_user_ca_keys is defined
+      - openssh_trusted_user_ca_keys is string
+    quiet: yes

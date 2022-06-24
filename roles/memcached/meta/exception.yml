@@ -1,4 +1,0 @@
----
-exceptions:
-  - variation: amazonlinux
-    reason: "/etc/init.d/memcached: line 26: /etc/sysconfig/network: No such file or directory"

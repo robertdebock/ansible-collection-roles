@@ -5,10 +5,9 @@ _zabbix_web_packages:
   Debian:
     - zabbix-frontend-php
     - zabbix-apache-conf
-  RedHat: &redhat_packages
+  RedHat:
     - zabbix-web-mysql
     - zabbix-apache-conf
-  Rocky: *redhat_packages
   Suse:
     - zabbix-web-mysql
     - zabbix-apache-conf
@@ -23,15 +22,13 @@ zabbix_configuration_path: "{{ _zabbix_configuration_path[ansible_distribution ~
 
 _zabbix_web_httpd_service:
   default: apache2
-  RedHat: &redhat_httpd_service httpd
-  Rocky: *redhat_httpd_service
+  RedHat: httpd
 
 zabbix_web_httpd_service: "{{ _zabbix_web_httpd_service[ansible_os_family] | default(_zabbix_web_httpd_service['default'] ) }}"
 
 _zabbix_web_mysql_socket:
   default: /var/run/mysql/mysql.sock
   Debian: /run/mysql/mysqld.sock
-  RedHat: &redhat_mysql_socket /var/lib/mysql/mysql.sock
-  Rocky: *redhat_mysql_socket
+  RedHat: /var/lib/mysql/mysql.sock
 
 zabbix_web_mysql_socket: "{{ _zabbix_web_mysql_socket[ansible_os_family] | default(_zabbix_web_mysql_socket['default'] ) }}"

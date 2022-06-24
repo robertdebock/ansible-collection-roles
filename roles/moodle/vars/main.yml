@@ -9,14 +9,13 @@ _moodle_requirements:
     - php-intl
     - php-xmlrpc
     - php-soap
-  RedHat-8: &redhat_requirements
+  RedHat-8:
     - php-mysqlnd
     - php-zip
     - php-gd
     - php-intl
     - php-xmlrpc
     - php-soap
-  Rocky-8: *redhat_requirements
   Debian:
     - php-mysqli
     - php-zip
@@ -29,7 +28,6 @@ _moodle_requirements:
     - php-zip
     - php-gd
     - php-intl
-    - php-xmlrpc
     - php-soap
   Suse:
     - php7-mysql

@@ -31,8 +31,7 @@ _certbot_system_to_restart:
     Alpine: apache2
     Debian: apache2
     Suse: apache2
-    RedHat: &redhat_system_to_restart httpd
-    Rocky: *redhat_system_to_restart
+    RedHat: httpd
   nginx:
     default: nginx
   haproxy:

@@ -15,13 +15,12 @@ _unbound_requirements:
     - file
     - openssl-dev
     - systemd-dev
-  RedHat: &redhat_requirements
+  RedHat:
     - diffutils
     - expat-devel
     - file
     - openssl-devel
     - systemd-devel
-  Rocky: *redhat_requirements
   Suse:
     - diffutils
     - libexpat-devel

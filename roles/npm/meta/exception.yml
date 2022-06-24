@@ -1,4 +1,0 @@
----
-exceptions:
-  - variation: debian:testing
-    reason: "The repository 'https://deb.nodesource.com/node_10.x bullseye Release' does not have a Release file."

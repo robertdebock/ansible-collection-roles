@@ -22,6 +22,12 @@
       - gitlab_distribution in [ "community", "enterprise" ]
     quiet: yes
 
+- name: test if gitlab_show_initial_root_password is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_show_initial_root_password is boolean
+    quiet: yes
+
 - name: test if gitlab_configuration_file is set correctly
   ansible.builtin.assert:
     that:
@@ -157,14 +163,33 @@
       when:
         - gitlab_rails_ldap_enabled
 
-    - name: test if enterprise item in gitlab_rails_ldap_servers is set correctly
+    - name: test if group_base item in gitlab_rails_ldap_servers is set correctly
       ansible.builtin.assert:
         that:
-          - item.group_base is defined
           - item.group_base is string
-          - item.admin_group is defined
+        quiet: yes
+      loop: "{{ gitlab_rails_ldap_servers }}"
+      loop_control:
+        label: "{{ item.name }}"
+      when:
+        - gitlab_rails_ldap_enabled
+        - item.group_base is defined
+
+    - name: test if admin_group item in gitlab_rails_ldap_servers is set correctly
+      ansible.builtin.assert:
+        that:
           - item.admin_group is string
-          - item.sync_ssh_keys is defined
+        quiet: yes
+      loop: "{{ gitlab_rails_ldap_servers }}"
+      loop_control:
+        label: "{{ item.name }}"
+      when:
+        - gitlab_rails_ldap_enabled
+        - item.admin_group is defined
+
+    - name: test if sync_ssh_keys item in gitlab_rails_ldap_servers is set correctly
+      ansible.builtin.assert:
+        that:
           - item.sync_ssh_keys is boolean
         quiet: yes
       loop: "{{ gitlab_rails_ldap_servers }}"
@@ -172,25 +197,7 @@
         label: "{{ item.name }}"
       when:
         - gitlab_rails_ldap_enabled
-
-    - name: test if enterprise item in gitlab_rails_ldap_servers is not set
-      ansible.builtin.assert:
-        that:
-          - item.group_base is not defined
-          - item.group_base is not string
-          - item.admin_group is not defined
-          - item.admin_group is not string
-          - item.sync_ssh_keys not is defined
-          - item.sync_ssh_keys not is boolean
-        quiet: yes
-      loop: "{{ gitlab_rails_ldap_servers }}"
-      loop_control:
-        label: "{{ item.name }}"
-      when:
-        - gitlab_rails_ldap_server is defined
-        - gitlab_distribution == "community"
-
-    ##########
+        - item.sync_ssh_keys is defined
 
     - name: test if gitlab_rails_manage_backup_path is set correctly
       ansible.builtin.assert:
@@ -760,7 +767,7 @@
       when:
         - gitlab_letsencrypt is defined
 
-    - name: test if gitlab_letsencrypt no is set correctly
+    - name: test if gitlab_ssl_* are set correctly
       ansible.builtin.assert:
         that:
           - gitlab_ssl_key is defined
@@ -840,8 +847,7 @@
           - (gitlab_letsencrypt_auto_renew_hour is number and
              gitlab_letsencrypt_auto_renew_hour >= 0 and
              gitlab_letsencrypt_auto_renew_hour <= 24) or
-            (gitlab_letsencrypt_auto_renew_hour is string and
-             gitlab_letsencrypt_auto_renew_hour == "nil")
+            (gitlab_letsencrypt_auto_renew_hour is string)
         quiet: yes
       when:
         - gitlab_letsencrypt is defined
@@ -855,8 +861,7 @@
           - (gitlab_letsencrypt_auto_renew_minute is number and
              gitlab_letsencrypt_auto_renew_minute >= 0 and
              gitlab_letsencrypt_auto_renew_minute <= 59) or
-            (gitlab_letsencrypt_auto_renew_minute is string and
-             gitlab_letsencrypt_auto_renew_minute == "nil")
+            (gitlab_letsencrypt_auto_renew_minute is string)
         quiet: yes
       when:
         - gitlab_letsencrypt is defined
@@ -870,8 +875,7 @@
           - (gitlab_letsencrypt_auto_renew_day_of_month is number and
              gitlab_letsencrypt_auto_renew_day_of_month >= 0 and
              gitlab_letsencrypt_auto_renew_day_of_month <= 31) or
-            (gitlab_letsencrypt_auto_renew_day_of_month is string and
-             gitlab_letsencrypt_auto_renew_day_of_month == "nil")
+            (gitlab_letsencrypt_auto_renew_day_of_month is string)
         quiet: yes
       when:
         - gitlab_letsencrypt is defined
@@ -890,3 +894,11 @@
         - gitlab_letsencrypt_auto_renew
   when:
     - gitlab_configuration_file is not defined
+
+- name: test if gitlab_trusted_certs is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_trusted_certs is iterable
+    quiet: yes
+  when:
+    - gitlab_trusted_certs is defined

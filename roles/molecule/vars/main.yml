@@ -8,10 +8,9 @@ _molecule_requirements:
     - rust
   Debian:
     - libssl-dev
-  RedHat: &redhat_requirements
+  RedHat:
     - python3-devel
     - openssl-devel
-  Rocky: *redhat_requirements
   Suse:
     - python3-devel
 

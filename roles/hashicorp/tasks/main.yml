@@ -25,18 +25,32 @@
 
         - name: install repository for Debian
           ansible.builtin.apt_repository:
-            repo: deb [arch=amd64] https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main
+            repo: deb [arch={{ hashicorp_architecture_mapping }}] https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main
             state: present
       when:
         - ansible_os_family == "Debian"
 
     - name: install hashicorp product using package
-      ansible.builtin.package:
-        name: "{{ item.name }}"
-        state: present
-      loop: "{{ hashicorp_products }}"
-      loop_control:
-        label: "{{ item.name }}"
+      block:
+        - name: install latest hashicorp product using package
+          ansible.builtin.package:
+            name: "{{ item.name }}"
+            state: present
+          loop: "{{ hashicorp_products }}"
+          loop_control:
+            label: "{{ item.name }}"
+          when:
+            - item.version is not defined
+
+        - name: install versioned hashicorp product using package
+          ansible.builtin.package:
+            name: "{{ item.name }}{{ version_coupler }}{{ item.version }}"
+            state: present
+          loop: "{{ hashicorp_products }}"
+          loop_control:
+            label: "{{ item.name }}"
+          when:
+            - item.version is defined
       when:
         - hashicorp_products is defined
   when:

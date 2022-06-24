@@ -96,7 +96,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |---------|----|
 |debian|bullseye|
 |el|8|
-|fedora|34, 35|
+|fedora|all|
 |ubuntu|all|
 
 The minimum version of Ansible required is 2.10, tests have been done to:
@@ -104,19 +104,6 @@ The minimum version of Ansible required is 2.10, tests have been done to:
 - The previous version.
 - The current version.
 - The development version.
-
-## [Exceptions](#exceptions)
-
-Some roles can't run on a specific distribution or version. Here are some exceptions.
-
-| variation                 | reason                 |
-|---------------------------|------------------------|
-| Alpine | Not supported. |
-| Archlinux | Not supported. |
-| Debian unstable | Not supported. |
-| CentOS 8 | Not supported. |
-| OpenSUSE Leap | Not supported. |
-| Ubuntu devel | Not supported. |
 
 
 If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-docker_ce/issues)

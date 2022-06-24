@@ -34,6 +34,17 @@ The machine needs to be prepared. In CI this is done using `molecule/default/pre
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.
 
+## [Role Variables](#role-variables)
+
+The default values for the variables are set in `defaults/main.yml`:
+```yaml
+---
+# defaults file for epel
+
+# Whether to install the new `epel-next` repository. This is only installed
+# by default on CentOS Stream, as per https://docs.fedoraproject.org/en-US/epel/#_quickstart.
+epel_next: "{{ yes if ansible_distribution_release == 'Stream' }}"
+```
 
 ## [Requirements](#requirements)
 
@@ -61,14 +72,13 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |container|tags|
 |---------|----|
 |amazon|Candidate|
-|el|8|
+|el|7, 8|
 
 The minimum version of Ansible required is 2.10, tests have been done to:
 
 - The previous version.
 - The current version.
 - The development version.
-
 
 
 If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-epel/issues)

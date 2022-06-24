@@ -73,7 +73,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |container|tags|
 |---------|----|
 |el|8|
-|fedora|34, 35|
+|fedora|35, 36|
 
 The minimum version of Ansible required is 2.10, tests have been done to:
 
@@ -81,13 +81,6 @@ The minimum version of Ansible required is 2.10, tests have been done to:
 - The current version.
 - The development version.
 
-
-## [Included version(s)](#included-versions)
-
-This role [refers to a version](https://github.com/robertdebock/ansible-role-remi/blob/master/molecule/resources/playbook.yml) released by Remi's RPM repository. Check the released version(s) here:
-- [Remi's repositories](https://blog.remirepo.net/pages/Config-en).
-
-This version reference means a role may get outdated. Monthly tests occur to see if [bit-rot](https://en.wikipedia.org/wiki/Software_rot) occured. If you however find a problem, please create an issue, I'll get on it as soon as possible.
 
 If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-remi/issues)
 

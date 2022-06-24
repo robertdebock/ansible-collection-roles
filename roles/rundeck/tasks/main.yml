@@ -44,11 +44,11 @@
     regexp: "^{{ item.parameter }}"
     create: yes
     mode: "0644"
-  notify:
-    - restart rundeck
   loop: "{{ rundeck_config }}"
   loop_control:
     label: "{{ item.parameter }}"
+  notify:
+    - restart rundeck
 
 - name: configure rundeck framework
   ansible.builtin.lineinfile:
@@ -57,16 +57,24 @@
     regexp: "^{{ item.parameter }}"
     create: yes
     mode: "0644"
-  notify:
-    - restart rundeck
   loop: "{{ rundeck_framework }}"
   loop_control:
     label: "{{ item.parameter }}"
+  notify:
+    - restart rundeck
 
 - name: configure rundeck policy
   ansible.builtin.template:
     src: admin.aclpolicy.j2
     dest: "{{ rundeck_rdeckbase }}/etc/admin.aclpolicy"
+    mode: "0644"
+  notify:
+    - restart rundeck
+
+- name: configure rundeck profile
+  ansible.builtin.template:
+    src: profile.j2
+    dest: "{{ rundeck_rdeckbase }}/etc/profile"
     mode: "0644"
   notify:
     - restart rundeck

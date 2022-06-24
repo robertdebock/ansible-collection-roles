@@ -49,7 +49,7 @@ _owncloud_requirements:
     - php-mysql
     - php-xml
     - php-zip
-  RedHat: &redhat_requirements
+  RedHat:
     - php-curl
     - php-fpm
     - php-gd
@@ -62,7 +62,6 @@ _owncloud_requirements:
     - php-process
     - php-xml
     - php-zip
-  Rocky: *redhat_requirements
   Suse:
     - php-posix
     - php7-ctype

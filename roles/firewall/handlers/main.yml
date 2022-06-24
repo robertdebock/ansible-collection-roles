@@ -7,7 +7,7 @@
     state: reloaded
   when:
     - ansible_connection not in [ "container", "docker", "community.docker.docker" ]
-    - not ansible_check_mode | bool
+    - not ansible_check_mode
 
 - name: reload firewalld
   ansible.builtin.command:

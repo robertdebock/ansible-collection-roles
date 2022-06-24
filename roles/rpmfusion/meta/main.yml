@@ -17,7 +17,7 @@ galaxy_info:
         - 8
     - name: Fedora
       versions:
-        - 34
+        - all
 
   galaxy_tags:
     - rpmfusion

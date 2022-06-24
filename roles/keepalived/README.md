@@ -81,6 +81,8 @@ The default values for the variables are set in `defaults/main.yml`:
 #     virtual_router_id: 51
 #   # `priority` is the advertised priority.
 #     priority: 255
+#   # `check_status_command` will make +3 to priority if command return is 0 (optional). example:
+#     check_status_command: /sbin/postfix status
 #   # `authentication` specifies the information necessary for servers participating in VRRP to authenticate with each other.
 #     authentication:
 #       auth_type: PASS
@@ -129,7 +131,6 @@ The minimum version of Ansible required is 2.10, tests have been done to:
 - The previous version.
 - The current version.
 - The development version.
-
 
 
 If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-keepalived/issues)

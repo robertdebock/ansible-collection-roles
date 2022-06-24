@@ -15,7 +15,8 @@ galaxy_info:
         - 8
     - name: Ubuntu
       versions:
-        - all
+        - bionic
+        - focal
 
   galaxy_tags:
     - collaboraonline

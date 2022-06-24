@@ -1,5 +1,7 @@
 # [omsagent](#omsagent)
 
+This role has been archived, the last distribution also started to fail.
+
 Install Microsoft omsagent (Log Analytics agent) on your system.
 
 |GitHub|GitLab|Quality|Downloads|Version|
@@ -111,24 +113,6 @@ The minimum version of Ansible required is 2.10, tests have been done to:
 - The current version.
 - The development version.
 
-## [Exceptions](#exceptions)
-
-Some roles can't run on a specific distribution or version. Here are some exceptions.
-
-| variation                 | reason                 |
-|---------------------------|------------------------|
-| alpine | Only RPM and DPKG is supported by Microsoft. |
-| amazonlinux | Dependency not available: ansible-role-auditd |
-| archlinux | Only RPM and DPKG is supported by Microsoft. |
-| ubuntu | Python is not configured or Python does not support ctypes on this system, installation cannot continue. |
-| debian | Python is not configured or Python does not support ctypes on this system, installation cannot continue. |
-
-## [Included version(s)](#included-versions)
-
-This role [refers to a version](https://github.com/robertdebock/ansible-role-omsagent/blob/master/defaults/main.yml) released by Microsoft. Check the released version(s) here:
-- [OMS Agent for Linux GA](https://github.com/microsoft/OMS-Agent-for-Linux/releases).
-
-This version reference means a role may get outdated. Monthly tests occur to see if [bit-rot](https://en.wikipedia.org/wiki/Software_rot) occured. If you however find a problem, please create an issue, I'll get on it as soon as possible.
 
 If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-omsagent/issues)
 

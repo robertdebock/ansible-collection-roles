@@ -23,4 +23,4 @@
         label: "hidden"
       no_log: yes
   when:
-    - vault_status.sealed | bool
+    - vault_status.sealed

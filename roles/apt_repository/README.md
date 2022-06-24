@@ -1,10 +1,10 @@
 # [apt_repository](#apt_repository)
 
-Manage apt repositories.
+Manage apt repositor(y|ies).
 
 |GitHub|GitLab|Quality|Downloads|Version|
 |------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-apt_repository/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-apt_repository/actions)|[![gitlab](https://gitlab.com/robertdebock/ansible-role-apt_repository/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-apt_repository)|[![quality](https://img.shields.io/ansible/quality/)](https://galaxy.ansible.com/robertdebock/apt_repository)|[![downloads](https://img.shields.io/ansible/role/d/)](https://galaxy.ansible.com/robertdebock/apt_repository)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-apt_repository.svg)](https://github.com/robertdebock/ansible-role-apt_repository/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-apt_repository/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-apt_repository/actions)|[![gitlab](https://gitlab.com/robertdebock/ansible-role-apt_repository/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-apt_repository)|[![quality](https://img.shields.io/ansible/quality/58057)](https://galaxy.ansible.com/robertdebock/apt_repository)|[![downloads](https://img.shields.io/ansible/role/d/58057)](https://galaxy.ansible.com/robertdebock/apt_repository)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-apt_repository.svg)](https://github.com/robertdebock/ansible-role-apt_repository/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -18,6 +18,8 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
 
   roles:
     - role: robertdebock.apt_repository
+      apt_repositories:
+        - repo: "deb https://dl.yarnpkg.com/debian/ stable main"
 ```
 
 The machine needs to be prepared. In CI this is done using `molecule/default/prepare.yml`:
@@ -30,6 +32,19 @@ The machine needs to be prepared. In CI this is done using `molecule/default/pre
 
   roles:
     - role: robertdebock.bootstrap
+
+  tasks:
+    - name: install apt-transport-https ca-certificates
+      ansible.builtin.package:
+        name: "{{ item }}"
+      loop:
+        - apt-transport-https
+        - ca-certificates
+
+    - name: install yarn public key
+      ansible.builtin.apt_key:
+        url: "https://dl.yarnpkg.com/debian/pubkey.gpg"
+        validate_certs: no
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.
@@ -82,7 +97,6 @@ The minimum version of Ansible required is 2.10, tests have been done to:
 - The previous version.
 - The current version.
 - The development version.
-
 
 
 If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-apt_repository/issues)

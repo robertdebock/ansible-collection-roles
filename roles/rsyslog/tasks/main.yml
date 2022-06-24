@@ -25,7 +25,7 @@
 - name: configuring default rsyslog
   ansible.builtin.template:
     src: "{{ rsyslog_config_file_format }}_rsyslog.conf.j2"
-    dest: /etc/rsyslog.conf
+    dest: "{{ rsyslog_dest_conf_file }}"
     mode: "0644"
   when:
     - rsyslog_deploy_default_config

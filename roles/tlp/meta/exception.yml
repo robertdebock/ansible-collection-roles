@@ -1,8 +1,0 @@
----
-exceptions:
-  - variation: ubuntu:latest
-    reason: "Can't locate Tie/Hash/NamedCapture.pm in @INC"
-  - variation: debian:bullseye
-    reason: "Can't locate Tie/Hash/NamedCapture.pm in @INC"
-  - variation: alpine
-    reason: "Starting TLP is not idempotent."

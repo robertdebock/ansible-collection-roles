@@ -92,6 +92,12 @@
   ansible.builtin.assert:
     that:
       - gateway_enabled is defined
-      - gateway_enabled is string
-      - gateway_enabled in [ "yes", "no" ]
+      - gateway_enabled is boolean
+    quiet: yes
+
+- name: test if cntlm_allows_include_local_ipv4 is set correctly
+  ansible.builtin.assert:
+    that:
+      - cntlm_allows_include_local_ipv4 is defined
+      - cntlm_allows_include_local_ipv4 is boolean
     quiet: yes

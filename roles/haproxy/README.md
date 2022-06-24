@@ -39,6 +39,13 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
       haproxy_backends:
         - name: backend
           httpcheck: yes
+          # You can tell how the health check must be done.
+          # This requires haproxy version 2
+          # http_check:
+          #   send:
+          #     method: GET
+          #     uri: /health.html
+          #   expect: status 200
           balance: roundrobin
           # You can refer to hosts in an Ansible group.
           # The `ansible_default_ipv4` will be used as an address to connect to.
@@ -84,6 +91,24 @@ The machine needs to be prepared. In CI this is done using `molecule/default/pre
     # This role is applied to serve as a mock "backend" server. See `molecule/default/verify.yml`.
     - role: robertdebock.httpd
       httpd_port: 8080
+
+  vars:
+    _httpd_data_directory:
+      default: /var/www/html
+      Alpine: /var/www/localhost/htdocs
+      Suse: /srv/www/htdocs
+
+    httpd_data_directory: "{{ _httpd_data_directory[ansible_os_family] | default(_httpd_data_directory['default'] ) }}"
+  post_tasks:
+    - name: place health check
+      ansible.builtin.copy:
+        content: 'ok'
+        dest: "{{ httpd_data_directory }}/health.html"
+
+    - name: place sample page
+      ansible.builtin.copy:
+        content: 'Hello world!'
+        dest: "{{ httpd_data_directory }}/index.html"
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.
@@ -98,6 +123,7 @@ The default values for the variables are set in `defaults/main.yml`:
 # Configure stats in HAProxy?
 haproxy_stats: yes
 haproxy_stats_port: 1936
+haproxy_stats_bind_addr: 0.0.0.0
 
 # Default setttings for HAProxy.
 haproxy_retries: 3
@@ -152,15 +178,6 @@ The minimum version of Ansible required is 2.10, tests have been done to:
 - The previous version.
 - The current version.
 - The development version.
-
-## [Exceptions](#exceptions)
-
-Some roles can't run on a specific distribution or version. Here are some exceptions.
-
-| variation                 | reason                 |
-|---------------------------|------------------------|
-| amazonlinux:1 | /etc/init.d/haproxy: line 17: /etc/sysconfig/network: No such file or directory |
-| ubuntu:xenial | Setup script exited with error: command 'x86_64-linux-gnu-gcc' failed with exit status 1 |
 
 
 If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-haproxy/issues)

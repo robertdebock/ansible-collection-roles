@@ -108,16 +108,6 @@ The minimum version of Ansible required is 2.10, tests have been done to:
 - The current version.
 - The development version.
 
-## [Exceptions](#exceptions)
-
-Some roles can't run on a specific distribution or version. Here are some exceptions.
-
-| variation                 | reason                 |
-|---------------------------|------------------------|
-| alpine | /lib/rc/sh/openrc-run.sh: line 100: can't create /sys/fs/cgroup/systemd/tasks: Read-only file system |
-| opensuse | ConditionVirtualization=!container was not met |
-| debian:buster | Unable to restart service ntp: Job for ntp.service failed because the control process exited with error code. |
-
 
 If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-ntp/issues)
 

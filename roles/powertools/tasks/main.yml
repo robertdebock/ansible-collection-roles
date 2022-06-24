@@ -8,7 +8,7 @@
 
 - name: enable powertools
   community.general.ini_file:
-    path: "{{ powertools_repo_path }}"
+    path: "{{ ansible_distribution }}-powertools.repo"
     section: powertools
     option: enabled
     value: "1"

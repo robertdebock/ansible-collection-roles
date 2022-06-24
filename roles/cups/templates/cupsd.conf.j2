@@ -15,6 +15,7 @@ LogLevel warn
 PreserveJobHistory {{ cups_preserve_job_history }}
 
 # Only listen for connections from the local machine.
+ServerAlias {{ cups_serveralias }}
 Listen {{ cups_listen }}
 Listen /run/cups/cups.sock
 

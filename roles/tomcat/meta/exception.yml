@@ -1,6 +1,0 @@
----
-exceptions:
-  - variation: amazonlinux:1
-    reason: "Not idempotent."
-  - variation: alpine
-    reason: "Restart fails."

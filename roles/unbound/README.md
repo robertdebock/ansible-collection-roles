@@ -84,7 +84,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |container|tags|
 |---------|----|
 |el|8|
-|fedora|34, 35|
+|fedora|all|
 |opensuse|all|
 
 The minimum version of Ansible required is 2.10, tests have been done to:
@@ -92,14 +92,6 @@ The minimum version of Ansible required is 2.10, tests have been done to:
 - The previous version.
 - The current version.
 - The development version.
-
-## [Exceptions](#exceptions)
-
-Some roles can't run on a specific distribution or version. Here are some exceptions.
-
-| variation                 | reason                 |
-|---------------------------|------------------------|
-| alpine | Idempotence test failed: start and enable unbound |
 
 
 If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-unbound/issues)

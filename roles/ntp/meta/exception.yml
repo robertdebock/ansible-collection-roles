@@ -1,8 +1,0 @@
----
-exceptions:
-  - variation: alpine
-    reason: "/lib/rc/sh/openrc-run.sh: line 100: can't create /sys/fs/cgroup/systemd/tasks: Read-only file system"
-  - variation: opensuse
-    reason: "ConditionVirtualization=!container was not met"
-  - variation: debian:buster
-    reason: "Unable to restart service ntp: Job for ntp.service failed because the control process exited with error code."

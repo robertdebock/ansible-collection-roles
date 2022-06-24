@@ -1,6 +1,0 @@
----
-exceptions:
-  - variation: centos:8
-    reason: "Ansible module rpm_key is not idempotent."
-  - variation: fedora
-    reason: "file /usr/bin/VBox conflicts between attempted installs of VirtualBox-6.1-6.1.10_138449_fedora31-1.x86_64 and VirtualBox-5.2-5.2.42_137960_fedora29-1.x86_64"

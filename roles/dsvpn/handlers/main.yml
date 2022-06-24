@@ -7,7 +7,7 @@
     state: restarted
   when:
     - dsvpn_role == "server"
-    - not ansible_check_mode | bool
+    - not ansible_check_mode
 
 - name: restart dsvpn-client
   ansible.builtin.service:
@@ -15,4 +15,4 @@
     state: restarted
   when:
     - dsvpn_role == "client"
-    - not ansible_check_mode | bool
+    - not ansible_check_mode

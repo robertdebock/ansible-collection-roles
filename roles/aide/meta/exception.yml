@@ -1,6 +1,0 @@
----
-exceptions:
-  - variation: alpine
-    reason: "aide (missing): required by: world[aide]"
-  - variation: "debian:unstable"
-    reason: "No package matching 'aide' is available"

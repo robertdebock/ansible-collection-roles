@@ -6,5 +6,5 @@
     name: "{{ certbot_system_to_restart }}"
     state: restarted
   when:
-    - not ansible_check_mode | bool
+    - not ansible_check_mode
     - certbot_system != "standalone"

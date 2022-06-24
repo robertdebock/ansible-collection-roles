@@ -28,7 +28,7 @@
   community.general.timezone:
     name: "{{ ntp_timezone }}"
   when:
-    - ntp_timezone_supported | bool
+    - ntp_timezone_supported
 
 - name: manage {{ ntp_service }}
   ansible.builtin.service:

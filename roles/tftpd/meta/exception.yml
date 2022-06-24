@@ -1,6 +1,0 @@
----
-exceptions:
-  - variation: Alpine
-    reason: xinetd (missing)
-  - variation: Archlinux
-    reason: "target not found: tftpd"

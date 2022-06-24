@@ -18,7 +18,10 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
 
   roles:
     - role: robertdebock.gitlab
+      gitlab_letsencrypt: no
       gitlab_cleanup_ruby: no
+      gitlab_trusted_certs:
+        - isrgrootx1.pem  # A root certificate for letsencrypt.
 ```
 
 The machine needs to be prepared. In CI this is done using `molecule/default/prepare.yml`:
@@ -46,13 +49,16 @@ The default values for the variables are set in `defaults/main.yml`:
 # Please have a look at this repository for available package version:
 # community: https://packages.gitlab.com/gitlab/gitlab-ce
 # enterprise: https://packages.gitlab.com/gitlab/gitlab-ee
-gitlab_version: 14.6.2
+gitlab_version: 14.9.2
 
 # A part of the version is the "release", mostly "0". See repositories above.
 gitlab_release: 0
 
 # Choose to install "enterprise" or "community".
 gitlab_distribution: community
+
+# Would you like Ansible to show you the initial_root_password?
+gitlab_show_initial_root_password: no
 
 # Instead of defining the variables below, you can also simply copy a configuration file.
 # Place this file into the `files` directory that hosts the playbooks.
@@ -73,6 +79,10 @@ gitlab_rails_time_zone: UTC
 # uninstalled. This makes the role not idempotent, so CI ruby is not un-
 # installed.
 gitlab_cleanup_ruby: yes
+
+# This role checks for outstanding database migrations. The role wil wait for
+# migrations to finish. This value is in minutes.
+gitlab_database_migrations_retries: 300
 
 # You can install all roles but not specifying any role, or select a few roles.
 # gitlab_roles:
@@ -171,6 +181,15 @@ gitlab_rails_backup_keep_time: 604800
 #   server_side_encryption: "aws:kms"
 #   server_side_encryption_kms_key_id: "arn:aws:kms:YOUR-KEY-ID-HERE"
 # gitlab_rails_backup_storage_class: STANDARD
+
+# You can also save a backup on DigitalOcean Spaces.
+# gitlab_rails_backup_upload_connection:
+#   provider: AWS
+#   region: ams3
+#   aws_access_key_id: AKIAKIAKI
+#   aws_secret_access_key: secret123
+#   endpoint: https://ams3.digitaloceanspaces.com
+# gitlab_rails_backup_upload_remote_directory: my.s3.bucket
 
 # You can skip parts in a backup.
 # gitlab_rails_env:
@@ -346,7 +365,7 @@ gitlab_rails_db_statements_limit: 1000
 
 # SSL settings
 # # If you do not want to use SSL, use this structure.
-gitlab_letsencrypt: no
+gitlab_letsencrypt: yes
 # gitlab_external_url: "http://gitlab.example.com" # (No `https` in the value.)
 # # If you bring your own certificates, use this structure.
 # gitlab_letsencrypt: no
@@ -366,6 +385,13 @@ gitlab_letsencrypt: no
 # gitlab_letsencrypt_auto_renew_minute: nil
 # gitlab_letsencrypt_auto_renew_day_of_month: nil
 # gitlab_letsencrypy_auto_renew_log_directory: /var/log/gitlab/lets-encrypt
+
+# In case you need to trust a (CA) certificate to access remote resources,
+# like an LDAP server, download the (CA) certificate, place it in the `files`
+# directory and refer to it in the below list.
+# gitlab_trusted_certs:
+#   - my-ca-1.crt
+#   - my-1.crt
 ```
 
 ## [Requirements](#requirements)
@@ -401,7 +427,6 @@ The minimum version of Ansible required is 2.10, tests have been done to:
 - The previous version.
 - The current version.
 - The development version.
-
 
 
 If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-gitlab/issues)

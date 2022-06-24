@@ -44,6 +44,10 @@ The default values for the variables are set in `defaults/main.yml`:
 ---
 # defaults file for consul
 
+# You can install consul using a package in this role. If you have installed
+# consul manually, set this to `no`.
+consul_install_package: yes
+
 # This flag controls the datacenter in which the agent is running.
 consul_datacenter: dc1
 
@@ -113,7 +117,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |amazon|Candidate|
 |debian|bullseye|
 |el|all|
-|fedora|34, 35|
+|fedora|35, 36|
 |ubuntu|all|
 
 The minimum version of Ansible required is 2.10, tests have been done to:
@@ -121,7 +125,6 @@ The minimum version of Ansible required is 2.10, tests have been done to:
 - The previous version.
 - The current version.
 - The development version.
-
 
 
 If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-consul/issues)

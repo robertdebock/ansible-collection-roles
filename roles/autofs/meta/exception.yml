@@ -1,4 +1,0 @@
----
-exceptions:
-  - variation: debian:bullseye
-    reason: "The autofs package depends on python2."

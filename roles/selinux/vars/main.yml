@@ -22,12 +22,11 @@ _selinux_requirements:
     - selinux-policy-default
     - policycoreutils
   RedHat-7: *rhel_7_requirements
-  RedHat: &redhat_requirements
+  RedHat:
     - python3-dnf
     - python3-libselinux
     - python3-libsemanage
     - python3-policycoreutils
-  Rocky: *redhat_requirements
   Suse:
     - libselinux1
     - python3-selinux
