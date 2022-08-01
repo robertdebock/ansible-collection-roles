@@ -1,7 +1,6 @@
 ---
 galaxy_info:
-  author: Robert de Bock
-  namespace: robertdebock
+  author: robertdebock
   role_name: glusterfs
   description: Install and configure glusterfs on your system.
   license: Apache-2.0

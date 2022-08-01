@@ -5,7 +5,7 @@
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
-  become:no
+  become: no
 
 - name: install requirements
   ansible.builtin.package:

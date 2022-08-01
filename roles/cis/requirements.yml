@@ -5,3 +5,4 @@ roles:
   - name: robertdebock.update
 collections:
   - name: ansible.posix
+  - name: community.general

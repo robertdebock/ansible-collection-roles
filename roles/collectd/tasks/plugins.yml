@@ -27,11 +27,13 @@
     mode: "644"
     validate: collectd -C %s -t
   register: configured_plugin
-  when: plugin.config is defined
+  when:
+    - plugin.config is defined
   notify:
     - restart collectd
 
 - name: Append configured plugin to list
   ansible.builtin.set_fact:
     _new_plugins_configured: "{{ _new_plugins_configured + [ configured_plugin.dest ] }}"
-  when: plugin.config is defined
+  when:
+    - plugin.config is defined

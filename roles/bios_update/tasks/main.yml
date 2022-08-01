@@ -27,7 +27,7 @@
           - "Error: {{ bios_update_download_bios_update_bootable_cd }}"
 
     - name: stop play
-      meta: end_play
+      ansible.builtin.meta: end_play
 
 - name: extract bootable image
   ansible.builtin.command:

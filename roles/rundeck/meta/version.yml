@@ -1,6 +1,0 @@
----
-project_name: Rundeck
-reference: "https://github.com/robertdebock/ansible-role-rundeck/blob/master/vars/main.yml"
-versions:
-  - name: Rundeck
-    url: "https://rundeck.org/downloads.html"

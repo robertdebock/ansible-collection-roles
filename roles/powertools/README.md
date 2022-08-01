@@ -34,15 +34,6 @@ The machine needs to be prepared. In CI this is done using `molecule/default/pre
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.
 
-## [Role Variables](#role-variables)
-
-The default values for the variables are set in `defaults/main.yml`:
-```yaml
----
-# defaults file for powertools
-
-powertools_repo_path: "/etc/yum.repos.d/{{ _powertools_repo_file[ansible_distribution] }}"
-```
 
 ## [Requirements](#requirements)
 
@@ -86,6 +77,6 @@ Apache-2.0
 
 ## [Author Information](#author-information)
 
-[Robert de Bock](https://robertdebock.nl/)
+[robertdebock](https://robertdebock.nl/)
 
 Please consider [sponsoring me](https://github.com/sponsors/robertdebock).

@@ -1,7 +1,6 @@
 ---
 galaxy_info:
-  author: Robert de Bock
-  namespace: robertdebock
+  author: robertdebock
   role_name: cis
   description: Apply and/or check recommendations from the CIS benchmarks.
   license: Apache-2.0
@@ -11,7 +10,7 @@ galaxy_info:
   platforms:
     - name: EL
       versions:
-        - 8
+        - "8"
 
   galaxy_tags:
     - cis

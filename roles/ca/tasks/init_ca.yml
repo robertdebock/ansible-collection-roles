@@ -30,7 +30,8 @@
     dest: "{{ ca_path }}/crlnumber"
     content: "1000"
     mode: "0644"
-  when: not check_crlnumber.stat.exists
+  when:
+    - not check_crlnumber.stat.exists
 
 - name: ensure openssl config file exists
   ansible.builtin.template:

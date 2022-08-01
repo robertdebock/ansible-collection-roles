@@ -1,0 +1,22 @@
+---
+# tasks file for code
+
+- name: place yum repository
+  ansible.builtin.yum_repository:
+    name: code
+    description: Visual Studio Code
+    baseurl: "https://packages.microsoft.com/yumrepos/vscode"
+    gpgcheck: yes
+    gpgkey: "https://packages.microsoft.com/keys/microsoft.asc"
+  when:
+    - ansible_pkg_mgr in [ "yum", "dnf" ]
+
+- name: place apt repository
+  ansible.builtin.apt_repository:
+    repo: "code https://packages.microsoft.com/repos/code stable main"
+  when:
+    - ansible_pkg_mgr in [ "apt" ]
+
+- name: install visual studio code
+  ansible.builtin.package:
+    name: code

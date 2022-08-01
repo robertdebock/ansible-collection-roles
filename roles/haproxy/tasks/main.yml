@@ -57,7 +57,7 @@
     - ansible_selinux.status == "enabled"
 
 - name: flush handlers
-  meta: flush_handlers
+  ansible.builtin.meta: flush_handlers
 
 - name: start and enable haproxy
   ansible.builtin.service:

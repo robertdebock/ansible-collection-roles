@@ -57,7 +57,8 @@
     group: root
     mode: 0440
   with_dict: "{{ rsyslog_rsyslog_d_files }}"
-  when: item.value.state | default('present') == 'present'
+  when:
+    - item.value.state | default('present') == 'present'
   notify: restart rsyslog
 
 - name: start and enable rsyslog

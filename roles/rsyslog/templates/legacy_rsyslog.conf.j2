@@ -77,7 +77,7 @@ $PreserveFQDN on
 # Turn off message reception via local log socket;
 # local messages are retrieved through imjournal now.
 #
-{{ '#' if 'imuxsock' in rsyslog_mods else '' }}$OmitLocalLogging on
+{{ '#' if 'imuxsock' in rsyslog_mods or not rsyslog_omit_local_logging else '' }}$OmitLocalLogging on
 
 #
 # File to store the position in the journal

@@ -21,12 +21,12 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
     git_groupname: root
     git_repository_destination: /root
     git_repositories:
-      - repo: https://github.com/robertdebock/robertdebock.bootstrap
+      - repo: "https://github.com/robertdebock/robertdebock.bootstrap"
         dest: bootstrap
-      - repo: https://github.com/robertdebock/robertdebock.bootstrap
+      - repo: "https://github.com/robertdebock/robertdebock.bootstrap"
         dest: bootstrap-force
         force: yes
-      - repo: https://github.com/robertdebock/robertdebock.bootstrap
+      - repo: "https://github.com/robertdebock/robertdebock.bootstrap"
         dest: bootstrap-version
         version: "2.11.1"
 
@@ -75,12 +75,12 @@ git_force: no
 
 # The repositories to check out, bootstrap is pinned to a version, java will get HEAD/latest.
 # git_repositories:
-#   - repo: https://github.com/robertdebock/ansible-role-bootstrap.git
+#   - repo: "https://github.com/robertdebock/ansible-role-bootstrap.git"
 #     dest: bootstrap
 #     version: "2.2.4"
-#   - repo: ssh://git@github.com/robertdebock/ansible-role-java.git
+#   - repo: "ssh://git@github.com/robertdebock/ansible-role-java.git"
 #     dest: java
-#   - repo: ssh://git@github.com/robertdebock/ansible-role-tomcat.git
+#   - repo: "ssh://git@github.com/robertdebock/ansible-role-tomcat.git"
 #     dest: tomcat
 #     force: yes
 ```
@@ -133,6 +133,6 @@ Apache-2.0
 
 ## [Author Information](#author-information)
 
-[Robert de Bock](https://robertdebock.nl/)
+[robertdebock](https://robertdebock.nl/)
 
 Please consider [sponsoring me](https://github.com/sponsors/robertdebock).

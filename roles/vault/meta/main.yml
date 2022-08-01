@@ -1,7 +1,6 @@
 ---
 galaxy_info:
-  author: Robert de Bock
-  namespace: robertdebock
+  author: robertdebock
   role_name: vault
   description: Install, configure, initialize and unseal Hashicorp Vault.
   license: Apache-2.0
@@ -14,11 +13,11 @@ galaxy_info:
         - bullseye
     - name: EL
       versions:
-        - 8
+        - "8"
     - name: Fedora
       versions:
-        - 35
-        - 36
+        - "35"
+        - "36"
     - name: Ubuntu
       versions:
         - all

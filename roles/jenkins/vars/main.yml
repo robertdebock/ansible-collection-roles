@@ -27,3 +27,9 @@ jenkins_apt_key_url: "https://pkg.jenkins.io/debian-stable/jenkins.io.key"
 jenkins_apt_repository_repo: "deb http://pkg.jenkins.io/debian-stable binary/"
 
 jenkins_zypper_repository_repo: "https://pkg.jenkins.io/opensuse/"
+
+_jenkins_package:
+  default: "jenkins-{{ jenkins_version }}"
+  Debian: "jenkins={{ jenkins_version }}"
+
+jenkins_package: "{{ _jenkins_package[ansible_distribution] | default(_jenkins_package['default'] ) }}"

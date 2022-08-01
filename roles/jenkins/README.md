@@ -32,6 +32,7 @@ The machine needs to be prepared. In CI this is done using `molecule/default/pre
     - role: robertdebock.bootstrap
     - role: robertdebock.epel
     - role: robertdebock.java
+      java_default_version: 11
     - role: robertdebock.locale
     - role: robertdebock.core_dependencies
 ```
@@ -100,6 +101,6 @@ Apache-2.0
 
 ## [Author Information](#author-information)
 
-[Robert de Bock](https://robertdebock.nl/)
+[robertdebock](https://robertdebock.nl/)
 
 Please consider [sponsoring me](https://github.com/sponsors/robertdebock).

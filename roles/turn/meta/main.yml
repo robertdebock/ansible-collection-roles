@@ -1,8 +1,7 @@
 ---
 galaxy_info:
-  author: Robert de Bock
+  author: robertdebock
   role_name: turn
-  namespace: robertdebock
   description: Install and configure a (co) turn server on your system.
   license: Apache-2.0
   company: none
@@ -14,19 +13,19 @@ galaxy_info:
         - Candidate
     - name: EL
       versions:
-        - 8
+        - "8"
     - name: Debian
       versions:
         - all
     - name: Fedora
       versions:
         - all
-    - name: OpenSUSE
+    - name: opensuse
       versions:
         - all
     - name: Ubuntu
       versions:
-        - all
+        - bionic
 
   galaxy_tags:
     - turn

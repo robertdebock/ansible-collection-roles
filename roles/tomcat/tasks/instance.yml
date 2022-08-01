@@ -73,7 +73,8 @@
   loop: "{{ instance.config_files }}"
   loop_control:
     loop_var: config_file
-  when: instance.config_files is defined
+  when:
+    - instance.config_files is defined
 
 - name: create service instance
   ansible.builtin.import_role:

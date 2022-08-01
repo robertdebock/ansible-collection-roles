@@ -58,8 +58,8 @@ The default values for the variables are set in `defaults/main.yml`:
 
 # You can add or remove repositories:
 # apt_repositories:
-#   - repo: ppa:rabbitvcs/ppa
-#   - repo: ppa:something/ppa
+#   - repo: "ppa:rabbitvcs/ppa"
+#   - repo: "ppa:something/ppa"
 #     state: absent
 
 apt_repositories: []
@@ -107,6 +107,6 @@ Apache-2.0
 
 ## [Author Information](#author-information)
 
-[Robert de Bock](https://robertdebock.nl/)
+[robertdebock](https://robertdebock.nl/)
 
 Please consider [sponsoring me](https://github.com/sponsors/robertdebock).

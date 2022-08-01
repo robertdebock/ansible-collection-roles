@@ -1,6 +1,6 @@
 ---
-# issue
-- block:
+- name: issue a key and certificate
+  block:
     - name: upload requested key
       ansible.builtin.copy:
         src: "{{ request.upload_keyfile }}"
@@ -70,24 +70,29 @@
         - ca_publication_location is defined
   when: (request.state is not defined) or (request.state == 'present')
 
-# revoke
 - name: check whether certificate file exists
   ansible.builtin.stat:
     path: "{{ ca_path }}/{{ ca_certs_path }}/{{ request.name | default(request) }}.crt"
   register: check_certfile
 
-- block:
+- name: revoke a key and certificate
+  block:
     - name: revoke certificate
       ansible.builtin.command:
         chdir: "{{ ca_path }}"
         cmd: "openssl ca {{ ca_client_cert_revoke_params }}"
       register: revoke_result
-      ignore_errors: True
+      changed_when:
+        - revoke_result is not failed
+      ignore_errors: yes
 
     - name: update crl
       ansible.builtin.command:
         chdir: "{{ ca_path }}"
         cmd: "openssl ca {{ ca_crl_params }}"
+      register: update_crl
+      changed_when:
+        - update_crl is not failed
 
     - name: ensure certificate file is absent
       ansible.builtin.file:

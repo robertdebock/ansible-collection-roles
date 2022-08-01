@@ -99,3 +99,10 @@
     quiet: yes
   when:
     - rsyslog_features is defined
+
+- name: test if rsyslog_omit_local_logging is set correctly
+  ansible.builtin.assert:
+    that:
+      - rsyslog_omit_local_logging is defined
+      - rsyslog_omit_local_logging is boolean
+    quiet: yes

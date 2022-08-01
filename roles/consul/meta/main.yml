@@ -1,8 +1,7 @@
 ---
 galaxy_info:
-  author: Robert de Bock
+  author: robertdebock
   role_name: consul
-  namespace: robertdebock
   description: Install and configure consul on your system.
   license: Apache-2.0
   company: none
@@ -20,8 +19,8 @@ galaxy_info:
         - all
     - name: Fedora
       versions:
-        - 35
-        - 36
+        - "35"
+        - "36"
     - name: Ubuntu
       versions:
         - all

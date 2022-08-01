@@ -1,8 +1,7 @@
 ---
 galaxy_info:
-  author: Robert de Bock
+  author: robertdebock
   role_name: snmpd
-  namespace: robertdebock
   description: Install and configure snmpd on your system.
   license: Apache-2.0
   company: none
@@ -20,11 +19,11 @@ galaxy_info:
         - all
     - name: EL
       versions:
-        - 8
+        - "8"
     - name: Fedora
       versions:
         - all
-    - name: OpenSUSE
+    - name: opensuse
       versions:
         - all
     - name: Ubuntu

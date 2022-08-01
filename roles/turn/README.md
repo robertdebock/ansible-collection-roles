@@ -93,7 +93,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |debian|all|
 |fedora|all|
 |opensuse|all|
-|ubuntu|all|
+|ubuntu|bionic|
 
 The minimum version of Ansible required is 2.10, tests have been done to:
 
@@ -110,6 +110,6 @@ Apache-2.0
 
 ## [Author Information](#author-information)
 
-[Robert de Bock](https://robertdebock.nl/)
+[robertdebock](https://robertdebock.nl/)
 
 Please consider [sponsoring me](https://github.com/sponsors/robertdebock).

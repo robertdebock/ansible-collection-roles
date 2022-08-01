@@ -43,4 +43,5 @@
     dest: "{{ mediawiki_docroot }}/mediawiki"
     state: link
     mode: "0755"
-  when: mediawiki_destination != mediawiki_docroot
+  when:
+    - mediawiki_destination != mediawiki_docroot

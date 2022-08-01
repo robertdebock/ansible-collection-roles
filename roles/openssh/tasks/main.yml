@@ -53,6 +53,6 @@
     enabled: yes
 
 - name: flush handlers
-  meta: flush_handlers
+  ansible.builtin.meta: flush_handlers
   when:
     - openssh_restart_immediately

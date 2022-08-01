@@ -89,7 +89,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |---------|----|
 |amazon|all|
 |debian|all|
-|el|7, 8|
+|el|all|
 |fedora|all|
 |ubuntu|focal, bionic|
 
@@ -108,6 +108,6 @@ Apache-2.0
 
 ## [Author Information](#author-information)
 
-[Robert de Bock](https://robertdebock.nl/)
+[robertdebock](https://robertdebock.nl/)
 
 Please consider [sponsoring me](https://github.com/sponsors/robertdebock).

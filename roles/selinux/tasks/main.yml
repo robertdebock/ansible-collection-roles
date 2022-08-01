@@ -14,7 +14,7 @@
     - gather facts
 
 - name: flush handlers
-  meta: flush_handlers
+  ansible.builtin.meta: flush_handlers
 
 - name: configure selinux
   block:

@@ -15,3 +15,11 @@
       - jenkins_listen_address is defined
       - jenkins_listen_address is string
     quiet: yes
+
+- name: test if jenkins_version is set correctly
+  ansible.builtin.assert:
+    that:
+      - jenkins_version is string
+    quiet: yes
+  when:
+    - jenkins_version is defined

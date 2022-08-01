@@ -52,7 +52,7 @@ java_type: jre
 # By default, a distibution default is used, mapped in `vars/main.yml`.
 # By setting java_version, you overwrite this default to your selected
 # version.
-java_version: "{{ java_default_version }}"
+java_version: {{ java_default_version }}
 
 # Set the format of the installation source, valid values are "targz" and
 # "rpm". This is only valid with "java_vendor == oracle"
@@ -121,6 +121,6 @@ Apache-2.0
 
 ## [Author Information](#author-information)
 
-[Robert de Bock](https://robertdebock.nl/)
+[robertdebock](https://robertdebock.nl/)
 
 Please consider [sponsoring me](https://github.com/sponsors/robertdebock).

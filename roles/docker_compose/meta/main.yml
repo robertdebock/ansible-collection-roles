@@ -1,7 +1,6 @@
 ---
 galaxy_info:
-  author: Robert de Bock
-  namespace: robertdebock
+  author: robertdebock
   role_name: docker_compose
   description: Install docker_compose.
   license: Apache-2.0
@@ -17,15 +16,15 @@ galaxy_info:
         - Candidate
     - name: EL
       versions:
-        - 8
+        - "8"
     - name: Debian
       versions:
         - all
     - name: Fedora
       versions:
-        - 35
-        - 36
-    - name: OpenSUSE
+        - "35"
+        - "36"
+    - name: opensuse
       versions:
         - all
     - name: Ubuntu

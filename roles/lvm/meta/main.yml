@@ -1,7 +1,6 @@
 ---
 galaxy_info:
-  author: Robert de Bock
-  namespace: robertdebock
+  author: robertdebock
   role_name: lvm
   description: Configure Logical Volumes Management (lvm), group and volumes.
   license: Apache-2.0
@@ -17,7 +16,7 @@ galaxy_info:
         - all
     - name: EL
       versions:
-        - 8
+        - "8"
     - name: Fedora
       versions:
         - all

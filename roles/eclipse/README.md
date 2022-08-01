@@ -55,7 +55,7 @@ eclipse_release_type: java
 
 eclipse_install_path: /opt
 
-eclipse_plugins:
+eclipse_plugins: []
   # This plugin causes an issue:
   # org.eclipse.m2e.logback.configuration:
   # The org.eclipse.m2e.logback.configuration bundle was activated before
@@ -63,8 +63,8 @@ eclipse_plugins:
   # is initialized.
   # - name: org.tigris.subversion.subclipse.feature.group
   #   repository: "http://subclipse.tigris.org/update_1.10.x"
-  - name: org.sonatype.m2e.egit.feature.feature.group
-    repository: "https://repo1.maven.org/maven2/.m2e/connectors/m2eclipse-egit/0.15.1/N/0.15.1.201806191431"
+  # - name: org.sonatype.m2e.egit.feature.feature.group
+  #   repository: "https://repo1.maven.org/maven2/.m2e/connectors/m2eclipse-egit/0.15.1/N/0.15.1.201806191431"
 ```
 
 ## [Requirements](#requirements)
@@ -116,6 +116,6 @@ Apache-2.0
 
 ## [Author Information](#author-information)
 
-[Robert de Bock](https://robertdebock.nl/)
+[robertdebock](https://robertdebock.nl/)
 
 Please consider [sponsoring me](https://github.com/sponsors/robertdebock).

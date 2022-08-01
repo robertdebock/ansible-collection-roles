@@ -177,7 +177,7 @@ dnsmasq_read_ethers: no
 #     value: "[1234::77],[1234::88]"
 #   - name: "option6:dns-server"
 #     value: "[::],[1234::88]"
-#   - name: option6:information-refresh-time
+#   - name: "option6:information-refresh-time"
 #     value: 6h
 #   - name: "option:T1"
 #     value: 1m
@@ -325,6 +325,6 @@ Apache-2.0
 
 ## [Author Information](#author-information)
 
-[Robert de Bock](https://robertdebock.nl/)
+[robertdebock](https://robertdebock.nl/)
 
 Please consider [sponsoring me](https://github.com/sponsors/robertdebock).

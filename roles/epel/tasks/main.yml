@@ -19,7 +19,8 @@
       ansible.builtin.package:
         name: "{{ epel_next_url }}"
         state: present
-      when: epel_next
+      when:
+        - epel_next
       notify:
         - update package cache
   when:

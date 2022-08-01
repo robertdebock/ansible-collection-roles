@@ -13,7 +13,7 @@
 
 - name: download installer rustup
   ansible.builtin.get_url:
-    url: https://static.rust-lang.org/rustup.sh
+    url: "https://static.rust-lang.org/rustup.sh"
     dest: "{{ cargo_tmp }}/rustup.sh"
     mode: "750"
     validate_certs: no

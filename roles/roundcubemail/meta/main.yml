@@ -1,7 +1,6 @@
 ---
 galaxy_info:
-  author: Robert de Bock
-  namespace: robertdebock
+  author: robertdebock
   role_name: roundcubemail
   description: Install and configure roundcubemail on your system.
   license: Apache-2.0
@@ -15,7 +14,7 @@ galaxy_info:
     - name: Fedora
       versions:
         - all
-    - name: OpenSUSE
+    - name: opensuse
       versions:
         - all
     - name: Ubuntu

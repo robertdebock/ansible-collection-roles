@@ -1,7 +1,5 @@
 # [omsagent](#omsagent)
 
-This role has been archived, the last distribution also started to fail.
-
 Install Microsoft omsagent (Log Analytics agent) on your system.
 
 |GitHub|GitLab|Quality|Downloads|Version|
@@ -122,6 +120,6 @@ Apache-2.0
 
 ## [Author Information](#author-information)
 
-[Robert de Bock](https://robertdebock.nl/)
+[robertdebock](https://robertdebock.nl/)
 
 Please consider [sponsoring me](https://github.com/sponsors/robertdebock).

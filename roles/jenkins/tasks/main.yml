@@ -11,6 +11,7 @@
     url: "{{ jenkins_yum_repository_baseurl }}"
     dest: /etc/yum.repos.d/jenkins.repo
     validate_certs: no
+    mode: "0644"
   when:
     - ansible_pkg_mgr in [ "dnf", "yum" ]
 
@@ -49,10 +50,19 @@
     name: "{{ jenkins_requirements }}"
     state: present
 
+- name: install jenkins (specific version)
+  ansible.builtin.package:
+    name: "{{ jenkins_package }}"
+    state: present
+  when:
+    - jenkins_version is defined
+
 - name: install jenkins
   ansible.builtin.package:
     name: jenkins
     state: present
+  when:
+    - jenkins_version is not defined
 
 - name: configure jenkins
   ansible.builtin.template:
@@ -62,7 +72,7 @@
   notify:
     - restart jenkins
 
-- name: start and enable jenkins
+- name: manage jenkins service
   ansible.builtin.service:
     name: jenkins
     state: started

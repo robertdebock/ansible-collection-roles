@@ -1,7 +1,6 @@
 ---
 galaxy_info:
-  author: Robert de Bock
-  namespace: robertdebock
+  author: robertdebock
   role_name: gitlab_runner
   description: Install and configure gitlab-runner on your system.
   license: Apache-2.0

@@ -131,6 +131,9 @@ rsyslog_features: []
 
 # Default destination of rsyslog config file
 rsyslog_dest_conf_file: "/etc/rsyslog.conf"
+
+# Enable / Disable option OmitLocalLogging
+rsyslog_omit_local_logging: yes
 ```
 
 ## [Requirements](#requirements)
@@ -181,6 +184,6 @@ Apache-2.0
 
 ## [Author Information](#author-information)
 
-[Robert de Bock](https://robertdebock.nl/)
+[robertdebock](https://robertdebock.nl/)
 
 Please consider [sponsoring me](https://github.com/sponsors/robertdebock).

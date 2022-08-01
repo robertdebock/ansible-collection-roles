@@ -1,7 +1,6 @@
 ---
 galaxy_info:
-  author: Robert de Bock
-  namespace: robertdebock
+  author: robertdebock
   role_name: epel
   description: Install epel on your system.
   license: Apache-2.0
@@ -14,8 +13,7 @@ galaxy_info:
         - Candidate
     - name: EL
       versions:
-        - 7
-        - 8
+        - all
 
   galaxy_tags:
     - epel

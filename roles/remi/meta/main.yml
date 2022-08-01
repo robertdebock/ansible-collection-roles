@@ -1,7 +1,6 @@
 ---
 galaxy_info:
-  author: Robert de Bock
-  namespace: robertdebock
+  author: robertdebock
   role_name: remi
   description: Install and enable remi yum repositories on your system.
   license: Apache-2.0
@@ -11,11 +10,11 @@ galaxy_info:
   platforms:
     - name: EL
       versions:
-        - 8
+        - "8"
     - name: Fedora
       versions:
-        - 35
-        - 36
+        - "35"
+        - "36"
 
   galaxy_tags:
     - remi

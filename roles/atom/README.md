@@ -1,7 +1,5 @@
 # [atom](#atom)
 
-This role has been archived, because Atom is [sunsetting](https://github.blog/2022-06-08-sunsetting-atom/). I really loved Atom, but it's time to move on.
-
 Install atom on your system.
 
 |GitHub|GitLab|Quality|Downloads|Version|
@@ -95,6 +93,6 @@ Apache-2.0
 
 ## [Author Information](#author-information)
 
-[Robert de Bock](https://robertdebock.nl/)
+[robertdebock](https://robertdebock.nl/)
 
 Please consider [sponsoring me](https://github.com/sponsors/robertdebock).

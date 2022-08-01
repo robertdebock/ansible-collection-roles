@@ -1,8 +1,7 @@
 ---
 galaxy_info:
-  author: Robert de Bock
+  author: robertdebock
   role_name: gitlab
-  namespace: robertdebock
   description: Install and configure GitLab on your system.
   license: Apache-2.0
   company: none
@@ -11,8 +10,7 @@ galaxy_info:
   platforms:
     - name: EL
       versions:
-        - 7
-        - 8
+        - all
     - name: Ubuntu
       versions:
         - focal

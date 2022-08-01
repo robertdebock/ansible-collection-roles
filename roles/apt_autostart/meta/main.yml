@@ -1,7 +1,6 @@
 ---
 galaxy_info:
-  author: Robert de Bock
-  namespace: robertdebock
+  author: robertdebock
   role_name: apt_autostart
   description: Enable or disable automatic starting of services upon installation of packages.
   license: Apache-2.0

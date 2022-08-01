@@ -1,8 +1,7 @@
 ---
 galaxy_info:
-  author: Robert de Bock
+  author: robertdebock
   role_name: elastic_repo
-  namespace: robertdebock
   description: Install the Elastic repository on your system.
   license: Apache-2.0
   company: none

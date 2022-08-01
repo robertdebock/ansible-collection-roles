@@ -68,7 +68,7 @@
     mode: "0755"
   when:
     - java_jce | bool
-    - java_version == 8
+    - java_version | int == 8
     - java_vendor == "oracle"
 
 - name: set alternative (targz)

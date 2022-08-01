@@ -123,7 +123,7 @@ The default values for the variables are set in `defaults/main.yml`:
 # Configure stats in HAProxy?
 haproxy_stats: yes
 haproxy_stats_port: 1936
-haproxy_stats_bind_addr: 0.0.0.0
+haproxy_stats_bind_addr: "0.0.0.0"
 
 # Default setttings for HAProxy.
 haproxy_retries: 3
@@ -188,6 +188,6 @@ Apache-2.0
 
 ## [Author Information](#author-information)
 
-[Robert de Bock](https://robertdebock.nl/)
+[robertdebock](https://robertdebock.nl/)
 
 Please consider [sponsoring me](https://github.com/sponsors/robertdebock).

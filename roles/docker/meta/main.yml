@@ -1,7 +1,6 @@
 ---
 galaxy_info:
-  author: Robert de Bock
-  namespace: robertdebock
+  author: robertdebock
   role_name: docker
   description: Install and configure Docker (non-CE) on your system.
   license: Apache-2.0
