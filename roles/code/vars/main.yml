@@ -1,0 +1,9 @@
+---
+# vars file for code
+
+_required_packages:
+  default: []
+  Debian:
+    - libasound2
+
+required_packages: "{{ _required_packages[ansible_os_family] | default(_required_packages['default'] ) }}"

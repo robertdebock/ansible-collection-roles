@@ -1,6 +1,10 @@
 ---
 # tasks file for code
 
+- name: install required packages
+  ansible.builtin.package:
+    name: "{{ required_packages }}"
+
 - name: place yum repository
   ansible.builtin.yum_repository:
     name: code
@@ -13,7 +17,7 @@
 
 - name: place apt repository
   ansible.builtin.apt_repository:
-    repo: "code https://packages.microsoft.com/repos/code stable main"
+    repo: "deb https://packages.microsoft.com/repos/code stable main"
   when:
     - ansible_pkg_mgr in [ "apt" ]
 

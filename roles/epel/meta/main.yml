@@ -13,7 +13,8 @@ galaxy_info:
         - Candidate
     - name: EL
       versions:
-        - all
+        - "7"
+        - "8"
 
   galaxy_tags:
     - epel

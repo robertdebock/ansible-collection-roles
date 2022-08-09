@@ -89,7 +89,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |---------|----|
 |amazon|all|
 |debian|all|
-|el|all|
+|el|7, 8|
 |fedora|all|
 |ubuntu|focal, bionic|
 

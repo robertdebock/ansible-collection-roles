@@ -47,12 +47,11 @@ java_vendor: openjdk
 # Set the variable to install the type, valid values are "jre" and "jdk".
 java_type: jre
 
-# Set the version of java, valid values are "6", 7", "8", "9", "10", "11",
-# "12" or "13".
+# Set the version of java, valid values are 6, 7, 8, 9, 10, 11, 12 or 13.
 # By default, a distibution default is used, mapped in `vars/main.yml`.
 # By setting java_version, you overwrite this default to your selected
 # version.
-java_version: {{ java_default_version }}
+java_version: "{{ java_default_version }}"
 
 # Set the format of the installation source, valid values are "targz" and
 # "rpm". This is only valid with "java_vendor == oracle"

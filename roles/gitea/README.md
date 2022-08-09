@@ -1,32 +1,32 @@
-# [epel](#epel)
+# [gitea](#gitea)
 
-Install epel on your system.
+Install and configure gitea on your system.
 
 |GitHub|GitLab|Quality|Downloads|Version|
 |------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-epel/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-epel/actions)|[![gitlab](https://gitlab.com/robertdebock/ansible-role-epel/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-epel)|[![quality](https://img.shields.io/ansible/quality/21643)](https://galaxy.ansible.com/robertdebock/epel)|[![downloads](https://img.shields.io/ansible/role/d/21643)](https://galaxy.ansible.com/robertdebock/epel)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-epel.svg)](https://github.com/robertdebock/ansible-role-epel/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-gitea/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-gitea/actions)|[![gitlab](https://gitlab.com/robertdebock/ansible-role-gitea/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-gitea)|[![quality](https://img.shields.io/ansible/quality/)](https://galaxy.ansible.com/robertdebock/gitea)|[![downloads](https://img.shields.io/ansible/role/d/)](https://galaxy.ansible.com/robertdebock/gitea)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-gitea.svg)](https://github.com/robertdebock/ansible-role-gitea/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
 This example is taken from `molecule/default/converge.yml` and is tested on each push, pull request and release.
 ```yaml
 ---
-- name: Converge
+- name: converge
   hosts: all
   become: yes
   gather_facts: yes
 
   roles:
-    - role: robertdebock.epel
+    - role: robertdebock.gitea
 ```
 
 The machine needs to be prepared. In CI this is done using `molecule/default/prepare.yml`:
 ```yaml
 ---
-- name: Prepare
+- name: prepare
   hosts: all
-  gather_facts: no
   become: yes
+  gather_facts: no
 
   roles:
     - role: robertdebock.bootstrap
@@ -34,10 +34,19 @@ The machine needs to be prepared. In CI this is done using `molecule/default/pre
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.
 
+## [Role Variables](#role-variables)
+
+The default values for the variables are set in `defaults/main.yml`:
+```yaml
+---
+# defaults file for gitea
+
+gitea_version: "1.16.9"
+```
 
 ## [Requirements](#requirements)
 
-- pip packages listed in [requirements.txt](https://github.com/robertdebock/ansible-role-epel/blob/master/requirements.txt).
+- pip packages listed in [requirements.txt](https://github.com/robertdebock/ansible-role-gitea/blob/master/requirements.txt).
 
 ## [Status of used roles](#status-of-requirements)
 
@@ -52,7 +61,7 @@ The following roles are used to prepare a system. You can prepare your system in
 This role is a part of many compatible roles. Have a look at [the documentation of these roles](https://robertdebock.nl/) for further information.
 
 Here is an overview of related roles:
-![dependencies](https://raw.githubusercontent.com/robertdebock/ansible-role-epel/png/requirements.png "Dependencies")
+![dependencies](https://raw.githubusercontent.com/robertdebock/ansible-role-gitea/png/requirements.png "Dependencies")
 
 ## [Compatibility](#compatibility)
 
@@ -60,8 +69,13 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|amazon|Candidate|
-|el|7, 8|
+|alpine|all|
+|amazon|all|
+|debian|all|
+|el|all|
+|fedora|all|
+|opensuse|all|
+|ubuntu|focal, bionic|
 
 The minimum version of Ansible required is 2.10, tests have been done to:
 
@@ -70,7 +84,7 @@ The minimum version of Ansible required is 2.10, tests have been done to:
 - The development version.
 
 
-If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-epel/issues)
+If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-gitea/issues)
 
 ## [License](#license)
 

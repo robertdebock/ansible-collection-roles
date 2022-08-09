@@ -167,7 +167,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|el|8|
+|el|8, 9|
 |debian|all|
 |fedora|all|
 |opensuse|all|

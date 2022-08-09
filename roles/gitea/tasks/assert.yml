@@ -1,0 +1,8 @@
+---
+
+- name: test if gitea_version is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitea_version is defined
+      - gitea_version is string
+    quiet: yes

@@ -1,0 +1,4 @@
+---
+# defaults file for gitea
+
+gitea_version: "1.16.9"
