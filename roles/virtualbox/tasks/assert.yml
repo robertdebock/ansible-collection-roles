@@ -1,6 +1,6 @@
 ---
 
-- name: test if virtualbox_version is set correctly
+- name: Test if virtualbox_version is set correctly
   ansible.builtin.assert:
     that:
       - virtualbox_version is defined

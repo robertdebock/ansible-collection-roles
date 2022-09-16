@@ -1,17 +1,17 @@
 ---
 # tasks file for subversion
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: install subversion
+- name: Install subversion
   ansible.builtin.package:
     name: "{{ subversion_packages }}"
     state: present
 
-- name: create requested repositories
+- name: Create requested repositories
   ansible.builtin.command:
     cmd: svnadmin create {{ subversion_path }}/{{ item.name }}
     creates: "{{ subversion_path }}/{{ item.name }}"

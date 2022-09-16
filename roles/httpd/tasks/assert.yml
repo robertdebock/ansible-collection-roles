@@ -1,13 +1,13 @@
 ---
 
-- name: test if httpd_servername is set correctly
+- name: Test if httpd_servername is set correctly
   ansible.builtin.assert:
     that:
       - httpd_servername is defined
       - httpd_servername is string
     quiet: yes
 
-- name: test if httpd_port is set correctly
+- name: Test if httpd_port is set correctly
   ansible.builtin.assert:
     that:
       - httpd_port is defined
@@ -16,21 +16,21 @@
       - httpd_port < 65536
     quiet: yes
 
-- name: test if https_ssl_enable is set correctly
+- name: Test if https_ssl_enable is set correctly
   ansible.builtin.assert:
     that:
       - https_ssl_enable is defined
       - https_ssl_enable is boolean
     quiet: yes
 
-- name: test if httpd_ssl_servername is set correctly
+- name: Test if httpd_ssl_servername is set correctly
   ansible.builtin.assert:
     that:
       - httpd_ssl_servername is defined
       - httpd_ssl_servername is string
     quiet: yes
 
-- name: test if httpd_ssl_port is set correctly
+- name: Test if httpd_ssl_port is set correctly
   ansible.builtin.assert:
     that:
       - httpd_ssl_port is defined
@@ -40,7 +40,7 @@
       - httpd_ssl_port != httpd_port
     quiet: yes
 
-- name: test if httpd_locations is set correctly
+- name: Test if httpd_locations is set correctly
   ansible.builtin.assert:
     that:
       - httpd_locations is iterable
@@ -48,7 +48,7 @@
   when:
     - httpd_locations is defined
 
-- name: test if item in httpd_locations is set correctly
+- name: Test if item in httpd_locations is set correctly
   ansible.builtin.assert:
     that:
       - item.name is defined
@@ -64,7 +64,7 @@
   when:
     - httpd_locations is defined
 
-- name: test if httpd_vhosts is set correctly
+- name: Test if httpd_vhosts is set correctly
   ansible.builtin.assert:
     that:
       - httpd_vhosts is iterable
@@ -72,7 +72,7 @@
   when:
     - httpd_vhosts is defined
 
-- name: test if item in httpd_vhosts is set correctly
+- name: Test if item in httpd_vhosts is set correctly
   ansible.builtin.assert:
     that:
       - item.name is defined
@@ -86,7 +86,7 @@
   when:
     - httpd_vhosts is defined
 
-- name: test if item.create_docroot in httpd_vhosts is set correctly
+- name: Test if item.create_docroot in httpd_vhosts is set correctly
   ansible.builtin.assert:
     that:
       - item.create_docroot is boolean
@@ -98,7 +98,7 @@
     - httpd_vhosts is defined
     - item.create_docroot is defined
 
-- name: test if item.serveralias in httpd_vhosts is set correctly
+- name: Test if item.serveralias in httpd_vhosts is set correctly
   ansible.builtin.assert:
     that:
       - item.serveralias is iterable
@@ -110,7 +110,7 @@
     - httpd_vhosts is defined
     - item.serveralias is defined
 
-- name: test if httpd_directories is set correctly
+- name: Test if httpd_directories is set correctly
   ansible.builtin.assert:
     that:
       - httpd_directories is iterable
@@ -118,7 +118,7 @@
   when:
     - httpd_directories is defined
 
-- name: test if item.name in httpd_directories is set correctly
+- name: Test if item.name in httpd_directories is set correctly
   ansible.builtin.assert:
     that:
       - item.name is defined
@@ -133,7 +133,7 @@
   when:
     - httpd_directories is defined
 
-- name: test if item.options in httpd_directories is set correctly
+- name: Test if item.options in httpd_directories is set correctly
   ansible.builtin.assert:
     that:
       - item.options is iterable
@@ -145,7 +145,7 @@
     - httpd_directories is defined
     - item.options is defined
 
-- name: test if item.allow_override in httpd_directories is set correctly
+- name: Test if item.allow_override in httpd_directories is set correctly
   ansible.builtin.assert:
     that:
       - item.allow_override is string
@@ -157,7 +157,7 @@
     - httpd_directories is defined
     - item.allow_override is defined
 
-- name: test if httpd_remove_example is set correctly
+- name: Test if httpd_remove_example is set correctly
   ansible.builtin.assert:
     that:
       - httpd_remove_example is defined

@@ -1,6 +1,6 @@
 ---
 # handlers file for gitea
 
-- name: systemctl daemon-reload
+- name: Systemctl daemon-reload
   ansible.builtin.systemd:
     daemon-reload: yes

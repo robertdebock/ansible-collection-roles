@@ -1,37 +1,37 @@
 ---
 # tasks file for ca
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: create root ca
+- name: Create root ca
   block:
-    - name: set path for root CA
+    - name: Set path for root CA
       ansible.builtin.set_fact:
         ca_path: "{{ ca_openssl_path }}/{{ ca_common_name }}/rootCA"
         ca_filename: rootCA
 
-    - name: init root CA
+    - name: Init root CA
       ansible.builtin.include_tasks:
         file: init_ca.yml
   when:
     - ca_init | bool
     - ca_own_root | bool
 
-- name: set path for CA
+- name: Set path for CA
   ansible.builtin.set_fact:
     ca_path: "{{ ca_openssl_path }}/{{ ca_common_name }}"
     ca_filename: ca
 
-- name: create ca
+- name: Create ca
   block:
-    - name: init CA
+    - name: Init CA
       ansible.builtin.include_tasks:
         file: init_ca.yml
 
-    - name: generate ca certificates
+    - name: Generate ca certificates
       ansible.builtin.include_tasks:
         file: generate_ca_certs.yml
       when:
@@ -39,7 +39,7 @@
   when:
     - ca_init | bool
 
-- name: ensure publication location exists
+- name: Ensure publication location exists
   ansible.builtin.file:
     path: "{{ ca_publication_location }}"
     state: directory
@@ -49,7 +49,7 @@
   when:
     - ca_publication_location is defined
 
-- name: handle requests
+- name: Handle requests
   ansible.builtin.include_tasks:
     file: requests.yml
   loop: "{{ ca_requests }}"

@@ -1,19 +1,19 @@
 ---
 # tasks file for nomad
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: install nomad
+- name: Install nomad
   ansible.builtin.package:
     name: nomad
     state: present
   when:
     - nomad_install_package
 
-- name: create /etc/nomad.d
+- name: Create /etc/nomad.d
   ansible.builtin.file:
     path: /etc/nomad
     state: directory
@@ -21,7 +21,7 @@
     owner: nomad
     group: nomad
 
-- name: configure nomad server
+- name: Configure nomad server
   ansible.builtin.template:
     src: server.hcl.j2
     dest: /etc/nomad.d/nomad.hcl
@@ -29,11 +29,11 @@
     owner: nomad
     group: nomad
   notify:
-    - restart nomad
+    - Restart nomad
   when:
     - nomad_server
 
-- name: configure nomad agent
+- name: Configure nomad agent
   ansible.builtin.template:
     src: agent.hcl.j2
     dest: /etc/nomad.d/nomad.hcl
@@ -41,24 +41,24 @@
     owner: nomad
     group: nomad
   notify:
-    - restart nomad
+    - Restart nomad
   when:
     - nomad_agent
 
-- name: start nomad
+- name: Start nomad
   ansible.builtin.service:
     name: nomad
     state: started
     enabled: yes
 
-- name: determine nomad leader
+- name: Determine nomad leader
   ansible.builtin.set_fact:
     nomad_leader: "{{ ansible_hostname }}"
   run_once: yes
   when:
     - nomad_server
 
-- name: list server members
+- name: List server members
   ansible.builtin.command:
     cmd: nomad server members
   register: nomad_list_server_members
@@ -66,7 +66,7 @@
   when:
     - nomad_server
 
-- name: join nomad leader
+- name: Join nomad leader
   ansible.builtin.command:
     cmd: nomad server join {{ nomad_leader }}:4648
   register: nomad_join_nomad_leader

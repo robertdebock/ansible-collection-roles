@@ -1,0 +1,14 @@
+---
+# defaults file for harbor
+
+# What version would you like to install?
+harbor_version: "2.6.0"
+
+# What type of installation would you like, either "online" or "offline".
+harbor_installation_type: online
+
+# Specify the IP address or the fully qualified domain name (FQDN) of the target host on which to deploy Harbor.
+harbor_hostname: "{{ ansible_hostname }}"
+
+# Set an initial password for the Harbor system administrator.
+harbor_admin_password: "Harbor12345"

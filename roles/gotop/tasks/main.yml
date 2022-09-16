@@ -1,12 +1,12 @@
 ---
 # tasks file for gotop
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: install software
+- name: Install software
   ansible.builtin.unarchive:
     src: "{{ gotop_download_url }}"
     dest: "{{ gotop_installation_path }}"

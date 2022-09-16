@@ -1,7 +1,7 @@
 ---
 # handlers file for ntp
 
-- name: restart ntp
+- name: Restart ntp
   ansible.builtin.service:
     name: "{{ ntp_service }}"
     state: restarted

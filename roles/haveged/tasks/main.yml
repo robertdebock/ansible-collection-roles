@@ -1,17 +1,17 @@
 ---
 # tasks file for ansible-role-haveged
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: install haveged
+- name: Install haveged
   ansible.builtin.package:
     name: haveged
     state: present
 
-- name: set write_wakeup_threshold
+- name: Set write_wakeup_threshold
   ansible.posix.sysctl:
     name: kernel.random.write_wakeup_threshold
     value: "{{ haveged_write_wakeup_threshold | string }}"
@@ -19,26 +19,26 @@
   when:
     - ansible_connection not in [ "container", "docker", "community.docker.docker" ]
 
-- name: create /etc/systemd/system/haveged.service.d/
+- name: Create /etc/systemd/system/haveged.service.d/
   ansible.builtin.file:
     path: /etc/systemd/system/haveged.service.d
     state: directory
     mode: "0755"
 
-- name: override write_wakeup_threshold value in service
+- name: Override write_wakeup_threshold value in service
   ansible.builtin.template:
     src: custom.conf.j2
     dest: /etc/systemd/system/haveged.service.d/custom.conf
     mode: "0644"
   notify:
-    - daemon reload
+    - Daemon reload
   when:
     - ansible_service_mgr == 'systemd'
 
-- name: flush handlers
+- name: Flush handlers
   ansible.builtin.meta: flush_handlers
 
-- name: start and enable haveged
+- name: Start and enable haveged
   ansible.builtin.service:
     name: haveged
     state: started

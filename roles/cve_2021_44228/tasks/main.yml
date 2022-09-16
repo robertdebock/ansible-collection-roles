@@ -1,7 +1,7 @@
 ---
 # tasks file for cve_2021_44228
 
-- name: include assert.yml
+- name: Include assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
@@ -9,22 +9,22 @@
 # The intent it to fail on found vulnerabilities, but proceed.
 # So `block` to check (and fail) and `rescue` to report.
 
-- name: include process checks
+- name: Include process checks
   include_tasks: processes.yml
   when:
     - cve_2021_44228_check_processes
 
-- name: include package checks
+- name: Include package checks
   include_tasks: packages.yml
   when:
     - cve_2021_44228_check_packages
 
-- name: include log4j file checks
+- name: Include log4j file checks
   include_tasks: log4jfiles.yml
   when:
     - cve_2021_44228_check_files
 
-- name: include archives checks
+- name: Include archives checks
   include_tasks: archives.yml
   when:
     - cve_2021_44228_check_archives

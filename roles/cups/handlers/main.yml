@@ -1,7 +1,7 @@
 ---
 # handlers file for cups
 
-- name: restart cups
+- name: Restart cups
   ansible.builtin.service:
     name: "{{ cups_service }}"
     state: restarted

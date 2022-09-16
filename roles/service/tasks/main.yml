@@ -1,19 +1,19 @@
 ---
 # tasks file for service
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: install required packages
+- name: Install required packages
   ansible.builtin.package:
     name: "{{ service_required_packages }}"
     state: present
   notify:
-    - gather facts
+    - Gather facts
 
-- name: configure systemd service
+- name: Configure systemd service
   ansible.builtin.template:
     src: "systemd.j2"
     dest: "/etc/systemd/system/{{ item.name }}.service"
@@ -21,12 +21,12 @@
   when:
     - ansible_service_mgr == "systemd"
   notify:
-    - systemctl daemon-reload
+    - Systemctl daemon-reload
   loop: "{{ service_list }}"
   loop_control:
     label: "{{ item.name }}"
 
-- name: configure sysvinit service
+- name: Configure sysvinit service
   ansible.builtin.template:
     src: "sysvinit.j2"
     dest: "/etc/init.d/{{ item.name }}"
@@ -37,7 +37,7 @@
   loop_control:
     label: "{{ item.name }}"
 
-- name: manage service
+- name: Manage service
   ansible.builtin.service:
     name: "{{ item.name }}"
     state: "{{ item.state | default(omit) }}"
@@ -49,5 +49,5 @@
     - item.state is defined or
       item.enabled is defined
 
-- name: flush handlers
+- name: Flush handlers
   ansible.builtin.meta: flush_handlers

@@ -1,28 +1,28 @@
 ---
 # tasks file for rsyslog
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: uninstall conflicting systemd-logger
+- name: Uninstall conflicting systemd-logger
   ansible.builtin.package:
     name: systemd-logger
     state: absent
 
-- name: install rsyslog
+- name: Install rsyslog
   ansible.builtin.package:
     name: "{{ rsyslog_packages }}"
     state: "{{ rsyslog_package_state }}"
 
-- name: install additional rsyslog packages
+- name: Install additional rsyslog packages
   ansible.builtin.package:
     name: "rsyslog-{{ item }}"
     state: "{{ rsyslog_package_state }}"
   loop: "{{ rsyslog_features }}"
 
-- name: configuring default rsyslog
+- name: Configuring default rsyslog
   ansible.builtin.template:
     src: "{{ rsyslog_config_file_format }}_rsyslog.conf.j2"
     dest: "{{ rsyslog_dest_conf_file }}"
@@ -30,15 +30,15 @@
   when:
     - rsyslog_deploy_default_config
   notify:
-    - restart rsyslog
+    - Restart rsyslog
 
-- name: make configuration directory
+- name: Make configuration directory
   ansible.builtin.file:
     name: /etc/rsyslog.d/
     state: directory
     mode: "0755"
 
-- name: configuring {{ rsyslog_forward_rule_name }} rsyslog forward rule
+- name: Configuring {{ rsyslog_forward_rule_name }} rsyslog forward rule
   ansible.builtin.template:
     src: "forward_rule.conf.j2"
     dest: /etc/rsyslog.d/{{ rsyslog_forward_rule_name }}.conf
@@ -46,9 +46,9 @@
   when:
     - not rsyslog_deploy_default_config
   notify:
-    - restart rsyslog
+    - Restart rsyslog
 
-- name: configuring additional config files
+- name: Configuring additional config files
   ansible.builtin.copy:
     content: "{{ item.value.content | default('') }}"
     dest: "/etc/rsyslog.d/{{ item.key }}.conf"
@@ -59,9 +59,10 @@
   with_dict: "{{ rsyslog_rsyslog_d_files }}"
   when:
     - item.value.state | default('present') == 'present'
-  notify: restart rsyslog
+  notify:
+    - Restart rsyslog
 
-- name: start and enable rsyslog
+- name: Start and enable rsyslog
   ansible.builtin.service:
     name: "{{ rsyslog_service }}"
     state: started

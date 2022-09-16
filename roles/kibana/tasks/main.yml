@@ -1,17 +1,17 @@
 ---
 # tasks file for kibana
 
-- name: include assert.yml
+- name: Include assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: install kibana
+- name: Install kibana
   ansible.builtin.package:
     name: "{{ kibana_requirements + kibana_package }}"
     state: present
 
-- name: configure kibana
+- name: Configure kibana
   ansible.builtin.template:
     src: kibana.yml.j2
     dest: /etc/kibana/kibana.yml
@@ -19,9 +19,9 @@
     group: kibana
     mode: "0660"
   notify:
-    - restart kibana
+    - Restart kibana
 
-- name: start kibana
+- name: Start kibana
   ansible.builtin.service:
     name: kibana
     state: started

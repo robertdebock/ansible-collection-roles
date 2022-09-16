@@ -1,0 +1,25 @@
+---
+# tasks file for harbor
+
+- name: Include assert.yml
+  ansible.builtin.import_tasks: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+- name: Unarchive harbor
+  ansible.builtin.unarchive:
+    src: "{{ harbor_archive }}"
+    dest: /tmp
+    remote_src: yes
+  notify:
+    - Run installer
+
+- name: Place harbor.yml
+  ansible.builtin.template:
+    src: harbor.yml.j2
+    dest: /tmp/harbor/harbor.yml
+    owner: root
+    group: root
+    mode: "0640"
+  notify:
+    - Run installer

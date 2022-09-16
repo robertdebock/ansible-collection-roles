@@ -1,41 +1,41 @@
 ---
 # tasks file for dovecot
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: install dovecot
+- name: Install dovecot
   ansible.builtin.package:
     name: "{{ dovecot_packages }}"
     state: present
   notify:
-    - copy sample configuration
+    - Copy sample configuration
 
-- name: flush handlers
+- name: Flush handlers
   ansible.builtin.meta: flush_handlers
 
-- name: configure mail_location
+- name: Configure mail_location
   ansible.builtin.lineinfile:
     path: /etc/dovecot/conf.d/10-mail.conf
     regexp: "^mail_location"
     line: "mail_location = {{ dovecot_mailbox_location }}"
     mode: "0640"
 
-- name: configure mail_access_groups
+- name: Configure mail_access_groups
   ansible.builtin.lineinfile:
     path: /etc/dovecot/conf.d/10-mail.conf
     regexp: "^mail_access_groups"
     line: "mail_access_groups = {{ dovecot_mail_access_groups }}"
     mode: "0640"
 
-- name: find users in /var/spool/mail
+- name: Find users in /var/spool/mail
   ansible.builtin.find:
     path: /var/spool/mail
   register: dovecot_find_users
 
-- name: set permission in /var/spool/mail
+- name: Set permission in /var/spool/mail
   ansible.builtin.file:
     path: "{{ item.path }}"
     mode: "0600"
@@ -43,7 +43,7 @@
   loop_control:
     label: "{{ item.path | basename }}"
 
-- name: start and enable dovecot
+- name: Start and enable dovecot
   ansible.builtin.service:
     name: "{{ dovecot_service }}"
     state: started

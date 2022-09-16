@@ -1,23 +1,23 @@
 ---
 # tasks file for vdo
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: install requirements
+- name: Install requirements
   ansible.builtin.package:
     name: "{{ vdo_packages }}"
     state: present
 
-- name: start and enable service
+- name: Start and enable service
   ansible.builtin.service:
     name: "{{ vdo_service }}"
     state: started
     enabled: yes
 
-- name: create vdo device
+- name: Create vdo device
   community.general.vdo:
     name: "{{ item.name }}"
     state: present

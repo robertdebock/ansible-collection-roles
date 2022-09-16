@@ -1,42 +1,42 @@
 ---
 # tasks file for haproxy
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: install haproxy
+- name: Install haproxy
   ansible.builtin.package:
     name: haproxy
     state: present
 
-- name: create group
+- name: Create group
   ansible.builtin.group:
     name: haproxy
     system: yes
     state: present
 
-- name: create user
+- name: Create user
   ansible.builtin.user:
     name: haproxy
     system: yes
     state: present
 
-- name: configure software
+- name: Configure software
   ansible.builtin.template:
     src: haproxy.cfg.j2
     dest: /etc/haproxy/haproxy.cfg
     validate: haproxy -c -f %s
     mode: "0640"
   notify:
-    - restart haproxy
+    - Restart haproxy
   when:
     - ansible_default_ipv4 is defined
 
-- name: modify selinux settings
+- name: Modify selinux settings
   block:
-    - name: add haproxy_stats_port to http_port_t selinux type
+    - name: Add haproxy_stats_port to http_port_t selinux type
       community.general.seport:
         ports: "{{ haproxy_stats_port }}"
         proto: tcp
@@ -45,21 +45,21 @@
       when:
         - haproxy_stats_port is defined
 
-    - name: allow haproxy to open any port
+    - name: Allow haproxy to open any port
       ansible.posix.seboolean:
         name: haproxy_connect_any
         state: yes
         persistent: yes
       notify:
-        - reboot
+        - Reboot
   when:
     - ansible_selinux.status is defined
     - ansible_selinux.status == "enabled"
 
-- name: flush handlers
+- name: Flush handlers
   ansible.builtin.meta: flush_handlers
 
-- name: start and enable haproxy
+- name: Start and enable haproxy
   ansible.builtin.service:
     name: haproxy
     state: started

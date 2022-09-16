@@ -1,19 +1,19 @@
 ---
 # tasks file for postgres
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: install postgres
+- name: Install postgres
   ansible.builtin.package:
     name: "{{ postgres_packages }}"
     state: present
   notify:
-    - systemctl daemon-reexec
+    - Systemctl daemon-reexec
 
-- name: create postgres data directory
+- name: Create postgres data directory
   ansible.builtin.file:
     path: "{{ postgres_dir }}"
     state: directory
@@ -21,7 +21,7 @@
     group: postgres
     mode: "700"
 
-- name: initialize database
+- name: Initialize database
   ansible.builtin.command:
     cmd: initdb -D {{ postgres_dir }}
     creates: "{{ postgres_dir }}/PG_VERSION"
@@ -30,7 +30,7 @@
   become_user: postgres
   become: yes
 
-- name: configure postgres
+- name: Configure postgres
   ansible.builtin.lineinfile:
     path: "{{ postgres_conf_dir }}/postgresql.conf"
     regex: "^{{ item.name }} ="
@@ -38,26 +38,26 @@
     create: yes
     mode: "0644"
   notify:
-    - restart postgres
+    - Restart postgres
   loop:
-    - name: port
+    - name: Port
       value: "{{ postgres_port }}"
-    - name: listen_addresses
+    - name: Listen_addresses
       value: "{{ postgres_listen_addresses }}"
-    - name: unix_socket_directories
+    - name: Unix_socket_directories
       value: "{{ postgres_unix_socket_directories }}"
-    - name: log_timezone
+    - name: Log_timezone
       value: "{{ postgres_log_timezone }}"
-    - name: datestyle
+    - name: Datestyle
       value: "{{ postgres_datestyle }}"
-    - name: timezone
+    - name: Timezone
       value: "{{ postgres_timezone }}"
-    - name: default_text_search_config
+    - name: Default_text_search_config
       value: "{{ postgres_default_text_search_config }}"
   loop_control:
     label: "{{ item.name }}"
 
-- name: configure wal parameters
+- name: Configure wal parameters
   ansible.builtin.lineinfile:
     path: "{{ postgres_conf_dir }}/postgresql.conf"
     regex: "^{{ item.name }} ="
@@ -65,11 +65,11 @@
     create: yes
     mode: "0644"
   notify:
-    - restart postgres
+    - Restart postgres
   loop:
-    - name: max_wal_size
+    - name: Max_wal_size
       value: "{{ postgres_max_wal_size }}"
-    - name: min_wal_size
+    - name: Min_wal_size
       value: "{{ postgres_min_wal_size }}"
   loop_control:
     label: "{{ item.name }}"
@@ -77,25 +77,25 @@
     - ansible_os_family not in [ "RedHat", "Rocky" ]
     - ansible_distribution_major_version != "7"
 
-- name: create pg_hba.conf
+- name: Create pg_hba.conf
   ansible.builtin.template:
     src: pg_hba.conf.j2
     dest: "{{ postgres_conf_dir }}/pg_hba.conf"
     backup: yes
     mode: "0644"
   notify:
-    - reload postgres
+    - Reload postgres
 
-- name: flush handlers
+- name: Flush handlers
   ansible.builtin.meta: flush_handlers
 
-- name: start and enable postgres
+- name: Start and enable postgres
   ansible.builtin.service:
     name: postgresql
     state: started
     enabled: yes
 
-- name: install psycopg2-binary
+- name: Install psycopg2-binary
   ansible.builtin.pip:
     name: psycopg2-binary
     state: present
@@ -103,10 +103,10 @@
     - postgres_databases is defined or
       postgres_users is defined
 
-- name: flush handlers again
+- name: Flush handlers again
   ansible.builtin.meta: flush_handlers
 
-- name: create postgres database
+- name: Create postgres database
   community.postgresql.postgresql_db:
     name: "{{ item.name }}"
     encoding: "{{ item.encoding | default(omit) }}"
@@ -123,7 +123,7 @@
   become_user: postgres
   become: yes
 
-- name: create postgres users
+- name: Create postgres users
   community.postgresql.postgresql_user:
     name: "{{ item.name }}"
     db: "{{ item.db | default(omit) }}"

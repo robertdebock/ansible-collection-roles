@@ -1,7 +1,7 @@
 ---
-- name: issue a key and certificate
+- name: Issue a key and certificate
   block:
-    - name: upload requested key
+    - name: Upload requested key
       ansible.builtin.copy:
         src: "{{ request.upload_keyfile }}"
         dest: "{{ ca_path }}/{{ ca_subject_keys_path }}/{{ request.name | default(request) }}.pem"
@@ -9,7 +9,7 @@
       when:
         - request.upload_keyfile is defined
 
-    - name: copy requested key
+    - name: Copy requested key
       ansible.builtin.copy:
         remote_src: yes
         src: "{{ request.keyfile_path }}"
@@ -18,9 +18,9 @@
       when:
         - request.keyfile_path is defined
 
-    - name: generate requested key
+    - name: Generate requested key
       block:
-        - name: generate requested key (passphrase set)
+        - name: Generate requested key (passphrase set)
           community.crypto.openssl_privatekey:
             path: "{{ ca_path }}/{{ ca_subject_keys_path }}/{{ request.name | default(request) }}.pem"
             passphrase: "{{ request.passphrase }}"
@@ -28,7 +28,7 @@
           when:
             - request.passphrase is defined
 
-        - name: generate requested key (passphrase not set)
+        - name: Generate requested key (passphrase not set)
           community.crypto.openssl_privatekey:
             path: "{{ ca_path }}/{{ ca_subject_keys_path }}/{{ request.name | default(request) }}.pem"
           when:
@@ -37,7 +37,7 @@
         - request.upload_keyfile is not defined
         - request.keyfile_path is not defined
 
-    - name: generate requested certificate signing request
+    - name: Generate requested certificate signing request
       community.crypto.openssl_csr:
         path: "{{ ca_path }}/{{ ca_requests_path }}/{{ request.name | default(request) }}.csr"
         privatekey_path: "{{ ca_path }}/{{ ca_subject_keys_path }}/{{ request.name | default(request) }}.pem"
@@ -48,19 +48,19 @@
         organization_name: "{{ request.organization_name | default(omit) }}"
         organizational_unit_name: "{{ request.organizational_unit_name | default(omit) }}"
 
-    - name: generate requested certificate extension file
+    - name: Generate requested certificate extension file
       ansible.builtin.template:
         src: extensions.cnf.j2
         dest: "{{ ca_path }}/{{ ca_extfiles_path }}/{{ request.name | default(request) }}.cnf"
         mode: "0644"
 
-    - name: generate requested certificate
+    - name: Generate requested certificate
       ansible.builtin.command:
         chdir: "{{ ca_path }}"
         cmd: "openssl ca {{ ca_client_cert_params }}"
         creates: "{{ ca_path }}/{{ ca_certs_path }}/{{ request.name | default(request) }}.crt"
 
-    - name: publish certificate
+    - name: Publish certificate
       ansible.builtin.copy:
         src: "{{ ca_path }}/{{ ca_certs_path }}/{{ request.name | default(request) }}.crt"
         dest: "{{ ca_publication_location }}/{{ request.name | default(request) }}.crt"
@@ -70,14 +70,14 @@
         - ca_publication_location is defined
   when: (request.state is not defined) or (request.state == 'present')
 
-- name: check whether certificate file exists
+- name: Check whether certificate file exists
   ansible.builtin.stat:
     path: "{{ ca_path }}/{{ ca_certs_path }}/{{ request.name | default(request) }}.crt"
   register: check_certfile
 
-- name: revoke a key and certificate
+- name: Revoke a key and certificate
   block:
-    - name: revoke certificate
+    - name: Revoke certificate
       ansible.builtin.command:
         chdir: "{{ ca_path }}"
         cmd: "openssl ca {{ ca_client_cert_revoke_params }}"
@@ -86,7 +86,7 @@
         - revoke_result is not failed
       ignore_errors: yes
 
-    - name: update crl
+    - name: Update crl
       ansible.builtin.command:
         chdir: "{{ ca_path }}"
         cmd: "openssl ca {{ ca_crl_params }}"
@@ -94,7 +94,7 @@
       changed_when:
         - update_crl is not failed
 
-    - name: ensure certificate file is absent
+    - name: Ensure certificate file is absent
       ansible.builtin.file:
         path: "{{ ca_path }}/{{ ca_certs_path }}/{{ request.name | default(request) }}.crt"
         state: absent

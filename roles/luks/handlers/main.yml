@@ -1,7 +1,7 @@
 ---
 # handlers file for luks
 
-- name: set permissions on keyfile
+- name: Set permissions on keyfile
   ansible.builtin.file:
     path: "{{ item.keyfile }}"
     owner: root

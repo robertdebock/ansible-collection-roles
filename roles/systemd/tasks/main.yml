@@ -1,17 +1,17 @@
 ---
 # tasks file for systemd
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: install requirements
+- name: Install requirements
   ansible.builtin.package:
     name: "{{ systemd_requirements }}"
     state: present
 
-- name: set default target
+- name: Set default target
   ansible.builtin.file:
     src: "{{ system_path }}/{{ systemd_default_target }}"
     dest: /etc/systemd/system/default.target
@@ -20,7 +20,7 @@
   when:
     - systemd_default_target is defined
 
-- name: configure coredump.conf
+- name: Configure coredump.conf
   community.general.ini_file:
     path: /etc/systemd/coredump.conf
     section: Coredump
@@ -33,7 +33,7 @@
   when:
     - systemd_coredump is defined
 
-- name: configure journald.conf
+- name: Configure journald.conf
   community.general.ini_file:
     path: /etc/systemd/journald.conf
     section: Journal
@@ -46,9 +46,9 @@
   when:
     - systemd_journald is defined
   notify:
-    - restart systemd-journald
+    - Restart systemd-journald
 
-- name: configure logind.conf
+- name: Configure logind.conf
   community.general.ini_file:
     path: /etc/systemd/logind.conf
     section: Login
@@ -61,9 +61,9 @@
   when:
     - systemd_logind is defined
   notify:
-    - restart systemd-logind
+    - Restart systemd-logind
 
-- name: configure resolved.conf
+- name: Configure resolved.conf
   community.general.ini_file:
     path: /etc/systemd/resolved.conf
     section: Resolve
@@ -76,9 +76,9 @@
   when:
     - systemd_resolved is defined
   notify:
-    - restart systemd-resolved
+    - Restart systemd-resolved
 
-- name: configure system.conf
+- name: Configure system.conf
   community.general.ini_file:
     path: /etc/systemd/system.conf
     section: Manager
@@ -91,7 +91,7 @@
   when:
     - systemd_system is defined
 
-- name: configure user.conf
+- name: Configure user.conf
   community.general.ini_file:
     path: /etc/systemd/user.conf
     section: Manager
@@ -104,7 +104,7 @@
   when:
     - systemd_user is defined
 
-- name: start dbus-broker
+- name: Start dbus-broker
   ansible.builtin.service:
     name: dbus-broker
     state: started

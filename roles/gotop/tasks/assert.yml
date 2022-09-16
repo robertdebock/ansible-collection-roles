@@ -1,13 +1,13 @@
 ---
 
-- name: test if gotop_version is set correctly
+- name: Test if gotop_version is set correctly
   ansible.builtin.assert:
     that:
       - gotop_version is defined
       - gotop_version is string
     quiet: yes
 
-- name: test if gotop_installation_path is set correctly
+- name: Test if gotop_installation_path is set correctly
   ansible.builtin.assert:
     that:
       - gotop_installation_path is defined

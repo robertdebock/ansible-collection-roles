@@ -1,14 +1,14 @@
 ---
 # handlers file for autofs
 
-- name: restart autofs
+- name: Restart autofs
   ansible.builtin.service:
     name: "{{ autofs_service }}"
     state: restarted
   when:
     - not ansible_check_mode
 
-- name: reload autofs
+- name: Reload autofs
   ansible.builtin.service:
     name: "{{ autofs_service }}"
     state: reloaded

@@ -1,13 +1,13 @@
 ---
 
-- name: test if eclipse_release is set correctly
+- name: Test if eclipse_release is set correctly
   ansible.builtin.assert:
     that:
       - eclipse_release is defined
       - eclipse_release is string
     quiet: yes
 
-- name: test if eclipse_release_version is set correctly
+- name: Test if eclipse_release_version is set correctly
   ansible.builtin.assert:
     that:
       - eclipse_release_version is defined
@@ -15,7 +15,7 @@
       - eclipse_release_version in [ "R", "RC1", "M3", "M2", "M1" ]
     quiet: yes
 
-- name: test if eclipse_release_type is set correctly
+- name: Test if eclipse_release_type is set correctly
   ansible.builtin.assert:
     that:
       - eclipse_release_type is defined
@@ -39,7 +39,7 @@
       - scout
       - testing
 
-- name: test if eclipse_plugins is set correctly
+- name: Test if eclipse_plugins is set correctly
   ansible.builtin.assert:
     that:
       - eclipse_plugins is iterable
@@ -47,7 +47,7 @@
   when:
     - eclipse_plugins is defined
 
-- name: test if item in eclipse_plugins is set correctly
+- name: Test if item in eclipse_plugins is set correctly
   ansible.builtin.assert:
     that:
       - item.name is defined

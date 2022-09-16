@@ -1,7 +1,7 @@
 ---
 # handlers file for locale
 
-- name: localectl set-locale
+- name: Localectl set-locale
   ansible.builtin.command:
     cmd: "{{ locale_notify_command }}"
   when:

@@ -1,12 +1,12 @@
 ---
 # tasks file for mount
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: create mountpoint
+- name: Create mountpoint
   ansible.builtin.file:
     path: "{{ item.path }}"
     state: directory
@@ -20,7 +20,7 @@
     - mount_requests is defined
     - item.fstype != "swap"
 
-- name: mount requested mounts
+- name: Mount requested mounts
   ansible.posix.mount:
     backup: "{{ item.backup | default(omit) }}"
     boot: "{{ item.boot | default(omit) }}"
@@ -38,4 +38,4 @@
   when:
     - mount_requests is defined
   notify:
-    - run swapon
+    - Run swapon

@@ -1,68 +1,68 @@
 ---
 # tasks file for clamav
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: install clamav software
+- name: Install clamav software
   ansible.builtin.package:
     name: "{{ clamav_packages }}"
     state: present
   notify:
-    - ensure logfiles exists
-    - stop clamav
-    - update virus definitions
+    - Ensure logfiles exists
+    - Stop clamav
+    - Update virus definitions
 
-- name: manage selinux settings
+- name: Manage selinux settings
   block:
-    - name: allowing system virus scanning
+    - name: Allowing system virus scanning
       ansible.posix.seboolean:
         name: antivirus_can_scan_system
         state: yes
         persistent: yes
 
-    - name: allowing jit
+    - name: Allowing jit
       ansible.posix.seboolean:
         name: clamd_use_jit
         state: yes
         persistent: yes
 
-    - name: install required selinux software
+    - name: Install required selinux software
       ansible.builtin.package:
         name: "{{ clamav_requirements }}"
         state: present
 
-    - name: place selinux type enforcement
+    - name: Place selinux type enforcement
       ansible.builtin.copy:
         src: my-clamd.te
         dest: /etc/my-clamd.te
         mode: "0640"
       notify:
-        - create selinux mod for clamav
-        - create selinux pp for clamav
-        - load selinux pp for clamav
+        - Create selinux mod for clamav
+        - Create selinux pp for clamav
+        - Load selinux pp for clamav
   when:
     - ansible_selinux is defined
     - ansible_selinux.status == "enabled"
 
-- name: place freshclam.conf
+- name: Place freshclam.conf
   ansible.builtin.template:
     src: freshclam.conf.j2
     dest: "{{ clamav_config_dir }}/freshclam.conf"
     mode: "{{ freshclam_mode }}"
 
-- name: create database directory
+- name: Create database directory
   ansible.builtin.file:
     path: "{{ clamav_database_directory }}"
     state: directory
     mode: "0755"
 
-- name: flush handlers
+- name: Flush handlers
   ansible.builtin.meta: flush_handlers
 
-- name: configure clamav software
+- name: Configure clamav software
   ansible.builtin.lineinfile:
     dest: "{{ clamav_config_dir }}/{{ clamav_config_file }}"
     line: "{{ item.line }}"
@@ -71,9 +71,9 @@
     mode: "0640"
   loop: "{{ clamav_configuration }}"
   notify:
-    - restart clamav
+    - Restart clamav
 
-- name: check update virus definitions
+- name: Check update virus definitions
   ansible.builtin.async_status:
     jid: "{{ updatevirusdefinitions.ansible_job_id }}"
   register: clamav_job_result
@@ -84,7 +84,7 @@
   when:
     - updatevirusdefinitions is defined
 
-- name: start and enable clamav service
+- name: Start and enable clamav service
   ansible.builtin.service:
     name: "{{ item }}"
     state: started

@@ -1,39 +1,39 @@
 ---
 # tasks file for artifactory
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: install yum repository
+- name: Install yum repository
   ansible.builtin.get_url:
     url: "https://bintray.com/jfrog/artifactory-rpms/rpm"
     dest: /etc/yum.repos.d/bintray-jfrog-artifactory-rpms.repo
   when:
     - ansible_pkg_mgr in [ "dnf", "yum" ]
 
-- name: configure apt repository
+- name: Configure apt repository
   block:
-    - name: trust gpg key
+    - name: Trust gpg key
       ansible.builtin.apt_key:
         url: "https://api.bintray.com/orgs/jfrog/keys/gpg/public.key"
         state: present
         validate_certs: no
 
-    - name: install deb repository
+    - name: Install deb repository
       ansible.builtin.apt_repository:
         repo: "deb https://jfrog.bintray.com/artifactory-debs {{ ansible_distribution_release | lower }} main"
         state: present
   when:
     - ansible_pkg_mgr in [ "apt" ]
 
-- name: install package
+- name: Install package
   ansible.builtin.package:
     name: jfrog-artifactory-{{ artifactory_flavour }}
     state: present
 
-- name: ensure artifactory_file_store_dir exists
+- name: Ensure artifactory_file_store_dir exists
   ansible.builtin.file:
     path: "{{ artifactory_file_store_dir }}"
     state: directory
@@ -41,7 +41,7 @@
     owner: artifactory
     group: artifactory
 
-- name: configure artifactory
+- name: Configure artifactory
   ansible.builtin.template:
     src: binarystore.xml.j2
     dest: "{{ artifactory_home }}/binarystore.xml"
@@ -49,9 +49,9 @@
     owner: artifactory
     group: artifactory
   notify:
-    - restart artifactory
+    - Restart artifactory
 
-- name: set ownership for artifactory_logs
+- name: Set ownership for artifactory_logs
   ansible.builtin.file:
     path: "{{ artifactory_logs }}"
     state: directory
@@ -59,7 +59,7 @@
     owner: artifactory
     group: artifactory
 
-- name: start and enable artifactory
+- name: Start and enable artifactory
   ansible.builtin.service:
     name: artifactory
     state: started

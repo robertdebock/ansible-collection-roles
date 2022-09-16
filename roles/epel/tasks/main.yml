@@ -1,28 +1,28 @@
 ---
 # tasks file for epel
 
-- name: install epel
+- name: Install epel
   block:
-    - name: install epel gpg key
+    - name: Install epel gpg key
       ansible.builtin.rpm_key:
         key: "{{ epel_gpg_key }}"
         state: present
 
-    - name: install epel-release
+    - name: Install epel-release
       ansible.builtin.package:
         name: "{{ epel_url }}"
         state: present
       notify:
-        - update package cache
+        - Update package cache
 
-    - name: install epel-next-release
+    - name: Install epel-next-release
       ansible.builtin.package:
         name: "{{ epel_next_url }}"
         state: present
       when:
         - epel_next
       notify:
-        - update package cache
+        - Update package cache
   when:
     - (ansible_distribution == "Amazon" and
       ansible_distribution_major_version == "2") or

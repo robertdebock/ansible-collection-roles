@@ -1,7 +1,7 @@
 ---
 # handlers file for zabbix_web
 
-- name: restart httpd
+- name: Restart httpd
   ansible.builtin.service:
     name: "{{ zabbix_web_httpd_service }}"
     state: restarted

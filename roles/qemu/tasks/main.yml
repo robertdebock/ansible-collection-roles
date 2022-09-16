@@ -1,7 +1,7 @@
 ---
 # tasks file for qemu
 
-- name: install qemu
+- name: Install qemu
   ansible.builtin.package:
     name: "{{ qemu_packages }}"
     state: present

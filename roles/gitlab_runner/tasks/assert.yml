@@ -1,13 +1,13 @@
 ---
 
-- name: test if gitlab_runner_name is set correctly
+- name: Test if gitlab_runner_name is set correctly
   ansible.builtin.assert:
     that:
       - gitlab_runner_name is defined
       - gitlab_runner_name is string
     quiet: yes
 
-- name: test if gitlab_runner_token is set correctly
+- name: Test if gitlab_runner_token is set correctly
   ansible.builtin.assert:
     that:
       - gitlab_runner_token is string
@@ -15,14 +15,14 @@
   when:
     - gitlab_runner_token is defined
 
-- name: test if gitlab_runner_url is set correctly
+- name: Test if gitlab_runner_url is set correctly
   ansible.builtin.assert:
     that:
       - gitlab_runner_url is defined
       - gitlab_runner_url is string
     quiet: yes
 
-- name: test if gitlab_runner_tags is set correctly
+- name: Test if gitlab_runner_tags is set correctly
   ansible.builtin.assert:
     that:
       - gitlab_runner_tags is iterable
@@ -30,14 +30,14 @@
   when:
     - gitlab_runner_tags is defined
 
-- name: test if gitlab_runner_executor is set correctly
+- name: Test if gitlab_runner_executor is set correctly
   ansible.builtin.assert:
     that:
       - gitlab_runner_executor is string
       - gitlab_runner_executor in [ "ssh", "shell", "parallels", "virtualbox", "docker", "docker_machine", "kubernetes", "custom" ]
     quiet: yes
 
-- name: test if gitlab_runner_docker_image is set correctly
+- name: Test if gitlab_runner_docker_image is set correctly
   ansible.builtin.assert:
     that:
       - gitlab_runner_docker_image is defined
@@ -46,7 +46,7 @@
   when:
     - gitlab_runner_executor == "docker"
 
-- name: test if gitlab_runner_version is set correctly
+- name: Test if gitlab_runner_version is set correctly
   ansible.builtin.assert:
     that:
       - gitlab_runner_version is defined

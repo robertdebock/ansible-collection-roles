@@ -1,7 +1,7 @@
 ---
 # handlers file for xrdp
 
-- name: restart xrdp
+- name: Restart xrdp
   ansible.builtin.service:
     name: "{{ xrdp_service }}"
     state: restarted

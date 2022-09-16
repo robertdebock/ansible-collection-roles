@@ -1,27 +1,27 @@
 ---
 # tasks file for zabbix_web
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: install zabbix_web
+- name: Install zabbix_web
   ansible.builtin.package:
     name: "{{ zabbix_web_packages }}"
     state: present
   notify:
-    - restart httpd
+    - Restart httpd
 
-- name: configure zabbix_web
+- name: Configure zabbix_web
   ansible.builtin.template:
     src: zabbix.conf.php.j2
     dest: "{{ zabbix_configuration_path }}/zabbix.conf.php"
     mode: "0644"
   notify:
-    - restart httpd
+    - Restart httpd
 
-- name: set selinux settings for zabbix_web
+- name: Set selinux settings for zabbix_web
   ansible.posix.seboolean:
     name: "{{ item }}"
     state: yes
@@ -34,10 +34,10 @@
     - ansible_selinux.status is defined
     - ansible_selinux.status == "enabled"
 
-- name: flush handlers
+- name: Flush handlers
   ansible.builtin.meta: flush_handlers
 
-- name: install zabbix-api requirements
+- name: Install zabbix-api requirements
   ansible.builtin.pip:
     name: zabbix-api
     state: present
@@ -45,7 +45,7 @@
     - zabbix_web_groups is defined or
       zabbix_web_hosts is defined
 
-- name: add zabbix groups
+- name: Add zabbix groups
   community.zabbix.zabbix_group:
     server_url: "{{ zabbix_web_server }}"
     login_user: "{{ zabbix_web_username }}"
@@ -60,7 +60,7 @@
     - ansible_connection not in [ "container", "docker", "community.docker.docker" ]
   run_once: yes
 
-- name: add zabbix hosts
+- name: Add zabbix hosts
   community.zabbix.zabbix_host:
     server_url: "{{ zabbix_web_server }}"
     login_user: "{{ zabbix_web_username }}"

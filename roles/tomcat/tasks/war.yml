@@ -1,5 +1,5 @@
 ---
-- name: deploy war url
+- name: Deploy war url
   ansible.builtin.get_url:
     url: "{{ war.url }}"
     dest: "{{ tomcat_directory }}//{{ instance.name }}/webapps/"

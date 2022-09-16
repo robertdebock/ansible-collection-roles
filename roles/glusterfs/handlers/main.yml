@@ -1,17 +1,17 @@
 ---
 # handlers file for glusterfs
 
-- name: create selinux mod for glusterfs
+- name: Create selinux mod for glusterfs
   ansible.builtin.command:
     cmd: checkmodule -M -m -o /etc/glusterfs/{{ item }}.mod /etc/glusterfs/{{ item }}.te
   loop: "{{ glusterfs_selinux_local_policies }}"
 
-- name: create selinux pp for glusterfs
+- name: Create selinux pp for glusterfs
   ansible.builtin.command:
     cmd: semodule_package -o /etc/glusterfs/{{ item }}.pp -m /etc/glusterfs/{{ item }}.mod
   loop: "{{ glusterfs_selinux_local_policies }}"
 
-- name: load selinux pp for glusterfs
+- name: Load selinux pp for glusterfs
   ansible.builtin.command:
     cmd: semodule -i /etc/glusterfs/{{ item }}.pp
   loop: "{{ glusterfs_selinux_local_policies }}"

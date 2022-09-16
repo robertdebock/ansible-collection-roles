@@ -1,18 +1,18 @@
 ---
 # tasks file for etherpad
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: create etherpad_installation_destination
+- name: Create etherpad_installation_destination
   ansible.builtin.file:
     path: "{{ etherpad_installation_destination }}"
     state: directory
     mode: "0750"
 
-- name: install etherpad
+- name: Install etherpad
   ansible.builtin.unarchive:
     src: "{{ etherpad_url }}"
     dest: "{{ etherpad_installation_destination }}"
@@ -20,15 +20,15 @@
     creates: "{{ etherpad_working_directory }}"
     mode: "0750"
 
-- name: configure etherpad
+- name: Configure etherpad
   ansible.builtin.template:
     src: "{{ etherpad_configuration_file }}.j2"
     dest: "{{ etherpad_working_directory }}/{{ etherpad_configuration_file }}"
     mode: "0640"
   notify:
-    - restart etherpad
+    - Restart etherpad
 
-- name: create etherpad service
+- name: Create etherpad service
   ansible.builtin.import_role:
     name: robertdebock.service
   vars:
@@ -38,7 +38,7 @@
         start_command: "{{ etherpad_working_directory }}/bin/run.sh --root"
         working_directory: "{{ etherpad_working_directory }}"
 
-- name: start and enable etherpad
+- name: Start and enable etherpad
   ansible.builtin.service:
     name: "{{ etherpad_service }}"
     state: started

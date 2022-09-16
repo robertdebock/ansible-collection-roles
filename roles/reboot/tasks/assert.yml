@@ -1,13 +1,13 @@
 ---
 
-- name: test if reboot_always is set correctly
+- name: Test if reboot_always is set correctly
   ansible.builtin.assert:
     that:
       - reboot_always is defined
       - reboot_always is boolean
     quiet: yes
 
-- name: test if reboot_delay is set correctly
+- name: Test if reboot_delay is set correctly
   ansible.builtin.assert:
     that:
       - reboot_delay is defined
@@ -15,7 +15,7 @@
       - reboot_delay >= 0
     quiet: yes
 
-- name: test if reboot_up_delay is set correctly
+- name: Test if reboot_up_delay is set correctly
   ansible.builtin.assert:
     that:
       - reboot_up_delay is defined
@@ -23,7 +23,7 @@
       - reboot_up_delay >= 0
     quiet: yes
 
-- name: test if reboot_message is set correctly
+- name: Test if reboot_message is set correctly
   ansible.builtin.assert:
     that:
       - reboot_message is defined

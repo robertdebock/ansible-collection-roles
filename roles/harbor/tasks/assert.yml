@@ -1,0 +1,24 @@
+---
+
+- name: Test if harbor_version is set correctly
+  ansible.builtin.assert:
+    that:
+      - harbor_version is defined
+      - harbor_version is string
+    quiet: yes
+
+- name: Test if harbor_installation_type is set correctly
+  ansible.builtin.assert:
+    that:
+      - harbor_installation_type is defined
+      - harbor_installation_type is string
+      - harbor_installation_type in [ "online", "offline" ]
+    quiet: yes
+
+- name: Test if harbor_hostname is set correctly
+  ansible.builtin.assert:
+    that:
+      - harbor_hostname is defined
+      - harbor_hostname is string
+      - harbor_installation_type not in [ "localhost", "127.0.0.1", "0.0.0.0" ]
+    quiet: yes

@@ -1,14 +1,14 @@
 ---
 # handlers file for httpd
 
-- name: test httpd configuration validity
+- name: Test httpd configuration validity
   ansible.builtin.command:
     cmd: "{{ httpd_binary }} -t"
   changed_when: no
   when:
     - ansible_os_family != "Suse"
 
-- name: restart httpd
+- name: Restart httpd
   ansible.builtin.service:
     name: "{{ httpd_service }}"
     state: restarted

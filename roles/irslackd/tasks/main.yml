@@ -1,23 +1,23 @@
 ---
 # tasks file for irslackd
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: install required software for irslackd
+- name: Install required software for irslackd
   ansible.builtin.package:
     name: "{{ irslackd_requirements }}"
     state: present
 
-- name: create irslackd_dest
+- name: Create irslackd_dest
   ansible.builtin.file:
     path: "{{ irslackd_dest }}"
     state: directory
     mode: "0755"
 
-- name: install irslackd
+- name: Install irslackd
   ansible.builtin.git:
     repo: "https://github.com/adsr/irslackd.git"
     dest: "{{ irslackd_dest }}"
@@ -28,30 +28,30 @@
   community.general.npm:
     path: "{{ irslackd_dest }}"
 
-- name: save openssl details
+- name: Save openssl details
   ansible.builtin.lineinfile:
     path: "{{ irslackd_dest }}/bin/create_tls_key.sh"
     line: "{{ irslackd_line }}"
     regexp: "^openssl"
     mode: "0755"
 
-- name: generate tls key
+- name: Generate tls key
   ansible.builtin.command:
     cmd: "{{ irslackd_dest }}/bin/create_tls_key.sh"
     creates: ~/.irslackd/cert.pem
     chdir: "{{ irslackd_dest }}"
 
-- name: create irslackd service
+- name: Create irslackd service
   ansible.builtin.import_role:
     name: robertdebock.service
   vars:
     service_list:
-      - name: irslackd
+      - name: Irslackd
         description: IRC Slack daemon
         start_command: "{{ irslackd_dest }}/irslackd -p {{ irslackd_port }} -a {{ irslackd_address }}"
         working_directory: "{{ irslackd_dest }}"
 
-- name: start irslackd
+- name: Start irslackd
   ansible.builtin.service:
     name: irslackd
     state: started

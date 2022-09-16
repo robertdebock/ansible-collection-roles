@@ -1,7 +1,7 @@
 ---
 # handlers file for roundcubemail
 
-- name: import mysql table layout
+- name: Import mysql table layout
   community.mysql.mysql_db:
     state: import
     name: "{{ roundcubemail_database_name }}"
@@ -11,14 +11,14 @@
     login_password: "{{ roundcubemail_database_password }}"
   no_log: yes
 
-- name: create roundcubemail selinux mod
+- name: Create roundcubemail selinux mod
   ansible.builtin.command:
     cmd: checkmodule -M -m -o /etc/my-roundcubemail.mod /etc/my-roundcubemail.te
 
-- name: create roundcubemail selinux pp
+- name: Create roundcubemail selinux pp
   ansible.builtin.command:
     cmd: semodule_package -o /etc/my-roundcubemail.pp -m /etc/my-roundcubemail.mod
 
-- name: load roundcubemail selinux pp
+- name: Load roundcubemail selinux pp
   ansible.builtin.command:
     cmd: semodule -i /etc/my-roundcubemail.pp

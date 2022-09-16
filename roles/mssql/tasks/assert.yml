@@ -1,41 +1,41 @@
 ---
 
-- name: test if mssql_add_repositories is set correctly
+- name: Test if mssql_add_repositories is set correctly
   ansible.builtin.assert:
     that:
       - mssql_add_repositories is defined
       - mssql_add_repositories is boolean
     quiet: yes
 
-- name: test if mssql_version is set correctly
+- name: Test if mssql_version is set correctly
   ansible.builtin.assert:
     that:
       - mssql_version is defined
       - mssql_version is string
     quiet: yes
 
-- name: test if mssql_server_version is set correctly
+- name: Test if mssql_server_version is set correctly
   ansible.builtin.assert:
     that:
       - mssql_server_version is defined
       - mssql_server_version is string
     quiet: yes
 
-- name: test if mssql_server_agent_version is set correctly
+- name: Test if mssql_server_agent_version is set correctly
   ansible.builtin.assert:
     that:
       - mssql_server_agent_version is defined
       - mssql_server_agent_version is string
     quiet: yes
 
-- name: test if mssql_sa_password is set correctly
+- name: Test if mssql_sa_password is set correctly
   ansible.builtin.assert:
     that:
       - mssql_sa_password is defined
       - mssql_sa_password is string
     quiet: yes
 
-- name: test if mssql_pid is set correctly
+- name: Test if mssql_pid is set correctly
   ansible.builtin.assert:
     that:
       - mssql_pid is defined
@@ -44,7 +44,7 @@
         mssql_pid is regex("^.....-.....-.....-.....-......$")
     quiet: yes
 
-- name: test if mssql_fts is set correctly
+- name: Test if mssql_fts is set correctly
   ansible.builtin.assert:
     that:
       - mssql_fts is defined

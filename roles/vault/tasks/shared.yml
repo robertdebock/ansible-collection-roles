@@ -1,20 +1,20 @@
 ---
 
-- name: install vault
+- name: Install vault
   ansible.builtin.package:
     name: vault
     state: present
   when:
     - vault_install_package
 
-- name: ensure vault user and group exist
+- name: Ensure vault user and group exist
   block:
-    - name: ensure group vault exists
+    - name: Ensure group vault exists
       ansible.builtin.group:
         name: "{{ vault_owner }}"
         state: present
 
-    - name: ensure user vault exist
+    - name: Ensure user vault exist
       ansible.builtin.user:
         name: "{{ vault_group }}"
         home: /home/vault
@@ -24,7 +24,7 @@
   when:
     - not vault_install_package
 
-- name: create vault storage path
+- name: Create vault storage path
   ansible.builtin.file:
     path: "{{ item.path }}"
     mode: "0750"
@@ -35,7 +35,7 @@
   loop_control:
     label: "{{ item.path }}"
 
-- name: make plugin directory
+- name: Make plugin directory
   ansible.builtin.file:
     path: "{{ vault_plugin_directory }}"
     state: directory
@@ -43,14 +43,14 @@
     group: "{{ vault_group }}"
     mode: "0755"
 
-- name: select leader if vault_leader is unset
+- name: Select leader if vault_leader is unset
   ansible.builtin.set_fact:
     vault_leader: "{{ inventory_hostname }}"
   run_once: yes
   when:
     - vault_leader is not defined
 
-- name: create /etc/vault.d
+- name: Create /etc/vault.d
   ansible.builtin.file:
     path: /etc/vault.d
     state: directory
@@ -58,7 +58,7 @@
     group: "{{ vault_group }}"
     mode: "0755"
 
-- name: place /etc/vaultd.d/config.hcl
+- name: Place /etc/vaultd.d/config.hcl
   ansible.builtin.template:
     src: config.hcl.j2
     dest: /etc/vault.d/vault.hcl
@@ -66,9 +66,9 @@
     group: "{{ vault_group }}"
     mode: "0640"
   notify:
-    - restart vault
+    - Restart vault
 
-- name: place vault license
+- name: Place vault license
   ansible.builtin.copy:
     content: "{{ vault_license }}"
     dest: /etc/vault.d/vault.hclic
@@ -76,17 +76,17 @@
     group: "{{ vault_group }}"
     mode: "0400"
   notify:
-    - restart vault
+    - Restart vault
   when:
     - vault_license is defined
 
-- name: start vault
+- name: Start vault
   ansible.builtin.service:
     name: vault
     state: started
     enabled: yes
 
-- name: check status of vault
+- name: Check status of vault
   ansible.builtin.command:
     cmd: vault status -format=yaml
   environment:
@@ -97,11 +97,11 @@
   failed_when:
     - vault_status_raw.rc == 1
 
-- name: save vault_status
+- name: Save vault_status
   ansible.builtin.set_fact:
     vault_status: "{{ vault_status_raw.stdout | from_yaml }}"
 
-- name: safe VAULT_ADDR /etc/environment
+- name: Safe VAULT_ADDR /etc/environment
   ansible.builtin.lineinfile:
     regexp: "^export VAULT_ADDR="
     path: /etc/profile.d/vault.sh

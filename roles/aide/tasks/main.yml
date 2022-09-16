@@ -1,19 +1,19 @@
 ---
 # tasks file for aide
 
-- name: install aide
+- name: Install aide
   ansible.builtin.package:
     name: "{{ aide_packages }}"
     state: present
 
-- name: initialize aide
+- name: Initialize aide
   ansible.builtin.command:
     cmd: "{{ aide_init_command }}"
     creates: "{{ aide_db_new }}"
   notify:
-    - copy new aide database
+    - Copy new aide database
 
-- name: schedule aide check
+- name: Schedule aide check
   ansible.builtin.cron:
     name: aide check
     job: aide --check

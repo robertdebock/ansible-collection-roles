@@ -1,25 +1,25 @@
 ---
 # tasks file for mediawiki
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: create directory
+- name: Create directory
   ansible.builtin.file:
     path: "{{ mediawiki_destination }}"
     state: directory
     mode: "0755"
 
-- name: install requirements
+- name: Install requirements
   ansible.builtin.package:
     name: "{{ mediawiki_requirements }}"
     state: present
   notify:
-    - restart httpd
+    - Restart httpd
 
-- name: install mediawiki
+- name: Install mediawiki
   ansible.builtin.unarchive:
     src: "{{ mediawiki_source }}"
     dest: "{{ mediawiki_destination }}"
@@ -30,14 +30,14 @@
     owner: "{{ mediawiki_owner }}"
     group: "{{ mediawiki_group }}"
 
-- name: link mediawiki to versioned directory
+- name: Link mediawiki to versioned directory
   ansible.builtin.file:
     src: "{{ mediawiki_destination }}/mediawiki-{{ mediawiki_version }}"
     dest: "{{ mediawiki_destination }}/mediawiki"
     state: link
     mode: "0755"
 
-- name: link mediawiki to docroot
+- name: Link mediawiki to docroot
   ansible.builtin.file:
     src: "{{ mediawiki_destination }}/mediawiki"
     dest: "{{ mediawiki_docroot }}/mediawiki"

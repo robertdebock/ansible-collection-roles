@@ -1,38 +1,38 @@
 ---
 # tasks file for hashicorp
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: install using package
+- name: Install using package
   block:
-    - name: install repository for RedHat
+    - name: Install repository for RedHat
       ansible.builtin.get_url:
         url: "{{ hashicorp_repository_url }}"
         dest: /etc/yum.repos.d/hashicorp.repo
       when:
         - ansible_os_family in [ "RedHat", "Rocky" ]
 
-    - name: configure debian
+    - name: Configure debian
       block:
-        - name: install apt key for Debian
+        - name: Install apt key for Debian
           ansible.builtin.apt_key:
             url: "https://apt.releases.hashicorp.com/gpg"
             state: present
             validate_certs: no
 
-        - name: install repository for Debian
+        - name: Install repository for Debian
           ansible.builtin.apt_repository:
             repo: deb [arch={{ hashicorp_architecture_mapping }}] https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main
             state: present
       when:
         - ansible_os_family == "Debian"
 
-    - name: install hashicorp product using package
+    - name: Install hashicorp product using package
       block:
-        - name: install latest hashicorp product using package
+        - name: Install latest hashicorp product using package
           ansible.builtin.package:
             name: "{{ item.name }}"
             state: present
@@ -42,7 +42,7 @@
           when:
             - item.version is not defined
 
-        - name: install versioned hashicorp product using package
+        - name: Install versioned hashicorp product using package
           ansible.builtin.package:
             name: "{{ item.name }}{{ version_coupler }}{{ item.version }}"
             state: present
@@ -56,9 +56,9 @@
   when:
     - hashicorp_installation_method == "package"
 
-- name: install manually
+- name: Install manually
   block:
-    - name: install hashicorp product manually
+    - name: Install hashicorp product manually
       ansible.builtin.unarchive:
         src: "{{ hashicorp_src }}"
         dest: /usr/bin

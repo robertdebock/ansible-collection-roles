@@ -1,17 +1,17 @@
 ---
 # tasks file for dhcpd
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: install dhcpd software
+- name: Install dhcpd software
   ansible.builtin.package:
     name: "{{ dhcpd_packages }}"
     state: present
 
-- name: configure defaults
+- name: Configure defaults
   ansible.builtin.template:
     src: "{{ dhcpd_defaults_src }}"
     dest: "{{ dhcpd_defaults_dest }}"
@@ -20,40 +20,42 @@
   when:
     - ansible_os_family == "Debian" or
       ansible_distribution == "openSUSE Leap"
-  notify: restart dhcpd
+  notify:
+    - Restart dhcpd
 
-- name: configure software
+- name: Configure software
   ansible.builtin.template:
     src: dhcpd.conf.j2
     dest: "{{ dhcpd_confdir }}/dhcpd.conf"
     backup: yes
     mode: "0640"
-  notify: restart dhcpd
+  notify:
+    - Restart dhcpd
 
-- name: start and enable software
+- name: Start and enable software
   block:
-    - name: start and enable software
+    - name: Start and enable software
       ansible.builtin.service:
         name: "{{ dhcpd_service }}"
         state: started
         enabled: yes
   rescue:
-    - name: install procps
+    - name: Install procps
       ansible.builtin.package:
         name: procps
         state: present
 
-    - name: stop dhcpd
+    - name: Stop dhcpd
       ansible.builtin.command:
         cmd: pkill dhcpd
         removes: nothing
 
-    - name: remove pid file
+    - name: Remove pid file
       ansible.builtin.file:
         path: /var/run/dhcpd.pid
         state: absent
 
-    - name: start and enable software again
+    - name: Start and enable software again
       ansible.builtin.service:
         name: "{{ dhcpd_service }}"
         state: started

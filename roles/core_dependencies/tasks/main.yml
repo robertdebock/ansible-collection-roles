@@ -1,24 +1,24 @@
 ---
 # tasks file for core_dependencies
 
-- name: install packages
+- name: Install packages
   ansible.builtin.package:
     name: "{{ core_dependencies }}"
     state: present
     update_cache: yes
   notify:
-    - gather facts
+    - Gather facts
 
-- name: reset connetion
+- name: Reset connetion
   ansible.builtin.meta: reset_connection
 
-- name: try to install pip packages
+- name: Try to install pip packages
   ansible.builtin.pip:
     name: "{{ core_dependencies_pip_packages }}"
     state: present
   failed_when: no
   notify:
-    - gather facts
+    - Gather facts
 
-- name: flush handlers
+- name: Flush handlers
   ansible.builtin.meta: flush_handlers

@@ -1,17 +1,17 @@
 ---
 # tasks file for zabbix_agent
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: install zabbix-agent software
+- name: Install zabbix-agent software
   ansible.builtin.package:
     name: zabbix-agent
     state: present
 
-- name: configuring zabbix agent
+- name: Configuring zabbix agent
   ansible.builtin.template:
     src: zabbix_agentd.conf.j2
     dest: "{{ zabbix_agent_conf_dest }}"
@@ -19,22 +19,22 @@
     group: zabbix
     mode: "0640"
   notify:
-    - restart zabbix-agent
+    - Restart zabbix-agent
 
-- name: place selinux type enforcement
+- name: Place selinux type enforcement
   ansible.builtin.copy:
     src: my-zabbixagent.te
     dest: /etc/zabbix/my-zabbixagent.te
     mode: "0644"
   notify:
-    - create selinux mod for zabbix_agent
-    - create selinux pp for zabbix_agent
-    - load selinux pp for zabbix_agent
+    - Create selinux mod for zabbix_agent
+    - Create selinux pp for zabbix_agent
+    - Load selinux pp for zabbix_agent
   when:
     - ansible_selinux.status is defined
     - ansible_selinux.status == "enabled"
 
-- name: start and enable zabbix agent
+- name: Start and enable zabbix agent
   ansible.builtin.service:
     name: "{{ zabbix_agent_service }}"
     state: started

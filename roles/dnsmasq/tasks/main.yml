@@ -1,17 +1,17 @@
 ---
 # tasks file for dnsmasq
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: install dnsmasq
+- name: Install dnsmasq
   ansible.builtin.package:
     name: "{{ dnsmasq_packages }}"
     state: present
 
-- name: configure dnsmasq
+- name: Configure dnsmasq
   ansible.builtin.template:
     src: dnsmasq.conf.j2
     dest: "{{ dnsmasq_configuration_file }}"
@@ -19,10 +19,10 @@
     group: "{{ dnsmasq_group }}"
     mode: "0644"
   notify:
-    - test dnsmasq configuration
-    - restart dnsmasq
+    - Test dnsmasq configuration
+    - Restart dnsmasq
 
-- name: start and enable dnsmasq
+- name: Start and enable dnsmasq
   ansible.builtin.service:
     name: "{{ dnsmasq_service }}"
     state: started

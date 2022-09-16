@@ -1,24 +1,24 @@
 ---
 # tasks file for node_red
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: install node-red requirements
+- name: Install node-red requirements
   ansible.builtin.package:
     name: "{{ node_red_requirements }}"
     state: present
 
-- name: install node-red
+- name: Install node-red
   community.general.npm:
     name: node-red
     state: present
     global: yes
     unsafe_perm: yes
 
-- name: create working_directory
+- name: Create working_directory
   ansible.builtin.file:
     path: "{{ node_red_working_directory }}"
     state: directory
@@ -26,7 +26,7 @@
     group: "{{ node_red_group_name }}"
     mode: "0755"
 
-- name: create service for node-red
+- name: Create service for node-red
   ansible.builtin.import_role:
     name: robertdebock.service
   vars:
@@ -39,7 +39,7 @@
         group_name: "{{ node_red_group_name }}"
         status_pattern: "node-red"
 
-- name: start service
+- name: Start service
   ansible.builtin.service:
     name: "{{ node_red_service }}"
     state: started

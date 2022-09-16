@@ -1,13 +1,13 @@
 ---
 # tasks file for update_package_cache
 
-- name: update apt cache
+- name: Update apt cache
   ansible.builtin.apt:
     update_cache: yes
   when:
     - ansible_pkg_mgr == "apt"
 
-- name: update yum cache
+- name: Update yum cache
   ansible.builtin.yum:
     update_cache: yes
   when:

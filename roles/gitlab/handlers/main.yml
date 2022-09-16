@@ -1,11 +1,11 @@
 ---
 # handlers file for gitlab
 
-- name: run gitlab-ctl reconfigure
+- name: Run gitlab-ctl reconfigure
   ansible.builtin.command:
     cmd: gitlab-ctl reconfigure
 
-- name: uninstall ruby
+- name: Uninstall ruby
   ansible.builtin.package:
     name: ruby
     state: absent

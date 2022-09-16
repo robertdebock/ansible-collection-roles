@@ -1,17 +1,17 @@
 ---
 # tasks file for vagrant
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: download vagrant
+- name: Download vagrant
   ansible.builtin.get_url:
     url: "{{ vagrant_package }}"
     dest: /tmp
 
-- name: install vagrant rpm using package
+- name: Install vagrant rpm using package
   ansible.builtin.package:
     name: "/tmp/{{ vagrant_package | basename }}"
     state: present
@@ -19,7 +19,7 @@
   when:
     - ansible_pkg_mgr in [ "yum", "dnf" ]
 
-- name: install vagrant rpm using zypper
+- name: Install vagrant rpm using zypper
   community.general.zypper:
     name: "/tmp/{{ vagrant_package | basename }}"
     state: present
@@ -27,14 +27,14 @@
   when:
     - ansible_pkg_mgr == "zypper"
 
-- name: install vagrant deb
+- name: Install vagrant deb
   ansible.builtin.apt:
     deb: "/tmp/{{ vagrant_package | basename }}"
     state: present
   when:
     - ansible_pkg_mgr == "apt"
 
-- name: install vagrant archive
+- name: Install vagrant archive
   ansible.builtin.unarchive:
     src: "/tmp/{{ vagrant_package | basename }}"
     dest: "{{ vagrant_unarchive_dest }}"
@@ -44,7 +44,7 @@
   when:
     - ansible_pkg_mgr not in [ "apt", "dnf", "yum", "zypper" ]
 
-- name: install pip requirements
+- name: Install pip requirements
   ansible.builtin.pip:
     name: "{{ vagrant_pip_packages }}"
     state: present

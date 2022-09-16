@@ -1,7 +1,7 @@
 ---
 # handlers file for consul
 
-- name: restart consul
+- name: Restart consul
   ansible.builtin.service:
     name: consul
     state: restarted

@@ -1,7 +1,7 @@
 ---
 # handlers file for firewall
 
-- name: reload firewall
+- name: Reload firewall
   ansible.builtin.service:
     name: "{{ firewall_service }}"
     state: reloaded
@@ -9,6 +9,6 @@
     - ansible_connection not in [ "container", "docker", "community.docker.docker" ]
     - not ansible_check_mode
 
-- name: reload firewalld
+- name: Reload firewalld
   ansible.builtin.command:
     cmd: firewall-cmd --reload

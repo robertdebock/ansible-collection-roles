@@ -1,41 +1,41 @@
 ---
 # tasks file for gitlab_runner
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: install requirements
+- name: Install requirements
   ansible.builtin.package:
     name: "{{ gitlab_runner_requirements }}"
     state: present
 
-- name: get repository installation script
+- name: Get repository installation script
   ansible.builtin.get_url:
     url: "{{ gitlab_runner_script_url }}"
     dest: /tmp/gitlab-runner-script.sh
     mode: "750"
 
-- name: run repository installation script
+- name: Run repository installation script
   ansible.builtin.command:
     cmd: /tmp/gitlab-runner-script.sh
     creates: "{{ gitlab_runner_repository_file }}"
 
-- name: install gitlab-runner
+- name: Install gitlab-runner
   ansible.builtin.package:
     name: "{{ gitlab_runner_package }}"
     state: present
 
-- name: register runner
+- name: Register runner
   block:
-    - name: get registration status
+    - name: Get registration status
       ansible.builtin.command:
         cmd: gitlab-runner list
       register: gitlab_runner_get_registration_status
       changed_when: no
 
-    - name: register gitlab runner
+    - name: Register gitlab runner
       ansible.builtin.command:
         cmd: >
           gitlab-runner register --non-interactive
@@ -51,7 +51,7 @@
   when:
     - gitlab_runner_token is defined
 
-- name: start and enable gitlab-runner
+- name: Start and enable gitlab-runner
   ansible.builtin.service:
     name: gitlab-runner
     state: started

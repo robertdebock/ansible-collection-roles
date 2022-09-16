@@ -1,5 +1,0 @@
----
-# handlers file for vault_configuration
-
-- name: something
-  ansible.builtin.setup:

@@ -1,25 +1,25 @@
 ---
 # tasks file for turn
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: install turn
+- name: Install turn
   ansible.builtin.package:
     name: "{{ turn_packages }}"
     state: present
 
-- name: configure coturn
+- name: Configure coturn
   ansible.builtin.template:
     src: turnserver.conf.j2
     dest: "{{ turn_configuration }}"
     mode: "0640"
   notify:
-    - restart turn
+    - Restart turn
 
-- name: enable coturn
+- name: Enable coturn
   ansible.builtin.lineinfile:
     path: /etc/default/coturn
     regexp: '^TURNSERVER_ENABLED='
@@ -27,7 +27,7 @@
   when:
     - ansible_distribution_release == "bionic"
 
-- name: start turn
+- name: Start turn
   ansible.builtin.service:
     name: "{{ turn_service }}"
     state: started

@@ -1,9 +1,9 @@
 ---
-- name: set root CA path
+- name: Set root CA path
   ansible.builtin.set_fact:
     ca_root_path: "{{ ca_path }}/rootCA"
 
-- name: generate root ca certificate signing request
+- name: Generate root ca certificate signing request
   community.crypto.openssl_csr:
     path: "{{ ca_root_path }}/{{ ca_root_csr_path }}"
     privatekey_path: "{{ ca_root_path }}/{{ ca_root_privatekey_path }}"
@@ -15,18 +15,18 @@
     organizational_unit_name: "{{ ca_organizational_unit_name | default(omit) }}"
     state_or_province_name: "{{ ca_state_or_province_name | default(omit) }}"
 
-- name: generate root ca certificate
+- name: Generate root ca certificate
   ansible.builtin.command:
     chdir: "{{ ca_root_path }}"
     cmd: "openssl ca {{ ca_root_cert_params }}"
     creates: "{{ ca_root_path }}/{{ ca_root_certificate_path }}"
 
-- name: save root ca certificate
+- name: Save root ca certificate
   ansible.builtin.slurp:
     src: "{{ ca_root_path }}/{{ ca_root_certificate_path }}"
   register: _cacert_root
 
-- name: generate ca certificate signing request
+- name: Generate ca certificate signing request
   community.crypto.openssl_csr:
     path: "{{ ca_root_path }}/{{ ca_csr_path }}"
     privatekey_path: "{{ ca_path }}/{{ ca_privatekey_path }}"
@@ -38,18 +38,18 @@
     organizational_unit_name: "{{ ca_organizational_unit_name | default(omit) }}"
     state_or_province_name: "{{ ca_state_or_province_name | default(omit) }}"
 
-- name: generate ca certificate
+- name: Generate ca certificate
   ansible.builtin.command:
     chdir: "{{ ca_root_path }}"
     cmd: "openssl ca {{ ca_cert_params }}"
     creates: "{{ ca_root_path }}/{{ ca_certificate_path }}"
 
-- name: save ca certificate
+- name: Save ca certificate
   ansible.builtin.slurp:
     src: "{{ ca_root_path }}/{{ ca_certificate_path }}"
   register: _cacert
 
-- name: create ca chain
+- name: Create ca chain
   ansible.builtin.copy:
     content: "{{ _cacert.content | b64decode }}{{ _cacert_root.content | b64decode }}"
     dest: "{{ ca_path }}/{{ ca_certificate_path }}"

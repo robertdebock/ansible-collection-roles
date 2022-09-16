@@ -1,23 +1,23 @@
 ---
 # tasks file for cntlm
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: install requirements
+- name: Install requirements
   ansible.builtin.package:
     name: "{{ cntlm_requirements }}"
     state: present
 
-- name: include local IP in cntlm_allows
+- name: Include local IP in cntlm_allows
   ansible.builtin.set_fact:
     cntlm_allows: "{{ cntlm_allows + [ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] + '/32'] }}"
   when:
     - cntlm_allows_include_local_ipv4 == "yes"
 
-- name: unpack cntlm software
+- name: Unpack cntlm software
   ansible.builtin.unarchive:
     src: "{{ cntlm_sourceforge_mirror }}/{{ cntlm_archive }}"
     dest: "{{ cntlm_tmp }}"
@@ -26,11 +26,11 @@
   when:
     - ansible_pkg_mgr not in [ "apt", "yum", "dnf" ]
   notify:
-    - configure cntlm
-    - make cntlm
-    - install cntlm
+    - Configure cntlm
+    - Make cntlm
+    - Install cntlm
 
-- name: install cntlm software
+- name: Install cntlm software
   ansible.builtin.package:
     name: cntlm
     state: present
@@ -38,7 +38,7 @@
   when:
     - ansible_pkg_mgr in [ "yum" ]
 
-- name: install cntlm software (dnf)
+- name: Install cntlm software (dnf)
   ansible.builtin.dnf:
     name: "{{ cntlm_rpm_repository }}"
     state: present
@@ -47,32 +47,32 @@
   when:
     - ansible_pkg_mgr in [ "dnf" ]
 
-- name: manage apt details
+- name: Manage apt details
   block:
-    - name: download cntlm software (deb)
+    - name: Download cntlm software (deb)
       ansible.builtin.get_url:
         url: "{{ cntlm_dpkg_repository }}"
         dest: "{{ cntlm_tmp }}/cntlm_{{ cntlm_version }}_amd64.deb"
         validate_certs: no
 
-    - name: install cntlm software (apt)
+    - name: Install cntlm software (apt)
       ansible.builtin.apt:
         deb: "{{ cntlm_tmp }}/cntlm_{{ cntlm_version }}_amd64.deb"
         state: present
   when:
     - ansible_pkg_mgr in [ "apt" ]
 
-- name: create cntlm service
+- name: Create cntlm service
   ansible.builtin.import_role:
     name: robertdebock.service
   vars:
     service_list:
-      - name: cntlm
+      - name: Cntlm
         description: Start CNTLM
         start_command: /usr/sbin/cntlm -c /etc/cntlm.conf -f
         status_pattern: cntlm
 
-- name: generate hash
+- name: Generate hash
   ansible.builtin.shell:
     cmd: "set -o pipefail ; {{ cntlm_hash_command }} | tee /etc/cntlm.hash"
     creates: /etc/cntlm.hash
@@ -80,11 +80,11 @@
   register: cntlm_generate_hash
   check_mode: no
   notify:
-    - configure cntlm.conf
+    - Configure cntlm.conf
   when:
     - cntlm_passntlmv2 is not defined
 
-- name: start and enable cntlm
+- name: Start and enable cntlm
   ansible.builtin.service:
     name: cntlm
     state: started

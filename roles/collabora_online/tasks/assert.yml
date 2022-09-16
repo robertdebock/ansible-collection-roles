@@ -1,6 +1,6 @@
 ---
 
-- name: test if collabora_online_type is set correctly
+- name: Test if collabora_online_type is set correctly
   ansible.builtin.assert:
     that:
       - collabora_online_type is defined
@@ -8,7 +8,7 @@
       - collabora_online_type in [ "code", "licensed" ]
     quiet: yes
 
-- name: test if collabora_online_version is set correctly
+- name: Test if collabora_online_version is set correctly
   ansible.builtin.assert:
     that:
       - collabora_online_version is defined
@@ -17,7 +17,7 @@
   when:
     - collabora_online_type == "licensed"
 
-- name: test if collabora_online_secret_key is set correctly
+- name: Test if collabora_online_secret_key is set correctly
   ansible.builtin.assert:
     that:
       - collabora_online_secret_key is string
@@ -25,7 +25,7 @@
   when:
     - collabora_online_secret_key is defined
 
-- name: test if collabora_online_allowed_languages is set correctly
+- name: Test if collabora_online_allowed_languages is set correctly
   ansible.builtin.assert:
     that:
       - collabora_online_allowed_languages is string
@@ -33,7 +33,7 @@
   when:
     - collabora_online_allowed_languages is defined
 
-- name: test if collabora_online_ssl_enabled is set correctly
+- name: Test if collabora_online_ssl_enabled is set correctly
   ansible.builtin.assert:
     that:
       - collabora_online_ssl_enabled is defined
@@ -41,7 +41,7 @@
       - collabora_online_ssl_enabled in [ "false", "true" ]
     quiet: yes
 
-- name: test if collabora_online_ssl_* is set correctly
+- name: Test if collabora_online_ssl_* is set correctly
   ansible.builtin.assert:
     that:
       - collabora_online_ssl_cert is defined
@@ -56,7 +56,7 @@
   when:
     - collabora_online_ssl_enabled
 
-- name: test if collabora_online_mount_jail_tree is set correctly
+- name: Test if collabora_online_mount_jail_tree is set correctly
   ansible.builtin.assert:
     that:
       - collabora_online_mount_jail_tree is defined
@@ -64,7 +64,7 @@
       - collabora_online_mount_jail_tree in [ "false", "true" ]
     quiet: yes
 
-- name: test if collabora_online_log_level is set correctly
+- name: Test if collabora_online_log_level is set correctly
   ansible.builtin.assert:
     that:
       - collabora_online_log_level is defined
@@ -72,7 +72,7 @@
       - collabora_online_log_level in [ "0", "1", "2", "3", "4", "5", "6", "7", "8", "none", "fatal", "critical", "error", "warning", "notice", "information", "debug", "trace" ]
     quiet: yes
 
-- name: test if collabora_online_admin_username is set correctly
+- name: Test if collabora_online_admin_username is set correctly
   ansible.builtin.assert:
     that:
       - collabora_online_admin_username is defined
@@ -80,7 +80,7 @@
       - collabora_online_admin_password is defined
     quiet: yes
 
-- name: test if collabora_online_admin_password is set correctly
+- name: Test if collabora_online_admin_password is set correctly
   ansible.builtin.assert:
     that:
       - collabora_online_admin_password is defined

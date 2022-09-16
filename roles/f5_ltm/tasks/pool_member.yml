@@ -1,7 +1,7 @@
 ---
 # This file contains modifications contributed by Brandon Wittenburg
 # 1. in "bigip_pool_member": updated provider to f5_ltm_provider
-- name: create pool members
+- name: Create pool members
   f5networks.f5_modules.bigip_pool_member:
     provider: "{{ f5_ltm_provider }}"
     state: "present"

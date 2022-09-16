@@ -1,6 +1,6 @@
 ---
 
-- name: test if podman_storage is set correctly
+- name: Test if podman_storage is set correctly
   ansible.builtin.assert:
     that:
       - podman_storage is iterable
@@ -8,7 +8,7 @@
   when:
     - podman_storage is defined
 
-- name: test if podman_user is set correctly
+- name: Test if podman_user is set correctly
   ansible.builtin.assert:
     that:
       - podman_user is string

@@ -1,17 +1,17 @@
 ---
 # tasks file for memcached
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: install memcached
+- name: Install memcached
   ansible.builtin.package:
     name: memcached
     state: present
 
-- name: allow memcached to be configured
+- name: Allow memcached to be configured
   ansible.builtin.copy:
     src: memcached.service
     dest: /usr/lib/systemd/system/memcached.service
@@ -19,20 +19,20 @@
   when:
     - ansible_distribution == "Archlinux"
   notify:
-    - systemctl daemon-reload
+    - Systemctl daemon-reload
 
-- name: flush handlers
+- name: Flush handlers
   ansible.builtin.meta: flush_handlers
 
-- name: configure memcached
+- name: Configure memcached
   ansible.builtin.template:
     src: "{{ ansible_distribution }}-memcached.j2"
     dest: "{{ memcached_configfile }}"
     mode: "0644"
   notify:
-    - restart memcached
+    - Restart memcached
 
-- name: start memcached
+- name: Start memcached
   ansible.builtin.service:
     name: memcached
     state: started

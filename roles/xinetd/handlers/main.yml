@@ -1,7 +1,7 @@
 ---
 # handlers file for xinetd
 
-- name: restart xinetd
+- name: Restart xinetd
   ansible.builtin.service:
     name: xinetd
     state: restarted

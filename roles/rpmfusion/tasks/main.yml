@@ -1,44 +1,44 @@
 ---
 # tasks file for rpmfusion
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: install free and nonfree
+- name: Install free and nonfree
   block:
-    - name: configure free
+    - name: Configure free
       block:
-        - name: install free gpg key
+        - name: Install free gpg key
           ansible.builtin.rpm_key:
             key: "{{ rpmfusion_free_gpgp_key }}"
             state: present
 
-        - name: install free repositories
+        - name: Install free repositories
           ansible.builtin.yum:
             name: "{{ rpmfusion_free_repository }}"
             state: present
             validate_certs: no
           notify:
-            - yum update cache
+            - Yum update cache
       when:
         - rpmfusion_free
 
-    - name: configure non-free
+    - name: Configure non-free
       block:
-        - name: install nonfree gpg key
+        - name: Install nonfree gpg key
           ansible.builtin.rpm_key:
             key: "{{ rpmfusion_nonfree_gpgp_key }}"
             state: present
 
-        - name: install nonfree repositories
+        - name: Install nonfree repositories
           ansible.builtin.yum:
             name: "{{ rpmfusion_nonfree_repository }}"
             state: present
             validate_certs: no
           notify:
-            - yum update cache
+            - Yum update cache
       when:
         - rpmfusion_nonfree
   when:

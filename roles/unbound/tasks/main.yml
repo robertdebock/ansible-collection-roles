@@ -1,17 +1,17 @@
 ---
 # tasks file for unbound
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: install requirements
+- name: Install requirements
   ansible.builtin.package:
     name: "{{ unbound_requirements }}"
     state: present
 
-- name: download archive
+- name: Download archive
   ansible.builtin.unarchive:
     src: "https://nlnetlabs.nl/downloads/unbound/unbound-{{ unbound_version }}.tar.gz"
     dest: "{{ unbound_temporary_directory }}"
@@ -20,26 +20,26 @@
     creates: "{{ unbound_temporary_directory }}/unbound-{{ unbound_version }}"
     mode: "0755"
   notify:
-    - configure
-    - make
-    - make install
-    - install service
+    - Configure
+    - Make
+    - Make install
+    - Install service
 
-- name: make group unbound
+- name: Make group unbound
   ansible.builtin.group:
     name: unbound
     system: yes
 
-- name: make user unbound
+- name: Make user unbound
   ansible.builtin.user:
     name: unbound
     group: unbound
     system: yes
 
-- name: flush handlers
+- name: Flush handlers
   ansible.builtin.meta: flush_handlers
 
-- name: replace values in service file
+- name: Replace values in service file
   ansible.builtin.replace:
     path: /etc/systemd/system/unbound.service
     regexp: "{{ item.regexp }}"
@@ -52,9 +52,9 @@
     - regexp: "@UNBOUND_CHROOT_DIR@"
     - regexp: "@UNBOUND_PIDFILE@"
   notify:
-    - systemctl daemon-reload
+    - Systemctl daemon-reload
 
-- name: comment lines in service file
+- name: Comment lines in service file
   ansible.builtin.replace:
     path: /etc/systemd/system/unbound.service
     regexp: "^({{ item }}.*)"
@@ -65,19 +65,19 @@
     - ProtectSystem
     - SystemCallFilter
 
-- name: configure unbound
+- name: Configure unbound
   ansible.builtin.template:
     src: unbound.conf.j2
     dest: /usr/local/etc/unbound/unbound.conf
     validate: /usr/local/sbin/unbound-checkconf %s
     mode: "0644"
   notify:
-    - restart unbound
+    - Restart unbound
 
-- name: flush handlers again
+- name: Flush handlers again
   ansible.builtin.meta: flush_handlers
 
-- name: start and enable unbound
+- name: Start and enable unbound
   ansible.builtin.service:
     name: unbound
     state: started

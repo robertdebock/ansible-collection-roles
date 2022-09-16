@@ -1,21 +1,21 @@
 ---
 # tasks file for remi
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: install remi repository
+- name: Install remi repository
   ansible.builtin.package:
     name: "{{ remi_repository }}"
     state: present
     disable_gpg_check: yes
   notify:
-    - reset php stream
-    - enable repository
+    - Reset php stream
+    - Enable repository
   when:
     - ansible_distribution in [ "CentOS", "Fedora", "RedHat", "Rocky" ]
 
-- name: flush handlers
+- name: Flush handlers
   ansible.builtin.meta: flush_handlers

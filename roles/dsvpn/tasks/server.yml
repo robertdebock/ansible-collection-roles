@@ -1,5 +1,5 @@
 ---
-- name: create server service
+- name: Create server service
   ansible.builtin.import_role:
     name: robertdebock.service
   vars:
@@ -8,9 +8,9 @@
         description: "Dead simple VPN server"
         start_command: "{{ dsvpn_install_directory }}/dsvpn server {{ dsvpn_key_directory }}/vpn.key"
   notify:
-    - restart dsvpn-server
+    - Restart dsvpn-server
 
-- name: start dsvpn-server
+- name: Start dsvpn-server
   ansible.builtin.service:
     name: dsvpn-server
     state: started

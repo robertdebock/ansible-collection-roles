@@ -1,24 +1,24 @@
 ---
 # tasks file for locale
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: install requirements
+- name: Install requirements
   ansible.builtin.package:
     name: "{{ locale_requirements }}"
     state: present
 
-- name: configure locale.conf
+- name: Configure locale.conf
   ansible.builtin.template:
     src: locale.conf.j2
     dest: "{{ locale_configuration_file }}"
     mode: "0644"
   notify:
-    - localectl set-locale
+    - Localectl set-locale
 
-- name: set timezone
+- name: Set timezone
   community.general.timezone:
     name: "{{ locale_timezone }}"

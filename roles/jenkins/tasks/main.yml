@@ -1,12 +1,12 @@
 ---
 # tasks file for jenkins
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: add yum repository
+- name: Add yum repository
   ansible.builtin.get_url:
     url: "{{ jenkins_yum_repository_baseurl }}"
     dest: /etc/yum.repos.d/jenkins.repo
@@ -15,7 +15,7 @@
   when:
     - ansible_pkg_mgr in [ "dnf", "yum" ]
 
-- name: import rpm key
+- name: Import rpm key
   ansible.builtin.rpm_key:
     key: "{{ jenkins_rpm_key }}"
     state: present
@@ -23,21 +23,21 @@
   when:
     - ansible_pkg_mgr in [ "dnf", "yum", "zypper" ]
 
-- name: configure apt
+- name: Configure apt
   block:
-    - name: add apt key
+    - name: Add apt key
       ansible.builtin.apt_key:
         url: "{{ jenkins_apt_key_url }}"
         state: present
 
-    - name: add apt repository
+    - name: Add apt repository
       ansible.builtin.apt_repository:
         repo: "{{ jenkins_apt_repository_repo }}"
         state: present
   when:
     - ansible_pkg_mgr == "apt"
 
-- name: add zypper repository
+- name: Add zypper repository
   community.general.zypper_repository:
     name: jenkins
     repo: "{{ jenkins_zypper_repository_repo }}"
@@ -45,34 +45,34 @@
   when:
     - ansible_pkg_mgr == "zypper"
 
-- name: install requirements
+- name: Install requirements
   ansible.builtin.package:
     name: "{{ jenkins_requirements }}"
     state: present
 
-- name: install jenkins (specific version)
+- name: Install jenkins (specific version)
   ansible.builtin.package:
     name: "{{ jenkins_package }}"
     state: present
   when:
     - jenkins_version is defined
 
-- name: install jenkins
+- name: Install jenkins
   ansible.builtin.package:
     name: jenkins
     state: present
   when:
     - jenkins_version is not defined
 
-- name: configure jenkins
+- name: Configure jenkins
   ansible.builtin.template:
     src: jenkins.j2
     dest: "{{ jenkins_configuration_directory }}"
     mode: "0640"
   notify:
-    - restart jenkins
+    - Restart jenkins
 
-- name: manage jenkins service
+- name: Manage jenkins service
   ansible.builtin.service:
     name: jenkins
     state: started

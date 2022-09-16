@@ -1,14 +1,14 @@
 ---
 # handlers file for systemd
 
-- name: restart systemd-journald
+- name: Restart systemd-journald
   ansible.builtin.service:
     name: systemd-journald
     state: restarted
   when:
     - not ansible_check_mode
 
-- name: restart systemd-logind
+- name: Restart systemd-logind
   ansible.builtin.service:
     name: systemd-logind
     state: restarted
@@ -16,7 +16,7 @@
   when:
     - not ansible_check_mode
 
-- name: restart systemd-resolved
+- name: Restart systemd-resolved
   ansible.builtin.service:
     name: systemd-resolved
     state: restarted

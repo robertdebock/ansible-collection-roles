@@ -1,32 +1,32 @@
 ---
 # tasks file for glusterfs
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: install glusterfs requirements
+- name: Install glusterfs requirements
   ansible.builtin.package:
     name: "{{ glusterfs_requirements }}"
     state: present
 
-- name: configure brick
+- name: Configure brick
   block:
-    - name: create filesystem
+    - name: Create filesystem
       community.general.filesystem:
         fstype: xfs
         dev: "{{ item.device }}"
       loop: "{{ glusterfs_bricks }}"
 
-    - name: create brick mountpoint
+    - name: Create brick mountpoint
       ansible.builtin.file:
         path: "{{ item.mountpoint }}"
         state: directory
         mode: "0755"
       loop: "{{ glusterfs_bricks }}"
 
-    - name: mount filesystem
+    - name: Mount filesystem
       ansible.posix.mount:
         path: "{{ item.mountpoint }}"
         src: "{{ item.device }}"
@@ -36,7 +36,7 @@
   when:
     - glusterfs_bricks is defined
 
-- name: create directory
+- name: Create directory
   ansible.builtin.file:
     path: "{{ item.bricks }}"
     state: directory
@@ -45,43 +45,43 @@
   when:
     - glusterfs_volumes is defined
 
-- name: install gluster
+- name: Install gluster
   ansible.builtin.package:
     name: "{{ glusterfs_packages }}"
     state: present
 
-- name: configure selinux
+- name: Configure selinux
   block:
-    - name: set selinux boolean nis_enabled to yes
+    - name: Set selinux boolean nis_enabled to yes
       ansible.posix.seboolean:
         name: nis_enabled
         state: yes
         persistent: yes
 
-    - name: place selinux type enforcement
+    - name: Place selinux type enforcement
       ansible.builtin.copy:
         src: "{{ item }}.te"
         dest: "/etc/glusterfs/{{ item }}.te"
         mode: "0640"
       loop: "{{ glusterfs_selinux_local_policies }}"
       notify:
-        - create selinux mod for glusterfs
-        - create selinux pp for glusterfs
-        - load selinux pp for glusterfs
+        - Create selinux mod for glusterfs
+        - Create selinux pp for glusterfs
+        - Load selinux pp for glusterfs
   when:
     - ansible_selinux.status is defined
     - ansible_selinux.status == "enabled"
 
-- name: flush handlers
+- name: Flush handlers
   ansible.builtin.meta: flush_handlers
 
-- name: start glusterd
+- name: Start glusterd
   ansible.builtin.service:
     name: glusterd
     state: started
     enabled: yes
 
-- name: peer with other nodes
+- name: Peer with other nodes
   ansible.builtin.command:
     cmd: "gluster peer probe {{ hostvars[item]['ansible_default_ipv4']['address'] }}"
   loop: "{{ groups.all }}"
@@ -92,9 +92,9 @@
   when:
     - item != inventory_hostname
 
-- name: configure volume
+- name: Configure volume
   block:
-    - name: create volume
+    - name: Create volume
       gluster.gluster.gluster_volume:
         name: "{{ item.name }}"
         state: present
@@ -105,14 +105,14 @@
       run_once: yes
       loop: "{{ glusterfs_volumes }}"
 
-    - name: create volume mountpoint
+    - name: Create volume mountpoint
       ansible.builtin.file:
         path: "{{ item.mountpoint }}"
         state: directory
         mode: "0755"
       loop: "{{ glusterfs_volumes }}"
 
-    - name: mount gluster volume
+    - name: Mount gluster volume
       ansible.posix.mount:
         path: "{{ item.mountpoint }}"
         src: "{{ ansible_fqdn }}:{{ item.name }}"

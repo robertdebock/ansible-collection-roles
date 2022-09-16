@@ -1,20 +1,20 @@
 ---
 # handlers file for postgres
 
-- name: systemctl daemon-reexec
+- name: Systemctl daemon-reexec
   ansible.builtin.systemd:
     daemon_reexec: yes
   when:
     - ansible_service_mgr == "systemd"
 
-- name: restart postgres
+- name: Restart postgres
   ansible.builtin.service:
     name: postgresql
     state: restarted
   when:
     - not ansible_check_mode
 
-- name: reload postgres
+- name: Reload postgres
   ansible.builtin.service:
     name: postgresql
     state: reloaded

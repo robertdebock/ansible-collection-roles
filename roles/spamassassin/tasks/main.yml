@@ -1,23 +1,23 @@
 ---
 # tasks file for spamassassin
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: install spamassassin
+- name: Install spamassassin
   ansible.builtin.package:
     name: "{{ spamassassin_packages }}"
     state: present
 
-- name: create group
+- name: Create group
   ansible.builtin.group:
     name: "{{ spamassassin_group }}"
     state: present
     system: yes
 
-- name: create user
+- name: Create user
   ansible.builtin.user:
     name: "{{ spamassassin_user }}"
     state: present
@@ -25,13 +25,13 @@
     comment: Spamassassin user
     system: yes
 
-- name: configure rsyslog
+- name: Configure rsyslog
   ansible.builtin.template:
     src: spamassassin.conf.j2
     dest: /etc/rsyslog.d/spamassassin.conf
     mode: "0644"
 
-- name: configure software
+- name: Configure software
   ansible.builtin.copy:
     src: spamassassin
     dest: /etc/default/spamassassin
@@ -40,7 +40,7 @@
     - ansible_distribution == "Ubuntu"
     - ansible_distribution_release == "trusty"
 
-- name: set permission on /var/log/spamassassin
+- name: Set permission on /var/log/spamassassin
   ansible.builtin.file:
     path: /var/log/spamassassin
     state: directory
@@ -48,7 +48,7 @@
     group: "{{ spamassassin_group }}"
     mode: "640"
 
-- name: start and enable spamassassin
+- name: Start and enable spamassassin
   ansible.builtin.service:
     name: "{{ spamassassin_service }}"
     state: started

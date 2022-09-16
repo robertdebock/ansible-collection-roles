@@ -1,12 +1,12 @@
 ---
 # tasks file for anaconda
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: install requirements (package)
+- name: Install requirements (package)
   ansible.builtin.package:
     name: "{{ item.name }}"
     state: present
@@ -16,7 +16,7 @@
   when:
     - item.type == "package"
 
-- name: install requirements (pip)
+- name: Install requirements (pip)
   ansible.builtin.pip:
     name: "{{ item.name }}"
     state: present
@@ -26,28 +26,28 @@
   when:
     - item.type == "pip"
 
-- name: download anaconda
+- name: Download anaconda
   ansible.builtin.get_url:
     url: "{{ anaconda_url }}"
     dest: "{{ anaconda_download_dest }}"
 
-- name: install anaconda
+- name: Install anaconda
   ansible.builtin.command:
     cmd: bash {{ anaconda_download_dest }}/{{ anaconda_file }} -b -p {{ anaconda_prefix }}
     creates: "{{ anaconda_prefix }}"
 
-- name: create anaconda service
+- name: Create anaconda service
   ansible.builtin.import_role:
     name: robertdebock.service
   vars:
     service_list:
-      - name: anaconda
+      - name: Anaconda
         description: Anaconda Notebook
         start_command: "{{ anaconda_prefix }}/bin/jupyter notebook --ip={{ anaconda_ip }} --port={{ anaconda_port }} --allow-root"
 
-- name: change selinux settings
+- name: Change selinux settings
   block:
-    - name: check for domain_can_mmap_files seboolean
+    - name: Check for domain_can_mmap_files seboolean
       ansible.builtin.command:
         cmd: getsebool domain_can_mmap_files
       register: anaconda_getsebool_domain_can_mmap_files
@@ -55,7 +55,7 @@
       changed_when: no
       failed_when: no
 
-    - name: modify selinux settings
+    - name: Modify selinux settings
       ansible.posix.seboolean:
         name: domain_can_mmap_files
         state: yes
@@ -66,7 +66,7 @@
     - ansible_selinux.status is defined
     - ansible_selinux.status == "enabled"
 
-- name: start and enable anaconda
+- name: Start and enable anaconda
   ansible.builtin.service:
     name: anaconda
     state: started

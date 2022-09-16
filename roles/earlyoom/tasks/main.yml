@@ -1,34 +1,34 @@
 ---
 # tasks file for earlyoom
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: install requirements
+- name: Install requirements
   ansible.builtin.package:
     name: "{{ earlyoom_requirements }}"
     state: present
 
-- name: clone repository
+- name: Clone repository
   ansible.builtin.git:
     dest: "{{ earlyoom_clone_destination }}"
     repo: "https://github.com/rfjakob/earlyoom.git"
     version: "{{ earlyoom_version }}"
   notify:
-    - make earlyoom
-    - install earlyoom
+    - Make earlyoom
+    - Install earlyoom
 
-- name: flush handlers
+- name: Flush handlers
   ansible.builtin.meta: flush_handlers
 
-- name: create service earlyoom
+- name: Create service earlyoom
   ansible.builtin.import_role:
     name: robertdebock.service
   vars:
     service_list:
-      - name: earlyoom
+      - name: Earlyoom
         description: Early Out Of Memory Killer
         start_command: >-
           /usr/bin/earlyoom
@@ -37,7 +37,7 @@
           -s {{ earlyoom_minimum_swap_percent }}
         status_pattern: earlyoom
 
-- name: start and enable earlyoom
+- name: Start and enable earlyoom
   ansible.builtin.service:
     name: "{{ earlyoom_service }}"
     state: started

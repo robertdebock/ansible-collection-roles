@@ -1,17 +1,17 @@
 ---
 # tasks file for logstash
 
-- name: include assert.yml
+- name: Include assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: install logstash
+- name: Install logstash
   ansible.builtin.package:
     name: "{{ logstash_package }}"
     state: present
 
-- name: start logstash
+- name: Start logstash
   ansible.builtin.service:
     name: logstash
     state: started

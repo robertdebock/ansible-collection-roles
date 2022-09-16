@@ -1,18 +1,19 @@
 ---
 # handlers file for auditd
 
-- name: run augenrules
+- name: Run augenrules
   ansible.builtin.command:
     cmd: augenrules
-  notify: load rules
+  notify:
+    - Load rules
 
-- name: load rules
+- name: Load rules
   ansible.builtin.command:
     cmd: augenrules --load
   when:
     - ansible_connection not in [ "container", "docker", "community.docker.docker" ]
 
-- name: restart auditd
+- name: Restart auditd
   ansible.builtin.service:
     name: "{{ auditd_service }}"
     state: restarted

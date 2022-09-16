@@ -1,13 +1,13 @@
 ---
 
-- name: test if artifactory_file_store_dir is set correctly
+- name: Test if artifactory_file_store_dir is set correctly
   ansible.builtin.assert:
     that:
       - artifactory_file_store_dir is defined
       - artifactory_file_store_dir is string
     quiet: yes
 
-- name: test if artifactory_flavour is set correctly
+- name: Test if artifactory_flavour is set correctly
   ansible.builtin.assert:
     that:
       - artifactory_flavour is defined

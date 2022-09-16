@@ -1,14 +1,14 @@
 ---
 # handlers file for vault
 
-- name: restart vault
+- name: Restart vault
   ansible.builtin.service:
     name: vault
     state: restarted
   notify:
     - unseal vault
 
-- name: unseal vault
+- name: Unseal vault
   ansible.builtin.command:
     cmd: vault operator unseal {{ item }}
   environment:

@@ -1,19 +1,19 @@
 ---
 # tasks file for consul
 
-- name: include assert.yml
+- name: Include assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: install consul
+- name: Install consul
   ansible.builtin.package:
     name: consul
     state: present
   when:
     - consul_install_package
 
-- name: create consul data directory
+- name: Create consul data directory
   ansible.builtin.file:
     path: "{{ consul_data_dir }}"
     state: directory
@@ -21,7 +21,7 @@
     group: consul
     mode: "0750"
 
-- name: create consul.env
+- name: Create consul.env
   ansible.builtin.file:
     path: /etc/consul.d/consul.env
     state: touch
@@ -31,7 +31,7 @@
     modification_time: preserve
     access_time: preserve
 
-- name: configure consul
+- name: Configure consul
   ansible.builtin.template:
     src: consul.hcl.j2
     dest: /etc/consul.d/consul.hcl
@@ -39,9 +39,9 @@
     group: consul
     mode: "0644"
   notify:
-    - restart consul
+    - Restart consul
 
-- name: configure consul service
+- name: Configure consul service
   ansible.builtin.template:
     src: service.hcl.j2
     dest: /etc/consul.d/service-{{ item.name }}-{{ item.port }}.hcl
@@ -50,11 +50,11 @@
     mode: "0644"
   loop: "{{ consul_services }}"
   notify:
-    - restart consul
+    - Restart consul
   when:
     - consul_services is defined
 
-- name: start and enable consul
+- name: Start and enable consul
   ansible.builtin.service:
     name: consul
     state: started

@@ -1,6 +1,6 @@
 ---
 
-- name: enable modules
+- name: Enable modules
   community.general.apache2_module:
     name: "{{ item }}"
     state: present
@@ -10,7 +10,7 @@
   when:
     - ansible_os_family in [ "Debian", "Suse" ]
 
-- name: configure locations
+- name: Configure locations
   ansible.builtin.template:
     src: location.conf.j2
     dest: "{{ httpd_config_directory }}/{{ item.name }}.conf"
@@ -19,5 +19,5 @@
   loop_control:
     label: "{{ item.name }}"
   notify:
-    - test httpd configuration validity
-    - restart httpd
+    - Test httpd configuration validity
+    - Restart httpd

@@ -1,7 +1,7 @@
 ---
 # handlers file for nfsserver
 
-- name: reload exports
+- name: Reload exports
   ansible.builtin.command:
     cmd: exportfs -ra
   when:

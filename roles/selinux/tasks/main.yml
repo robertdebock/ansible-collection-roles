@@ -1,31 +1,31 @@
 ---
 # tasks file for selinux
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: install required packages
+- name: Install required packages
   ansible.builtin.package:
     name: "{{ selinux_requirements }}"
     state: present
   notify:
-    - gather facts
+    - Gather facts
 
-- name: flush handlers
+- name: Flush handlers
   ansible.builtin.meta: flush_handlers
 
-- name: configure selinux
+- name: Configure selinux
   block:
-    - name: manage selinux
+    - name: Manage selinux
       ansible.posix.selinux:
         state: "{{ selinux_state }}"
         policy: "{{ selinux_policy }}"
       notify:
-        - reboot
+        - Reboot
 
-    - name: manage selinux booleans
+    - name: Manage selinux booleans
       ansible.posix.seboolean:
         name: "{{ item.name }}"
         state: "{{ item.state | default('yes') }}"

@@ -1,34 +1,34 @@
 ---
 
-- name: test if tigervnc_username is set correctly
+- name: Test if tigervnc_username is set correctly
   ansible.builtin.assert:
     that:
       - tigervnc_username is defined
       - tigervnc_username is string
     quiet: yes
 
-- name: test if tigervnc_groupname is set correctly
+- name: Test if tigervnc_groupname is set correctly
   ansible.builtin.assert:
     that:
       - tigervnc_groupname is defined
       - tigervnc_groupname is string
     quiet: yes
 
-- name: test if tigervnc_password is set correctly
+- name: Test if tigervnc_password is set correctly
   ansible.builtin.assert:
     that:
       - tigervnc_password is defined
       - tigervnc_password is string
     quiet: yes
 
-- name: test if tigervnc_user_exists is set correctly
+- name: Test if tigervnc_user_exists is set correctly
   ansible.builtin.assert:
     that:
       - tigervnc_user_exists is defined
       - tigervnc_user_exists is boolean
     quiet: yes
 
-- name: test if tigervnc_desktop_session is set correctly
+- name: Test if tigervnc_desktop_session is set correctly
   ansible.builtin.assert:
     that:
       - tigervnc_desktop_session is defined

@@ -1,7 +1,7 @@
 ---
 # handlers file for cron
 
-- name: restart cron
+- name: Restart cron
   ansible.builtin.service:
     name: "{{ cron_service }}"
     state: restarted

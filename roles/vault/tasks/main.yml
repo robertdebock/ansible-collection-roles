@@ -1,27 +1,27 @@
 ---
 # tasks file for vault
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: run shared tasks
+- name: Run shared tasks
   ansible.builtin.include_tasks:
     file: shared.yml
 
-- name: run leader tasks
+- name: Run leader tasks
   ansible.builtin.include_tasks:
     file: leader.yml
 
-- name: run follower tasks
+- name: Run follower tasks
   ansible.builtin.include_tasks:
     file: follower.yml
   when:
     - not ansible_check_mode
     - inventory_hostname != vault_leader
 
-- name: run provisioning tasks
+- name: Run provisioning tasks
   ansible.builtin.include_tasks:
     file: provisioning.yml
   when:

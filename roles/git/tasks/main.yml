@@ -1,17 +1,17 @@
 ---
 # tasks file for git
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: install git
+- name: Install git
   ansible.builtin.package:
     name: "{{ git_packages }}"
     state: present
 
-- name: see if the specified user exists
+- name: See if the specified user exists
   ansible.builtin.getent:
     database: passwd
     key: "{{ git_username }}"
@@ -19,7 +19,7 @@
   when:
     - git_username is defined
 
-- name: create directory for git configuration
+- name: Create directory for git configuration
   ansible.builtin.file:
     path: /home/{{ git_username }}
     state: directory
@@ -30,7 +30,7 @@
     - getent_passwd is defined
     - getent_passwd[git_username] != none
 
-- name: place git configuration
+- name: Place git configuration
   ansible.builtin.template:
     src: gitconfig.j2
     dest: /home/{{ git_username }}/.gitconfig
@@ -41,7 +41,7 @@
     - git_username is defined
     - getent_passwd[git_username] != none
 
-- name: create repository_destination
+- name: Create repository_destination
   ansible.builtin.file:
     path: "{{ git_repository_destination }}"
     state: directory
@@ -53,7 +53,7 @@
     - git_repository_destination is defined
     - getent_passwd[git_username] != none
 
-- name: clone all roles
+- name: Clone all roles
   ansible.builtin.git:
     repo: "{{ item.repo }}"
     dest: "{{ git_repository_destination }}/{{ item.dest }}"

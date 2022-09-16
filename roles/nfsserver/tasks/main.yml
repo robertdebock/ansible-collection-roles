@@ -1,24 +1,24 @@
 ---
 # tasks file for nfsserver
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: install pacakges
+- name: Install pacakges
   ansible.builtin.package:
     name: "{{ nfsserver_packages }}"
 
-- name: configure exports
+- name: Configure exports
   ansible.builtin.template:
     src: exports.j2
     dest: /etc/exports
     mode: "0644"
   notify:
-    - reload exports
+    - Reload exports
 
-- name: start nfs server
+- name: Start nfs server
   ansible.builtin.service:
     name: "{{ item }}"
     state: started

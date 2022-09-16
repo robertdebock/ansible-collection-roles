@@ -1,7 +1,7 @@
 ---
 # tasks file for powertools
 
-- name: enable powertools
+- name: Enable powertools
   community.general.ini_file:
     path: "/etc/yum.repos.d/{{ powertools_repo_file }}"
     section: "{{ powertools_repo_name }}"
@@ -9,7 +9,7 @@
     value: "1"
     mode: "0644"
   notify:
-    - yum update cache
+    - Yum update cache
   when:
     - ansible_distribution in [ "CentOS", "EL", "Rocky", "AlmaLinux" ]
     - ansible_distribution_major_version >= "8"

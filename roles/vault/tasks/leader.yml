@@ -1,7 +1,7 @@
 ---
-- name: configure leader
+- name: Configure leader
   block:
-    - name: initialize vault on leader
+    - name: Initialize vault on leader
       ansible.builtin.command:
         cmd: vault operator init -key-shares={{ vault_key_shares }} -key-threshold={{ vault_key_threshold }} -format=yaml
       register: vault_operator_init
@@ -10,22 +10,22 @@
       when:
         - not vault_status.initialized
 
-    - name: save vault_init_output for leader
+    - name: Save vault_init_output for leader
       ansible.builtin.set_fact:
         vault_init_output: "{{ vault_operator_init.stdout | from_yaml }}"
       when:
         - vault_operator_init is defined
         - vault_operator_init.stdout is defined
 
-    - name: unseal vault leader
+    - name: Unseal vault leader
       block:
-        - name: show unseal information
+        - name: Show unseal information
           block:
-            - name: show unseal keys for leader
+            - name: Show unseal keys for leader
               ansible.builtin.debug:
                 msg: "{{ vault_init_output.unseal_keys_b64 | default(vault_unseal_keys) }}"
 
-            - name: show root token for leader
+            - name: Show root token for leader
               ansible.builtin.debug:
                 msg: "{{ vault_init_output.root_token | default(vault_root_token) }}"
               when:
@@ -35,7 +35,7 @@
           when:
             - vault_show_unseal_information
 
-        - name: save login token to /root/.vault-token
+        - name: Save login token to /root/.vault-token
           ansible.builtin.copy:
             content: "{{ vault_init_output.root_token | default(vault_root_token) }}"
             dest: /root/.vault-token
@@ -48,7 +48,7 @@
               vault_init_output.root_token is defined or
               vault_root_token is defined
 
-        - name: unseal vault leader
+        - name: Unseal vault leader
           ansible.builtin.command:
             cmd: vault operator unseal {{ item }}
           environment:
@@ -66,7 +66,7 @@
           (vault_unseal_keys is defined)
   run_once: yes
 
-- name: make a snapshot
+- name: Make a snapshot
   ansible.builtin.command:
     cmd: vault operator raft snapshot save "{{ vault_backup_path }}"
   register: vault_make_a_snapshot

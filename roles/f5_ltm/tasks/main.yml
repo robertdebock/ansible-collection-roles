@@ -1,12 +1,12 @@
 ---
 # tasks file for f5_ltm
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: set hostname
+- name: Set hostname
   f5networks.f5_modules.bigip_hostname:
     hostname: "{{ f5_ltm_hostname }}"
     provider: "{{ f5_ltm_provider }}"
@@ -15,7 +15,7 @@
     - f5_ltm_provider is defined
   delegate_to: localhost
 
-- name: set timezone
+- name: Set timezone
   f5networks.f5_modules.bigip_device_ntp:
     timezone: "{{ f5_ltm_timezone | default(omit) }}"
     ntp_servers: "{{ f5_ltm_ntp_servers | default(omit) }}"
@@ -26,7 +26,7 @@
     - f5_ltm_provider is defined
   delegate_to: localhost
 
-- name: create nodes
+- name: Create nodes
   f5networks.f5_modules.bigip_node:
     provider: "{{ f5_ltm_provider }}"
     name: "{{ item.name }}"
@@ -38,7 +38,7 @@
     - f5_ltm_provider is defined
   delegate_to: localhost
 
-- name: create pools
+- name: Create pools
   f5networks.f5_modules.bigip_pool:
     provider: "{{ f5_ltm_provider }}"
     name: "{{ item.name }}"
@@ -53,7 +53,7 @@
     - f5_ltm_provider is defined
   delegate_to: localhost
 
-- name: include pool_member.yml
+- name: Include pool_member.yml
   ansible.builtin.include_tasks:
     file: pool_member.yml
   loop_control:
@@ -63,7 +63,7 @@
   when:
     - f5_ltm_pool_members is defined
 
-- name: add virtual server
+- name: Add virtual server
   f5networks.f5_modules.bigip_virtual_server:
     provider: "{{ f5_ltm_provider }}"
     name: "{{ item.name }}"

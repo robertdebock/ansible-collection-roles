@@ -1,11 +1,11 @@
 ---
 # handlers file for tigervnc
 
-- name: systemctl daemon-reload
+- name: Systemctl daemon-reload
   ansible.builtin.systemd:
     daemon_reload: yes
 
-- name: restart tigervnc
+- name: Restart tigervnc
   ansible.builtin.service:
     name: "{{ tigervnc_service }}"
     state: restarted

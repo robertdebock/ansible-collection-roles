@@ -1,23 +1,23 @@
 ---
 # handlers file for unbound
 
-- name: configure
+- name: Configure
   ansible.builtin.command:
     cmd: "./configure --enable-systemd"
   args:
     chdir: "{{ unbound_temporary_directory }}/unbound-{{ unbound_version }}"
     creates: "{{ unbound_temporary_directory }}/unbound-{{ unbound_version }}/Makefile"
 
-- name: make
+- name: Make
   community.general.make:
     chdir: "{{ unbound_temporary_directory }}/unbound-{{ unbound_version }}"
 
-- name: make install
+- name: Make install
   community.general.make:
     chdir: "{{ unbound_temporary_directory }}/unbound-{{ unbound_version }}"
     target: install
 
-- name: install service
+- name: Install service
   ansible.builtin.copy:
     src: "{{ unbound_temporary_directory }}/unbound-{{ unbound_version }}/contrib/unbound.service.in"
     dest: /etc/systemd/system/unbound.service
@@ -26,11 +26,11 @@
   notify:
     - systemctl daemon-reload
 
-- name: systemctl daemon-reload
+- name: Systemctl daemon-reload
   ansible.builtin.systemd:
     daemon_reload: yes
 
-- name: restart unbound
+- name: Restart unbound
   ansible.builtin.service:
     name: unbound
     state: restarted

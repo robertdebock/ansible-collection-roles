@@ -1,17 +1,17 @@
 ---
 # tasks file for moodle
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: install requirements
+- name: Install requirements
   ansible.builtin.package:
     name: "{{ moodle_requirements }}"
     state: present
 
-- name: download and unpack moodle
+- name: Download and unpack moodle
   ansible.builtin.unarchive:
     src: "{{ moodle_src }}"
     dest: "{{ moodle_httpd_data_directory }}"
@@ -25,7 +25,7 @@
     - moodle_download_and_unpack is succeeded
   retries: 3
 
-- name: make directory
+- name: Make directory
   ansible.builtin.file:
     path: "{{ moodle_data_directory }}"
     state: directory
@@ -33,13 +33,13 @@
     group: "{{ moodle_httpd_group }}"
     mode: "{{ moodle_directory_mode }}"
 
-- name: configure moodle
+- name: Configure moodle
   ansible.builtin.template:
     src: config.php.j2
     dest: "{{ moodle_httpd_data_directory }}/moodle/config.php"
     mode: "0640"
 
-- name: setup cron job
+- name: Setup cron job
   ansible.builtin.cron:
     name: moodle
     job: "/usr/bin/php {{ moodle_httpd_data_directory }}/moodle/admin/cli/cron.php >/dev/null"

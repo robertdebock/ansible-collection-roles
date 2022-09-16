@@ -1,25 +1,25 @@
 ---
 # tasks file for swap
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: set swappiness
+- name: Set swappiness
   ansible.posix.sysctl:
     name: vm.swappiness
     value: "{{ swap_swappiness }}"
     state: present
 
 - block:
-    - name: make a swap file
+    - name: Make a swap file
       ansible.builtin.command:
         cmd: dd if=/dev/zero of={{ item.path }} bs=1048576 count={{ item.size }}
         creates: "{{ item.path }}"
       loop: "{{ swap_files }}"
 
-    - name: set permission on swap file
+    - name: Set permission on swap file
       ansible.builtin.file:
         path: "{{ item.path }}"
         owner: root
@@ -27,13 +27,13 @@
         mode: "600"
       loop: "{{ swap_files }}"
 
-    - name: make swap file system
+    - name: Make swap file system
       community.general.filesystem:
         fstype: swap
         dev: "{{ item.path }}"
       loop: "{{ swap_files }}"
 
-    - name: mount swap
+    - name: Mount swap
       ansible.posix.mount:
         path: none
         src: "{{ item.path }}"

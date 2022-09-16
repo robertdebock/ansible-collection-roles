@@ -1,6 +1,6 @@
 ---
 
-- name: test if luks_default_state is set correctly
+- name: Test if luks_default_state is set correctly
   ansible.builtin.assert:
     that:
       - luks_default_state is defined
@@ -8,7 +8,7 @@
       - luks_default_state in [ "absent", "closed", "opened", "present" ]
     quiet: yes
 
-- name: test if luks_devices is set correctly
+- name: Test if luks_devices is set correctly
   ansible.builtin.assert:
     that:
       - luks_devices is iterable
@@ -16,7 +16,7 @@
   when:
     - luks_devices is defined
 
-- name: test if item.name in luks_devices is set correctly
+- name: Test if item.name in luks_devices is set correctly
   ansible.builtin.assert:
     that:
       - item.name is defined
@@ -28,7 +28,7 @@
   when:
     - luks_devices is defined
 
-- name: test if item.device in luks_devices is set correctly
+- name: Test if item.device in luks_devices is set correctly
   ansible.builtin.assert:
     that:
       - item.device is defined
@@ -40,7 +40,7 @@
   when:
     - luks_devices is defined
 
-- name: test if item.state in luks_devices is set correctly
+- name: Test if item.state in luks_devices is set correctly
   ansible.builtin.assert:
     that:
       - item.state in [ "absent", "present" ]
@@ -52,7 +52,7 @@
     - luks_devices is defined
     - item.state is defined
 
-- name: test if item.passphrase in luks_devices is set correctly
+- name: Test if item.passphrase in luks_devices is set correctly
   ansible.builtin.assert:
     that:
       - item.passphrase is string
@@ -64,7 +64,7 @@
     - luks_devices is defined
     - item.passphrase is defined
 
-- name: test if item.keyfile in luks_devices is set correctly
+- name: Test if item.keyfile in luks_devices is set correctly
   ansible.builtin.assert:
     that:
       - item.keyfile is string
@@ -76,7 +76,7 @@
     - luks_devices is defined
     - item.keyfile is defined
 
-- name: test if either keyfile or passphrase is used
+- name: Test if either keyfile or passphrase is used
   ansible.builtin.assert:
     that:
       - item.passphrase is not defined
@@ -88,7 +88,7 @@
     - luks_devices is defined
     - item.keyfile is defined
 
-- name: test if either passphrase or keyfile is used
+- name: Test if either passphrase or keyfile is used
   ansible.builtin.assert:
     that:
       - item.keyfile is not defined
@@ -100,7 +100,7 @@
     - luks_devices is defined
     - item.passphrase is defined
 
-- name: test if either passphrase or keyfile are set
+- name: Test if either passphrase or keyfile are set
   ansible.builtin.assert:
     that:
       - item.keyfile is defined or

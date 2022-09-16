@@ -1,7 +1,7 @@
 ---
 # handlers file for dovecot
 
-- name: copy sample configuration
+- name: Copy sample configuration
   ansible.builtin.copy:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"

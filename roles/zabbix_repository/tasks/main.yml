@@ -1,21 +1,21 @@
 ---
 # tasks file for zabbix_repository
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: install zabbix repository
+- name: Install zabbix repository
   block:
-    - name: install rpm key
+    - name: Install rpm key
       ansible.builtin.rpm_key:
         key: "https://repo.zabbix.com/RPM-GPG-KEY-ZABBIX-A14FE591"
         state: present
       when:
         - ansible_pkg_mgr in [ "dnf", "yum", "zypper" ]
 
-    - name: install (dnf/yum)
+    - name: Install (dnf/yum)
       ansible.builtin.package:
         name: "{{ zabbix_repository_package }}"
         state: present
@@ -23,16 +23,16 @@
       when:
         - ansible_pkg_mgr in [ "dnf", "yum" ]
 
-    - name: install (apt)
+    - name: Install (apt)
       ansible.builtin.apt:
         deb: "{{ zabbix_repository_package }}"
       register: zabbix_repository_install_apt
       when:
         - ansible_pkg_mgr == "apt"
       notify:
-        - update cache
+        - Update cache
 
-    - name: install (zypper}
+    - name: Install (zypper}
       community.general.zypper:
         name: "{{ zabbix_repository_package }}"
         state: present
@@ -41,7 +41,7 @@
       when:
         - ansible_pkg_mgr == "zypper"
 
-    - name: fail when yum/dnf, apt and zypper are skipped
+    - name: Fail when yum/dnf, apt and zypper are skipped
       ansible.builtin.fail:
         msg: "This system does not support yum, dnf or apt."
       when:
@@ -49,13 +49,13 @@
         - zabbix_repository_install_apt is skipped
         - zabbix_repository_install_zypper is skipped
 
-    - name: create /etc/zabbix
+    - name: Create /etc/zabbix
       ansible.builtin.file:
         path: /etc/zabbix
         state: directory
         mode: "0755"
 
-    - name: enable zabbix-frontend
+    - name: Enable zabbix-frontend
       community.general.ini_file:
         path: /etc/yum.repos.d/zabbix.repo
         section: zabbix-frontend
@@ -69,5 +69,5 @@
     - ansible_distribution in [ "CentOS", "RedHat", "Rocky" ] or
       ansible_os_family in [ "Debian", "Suse" ]
 
-- name: flush handlers
+- name: Flush handlers
   ansible.builtin.meta: flush_handlers

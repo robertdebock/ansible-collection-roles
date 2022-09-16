@@ -1,30 +1,30 @@
 ---
 # tasks file for roundcubemail
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: install requirements
+- name: Install requirements
   ansible.builtin.package:
     name: "{{ roundcubemail_requirements }}"
     state: present
 
-- name: install roundcubemail
+- name: Install roundcubemail
   ansible.builtin.package:
     name: "{{ roundcubemail_packages }}"
     state: present
   notify:
-    - import mysql table layout
+    - Import mysql table layout
 
-- name: create roundcubemail_conf_dir
+- name: Create roundcubemail_conf_dir
   ansible.builtin.file:
     path: "{{ roundcubemail_conf_dir }}"
     state: directory
     mode: "0755"
 
-- name: configure roundcubemail
+- name: Configure roundcubemail
   ansible.builtin.template:
     src: "{{ roundcubemail_file }}.j2"
     dest: "{{ roundcubemail_conf_dir }}/{{ roundcubemail_file }}"
@@ -32,19 +32,19 @@
     group: "{{ roundcubemail_group }}"
     mode: "{{ roundcubemail_mode }}"
 
-- name: configure selinux settings
+- name: Configure selinux settings
   block:
-    - name: place selinux type enforcement
+    - name: Place selinux type enforcement
       ansible.builtin.copy:
         src: my-roundcubemail.te
         dest: /etc/my-roundcubemail.te
         mode: "0644"
       notify:
-        - create roundcubemail selinux mod
-        - create roundcubemail selinux pp
-        - load roundcubemail selinux pp
+        - Create roundcubemail selinux mod
+        - Create roundcubemail selinux pp
+        - Load roundcubemail selinux pp
 
-    - name: enable selinux boolean httpd_setrlimit
+    - name: Enable selinux boolean httpd_setrlimit
       ansible.posix.seboolean:
         name: "{{ item }}"
         state: yes
@@ -56,7 +56,7 @@
     - ansible_selinux is defined
     - ansible_selinux.status == "enabled"
 
-- name: configure httpd
+- name: Configure httpd
   ansible.builtin.template:
     src: roundcube.conf.j2
     dest: "{{ roundcubemail_httpd_configuration }}"

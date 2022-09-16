@@ -1,5 +1,5 @@
 ---
-- name: test if dnsmasq_port is set correctly
+- name: Test if dnsmasq_port is set correctly
   ansible.builtin.assert:
     that:
       - dnsmasq_port is number
@@ -9,70 +9,70 @@
   when:
     - dnsmasq_port is defined
 
-- name: test if dnsmasq_domain_needed is set correctly
+- name: Test if dnsmasq_domain_needed is set correctly
   ansible.builtin.assert:
     that:
       - dnsmasq_domain_needed is defined
       - dnsmasq_domain_needed is boolean
     quiet: yes
 
-- name: test if dnsmasq_bogus_priv is set correctly
+- name: Test if dnsmasq_bogus_priv is set correctly
   ansible.builtin.assert:
     that:
       - dnsmasq_bogus_priv is defined
       - dnsmasq_bogus_priv is boolean
     quiet: yes
 
-- name: test if dnsmasq_conf_file is set correctly
+- name: Test if dnsmasq_conf_file is set correctly
   ansible.builtin.assert:
     that:
       - dnsmasq_conf_file is defined
       - dnsmasq_conf_file is string
     quiet: yes
 
-- name: test if dnsmasq_dnssec is set correctly
+- name: Test if dnsmasq_dnssec is set correctly
   ansible.builtin.assert:
     that:
       - dnsmasq_dnssec is defined
       - dnsmasq_dnssec is boolean
     quiet: yes
 
-- name: test if dnsmasq_dnssec_check_unsigned is set correctly
+- name: Test if dnsmasq_dnssec_check_unsigned is set correctly
   ansible.builtin.assert:
     that:
       - dnsmasq_dnssec_check_unsigned is defined
       - dnsmasq_dnssec_check_unsigned is boolean
     quiet: yes
 
-- name: test if dnsmasq_filterwin2k is set correctly
+- name: Test if dnsmasq_filterwin2k is set correctly
   ansible.builtin.assert:
     that:
       - dnsmasq_filterwin2k is defined
       - dnsmasq_filterwin2k is boolean
     quiet: yes
 
-- name: test if dnsmasq_strict_order is set correctly
+- name: Test if dnsmasq_strict_order is set correctly
   ansible.builtin.assert:
     that:
       - dnsmasq_strict_order is defined
       - dnsmasq_strict_order is boolean
     quiet: yes
 
-- name: test if dnsmasq_no_resolv is set correctly
+- name: Test if dnsmasq_no_resolv is set correctly
   ansible.builtin.assert:
     that:
       - dnsmasq_no_resolv is defined
       - dnsmasq_no_resolv is boolean
     quiet: yes
 
-- name: test if dnsmasq_no_poll is set correctly
+- name: Test if dnsmasq_no_poll is set correctly
   ansible.builtin.assert:
     that:
       - dnsmasq_no_poll is defined
       - dnsmasq_no_poll is boolean
     quiet: yes
 
-- name: test if dnsmasq_servers is set correctly
+- name: Test if dnsmasq_servers is set correctly
   ansible.builtin.assert:
     that:
       - dnsmasq_servers is iterable
@@ -80,7 +80,7 @@
   when:
     - dnsmasq_servers is defined
 
-- name: test if item in dnsmasq_servers is set correctly
+- name: Test if item in dnsmasq_servers is set correctly
   ansible.builtin.assert:
     that:
       - item.nameserver is defined
@@ -90,7 +90,7 @@
   when:
     - dnsmasq_servers is defined
 
-- name: test if item.domain in dnsmasq_servers is set correctly
+- name: Test if item.domain in dnsmasq_servers is set correctly
   ansible.builtin.assert:
     that:
       - item.domain is string
@@ -100,7 +100,7 @@
     - dnsmasq_servers is defined
     - item.domain is defined
 
-- name: test if item.port in dnsmasq_servers is set correctly
+- name: Test if item.port in dnsmasq_servers is set correctly
   ansible.builtin.assert:
     that:
       - item.port is number
@@ -112,7 +112,7 @@
     - dnsmasq_servers is defined
     - item.port is defined
 
-- name: test if dnsmasq_locals is set correctly
+- name: Test if dnsmasq_locals is set correctly
   ansible.builtin.assert:
     that:
       - dnsmasq_locals is iterable
@@ -120,7 +120,7 @@
   when:
     - dnsmasq_locals is defined
 
-- name: test if item.domain in dnsmasq_locals is set correctly
+- name: Test if item.domain in dnsmasq_locals is set correctly
   ansible.builtin.assert:
     that:
       - item.domain is defined
@@ -129,7 +129,7 @@
   when:
     - dnsmasq_locals is defined
 
-- name: test if dnsmasq_addresses is set correctly
+- name: Test if dnsmasq_addresses is set correctly
   ansible.builtin.assert:
     that:
       - dnsmasq_addresses is iterable
@@ -137,7 +137,7 @@
   when:
     - dnsmasq_addresses is defined
 
-- name: test if item in dnsmasq_addresses is set correctly
+- name: Test if item in dnsmasq_addresses is set correctly
   ansible.builtin.assert:
     that:
       - item.domain is defined
@@ -149,7 +149,7 @@
   when:
     - dnsmasq_addresses is defined
 
-- name: test if dnsmasq_ipsets is set correctly
+- name: Test if dnsmasq_ipsets is set correctly
   ansible.builtin.assert:
     that:
       - dnsmasq_ipsets is iterable
@@ -157,7 +157,7 @@
   when:
     - dnsmasq_ipsets is defined
 
-- name: test if item in dnsmasq_ipsets is set correctly
+- name: Test if item in dnsmasq_ipsets is set correctly
   ansible.builtin.assert:
     that:
       - item.domains is defined
@@ -171,7 +171,7 @@
   when:
     - dnsmasq_ipsets is defined
 
-- name: test if dnsmasq_interfaces is set correctly
+- name: Test if dnsmasq_interfaces is set correctly
   ansible.builtin.assert:
     that:
       - dnsmasq_interfaces is iterable
@@ -179,7 +179,7 @@
   when:
     - dnsmasq_interfaces is defined
 
-- name: test if item in dnsmasq_interfaces is set correctly
+- name: Test if item in dnsmasq_interfaces is set correctly
   ansible.builtin.assert:
     that:
       - item.name is defined
@@ -189,7 +189,7 @@
   when:
     - dnsmasq_interfaces is defined
 
-- name: test if dnsmasq_listen_addresses is set correctly
+- name: Test if dnsmasq_listen_addresses is set correctly
   ansible.builtin.assert:
     that:
       - dnsmasq_listen_addresses is iterable
@@ -198,7 +198,7 @@
     - dnsmasq_listen_addresses is defined
     - dnsmasq_listen_addresses is string
 
-- name: test if item in dnsmasq_listen_addresses is set correctly
+- name: Test if item in dnsmasq_listen_addresses is set correctly
   ansible.builtin.assert:
     that:
       - item.name is defined
@@ -208,42 +208,42 @@
   when:
     - dnsmasq_listen_addresses is defined
 
-- name: test if dnsmasq_no_dhcp_interface is set correctly
+- name: Test if dnsmasq_no_dhcp_interface is set correctly
   ansible.builtin.assert:
     that:
       - dnsmasq_no_dhcp_interface is defined
       - dnsmasq_no_dhcp_interface is string
     quiet: yes
 
-- name: test if dnsmasq_local_service is set correctly
+- name: Test if dnsmasq_local_service is set correctly
   ansible.builtin.assert:
     that:
       - dnsmasq_local_service is defined
       - dnsmasq_local_service is boolean
     quiet: yes
 
-- name: test if dnsmasq_bind_interfaces is set correctly
+- name: Test if dnsmasq_bind_interfaces is set correctly
   ansible.builtin.assert:
     that:
       - dnsmasq_bind_interfaces is defined
       - dnsmasq_bind_interfaces is boolean
     quiet: yes
 
-- name: test if dnsmasq_no_hosts is set correctly
+- name: Test if dnsmasq_no_hosts is set correctly
   ansible.builtin.assert:
     that:
       - dnsmasq_no_hosts is defined
       - dnsmasq_no_hosts is boolean
     quiet: yes
 
-- name: test if dnsmasq_expand_hosts is set correctly
+- name: Test if dnsmasq_expand_hosts is set correctly
   ansible.builtin.assert:
     that:
       - dnsmasq_expand_hosts is defined
       - dnsmasq_expand_hosts is boolean
     quiet: yes
 
-- name: test if dnsmasq_domains is set correctly
+- name: Test if dnsmasq_domains is set correctly
   ansible.builtin.assert:
     that:
       - dnsmasq_domains is iterable
@@ -251,7 +251,7 @@
   when:
     - dnsmasq_domains is defined
 
-- name: test if item.name in dnsmasq_domains is set correctly
+- name: Test if item.name in dnsmasq_domains is set correctly
   ansible.builtin.assert:
     that:
       - item.name is defined
@@ -261,7 +261,7 @@
   when:
     - dnsmasq_domains is defined
 
-- name: test if dnsmasq_dhcp_ranges is set correctly
+- name: Test if dnsmasq_dhcp_ranges is set correctly
   ansible.builtin.assert:
     that:
       - dnsmasq_dhcp_ranges is iterable
@@ -269,7 +269,7 @@
   when:
     - dnsmasq_dhcp_ranges is defined
 
-- name: test if item.from in dnsmasq_dhcp_ranges  is set correctly
+- name: Test if item.from in dnsmasq_dhcp_ranges  is set correctly
   ansible.builtin.assert:
     that:
       - item.from is defined
@@ -279,7 +279,7 @@
     - dnsmasq_dhcp_ranges is defined
   loop: "{{ dnsmasq_dhcp_ranges }}"
 
-- name: test if item.sets in dnsmasq_dhcp_ranges  is set correctly
+- name: Test if item.sets in dnsmasq_dhcp_ranges  is set correctly
   ansible.builtin.assert:
     that:
       - item.sets is iterabel
@@ -289,7 +289,7 @@
     - item.sets is defined
   loop: "{{ dnsmasq_dhcp_ranges }}"
 
-- name: test if item.tags in dnsmasq_dhcp_ranges  is set correctly
+- name: Test if item.tags in dnsmasq_dhcp_ranges  is set correctly
   ansible.builtin.assert:
     that:
       - item.tags is iterable
@@ -299,7 +299,7 @@
     - item.tags is defined
   loop: "{{ dnsmasq_dhcp_ranges }}"
 
-- name: test if item.options in dnsmasq_dhcp_ranges  is set correctly
+- name: Test if item.options in dnsmasq_dhcp_ranges  is set correctly
   ansible.builtin.assert:
     that:
       - item.options is iterable
@@ -309,14 +309,14 @@
     - item.options is defined
   loop: "{{ dnsmasq_dhcp_ranges }}"
 
-- name: test if dnsmasq_enable_ra is set correctly
+- name: Test if dnsmasq_enable_ra is set correctly
   ansible.builtin.assert:
     that:
       - dnsmasq_enable_ra is defined
       - dnsmasq_enable_ra is boolean
     quiet: yes
 
-- name: test if dnsmasq_hosts is set correctly
+- name: Test if dnsmasq_hosts is set correctly
   ansible.builtin.assert:
     that:
       - dnsmasq_hosts is iterable
@@ -324,7 +324,7 @@
   when:
     - dnsmasq_hosts is defined
 
-- name: test if items in dnsmasq_hosts are set correctly
+- name: Test if items in dnsmasq_hosts are set correctly
   ansible.builtin.assert:
     that:
       - item.name is defined
@@ -335,14 +335,14 @@
   when:
     - dnsmasq_hosts is defined
 
-- name: test if dnsmasq_read_ethers is set correctly
+- name: Test if dnsmasq_read_ethers is set correctly
   ansible.builtin.assert:
     that:
       - dnsmasq_read_ethers is defined
       - dnsmasq_read_ethers is boolean
     quiet: yes
 
-- name: test if dnsmasq_dhcp_options is set correctly
+- name: Test if dnsmasq_dhcp_options is set correctly
   ansible.builtin.assert:
     that:
       - dnsmasq_dhcp_options is iterable
@@ -350,7 +350,7 @@
   when:
     - dnsmasq_dhcp_options is defined
 
-- name: test if items in dnsmasq_dhcp_options are set correctly
+- name: Test if items in dnsmasq_dhcp_options are set correctly
   ansible.builtin.assert:
     that:
       - item.name is defined
@@ -361,7 +361,7 @@
   when:
     - dnsmasq_dhcp_options is defined
 
-- name: test if dnsmasq_dhcp_option_force is set correctly
+- name: Test if dnsmasq_dhcp_option_force is set correctly
   ansible.builtin.assert:
     that:
       - dnsmasq_dhcp_option_force is iterable
@@ -369,7 +369,7 @@
   when:
     - dnsmasq_dhcp_option_force is defined
 
-- name: test if items in dnsmasq_dhcp_option_force are set correctly
+- name: Test if items in dnsmasq_dhcp_option_force are set correctly
   ansible.builtin.assert:
     that:
       - item.name is defined
@@ -380,35 +380,35 @@
   when:
     - dnsmasq_dhcp_option_force is defined
 
-- name: test if dnsmasq_enable_tftp is set correctly
+- name: Test if dnsmasq_enable_tftp is set correctly
   ansible.builtin.assert:
     that:
       - dnsmasq_enable_tftp is defined
       - dnsmasq_enable_tftp is boolean
     quiet: yes
 
-- name: test if dnsmasq_tftp_no_fail is set correctly
+- name: Test if dnsmasq_tftp_no_fail is set correctly
   ansible.builtin.assert:
     that:
       - dnsmasq_tftp_no_fail is defined
       - dnsmasq_tftp_no_fail is boolean
     quiet: yes
 
-- name: test if dnsmasq_tftp_secure is set correctly
+- name: Test if dnsmasq_tftp_secure is set correctly
   ansible.builtin.assert:
     that:
       - dnsmasq_tftp_secure is defined
       - dnsmasq_tftp_secure is boolean
     quiet: yes
 
-- name: test if dnsmasq_tftp_no_blocksize is set correctly
+- name: Test if dnsmasq_tftp_no_blocksize is set correctly
   ansible.builtin.assert:
     that:
       - dnsmasq_tftp_no_blocksize is defined
       - dnsmasq_tftp_no_blocksize is boolean
     quiet: yes
 
-- name: test if dnsmasq_dhcp_lease_max is set correctly
+- name: Test if dnsmasq_dhcp_lease_max is set correctly
   ansible.builtin.assert:
     that:
       - dnsmasq_dhcp_lease_max is number
@@ -417,28 +417,28 @@
   when:
     - dnsmasq_dhcp_lease_max is defined
 
-- name: test if dnsmasq_dhcp_authoritative is set correctly
+- name: Test if dnsmasq_dhcp_authoritative is set correctly
   ansible.builtin.assert:
     that:
       - dnsmasq_dhcp_authoritative is defined
       - dnsmasq_dhcp_authoritative is boolean
     quiet: yes
 
-- name: test if dnsmasq_dhcp_rapid_commit is set correctly
+- name: Test if dnsmasq_dhcp_rapid_commit is set correctly
   ansible.builtin.assert:
     that:
       - dnsmasq_dhcp_rapid_commit is defined
       - dnsmasq_dhcp_rapid_commit is boolean
     quiet: yes
 
-- name: test if dnsmasq_dhcp_script is set correctly
+- name: Test if dnsmasq_dhcp_script is set correctly
   ansible.builtin.assert:
     that:
       - dnsmasq_dhcp_script is defined
       - dnsmasq_dhcp_script is string
     quiet: yes
 
-- name: test if dnsmasq_cache_size is set correctly
+- name: Test if dnsmasq_cache_size is set correctly
   ansible.builtin.assert:
     that:
       - dnsmasq_cache_size is number
@@ -447,14 +447,14 @@
   when:
     - dnsmasq_cache_size is defined
 
-- name: test if dnsmasq_no_negcache is set correctly
+- name: Test if dnsmasq_no_negcache is set correctly
   ansible.builtin.assert:
     that:
       - dnsmasq_no_negcache is defined
       - dnsmasq_no_negcache is boolean
     quiet: yes
 
-- name: test if dnsmasq_local_ttl is set correctly
+- name: Test if dnsmasq_local_ttl is set correctly
   ansible.builtin.assert:
     that:
       - dnsmasq_local_ttl is number
@@ -463,7 +463,7 @@
   when:
     - dnsmasq_local_ttl is defined
 
-- name: test if dnsmasq_aliases is set correctly
+- name: Test if dnsmasq_aliases is set correctly
   ansible.builtin.assert:
     that:
       - dnsmasq_aliases is iterable
@@ -471,7 +471,7 @@
   when:
     - dnsmasq_aliases is defined
 
-- name: test if items in dnsmasq_aliases are set correctly
+- name: Test if items in dnsmasq_aliases are set correctly
   ansible.builtin.assert:
     that:
       - item.from is defined
@@ -483,7 +483,7 @@
   when:
     - dnsmasq_aliases is defined
 
-- name: test if dnsmasq_mx_hosts is set correctly
+- name: Test if dnsmasq_mx_hosts is set correctly
   ansible.builtin.assert:
     that:
       - dnsmasq_mx_hosts is iterable
@@ -491,7 +491,7 @@
   when:
     - dnsmasq_mx_hosts is defined
 
-- name: test if item.domain in dnsmasq_mx_hosts is set correctly
+- name: Test if item.domain in dnsmasq_mx_hosts is set correctly
   ansible.builtin.assert:
     that:
       - item.domain is defined
@@ -501,21 +501,21 @@
   when:
     - dnsmasq_mx_hosts is defined
 
-- name: test if dnsmasq_localmx is set correctly
+- name: Test if dnsmasq_localmx is set correctly
   ansible.builtin.assert:
     that:
       - dnsmasq_localmx is defined
       - dnsmasq_localmx is boolean
     quiet: yes
 
-- name: test if dnsmasq_selfmx is set correctly
+- name: Test if dnsmasq_selfmx is set correctly
   ansible.builtin.assert:
     that:
       - dnsmasq_selfmx is defined
       - dnsmasq_selfmx is boolean
     quiet: yes
 
-- name: test if dnsmasq_src_hosts is set correctly
+- name: Test if dnsmasq_src_hosts is set correctly
   ansible.builtin.assert:
     that:
       - dnsmasq_src_hosts is iterable
@@ -523,7 +523,7 @@
   when:
     - dnsmasq_src_hosts is defined
 
-- name: test if items in dnsmasq_src_hosts are set correctly
+- name: Test if items in dnsmasq_src_hosts are set correctly
   ansible.builtin.assert:
     that:
       - item.record is defined
@@ -537,7 +537,7 @@
   when:
     - dnsmasq_src_hosts is defined
 
-- name: test if item.priority in dnsmasq_src_hosts is set correctly
+- name: Test if item.priority in dnsmasq_src_hosts is set correctly
   ansible.builtin.assert:
     that:
       - item.priority is number
@@ -547,14 +547,14 @@
     - dnsmasq_src_hosts is defined
     - item.priority is defined
 
-- name: test if dnsmasq_log_queries is set correctly
+- name: Test if dnsmasq_log_queries is set correctly
   ansible.builtin.assert:
     that:
       - dnsmasq_log_queries is defined
       - dnsmasq_log_queries is boolean
     quiet: yes
 
-- name: test if dnsmasq_log_dhcp is set correctly
+- name: Test if dnsmasq_log_dhcp is set correctly
   ansible.builtin.assert:
     that:
       - dnsmasq_log_dhcp is defined

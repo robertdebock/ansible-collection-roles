@@ -1,11 +1,11 @@
 ---
 # tasks file for code
 
-- name: install required packages
+- name: Install required packages
   ansible.builtin.package:
     name: "{{ required_packages }}"
 
-- name: place yum repository
+- name: Place yum repository
   ansible.builtin.yum_repository:
     name: code
     description: Visual Studio Code
@@ -15,12 +15,12 @@
   when:
     - ansible_pkg_mgr in [ "yum", "dnf" ]
 
-- name: place apt repository
+- name: Place apt repository
   ansible.builtin.apt_repository:
     repo: "deb https://packages.microsoft.com/repos/code stable main"
   when:
     - ansible_pkg_mgr in [ "apt" ]
 
-- name: install visual studio code
+- name: Install visual studio code
   ansible.builtin.package:
     name: code

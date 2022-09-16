@@ -1,17 +1,17 @@
 ---
 # tasks file for php
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: install php
+- name: Install php
   ansible.builtin.package:
     name: "{{ php_packages }}"
     state: present
 
-- name: find used php.ini
+- name: Find used php.ini
   ansible.builtin.shell:
     cmd: set -o pipefail & {{ php_ini_command }}
   register: php_found_ini_location
@@ -19,10 +19,10 @@
   when:
     - php_ini_location is not defined
 
-- name: configure php
+- name: Configure php
   ansible.builtin.template:
     src: php.ini.j2
     dest: "{{ php_ini_location | default(php_found_ini_location.stdout) }}"
     mode: "0644"
   notify:
-    - restart httpd
+    - Restart httpd

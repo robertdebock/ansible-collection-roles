@@ -1,35 +1,35 @@
 ---
 # tasks file for grub
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: install required packages
+- name: Install required packages
   ansible.builtin.package:
     name: "{{ grub_packages }}"
     state: present
 
-- name: set GRUB_TIMEOUT
+- name: Set GRUB_TIMEOUT
   ansible.builtin.lineinfile:
     path: /etc/default/grub
     line: GRUB_TIMEOUT={{ grub_timeout }}
     create: yes
     mode: "0664"
   notify:
-    - update grub
+    - Update grub
 
-- name: set GRUB_RECORDFAIL_TIMEOUT
+- name: Set GRUB_RECORDFAIL_TIMEOUT
   ansible.builtin.lineinfile:
     path: /etc/default/grub
     line: GRUB_RECORDFAIL_TIMEOUT={{ grub_recordfail_timeout }}
     create: yes
     mode: "0664"
   notify:
-    - update grub
+    - Update grub
 
-- name: add options to GRUB_CMDLINE_LINUX
+- name: Add options to GRUB_CMDLINE_LINUX
   ansible.builtin.replace:
     path: /etc/default/grub
     regexp: '^GRUB_CMDLINE_LINUX="((:?(?!{{ item.option }}={{ item.value }}).)*?)"$'
@@ -40,10 +40,10 @@
   loop_control:
     label: "{{ item.option }}"
   notify:
-    - update grub
+    - Update grub
   when:
     - grub_options is defined
     - grub_options | length > 0
 
-- name: flush handlers
+- name: Flush handlers
   ansible.builtin.meta: flush_handlers

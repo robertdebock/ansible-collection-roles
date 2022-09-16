@@ -1,10 +1,10 @@
 ---
 # handlers file for selinux
 
-- name: reboot
+- name: Reboot
   ansible.builtin.reboot:
   when:
     - selinux_reboot
 
-- name: gather facts
+- name: Gather facts
   ansible.builtin.setup:

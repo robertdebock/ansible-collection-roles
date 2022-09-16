@@ -1,17 +1,17 @@
 ---
 # tasks file for natrouter
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: install iptables
+- name: Install iptables
   ansible.builtin.package:
     name: iptables
     state: present
 
-- name: set routing rules
+- name: Set routing rules
   ansible.builtin.iptables:
     table: nat
     state: present

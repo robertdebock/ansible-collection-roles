@@ -1,13 +1,13 @@
 ---
 
-- name: test if metricbeat_version is set correctly
+- name: Test if metricbeat_version is set correctly
   ansible.builtin.assert:
     that:
       - metricbeat_version is defined
       - metricbeat_version is string
     quiet: yes
 
-- name: test if metricbeat_modules is set correctly
+- name: Test if metricbeat_modules is set correctly
   ansible.builtin.assert:
     that:
       - metricbeat_modules is iterable
@@ -15,7 +15,7 @@
   when:
     - metricbeat_modules is defined
 
-- name: test if item in metricbeat_modules is set correctly
+- name: Test if item in metricbeat_modules is set correctly
   ansible.builtin.assert:
     that:
       - item.name is defined
@@ -27,28 +27,28 @@
   when:
     - metricbeat_modules is defined
 
-- name: test if metricbeat_elasticsearch_hosts is set correctly
+- name: Test if metricbeat_elasticsearch_hosts is set correctly
   ansible.builtin.assert:
     that:
       - metricbeat_elasticsearch_hosts is defined
       - metricbeat_elasticsearch_hosts is iterable
     quiet: yes
 
-- name: test if metricbeat_elasticsearch_username is set correctly
+- name: Test if metricbeat_elasticsearch_username is set correctly
   ansible.builtin.assert:
     that:
       - metricbeat_elasticsearch_username is defined
       - metricbeat_elasticsearch_username is string
     quiet: yes
 
-- name: test if metricbeat_elasticsearch_password is set correctly
+- name: Test if metricbeat_elasticsearch_password is set correctly
   ansible.builtin.assert:
     that:
       - metricbeat_elasticsearch_password is defined
       - metricbeat_elasticsearch_password is string
     quiet: yes
 
-- name: test if metricbeat_kibana_host is set correctly
+- name: Test if metricbeat_kibana_host is set correctly
   ansible.builtin.assert:
     that:
       - metricbeat_kibana_host is defined

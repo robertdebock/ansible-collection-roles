@@ -1,13 +1,13 @@
 ---
 
-- name: test if snmpd_security_names is set correctly
+- name: Test if snmpd_security_names is set correctly
   ansible.builtin.assert:
     that:
       - snmpd_security_names is defined
       - snmpd_security_names is iterable
     quiet: yes
 
-- name: test if item in snmpd_security_names is set correctly
+- name: Test if item in snmpd_security_names is set correctly
   ansible.builtin.assert:
     that:
       - item.name is defined
@@ -21,14 +21,14 @@
   loop_control:
     label: "{{ item.name }}"
 
-- name: test if snmpd_groups is set correctly
+- name: Test if snmpd_groups is set correctly
   ansible.builtin.assert:
     that:
       - snmpd_groups is defined
       - snmpd_groups is iterable
     quiet: yes
 
-- name: test if item in snmpd_groups is set correctly
+- name: Test if item in snmpd_groups is set correctly
   ansible.builtin.assert:
     that:
       - item.name is defined
@@ -44,14 +44,14 @@
   loop_control:
     label: "{{ item.name }}"
 
-- name: test if snmpd_views is set correctly
+- name: Test if snmpd_views is set correctly
   ansible.builtin.assert:
     that:
       - snmpd_views is defined
       - snmpd_views is iterable
     quiet: yes
 
-- name: test if item in snmpd_views is set correctly
+- name: Test if item in snmpd_views is set correctly
   ansible.builtin.assert:
     that:
       - item.name is defined
@@ -66,14 +66,14 @@
   loop_control:
     label: "{{ item.name }}"
 
-- name: test if snmpd_accesses is set correctly
+- name: Test if snmpd_accesses is set correctly
   ansible.builtin.assert:
     that:
       - snmpd_accesses is defined
       - snmpd_accesses is iterable
     quiet: yes
 
-- name: test if item in snmpd_accesses is set correctly
+- name: Test if item in snmpd_accesses is set correctly
   ansible.builtin.assert:
     that:
       - item.group is defined
@@ -99,21 +99,21 @@
   loop_control:
     label: "{{ item.group }}"
 
-- name: test if snmpd_syslocation is set correctly
+- name: Test if snmpd_syslocation is set correctly
   ansible.builtin.assert:
     that:
       - snmpd_syslocation is defined
       - snmpd_syslocation is iterable
     quiet: yes
 
-- name: test if snmpd_syscontact is set correctly
+- name: Test if snmpd_syscontact is set correctly
   ansible.builtin.assert:
     that:
       - snmpd_syscontact is defined
       - snmpd_syscontact is iterable
     quiet: yes
 
-- name: test if snmpd_dontlogtcpwrappersconnects is set correctly
+- name: Test if snmpd_dontlogtcpwrappersconnects is set correctly
   ansible.builtin.assert:
     that:
       - snmpd_dontlogtcpwrappersconnects is defined
@@ -121,7 +121,7 @@
       - snmpd_dontlogtcpwrappersconnects in [ "no", "yes" ]
     quiet: yes
 
-- name: test if snmpd_processes is set correctly
+- name: Test if snmpd_processes is set correctly
   ansible.builtin.assert:
     that:
       - snmpd_processes is iterable
@@ -129,7 +129,7 @@
   when:
     - snmpd_processes is defined
 
-- name: test if mandatory item.name in snmpd_processes is set correctly
+- name: Test if mandatory item.name in snmpd_processes is set correctly
   ansible.builtin.assert:
     that:
       - item.name is defined
@@ -141,7 +141,7 @@
   when:
     - snmpd_processes is defined
 
-- name: test if optional item.minimum in snmpd_processes is set correctly
+- name: Test if optional item.minimum in snmpd_processes is set correctly
   ansible.builtin.assert:
     that:
       - item.minimum is number
@@ -153,7 +153,7 @@
     - snmpd_processes is defined
     - item.minimum is defined
 
-- name: test if optional item.maximum in snmpd_processes is set correctly
+- name: Test if optional item.maximum in snmpd_processes is set correctly
   ansible.builtin.assert:
     that:
       - item.maximum is number
@@ -165,7 +165,7 @@
     - snmpd_processes is defined
     - item.maximum is defined
 
-- name: test if snmpd_scripts is set correctly
+- name: Test if snmpd_scripts is set correctly
   ansible.builtin.assert:
     that:
       - snmpd_scripts is iterable
@@ -173,7 +173,7 @@
   when:
     - snmpd_scripts is defined
 
-- name: test if mandatory item in snmpd_scripts is set correctly
+- name: Test if mandatory item in snmpd_scripts is set correctly
   ansible.builtin.assert:
     that:
       - item.name is defined
@@ -189,7 +189,7 @@
   when:
     - snmpd_scripts is defined
 
-- name: test if snmpd_disks is set correctly
+- name: Test if snmpd_disks is set correctly
   ansible.builtin.assert:
     that:
       - snmpd_disks is iterable
@@ -197,7 +197,7 @@
   when:
     - snmpd_disks is defined
 
-- name: test if mandatory item in snmpd_disks is set correctly
+- name: Test if mandatory item in snmpd_disks is set correctly
   ansible.builtin.assert:
     that:
       - item.path is defined
@@ -209,7 +209,7 @@
   when:
     - snmpd_disks is defined
 
-- name: test if optional item.minimum in snmpd_disks is set correctly
+- name: Test if optional item.minimum in snmpd_disks is set correctly
   ansible.builtin.assert:
     that:
       - item.minimum is number
@@ -221,7 +221,7 @@
     - snmpd_disks is defined
     - item.minimum is defined
 
-- name: test if snmpd_load is set correctly
+- name: Test if snmpd_load is set correctly
   ansible.builtin.assert:
     that:
       - snmpd_load is mapping

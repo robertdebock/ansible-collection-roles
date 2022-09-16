@@ -1,17 +1,17 @@
 ---
 # tasks file for certbot
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: install certbot
+- name: Install certbot
   ansible.builtin.package:
     name: "{{ certbot_packages }}"
     state: present
 
-- name: get and install certificates (Standalone)
+- name: Get and install certificates (Standalone)
   ansible.builtin.command:
     cmd: |
       certbot certonly --noninteractive
@@ -24,7 +24,7 @@
     - certbot_ci_mode is not defined
     - certbot_system == "standalone"
 
-- name: get and install certificates (Managed)
+- name: Get and install certificates (Managed)
   ansible.builtin.command:
     cmd: |
       certbot --noninteractive
@@ -38,11 +38,11 @@
     - certbot_ci_mode is not defined
     - certbot_system != "standalone"
 
-- name: set up automatic renewal
+- name: Set up automatic renewal
   ansible.builtin.cron:
     name: certbot
     minute: "16"
     hour: "2,14"
     job: "/usr/bin/certbot renew -q"
   notify:
-    - restart certbot_system
+    - Restart certbot_system

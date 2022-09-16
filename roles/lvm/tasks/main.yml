@@ -1,17 +1,17 @@
 ---
 # tasks file for lvm
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: install requirements
+- name: Install requirements
   ansible.builtin.package:
     name: "{{ lvm_requirements }}"
     state: present
 
-- name: manage volume group
+- name: Manage volume group
   community.general.lvg:
     vg: "{{ item.name }}"
     pvs: "{{ item.pvs | join(', ') }}"
@@ -22,7 +22,7 @@
   when:
     - lvm_volume_groups is defined
 
-- name: manage logical volume
+- name: Manage logical volume
   community.general.lvol:
     lv: "{{ item.name }}"
     vg: "{{ item.vg }}"

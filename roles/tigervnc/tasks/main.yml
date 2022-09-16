@@ -1,17 +1,17 @@
 ---
 # tasks file for tigervnc
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: install software
+- name: Install software
   ansible.builtin.package:
     name: "{{ tigervnc_packages }}"
     state: present
 
-- name: create .vnc directory
+- name: Create .vnc directory
   ansible.builtin.file:
     path: /home/{{ tigervnc_username }}/.vnc
     owner: "{{ tigervnc_username }}"
@@ -19,7 +19,7 @@
     state: directory
     mode: "755"
 
-- name: generate vnc password
+- name: Generate vnc password
   ansible.builtin.shell:
     cmd: set -o pipefail ; printf "{{ tigervnc_password }}\n{{ tigervnc_password }}\n" | vncpasswd
     creates: /home/{{ tigervnc_username }}/.vnc/passwd
@@ -29,7 +29,7 @@
   when:
     - not tigervnc_user_exists
 
-- name: place xvncstartup
+- name: Place xvncstartup
   ansible.builtin.template:
     src: xstartup
     dest: "/home/{{ tigervnc_username }}/.vnc/xstartup"
@@ -37,9 +37,9 @@
     group: "{{ tigervnc_groupname }}"
     mode: "755"
   notify:
-    - restart tigervnc
+    - Restart tigervnc
 
-- name: place config
+- name: Place config
   ansible.builtin.template:
     src: config
     dest: "/home/{{ tigervnc_username }}/.vnc/config"
@@ -47,11 +47,11 @@
     group: "{{ tigervnc_groupname }}"
     mode: "644"
   notify:
-    - restart tigervnc
+    - Restart tigervnc
   when:
     - ansible_distribution in [ "CentOS", "RedHat", "Rocky" ]
 
-- name: place .Xclients
+- name: Place .Xclients
   ansible.builtin.copy:
     content: "{{ tigervnc_desktop_session }}"
     dest: "/home/{{ tigervnc_username }}/.Xclients"
@@ -59,29 +59,29 @@
     group: "{{ tigervnc_groupname }}"
     mode: "a+x"
 
-- name: map users to displays
+- name: Map users to displays
   ansible.builtin.lineinfile:
     path: /etc/tigervnc/vncserver.users
     line: :1={{ tigervnc_username }}
   when:
     - ansible_os_family == "RedHat"
   notify:
-    - restart tigervnc
+    - Restart tigervnc
 
-- name: place service unit
+- name: Place service unit
   ansible.builtin.template:
     src: vncserver.service.j2
     dest: /etc/systemd/system/vncserver@.service
     mode: "0644"
   notify:
-    - systemctl daemon-reload
+    - Systemctl daemon-reload
   when:
     - ansible_os_family == "Debian"
 
-- name: flush handlers
+- name: Flush handlers
   ansible.builtin.meta: "flush_handlers"
 
-- name: start software
+- name: Start software
   ansible.builtin.service:
     name: "{{ tigervnc_service }}"
     state: started

@@ -1,39 +1,39 @@
 ---
 # tasks file for forensics
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: create {{ forensics_local_storage_path }}/{{ inventory_hostname_short }}
+- name: Create {{ forensics_local_storage_path }}/{{ inventory_hostname_short }}
   ansible.builtin.file:
     path: "{{ forensics_local_storage_path }}/{{ inventory_hostname_short }}"
     state: directory
     mode: "700"
 
-- name: collect files in directories
+- name: Collect files in directories
   ansible.builtin.include_tasks:
     file: directory_collector.yml
   loop: "{{ forensics_directory_list }}"
   loop_control:
     loop_var: object
 
-- name: collect files
+- name: Collect files
   ansible.builtin.include_tasks:
     file: file_collector.yml
   loop: "{{ forensics_file_list }}"
   loop_control:
     loop_var: object
 
-- name: collect command output
+- name: Collect command output
   ansible.builtin.include_tasks:
     file: command_collector.yml
   loop: "{{ forensics_command_list }}"
   loop_control:
     loop_var: object
 
-- name: collect specific files in directories
+- name: Collect specific files in directories
   ansible.builtin.include_tasks:
     file: specific_file_collector.yml
   loop: "{{ forensics_specific_file_list }}"

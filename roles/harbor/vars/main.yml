@@ -1,0 +1,4 @@
+---
+# vars file for harbor
+
+harbor_archive: "https://github.com/goharbor/harbor/releases/download/v{{ harbor_version }}/harbor-{{ harbor_installation_type }}-installer-v{{ harbor_version }}.tgz"

@@ -1,17 +1,17 @@
 ---
 # tasks file for podman
 
-- name: include assert.yml
+- name: Include assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: install podman
+- name: Install podman
   ansible.builtin.package:
     name: "{{ podman_packages }}"
     state: present
 
-- name: configure storage
+- name: Configure storage
   community.general.ini_file:
     path: "{{ podman_configuration_files.storage }}"
     section: "{{ item.section }}"
@@ -24,11 +24,11 @@
   loop_control:
     label: "{{ item.option }}"
   notify:
-    - restart podman
+    - Restart podman
 
-- name: start podman
+- name: Start podman
   block:
-    - name: start podman
+    - name: Start podman
       ansible.builtin.service:
         name: "{{ podman_service }}"
         state: started
@@ -37,11 +37,11 @@
       become: yes
       become_user: "{{ podman_user }}"
 
-    - name: get user details
+    - name: Get user details
       ansible.builtin.getent:
         database: passwd
 
-    - name: inform how to connect podman-remote
+    - name: Inform how to connect podman-remote
       ansible.builtin.debug:
         msg:
           - "To connect a remote podman client, use this command."

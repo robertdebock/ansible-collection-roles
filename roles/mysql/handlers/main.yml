@@ -1,18 +1,18 @@
 ---
 # handlers file for mysql
 
-- name: systemctl daemon-reexec
+- name: Systemctl daemon-reexec
   ansible.builtin.systemd:
     daemon_reexec: yes
 
-- name: restart mysql server
+- name: Restart mysql server
   ansible.builtin.service:
     name: "{{ mysql_service }}"
     state: restarted
   when:
     - not ansible_check_mode
 
-- name: set root password
+- name: Set root password
   community.mysql.mysql_user:
     login_unix_socket: "{{ mysql_socket }}"
     login_user: root

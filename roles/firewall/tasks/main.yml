@@ -1,26 +1,26 @@
 ---
 # tasks file for firewall
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: remove conflicting software
+- name: Remove conflicting software
   ansible.builtin.package:
     name: "{{ firewall_packages_conflicting }}"
     state: absent
   when:
     - firewall_packages_conflicting is defined
 
-- name: install required software
+- name: Install required software
   ansible.builtin.package:
     name: "{{ firewall_packages_required }}"
     state: present
   when:
     - firewall_packages_required is defined
 
-- name: open ports (ufw)
+- name: Open ports (ufw)
   community.general.ufw:
     rule: "{{ item.rule | default(firewall_default_rule) }}"
     port: "{{ item.name }}"
@@ -33,7 +33,7 @@
   loop_control:
     label: "{{ item.name }}"
 
-- name: close ports (ufw)
+- name: Close ports (ufw)
   community.general.ufw:
     rule: "{{ item.rule | default(firewall_default_rule) }}"
     port: "{{ item.name }}"
@@ -49,7 +49,7 @@
   loop_control:
     label: "{{ item.name }}"
 
-- name: open ports (firewalld-port)
+- name: Open ports (firewalld-port)
   ansible.posix.firewalld:
     port: "{{ item.name }}/{{ item.protocol | default(firewall_default_protocol) }}"
     permanent: yes
@@ -63,9 +63,9 @@
   loop_control:
     label: "{{ item.name }}"
   notify:
-    - reload firewalld
+    - Reload firewalld
 
-- name: close ports (firewalld-port)
+- name: Close ports (firewalld-port)
   ansible.posix.firewalld:
     port: "{{ item.name }}/{{ item.protocol | default(firewall_default_protocol) }}"
     permanent: yes
@@ -81,9 +81,9 @@
   loop_control:
     label: "{{ item.name }}"
   notify:
-    - reload firewalld
+    - Reload firewalld
 
-- name: open ports (firewalld-service)
+- name: Open ports (firewalld-service)
   ansible.posix.firewalld:
     service: "{{ item.name }}"
     permanent: yes
@@ -97,9 +97,9 @@
   loop_control:
     label: "{{ item.name }}"
   notify:
-    - reload firewalld
+    - Reload firewalld
 
-- name: close ports (firewalld-service)
+- name: Close ports (firewalld-service)
   ansible.posix.firewalld:
     service: "{{ item.name }}"
     permanent: yes
@@ -115,16 +115,16 @@
   loop_control:
     label: "{{ item.name }}"
   notify:
-    - reload firewalld
+    - Reload firewalld
 
-- name: enable ufw
+- name: Enable ufw
   community.general.ufw:
     state: enabled
   when:
     - ansible_connection not in [ "container", "docker", "community.docker.docker" ]
     - firewall_service == "ufw"
 
-- name: configure iptables
+- name: Configure iptables
   ansible.builtin.template:
     src: iptables.j2
     dest: "{{ firewall_iptables_rulefile }}"
@@ -137,9 +137,9 @@
   loop_control:
     label: "{{ item.name }}"
   notify:
-    - reload firewall
+    - Reload firewall
 
-- name: start and enable firewall service
+- name: Start and enable firewall service
   ansible.builtin.service:
     name: "{{ firewall_service }}"
     state: started

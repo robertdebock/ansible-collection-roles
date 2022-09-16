@@ -35,16 +35,22 @@
   when:
     - ansible_pkg_mgr == "zypper"
 
-- name: check journalctl
+- name: check /usr/bin/journalctl
   ansible.builtin.stat:
     path: /usr/bin/journalctl
-  register: maintenance_journalctl
+  register: maintenance_usr_bin_journalctl
+
+- name: check /bin/journalctl
+  ansible.builtin.stat:
+    path: /bin/journalctl
+  register: maintenance_bin_journalctl
 
 - name: cleanup journalctl logs
   ansible.builtin.command:
     cmd: journalctl --vacuum-time={{ maintenance_journalctl_vacuum }}
   when:
-    - maintenance_journalctl.stat.exists | bool
+    - maintenance_usr_bin_journalctl.stat.exists or
+      maintenance_bin_journalctl.stat.exists
   register: maintenance_cleanup_journalctl
   changed_when:
     - "'freed 0B' not in maintenance_cleanup_journalctl.stderr"

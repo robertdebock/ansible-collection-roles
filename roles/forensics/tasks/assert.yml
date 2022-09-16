@@ -1,20 +1,20 @@
 ---
 
-- name: test if forensics_local_storage_path is set correctly
+- name: Test if forensics_local_storage_path is set correctly
   ansible.builtin.assert:
     that:
       - forensics_local_storage_path is defined
       - forensics_local_storage_path is string
     quiet: yes
 
-- name: test if forensics_command_list is set correctly
+- name: Test if forensics_command_list is set correctly
   ansible.builtin.assert:
     that:
       - forensics_command_list is defined
       - forensics_command_list is iterable
     quiet: yes
 
-- name: test if item in forensics_command_list is set correctly
+- name: Test if item in forensics_command_list is set correctly
   ansible.builtin.assert:
     that:
       - item is defined
@@ -22,14 +22,14 @@
     quiet: yes
   loop: "{{ forensics_command_list }}"
 
-- name: test if forensics_directory_list is set correctly
+- name: Test if forensics_directory_list is set correctly
   ansible.builtin.assert:
     that:
       - forensics_directory_list is defined
       - forensics_directory_list is iterable
     quiet: yes
 
-- name: test if item in forensics_directory_list is set correctly
+- name: Test if item in forensics_directory_list is set correctly
   ansible.builtin.assert:
     that:
       - item is defined
@@ -37,14 +37,14 @@
     quiet: yes
   loop: "{{ forensics_directory_list }}"
 
-- name: test if forensics_file_list is set correctly
+- name: Test if forensics_file_list is set correctly
   ansible.builtin.assert:
     that:
       - forensics_file_list is defined
       - forensics_file_list is iterable
     quiet: yes
 
-- name: test if item in forensics_file_list is set correctly
+- name: Test if item in forensics_file_list is set correctly
   ansible.builtin.assert:
     that:
       - item is defined
@@ -52,14 +52,14 @@
     quiet: yes
   loop: "{{ forensics_file_list }}"
 
-- name: test if forensics_specific_file_list is set correctly
+- name: Test if forensics_specific_file_list is set correctly
   ansible.builtin.assert:
     that:
       - forensics_specific_file_list is defined
       - forensics_specific_file_list is iterable
     quiet: yes
 
-- name: test if item in forensics_specific_file_list is set correctly
+- name: Test if item in forensics_specific_file_list is set correctly
   ansible.builtin.assert:
     that:
       - item.path is defined

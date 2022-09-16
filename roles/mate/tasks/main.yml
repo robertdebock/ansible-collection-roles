@@ -1,22 +1,22 @@
 ---
 # tasks file for mate
 
-- name: install software
+- name: Install software
   ansible.builtin.package:
     name: "{{ mate_packages }}"
     state: present
   when:
     - ansible_os_family not in [ "RedHat", "Rocky" ]
 
-- name: configure redhat
+- name: Configure redhat
   block:
-    - name: install software with excluded
+    - name: Install software with excluded
       ansible.builtin.package:
         name: "{{ mate_packages }}"
         state: present
         exclude: "{{ mate_exclude | default(omit) }}"
 
-    - name: ensure NetworkManager is started and enabled
+    - name: Ensure NetworkManager is started and enabled
       ansible.builtin.service:
         name: NetworkManager
         state: started

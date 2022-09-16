@@ -1,7 +1,7 @@
 ---
 # tasks file for buildtools
 
-- name: install buildtools
+- name: Install buildtools
   ansible.builtin.package:
     name: "{{ buildtools_packages }}"
     state: present

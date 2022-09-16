@@ -1,17 +1,17 @@
 ---
 # tasks file for python_pip
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: install python pip
+- name: Install python pip
   ansible.builtin.package:
     name: "{{ python_pip_packages }}"
     state: present
 
-- name: configure pip proxy
+- name: Configure pip proxy
   community.general.ini_file:
     path: /etc/pip.conf
     section: global
@@ -21,7 +21,7 @@
   when:
     - python_pip_proxy is defined
 
-- name: trust hosts
+- name: Trust hosts
   community.general.ini_file:
     path: /etc/pip.conf
     section: global
@@ -31,7 +31,7 @@
   when:
     - python_pip_trusted_host is defined
 
-- name: update pip
+- name: Update pip
   ansible.builtin.pip:
     name: "{{ python_pip_pip_package }}"
     state: "{{ python_pip_pip_state }}"  # noqa package-latest
@@ -39,7 +39,7 @@
   when:
     - python_pip_update | bool
 
-# - name: update setuptools
+# - name: Update setuptools
 #   ansible.builtin.pip:
 #     name: setuptools
 #     state: latest  # noqa package-latest
@@ -47,7 +47,7 @@
 #   when:
 #     - python_pip_update | bool
 
-- name: install requested modules
+- name: Install requested modules
   ansible.builtin.pip:
     name: "{{ item.name }}"
     state: "{{ item.state | default('present') }}"

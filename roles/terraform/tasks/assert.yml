@@ -1,13 +1,13 @@
 ---
 
-- name: test if terraform_version is set correctly
+- name: Test if terraform_version is set correctly
   ansible.builtin.assert:
     that:
       - terraform_version is defined
       - terraform_version is string
     quiet: yes
 
-- name: test if terraform_destination is set correctly
+- name: Test if terraform_destination is set correctly
   ansible.builtin.assert:
     that:
       - terraform_destination is defined

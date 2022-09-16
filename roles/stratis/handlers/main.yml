@@ -1,7 +1,7 @@
 ---
 # handlers file for stratis
 
-- name: restart stratis
+- name: Restart stratis
   ansible.builtin.service:
     name: "{{ stratis_service }}"
     state: restarted

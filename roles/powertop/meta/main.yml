@@ -31,4 +31,4 @@ galaxy_info:
     - powertop
 
 dependencies:
-  - robertdebock.service
+  - robertdebock.roles.service

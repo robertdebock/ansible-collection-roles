@@ -1,20 +1,20 @@
 ---
 # tasks file for mysql
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: install mysql
+- name: Install mysql
   ansible.builtin.package:
     name: "{{ mysql_packages }}"
     state: present
   notify:
-    - set root password
-    - systemctl daemon-reexec
+    - Set root password
+    - Systemctl daemon-reexec
 
-- name: configure mysql server
+- name: Configure mysql server
   community.general.ini_file:
     dest: "{{ mysql_configuration_destination }}/{{ mysql_name }}-server.cnf"
     section: "{{ item.section }}"
@@ -25,9 +25,9 @@
   loop_control:
     label: "{{ item.option }}"
   notify:
-    - restart mysql server
+    - Restart mysql server
 
-- name: configure mysql client
+- name: Configure mysql client
   community.general.ini_file:
     dest: "{{ mysql_configuration_destination }}/{{ mysql_name }}-client.cnf"
     section: client
@@ -35,29 +35,29 @@
     value: "{{ mysql_socket }}"
     mode: "0644"
 
-- name: initialize mysql
+- name: Initialize mysql
   ansible.builtin.command:
     cmd: "{{ mysql_initialize_command }}"
     creates: /var/lib/mysql/mysql
   when:
     - ansible_distribution in [ "Alpine", "Archlinux" ]
 
-- name: start and enable mysql
+- name: Start and enable mysql
   ansible.builtin.service:
     name: "{{ mysql_service }}"
     state: started
     enabled: yes
 
-- name: flush handlers
+- name: Flush handlers
   ansible.builtin.meta: flush_handlers
 
-- name: place my.cnf
+- name: Place my.cnf
   ansible.builtin.template:
     src: my.cnf.j2
     dest: /root/.my.cnf
     mode: "0640"
 
-- name: create databases
+- name: Create databases
   community.mysql.mysql_db:
     name: "{{ item.name }}"
     state: "{{ item.state | default('present') }}"
@@ -74,7 +74,7 @@
     - mysql_databases is defined
   no_log: yes
 
-- name: create users
+- name: Create users
   community.mysql.mysql_user:
     name: "{{ item.name }}"
     state: present
@@ -93,5 +93,5 @@
     - mysql_users is defined
   no_log: yes
 
-- name: flush handlers again
+- name: Flush handlers again
   ansible.builtin.meta: flush_handlers

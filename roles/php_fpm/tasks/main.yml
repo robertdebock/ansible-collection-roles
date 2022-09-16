@@ -1,23 +1,23 @@
 ---
 # tasks file for php_fpm
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: install php-fpm
+- name: Install php-fpm
   ansible.builtin.package:
     name: "{{ php_fpm_packages }}"
     state: present
 
-- name: place php-fpm configuration
+- name: Place php-fpm configuration
   ansible.builtin.template:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
     mode: "0644"
   notify:
-    - restart php-fpm
+    - Restart php-fpm
   loop:
     - src: php-fpm.conf.j2
       dest: "{{ php_fpm_directory }}/php-fpm.conf"
@@ -26,7 +26,7 @@
   loop_control:
     label: "{{ item.src }}"
 
-- name: correct permission for logfile
+- name: Correct permission for logfile
   ansible.builtin.file:
     path: /var/log/php-pfm.log
     state: touch
@@ -36,20 +36,20 @@
     group: "{{ php_fpm_group }}"
     mode: "0644"
 
-- name: place selinux type enforcement
+- name: Place selinux type enforcement
   ansible.builtin.copy:
     src: my-php-fpm.te
     dest: /etc/my-php-fpm.te
     mode: "0644"
   notify:
-    - create selinux mod for php_fpm
-    - create selinux pp for php_fpm
-    - load selinux pp for php_fpm
+    - Create selinux mod for php_fpm
+    - Create selinux pp for php_fpm
+    - Load selinux pp for php_fpm
   when:
     - ansible_selinux.status is defined
     - ansible_selinux.status == "enabled"
 
-- name: start php-fpm
+- name: Start php-fpm
   ansible.builtin.service:
     name: "{{ php_fpm_service }}"
     state: started

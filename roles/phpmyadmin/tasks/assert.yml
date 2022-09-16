@@ -1,48 +1,48 @@
 ---
 
-- name: test if phpmyadmin_version is set correctly
+- name: Test if phpmyadmin_version is set correctly
   ansible.builtin.assert:
     that:
       - phpmyadmin_version is defined
       - phpmyadmin_version is string
     quiet: yes
 
-- name: test if phpmyadmin_database_host is set correctly
+- name: Test if phpmyadmin_database_host is set correctly
   ansible.builtin.assert:
     that:
       - phpmyadmin_database_host is defined
       - phpmyadmin_database_host is string
     quiet: yes
 
-- name: test if phpmyadmin_blowfish_secret is set correctly
+- name: Test if phpmyadmin_blowfish_secret is set correctly
   ansible.builtin.assert:
     that:
       - phpmyadmin_blowfish_secret is defined
       - phpmyadmin_blowfish_secret is string
     quiet: yes
 
-- name: test if phpmyadmin_database_user is set correctly
+- name: Test if phpmyadmin_database_user is set correctly
   ansible.builtin.assert:
     that:
       - phpmyadmin_database_user is defined
       - phpmyadmin_database_user is string
     quiet: yes
 
-- name: test if phpmyadmin_database_pass is set correctly
+- name: Test if phpmyadmin_database_pass is set correctly
   ansible.builtin.assert:
     that:
       - phpmyadmin_database_pass is defined
       - phpmyadmin_database_pass is string
     quiet: yes
 
-- name: test if phpmyadmin_database_compress is set correctly
+- name: Test if phpmyadmin_database_compress is set correctly
   ansible.builtin.assert:
     that:
       - phpmyadmin_database_compress is defined
       - phpmyadmin_database_compress is boolean
     quiet: yes
 
-- name: test if phpmyadmin_database_allownopassword is set correctly
+- name: Test if phpmyadmin_database_allownopassword is set correctly
   ansible.builtin.assert:
     that:
       - phpmyadmin_database_allownopassword is defined

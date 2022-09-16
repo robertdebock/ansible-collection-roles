@@ -1,20 +1,20 @@
 ---
 # tasks file for npm
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: configure debian
+- name: Configure debian
   block:
-    - name: install nodejs key
+    - name: Install nodejs key
       ansible.builtin.apt_key:
         url: "{{ npm_apt_key }}"
         state: present
         validate_certs: "{{ npm_validate_certs }}"
 
-    - name: install nodejs deb repository
+    - name: Install nodejs deb repository
       ansible.builtin.apt_repository:
         repo: "{{ item }}"
         state: present
@@ -22,7 +22,7 @@
   when:
     - ansible_distribution == "Debian"
 
-- name: install nodejs rpm repository
+- name: Install nodejs rpm repository
   ansible.builtin.yum_repository:
     name: "{{ item.name }}"
     state: present
@@ -36,12 +36,12 @@
   loop_control:
     label: "{{ item.name }}"
 
-- name: install npm
+- name: Install npm
   ansible.builtin.package:
     name: "{{ npm_packages }}"
     state: present
 
-- name: set the registry
+- name: Set the registry
   ansible.builtin.lineinfile:
     path: /usr/etc/npmrc
     regexp: "^registry="

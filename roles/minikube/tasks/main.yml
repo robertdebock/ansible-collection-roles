@@ -1,17 +1,17 @@
 ---
 # tasks file for minikube
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: install requirements
+- name: Install requirements
   ansible.builtin.package:
     name: "{{ minikube_requirements }}"
     state: present
 
-- name: install minikube (apt)
+- name: Install minikube (apt)
   ansible.builtin.apt:
     deb: "{{ item }}"
     state: present
@@ -19,7 +19,7 @@
     - ansible_os_family == "Debian"
   loop: "{{ minikube_packages }}"
 
-- name: install minikube (yum)
+- name: Install minikube (yum)
   ansible.builtin.yum:
     name: "{{ minikube_packages }}"
     state: present
@@ -27,7 +27,7 @@
   when:
     - ansible_os_family in [ "RedHat", "Rocky" ]
 
-- name: start minikube once
+- name: Start minikube once
   ansible.builtin.command:
     cmd: "{{ minikube_command }}"
     creates: nothing

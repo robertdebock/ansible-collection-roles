@@ -1,20 +1,21 @@
 ---
 # tasks file for facts
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: create ansible facts directory
+- name: Create ansible facts directory
   ansible.builtin.file:
     path: /etc/ansible/facts.d
     state: directory
     mode: "0755"
 
-- name: place custom facts
+- name: Place custom facts
   ansible.builtin.template:
     src: "facts.j2"
     dest: /etc/ansible/facts.d/custom.fact
     mode: "0644"
-  notify: setup
+  notify:
+    - Setup

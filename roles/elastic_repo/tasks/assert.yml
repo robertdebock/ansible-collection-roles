@@ -1,6 +1,6 @@
 ---
 
-- name: test if elastic_repo_license is set correctly
+- name: Test if elastic_repo_license is set correctly
   ansible.builtin.assert:
     that:
       - elastic_repo_license is defined

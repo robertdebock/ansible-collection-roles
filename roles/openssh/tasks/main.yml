@@ -1,17 +1,17 @@
 ---
 # tasks file for openssh
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: install openssh
+- name: Install openssh
   ansible.builtin.package:
     name: "{{ openssh_packages }}"
     state: present
 
-- name: configure selinux to allow openssh_port
+- name: Configure selinux to allow openssh_port
   community.general.seport:
     ports: "{{ openssh_port }}"
     proto: "tcp"
@@ -21,13 +21,13 @@
     - ansible_selinux.status is defined
     - ansible_selinux.status == "enabled"
 
-- name: generate host key
+- name: Generate host key
   ansible.builtin.command:
     cmd: "/usr/bin/ssh-keygen -q -t {{ item }} -f /etc/ssh/ssh_host_{{ item }}_key -C '' -N ''"
     creates: "/etc/ssh/ssh_host_{{ item }}_key"
   loop: "{{ openssh_key_types }}"
 
-- name: make run directory
+- name: Make run directory
   ansible.builtin.file:
     path: "{{ openssh_run_directory }}"
     state: directory
@@ -35,7 +35,7 @@
   when:
     - ansible_os_family == "Debian"
 
-- name: configure openssh
+- name: Configure openssh
   ansible.builtin.template:
     dest: "{{ openssh_configuration_file }}"
     src: "{{ openssh_template_src }}"
@@ -44,15 +44,15 @@
     group: root
     validate: sshd -f %s -t
   notify:
-    - restart openssh
+    - Restart openssh
 
-- name: start and enable openssh
+- name: Start and enable openssh
   ansible.builtin.service:
     name: "{{ openssh_service }}"
     state: started
     enabled: yes
 
-- name: flush handlers
+- name: Flush handlers
   ansible.builtin.meta: flush_handlers
   when:
     - openssh_restart_immediately

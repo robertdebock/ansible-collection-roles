@@ -1,13 +1,13 @@
 ---
 
-- name: test if dovecot_mailbox_location is set correctly
+- name: Test if dovecot_mailbox_location is set correctly
   ansible.builtin.assert:
     that:
       - dovecot_mailbox_location is defined
       - dovecot_mailbox_location is string
     quiet: yes
 
-- name: test if dovecot_mail_access_groups is set correctly
+- name: Test if dovecot_mail_access_groups is set correctly
   ansible.builtin.assert:
     that:
       - dovecot_mail_access_groups is defined

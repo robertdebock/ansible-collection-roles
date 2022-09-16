@@ -1,26 +1,26 @@
 ---
 # tasks file for keepalived
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: install keepalived
+- name: Install keepalived
   ansible.builtin.package:
     name: keepalived
     state: present
 
-- name: configure keepalived
+- name: Configure keepalived
   ansible.builtin.template:
     src: keepalived.conf.j2
     dest: /etc/keepalived/keepalived.conf
     mode: "0640"
     validate: keepalived --config-test --use-file=%s
   notify:
-    - restart keepalived
+    - Restart keepalived
 
-- name: start keepalived
+- name: Start keepalived
   ansible.builtin.service:
     name: keepalived
     state: started

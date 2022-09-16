@@ -16,6 +16,12 @@ for role in ../ansible-role-* ; do
   fi
 done
 
+# Use proper role FQCNs in README example playbooks
+sed -i '' 's|- role: robertdebock\.|- role: robertdebock.roles.|' roles/*/README.md
+
+# Use proper role FQCNs in role `dependencies:`
+sed -i '' 's|- robertdebock\.|- robertdebock.roles.|' roles/*/meta/main.yml
+
 # Regenerate all used collections.
 echo "---" > requirements.yml
 echo "collections:" >> requirements.yml

@@ -1,13 +1,13 @@
 ---
 
-- name: test if keepalived_vrrp_instances is set correctly
+- name: Test if keepalived_vrrp_instances is set correctly
   ansible.builtin.assert:
     that:
       - keepalived_vrrp_instances is defined
       - keepalived_vrrp_instances is iterable
     quiet: yes
 
-- name: test if item in keepalived_vrrp_instances is set correctly
+- name: Test if item in keepalived_vrrp_instances is set correctly
   ansible.builtin.assert:
     that:
       - item.name is defined
@@ -30,7 +30,7 @@
   loop_control:
     label: "{{ item.name }}"
 
-- name: loop over keepalived_vrrp_instances
+- name: Loop over keepalived_vrrp_instances
   ansible.builtin.include_tasks:
     file: assert_instances.yml
   loop: "{{ keepalived_vrrp_instances }}"

@@ -1,5 +1,5 @@
 ---
-- name: deploy config_file
+- name: Deploy config_file
   ansible.builtin.template:
     src: "{{ config_file.src }}"
     dest: "{{ tomcat_directory }}/{{ instance.name }}/conf/{{ config_file.dest }}"
@@ -7,4 +7,4 @@
     group: "{{ instance.group | default(tomcat_group) }}"
     mode: "{{ config_file.mode }}"
   notify:
-    - restart tomcat instance
+    - Restart tomcat instance

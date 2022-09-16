@@ -1,12 +1,17 @@
 ---
 # tasks file for redis
 
-- name: install redis
+- name: Import assert.yml
+  ansible.builtin.import_tasks: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+- name: Install redis
   ansible.builtin.package:
     name: "{{ redis_packages }}"
     state: present
 
-- name: configure redis
+- name: Configure redis
   ansible.builtin.template:
     src: "redis.conf-{{ ansible_distribution }}.j2"
     dest: "{{ redis_configuration_directory }}/{{ redis_configuration_file }}"
@@ -14,9 +19,9 @@
     group: "{{ redis_group }}"
     mode: "{{ redis_mode }}"
   notify:
-    - restart redis
+    - Restart redis
 
-- name: start and enable redis
+- name: Start and enable redis
   ansible.builtin.service:
     name: "{{ redis_service }}"
     state: started

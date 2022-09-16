@@ -1,26 +1,26 @@
 ---
 # tasks file for sudo-pair
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: install requirements
+- name: Install requirements
   ansible.builtin.package:
     name: "{{ sudo_pair_requirements }}"
     state: present
   environment:
     ANSIBLE_SQUASH_ACTIONS: unset
 
-- name: download and unpack sudo_pair
+- name: Download and unpack sudo_pair
   ansible.builtin.unarchive:
     src: "{{ sudo_pair_url }}"
     dest: /tmp
     remote_src: yes
     mode: "0755"
 
-- name: build sudo_pair
+- name: Build sudo_pair
   ansible.builtin.command:
     cmd: cargo build --release
     chdir: "{{ sudo_pair_unpack_directory }}"
@@ -28,7 +28,7 @@
   environment:
     PATH: "{{ ansible_env.PATH }}:/usr/local/bin"
 
-- name: install sudo_pair
+- name: Install sudo_pair
   ansible.builtin.copy:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
@@ -36,7 +36,7 @@
     remote_src: yes
   loop: "{{ sudo_pair_files }}"
 
-- name: create directories
+- name: Create directories
   ansible.builtin.file:
     path: "{{ sudo_pair_directories }}"
     state: directory
@@ -44,7 +44,7 @@
     group: root
     mode: "644"
 
-- name: configure sudo
+- name: Configure sudo
   ansible.builtin.template:
     src: sudo.conf.j2
     dest: /etc/sudo.conf

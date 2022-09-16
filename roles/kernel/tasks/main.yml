@@ -1,17 +1,17 @@
 ---
 # tasks file for kernel
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: install requirements
+- name: Install requirements
   ansible.builtin.package:
     name: "{{ kernel_requirements }}"
     state: present
 
-- name: download kernel archive
+- name: Download kernel archive
   ansible.builtin.unarchive:
     src: "{{ kernel_unarchive_src }}"
     dest: "{{ kernel_build_location }}"
@@ -19,13 +19,13 @@
     creates: "{{ kernel_unarchive_creates }}"
     mode: "0755"
 
-- name: make defconfig
+- name: Make defconfig
   ansible.builtin.command:
     cmd: make defconfig
     chdir: "{{ kernel_build_location }}/linux-{{ kernel_version }}"
     creates: "{{ kernel_build_location }}/linux-{{ kernel_version }}/.config"
 
-- name: change selected parameters in config
+- name: Change selected parameters in config
   ansible.builtin.lineinfile:
     path: "{{ kernel_build_location }}/linux-{{ kernel_version }}/.config"
     regexp: "^{{ item.name }}="
@@ -35,7 +35,7 @@
   when:
     - kernel_parameters is defined
 
-- name: make
+- name: Make
   ansible.builtin.command:
     cmd: make -j {{ ansible_processor_vcpus * 2 }}
     chdir: "{{ kernel_build_location }}/linux-{{ kernel_version }}"
@@ -45,7 +45,7 @@
   register: kernel_make
   changed_when: no
 
-- name: wait for make
+- name: Wait for make
   ansible.builtin.async_status:
     jid: "{{ kernel_make.ansible_job_id }}"
   register: kernel_wait_for_make
@@ -54,19 +54,19 @@
   retries: 120
   delay: 30
 
-- name: make modules_install
+- name: Make modules_install
   ansible.builtin.command:
     cmd: make modules_install
     chdir: "{{ kernel_build_location }}/linux-{{ kernel_version }}"
     creates: "{{ kernel_modules_location }}"
 
-- name: ensure kernel directory exists
+- name: Ensure kernel directory exists
   ansible.builtin.file:
     path: "{{ kernel_installation_location | dirname }}"
     state: directory
     mode: "0750"
 
-- name: make install
+- name: Make install
   ansible.builtin.command:
     cmd: make install
     chdir: "{{ kernel_build_location }}/linux-{{ kernel_version }}"

@@ -1,17 +1,17 @@
 ---
 # tasks file for xrdp
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: install software
+- name: Install software
   ansible.builtin.package:
     name: "{{ xrdp_packages }}"
     state: present
 
-- name: configure xrdp
+- name: Configure xrdp
   community.general.ini_file:
     path: /etc/xrdp/xrdp.ini
     section: "{{ item.section }}"
@@ -22,11 +22,11 @@
   loop_control:
     label: "{{ item.option }}"
   notify:
-    - restart xrdp
+    - Restart xrdp
 
-- name: place 45-allow-colord
+- name: Place 45-allow-colord
   block:
-    - name: place 45-allow-colord.pkla
+    - name: Place 45-allow-colord.pkla
       ansible.builtin.copy:
         src: 45-allow-colord
         dest: /etc/polkit-1/localauthority/50-local.d/45-allow-colord.pkla
@@ -34,7 +34,7 @@
         group: root
         mode: "0644"
 
-    - name: place 45-allow-colord.conf
+    - name: Place 45-allow-colord.conf
       ansible.builtin.copy:
         src: 45-allow-colord
         dest: /etc/polkit-1/localauthority/50-local.d/45-allow-colord.conf
@@ -44,7 +44,7 @@
   when:
     - ansible_distribution == "Ubuntu"
 
-- name: start and enable xrdp
+- name: Start and enable xrdp
   ansible.builtin.service:
     name: "{{ xrdp_service }}"
     state: started

@@ -1,118 +1,118 @@
 ---
 
-- name: test if turn_listening_port is set correctly
+- name: Test if turn_listening_port is set correctly
   ansible.builtin.assert:
     that:
       - turn_listening_port is defined
       - turn_listening_port is number
     quiet: yes
 
-- name: test if turn_fingerprint is set correctly
+- name: Test if turn_fingerprint is set correctly
   ansible.builtin.assert:
     that:
       - turn_fingerprint is defined
       - turn_fingerprint is boolean
     quiet: yes
 
-- name: test if turn_lt_cred_mech is set correctly
+- name: Test if turn_lt_cred_mech is set correctly
   ansible.builtin.assert:
     that:
       - turn_lt_cred_mech is defined
       - turn_lt_cred_mech is boolean
     quiet: yes
 
-- name: test if turn_use_auth_secret is set correctly
+- name: Test if turn_use_auth_secret is set correctly
   ansible.builtin.assert:
     that:
       - turn_use_auth_secret is defined
       - turn_use_auth_secret is boolean
     quiet: yes
 
-- name: test if turn_bps_quota is set correctly
+- name: Test if turn_bps_quota is set correctly
   ansible.builtin.assert:
     that:
       - turn_bps_quota is defined
       - turn_bps_quota is number
     quiet: yes
 
-- name: test if turn_no_loopback_peers is set correctly
+- name: Test if turn_no_loopback_peers is set correctly
   ansible.builtin.assert:
     that:
       - turn_no_loopback_peers is defined
       - turn_no_loopback_peers is boolean
     quiet: yes
 
-- name: test if turn_no_multicast_peers is set correctly
+- name: Test if turn_no_multicast_peers is set correctly
   ansible.builtin.assert:
     that:
       - turn_no_multicast_peers is defined
       - turn_no_multicast_peers is boolean
     quiet: yes
 
-- name: test if turn_simple_log is set correctly
+- name: Test if turn_simple_log is set correctly
   ansible.builtin.assert:
     that:
       - turn_simple_log is defined
       - turn_simple_log is boolean
     quiet: yes
 
-- name: test if turn_static_auth_secret is set correctly
+- name: Test if turn_static_auth_secret is set correctly
   ansible.builtin.assert:
     that:
       - turn_static_auth_secret is defined
       - turn_static_auth_secret is string
     quiet: yes
 
-- name: test if turn_realm is set correctly
+- name: Test if turn_realm is set correctly
   ansible.builtin.assert:
     that:
       - turn_realm is defined
       - turn_realm is string
     quiet: yes
 
-- name: test if turn_total_quota is set correctly
+- name: Test if turn_total_quota is set correctly
   ansible.builtin.assert:
     that:
       - turn_total_quota is defined
       - turn_total_quota is number
     quiet: yes
 
-- name: test if turn_stale_nonce is set correctly
+- name: Test if turn_stale_nonce is set correctly
   ansible.builtin.assert:
     that:
       - turn_stale_nonce is defined
       - turn_stale_nonce is number
     quiet: yes
 
-- name: test if turn_lt_cred_mech and turn_use_auth_secret are exclusive
+- name: Test if turn_lt_cred_mech and turn_use_auth_secret are exclusive
   ansible.builtin.assert:
     that:
       - (turn_lt_cred_mech and not turn_use_auth_secret) or
         (not turn_lt_cred_mech and turn_use_auth_secret)
     quiet: yes
 
-- name: test if turn_cli_password is set correctly
+- name: Test if turn_cli_password is set correctly
   ansible.builtin.assert:
     that:
       - turn_cli_password is defined
       - turn_cli_password is string
     quiet: yes
 
-- name: test if turn_server_name is set correctly
+- name: Test if turn_server_name is set correctly
   ansible.builtin.assert:
     that:
       - turn_server_name is defined
       - turn_server_name is string
     quiet: yes
 
-- name: test if turn_listening_ip is set correctly
+- name: Test if turn_listening_ip is set correctly
   ansible.builtin.assert:
     that:
       - turn_listening_ip is defined
       - turn_listening_ip is string
     quiet: yes
 
-- name: test if turn_external_ip is set correctly
+- name: Test if turn_external_ip is set correctly
   ansible.builtin.assert:
     that:
       - turn_external_ip is defined

@@ -1,19 +1,19 @@
 ---
 # tasks file for docker_compose
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: install docker-compose
+- name: Install docker-compose
   block:
-    - name: install docker-compose package
+    - name: Install docker-compose package
       ansible.builtin.package:
         name: docker-compose
         state: present
   rescue:
-    - name: install docker-compose binary
+    - name: Install docker-compose binary
       ansible.builtin.get_url:
         url: "{{ docker_compose_url }}"
         dest: /usr/local/bin/docker-compose

@@ -1,42 +1,42 @@
 ---
 # tasks file for gitlab
 
-- name: include assert.yml
+- name: Include assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
   become: no
 
-- name: install requirements
+- name: Install requirements
   ansible.builtin.package:
     name: "{{ gitlab_requirements }}"
 
-- name: install ruby to allow syntax check of gitlab.rb
+- name: Install ruby to allow syntax check of gitlab.rb
   ansible.builtin.package:
     name: ruby
   notify:
-    - uninstall ruby
+    - Uninstall ruby
 
-- name: execute apt tasks
+- name: Execute apt tasks
   block:
-    - name: install apt repository key
+    - name: Install apt repository key
       ansible.builtin.apt_key:
         url: "https://packages.gitlab.com/gpg.key"
 
-    - name: install apt repository
+    - name: Install apt repository
       ansible.builtin.apt_repository:
         repo: "deb {{ gitlab_repository_url }} {{ ansible_distribution_release | lower }} main"
         filename: "{{ gitlab_repository_name }}"
   when:
     - ansible_pkg_mgr == "apt"
 
-- name: execute yum/dnf tasks
+- name: Execute yum/dnf tasks
   block:
-    - name: install rpm repository key
+    - name: Install rpm repository key
       ansible.builtin.rpm_key:
         key: "https://packages.gitlab.com/gitlab/gitlab-{{ gitlab_distribution_abbreviation }}/gpgkey/gitlab-gitlab-{{ gitlab_distribution_abbreviation }}-3D645A26AB9FBD22.pub.gpg"
 
-    - name: install yum/dnf repository
+    - name: Install yum/dnf repository
       ansible.builtin.yum_repository:
         name: "{{ gitlab_repository_name }}"
         description: "{{ gitlab_repository_name }}"
@@ -49,15 +49,15 @@
   when:
     - ansible_pkg_mgr in [ "dnf", "yum" ]
 
-- name: check database migrations
+- name: Check database migrations
   block:
-    - name: check if gitlab-rake is available
+    - name: Check if gitlab-rake is available
       ansible.builtin.command:
         cmd: gitlab-rake --version
       changed_when: no
       failed_when: no
       register: gitlab_rake_version
-    - name: use gitlab-rake to check db migrations
+    - name: Use gitlab-rake to check db migrations
       ansible.builtin.command:
         cmd: "gitlab-rake db:migrate:status"
       changed_when: no
@@ -69,13 +69,13 @@
       when:
         - gitlab_rake_version.rc == 0
 
-- name: install gitlab
+- name: Install gitlab
   ansible.builtin.package:
     name: "{{ gitlab_package }}"
 
-- name: configure ssl
+- name: Configure ssl
   block:
-    - name: make ssl directories
+    - name: Make ssl directories
       ansible.builtin.file:
         path: /etc/gitlab/ssl
         state: directory
@@ -84,9 +84,9 @@
         group: root
         mode: "0750"
 
-    - name: place ssl material
+    - name: Place ssl material
       block:
-        - name: place ssl certificate
+        - name: Place ssl certificate
           ansible.builtin.copy:
             src: "{{ gitlab_ssl_crt }}"
             dest: /etc/gitlab/ssl/{{ gitlab_external_url | urlsplit('hostname') }}.crt
@@ -94,7 +94,7 @@
             group: root
             mode: "0644"
 
-        - name: place ssl key
+        - name: Place ssl key
           ansible.builtin.copy:
             src: "{{ gitlab_ssl_key }}"
             dest: /etc/gitlab/ssl/{{ gitlab_external_url | urlsplit('hostname') }}.key
@@ -109,7 +109,7 @@
     - gitlab_letsencrypt is defined and not gitlab_letsencrypt
     - '"https" in gitlab_external_url'
 
-- name: place configuration templated
+- name: Place configuration templated
   ansible.builtin.template:
     src: gitlab.rb.j2
     dest: /etc/gitlab/gitlab.rb
@@ -118,13 +118,13 @@
     mode: "0600"
     validate: ruby -c %s
   notify:
-    - run gitlab-ctl reconfigure
+    - Run gitlab-ctl reconfigure
   when:
     - gitlab_configuration_file is not defined
 
-- name: place trusted-certs
+- name: Place trusted-certs
   block:
-    - name: make trusted-certs directories
+    - name: Make trusted-certs directories
       ansible.builtin.file:
         path: /etc/gitlab/trusted-certs
         state: directory
@@ -132,7 +132,7 @@
         group: root
         mode: "0755"
 
-    - name: place trusted certificates
+    - name: Place trusted certificates
       ansible.builtin.copy:
         src: "{{ item }}"
         dest: /etc/gitlab/trusted-certs/{{ item }}
@@ -140,12 +140,12 @@
         group: root
         mode: "0644"
       notify:
-        - run gitlab-ctl reconfigure
+        - Run gitlab-ctl reconfigure
       loop: "{{ gitlab_trusted_certs }}"
   when:
     - gitlab_trusted_certs is defined
 
-- name: place configuration static
+- name: Place configuration static
   ansible.builtin.copy:
     src: "{{ gitlab_configuration_file }}"
     dest: /etc/gitlab/gitlab.rb
@@ -154,17 +154,17 @@
     mode: "0600"
     validate: ruby -c %s
   notify:
-    - run gitlab-ctl reconfigure
+    - Run gitlab-ctl reconfigure
   when:
     - gitlab_configuration_file is defined
 
-- name: show initial root password
+- name: Show initial root password
   block:
-    - name: read initial root password
+    - name: Read initial root password
       ansible.builtin.slurp:
         src: /etc/gitlab/initial_root_password
       register: initial_root_password
-    - name: display initial root password
+    - name: Display initial root password
       ansible.builtin.debug:
         msg: "{{ initial_root_password['content'] | b64decode }}"
   when:

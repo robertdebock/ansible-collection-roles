@@ -1,17 +1,17 @@
 ---
 # tasks file for tlp
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: install software
+- name: Install software
   ansible.builtin.package:
     name: "{{ tlp_packages }}"
     state: present
 
-- name: set theshold
+- name: Set theshold
   ansible.builtin.command:
     cmd: tlp setcharge {{ item.start_threshold }} {{ item.stop_threshold }} {{ item.name }}
   loop: "{{ tlp_batteries }}"
@@ -23,7 +23,7 @@
   changed_when:
     - '"no change" not in tpl_set_threshold.stdout'
 
-- name: start and enable software
+- name: Start and enable software
   ansible.builtin.service:
     name: "{{ tlp_service }}"
     state: started

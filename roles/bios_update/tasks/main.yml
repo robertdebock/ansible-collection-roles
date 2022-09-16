@@ -1,40 +1,40 @@
 ---
 # tasks file for bios_update
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: install requirements
+- name: Install requirements
   ansible.builtin.package:
     name: "{{ bios_update_requirements }}"
     state: present
 
-- name: download bios update bootable cd
+- name: Download bios update bootable cd
   block:
-    - name: get bios_update
+    - name: Get bios_update
       ansible.builtin.get_url:
         url: "{{ bios_update_url }}"
         dest: "{{ bios_update_temporary_directory }}/{{ bios_update_url | basename }}"
         validate_certs: no
   rescue:
-    - name: show problem
+    - name: Show problem
       ansible.builtin.debug:
         msg:
           - "The model '{{ ansible_product_version }}' is unknown."
           - "Please set bios_update_url to proceed."
           - "Error: {{ bios_update_download_bios_update_bootable_cd }}"
 
-    - name: stop play
+    - name: Stop play
       ansible.builtin.meta: end_play
 
-- name: extract bootable image
+- name: Extract bootable image
   ansible.builtin.command:
     cmd: "{{ bios_update_command }}"
     creates: "{{ bios_update_temporary_directory }}/bios_update.img"
 
-- name: write bootable image to flash drive
+- name: Write bootable image to flash drive
   ansible.builtin.command:
     cmd: dd if={{ bios_update_temporary_directory }}/bios_update.img of={{ bios_update_flash_drive }} bs=64K
     creates: "{{ bios_update_flash_drive }}1"

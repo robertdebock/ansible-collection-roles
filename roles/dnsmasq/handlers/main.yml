@@ -1,11 +1,11 @@
 ---
 # handlers file for dnsmasq
 
-- name: test dnsmasq configuration
+- name: Test dnsmasq configuration
   ansible.builtin.command:
     cmd: dnsmasq --test
 
-- name: restart dnsmasq
+- name: Restart dnsmasq
   ansible.builtin.service:
     name: "{{ dnsmasq_service }}"
     state: restarted

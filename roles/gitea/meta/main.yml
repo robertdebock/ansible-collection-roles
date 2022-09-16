@@ -8,15 +8,12 @@ galaxy_info:
   min_ansible_version: "2.10"
 
   platforms:
-    - name: Alpine
-      versions:
-        - all
     - name: Amazon
       versions:
-        - all
+        - Candidate
     - name: Debian
       versions:
-        - all
+        - bullseye
     - name: EL
       versions:
         - all
@@ -26,10 +23,6 @@ galaxy_info:
     - name: opensuse
       versions:
         - all
-    - name: Ubuntu
-      versions:
-        - focal
-        - bionic
 
   galaxy_tags:
     - gitea

@@ -1,20 +1,20 @@
 ---
 
-- name: test if clamav_can_scan_system is set correctly
+- name: Test if clamav_can_scan_system is set correctly
   ansible.builtin.assert:
     that:
       - clamav_can_scan_system is defined
       - clamav_can_scan_system is boolean
     quiet: yes
 
-- name: test if clamav_configuration is set correctly
+- name: Test if clamav_configuration is set correctly
   ansible.builtin.assert:
     that:
       - clamav_configuration is defined
       - clamav_configuration is iterable
     quiet: yes
 
-- name: test if item in clamav_configuration is set correctly
+- name: Test if item in clamav_configuration is set correctly
   ansible.builtin.assert:
     that:
       - item.line is defined
@@ -26,7 +26,7 @@
   when:
     - clamav_configuration is defined
 
-- name: test if item.state in clamav_configuration is set correctly
+- name: Test if item.state in clamav_configuration is set correctly
   ansible.builtin.assert:
     that:
       - item.state is string

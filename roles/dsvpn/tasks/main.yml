@@ -1,17 +1,17 @@
 ---
 # tasks file for dsvpn
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: install requirements
+- name: Install requirements
   ansible.builtin.package:
     name: "{{ dsvpn_requirements }}"
     state: present
 
-- name: unarchive
+- name: Unarchive
   ansible.builtin.unarchive:
     src: "{{ dsvpn_release_url }}"
     dest: "{{ dsvpn_temporary_directory }}"
@@ -19,30 +19,30 @@
     creates: "{{ dsvpn_temporary_directory }}/dsvpn-{{ dsvpn_version }}"
     mode: "0755"
 
-- name: make
+- name: Make
   community.general.make:
     chdir: "{{ dsvpn_temporary_directory }}/dsvpn-{{ dsvpn_version }}"
 
-- name: install
+- name: Install
   ansible.builtin.copy:
     src: "{{ dsvpn_temporary_directory }}/dsvpn-{{ dsvpn_version }}/dsvpn"
     dest: "{{ dsvpn_install_directory }}/dsvpn"
     remote_src: yes
     mode: "750"
 
-- name: generate key
+- name: Generate key
   ansible.builtin.command:
     cmd: dd if=/dev/urandom of={{ dsvpn_key_directory }}/vpn.key count=1 bs=32
     creates: "{{ dsvpn_key_directory }}/vpn.key"
   delegate_to: localhost
 
-- name: set permissions on key
+- name: Set permissions on key
   ansible.builtin.file:
     path: "{{ dsvpn_key_directory }}/vpn.key"
     mode: "644"
   delegate_to: localhost
 
-- name: copy key
+- name: Copy key
   ansible.builtin.copy:
     src: "{{ dsvpn_key_directory }}/vpn.key"
     dest: "{{ dsvpn_key_directory }}/vpn.key"
@@ -50,34 +50,34 @@
     owner: root
     group: root
   notify:
-    - restart dsvpn-server
-    - restart dsvpn-client
+    - Restart dsvpn-server
+    - Restart dsvpn-client
 
-- name: load tun module
+- name: Load tun module
   community.general.modprobe:
     name: tun
     state: present
   when:
     - ansible_connection not in [ "container", "docker", "community.docker.docker" ]
 
-- name: create /dev/net directory
+- name: Create /dev/net directory
   ansible.builtin.file:
     path: /dev/net
     state: directory
     mode: "0755"
 
-- name: create character device /dev/net/tun
+- name: Create character device /dev/net/tun
   ansible.builtin.command:
     cmd: mknod /dev/net/tun c 10 200
     creates: /dev/net/tun
 
-- name: create server
+- name: Create server
   ansible.builtin.include_tasks:
     file: server.yml
   when:
     - dsvpn_role == "server"
 
-- name: create client
+- name: Create client
   ansible.builtin.include_tasks:
     file: client.yml
   when:

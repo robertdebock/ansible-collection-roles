@@ -1,24 +1,24 @@
 ---
 # tasks file for reboot
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: install requirements
+- name: Install requirements
   ansible.builtin.package:
     name: "{{ reboot_requirements }}"
     state: present
 
-- name: configure redhat
+- name: Configure redhat
   block:
-    - name: check for needs-restarting executable (rhel)
+    - name: Check for needs-restarting executable (rhel)
       ansible.builtin.stat:
         path: /usr/bin/needs-restarting
       register: reboot_rhel_needs_restarting_executable
 
-    - name: see if a reboot is required (rhel)
+    - name: See if a reboot is required (rhel)
       ansible.builtin.command:
         cmd: needs-restarting -r
       check_mode: no
@@ -33,14 +33,14 @@
     - ansible_connection not in [ "container", "docker", "community.docker.docker" ]
     - ansible_os_family in [ "RedHat", "Rocky" ]
 
-- name: configure debian
+- name: Configure debian
   block:
-    - name: check for needrestart executable (debian)
+    - name: Check for needrestart executable (debian)
       ansible.builtin.stat:
         path: /usr/sbin/needrestart
       register: reboot_debian_needsrestart_executable
 
-    - name: see if a reboot is required (debian)
+    - name: See if a reboot is required (debian)
       ansible.builtin.command:
         cmd: needrestart -b
       check_mode: no
@@ -53,7 +53,7 @@
     - ansible_connection not in [ "container", "docker", "community.docker.docker" ]
     - ansible_os_family == "Debian"
 
-- name: include reboot
+- name: Include reboot
   ansible.builtin.include_tasks:
     file: reboot.yml
   when:

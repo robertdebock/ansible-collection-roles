@@ -1,25 +1,25 @@
 ---
 # tasks file for zabbix_proxy
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: install zabbix-proxy
+- name: Install zabbix-proxy
   ansible.builtin.package:
     name: "{{ zabbix_proxy_package }}"
     state: present
 
-- name: configure zabbix_proxy
+- name: Configure zabbix_proxy
   ansible.builtin.template:
     src: zabbix_proxy.conf.j2
     dest: /etc/zabbix/zabbix_proxy.conf
     mode: "0640"
   notify:
-    - restart zabbix-proxy
+    - Restart zabbix-proxy
 
-- name: start and enable zabbix-proxy
+- name: Start and enable zabbix-proxy
   ansible.builtin.service:
     name: zabbix-proxy
     state: started

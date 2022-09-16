@@ -1,22 +1,22 @@
 ---
 # tasks file for powertop
 
-- name: install powertop
+- name: Install powertop
   ansible.builtin.package:
     name: "{{ powertop_packages }}"
     state: present
 
-- name: create powertop service
+- name: Create powertop service
   ansible.builtin.import_role:
     name: robertdebock.service
   vars:
     service_list:
-      - name: powertop
+      - name: Powertop
         description: Powertop
         start_command: /usr/sbin/powertop --auto-tune
         type: oneshot
 
-- name: enable powertop
+- name: Enable powertop
   ansible.builtin.service:
     name: "{{ powertop_service }}"
     state: stopped

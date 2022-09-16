@@ -1,6 +1,6 @@
 ---
 # handlers file for virtualbox
 
-- name: run vboxconfig
+- name: Run vboxconfig
   ansible.builtin.command:
     cmd: /sbin/vboxconfig

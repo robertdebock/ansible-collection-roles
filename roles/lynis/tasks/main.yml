@@ -1,22 +1,22 @@
 ---
 # tasks file for lynis
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: install requirements
+- name: Install requirements
   ansible.builtin.package:
     name: "{{ lynis_requirements }}"
 
-- name: install lynis
+- name: Install lynis
   ansible.builtin.git:
     repo: "{{ lynis_repository }}"
     dest: "{{ lynis_destination }}"
     version: "{{ lynis_version }}"
 
-- name: audit system
+- name: Audit system
   ansible.builtin.shell:
     cmd: "set -o pipefail ; {{ lynis_destination }}/lynis audit system | tee -a {{ lynis_output }}"
     creates: "{{ lynis_output }}"
@@ -26,7 +26,7 @@
   when:
     - lynis_run_now
 
-- name: schedule a run of lynis
+- name: Schedule a run of lynis
   ansible.builtin.cron:
     name: run lynis
     minute: "23"

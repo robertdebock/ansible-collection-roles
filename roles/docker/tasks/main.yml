@@ -1,22 +1,22 @@
 ---
 # tasks file for docker
 
-- name: install docker
+- name: Install docker
   ansible.builtin.package:
     name: "{{ docker_packages }}"
     state: present
 
-- name: install docker pip packages
+- name: Install docker pip packages
   ansible.builtin.pip:
     name: "{{ docker_pip_packages }}"
     state: present
 
-- name: create privileged docker user group
+- name: Create privileged docker user group
   ansible.builtin.group:
     name: docker
     state: present
 
-- name: add privileged users to the docker user group
+- name: Add privileged users to the docker user group
   ansible.builtin.user:
     name: "{{ user }}"
     groups: docker
@@ -27,12 +27,12 @@
   when:
     - docker_privileged_users is defined
 
-- name: start and enable docker
+- name: Start and enable docker
   ansible.builtin.service:
     name: "{{ docker_service }}"
     state: started
     enabled: yes
   notify:
-    - change group for docker socket
+    - Change group for docker socket
   when:
     - ansible_connection not in [ "container", "docker", "community.docker.docker" ]

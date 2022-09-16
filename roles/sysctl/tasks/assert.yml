@@ -1,13 +1,13 @@
 ---
 
-- name: test if sysctl_set is set correctly
+- name: Test if sysctl_set is set correctly
   ansible.builtin.assert:
     that:
       - sysctl_set is defined
       - sysctl_set is boolean
     quiet: yes
 
-- name: test if sysctl_reload is set correctly
+- name: Test if sysctl_reload is set correctly
   ansible.builtin.assert:
     that:
       - sysctl_reload is defined

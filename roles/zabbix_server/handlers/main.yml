@@ -1,19 +1,19 @@
 ---
 # handlers file for zabbix_server
 
-- name: create selinux mod for zabbix_server
+- name: Create selinux mod for zabbix_server
   ansible.builtin.command:
     cmd: checkmodule -M -m -o /etc/zabbix/my-zabbixserver.mod /etc/zabbix/my-zabbixserver.te
 
-- name: create selinux pp for zabbix_server
+- name: Create selinux pp for zabbix_server
   ansible.builtin.command:
     cmd: semodule_package -o /etc/zabbix/my-zabbixserver.pp -m /etc/zabbix/my-zabbixserver.mod
 
-- name: load selinux pp for zabbix_server
+- name: Load selinux pp for zabbix_server
   ansible.builtin.command:
     cmd: semodule -i /etc/zabbix/my-zabbixserver.pp
 
-- name: import zabbix schema
+- name: Import zabbix schema
   community.mysql.mysql_db:
     state: import
     name: "{{ zabbix_server_database_name }}"
@@ -22,7 +22,7 @@
     login_user: "{{ zabbix_server_database_user }}"
     login_password: "{{ zabbix_server_database_password }}"
 
-- name: restart zabbix_server
+- name: Restart zabbix_server
   ansible.builtin.service:
     name: zabbix-server
     state: restarted

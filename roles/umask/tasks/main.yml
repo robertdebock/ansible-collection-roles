@@ -1,12 +1,12 @@
 ---
 # tasks file for umask
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: set umask
+- name: Set umask
   ansible.builtin.lineinfile:
     path: ~/.bashrc
     line: "umask {{ umask }}"

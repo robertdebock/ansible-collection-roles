@@ -1,11 +1,11 @@
 ---
 # handlers file for gitlab_runner
 
-- name: reload systemd
+- name: Reload systemd
   ansible.builtin.systemd:
     daemon_reload: yes
 
-- name: restart gitlab-runner
+- name: Restart gitlab-runner
   ansible.builtin.service:
     name: "{{ gitlab_runner_service }}"
     state: restarted

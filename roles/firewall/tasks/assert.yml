@@ -1,6 +1,6 @@
 ---
 
-- name: test if firewall_default_protocol is set correctly
+- name: Test if firewall_default_protocol is set correctly
   ansible.builtin.assert:
     that:
       - firewall_default_protocol is defined
@@ -8,7 +8,7 @@
       - firewall_default_protocol in [ "tcp", "udp" ]
     quiet: yes
 
-- name: test if firewall_default_rule is set correctly
+- name: Test if firewall_default_rule is set correctly
   ansible.builtin.assert:
     that:
       - firewall_default_rule is defined
@@ -16,7 +16,7 @@
       - firewall_default_rule in [ "allow", "deny" ]
     quiet: yes
 
-- name: test if firewall_services is set correctly
+- name: Test if firewall_services is set correctly
   ansible.builtin.assert:
     that:
       - firewall_services is iterable
@@ -24,7 +24,7 @@
   when:
     - firewall_services is defined
 
-- name: test if non-numeric item in firewall_services is set correctly
+- name: Test if non-numeric item in firewall_services is set correctly
   ansible.builtin.assert:
     that:
       - item.name is defined
@@ -37,7 +37,7 @@
     - firewall_services is defined
     - item.name is not number
 
-- name: test if numeric item in firewall_services is set correctly
+- name: Test if numeric item in firewall_services is set correctly
   ansible.builtin.assert:
     that:
       - item.name is defined
@@ -52,7 +52,7 @@
     - firewall_services is defined
     - item.name is number
 
-- name: test if item with state in firewall_services is set correctly
+- name: Test if item with state in firewall_services is set correctly
   ansible.builtin.assert:
     that:
       - item.state is string

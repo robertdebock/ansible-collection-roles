@@ -1,12 +1,12 @@
 ---
 # tasks file for packer
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: download and install software
+- name: Download and install software
   ansible.builtin.unarchive:
     src: "https://releases.hashicorp.com/packer/{{ packer_version }}/packer_{{ packer_version }}_linux_amd64.zip"
     dest: /usr/bin

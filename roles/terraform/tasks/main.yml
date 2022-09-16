@@ -1,12 +1,12 @@
 ---
 # tasks file for terraform
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: download and install software
+- name: Download and install software
   ansible.builtin.unarchive:
     src: "{{ terraform_unarchive_src }}"
     dest: "{{ terraform_destination }}"

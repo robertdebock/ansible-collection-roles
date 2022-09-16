@@ -1,33 +1,33 @@
 ---
 # tasks file for collabora_online
 
-- name: include assert.yml
+- name: Include assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: prepare debian
+- name: Prepare debian
   block:
-    - name: add collabora key (apt)
+    - name: Add collabora key (apt)
       ansible.builtin.apt_key:
         keyserver: keyserver.ubuntu.com
         id: "{{ collabora_online_key }}"
 
-    - name: add repository (apt)
+    - name: Add repository (apt)
       ansible.builtin.apt_repository:
         filename: collabora
         repo: "deb {{ collabora_online_repo }} ./"
   when:
     - ansible_pkg_mgr == "apt"
 
-- name: prepare redhat
+- name: Prepare redhat
   block:
-    - name: add collabora key (dnf and yum)
+    - name: Add collabora key (dnf and yum)
       ansible.builtin.rpm_key:
         key: "{{ collabora_online_key }}"
         validate_certs: no
 
-    - name: add repository (dnf and yum)
+    - name: Add repository (dnf and yum)
       ansible.builtin.yum_repository:
         name: collabora_online
         description: Collabora Online CODE
@@ -35,11 +35,11 @@
   when:
     - ansible_pkg_mgr in [ "dnf", "yum" ]
 
-- name: install packages
+- name: Install packages
   ansible.builtin.package:
     name: "{{ collabora_online_packages }}"
 
-- name: configure collabora online
+- name: Configure collabora online
   ansible.builtin.template:
     src: "{{ collabora_online_configuration_template }}"
     dest: /etc/coolwsd/coolwsd.xml
@@ -47,9 +47,9 @@
     group: root
     mode: "0640"
   notify:
-    - restart service
+    - Restart service
 
-- name: start and enable service
+- name: Start and enable service
   ansible.builtin.systemd:
     name: coolwsd
     state: started

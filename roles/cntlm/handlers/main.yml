@@ -1,26 +1,26 @@
 ---
 # handlers file for cntlm
 
-- name: systemctl daemon-reload
+- name: Systemctl daemon-reload
   ansible.builtin.systemd:
     daemon_reload: yes
   notify:
     - restart software
 
-- name: configure cntlm
+- name: Configure cntlm
   ansible.builtin.command:
     cmd: "./configure"
   args:
     chdir: "{{ cntlm_tmp }}/cntlm-{{ cntlm_version }}"
     creates: "{{ cntlm_tmp }}/cntlm/config/config.h"
 
-- name: make cntlm
+- name: Make cntlm
   ansible.builtin.command:
     cmd: make -j {{ ansible_processor_vcpus * 2 }}
   args:
     chdir: "{{ cntlm_tmp }}/cntlm-{{ cntlm_version }}"
 
-- name: install cntlm
+- name: Install cntlm
   ansible.builtin.copy:
     src: "{{ cntlm_tmp }}/cntlm-{{ cntlm_version }}/cntlm"
     dest: /usr/sbin/cntlm
@@ -29,7 +29,7 @@
     mode: 0755
     remote_src: yes
 
-- name: configure cntlm.conf
+- name: Configure cntlm.conf
   ansible.builtin.template:
     src: cntlm.conf.j2
     dest: /etc/cntlm.conf
@@ -37,7 +37,7 @@
   notify:
     - restart cntlm
 
-- name: restart cntlm
+- name: Restart cntlm
   ansible.builtin.service:
     name: cntlm
     state: restarted

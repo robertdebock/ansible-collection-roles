@@ -1,12 +1,12 @@
 ---
 # handlers file for cve_2021_44228
 
-- name: uninstall ps
+- name: Uninstall ps
   ansible.builtin.package:
     name: "{{ cve_2021_44228_ps_package }}"
     state: absent
 
-- name: uninstall unzip
+- name: Uninstall unzip
   ansible.builtin.package:
     name: unzip
     state: absent

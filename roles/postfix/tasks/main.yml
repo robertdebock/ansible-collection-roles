@@ -1,12 +1,12 @@
 ---
 # tasks file for postfix
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: pre-configure debian systems
+- name: Pre-configure debian systems
   ansible.builtin.debconf:
     name: postfix
     question: postfix/main_mailer_type
@@ -15,12 +15,12 @@
   when:
     - ansible_os_family == "Debian"
 
-- name: install postfix
+- name: Install postfix
   ansible.builtin.package:
     name: postfix
     state: present
 
-- name: install postfix-mysql
+- name: Install postfix-mysql
   ansible.builtin.package:
     name: postfix-mysql
     state: present
@@ -29,52 +29,52 @@
       (postfix_virtual_mailbox_domains is defined and 'mysql' in postfix_virtual_mailbox_domains) or
       (postix_virtual_alias_maps is defined and 'mysql' in postix_virtual_alias_maps")
 
-- name: configure postfix (transport_maps)
+- name: Configure postfix (transport_maps)
   ansible.builtin.template:
     src: "{{ postfix_transport_maps_template }}"
     dest: /etc/postfix/transport
     mode: "0644"
   notify:
-    - validate configuration
-    - rebuild transport_maps database
+    - Validate configuration
+    - Rebuild transport_maps database
   when:
     - postfix_transport_maps_template is defined
 
-- name: configure postfix (header_checks)
+- name: Configure postfix (header_checks)
   ansible.builtin.template:
     src: "{{ postfix_header_checks_template }}"
     dest: /etc/postfix/header_checks
     mode: "0644"
   notify:
-    - validate configuration
-    - reload postfix
+    - Validate configuration
+    - Reload postfix
   when:
     - postfix_header_checks_template is defined
 
-- name: configure postfix (main.cf)
+- name: Configure postfix (main.cf)
   ansible.builtin.template:
     src: main.cf.j2
     dest: /etc/postfix/main.cf
     validate: postconf -d -c %s
     mode: "0644"
   notify:
-    - validate configuration
-    - reload postfix
+    - Validate configuration
+    - Reload postfix
 
-- name: configure postfix (master.cf)
+- name: Configure postfix (master.cf)
   ansible.builtin.template:
     src: master.cf.j2
     dest: /etc/postfix/master.cf
     validate: postconf -d -c %s
     mode: "0644"
   notify:
-    - validate configuration
-    - restart postfix
+    - Validate configuration
+    - Restart postfix
 
-- name: flush handlers
+- name: Flush handlers
   ansible.builtin.meta: flush_handlers
 
-- name: configure aliases
+- name: Configure aliases
   ansible.builtin.lineinfile:
     path: "{{ postfix_alias_path }}"
     regexp: "^{{ item.name }}:"
@@ -84,12 +84,12 @@
     - postfix_aliases is defined
   loop: "{{ postfix_aliases }}"
   notify:
-    - rebuild alias database
-    - reload postfix
+    - Rebuild alias database
+    - Reload postfix
   loop_control:
     label: "{{ item.name }}"
 
-- name: configure sender_access
+- name: Configure sender_access
   ansible.builtin.lineinfile:
     path: "{{ postfix_sender_access_path }}"
     regexp: "^{{ item.domain }}"
@@ -100,12 +100,12 @@
     - postfix_sender_access is defined
   loop: "{{ postfix_sender_access }}"
   notify:
-    - rebuild sender_access database
-    - reload postfix
+    - Rebuild sender_access database
+    - Reload postfix
   loop_control:
     label: "{{ item.domain }}"
 
-- name: configure recipient_access
+- name: Configure recipient_access
   ansible.builtin.lineinfile:
     path: "{{ postfix_recipient_access_path }}"
     regexp: "^{{ item.domain }}"
@@ -116,16 +116,16 @@
     - postfix_recipient_access is defined
   loop: "{{ postfix_recipient_access }}"
   notify:
-    - validate configuration
-    - rebuild recipient_access database
-    - reload postfix
+    - Validate configuration
+    - Rebuild recipient_access database
+    - Reload postfix
   loop_control:
     label: "{{ item.domain }}"
 
-- name: flush handlers again
+- name: Flush handlers again
   ansible.builtin.meta: flush_handlers
 
-- name: start and enable postfix
+- name: Start and enable postfix
   ansible.builtin.service:
     name: "{{ postfix_service }}"
     state: started

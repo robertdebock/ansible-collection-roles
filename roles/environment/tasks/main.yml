@@ -1,7 +1,7 @@
 ---
 # tasks file for environment
 
-- name: save variable settings in /etc/profile.d/custom.sh
+- name: Save variable settings in /etc/profile.d/custom.sh
   ansible.builtin.lineinfile:
     path: /etc/profile.d/custom.sh
     regexp: '^export {{ item.key }}='

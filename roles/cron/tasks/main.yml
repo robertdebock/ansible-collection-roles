@@ -1,17 +1,17 @@
 ---
 # tasks file for cron
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: install cron
+- name: Install cron
   ansible.builtin.package:
     name: "{{ cron_packages }}"
     state: present
 
-- name: configure shell
+- name: Configure shell
   ansible.builtin.lineinfile:
     path: "{{ cron_configuration }}"
     line: "SHELL={{ cron_shell }}"
@@ -19,9 +19,9 @@
     create: yes
     mode: "0600"
   notify:
-    - restart cron
+    - Restart cron
 
-- name: configure path
+- name: Configure path
   ansible.builtin.lineinfile:
     path: "{{ cron_configuration }}"
     line: "PATH={{ cron_path }}"
@@ -29,9 +29,9 @@
     create: yes
     mode: "0600"
   notify:
-    - restart cron
+    - Restart cron
 
-- name: configure mailto
+- name: Configure mailto
   ansible.builtin.lineinfile:
     path: "{{ cron_configuration }}"
     line: "MAILTO={{ cron_mailto }}"
@@ -39,9 +39,9 @@
     create: yes
     mode: "0600"
   notify:
-    - restart cron
+    - Restart cron
 
-- name: start and enable cron
+- name: Start and enable cron
   ansible.builtin.service:
     name: "{{ cron_service }}"
     state: started
@@ -50,7 +50,7 @@
     - cron_service is defined
     - cron_service | length
 
-- name: schedule requested cron jobs
+- name: Schedule requested cron jobs
   ansible.builtin.cron:
     name: "{{ item.name }}"
     minute: "{{ item.minute | default(omit) }}"

@@ -1,12 +1,12 @@
 ---
 # tasks file for obsproject
 
-- name: install requirements
+- name: Install requirements
   ansible.builtin.package:
     name: "{{ obsproject_requirements }}"
     state: present
 
-- name: install obsproject
+- name: Install obsproject
   ansible.builtin.package:
     name: "{{ obsproject_package }}"
     state: present

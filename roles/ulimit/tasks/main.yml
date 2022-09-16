@@ -1,12 +1,12 @@
 ---
 # tasks file for ulimit
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: set ulimit value
+- name: Set ulimit value
   community.general.pam_limits:
     domain: "{{ item.domain | default(ulimit_domain) }}"
     limit_type: "{{ item.limit_type | default(ulimit_limit_type) }}"

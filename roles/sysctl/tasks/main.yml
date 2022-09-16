@@ -1,17 +1,17 @@
 ---
 # tasks file for sysctl
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: install requirements
+- name: Install requirements
   ansible.builtin.package:
     name: "{{ sysctl_requirements }}"
     state: present
 
-- name: set sysctl setting
+- name: Set sysctl setting
   ansible.posix.sysctl:
     name: "{{ item.name }}"
     value: "{{ item.value }}"

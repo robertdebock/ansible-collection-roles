@@ -1,17 +1,17 @@
 ---
 # tasks file for logwatch
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: install logwatch
+- name: Install logwatch
   ansible.builtin.package:
     name: "{{ logwatch_packages }}"
     state: present
 
-- name: configure logwatch
+- name: Configure logwatch
   ansible.builtin.template:
     src: "{{ logwatch_config_file }}.j2"
     dest: "{{ logwatch_config_directory }}/{{ logwatch_config_file }}"

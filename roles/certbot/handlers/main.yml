@@ -1,7 +1,7 @@
 ---
 # handlers file for certbot
 
-- name: restart certbot_system
+- name: Restart certbot_system
   ansible.builtin.service:
     name: "{{ certbot_system_to_restart }}"
     state: restarted

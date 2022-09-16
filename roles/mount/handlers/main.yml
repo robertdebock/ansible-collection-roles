@@ -1,6 +1,6 @@
 ---
 
-- name: run swapon
+- name: Run swapon
   ansible.builtin.command:
     cmd: swapon -a
   when:

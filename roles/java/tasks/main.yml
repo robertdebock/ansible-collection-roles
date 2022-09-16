@@ -1,17 +1,17 @@
 ---
 # tasks file for java
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: install requirements
+- name: Install requirements
   ansible.builtin.package:
     name: bash
     state: present
 
-- name: install openjdk java (package)
+- name: Install openjdk java (package)
   ansible.builtin.package:
     name: "{{ java_openjdk_package }}"
     state: present
@@ -20,15 +20,15 @@
   environment:
     USE: "X -cups -alsa -fontconfig"
 
-- name: configure local rpm
+- name: Configure local rpm
   block:
-    - name: copy oracle java (rpm)
+    - name: Copy oracle java (rpm)
       ansible.builtin.copy:
         src: "{{ java_package }}"
         dest: "/tmp/{{ java_oracle_package }}"
         mode: "0640"
 
-    - name: install oracle java (rpm) (local)
+    - name: Install oracle java (rpm) (local)
       ansible.builtin.package:
         name: "/tmp/{{ java_oracle_package }}"
         state: present
@@ -36,7 +36,7 @@
     - java_rpm_source == "local"
     - java_format == "rpm"
 
-- name: install oracle java (rpm) (repository)
+- name: Install oracle java (rpm) (repository)
   ansible.builtin.package:
     name: "{{ java_oracle_package }}"
     state: present
@@ -44,15 +44,15 @@
     - java_rpm_source == "repository"
     - java_format == "rpm"
 
-- name: configure oracle targz
+- name: Configure oracle targz
   block:
-    - name: ensure java_install_directory exists
+    - name: Ensure java_install_directory exists
       ansible.builtin.file:
         path: "{{ java_install_directory }}"
         state: directory
         mode: "0755"
 
-    - name: install oracle java (targz)
+    - name: Install oracle java (targz)
       ansible.builtin.unarchive:
         src: "{{ java_oracle_package }}"
         dest: "{{ java_install_directory }}"
@@ -61,7 +61,7 @@
     - java_format == "targz"
     - java_vendor == "oracle"
 
-- name: install oracle java policy software (targz)
+- name: Install oracle java policy software (targz)
   ansible.builtin.unarchive:
     src: jce_policy-8.zip
     dest: "{{ java_install_directory }}"
@@ -71,7 +71,7 @@
     - java_version | int == 8
     - java_vendor == "oracle"
 
-- name: set alternative (targz)
+- name: Set alternative (targz)
   community.general.alternatives:
     name: java
     link: /usr/bin/java
@@ -81,7 +81,7 @@
     - ansible_distribution != "Alpine"
     - java_vendor == "oracle"
 
-- name: find JAVA_HOME
+- name: Find JAVA_HOME
   ansible.builtin.shell:
     cmd: set -o pipefail ; readlink -f /usr/bin/java | sed 's%/bin/java%%'
     executable: /bin/bash
@@ -89,7 +89,7 @@
   check_mode: no
   register: java_home
 
-- name: set JAVA_HOME in /etc/environment
+- name: Set JAVA_HOME in /etc/environment
   ansible.builtin.lineinfile:
     path: /etc/profile.d/java_home.sh
     regexp: '^export JAVA_HOME='

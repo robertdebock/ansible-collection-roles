@@ -1,20 +1,20 @@
 ---
 
-- name: test if node_red_working_directory is set correctly
+- name: Test if node_red_working_directory is set correctly
   ansible.builtin.assert:
     that:
       - node_red_working_directory is defined
       - node_red_working_directory is string
     quiet: yes
 
-- name: test if node_red_user_name is set correctly
+- name: Test if node_red_user_name is set correctly
   ansible.builtin.assert:
     that:
       - node_red_user_name is defined
       - node_red_user_name is string
     quiet: yes
 
-- name: test if node_red_group_name is set correctly
+- name: Test if node_red_group_name is set correctly
   ansible.builtin.assert:
     that:
       - node_red_group_name is defined

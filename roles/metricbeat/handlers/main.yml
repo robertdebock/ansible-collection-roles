@@ -1,11 +1,11 @@
 ---
 # handlers file for metricbeat
 
-- name: metricbeat setup
+- name: Metricbeat setup
   ansible.builtin.command:
     cmd: metricbeat setup
 
-- name: restart metricbeat
+- name: Restart metricbeat
   ansible.builtin.service:
     name: metricbeat
     state: restarted
