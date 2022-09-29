@@ -22,3 +22,10 @@
       - harbor_hostname is string
       - harbor_installation_type not in [ "localhost", "127.0.0.1", "0.0.0.0" ]
     quiet: yes
+
+- name: Test if harbor_external_url is set correctly
+  ansible.builtin.assert:
+    that:
+      - harbor_external_url is defined
+      - harbor_external_url is string
+    quiet: yes

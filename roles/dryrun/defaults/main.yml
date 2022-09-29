@@ -1,0 +1,4 @@
+---
+# defaults file for dryrun
+
+dryrun_defaults_variable: "Some value from defaults"

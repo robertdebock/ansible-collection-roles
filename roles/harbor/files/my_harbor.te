@@ -1,0 +1,11 @@
+
+module my_harbor 1.0;
+
+require {
+        type container_t;
+        type user_home_t;
+        class file open;
+}
+
+#============= container_t ==============
+allow container_t user_home_t:file open;

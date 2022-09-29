@@ -1,0 +1,6 @@
+---
+# handlers file for swap
+
+- name: Run swapon
+  ansible.builtin.command:
+    cmd: swapon

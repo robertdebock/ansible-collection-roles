@@ -1,0 +1,33 @@
+---
+# tasks file for awx_configuration
+
+- name: Include assert.yml
+  ansible.builtin.import_tasks: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+- name: Manage organizations
+  awx.awx.organization:
+    name: "{{ item.name }}"
+    description: "{{ item.description | default(omit) }}"
+    galaxy_credentials: "{{ item.galaxy_credentials | default(omit) }}"
+    controller_host: "{{ awx_configuration_controller_host }}"
+    controller_password: "{{ awx_configuration_controller_password }}"
+    controller_username: "{{ awx_configuration_controller_username }}"
+  loop: "{{ awx_configuration_organizations }}"
+  when:
+    - not awx_configuration_ci
+
+- name: Manage credentials
+  awx.awx.credential:
+    name: "{{ item.name }}"
+    description: "{{ item.description }}"
+    organization: "{{ item.organization | default('Default') }}"
+    credential_type: "{{ item.credential_type }}"
+    state: "{{ item.state | default('present') }}"
+    controller_host: "{{ awx_configuration_controller_host }}"
+    controller_password: "{{ awx_configuration_controller_password }}"
+    controller_username: "{{ awx_configuration_controller_username }}"
+  loop: "{{ awx_configuration_credentials }}"
+  when:
+    - not awx_configuration_ci

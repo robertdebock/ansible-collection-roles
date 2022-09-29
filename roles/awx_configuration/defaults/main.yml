@@ -1,0 +1,25 @@
+---
+# defaults file for awx_configuration
+
+# The hostname (actually URL) of the AWX instance to connect to.
+awx_configuration_controller_host: "http://localhost"
+
+# Credentials for AWX.
+awx_configuration_controller_password: "My_P@ssw0rd"
+awx_configuration_controller_username: admin
+
+# Note: An organization can refer to a credential and a credential can refer to an organization.
+# This is basically a cyclic dependency this Ansible role can't fix.
+# You may need to run a playbook twice:
+# - first to create the credential
+# - next to create the organization.
+# (Or the other way around.)
+
+# A list of organizations to create in AWX.
+awx_configuration_organizations: []
+
+# A list of credentials to create in AWX.
+awx_configuration_credentials: []
+
+# It's difficult to test this role in CI, AWX is not available.
+awx_configuration_ci: no

@@ -7,3 +7,4 @@ roles:
   - name: robertdebock.python_pip
   - name: robertdebock.docker
   - name: robertdebock.docker_compose
+  - name: robertdebock.selinux

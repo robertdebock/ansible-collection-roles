@@ -1,6 +1,6 @@
 ---
 {{ ansible_managed | comment }}
-`
+
 # Configuration file of Harbor
 
 # The IP address or hostname to access admin UI and registry service.
@@ -13,12 +13,12 @@ http:
   port: 80
 
 # https related config
-https:
-  # https port for harbor, default is 443
-  port: 443
-  # The path of cert and key files for nginx
-  certificate: /your/certificate/path
-  private_key: /your/private/key/path
+# https:
+#   # https port for harbor, default is 443
+#   port: 443
+#   # The path of cert and key files for nginx
+#   certificate: /your/certificate/path
+#   private_key: /your/private/key/path
 
 # # Uncomment following will enable tls communication between all harbor components
 # internal_tls:
@@ -30,6 +30,9 @@ https:
 # Uncomment external_url if you want to enable external proxy
 # And when it enabled the hostname will no longer used
 # external_url: https://reg.mydomain.com:8433
+{% if harbor_external_url != "" %}
+external_url: {{ harbor_external_url }}
+{% endif %}
 
 # The initial password of Harbor admin
 # It only works in first time to install harbor

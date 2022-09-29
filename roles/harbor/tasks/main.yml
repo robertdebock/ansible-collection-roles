@@ -9,7 +9,7 @@
 - name: Unarchive harbor
   ansible.builtin.unarchive:
     src: "{{ harbor_archive }}"
-    dest: /tmp
+    dest: /home
     remote_src: yes
   notify:
     - Run installer
@@ -17,9 +17,22 @@
 - name: Place harbor.yml
   ansible.builtin.template:
     src: harbor.yml.j2
-    dest: /tmp/harbor/harbor.yml
+    dest: /home/harbor/harbor.yml
     owner: root
     group: root
     mode: "0640"
   notify:
     - Run installer
+  
+- name: Place selinux type enforcement
+  ansible.builtin.copy:
+    src: my_harbor.te
+    dest: /home/harbor/my_harbor.te
+    mode: "0644"
+  notify:
+    - Create selinux mod for harbor
+    - Create selinux pp for harbor
+    - Load selinux pp for harbor
+  when:
+    - ansible_selinux.status is defined
+    - ansible_selinux.status == "enabled"

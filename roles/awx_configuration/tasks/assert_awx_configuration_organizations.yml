@@ -1,0 +1,23 @@
+---
+
+- name: Test if awx_configuration_organizations.name is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.name is defined
+      - item.name is string
+    quiet: yes
+
+- name: Test if awx_configuration_organizations.description is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.description is defined
+      - item.description is string
+    quiet: yes
+
+- name: Test if awx_configuration_organizations.galaxy_credentials is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.galaxy_credentials is iterable
+    quiet: yes
+  when:
+    - item.galaxy_credentials is defined

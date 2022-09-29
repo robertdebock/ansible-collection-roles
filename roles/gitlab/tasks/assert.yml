@@ -580,8 +580,16 @@
         that:
           - gitlab_rails_db_adapter is defined
           - gitlab_rails_db_adapter is string
-          - gitlab_rails_db_adapter == "postgresql"
+          - gitlab_rails_db_adapter in [ "mysql2", "postgresql" ]
+
+
+    - name: Test if gitlab_rails_db_adapter and gitlab_distribution are set correctly
+      ansible.builtin.assert:
+        than:
+          -gitlab_distribution == "enterprise"
         quiet: yes
+      when:
+        - gitlab_rails_db_adapter == "mysql2"
 
     - name: Test if gitlab_rails_db_encoding is set correctly
       ansible.builtin.assert:

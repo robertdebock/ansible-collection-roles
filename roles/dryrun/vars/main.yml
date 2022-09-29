@@ -1,0 +1,4 @@
+---
+# vars file for dryrun
+
+dryrun_vars_variable: "Some value from vars"

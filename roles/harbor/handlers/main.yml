@@ -1,9 +1,26 @@
 ---
 # handlers file for harbor
 
+- name: Create selinux mod for harbor
+  ansible.builtin.command:
+    cmd: checkmodule -M -m -o /home/harbor/my_harbor.mod /home/harbor/my_harbor.te
+
+- name: Create selinux pp for harbor
+  ansible.builtin.command:
+    cmd: semodule_package -o /home/harbor/my_harbor.pp -m /home/harbor/my_harbor.mod
+
+- name: Load selinux pp for harbor
+  ansible.builtin.command:
+    cmd: semodule -i /home/harbor/my_harbor.pp
+
 - name: Run installer
   ansible.builtin.command:
     cmd: ./install.sh
-    chdir: /tmp/harbor
+    chdir: /home/harbor
   environment:
     TERM: linux
+  register: result
+  until:
+    - result is not failed
+  retries: 2
+  delay: 10

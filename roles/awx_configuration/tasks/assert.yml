@@ -1,0 +1,55 @@
+---
+
+- name: Test if awx_configuration_controller_host is set correctly
+  ansible.builtin.assert:
+    that:
+      - awx_configuration_controller_host is defined
+      - awx_configuration_controller_host is string
+      - awx_configuration_controller_host is regex("^https?://.*")
+    quiet: yes
+
+- name: Test if awx_configuration_controller_password is set correctly
+  ansible.builtin.assert:
+    that:
+      - awx_configuration_controller_password is defined
+      - awx_configuration_controller_password is string
+    quiet: yes
+
+- name: Test if awx_configuration_controller_username is set correctly
+  ansible.builtin.assert:
+    that:
+      - awx_configuration_controller_username is defined
+      - awx_configuration_controller_username is string
+    quiet: yes
+
+- name: Test if awx_configuration_credentials is set correctly
+  ansible.builtin.assert:
+    that:
+      - awx_configuration_credentials is defined
+      - awx_configuration_credentials is iterable
+    quiet: yes
+
+- name: Test if items in awx_configuration_credentials are set correctly
+  ansible.builtin.include_tasks:
+    file: assert_awx_configuration_credentials.yml
+  loop: "{{ awx_configuration_credentials }}"
+
+
+- name: Test if awx_configuration_organizations is set correctly
+  ansible.builtin.assert:
+    that:
+      - awx_configuration_organizations is defined
+      - awx_configuration_organizations is iterable
+    quiet: yes
+
+- name: Test if items in awx_configuration_organizations are set correctly
+  ansible.builtin.include_tasks:
+    file: assert_awx_configuration_organizations.yml
+  loop: "{{ awx_configuration_organizations }}"
+
+- name: Test if awx_configuration_ci is set correctly
+  ansible.builtin.assert:
+    that:
+      - awx_configuration_ci is defined
+      - awx_configuration_ci is boolean
+    quiet: yes

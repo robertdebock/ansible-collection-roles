@@ -9,10 +9,11 @@
 - name: Set swappiness
   ansible.posix.sysctl:
     name: vm.swappiness
-    value: "{{ swap_swappiness }}"
+    value: "{{ swap_swappiness | string }}"
     state: present
 
-- block:
+- name: Manage swap files.
+  block:
     - name: Make a swap file
       ansible.builtin.command:
         cmd: dd if=/dev/zero of={{ item.path }} bs=1048576 count={{ item.size }}
@@ -46,3 +47,5 @@
   when:
     - swap_files is defined
     - swap_files | length > 0
+  notify:
+    - Run swapon
