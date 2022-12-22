@@ -14,6 +14,10 @@ _locale_requirements:
   Fedora:
     - langpacks-en
     - util-linux
+  Rocky:
+    - glibc-all-langpacks
+    - langpacks-en
+    - util-linux
   Suse:
     - timezone
 
