@@ -82,7 +82,7 @@
   ansible.builtin.meta: "flush_handlers"
 
 - name: Start software
-  ansible.builtin.service:
+  ansible.builtin.systemd:
     name: "{{ tigervnc_service }}"
     state: started
     enabled: yes

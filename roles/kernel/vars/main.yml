@@ -39,7 +39,7 @@ _kernel_requirements:
     - libelf-devel
     - openssl-devel
 
-kernel_requirements: "{{ _kernel_requirements[ansible_os_family] | default(_kernel_requirements['default'] ) }}"
+kernel_requirements: "{{ _kernel_requirements[ansible_os_family] | default(_kernel_requirements['default']) }}"
 
 _kernel_modules_location:
   default: /usr/lib/modules/{{ kernel_version }}*
@@ -48,7 +48,7 @@ _kernel_modules_location:
   RedHat: /usr/lib/modules/{{ kernel_version }}*
   Suse: /lib/modules/{{ kernel_version }}*
 
-kernel_modules_location: "{{ _kernel_modules_location[ansible_os_family] | default(_kernel_modules_location['default'] ) }}"
+kernel_modules_location: "{{ _kernel_modules_location[ansible_os_family] | default(_kernel_modules_location['default']) }}"
 
 _kernel_installation_location:
   default: /boot/vmlinuz
@@ -56,4 +56,4 @@ _kernel_installation_location:
   Debian: /boot/vmlinuz-{{ kernel_version }}*
   RedHat: /boot/vmlinuz
 
-kernel_installation_location: "{{ _kernel_installation_location[ansible_os_family] | default(_kernel_installation_location['default'] ) }}"
+kernel_installation_location: "{{ _kernel_installation_location[ansible_os_family] | default(_kernel_installation_location['default']) }}"

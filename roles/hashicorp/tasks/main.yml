@@ -7,15 +7,20 @@
   delegate_to: localhost
 
 - name: Install using package
+  when:
+    - hashicorp_installation_method == "package"
   block:
     - name: Install repository for RedHat
       ansible.builtin.get_url:
         url: "{{ hashicorp_repository_url }}"
         dest: /etc/yum.repos.d/hashicorp.repo
+        mode: "0640"
       when:
         - ansible_os_family in [ "RedHat", "Rocky" ]
 
     - name: Configure debian
+      when:
+        - ansible_os_family == "Debian"
       block:
         - name: Install apt key for Debian
           ansible.builtin.apt_key:
@@ -27,10 +32,10 @@
           ansible.builtin.apt_repository:
             repo: deb [arch={{ hashicorp_architecture_mapping }}] https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main
             state: present
-      when:
-        - ansible_os_family == "Debian"
 
     - name: Install hashicorp product using package
+      when:
+        - hashicorp_products is defined
       block:
         - name: Install latest hashicorp product using package
           ansible.builtin.package:
@@ -51,21 +56,19 @@
             label: "{{ item.name }}"
           when:
             - item.version is defined
-      when:
-        - hashicorp_products is defined
-  when:
-    - hashicorp_installation_method == "package"
 
 - name: Install manually
+  when:
+    - hashicorp_installation_method == "manual"
   block:
     - name: Install hashicorp product manually
       ansible.builtin.unarchive:
         src: "{{ hashicorp_src }}"
-        dest: /usr/bin
-        mode: "0755"
+        dest: "{{ hashicorp_destination }}"
+        group: "{{ hashicorp_group }}"
+        mode: "{{ hashicorp_mode }}"
+        owner: "{{ hashicorp_owner }}"
         remote_src: yes
       loop: "{{ hashicorp_products }}"
       loop_control:
         label: "{{ item.name }}"
-  when:
-    - hashicorp_installation_method == "manual"

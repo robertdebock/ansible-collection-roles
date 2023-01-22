@@ -1,5 +1,4 @@
 ---
 tox_parallel: no
 tox_ansible_versions:
-  - 4
   - 5

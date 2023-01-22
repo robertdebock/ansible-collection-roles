@@ -7,4 +7,4 @@ _revealmd_path:
   Suse: /usr/local/bin
   Debian: /usr/local/bin
 
-revealmd_path: "{{ _revealmd_path[ansible_os_family] | default(_revealmd_path['default'] ) }}"
+revealmd_path: "{{ _revealmd_path[ansible_os_family] | default(_revealmd_path['default']) }}"

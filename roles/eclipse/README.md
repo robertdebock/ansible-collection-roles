@@ -4,11 +4,11 @@ Install eclipse and plugins on your system.
 
 |GitHub|GitLab|Quality|Downloads|Version|
 |------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-eclipse/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-eclipse/actions)|[![gitlab](https://gitlab.com/robertdebock/ansible-role-eclipse/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-eclipse)|[![quality](https://img.shields.io/ansible/quality/45618)](https://galaxy.ansible.com/robertdebock/eclipse)|[![downloads](https://img.shields.io/ansible/role/d/45618)](https://galaxy.ansible.com/robertdebock/eclipse)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-eclipse.svg)](https://github.com/robertdebock/ansible-role-eclipse/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-eclipse/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-eclipse/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-eclipse/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-eclipse)|[![quality](https://img.shields.io/ansible/quality/45618)](https://galaxy.ansible.com/robertdebock/eclipse)|[![downloads](https://img.shields.io/ansible/role/d/45618)](https://galaxy.ansible.com/robertdebock/eclipse)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-eclipse.svg)](https://github.com/robertdebock/ansible-role-eclipse/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
-This example is taken from `molecule/default/converge.yml` and is tested on each push, pull request and release.
+This example is taken from [`molecule/default/converge.yml`](https://github.com/robertdebock/ansible-role-eclipse/blob/master/molecule/default/converge.yml) and is tested on each push, pull request and release.
 
 ```yaml
 ---
@@ -19,9 +19,19 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
 
   roles:
     - role: robertdebock.roles.eclipse
+    # - role: robertdebock.roles.eclipse
+    #   eclipse_release: 2022-09
+    #   eclipse_install_path: /opt/eclipse-{{ eclipse_release }}
+    #   eclipse_link_paths:
+    #     - /opt/eclipse-09
+    #     - /opt/eclipse-202209
+    # - role: robertdebock.roles.eclipse
+    #   eclipse_release: 2022-12
+    #   eclipse_install_path: /opt/eclipse-{{ eclipse_release }}
+    #   eclipse_link_paths: []
 ```
 
-The machine needs to be prepared. In CI this is done using `molecule/default/prepare.yml`:
+The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-eclipse/blob/master/molecule/default/prepare.yml):
 
 ```yaml
 ---
@@ -40,7 +50,7 @@ Also see a [full explanation and example](https://robertdebock.nl/how-to-use-the
 
 ## [Role Variables](#role-variables)
 
-The default values for the variables are set in `defaults/main.yml`:
+The default values for the variables are set in [`defaults/main.yml`](https://github.com/robertdebock/ansible-role-eclipse/blob/master/defaults/main.yml):
 
 ```yaml
 ---
@@ -48,7 +58,7 @@ The default values for the variables are set in `defaults/main.yml`:
 
 # The release to install.
 # See https://www.eclipse.org/downloads/packages/release
-eclipse_release: 2022-06
+eclipse_release: 2022-12
 
 # The release version to install, either: R, RC1, M3, M2 or M1.
 eclipse_release_version: R
@@ -56,18 +66,34 @@ eclipse_release_version: R
 # The type of installation, either: jee, committers, cpp, dsl, java, javascript, jee, modeling, parallel, php, rcp, rust, scout or testing.
 eclipse_release_type: java
 
-eclipse_install_path: /opt
+# Where to download eclipse to. The installation will later be moved to a versioned path.
+eclipse_tmp_path: /tmp
+
+# The path where to install eclipse.
+eclipse_install_path: /opt/eclipse-{{ eclipse_release }}
+
+# What path(s) would you like to link to the eclipse installation?
+eclipse_link_paths:
+  - /opt/eclipse
 
 eclipse_plugins: []
-  # This plugin causes an issue:
-  # org.eclipse.m2e.logback.configuration:
-  # The org.eclipse.m2e.logback.configuration bundle was activated before
-  # the state location was initialized.  Will retry after the state location
-  # is initialized.
-  # - name: org.tigris.subversion.subclipse.feature.group
-  #   repository: "http://subclipse.tigris.org/update_1.10.x"
-  # - name: org.sonatype.m2e.egit.feature.feature.group
-  #   repository: "https://repo1.maven.org/maven2/.m2e/connectors/m2eclipse-egit/0.15.1/N/0.15.1.201806191431"
+# This plugin causes an issue:
+# org.eclipse.m2e.logback.configuration:
+# The org.eclipse.m2e.logback.configuration bundle was activated before
+# the state location was initialized.  Will retry after the state location
+# is initialized.
+# - name: org.tigris.subversion.subclipse.feature.group
+#   repository: "http://subclipse.tigris.org/update_1.10.x"
+# - name: org.sonatype.m2e.egit.feature.feature.group
+#   repository: "https://repo1.maven.org/maven2/.m2e/connectors/m2eclipse-egit/0.15.1/N/0.15.1.201806191431"
+
+# You can have this role install Lombok into Eclipse.
+eclipse_install_lombok: yes
+# Also specify the version of lombok.
+eclipse_lombok_version: "1.18.22"
+
+# You may install Maven.
+eclipse_install_maven: yes
 ```
 
 ## [Requirements](#requirements)
@@ -80,9 +106,9 @@ The following roles are used to prepare a system. You can prepare your system in
 
 | Requirement | GitHub | GitLab |
 |-------------|--------|--------|
-|[robertdebock.bootstrap](https://galaxy.ansible.com/robertdebock/bootstrap)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-bootstrap/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-bootstrap/actions)|[![Build Status GitLab](https://gitlab.com/robertdebock/ansible-role-bootstrap/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-bootstrap)|
-|[robertdebock.core_dependencies](https://galaxy.ansible.com/robertdebock/core_dependencies)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-core_dependencies/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-core_dependencies/actions)|[![Build Status GitLab](https://gitlab.com/robertdebock/ansible-role-core_dependencies/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-core_dependencies)|
-|[robertdebock.java](https://galaxy.ansible.com/robertdebock/java)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-java/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-java/actions)|[![Build Status GitLab](https://gitlab.com/robertdebock/ansible-role-java/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-java)|
+|[robertdebock.bootstrap](https://galaxy.ansible.com/robertdebock/bootstrap)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-bootstrap/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-bootstrap/actions)|[![Build Status GitLab](https://gitlab.com/robertdebock-iac/ansible-role-bootstrap/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-bootstrap)|
+|[robertdebock.core_dependencies](https://galaxy.ansible.com/robertdebock/core_dependencies)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-core_dependencies/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-core_dependencies/actions)|[![Build Status GitLab](https://gitlab.com/robertdebock-iac/ansible-role-core_dependencies/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-core_dependencies)|
+|[robertdebock.java](https://galaxy.ansible.com/robertdebock/java)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-java/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-java/actions)|[![Build Status GitLab](https://gitlab.com/robertdebock-iac/ansible-role-java/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-java)|
 
 ## [Context](#context)
 
@@ -97,12 +123,12 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|amazon|Candidate|
-|el|8|
-|debian|all|
-|fedora|all|
-|opensuse|all|
-|ubuntu|all|
+|[Amazon](https://hub.docker.com/repository/docker/robertdebock/amazonlinux/general)|Candidate|
+|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|8|
+|[Debian](https://hub.docker.com/repository/docker/robertdebock/debian/general)|all|
+|[Fedora](https://hub.docker.com/repository/docker/robertdebock/fedora/general)|all|
+|[opensuse](https://hub.docker.com/repository/docker/robertdebock/opensuse/general)|all|
+|[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|all|
 
 The minimum version of Ansible required is 2.10, tests have been done to:
 
@@ -114,7 +140,7 @@ If you find issues, please register them in [GitHub](https://github.com/robertde
 
 ## [License](#license)
 
-Apache-2.0
+[Apache-2.0](https://github.com/robertdebock/ansible-role-eclipse/blob/master/LICENSE).
 
 ## [Author Information](#author-information)
 

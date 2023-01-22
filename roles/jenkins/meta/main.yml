@@ -14,9 +14,6 @@ galaxy_info:
     - name: EL
       versions:
         - all
-    - name: Fedora
-      versions:
-        - all
 
   galaxy_tags:
     - jenkins

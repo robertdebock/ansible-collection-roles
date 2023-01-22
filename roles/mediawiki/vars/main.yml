@@ -42,12 +42,12 @@ _mediawiki_destination:
   Alpine: /var/www/{{ httpd_servername | default(ansible_fqdn) }}
   Suse: /srv/www/htdocs
 
-mediawiki_docroot: "{{ _mediawiki_destination[ansible_os_family] | default(_mediawiki_destination['default'] ) }}"
+mediawiki_docroot: "{{ _mediawiki_destination[ansible_os_family] | default(_mediawiki_destination['default']) }}"
 
 _mediawiki_owner:
   default: apache
   Debian: www-data
   Suse: wwwrun
 
-mediawiki_owner: "{{ _mediawiki_owner[ansible_os_family] | default(_mediawiki_owner['default'] ) }}"
-mediawiki_group: "{{ _mediawiki_owner[ansible_os_family] | default(_mediawiki_owner['default'] ) }}"
+mediawiki_owner: "{{ _mediawiki_owner[ansible_os_family] | default(_mediawiki_owner['default']) }}"
+mediawiki_group: "{{ _mediawiki_owner[ansible_os_family] | default(_mediawiki_owner['default']) }}"

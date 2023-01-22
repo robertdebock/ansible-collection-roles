@@ -7,6 +7,9 @@
   delegate_to: localhost
 
 - name: Create root ca
+  when:
+    - ca_init | bool
+    - ca_own_root | bool
   block:
     - name: Set path for root CA
       ansible.builtin.set_fact:
@@ -16,9 +19,6 @@
     - name: Init root CA
       ansible.builtin.include_tasks:
         file: init_ca.yml
-  when:
-    - ca_init | bool
-    - ca_own_root | bool
 
 - name: Set path for CA
   ansible.builtin.set_fact:
@@ -26,6 +26,8 @@
     ca_filename: ca
 
 - name: Create ca
+  when:
+    - ca_init | bool
   block:
     - name: Init CA
       ansible.builtin.include_tasks:
@@ -36,8 +38,6 @@
         file: generate_ca_certs.yml
       when:
         - ca_own_root | bool
-  when:
-    - ca_init | bool
 
 - name: Ensure publication location exists
   ansible.builtin.file:

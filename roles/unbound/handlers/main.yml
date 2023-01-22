@@ -24,7 +24,7 @@
     remote_src: yes
     mode: "0755"
   notify:
-    - systemctl daemon-reload
+    - Systemctl daemon-reload
 
 - name: Systemctl daemon-reload
   ansible.builtin.systemd:

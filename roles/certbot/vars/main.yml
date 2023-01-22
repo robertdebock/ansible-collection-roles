@@ -39,4 +39,4 @@ _certbot_system_to_restart:
   standalone:
     default: []
 
-certbot_system_to_restart: "{{ _certbot_system_to_restart[certbot_system][ansible_os_family] | default(_certbot_system_to_restart[certbot_system]['default'] ) }}"
+certbot_system_to_restart: "{{ _certbot_system_to_restart[certbot_system][ansible_os_family] | default(_certbot_system_to_restart[certbot_system]['default']) }}"

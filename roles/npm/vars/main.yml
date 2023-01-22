@@ -5,7 +5,7 @@ _npm_validate_certs:
   default: yes
   Debian: no
 
-npm_validate_certs: "{{ _npm_validate_certs[ansible_os_family] | default(_npm_validate_certs['default'] ) }}"
+npm_validate_certs: "{{ _npm_validate_certs[ansible_os_family] | default(_npm_validate_certs['default']) }}"
 
 npm_packages:
   - npm

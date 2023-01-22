@@ -10,21 +10,21 @@
 # So `block` to check (and fail) and `rescue` to report.
 
 - name: Include process checks
-  include_tasks: processes.yml
+  ansible.builtin.include_tasks: processes.yml
   when:
     - cve_2021_44228_check_processes
 
 - name: Include package checks
-  include_tasks: packages.yml
+  ansible.builtin.include_tasks: packages.yml
   when:
     - cve_2021_44228_check_packages
 
 - name: Include log4j file checks
-  include_tasks: log4jfiles.yml
+  ansible.builtin.include_tasks: log4jfiles.yml
   when:
     - cve_2021_44228_check_files
 
 - name: Include archives checks
-  include_tasks: archives.yml
+  ansible.builtin.include_tasks: archives.yml
   when:
     - cve_2021_44228_check_archives

@@ -11,7 +11,7 @@
     name: robertdebock.service
   vars:
     service_list:
-      - name: Powertop
+      - name: powertop
         description: Powertop
         start_command: /usr/sbin/powertop --auto-tune
         type: oneshot

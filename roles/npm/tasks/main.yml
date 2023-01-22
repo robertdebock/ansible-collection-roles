@@ -7,6 +7,8 @@
   delegate_to: localhost
 
 - name: Configure debian
+  when:
+    - ansible_distribution == "Debian"
   block:
     - name: Install nodejs key
       ansible.builtin.apt_key:
@@ -19,8 +21,6 @@
         repo: "{{ item }}"
         state: present
       loop: "{{ npm_apt_repositories }}"
-  when:
-    - ansible_distribution == "Debian"
 
 - name: Install nodejs rpm repository
   ansible.builtin.yum_repository:

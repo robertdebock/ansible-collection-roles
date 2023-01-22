@@ -1,0 +1,9 @@
+{{ ansible_managed | comment }}
+
+# A script to set variables to use HashiCorp Vault.
+
+# Add the Vault to the PATH.
+export PATH=$PATH:{{ vault_path }}/bin
+
+# Set the address to connect to Vault.
+export VAULT_ADDR="http://127.0.0.1:8200"

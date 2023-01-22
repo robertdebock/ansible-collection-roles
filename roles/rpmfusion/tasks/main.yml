@@ -7,8 +7,12 @@
   delegate_to: localhost
 
 - name: Install free and nonfree
+  when:
+    - ansible_os_family == "RedHat"
   block:
     - name: Configure free
+      when:
+        - rpmfusion_free
       block:
         - name: Install free gpg key
           ansible.builtin.rpm_key:
@@ -22,10 +26,10 @@
             validate_certs: no
           notify:
             - Yum update cache
-      when:
-        - rpmfusion_free
 
     - name: Configure non-free
+      when:
+        - rpmfusion_nonfree
       block:
         - name: Install nonfree gpg key
           ansible.builtin.rpm_key:
@@ -39,7 +43,3 @@
             validate_certs: no
           notify:
             - Yum update cache
-      when:
-        - rpmfusion_nonfree
-  when:
-    - ansible_os_family == "RedHat"

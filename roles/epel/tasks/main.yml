@@ -2,6 +2,11 @@
 # tasks file for epel
 
 - name: Install epel
+  when:
+    - (ansible_distribution == "Amazon" and
+      ansible_distribution_major_version == "2") or
+      (ansible_os_family == "RedHat" and
+      ansible_distribution_major_version in [ "7", "8" ])
   block:
     - name: Install epel gpg key
       ansible.builtin.rpm_key:
@@ -23,8 +28,3 @@
         - epel_next
       notify:
         - Update package cache
-  when:
-    - (ansible_distribution == "Amazon" and
-      ansible_distribution_major_version == "2") or
-      (ansible_os_family == "RedHat" and
-      ansible_distribution_major_version in [ "7", "8" ])

@@ -4,8 +4,8 @@
     name: robertdebock.service
   vars:
     service_list:
-      - name: "dsvpn-server"
-        description: "Dead simple VPN server"
+      - name: dsvpn-server
+        description: Dead simple VPN server
         start_command: "{{ dsvpn_install_directory }}/dsvpn server {{ dsvpn_key_directory }}/vpn.key"
   notify:
     - Restart dsvpn-server

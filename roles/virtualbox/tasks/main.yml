@@ -34,6 +34,8 @@
     - ansible_pkg_mgr in [ "zypper" ]
 
 - name: Configure apt repository
+  when:
+    - ansible_pkg_mgr in [ "apt" ]
   block:
     - name: Import apt key
       ansible.builtin.apt_key:
@@ -47,8 +49,6 @@
       ansible.builtin.apt_repository:
         repo: deb [ arch=amd64 ] {{ virtualbox_apt_repository }} {{ ansible_distribution_release | lower }} contrib
         state: present
-  when:
-    - ansible_pkg_mgr in [ "apt" ]
 
 - name: Install requirements
   ansible.builtin.package:

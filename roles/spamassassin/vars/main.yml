@@ -8,5 +8,6 @@ _spamassassin_service:
   default: spamassassin
   Alpine: spamd
   Suse: spamd
+  Debian-n/a: spamassassin-maintenance.timer
 
-spamassassin_service: "{{ _spamassassin_service[ansible_os_family] | default(_spamassassin_service['default'] ) }}"
+spamassassin_service: "{{ _spamassassin_service[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_spamassassin_service[ansible_os_family] | default(_spamassassin_service['default'])) }}"

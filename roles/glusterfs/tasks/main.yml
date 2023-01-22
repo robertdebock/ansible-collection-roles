@@ -12,6 +12,8 @@
     state: present
 
 - name: Configure brick
+  when:
+    - glusterfs_bricks is defined
   block:
     - name: Create filesystem
       community.general.filesystem:
@@ -33,8 +35,6 @@
         fstype: xfs
         state: mounted
       loop: "{{ glusterfs_bricks }}"
-  when:
-    - glusterfs_bricks is defined
 
 - name: Create directory
   ansible.builtin.file:
@@ -51,6 +51,9 @@
     state: present
 
 - name: Configure selinux
+  when:
+    - ansible_selinux.status is defined
+    - ansible_selinux.status == "enabled"
   block:
     - name: Set selinux boolean nis_enabled to yes
       ansible.posix.seboolean:
@@ -68,9 +71,6 @@
         - Create selinux mod for glusterfs
         - Create selinux pp for glusterfs
         - Load selinux pp for glusterfs
-  when:
-    - ansible_selinux.status is defined
-    - ansible_selinux.status == "enabled"
 
 - name: Flush handlers
   ansible.builtin.meta: flush_handlers
@@ -93,6 +93,8 @@
     - item != inventory_hostname
 
 - name: Configure volume
+  when:
+    - glusterfs_volumes is defined
   block:
     - name: Create volume
       gluster.gluster.gluster_volume:
@@ -100,7 +102,7 @@
         state: present
         bricks: "{{ item.bricks }}"
         rebalance: "{{ item.rebalance | default('yes') }}"
-        cluster: "{{ groups.all | map ('extract', hostvars, ['ansible_default_ipv4', 'address']) | join(',') }}"
+        cluster: "{{ groups.all | map('extract', hostvars, ['ansible_default_ipv4', 'address']) | join(',') }}"
         replicas: "{{ item.replicas | default(groups.all | length) }}"
       run_once: yes
       loop: "{{ glusterfs_volumes }}"
@@ -119,5 +121,3 @@
         fstype: glusterfs
         state: mounted
       loop: "{{ glusterfs_volumes }}"
-  when:
-    - glusterfs_volumes is defined

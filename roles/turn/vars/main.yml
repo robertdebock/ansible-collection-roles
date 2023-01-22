@@ -8,7 +8,7 @@ _turn_configuration:
   default: /etc/turnserver.conf
   RedHat: /etc/coturn/turnserver.conf
 
-turn_configuration: "{{ _turn_configuration[ansible_os_family] | default(_turn_configuration['default'] ) }}"
+turn_configuration: "{{ _turn_configuration[ansible_os_family] | default(_turn_configuration['default']) }}"
 
 turn_service: coturn
 

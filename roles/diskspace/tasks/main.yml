@@ -1,12 +1,12 @@
 ---
 # tasks file for diskspace
 
-- name: include assert.yml
+- name: Include assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: include mount.yml
+- name: Include mount.yml
   ansible.builtin.include_tasks:
     file: mount.yml
   loop: "{{ diskspace_mounts }}"

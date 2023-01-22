@@ -2,7 +2,7 @@
 - name: 1.9 Ensure updates, patches, and additional security software are installed (Not Scored)
   ansible.builtin.package:
     name: "*"
-    state: latest  # noqa 403 In this case, latest is desired.
+    state: latest  # noqa package-latest In this case, latest is desired.
   notify:
     - reboot
   when:

@@ -9,6 +9,8 @@
     - ansible_os_family not in [ "RedHat", "Rocky" ]
 
 - name: Configure redhat
+  when:
+    - ansible_os_family in [ "RedHat", "Rocky" ]
   block:
     - name: Install software with excluded
       ansible.builtin.package:
@@ -21,5 +23,3 @@
         name: NetworkManager
         state: started
         enabled: yes
-  when:
-    - ansible_os_family in [ "RedHat", "Rocky" ]

@@ -7,4 +7,4 @@ _qemu_packages:
   Alpine:
     - qemu-system-x86_64
 
-qemu_packages: "{{ _qemu_packages[ansible_os_family] | default(_qemu_packages['default'] ) }}"
+qemu_packages: "{{ _qemu_packages[ansible_os_family] | default(_qemu_packages['default']) }}"

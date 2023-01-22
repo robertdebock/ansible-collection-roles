@@ -47,4 +47,4 @@ ca_publication_location: "{{ httpd_data_directory | default('/tmp') }}/pub"
 # preferred locations are used (see `vars/main.yml`, under `_ca_openssl_path`.
 # If you need a CA certificate somewhere else, simple use something like this:
 # ca_openssl_path: /my/preferred/path
-ca_openssl_path: "{{ _ca_openssl_path[ansible_os_family] | default(_ca_openssl_path['default'] ) }}"
+ca_openssl_path: "{{ _ca_openssl_path[ansible_os_family] | default(_ca_openssl_path['default']) }}"

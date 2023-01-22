@@ -19,4 +19,4 @@ _luks_requirements:
     - cracklib-dict-small
     - util-linux
 
-luks_requirements: "{{ _luks_requirements[ansible_os_family] | default(_luks_requirements['default'] ) }}"
+luks_requirements: "{{ _luks_requirements[ansible_os_family] | default(_luks_requirements['default']) }}"

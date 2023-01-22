@@ -23,7 +23,7 @@
     mode: "0640"
   notify:
     - Run installer
-  
+
 - name: Place selinux type enforcement
   ansible.builtin.copy:
     src: my_harbor.te

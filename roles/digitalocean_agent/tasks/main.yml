@@ -1,5 +1,5 @@
 ---
-# tasks file for digitalocean-agent
+# tasks file for digitalocean_agent
 
 - name: Import rpm key
   ansible.builtin.rpm_key:
@@ -19,6 +19,7 @@
   ansible.builtin.copy:
     src: "{{ digitalocean_agent_repository_src }}"
     dest: "{{ digitalocean_agent_repository_dest }}"
+    force: false
     mode: "0640"
   when:
     - ansible_pkg_mgr in [ "yum", "dnf", "apt" ]

@@ -8,29 +8,30 @@
 
 - name: Install yum repository
   ansible.builtin.get_url:
-    url: "https://bintray.com/jfrog/artifactory-rpms/rpm"
+    url: "https://releases.jfrog.io/artifactory/artifactory-rpms/artifactory-rpms.repo"
     dest: /etc/yum.repos.d/bintray-jfrog-artifactory-rpms.repo
+    mode: "0640"
   when:
     - ansible_pkg_mgr in [ "dnf", "yum" ]
 
 - name: Configure apt repository
+  when:
+    - ansible_pkg_mgr in [ "apt" ]
   block:
     - name: Trust gpg key
       ansible.builtin.apt_key:
-        url: "https://api.bintray.com/orgs/jfrog/keys/gpg/public.key"
+        url: "https://releases.jfrog.io/artifactory/api/gpg/key/public"
         state: present
         validate_certs: no
 
     - name: Install deb repository
       ansible.builtin.apt_repository:
-        repo: "deb https://jfrog.bintray.com/artifactory-debs {{ ansible_distribution_release | lower }} main"
+        repo: "deb https://releases.jfrog.io/artifactory/artifactory-debs {{ ansible_distribution_release | lower }} main"
         state: present
-  when:
-    - ansible_pkg_mgr in [ "apt" ]
 
 - name: Install package
   ansible.builtin.package:
-    name: jfrog-artifactory-{{ artifactory_flavour }}
+    name: "{{ artifactory_package }}"
     state: present
 
 - name: Ensure artifactory_file_store_dir exists

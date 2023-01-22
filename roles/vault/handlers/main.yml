@@ -6,7 +6,7 @@
     name: vault
     state: restarted
   notify:
-    - unseal vault
+    - Unseal vault
 
 - name: Unseal vault
   ansible.builtin.command:

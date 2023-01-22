@@ -4,7 +4,7 @@ _remi_repository:
   Fedora: "https://rpms.remirepo.net/fedora/remi-release-{{ ansible_distribution_major_version | int }}.rpm"
   RedHat: "https://rpms.remirepo.net/enterprise/remi-release-{{ ansible_distribution_major_version | int }}.rpm"
 
-remi_repository: "{{ _remi_repository[ansible_distribution] | default(_remi_repository[ansible_os_family] ) }}"
+remi_repository: "{{ _remi_repository[ansible_distribution] | default(_remi_repository[ansible_os_family]) }}"
 
 _remi_argument:
   dnf:

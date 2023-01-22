@@ -7,13 +7,13 @@
       - gitlab_runner_name is string
     quiet: yes
 
-- name: Test if gitlab_runner_token is set correctly
+- name: Test if gitlab_runner_registration_token is set correctly
   ansible.builtin.assert:
     that:
-      - gitlab_runner_token is string
+      - gitlab_runner_registration_token is string
     quiet: yes
   when:
-    - gitlab_runner_token is defined
+    - gitlab_runner_registration_token is defined
 
 - name: Test if gitlab_runner_url is set correctly
   ansible.builtin.assert:
@@ -51,4 +51,12 @@
     that:
       - gitlab_runner_version is defined
       - gitlab_runner_version is string
+    quiet: yes
+
+- name: Test if gitlab_runner_concurrency is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_runner_concurrency is defined
+      - gitlab_runner_concurrency is number
+      - gitlab_runner_concurrency >= 0
     quiet: yes

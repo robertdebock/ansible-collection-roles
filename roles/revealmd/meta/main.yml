@@ -8,9 +8,6 @@ galaxy_info:
   min_ansible_version: "2.10"
 
   platforms:
-    - name: EL
-      versions:
-        - "8"
     - name: Debian
       versions:
         - bullseye
@@ -29,4 +26,4 @@ galaxy_info:
     - slides
 
 dependencies:
-  - robertdebock.roles.npm
+  - role: robertdebock.npm

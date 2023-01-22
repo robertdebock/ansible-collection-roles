@@ -55,7 +55,7 @@ _mysql_socket:
   Debian: /var/run/mysqld/mysqld.sock
   RedHat: /var/lib/mysql/mysql.sock
 
-mysql_socket: "{{ _mysql_socket[ansible_os_family] | default(_mysql_socket['default'] ) }}"
+mysql_socket: "{{ _mysql_socket[ansible_os_family] | default(_mysql_socket['default']) }}"
 
 mysql_configuration_options:
   - option: bind-address
@@ -75,4 +75,4 @@ _mysql_configuration_destination:
   default: /etc/mysql/mariadb.conf.d
   RedHat: /etc/my.cnf.d
 
-mysql_configuration_destination: "{{ _mysql_configuration_destination[ansible_os_family] | default(_mysql_configuration_destination['default'] ) }}"
+mysql_configuration_destination: "{{ _mysql_configuration_destination[ansible_os_family] | default(_mysql_configuration_destination['default']) }}"

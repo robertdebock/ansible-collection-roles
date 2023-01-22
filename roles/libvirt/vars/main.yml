@@ -9,6 +9,6 @@ _libvirt_packages:
     - libvirt-daemon-system
     - qemu-kvm
 
-libvirt_packages: "{{ _libvirt_packages[ansible_os_family] | default(_libvirt_packages['default'] ) }}"
+libvirt_packages: "{{ _libvirt_packages[ansible_os_family] | default(_libvirt_packages['default']) }}"
 
 libvirt_service: libvirtd

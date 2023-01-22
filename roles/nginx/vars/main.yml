@@ -5,4 +5,4 @@ _nginx_user:
   default: nginx
   Debian: root
 
-nginx_user: "{{ _nginx_user[ansible_os_family] | default(_nginx_user['default'] ) }}"
+nginx_user: "{{ _nginx_user[ansible_os_family] | default(_nginx_user['default']) }}"

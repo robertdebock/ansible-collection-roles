@@ -81,7 +81,7 @@ _owncloud_requirements:
     - php7-zip
     - php7-zlib
 
-owncloud_requirements: "{{ _owncloud_requirements[ansible_os_family] | default(_owncloud_requirements['default'] ) }}"
+owncloud_requirements: "{{ _owncloud_requirements[ansible_os_family] | default(_owncloud_requirements['default']) }}"
 
 owncloud_sebooleans:
   - httpd_tmp_exec
@@ -94,21 +94,21 @@ _owncloud_destination:
   Alpine: /var/www
   openSUSE Leap: /srv/www/htdocs
 
-owncloud_destination: "{{ _owncloud_destination[ansible_distribution] | default(_owncloud_destination['default'] ) }}"
+owncloud_destination: "{{ _owncloud_destination[ansible_distribution] | default(_owncloud_destination['default']) }}"
 
 _owncloud_httpd_owner:
   default: apache
   Debian: www-data
   Suse: wwwrun
 
-owncloud_httpd_owner: "{{ _owncloud_httpd_owner[ansible_os_family] | default(_owncloud_httpd_owner['default'] ) }}"
+owncloud_httpd_owner: "{{ _owncloud_httpd_owner[ansible_os_family] | default(_owncloud_httpd_owner['default']) }}"
 
 _owncloud_httpd_group:
   default: apache
   Debian: www-data
   Suse: www
 
-owncloud_httpd_group: "{{ _owncloud_httpd_group[ansible_os_family] | default(_owncloud_httpd_group['default'] ) }}"
+owncloud_httpd_group: "{{ _owncloud_httpd_group[ansible_os_family] | default(_owncloud_httpd_group['default']) }}"
 
 _owncloud_config_directory:
   default: /etc/httpd/conf.d
@@ -116,7 +116,7 @@ _owncloud_config_directory:
   Debian: /etc/apache2/conf-enabled
   Suse: /etc/apache2/conf.d
 
-owncloud_config_directory: "{{ _owncloud_config_directory[ansible_os_family] | default(_owncloud_config_directory['default'] ) }}"
+owncloud_config_directory: "{{ _owncloud_config_directory[ansible_os_family] | default(_owncloud_config_directory['default']) }}"
 
 owncloud_permissions:
   - name: "{{ owncloud_destination }}/owncloud/.htaccess"

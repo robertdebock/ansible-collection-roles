@@ -4,11 +4,11 @@ Install and configure gitlab-runner on your system.
 
 |GitHub|GitLab|Quality|Downloads|Version|
 |------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-gitlab_runner/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-gitlab_runner/actions)|[![gitlab](https://gitlab.com/robertdebock/ansible-role-gitlab_runner/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-gitlab_runner)|[![quality](https://img.shields.io/ansible/quality/40614)](https://galaxy.ansible.com/robertdebock/gitlab_runner)|[![downloads](https://img.shields.io/ansible/role/d/40614)](https://galaxy.ansible.com/robertdebock/gitlab_runner)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-gitlab_runner.svg)](https://github.com/robertdebock/ansible-role-gitlab_runner/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-gitlab_runner/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-gitlab_runner/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-gitlab_runner/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-gitlab_runner)|[![quality](https://img.shields.io/ansible/quality/40614)](https://galaxy.ansible.com/robertdebock/gitlab_runner)|[![downloads](https://img.shields.io/ansible/role/d/40614)](https://galaxy.ansible.com/robertdebock/gitlab_runner)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-gitlab_runner.svg)](https://github.com/robertdebock/ansible-role-gitlab_runner/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
-This example is taken from `molecule/default/converge.yml` and is tested on each push, pull request and release.
+This example is taken from [`molecule/default/converge.yml`](https://github.com/robertdebock/ansible-role-gitlab_runner/blob/master/molecule/default/converge.yml) and is tested on each push, pull request and release.
 
 ```yaml
 ---
@@ -24,7 +24,7 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
         - my_runner
 ```
 
-The machine needs to be prepared. In CI this is done using `molecule/default/prepare.yml`:
+The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-gitlab_runner/blob/master/molecule/default/prepare.yml):
 
 ```yaml
 ---
@@ -41,14 +41,14 @@ Also see a [full explanation and example](https://robertdebock.nl/how-to-use-the
 
 ## [Role Variables](#role-variables)
 
-The default values for the variables are set in `defaults/main.yml`:
+The default values for the variables are set in [`defaults/main.yml`](https://github.com/robertdebock/ansible-role-gitlab_runner/blob/master/defaults/main.yml):
 
 ```yaml
 ---
 # defaults file for gitlab_runner
 
 # These are the setting you need to register a runner.
-# gitlab_runner_token: 123ABC
+# gitlab_runner_registration_token: "123ABC"
 
 # The name as shown in the GitLab webinterface.
 gitlab_runner_name: "{{ ansible_fqdn }}"
@@ -67,7 +67,10 @@ gitlab_runner_executor: docker
 gitlab_runner_docker_image: "alpine:latest"
 
 # The version of the GitLab runner to install.
-gitlab_runner_version: "14.7.0"
+gitlab_runner_version: "15.5.0"
+
+# Set the amount of concurrent jobs.
+gitlab_runner_concurrency: "{{ ansible_processor_vcpus }}"
 ```
 
 ## [Requirements](#requirements)
@@ -80,7 +83,7 @@ The following roles are used to prepare a system. You can prepare your system in
 
 | Requirement | GitHub | GitLab |
 |-------------|--------|--------|
-|[robertdebock.bootstrap](https://galaxy.ansible.com/robertdebock/bootstrap)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-bootstrap/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-bootstrap/actions)|[![Build Status GitLab](https://gitlab.com/robertdebock/ansible-role-bootstrap/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-bootstrap)|
+|[robertdebock.bootstrap](https://galaxy.ansible.com/robertdebock/bootstrap)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-bootstrap/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-bootstrap/actions)|[![Build Status GitLab](https://gitlab.com/robertdebock-iac/ansible-role-bootstrap/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-bootstrap)|
 
 ## [Context](#context)
 
@@ -95,8 +98,8 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|el|7, 8|
-|ubuntu|bionic, focal|
+|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|7, 8|
+|[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|bionic, focal|
 
 The minimum version of Ansible required is 2.10, tests have been done to:
 
@@ -108,7 +111,7 @@ If you find issues, please register them in [GitHub](https://github.com/robertde
 
 ## [License](#license)
 
-Apache-2.0
+[Apache-2.0](https://github.com/robertdebock/ansible-role-gitlab_runner/blob/master/LICENSE).
 
 ## [Author Information](#author-information)
 

@@ -1,5 +1,5 @@
 ---
-- name: Create storage directory {{ forensics_local_storage_path }}/{{ object | dirname }}
+- name: Create storage directory
   ansible.builtin.file:
     path: "{{ forensics_local_storage_path }}/{{ object | dirname }}"
     state: directory

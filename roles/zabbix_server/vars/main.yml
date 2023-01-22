@@ -17,4 +17,4 @@ _zabbix_server_docdir:
   default: /usr/share/doc
   Suse: /usr/share/doc/packages
 
-zabbix_server_docdir: "{{ _zabbix_server_docdir[ansible_os_family] | default(_zabbix_server_docdir['default'] ) }}"
+zabbix_server_docdir: "{{ _zabbix_server_docdir[ansible_os_family] | default(_zabbix_server_docdir['default']) }}"

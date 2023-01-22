@@ -7,4 +7,4 @@ _update_pip_packages_requirements:
   Debian:
     - debianutils
 
-update_pip_packages_requirements: "{{ _update_pip_packages_requirements[ansible_os_family] | default(_update_pip_packages_requirements['default'] ) }}"
+update_pip_packages_requirements: "{{ _update_pip_packages_requirements[ansible_os_family] | default(_update_pip_packages_requirements['default']) }}"

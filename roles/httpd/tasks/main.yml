@@ -12,6 +12,9 @@
     state: present
 
 - name: Configure selinux
+  when:
+    - ansible_selinux.status is defined
+    - ansible_selinux.status == "enabled"
   block:
     - name: Modify selinux settings
       ansible.posix.seboolean:
@@ -32,9 +35,6 @@
       loop:
         - "{{ httpd_port }}"
         - "{{ httpd_ssl_port | default(omit) }}"
-  when:
-    - ansible_selinux.status is defined
-    - ansible_selinux.status == "enabled"
 
 - name: Configure httpd
   ansible.builtin.template:

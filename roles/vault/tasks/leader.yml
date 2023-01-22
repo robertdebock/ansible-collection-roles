@@ -1,5 +1,6 @@
 ---
 - name: Configure leader
+  run_once: yes
   block:
     - name: Initialize vault on leader
       ansible.builtin.command:
@@ -18,8 +19,15 @@
         - vault_operator_init.stdout is defined
 
     - name: Unseal vault leader
+      when:
+        - (vault_init_output is defined and
+          vault_init_output.unseal_keys_b64 is defined and
+          vault_init_output.unseal_keys_b64 is iterable) or
+          (vault_unseal_keys is defined)
       block:
         - name: Show unseal information
+          when:
+            - vault_show_unseal_information
           block:
             - name: Show unseal keys for leader
               ansible.builtin.debug:
@@ -32,8 +40,6 @@
                 - vault_init_output is defined and
                   vault_init_output.root_token is defined or
                   vault_root_token is defined
-          when:
-            - vault_show_unseal_information
 
         - name: Save login token to /root/.vault-token
           ansible.builtin.copy:
@@ -59,12 +65,6 @@
           no_log: yes
           when:
             - vault_status.sealed
-      when:
-        - (vault_init_output is defined and
-          vault_init_output.unseal_keys_b64 is defined and
-          vault_init_output.unseal_keys_b64 is iterable) or
-          (vault_unseal_keys is defined)
-  run_once: yes
 
 - name: Make a snapshot
   ansible.builtin.command:

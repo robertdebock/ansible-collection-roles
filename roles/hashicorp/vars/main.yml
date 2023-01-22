@@ -7,7 +7,7 @@ _hashicorp_repository_url:
   Fedora: "https://rpm.releases.hashicorp.com/fedora/hashicorp.repo"
   RedHat: "https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo"
 
-hashicorp_repository_url: "{{ _hashicorp_repository_url[ansible_distribution] | default(_hashicorp_repository_url[ansible_os_family] | default(_hashicorp_repository_url['default'] )) }}"
+hashicorp_repository_url: "{{ _hashicorp_repository_url[ansible_distribution] | default(_hashicorp_repository_url[ansible_os_family] | default(_hashicorp_repository_url['default'])) }}"
 
 _hashicorp_architecture_mapping:
   x86_64: amd64
@@ -20,10 +20,10 @@ _hashicorp_src:
   ent: "https://releases.hashicorp.com/{{ item.name }}/{{ item.version }}+ent/{{ item.name }}_{{ item.version }}+ent_linux_{{ hashicorp_architecture_mapping }}.zip"
   hsm: "https://releases.hashicorp.com/{{ item.name }}/{{ item.version }}+ent.hsm/{{ item.name }}_{{ item.version }}+ent.hsm_linux_{{ hashicorp_architecture_mapping }}.zip"
 
-hashicorp_src: "{{ _hashicorp_src[item.type] | default(_hashicorp_src['oss'] ) }}"
+hashicorp_src: "{{ _hashicorp_src[item.type] | default(_hashicorp_src['oss']) }}"
 
 _version_coupler:
   default: "-"
   apt: "="
 
-version_coupler: "{{ _version_coupler[ansible_pkg_mgr] | default(_version_coupler['default'] ) }}"
+version_coupler: "{{ _version_coupler[ansible_pkg_mgr] | default(_version_coupler['default']) }}"

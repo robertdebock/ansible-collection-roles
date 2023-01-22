@@ -11,13 +11,13 @@
 # location is set in `vars/main.yml`.
 
 # This directory stores sensitive objects. (key, p12 and pkcs12)
-openssl_key_directory: "{{ _openssl_key_directory[ansible_os_family] | default(_openssl_key_directory['default'] ) }}"
+openssl_key_directory: "{{ _openssl_key_directory[ansible_os_family] | default(_openssl_key_directory['default']) }}"
 
 # This directory stores public, non-persistent objects. (csr)
-openssl_csr_directory: "{{ _openssl_csr_directory[ansible_os_family] | default(_openssl_csr_directory['default'] ) }}"
+openssl_csr_directory: "{{ _openssl_csr_directory[ansible_os_family] | default(_openssl_csr_directory['default']) }}"
 
 # This directory stores public, persistent objects. (crt)
-openssl_crt_directory: "{{ _openssl_crt_directory[ansible_os_family] | default(_openssl_crt_directory['default'] ) }}"
+openssl_crt_directory: "{{ _openssl_crt_directory[ansible_os_family] | default(_openssl_crt_directory['default']) }}"
 
 # You can change the owner and group of file created by this role.
 openssl_file_owner: root

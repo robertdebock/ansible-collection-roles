@@ -67,7 +67,7 @@ _nextcloud_requirements:
     - php7-zip
     - php7-zlib
 
-nextcloud_requirements: "{{ _nextcloud_requirements[ansible_os_family] | default(_nextcloud_requirements['default'] ) }}"
+nextcloud_requirements: "{{ _nextcloud_requirements[ansible_os_family] | default(_nextcloud_requirements['default']) }}"
 
 nextcloud_sebooleans:
   - httpd_can_network_connect
@@ -78,14 +78,14 @@ _nextcloud_httpd_owner:
   Debian: www-data
   Suse: wwwrun
 
-nextcloud_httpd_owner: "{{ _nextcloud_httpd_owner[ansible_os_family] | default(_nextcloud_httpd_owner['default'] ) }}"
+nextcloud_httpd_owner: "{{ _nextcloud_httpd_owner[ansible_os_family] | default(_nextcloud_httpd_owner['default']) }}"
 
 _nextcloud_httpd_group:
   default: apache
   Debian: www-data
   Suse: www
 
-nextcloud_httpd_group: "{{ _nextcloud_httpd_group[ansible_os_family] | default(_nextcloud_httpd_group['default'] ) }}"
+nextcloud_httpd_group: "{{ _nextcloud_httpd_group[ansible_os_family] | default(_nextcloud_httpd_group['default']) }}"
 
 nextcloud_archive: "https://download.nextcloud.com/server/releases/nextcloud-{{ nextcloud_version }}.zip"
 
@@ -100,7 +100,7 @@ _nextcloud_config_directory:
   Debian: /etc/apache2/conf-enabled
   Suse: /etc/apache2/conf.d
 
-nextcloud_config_directory: "{{ _nextcloud_config_directory[ansible_os_family] | default(_nextcloud_config_directory['default'] ) }}"
+nextcloud_config_directory: "{{ _nextcloud_config_directory[ansible_os_family] | default(_nextcloud_config_directory['default']) }}"
 
 nextcloud_permissions:
   - path: "{{ nextcloud_destination }}/nextcloud/apps"

@@ -8,13 +8,13 @@ _squid_user:
   default: squid
   Debian: proxy
 
-squid_user: "{{ _squid_user[ansible_os_family] | default(_squid_user['default'] ) }}"
+squid_user: "{{ _squid_user[ansible_os_family] | default(_squid_user['default']) }}"
 
 _squid_group:
   default: squid
   Debian: proxy
 
-squid_group: "{{ _squid_group[ansible_os_family] | default(_squid_group['default'] ) }}"
+squid_group: "{{ _squid_group[ansible_os_family] | default(_squid_group['default']) }}"
 
 squid_config_directory: /etc/squid
 

@@ -7,8 +7,7 @@
     headers:
       X-Vault-Token: "{{ vault_init_output.root_token | default(vault_root_token) }}"
       X-Vault-Namespace: "{{ vault_namespace | default(omit) }}"
-  failed_when:
-    - no
+  failed_when: no
   register: vault_status_kv_secrets_engine
 
 - name: Enable kv secrets engine

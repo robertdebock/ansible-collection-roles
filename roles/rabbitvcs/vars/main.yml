@@ -4,10 +4,12 @@
 _rabbitvcs_packages:
   default:
     - rabbitvcs
+  Debian-n/a:
+    - rabbitvcs-gedit
+    - rabbitvcs-cli
   Debian:
-    - rabbitvcs-nautilus
     - rabbitvcs-nautilus
     - rabbitvcs-gedit
     - rabbitvcs-cli
 
-rabbitvcs_packages: "{{ _rabbitvcs_packages[ansible_os_family] | default(_rabbitvcs_packages['default'] ) }}"
+rabbitvcs_packages: "{{ _rabbitvcs_packages[ansible_os_family ~ '-' ~ ansible_distribution_version] | default(_rabbitvcs_packages[ansible_os_family] | default(_rabbitvcs_packages['default'])) }}"

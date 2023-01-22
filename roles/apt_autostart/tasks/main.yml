@@ -7,6 +7,8 @@
   delegate_to: localhost
 
 - name: Manage automatic service management
+  when:
+    - ansible_pkg_mgr == "apt"
   block:
     - name: Disable automatic service management on installation
       ansible.builtin.copy:
@@ -22,5 +24,3 @@
         state: absent
       when:
         - apt_autostart_state == "enabled"
-  when:
-    - ansible_pkg_mgr == "apt"

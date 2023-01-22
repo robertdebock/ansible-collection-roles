@@ -9,6 +9,8 @@
       register: cve_2021_44228_archive_files
 
     - name: Inspect archives
+      when:
+        cve_2021_44228_archive_files.matched > 0
       block:
         - name: Install unzip
           ansible.builtin.package:
@@ -35,8 +37,6 @@
             msg:
               - "Found log4j in archive files."
               - "{{ unzipped_archives }}"
-      when:
-        cve_2021_44228_archive_files.matched > 0
 
     - name: Inspect log4j.class files
       block:

@@ -4,11 +4,11 @@ Install, run and collect sosreports from your systems.
 
 |GitHub|GitLab|Quality|Downloads|Version|
 |------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-sosreport/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-sosreport/actions)|[![gitlab](https://gitlab.com/robertdebock/ansible-role-sosreport/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-sosreport)|[![quality](https://img.shields.io/ansible/quality/38477)](https://galaxy.ansible.com/robertdebock/sosreport)|[![downloads](https://img.shields.io/ansible/role/d/38477)](https://galaxy.ansible.com/robertdebock/sosreport)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-sosreport.svg)](https://github.com/robertdebock/ansible-role-sosreport/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-sosreport/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-sosreport/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-sosreport/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-sosreport)|[![quality](https://img.shields.io/ansible/quality/38477)](https://galaxy.ansible.com/robertdebock/sosreport)|[![downloads](https://img.shields.io/ansible/role/d/38477)](https://galaxy.ansible.com/robertdebock/sosreport)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-sosreport.svg)](https://github.com/robertdebock/ansible-role-sosreport/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
-This example is taken from `molecule/default/converge.yml` and is tested on each push, pull request and release.
+This example is taken from [`molecule/default/converge.yml`](https://github.com/robertdebock/ansible-role-sosreport/blob/master/molecule/default/converge.yml) and is tested on each push, pull request and release.
 
 ```yaml
 ---
@@ -21,7 +21,7 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
     - role: robertdebock.roles.sosreport
 ```
 
-The machine needs to be prepared. In CI this is done using `molecule/default/prepare.yml`:
+The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-sosreport/blob/master/molecule/default/prepare.yml):
 
 ```yaml
 ---
@@ -39,7 +39,7 @@ Also see a [full explanation and example](https://robertdebock.nl/how-to-use-the
 
 ## [Role Variables](#role-variables)
 
-The default values for the variables are set in `defaults/main.yml`:
+The default values for the variables are set in [`defaults/main.yml`](https://github.com/robertdebock/ansible-role-sosreport/blob/master/defaults/main.yml):
 
 ```yaml
 ---
@@ -62,7 +62,7 @@ The following roles are used to prepare a system. You can prepare your system in
 
 | Requirement | GitHub | GitLab |
 |-------------|--------|--------|
-|[robertdebock.bootstrap](https://galaxy.ansible.com/robertdebock/bootstrap)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-bootstrap/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-bootstrap/actions)|[![Build Status GitLab](https://gitlab.com/robertdebock/ansible-role-bootstrap/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-bootstrap)|
+|[robertdebock.bootstrap](https://galaxy.ansible.com/robertdebock/bootstrap)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-bootstrap/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-bootstrap/actions)|[![Build Status GitLab](https://gitlab.com/robertdebock-iac/ansible-role-bootstrap/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-bootstrap)|
 
 ## [Context](#context)
 
@@ -77,8 +77,8 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|el|8|
-|fedora|all|
+|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|8|
+|[Fedora](https://hub.docker.com/repository/docker/robertdebock/fedora/general)|all|
 
 The minimum version of Ansible required is 2.10, tests have been done to:
 
@@ -90,7 +90,7 @@ If you find issues, please register them in [GitHub](https://github.com/robertde
 
 ## [License](#license)
 
-Apache-2.0
+[Apache-2.0](https://github.com/robertdebock/ansible-role-sosreport/blob/master/LICENSE).
 
 ## [Author Information](#author-information)
 

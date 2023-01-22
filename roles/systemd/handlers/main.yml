@@ -12,7 +12,6 @@
   ansible.builtin.service:
     name: systemd-logind
     state: restarted
-    masked: no
   when:
     - not ansible_check_mode
 

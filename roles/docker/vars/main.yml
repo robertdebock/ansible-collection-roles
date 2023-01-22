@@ -20,6 +20,6 @@ _docker_service:
   default: docker
   RedHat: "docker"
 
-docker_service: "{{ _docker_service[ansible_os_family] | default(_docker_service['default'] ) }}"
+docker_service: "{{ _docker_service[ansible_os_family] | default(_docker_service['default']) }}"
 
 docker_socket: /var/run/docker.sock

@@ -40,6 +40,8 @@
     nis_master_map is defined
 
 - name: Configure autofs_maps
+  when:
+    - autofs_maps is defined
   block:
     - name: Place autofs in /etc/auto.master.d/
       ansible.builtin.template:
@@ -102,8 +104,6 @@
       when:
         - item.state is not defined or (item.state is defined and item.state == "present")
         - item.mountpoint != "/-"
-  when:
-    - autofs_maps is defined
 
 - name: Start autofs
   ansible.builtin.service:

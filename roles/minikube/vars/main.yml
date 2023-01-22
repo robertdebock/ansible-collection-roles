@@ -19,7 +19,7 @@ _minikube_requirements:
     - kmod
     - socat
 
-minikube_requirements: "{{ _minikube_requirements[ansible_os_family] | default(_minikube_requirements['default'] ) }}"
+minikube_requirements: "{{ _minikube_requirements[ansible_os_family] | default(_minikube_requirements['default']) }}"
 
 _minikube_packages:
   Debian:

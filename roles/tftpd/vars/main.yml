@@ -11,10 +11,10 @@ _tftpd_packages:
   Suse:
     - tftp
 
-tftpd_packages: "{{ _tftpd_packages[ansible_os_family] | default(_tftpd_packages['default'] ) }}"
+tftpd_packages: "{{ _tftpd_packages[ansible_os_family] | default(_tftpd_packages['default']) }}"
 
 _tftpd_service:
   default: tftp.socket
   Debian: tftpd-hpa
 
-tftpd_service: "{{ _tftpd_service[ansible_os_family] | default(_tftpd_service['default'] ) }}"
+tftpd_service: "{{ _tftpd_service[ansible_os_family] | default(_tftpd_service['default']) }}"

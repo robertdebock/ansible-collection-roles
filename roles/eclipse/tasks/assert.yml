@@ -60,3 +60,50 @@
     label: "{{ item.name }}"
   when:
     - eclipse_plugins is defined
+
+- name: Test if eclipse_link_paths is set correctly
+  ansible.builtin.assert:
+    that:
+      - eclipse_link_paths is defined
+      - eclipse_link_paths is iterable
+    quiet: yes
+
+- name: Test if item in eclipse_link_paths is set correctly
+  ansible.builtin.assert:
+    that:
+      - item is defined
+      - item is string
+    quiet: yes
+  loop: "{{ eclipse_link_paths }}"
+  when:
+    - eclipse_link_paths | length > 0
+
+- name: Test if eclipse_tmp_path is set correctly
+  ansible.builtin.assert:
+    that:
+      - eclipse_tmp_path is defined
+      - eclipse_tmp_path is iterable
+    quiet: yes
+
+- name: Test if eclipse_install_lombok is set correctly
+  ansible.builtin.assert:
+    that:
+      - eclipse_install_lombok is defined
+      - eclipse_install_lombok is boolean
+    quiet: yes
+
+- name: Test if eclipse_lombok_version is set correctly
+  ansible.builtin.assert:
+    that:
+      - eclipse_lombok_version is defined
+      - eclipse_lombok_version is string
+    quiet: yes
+  when:
+    - eclipse_install_lombok
+
+- name: Test if eclipse_install_maven is set correctly
+  ansible.builtin.assert:
+    that:
+      - eclipse_install_maven is defined
+      - eclipse_install_maven is boolean
+    quiet: yes

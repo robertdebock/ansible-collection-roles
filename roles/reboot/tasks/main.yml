@@ -12,6 +12,9 @@
     state: present
 
 - name: Configure redhat
+  when:
+    - ansible_connection not in [ "container", "docker", "community.docker.docker" ]
+    - ansible_os_family in [ "RedHat", "Rocky" ]
   block:
     - name: Check for needs-restarting executable (rhel)
       ansible.builtin.stat:
@@ -29,11 +32,11 @@
         - reboot_rhel_needsrestarting.rc not in [ 0, 1 ]
       when:
         - reboot_rhel_needs_restarting_executable.stat.exists
-  when:
-    - ansible_connection not in [ "container", "docker", "community.docker.docker" ]
-    - ansible_os_family in [ "RedHat", "Rocky" ]
 
 - name: Configure debian
+  when:
+    - ansible_connection not in [ "container", "docker", "community.docker.docker" ]
+    - ansible_os_family == "Debian"
   block:
     - name: Check for needrestart executable (debian)
       ansible.builtin.stat:
@@ -49,9 +52,6 @@
         - "'NEEDRESTART-KSTA: 3' in reboot_debian_needrestarting.stdout_lines"
       when:
         - reboot_debian_needsrestart_executable.stat.exists
-  when:
-    - ansible_connection not in [ "container", "docker", "community.docker.docker" ]
-    - ansible_os_family == "Debian"
 
 - name: Include reboot
   ansible.builtin.include_tasks:

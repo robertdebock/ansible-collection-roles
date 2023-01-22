@@ -18,7 +18,7 @@ _docker_ce_arch:
 
 # Debian / Ubuntu repo
 docker_ce_apt_key_url: "https://download.docker.com/linux/{{ ansible_distribution | lower }}/gpg"
-docker_ce_apt_repository_arch: "{{ _docker_ce_arch[ansible_architecture] | default(_docker_ce_arch['default'] ) }}"
+docker_ce_apt_repository_arch: "{{ _docker_ce_arch[ansible_architecture] | default(_docker_ce_arch['default']) }}"
 docker_ce_apt_repository_repo: "deb [arch={{ docker_ce_apt_repository_arch }}] https://download.docker.com/linux/{{ ansible_distribution | lower }} {{ ansible_distribution_release }} stable"
 
 _docker_ce_dist:
@@ -26,7 +26,7 @@ _docker_ce_dist:
   Rocky: centos
   RedHat: rhel
 
-docker_ce_dist: "{{ _docker_ce_dist[ansible_distribution] | default(_docker_ce_dist['default'] ) }}"
+docker_ce_dist: "{{ _docker_ce_dist[ansible_distribution] | default(_docker_ce_dist['default']) }}"
 
 docker_ce_yum_repositories: "https://download.docker.com/linux/{{ docker_ce_dist }}/docker-ce.repo"
 

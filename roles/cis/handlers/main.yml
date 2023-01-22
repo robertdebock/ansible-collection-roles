@@ -1,96 +1,98 @@
 ---
 # handlers file for cis
 
-- name: remount /var/tmp
+- name: Remount /var/tmp
   ansible.posix.mount:
     path: /var/tmp
     state: remounted
 
-- name: remount /home
+- name: Remount /home
   ansible.posix.mount:
     path: /home
     state: remounted
 
-- name: remount /dev/shm with nodev
+- name: Remount /dev/shm with nodev
   ansible.builtin.command:
-    cmd: mount -o remount,nodev /dev/shm  # noqa 303 Remounting not in module
+    cmd: mount -o remount,nodev /dev/shm  # noqa command-instead-of-module Remounting not in module
 
-- name: remount /dev/shm with nosuid
+- name: Remount /dev/shm with nosuid
   ansible.builtin.command:
-    cmd: mount -o remount,nosuid /dev/shm  # noqa 303 Remounting not in module
+    cmd: mount -o remount,nosuid /dev/shm  # noqa command-instead-of-module Remounting not in module
 
-- name: remount /dev/shm with noexec
+- name: Remount /dev/shm with noexec
   ansible.builtin.command:
-    cmd: mount -o remount,noexec /dev/shm  # noqa 303 Remounting not in module
+    cmd: mount -o remount,noexec /dev/shm  # noqa command-instead-of-module Remounting not in module
   args:
     warn: no
 
-- name: copy aide.db.new.gz to aide.db.gz
+- name: Copy aide.db.new.gz to aide.db.gz
   ansible.builtin.copy:
     src: /var/lib/aide/aide.db.new.gz
     dest: /var/lib/aide/aide.db.gz
     mode: "0600"
     remote_src: yes
 
-- name: run grub2-mkconfig
+- name: Run grub2-mkconfig
   ansible.builtin.command:
     cmd: grub2-mkconfig -o /boot/grub2/grub.cfg
 
-- name: systemctl daemon-reload
+- name: Systemctl daemon-reload
   ansible.builtin.systemd:
     daemon_reload: yes
 
-- name: reboot
+- name: Reboot
   ansible.builtin.reboot:
   when:
     - ansible_connection not in [ "container", "docker", "community.docker.docker" ]
 
-- name: update-crypto-policies
+- name: Update-crypto-policies
   ansible.builtin.command:
     cmd: update-crypto-policies
 
-- name: restart chronyd
+- name: Restart chronyd
   block:
-    - name: restart chronyd
+    - name: Restart chronyd
       ansible.builtin.service:
         name: chronyd
         state: restarted
   rescue:
-    - name: collect information
+    - name: Collect information
       ansible.builtin.command:
         cmd: "{{ item }}"
+      changed_when: no
       register: cis_collect_information
       loop:
         - journalxtl -xe
         - systemctl status chronyd
 
-    - name: show information
+    - name: Show information
       ansible.builtin.debug:
         msg: "{{ item }}"
       loop: "{{ cis_collect_information.results }}"
   when:
     - not ansible_check_mode | bool
 
-- name: net.ipv4.route.flush
+- name: Net.ipv4.route.flush
   ansible.posix.sysctl:
     name: net.ipv4.route.flush
     value: "1"
 
-- name: net.ipv6.route.flush
+- name: Net.ipv6.route.flush
   ansible.posix.sysctl:
     name: net.ipv6.route.flush
     value: "1"
 
-- name: run augenrules
+- name: Run augenrules
   ansible.builtin.command:
     cmd: augenrules
-  notify: load rules
+  notify:
+    - Load rules
 
-- name: load rules
+- name: Load rules
   ansible.builtin.command:
     cmd: augenrules --load
 
-- name: restart auditd
+- name: Restart auditd
   ansible.builtin.service:
     name: auditd
     state: restarted
@@ -98,7 +100,7 @@
   when:
     - not ansible_check_mode | bool
 
-- name: restart rsyslog
+- name: Restart rsyslog
   ansible.builtin.service:
     name: rsyslog
     state: restarted

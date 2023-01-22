@@ -6,7 +6,7 @@ _rpmfusion_distribution:
   default: el
   Fedora: "{{ ansible_distribution | lower }}"
 
-rpmfusion_distribution: "{{ _rpmfusion_distribution[ansible_distribution] | default(_rpmfusion_distribution['default'] ) }}"
+rpmfusion_distribution: "{{ _rpmfusion_distribution[ansible_distribution] | default(_rpmfusion_distribution['default']) }}"
 
 # Amazon uses "2018" and "2", which are similar to respectively 6 and 7.
 _rpmfusion_distribution_major_version:
@@ -23,7 +23,7 @@ _rpmfusion_gpgkey:
   default: "{{ rpmfusion_distribution_major_version }}"
   Fedora: 2020
 
-rpmfusion_gpgkey: "{{ _rpmfusion_gpgkey[ansible_distribution] | default(_rpmfusion_gpgkey['default'] ) }}"
+rpmfusion_gpgkey: "{{ _rpmfusion_gpgkey[ansible_distribution] | default(_rpmfusion_gpgkey['default']) }}"
 
 rpmfusion_free_repository: "https://download1.rpmfusion.org/free/{{ rpmfusion_distribution }}/rpmfusion-free-release-{{ rpmfusion_distribution_major_version }}.noarch.rpm"
 rpmfusion_nonfree_repository: "https://download1.rpmfusion.org/nonfree/{{ rpmfusion_distribution }}/rpmfusion-nonfree-release-{{ rpmfusion_distribution_major_version }}.noarch.rpm"

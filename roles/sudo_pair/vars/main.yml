@@ -22,7 +22,7 @@ _sudo_pair_lib_directory:
   default: /usr/libexec/sudo
   Amazon: /usr/libexec
   Debian: /usr/lib/sudo
-  Debian-testing: /usr/libexec/sudo
+  Debian-n/a: /usr/libexec/sudo
   Suse: /usr/lib/sudo
 
 sudo_pair_lib_directory: "{{ _sudo_pair_lib_directory[ansible_distribution ~ '-' ~ ansible_distribution_version] | default (_sudo_pair_lib_directory[ansible_distribution] | default(_sudo_pair_lib_directory[ansible_os_family] | default(_sudo_pair_lib_directory['default'] ))) }}"

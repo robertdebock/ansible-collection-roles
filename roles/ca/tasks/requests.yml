@@ -1,5 +1,7 @@
 ---
 - name: Issue a key and certificate
+  when:
+    - (request.state is not defined) or (request.state == 'present')
   block:
     - name: Upload requested key
       ansible.builtin.copy:
@@ -19,6 +21,9 @@
         - request.keyfile_path is defined
 
     - name: Generate requested key
+      when:
+        - request.upload_keyfile is not defined
+        - request.keyfile_path is not defined
       block:
         - name: Generate requested key (passphrase set)
           community.crypto.openssl_privatekey:
@@ -33,9 +38,6 @@
             path: "{{ ca_path }}/{{ ca_subject_keys_path }}/{{ request.name | default(request) }}.pem"
           when:
             - request.passphrase is not defined
-      when:
-        - request.upload_keyfile is not defined
-        - request.keyfile_path is not defined
 
     - name: Generate requested certificate signing request
       community.crypto.openssl_csr:
@@ -68,7 +70,6 @@
         remote_src: yes
       when:
         - ca_publication_location is defined
-  when: (request.state is not defined) or (request.state == 'present')
 
 - name: Check whether certificate file exists
   ansible.builtin.stat:
@@ -76,6 +77,10 @@
   register: check_certfile
 
 - name: Revoke a key and certificate
+  when:
+    - request.state is defined
+    - request.state == 'absent'
+    - check_certfile.stat.exists
   block:
     - name: Revoke certificate
       ansible.builtin.command:
@@ -101,7 +106,3 @@
       when:
         - revoke_result.stderr | length > 0
         - revoke_result.stderr_lines | last is regex('^(Data Base Updated|ERROR:Already revoked).*$')
-  when:
-    - request.state is defined
-    - request.state == 'absent'
-    - check_certfile.stat.exists

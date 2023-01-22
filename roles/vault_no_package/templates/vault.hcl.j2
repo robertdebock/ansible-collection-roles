@@ -1,0 +1,28 @@
+{{ ansible_managed | comment }}
+ui            = true
+license_path  = "{{ vault_path }}/etc/vault.d/vault.hclic"
+cluster_addr  = "https://{{ ansible_fqdn }}:8201"
+cluster_name  = "{{ vault_cluster_name }}"
+api_addr      = "{{ vault_api_addr }}"
+log_level     = "Debug"
+disable_mlock = true
+
+listener "tcp" {
+  address     = "0.0.0.0:8200"
+  tls_disable = 1
+}
+
+storage "raft" {
+  path    = "{{ vault_path }}/raft/data"
+  node_id = "{{ ansible_hostname }}"
+{% for item in vault_retry_join %}
+  retry_join {
+    leader_api_addr = "http://{{ item.address }}:8200"
+  }
+{% endfor %}
+}
+
+telemetry {
+  disable_hostname          = true
+  prometheus_retention_time = "12h"
+}

@@ -6,7 +6,7 @@
   run_once: yes
   delegate_to: localhost
 
-- name: Create {{ forensics_local_storage_path }}/{{ inventory_hostname_short }}
+- name: Create directory
   ansible.builtin.file:
     path: "{{ forensics_local_storage_path }}/{{ inventory_hostname_short }}"
     state: directory

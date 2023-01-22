@@ -4,11 +4,11 @@ Install and configure GitLab on your system.
 
 |GitHub|GitLab|Quality|Downloads|Version|
 |------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-gitlab/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-gitlab/actions)|[![gitlab](https://gitlab.com/robertdebock/ansible-role-gitlab/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-gitlab)|[![quality](https://img.shields.io/ansible/quality/57338)](https://galaxy.ansible.com/robertdebock/gitlab)|[![downloads](https://img.shields.io/ansible/role/d/57338)](https://galaxy.ansible.com/robertdebock/gitlab)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-gitlab.svg)](https://github.com/robertdebock/ansible-role-gitlab/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-gitlab/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-gitlab/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-gitlab/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-gitlab)|[![quality](https://img.shields.io/ansible/quality/57338)](https://galaxy.ansible.com/robertdebock/gitlab)|[![downloads](https://img.shields.io/ansible/role/d/57338)](https://galaxy.ansible.com/robertdebock/gitlab)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-gitlab.svg)](https://github.com/robertdebock/ansible-role-gitlab/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
-This example is taken from `molecule/default/converge.yml` and is tested on each push, pull request and release.
+This example is taken from [`molecule/default/converge.yml`](https://github.com/robertdebock/ansible-role-gitlab/blob/master/molecule/default/converge.yml) and is tested on each push, pull request and release.
 
 ```yaml
 ---
@@ -25,7 +25,7 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
         - isrgrootx1.pem  # A root certificate for letsencrypt.
 ```
 
-The machine needs to be prepared. In CI this is done using `molecule/default/prepare.yml`:
+The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-gitlab/blob/master/molecule/default/prepare.yml):
 
 ```yaml
 ---
@@ -42,7 +42,7 @@ Also see a [full explanation and example](https://robertdebock.nl/how-to-use-the
 
 ## [Role Variables](#role-variables)
 
-The default values for the variables are set in `defaults/main.yml`:
+The default values for the variables are set in [`defaults/main.yml`](https://github.com/robertdebock/ansible-role-gitlab/blob/master/defaults/main.yml):
 
 ```yaml
 ---
@@ -52,7 +52,7 @@ The default values for the variables are set in `defaults/main.yml`:
 # Please have a look at this repository for available package version:
 # community: "https://packages.gitlab.com/gitlab/gitlab-ce"
 # enterprise: "https://packages.gitlab.com/gitlab/gitlab-ee"
-gitlab_version: "14.9.2"
+gitlab_version: "15.5.1"
 
 # A part of the version is the "release", mostly "0". See repositories above.
 gitlab_release: 0
@@ -407,7 +407,7 @@ The following roles are used to prepare a system. You can prepare your system in
 
 | Requirement | GitHub | GitLab |
 |-------------|--------|--------|
-|[robertdebock.bootstrap](https://galaxy.ansible.com/robertdebock/bootstrap)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-bootstrap/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-bootstrap/actions)|[![Build Status GitLab](https://gitlab.com/robertdebock/ansible-role-bootstrap/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-bootstrap)|
+|[robertdebock.bootstrap](https://galaxy.ansible.com/robertdebock/bootstrap)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-bootstrap/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-bootstrap/actions)|[![Build Status GitLab](https://gitlab.com/robertdebock-iac/ansible-role-bootstrap/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-bootstrap)|
 
 ## [Context](#context)
 
@@ -422,8 +422,8 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|el|7, 8|
-|ubuntu|focal|
+|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|7, 8|
+|[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|focal|
 
 The minimum version of Ansible required is 2.10, tests have been done to:
 
@@ -435,7 +435,7 @@ If you find issues, please register them in [GitHub](https://github.com/robertde
 
 ## [License](#license)
 
-Apache-2.0
+[Apache-2.0](https://github.com/robertdebock/ansible-role-gitlab/blob/master/LICENSE).
 
 ## [Author Information](#author-information)
 

@@ -18,6 +18,8 @@
     - Uninstall ruby
 
 - name: Execute apt tasks
+  when:
+    - ansible_pkg_mgr == "apt"
   block:
     - name: Install apt repository key
       ansible.builtin.apt_key:
@@ -27,10 +29,10 @@
       ansible.builtin.apt_repository:
         repo: "deb {{ gitlab_repository_url }} {{ ansible_distribution_release | lower }} main"
         filename: "{{ gitlab_repository_name }}"
-  when:
-    - ansible_pkg_mgr == "apt"
 
 - name: Execute yum/dnf tasks
+  when:
+    - ansible_pkg_mgr in [ "dnf", "yum" ]
   block:
     - name: Install rpm repository key
       ansible.builtin.rpm_key:
@@ -46,8 +48,6 @@
         sslverify: yes
         sslcacert: /etc/pki/tls/certs/ca-bundle.crt
         metadata_expire: "300"
-  when:
-    - ansible_pkg_mgr in [ "dnf", "yum" ]
 
 - name: Check database migrations
   block:
@@ -74,6 +74,10 @@
     name: "{{ gitlab_package }}"
 
 - name: Configure ssl
+  when:
+    - gitlab_configuration_file is not defined
+    - gitlab_letsencrypt is defined and not gitlab_letsencrypt
+    - '"https" in gitlab_external_url'
   block:
     - name: Make ssl directories
       ansible.builtin.file:
@@ -85,6 +89,9 @@
         mode: "0750"
 
     - name: Place ssl material
+      when:
+        - gitlab_ssl_crt is defined
+        - gitlab_ssl_cey is defined
       block:
         - name: Place ssl certificate
           ansible.builtin.copy:
@@ -101,13 +108,6 @@
             owner: root
             group: root
             mode: "0640"
-      when:
-        - gitlab_ssl_crt is defined
-        - gitlab_ssl_cey is defined
-  when:
-    - gitlab_configuration_file is not defined
-    - gitlab_letsencrypt is defined and not gitlab_letsencrypt
-    - '"https" in gitlab_external_url'
 
 - name: Place configuration templated
   ansible.builtin.template:
@@ -123,6 +123,8 @@
     - gitlab_configuration_file is not defined
 
 - name: Place trusted-certs
+  when:
+    - gitlab_trusted_certs is defined
   block:
     - name: Make trusted-certs directories
       ansible.builtin.file:
@@ -142,8 +144,6 @@
       notify:
         - Run gitlab-ctl reconfigure
       loop: "{{ gitlab_trusted_certs }}"
-  when:
-    - gitlab_trusted_certs is defined
 
 - name: Place configuration static
   ansible.builtin.copy:
@@ -159,6 +159,8 @@
     - gitlab_configuration_file is defined
 
 - name: Show initial root password
+  when:
+    - gitlab_show_initial_root_password
   block:
     - name: Read initial root password
       ansible.builtin.slurp:
@@ -167,5 +169,3 @@
     - name: Display initial root password
       ansible.builtin.debug:
         msg: "{{ initial_root_password['content'] | b64decode }}"
-  when:
-    - gitlab_show_initial_root_password

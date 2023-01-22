@@ -28,6 +28,8 @@
     state: present
 
 - name: Register runner
+  when:
+    - gitlab_runner_registration_token is defined
   block:
     - name: Get registration status
       ansible.builtin.command:
@@ -41,18 +43,19 @@
           gitlab-runner register --non-interactive
           --name "{{ gitlab_runner_name }}"
           --url "{{ gitlab_runner_url }}"
-          --registration-token "{{ gitlab_runner_token }}"
+          --registration-token "{{ gitlab_runner_registration_token }}"
           --tag-list "{{ gitlab_runner_tags | join(',') }}"
           --executor "{{ gitlab_runner_executor }}"
           --docker-image "{{ gitlab_runner_docker_image }}"
+          --docker-privileged
+          --docker-volumes /var/run/docker.sock:/var/run/docker.sock
           --locked="false"
+          --request-concurrency "{{ gitlab_runner_concurrency }}"
       when:
         - gitlab_runner_name not in gitlab_runner_get_registration_status.stderr
-  when:
-    - gitlab_runner_token is defined
 
 - name: Start and enable gitlab-runner
   ansible.builtin.service:
-    name: gitlab-runner
+    name: "{{ gitlab_runner_service }}"
     state: started
     enabled: yes

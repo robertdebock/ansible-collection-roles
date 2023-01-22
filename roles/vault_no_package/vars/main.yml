@@ -1,0 +1,20 @@
+---
+# vars file for vault_no_package
+
+vault_directories:
+  - audit
+  - bin
+  - certs
+  - etc
+  - etc/vault.d
+  - raft
+  - raft/data
+  - vault-automatic-snapshots
+  - vault-manual-snapshots
+
+# The Vault binary includes an architecture reference, for example "amd64" or "386". This maps relates the ansible_architecture to the name that HashiCorp uses.
+_vault_architecture_map:
+  x86_64: "amd64"
+  arm64: "arm64"
+  i386: "386"
+vault_architecture: "{{ _vault_architecture_map[ansible_architecture] }}"

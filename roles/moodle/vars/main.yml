@@ -21,7 +21,6 @@ _moodle_requirements:
     - php-zip
     - php-gd
     - php-intl
-    - php-xmlrpc
     - php-soap
   Debian-testing:
     - php-mysql
@@ -46,18 +45,18 @@ _moodle_httpd_data_directory:
   Alpine: /var/www/{{ httpd_servername | default(ansible_fqdn) }}
   Suse: /srv/www/htdocs
 
-moodle_httpd_data_directory: "{{ _moodle_httpd_data_directory[ansible_os_family] | default(_moodle_httpd_data_directory['default'] ) }}"
+moodle_httpd_data_directory: "{{ _moodle_httpd_data_directory[ansible_os_family] | default(_moodle_httpd_data_directory['default']) }}"
 
 _moodle_httpd_owner:
   default: apache
   Debian: www-data
   Suse: wwwrun
 
-moodle_httpd_owner: "{{ _moodle_httpd_owner[ansible_os_family] | default(_moodle_httpd_owner['default'] ) }}"
+moodle_httpd_owner: "{{ _moodle_httpd_owner[ansible_os_family] | default(_moodle_httpd_owner['default']) }}"
 
 _moodle_httpd_group:
   default: apache
   Debian: www-data
   Suse: www
 
-moodle_httpd_group: "{{ _moodle_httpd_group[ansible_os_family] | default(_moodle_httpd_group['default'] ) }}"
+moodle_httpd_group: "{{ _moodle_httpd_group[ansible_os_family] | default(_moodle_httpd_group['default']) }}"

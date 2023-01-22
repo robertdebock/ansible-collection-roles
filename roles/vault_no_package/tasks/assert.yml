@@ -1,0 +1,75 @@
+---
+
+- name: Test if vault_version is set correctly
+  ansible.builtin.assert:
+    that:
+      - vault_version is defined
+      - vault_version is string
+    quiet: yes
+
+- name: Test if vault_download_path is set correctly
+  ansible.builtin.assert:
+    that:
+      - vault_download_path is defined
+      - vault_download_path is string
+    quiet: yes
+
+- name: Test if vault_path is set correctly
+  ansible.builtin.assert:
+    that:
+      - vault_path is defined
+      - vault_path is string
+    quiet: yes
+
+- name: Test if vault_user is set correctly
+  ansible.builtin.assert:
+    that:
+      - vault_user is defined
+      - vault_user is string
+      - vault_user != "root"
+    quiet: yes
+
+- name: Test if vault_user_shell is set correctly
+  ansible.builtin.assert:
+    that:
+      - vault_user_shell is defined
+      - vault_user_shell is string
+    quiet: yes
+
+- name: Test if vault_group is set correctly
+  ansible.builtin.assert:
+    that:
+      - vault_group is defined
+      - vault_group is string
+      - vault_group != "root"
+    quiet: yes
+
+- name: Test if vault_cluster_name is set correctly
+  ansible.builtin.assert:
+    that:
+      - vault_cluster_name is defined
+      - vault_cluster_name is string
+    quiet: yes
+
+- name: Test if vault_api_addr is set correctly
+  ansible.builtin.assert:
+    that:
+      - vault_api_addr is defined
+      - vault_api_addr is string
+    quiet: yes
+
+- name: Test if vault_retry_join is set correctly
+  ansible.builtin.assert:
+    that:
+      - vault_retry_join is defined
+      - vault_retry_join is iterable
+      - vault_retry_join | length > 0
+    quiet: yes
+
+- name: Test if item on vault_retry_join is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.address is defined
+      - item.address is string
+    quiet: yes
+  loop: "{{ vault_retry_join }}"

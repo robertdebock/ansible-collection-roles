@@ -48,6 +48,9 @@
       - item.name is string
       - item.name is regex('^(consul|nomad|packer|terraform|vagrant|vault).*')
       - item.version is string
+      - item.type is defined
+      - item.type is string
+      - item.type in [ "ent", "hsm", "oss" ]
     quiet: yes
   loop: "{{ hashicorp_products }}"
   loop_control:
@@ -55,3 +58,31 @@
   when:
     - hashicorp_products is defined
     - hashicorp_installation_method == "manual"
+
+- name: Test if hashicorp_destination is set correctly
+  ansible.builtin.assert:
+    that:
+      - hashicorp_destination is defined
+      - hashicorp_destination is string
+    quiet: yes
+
+- name: Test if hashicorp_group is set correctly
+  ansible.builtin.assert:
+    that:
+      - hashicorp_group is defined
+      - hashicorp_group is string
+    quiet: yes
+
+- name: Test if hashicorp_owner is set correctly
+  ansible.builtin.assert:
+    that:
+      - hashicorp_owner is defined
+      - hashicorp_owner is string
+    quiet: yes
+
+- name: Test if hashicorp_mode is set correctly
+  ansible.builtin.assert:
+    that:
+      - hashicorp_mode is defined
+      - hashicorp_mode is string
+    quiet: yes

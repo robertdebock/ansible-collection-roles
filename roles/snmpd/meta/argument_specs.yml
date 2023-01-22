@@ -8,104 +8,21 @@ argument_specs:
         elements: dict
         required: no
         description: "A list of security names."
-        suboptions:
-          name:
-            description: "The identifier of the security name."
-            required: yes
-            type: str
-          source:
-            description: "The source of the security name."
-            required: yes
-            type: str
-          community:
-            description: "The SNMP community to use."
-            required: yes
-            type: str
       snmpd_groups:
         type: list
         elements: dict
         required: no
         description: "A list of groups."
-        suboptions:
-          name:
-            description: "The name of the group."
-            required: yes
-            type: str
-          security_model:
-            description: "The model to target."
-            required: yes
-            type: str
-            choices:
-              - v1
-              - v2c
-          security_name:
-            description: "The user mapped to this group."
-            required: yes
-            type: str
       snmpd_views:
         type: list
         elements: dict
         required: no
         description: "A list of views."
-        suboptions:
-          name:
-            description: "The name of the view."
-            required: yes
-            type: str
-          type:
-            description: "The action to apply to the view."
-            required: yes
-            type: str
-            choices:
-              - included
-              - excluded
-          subtree:
-            description: "The OIB subtree to target."
-            required: yes
-            type: str
       snmpd_accesses:
         type: list
         elements: dict
         required: no
         description: "A list of accesses."
-        suboptions:
-          group:
-            name: "A reference to the group."
-            required: yes
-            type: str
-          context:
-            description: "The context of the access."
-            required: yes
-            type: str
-          security_model:
-            description: "The security model to apply."
-            required: yes
-            type: str
-            choices:
-              - any
-              - v1
-              - v2c
-              - usm
-          security_level:
-            description: "The security level of the access."
-            required: yes
-            type: str
-          prefix:
-            description: "The prefix of the access."
-            required: yes
-            type: str
-          read:
-            description: "Read access."
-            required: yes
-            type: str
-          write:
-            description: "Write access."
-            required: yes
-            type: str
-          notif:
-            description: "Nofify."
-            required: yes
-            type: str
       snmpd_syslocation:
         type: str
         required: no
@@ -129,65 +46,17 @@ argument_specs:
         elements: dict
         required: no
         description: "A list of processes to monitor."
-        suboptions:
-          name:
-            description: "The name of the process as reported by the operating system."
-            required: yes
-            type: str
-          maximum:
-            description: "The theshold for the maximum amount of processes."
-            required: no
-            type: int
-          minimum:
-            description: "The theshold for the minimum amount of processes."
-            required: no
-            type: int
       snmpd_scripts:
         type: list
         elements: dict
         required: no
         description: "A list of scripts to expose."
-        suboptions:
-          name:
-            description: "The name (arbitrary value) of the script."
-            required: yes
-            type: str
-          program:
-            description: "The executable, including path of the program."
-            required: yes
-            type: str
-          arguments:
-            description: "The arguments to feed to the program."
-            required: yes
-            type: str
       snmpd_disks:
         type: list
         elements: dict
         required: no
         description: "A list of disks to monitor."
-        suboptions:
-          path:
-            description: "The path or partition to monitor."
-            required: yes
-            type: str
-          minimum:
-            description: "The alarm threshold (in KB) for this disk."
-            required: no
-            type: int
       snmpd_load:
         type: dict
         required: no
         description: "The load thresholds."
-        suboptions:
-          one_minute_average:
-            description: "The one minute load average."
-            required: yes
-            type: int
-          five_minute_average:
-            description: "The five minute load average."
-            required: yes
-            type: int
-          fifteen_minute_average:
-            description: "The fifteen minute load average."
-            required: yes
-            type: int

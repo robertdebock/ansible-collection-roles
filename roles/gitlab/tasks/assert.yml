@@ -37,6 +37,8 @@
     - gitlab_configuration_file is defined
 
 - name: Test variables
+  when:
+    - gitlab_configuration_file is not defined
   block:
     - name: Test if gitlab_external_url is set correctly
       ansible.builtin.assert:
@@ -900,8 +902,6 @@
         - gitlab_letsencrypt is defined
         - gitlab_letsencrypt
         - gitlab_letsencrypt_auto_renew
-  when:
-    - gitlab_configuration_file is not defined
 
 - name: Test if gitlab_trusted_certs is set correctly
   ansible.builtin.assert:

@@ -8,6 +8,6 @@ _irslackd_requirements:
     - bash
     - openssl
 
-irslackd_requirements: "{{ _irslackd_requirements[ansible_os_family] | default(_irslackd_requirements['default'] ) }}"
+irslackd_requirements: "{{ _irslackd_requirements[ansible_os_family] | default(_irslackd_requirements['default']) }}"
 
 irslackd_line: 'openssl req -newkey rsa:4096 -nodes -sha512 -x509 -days 3650 -nodes -out $dir/cert.pem -keyout $dir/pkey.pem -subj "/C={{ irslackd_country }}/ST={{ irslackd_state }}/L={{ irslackd_location }}/O={{ irslackd_organization }}/OU={{ irslackd_organizational_unit }}/CN={{ irslackd_common_name }}"'

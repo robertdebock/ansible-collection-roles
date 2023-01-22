@@ -35,10 +35,10 @@ _dhcpd_service:
   default: dhcpd
   Debian: isc-dhcp-server
 
-dhcpd_service: "{{ _dhcpd_service[ansible_os_family] | default (_dhcpd_service['default'] ) }}"
+dhcpd_service: "{{ _dhcpd_service[ansible_os_family] | default(_dhcpd_service['default']) }}"
 
 _dhcpd_confdir:
   default: /etc/dhcp
   Suse: /etc
 
-dhcpd_confdir: "{{ _dhcpd_confdir[ansible_os_family] | default (_dhcpd_confdir['default'] ) }}"
+dhcpd_confdir: "{{ _dhcpd_confdir[ansible_os_family] | default(_dhcpd_confdir['default']) }}"

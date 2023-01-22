@@ -27,13 +27,14 @@
     - Restart podman
 
 - name: Start podman
+  when:
+    - podman_user | length > 0
   block:
     - name: Start podman
       ansible.builtin.service:
         name: "{{ podman_service }}"
         state: started
         enabled: yes
-        scope: user
       become: yes
       become_user: "{{ podman_user }}"
 
@@ -46,5 +47,3 @@
         msg:
           - "To connect a remote podman client, use this command."
           - "podman-remote system connection add default --identity ~/.ssh/id_rsa ssh://{{ ansible_fqdn }}/run/user/{{ getent_passwd[podman_user] }}/podman/podman.sock"
-  when:
-    - podman_user | length > 0

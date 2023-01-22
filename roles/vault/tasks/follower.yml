@@ -1,26 +1,13 @@
 ---
-- name: Configure follower
-  block:
-    - name: Join follower to leader
-      ansible.builtin.command:
-        cmd: vault operator raft join -tls-skip-verify http://{{ vault_leader }}:8200
-      changed_when: no
-      register: vault_join_member_to_leader
-      until:
-        - vault_join_member_to_leader is succeeded
-      retries: 5
-      environment:
-        VAULT_ADDR: "{{ vault_api_addr }}"
-
-    - name: Unseal vault follower
-      ansible.builtin.command:
-        cmd: vault operator unseal {{ item }}
-      changed_when: no
-      environment:
-        VAULT_ADDR: "{{ vault_api_addr }}"
-      loop: "{{ vault_init_output.unseal_keys_b64 | default(vault_unseal_keys) }}"
-      loop_control:
-        label: "hidden"
-      no_log: yes
+- name: Unseal vault follower
+  ansible.builtin.command:
+    cmd: vault operator unseal {{ item }}
+  changed_when: no
+  environment:
+    VAULT_ADDR: "{{ vault_api_addr }}"
+  loop: "{{ vault_init_output.unseal_keys_b64 | default(vault_unseal_keys) }}"
+  loop_control:
+    label: "hidden"
+  no_log: yes
   when:
     - vault_status.sealed

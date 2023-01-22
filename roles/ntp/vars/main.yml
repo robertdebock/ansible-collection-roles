@@ -6,6 +6,8 @@ _ntp_packages:
     - ntp
   Alpine:
     - anacron
+  Debian-n/a:
+    - ntpsec
   RedHat-7:
     - ntp
   RedHat:
@@ -37,11 +39,11 @@ _ntp_timezone_packages:
   Suse:
     - timezone
 
-ntp_timezone_packages: "{{ _ntp_timezone_packages[ansible_os_family] | default(_ntp_timezone_packages['default'] ) }}"
+ntp_timezone_packages: "{{ _ntp_timezone_packages[ansible_os_family] | default(_ntp_timezone_packages['default']) }}"
 
 _ntp_timezone_supported:
   default: no
   Debian: yes
   RedHat: yes
 
-ntp_timezone_supported: "{{ _ntp_timezone_supported[ansible_os_family] | default(_ntp_timezone_supported['default'] ) }}"
+ntp_timezone_supported: "{{ _ntp_timezone_supported[ansible_os_family] | default(_ntp_timezone_supported['default']) }}"

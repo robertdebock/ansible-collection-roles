@@ -30,6 +30,7 @@
   ansible.builtin.get_url:
     url: "{{ anaconda_url }}"
     dest: "{{ anaconda_download_dest }}"
+    mode: "0640"
 
 - name: Install anaconda
   ansible.builtin.command:
@@ -41,11 +42,14 @@
     name: robertdebock.service
   vars:
     service_list:
-      - name: Anaconda
+      - name: anaconda
         description: Anaconda Notebook
         start_command: "{{ anaconda_prefix }}/bin/jupyter notebook --ip={{ anaconda_ip }} --port={{ anaconda_port }} --allow-root"
 
 - name: Change selinux settings
+  when:
+    - ansible_selinux.status is defined
+    - ansible_selinux.status == "enabled"
   block:
     - name: Check for domain_can_mmap_files seboolean
       ansible.builtin.command:
@@ -62,9 +66,6 @@
         persistent: yes
       when:
         - anaconda_getsebool_domain_can_mmap_files.rc == 0
-  when:
-    - ansible_selinux.status is defined
-    - ansible_selinux.status == "enabled"
 
 - name: Start and enable anaconda
   ansible.builtin.service:

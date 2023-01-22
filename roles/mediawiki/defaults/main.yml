@@ -14,4 +14,4 @@ mediawiki_version: "{{ mediawiki_major }}.{{ mediawiki_minor }}.{{ mediawiki_rel
 # Change this to a simple string that refers to a path, for example:
 # "/data/mediawiki".
 
-mediawiki_destination: "{{ _mediawiki_destination[ansible_distribution] | default(_mediawiki_destination['default'] ) }}"
+mediawiki_destination: "{{ _mediawiki_destination[ansible_distribution] | default(_mediawiki_destination['default']) }}"

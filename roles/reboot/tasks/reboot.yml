@@ -4,10 +4,10 @@
 
 - name: Reboot the machine
   ansible.builtin.shell:
-    cmd: "(sleep {{ reboot_delay }} && {{ reboot_command }} &)"  # noqa 301 This was before the reboot module existed.
+    cmd: "(sleep {{ reboot_delay }} && {{ reboot_command }} &)"  # noqa no-changed-when This was before the reboot module existed.
   async: 1
   poll: 0
-  ignore_errors: yes
+  failed_when: no
 
 - name: 1 wait for the start of reboot
   ansible.builtin.pause:

@@ -18,7 +18,7 @@ _collabora_online_repo:
     RedHat: "{{ collabora_online_base_url }}/{{ collabora_online_type | upper }}-centos{{ ansible_distribution_major_version }}"
   licensed:
     Debian: "{{ collabora_online_base_url }}/{{ collabora_online_version }}-key/"
-    RedHat: "{{ collabora_online_base_url }}/{{ collabora_online_version }}/customer-centos{{ ansible_distribution_major_version }}-{{ collabora_online_secret_key | default('no-secret-key-set' ) }}"
+    RedHat: "{{ collabora_online_base_url }}/{{ collabora_online_version }}/customer-centos{{ ansible_distribution_major_version }}-{{ collabora_online_secret_key | default('no-secret-key-set') }}"
 
 collabora_online_repo: "{{ _collabora_online_repo[collabora_online_type][ansible_distribution ~ '-' ~ ansible_distribution_major_version ] | default(_collabora_online_repo[collabora_online_type][ansible_os_family] ) }}"
 
@@ -42,4 +42,4 @@ _collabora_online_packages:
       - coolwsd
       - collabora-online-brand
 
-collabora_online_packages: "{{ _collabora_online_packages[collabora_online_type][ansible_os_family] | default(_collabora_online_packages[collabora_online_type]['default'] ) }}"
+collabora_online_packages: "{{ _collabora_online_packages[collabora_online_type][ansible_os_family] | default(_collabora_online_packages[collabora_online_type]['default']) }}"

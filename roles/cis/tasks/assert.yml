@@ -1,6 +1,6 @@
 ---
 
-- name: include distribution specific assertions
+- name: Include distribution specific assertions
   ansible.builtin.include_tasks:
     file: "{{ ansible_distribution ~ '-' ~ ansible_distribution_major_version }}/assert.yml"
   run_once: yes

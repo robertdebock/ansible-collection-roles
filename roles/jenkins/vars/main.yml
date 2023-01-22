@@ -9,7 +9,7 @@ _jenkins_requirements:
   Suse:
     - insserv-compat
 
-jenkins_requirements: "{{ _jenkins_requirements[ansible_os_family] | default(_jenkins_requirements['default'] ) }}"
+jenkins_requirements: "{{ _jenkins_requirements[ansible_os_family] | default(_jenkins_requirements['default']) }}"
 
 _jenkins_configuration_directory:
   default: /etc/default
@@ -17,7 +17,7 @@ _jenkins_configuration_directory:
   RedHat: /etc/sysconfig
   Suse: /etc/sysconfig
 
-jenkins_configuration_directory: "{{ _jenkins_configuration_directory[ansible_os_family] | default(_jenkins_configuration_directory['default'] ) }}"
+jenkins_configuration_directory: "{{ _jenkins_configuration_directory[ansible_os_family] | default(_jenkins_configuration_directory['default']) }}"
 
 jenkins_yum_repository_baseurl: "https://pkg.jenkins.io/redhat/jenkins.repo"
 
@@ -32,4 +32,4 @@ _jenkins_package:
   default: "jenkins-{{ jenkins_version }}"
   Debian: "jenkins={{ jenkins_version }}"
 
-jenkins_package: "{{ _jenkins_package[ansible_distribution] | default(_jenkins_package['default'] ) }}"
+jenkins_package: "{{ _jenkins_package[ansible_distribution] | default(_jenkins_package['default']) }}"

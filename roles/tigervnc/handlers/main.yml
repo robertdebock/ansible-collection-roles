@@ -6,7 +6,7 @@
     daemon_reload: yes
 
 - name: Restart tigervnc
-  ansible.builtin.service:
+  ansible.builtin.systemd:
     name: "{{ tigervnc_service }}"
     state: restarted
     daemon_reload: yes

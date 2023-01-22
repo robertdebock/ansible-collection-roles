@@ -4,8 +4,8 @@
     name: robertdebock.service
   vars:
     service_list:
-      - name: Dsvpn-client
-        description: "Dead simple VPN client"
+      - name: dsvpn-client
+        description: Dead simple VPN client
         start_command: "{{ dsvpn_install_directory }}/dsvpn client {{ dsvpn_key_directory }}/vpn.key {{ dsvpn_server }}"
   notify:
     - Restart dsvpn-client

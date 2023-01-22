@@ -1,120 +1,120 @@
 ---
 # This task should be moved to `tasks/main.yml`, but due to an issue on Ubuntu
 # it's called here, just for CentOS.
-- name: populate service facts
+- name: Populate service facts
   ansible.builtin.service_facts:
 
 # 1.1 Filesystem Configuration
-- name: include 1_1_filesystem_configuration.yml
+- name: Include 1_1_filesystem_configuration.yml
   ansible.builtin.include_tasks:
     file: 1_initial_setup/1_1_filesystem_configuration.yml
 
 # 1.2 Configure Software Updates
-- name: include 1_2_configure_software_updates.yml
+- name: Include 1_2_configure_software_updates.yml
   ansible.builtin.include_tasks:
     file: 1_initial_setup/1_2_configure_software_updates.yml
 
 # 1.3 Configure sudo
-- name: include 1_3_configure_sudo.yml
+- name: Include 1_3_configure_sudo.yml
   ansible.builtin.include_tasks:
     file: 1_initial_setup/1_3_configure_sudo.yml
 
 # 1.4 Filesystem Integrity Checking
-- name: include 1_4_filesystem_integrity_checking.yml
+- name: Include 1_4_filesystem_integrity_checking.yml
   ansible.builtin.include_tasks:
     file: 1_initial_setup/1_4_filesystem_integrity_checking.yml
 
 # 1.5 Secure Boot Settings
-- name: include 1_5_secure_boot_settings.yml
+- name: Include 1_5_secure_boot_settings.yml
   ansible.builtin.include_tasks:
     file: 1_initial_setup/1_5_secure_boot_settings.yml
 
 # 1.6 Additional Process Hardening
-- name: include 1_6_additional_process_hardening.yml
+- name: Include 1_6_additional_process_hardening.yml
   ansible.builtin.include_tasks:
     file: 1_initial_setup/1_6_additional_process_hardening.yml
 
 # 1.7 Mandatory Access Control
-- name: include 1_7_mandatory_access_control.yml
+- name: Include 1_7_mandatory_access_control.yml
   ansible.builtin.include_tasks:
     file: 1_initial_setup/1_7_mandatory_access_control.yml
 
 # 1.8 Warning Banners
-- name: include 1_8_warning_banners.yml
+- name: Include 1_8_warning_banners.yml
   ansible.builtin.include_tasks:
     file: 1_initial_setup/1_8_warning_banners.yml
 
 # 1.9 Ensure updates, patches, and additional security software are installed (Not Scored)
-- name: include 1_9_updates_installed.yml
+- name: Include 1_9_updates_installed.yml
   ansible.builtin.include_tasks:
     file: 1_initial_setup/1_9_updates_installed.yml
 
 # name: 1.10 Ensure system-wide crypto policy is not legacy (Scored)
-- name: include 1_10_system_wide_crypto_policy.yml
+- name: Include 1_10_system_wide_crypto_policy.yml
   ansible.builtin.include_tasks:
     file: 1_initial_setup/1_10_system_wide_crypto_policy.yml
 
 # 2.1 inetd Services
-- name: include 2_1_inetd_services.yml
+- name: Include 2_1_inetd_services.yml
   ansible.builtin.include_tasks:
     file: 2_services/2_1_inetd_services.yml
 
 # 2.2 Special Purpose Services
-- name: include 2_2_special_purpose_services.yml
+- name: Include 2_2_special_purpose_services.yml
   ansible.builtin.include_tasks:
     file: 2_services/2_2_special_purpose_services.yml
 
 # 2.3 Service Clients
-- name: include 2_3_service_clients.yml
+- name: Include 2_3_service_clients.yml
   ansible.builtin.include_tasks:
     file: 2_services/2_3_service_clients.yml
 
 # 3.1 Network Parameters
-- name: include 3_1_network_parameters.yml
+- name: Include 3_1_network_parameters.yml
   ansible.builtin.include_tasks:
     file: 3_network/3_1_network_parameters.yml
 
 # 3.2 Network Parameters (Host and Router)
-- name: include 3_2_network_parameters_host_and_router.yml
+- name: Include 3_2_network_parameters_host_and_router.yml
   ansible.builtin.include_tasks:
     file: 3_network/3_2_network_parameters_host_and_router.yml
 
 # 3.3 Uncommon Network Protocols
-- name: include 3_3_uncommon_network_protocols.yml
+- name: Include 3_3_uncommon_network_protocols.yml
   ansible.builtin.include_tasks:
     file: 3_network/3_3_uncommon_network_protocols.yml
 
 # 3.4 Firewall Configuration
-- name: include 3_4_firewall_configuration.yml
+- name: Include 3_4_firewall_configuration.yml
   ansible.builtin.include_tasks:
     file: 3_network/3_4_firewall_configuration.yml
 
 # 3.5 Ensure wireless interfaces are disabled (Scored)
-- name: include 3_5_wireless_interfaces.yml
+- name: Include 3_5_wireless_interfaces.yml
   ansible.builtin.include_tasks:
     file: 3_network/3_5_wireless_interfaces.yml
 
 # 3.6 Disable IPv6 (Not Scored)
-- name: include 3_6_disable_ipv6.yml
+- name: Include 3_6_disable_ipv6.yml
   ansible.builtin.include_tasks:
     file: 3_network/3_6_disable_ipv6.yml
 
 # 4.1.1 Ensure auditing is enabled
-- name: include 4_1_configure_system_accounting.yml
+- name: Include 4_1_configure_system_accounting.yml
   ansible.builtin.include_tasks:
     file: 4_logging_and_auditing/4_1_configure_system_accounting.yml
 
 # 4.2 Configure Logging
-- name: include 4_2_configure_logging.yml
+- name: Include 4_2_configure_logging.yml
   ansible.builtin.include_tasks:
     file: 4_logging_and_auditing/4_2_configure_logging.yml
 
 # 4.3 Ensure logrotate is configured (Not Scored)
-- name: include 4_3_logrotate_configured.yml
+- name: Include 4_3_logrotate_configured.yml
   ansible.builtin.include_tasks:
     file: 4_logging_and_auditing/4_3_logrotate_configured.yml
 
 # 5.1 Configure cron
-- name: include 5_1_configure_cron.yml
+- name: Include 5_1_configure_cron.yml
   ansible.builtin.include_tasks:
     file: 5_access_authentication_authorization/5_1_configure_cron.yml

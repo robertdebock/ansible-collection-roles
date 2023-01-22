@@ -7,12 +7,12 @@ _zabbix_agent_conf_dest:
   default: /etc/zabbix/zabbix_agentd.conf
   Fedora: /etc/zabbix_agentd.conf
 
-zabbix_agent_conf_dest: "{{ _zabbix_agent_conf_dest[ansible_distribution] | default(_zabbix_agent_conf_dest['default'] ) }}"
+zabbix_agent_conf_dest: "{{ _zabbix_agent_conf_dest[ansible_distribution] | default(_zabbix_agent_conf_dest['default']) }}"
 
 _zabbix_agent_conf_d_directory:
   default: /etc/zabbix/zabbix_agentd.d
   Fedora: /etc/zabbix
 
-zabbix_agent_conf_d_directory: "{{ _zabbix_agent_conf_d_directory[ansible_distribution] | default(_zabbix_agent_conf_d_directory['default'] ) }}"
+zabbix_agent_conf_d_directory: "{{ _zabbix_agent_conf_d_directory[ansible_distribution] | default(_zabbix_agent_conf_d_directory['default']) }}"
 
 zabbix_log_directory: /var/log/zabbix

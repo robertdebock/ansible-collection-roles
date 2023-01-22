@@ -10,14 +10,14 @@ _virtualbox_requirements:
     - kernel-devel
   Debian: []
 
-virtualbox_requirements: "{{ _virtualbox_requirements[ansible_os_family] | default(_virtualbox_requirements['default'] ) }}"
+virtualbox_requirements: "{{ _virtualbox_requirements[ansible_os_family] | default(_virtualbox_requirements['default']) }}"
 
 _virtualbox_repo_mapping:
   Fedora: fedora
   RedHat: el
   Suse: opensuse
 
-virtualbox_repo_mapping: "{{ _virtualbox_repo_mapping[ansible_distribution] | default(_virtualbox_repo_mapping[ansible_os_family] ) }}"
+virtualbox_repo_mapping: "{{ _virtualbox_repo_mapping[ansible_distribution] | default(_virtualbox_repo_mapping[ansible_os_family]) }}"
 
 virtualbox_yum_baseurl: "http://download.virtualbox.org/virtualbox/rpm/{{ virtualbox_repo_mapping }}/$releasever/$basearch"
 
@@ -27,4 +27,4 @@ _virtualbox_package:
   default: VirtualBox-{{ virtualbox_version }}
   Debian: virtualbox-{{ virtualbox_version }}
 
-virtualbox_package: "{{ _virtualbox_package[ansible_os_family] | default(_virtualbox_package['default'] ) }}"
+virtualbox_package: "{{ _virtualbox_package[ansible_os_family] | default(_virtualbox_package['default']) }}"

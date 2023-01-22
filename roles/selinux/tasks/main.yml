@@ -17,6 +17,9 @@
   ansible.builtin.meta: flush_handlers
 
 - name: Configure selinux
+  when:
+    - ansible_selinux.status is defined
+    - ansible_connection not in [ "container", "docker", "community.docker.docker" ]
   block:
     - name: Manage selinux
       ansible.posix.selinux:
@@ -35,6 +38,3 @@
         label: "{{ item.name }}"
       when:
         - selinux_booleans is defined
-  when:
-    - ansible_selinux.status is defined
-    - ansible_connection not in [ "container", "docker", "community.docker.docker" ]

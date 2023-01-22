@@ -1,5 +1,5 @@
 ---
-- name: archive directory object
+- name: Archive directory object
   community.general.archive:
     path: "{{ object.source }}"
     dest: "{{ backup_remote_directory }}/{{ object.type }}-{{ object.name }}-{{ backup_timestamp }}.{{ object.format | default(backup_format) }}"
@@ -9,7 +9,7 @@
   when:
     - object.type == "directory"
 
-- name: dump mysql object
+- name: Dump mysql object
   community.mysql.mysql_db:
     name: "{{ object.name }}"
     state: dump
@@ -17,7 +17,7 @@
   when:
     - object.type == "mysql"
 
-- name: dump postgres object
+- name: Dump postgres object
   community.postgresql.postgresql_db:
     name: "{{ object.name }}"
     state: dump
@@ -27,7 +27,7 @@
   when:
     - object.type == "postgres"
 
-- name: compress object
+- name: Compress object
   community.general.archive:
     path: "{{ backup_remote_directory }}/{{ object.type }}-{{ object.name }}-{{ backup_timestamp }}.sql"
     dest: "{{ backup_remote_directory }}/{{ object.type }}-{{ object.name }}-{{ backup_timestamp }}.{{ object.format | default(backup_format) }}"
@@ -36,7 +36,7 @@
   when:
     - object.type in [ "mysql", "postgres" ]
 
-- name: fetch object
+- name: Fetch object
   ansible.builtin.fetch:
     src: "{{ backup_remote_directory }}/{{ object.type }}-{{ object.name }}-{{ backup_timestamp }}.{{ object.format | default(backup_format) }}"
     dest: "{{ backup_directory }}/{{ inventory_hostname }}/"
@@ -45,7 +45,7 @@
   when:
     - object.type in [ "mysql", "postgres" ]
 
-- name: cleanup object
+- name: Cleanup object
   ansible.builtin.file:
     path: "{{ backup_remote_directory }}/{{ object.type }}-{{ object.name }}-{{ backup_timestamp }}.{{ object.format | default(backup_format) }}"
     state: absent

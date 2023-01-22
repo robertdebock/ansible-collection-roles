@@ -10,4 +10,4 @@ _rsyslog_work_directory:
   default: /var/lib/rsyslog
   Debian: /var/spool/rsyslog
 
-rsyslog_work_directory: "{{ _rsyslog_work_directory[ansible_os_family] | default (_rsyslog_work_directory['default'] ) }}"
+rsyslog_work_directory: "{{ _rsyslog_work_directory[ansible_os_family] | default(_rsyslog_work_directory['default']) }}"

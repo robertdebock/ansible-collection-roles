@@ -1,6 +1,6 @@
 ---
 
-- name: test if dryrun_defaults_variable is set correctly
+- name: Test if dryrun_defaults_variable is set correctly
   ansible.builtin.assert:
     that:
       - dryrun_defaults_variable is defined

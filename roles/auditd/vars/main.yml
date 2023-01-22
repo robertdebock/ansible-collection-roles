@@ -7,7 +7,7 @@ _auditd_packages:
   Debian:
     - auditd
 
-auditd_packages: "{{ _auditd_packages[ansible_os_family] | default(_auditd_packages['default'] ) }}"
+auditd_packages: "{{ _auditd_packages[ansible_os_family] | default(_auditd_packages['default']) }}"
 
 auditd_config_directory: /etc/audit
 

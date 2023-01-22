@@ -29,6 +29,9 @@
     label: "{{ item.path }}"
 
 - name: Configure selinux
+  when:
+    - ansible_selinux.status is defined
+    - ansible_selinux.status == "enabled"
   block:
     - name: Set selinux settings for zabbix_server
       ansible.posix.seboolean:
@@ -49,9 +52,6 @@
         - Create selinux mod for zabbix_server
         - Create selinux pp for zabbix_server
         - Load selinux pp for zabbix_server
-  when:
-    - ansible_selinux.status is defined
-    - ansible_selinux.status == "enabled"
 
 - name: Flush handlers
   ansible.builtin.meta: flush_handlers

@@ -7,6 +7,8 @@
   delegate_to: localhost
 
 - name: Prepare debian
+  when:
+    - ansible_pkg_mgr == "apt"
   block:
     - name: Add collabora key (apt)
       ansible.builtin.apt_key:
@@ -17,10 +19,10 @@
       ansible.builtin.apt_repository:
         filename: collabora
         repo: "deb {{ collabora_online_repo }} ./"
-  when:
-    - ansible_pkg_mgr == "apt"
 
 - name: Prepare redhat
+  when:
+    - ansible_pkg_mgr in [ "dnf", "yum" ]
   block:
     - name: Add collabora key (dnf and yum)
       ansible.builtin.rpm_key:
@@ -32,8 +34,6 @@
         name: collabora_online
         description: Collabora Online CODE
         baseurl: "{{ collabora_online_repo }}"
-  when:
-    - ansible_pkg_mgr in [ "dnf", "yum" ]
 
 - name: Install packages
   ansible.builtin.package:

@@ -354,7 +354,7 @@
   when:
     - item.access_log_prefix is defined
 
-- name: test if item.access_log_suffix in tomcat_instances is set correctly
+- name: Test if item.access_log_suffix in tomcat_instances is set correctly
   ansible.builtin.assert:
     that:
       - item.access_log_suffix is string
@@ -365,7 +365,7 @@
   when:
     - item.access_log_suffix is defined
 
-- name: test if item.access_log_pattern in tomcat_instances is set correctly
+- name: Test if item.access_log_pattern in tomcat_instances is set correctly
   ansible.builtin.assert:
     that:
       - item.access_log_pattern is string

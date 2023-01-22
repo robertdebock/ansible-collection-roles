@@ -1,18 +1,18 @@
 ---
 # tasks file for maintenance
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: cleanup apt cache
+- name: Cleanup apt cache
   ansible.builtin.apt:
     autoclean: yes
   when:
     - ansible_pkg_mgr == "apt"
 
-- name: cleanup dnf cache
+- name: Cleanup dnf cache
   ansible.builtin.command:
     cmd: dnf clean all
   when:
@@ -21,31 +21,31 @@
   changed_when:
     - "'0 files removed' not in maintenance_cleanup_dnf.stdout"
 
-- name: cleanup yum cache
+- name: Cleanup yum cache
   ansible.builtin.command:
-    cmd: yum clean all  # noqa 303 yum module has not `clean` feature.
+    cmd: yum clean all  # noqa command-instead-of-module yum module has not `clean` feature.
     removes: /var/cache/yum/{{ ansible_architecture }}/{{ ansible_distribution_major_version }}/base/repomd.xml
   when:
     - ansible_pkg_mgr == "yum"
 
-- name: cleanup zypper cache
+- name: Cleanup zypper cache
   ansible.builtin.command:
     cmd: zypper clean --all
     removes: "/var/cache/zypp/solv/@System"
   when:
     - ansible_pkg_mgr == "zypper"
 
-- name: check /usr/bin/journalctl
+- name: Check /usr/bin/journalctl
   ansible.builtin.stat:
     path: /usr/bin/journalctl
   register: maintenance_usr_bin_journalctl
 
-- name: check /bin/journalctl
+- name: Check /bin/journalctl
   ansible.builtin.stat:
     path: /bin/journalctl
   register: maintenance_bin_journalctl
 
-- name: cleanup journalctl logs
+- name: Cleanup journalctl logs
   ansible.builtin.command:
     cmd: journalctl --vacuum-time={{ maintenance_journalctl_vacuum }}
   when:
@@ -55,7 +55,7 @@
   changed_when:
     - "'freed 0B' not in maintenance_cleanup_journalctl.stderr"
 
-- name: empty selected files
+- name: Empty selected files
   ansible.builtin.copy:
     content: ""
     dest: "{{ item }}"

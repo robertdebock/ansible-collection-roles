@@ -20,4 +20,4 @@ _epel_next:
   default: no
   Stream: yes
 
-epel_next: "{{ _epel_next[ansible_distribution_release] | default(_epel_next['default'] ) }}"
+epel_next: "{{ _epel_next[ansible_distribution_release] | default(_epel_next['default']) }}"

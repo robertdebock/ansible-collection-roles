@@ -24,3 +24,5 @@
     - result is not failed
   retries: 2
   delay: 10
+  when:
+    - ansible_connection not in [ "container", "docker", "community.docker.docker" ]

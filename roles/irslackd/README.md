@@ -4,11 +4,11 @@ Install and configure irslackd on your system.
 
 |GitHub|GitLab|Quality|Downloads|Version|
 |------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-irslackd/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-irslackd/actions)|[![gitlab](https://gitlab.com/robertdebock/ansible-role-irslackd/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-irslackd)|[![quality](https://img.shields.io/ansible/quality/30532)](https://galaxy.ansible.com/robertdebock/irslackd)|[![downloads](https://img.shields.io/ansible/role/d/30532)](https://galaxy.ansible.com/robertdebock/irslackd)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-irslackd.svg)](https://github.com/robertdebock/ansible-role-irslackd/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-irslackd/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-irslackd/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-irslackd/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-irslackd)|[![quality](https://img.shields.io/ansible/quality/30532)](https://galaxy.ansible.com/robertdebock/irslackd)|[![downloads](https://img.shields.io/ansible/role/d/30532)](https://galaxy.ansible.com/robertdebock/irslackd)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-irslackd.svg)](https://github.com/robertdebock/ansible-role-irslackd/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
-This example is taken from `molecule/default/converge.yml` and is tested on each push, pull request and release.
+This example is taken from [`molecule/default/converge.yml`](https://github.com/robertdebock/ansible-role-irslackd/blob/master/molecule/default/converge.yml) and is tested on each push, pull request and release.
 
 ```yaml
 ---
@@ -21,7 +21,7 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
     - role: robertdebock.roles.irslackd
 ```
 
-The machine needs to be prepared. In CI this is done using `molecule/default/prepare.yml`:
+The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-irslackd/blob/master/molecule/default/prepare.yml):
 
 ```yaml
 ---
@@ -42,7 +42,7 @@ Also see a [full explanation and example](https://robertdebock.nl/how-to-use-the
 
 ## [Role Variables](#role-variables)
 
-The default values for the variables are set in `defaults/main.yml`:
+The default values for the variables are set in [`defaults/main.yml`](https://github.com/robertdebock/ansible-role-irslackd/blob/master/defaults/main.yml):
 
 ```yaml
 ---
@@ -79,12 +79,12 @@ The following roles are used to prepare a system. You can prepare your system in
 
 | Requirement | GitHub | GitLab |
 |-------------|--------|--------|
-|[robertdebock.bootstrap](https://galaxy.ansible.com/robertdebock/bootstrap)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-bootstrap/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-bootstrap/actions)|[![Build Status GitLab](https://gitlab.com/robertdebock/ansible-role-bootstrap/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-bootstrap)|
-|[robertdebock.ca_certificates](https://galaxy.ansible.com/robertdebock/ca_certificates)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-ca_certificates/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-ca_certificates/actions)|[![Build Status GitLab](https://gitlab.com/robertdebock/ansible-role-ca_certificates/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-ca_certificates)|
-|[robertdebock.epel](https://galaxy.ansible.com/robertdebock/epel)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-epel/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-epel/actions)|[![Build Status GitLab](https://gitlab.com/robertdebock/ansible-role-epel/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-epel)|
-|[robertdebock.git](https://galaxy.ansible.com/robertdebock/git)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-git/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-git/actions)|[![Build Status GitLab](https://gitlab.com/robertdebock/ansible-role-git/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-git)|
-|[robertdebock.npm](https://galaxy.ansible.com/robertdebock/npm)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-npm/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-npm/actions)|[![Build Status GitLab](https://gitlab.com/robertdebock/ansible-role-npm/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-npm)|
-|[robertdebock.service](https://galaxy.ansible.com/robertdebock/service)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-service/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-service/actions)|[![Build Status GitLab](https://gitlab.com/robertdebock/ansible-role-service/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-service)|
+|[robertdebock.bootstrap](https://galaxy.ansible.com/robertdebock/bootstrap)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-bootstrap/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-bootstrap/actions)|[![Build Status GitLab](https://gitlab.com/robertdebock-iac/ansible-role-bootstrap/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-bootstrap)|
+|[robertdebock.ca_certificates](https://galaxy.ansible.com/robertdebock/ca_certificates)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-ca_certificates/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-ca_certificates/actions)|[![Build Status GitLab](https://gitlab.com/robertdebock-iac/ansible-role-ca_certificates/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-ca_certificates)|
+|[robertdebock.epel](https://galaxy.ansible.com/robertdebock/epel)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-epel/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-epel/actions)|[![Build Status GitLab](https://gitlab.com/robertdebock-iac/ansible-role-epel/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-epel)|
+|[robertdebock.git](https://galaxy.ansible.com/robertdebock/git)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-git/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-git/actions)|[![Build Status GitLab](https://gitlab.com/robertdebock-iac/ansible-role-git/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-git)|
+|[robertdebock.npm](https://galaxy.ansible.com/robertdebock/npm)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-npm/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-npm/actions)|[![Build Status GitLab](https://gitlab.com/robertdebock-iac/ansible-role-npm/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-npm)|
+|[robertdebock.service](https://galaxy.ansible.com/robertdebock/service)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-service/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-service/actions)|[![Build Status GitLab](https://gitlab.com/robertdebock-iac/ansible-role-service/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-service)|
 
 ## [Context](#context)
 
@@ -99,10 +99,10 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|el|8|
-|debian|bullseye|
-|fedora|all|
-|ubuntu|focal|
+|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|8|
+|[Debian](https://hub.docker.com/repository/docker/robertdebock/debian/general)|bullseye|
+|[Fedora](https://hub.docker.com/repository/docker/robertdebock/fedora/general)|all|
+|[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|focal|
 
 The minimum version of Ansible required is 2.10, tests have been done to:
 
@@ -114,7 +114,7 @@ If you find issues, please register them in [GitHub](https://github.com/robertde
 
 ## [License](#license)
 
-Apache-2.0
+[Apache-2.0](https://github.com/robertdebock/ansible-role-irslackd/blob/master/LICENSE).
 
 ## [Author Information](#author-information)
 

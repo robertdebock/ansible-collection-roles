@@ -28,4 +28,4 @@ _unbound_requirements:
     - openssl-devel
     - systemd-devel
 
-unbound_requirements: "{{ _unbound_requirements[ansible_os_family] | default(_unbound_requirements['default'] ) }}"
+unbound_requirements: "{{ _unbound_requirements[ansible_os_family] | default(_unbound_requirements['default']) }}"

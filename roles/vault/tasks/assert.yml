@@ -1,5 +1,12 @@
 ---
 
+- name: Test if vault_type is set correctly
+  ansible.builtin.assert:
+    that:
+      - vault_type is defined
+      - vault_type is string
+      - vault_type in [ "oss", "ent", "hsm" ]
+    quiet: yes
 
 - name: Test if vault_install_package is set correctly
   ansible.builtin.assert:
@@ -315,3 +322,59 @@
       - vault_store_root_token is defined
       - vault_store_root_token is boolean
     quiet: yes
+
+- name: Test if vault_retry_join is set correctly
+  ansible.builtin.assert:
+    that:
+      - vault_retry_join is iterable
+    quiet: yes
+  when:
+    - vault_retry_join is defined
+
+- name: Test if item.address in vault_retry_join is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.address is defined
+      - item.address is string
+    quiet: yes
+  loop: "{{ vault_retry_join }}"
+  loop_control:
+    label: "{{ item.address }}"
+  when:
+    - vault_retry_join is defined
+
+- name: Test if item.leader_ca_cert_file in vault_retry_join is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.leader_ca_cert_file is string
+    quiet: yes
+  loop: "{{ vault_retry_join }}"
+  loop_control:
+    label: "{{ item.address }}"
+  when:
+    - vault_retry_join is defined
+    - item.leader_ca_cert_file is defined
+
+- name: Test if item.leader_client_cert_file in vault_retry_join is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.leader_client_cert_file is string
+    quiet: yes
+  loop: "{{ vault_retry_join }}"
+  loop_control:
+    label: "{{ item.address }}"
+  when:
+    - vault_retry_join is defined
+    - item.leader_client_cert_file is defined
+
+- name: Test if item.leader_client_key_file in vault_retry_join is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.leader_client_key_file is string
+    quiet: yes
+  loop: "{{ vault_retry_join }}"
+  loop_control:
+    label: "{{ item.address }}"
+  when:
+    - vault_retry_join is defined
+    - item.leader_client_key_file is defined

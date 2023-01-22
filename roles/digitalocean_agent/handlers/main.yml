@@ -1,5 +1,5 @@
 ---
-# handlers file for digitalocean-agent
+# handlers file for digitalocean_agent
 
 - name: Update apt cache
   ansible.builtin.apt:

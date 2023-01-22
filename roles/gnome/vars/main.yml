@@ -21,7 +21,7 @@ _gnome_packages:
   RedHat:
     - "@Server with GUI"
 
-gnome_packages: "{{ _gnome_packages[ansible_distribution] | default(_gnome_packages[ansible_os_family] | default(_gnome_packages['default'] )) }}"
+gnome_packages: "{{ _gnome_packages[ansible_distribution] | default(_gnome_packages[ansible_os_family] | default(_gnome_packages['default'])) }}"
 
 gnome_exclude:
   - "{{ ansible_distribution | lower }}-release-workstation"

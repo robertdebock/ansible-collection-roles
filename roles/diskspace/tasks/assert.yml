@@ -1,13 +1,13 @@
 ---
 
-- name: test if diskspace_mounts is set correctly
+- name: Test if diskspace_mounts is set correctly
   ansible.builtin.assert:
     that:
       - diskspace_mounts is defined
       - diskspace_mounts is iterable
     quiet: yes
 
-- name: test if mandatory item in diskspace_mounts is set correctly
+- name: Test if mandatory item in diskspace_mounts is set correctly
   ansible.builtin.assert:
     that:
       - item.name is defined
@@ -16,7 +16,7 @@
   loop_control:
     label: "{{ item.name }}"
 
-- name: test if megabytes_available item in diskspace_mounts is set correctly
+- name: Test if megabytes_available item in diskspace_mounts is set correctly
   ansible.builtin.assert:
     that:
       - item.megabytes_available is number
@@ -27,7 +27,7 @@
   loop_control:
     label: "{{ item.name }}"
 
-- name: test if gigabytes_available item in diskspace_mounts is set correctly
+- name: Test if gigabytes_available item in diskspace_mounts is set correctly
   ansible.builtin.assert:
     that:
       - item.gigabytes_available is number
@@ -38,7 +38,7 @@
   loop_control:
     label: "{{ item.name }}"
 
-- name: test if inodes_available item in diskspace_mounts is set correctly
+- name: Test if inodes_available item in diskspace_mounts is set correctly
   ansible.builtin.assert:
     that:
       - item.inodes_available is number
@@ -49,7 +49,7 @@
   loop_control:
     label: "{{ item.name }}"
 
-- name: test if a correct combination is set in diskspace_mounts
+- name: Test if a correct combination is set in diskspace_mounts
   ansible.builtin.assert:
     that:
       - item.megabytes_available is defined or

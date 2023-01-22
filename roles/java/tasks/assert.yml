@@ -20,7 +20,7 @@
   ansible.builtin.assert:
     that:
       - java_version | int is integer
-      - java_version | int in [ 6, 7, 8, 9, 10, 11, 12, 13 ]
+      - java_version | int in [ 6, 7, 8, 9, 10, 11, 12, 13, 17 ]
     quiet: yes
   when:
     - java_version is defined

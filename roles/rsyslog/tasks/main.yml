@@ -38,7 +38,7 @@
     state: directory
     mode: "0755"
 
-- name: Configuring {{ rsyslog_forward_rule_name }} rsyslog forward rule
+- name: Configuring rsyslog forward rule
   ansible.builtin.template:
     src: "forward_rule.conf.j2"
     dest: /etc/rsyslog.d/{{ rsyslog_forward_rule_name }}.conf

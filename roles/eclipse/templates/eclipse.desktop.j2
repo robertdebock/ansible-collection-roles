@@ -1,0 +1,12 @@
+{{ ansible_managed | comment }}
+# Eclipse Shortcut
+# https://gist.github.com/2922285
+[Desktop Entry]
+Type=Application
+Name=Eclipse {{ eclipse_release }}
+Comment=Eclipse Integrated Development Environment
+Icon={{ eclipse_install_path }}/icon.xpm
+Exec={{ eclipse_install_path }}/eclipse
+Terminal=false
+Categories=Development;IDE;Java;
+StartupWMClass=Eclipse

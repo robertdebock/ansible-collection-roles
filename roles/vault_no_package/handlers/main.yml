@@ -1,0 +1,45 @@
+---
+# handlers file for vault_no_package
+
+- name: Daemon reload
+  ansible.builtin.systemd:
+    daemon_reload: yes
+
+- name: Stop vault
+  ansible.builtin.service:
+    name: vault.service
+    state: stopped
+
+- name: Restart vault
+  ansible.builtin.service:
+    name: vault.service
+    state: restarted
+
+- name: Step down
+  ansible.builtin.uri:
+    url: "http://127.0.0.1:8200/v1/sys/step-down"
+    headers:
+      X-Vault-Token: "{{ vault_token }}"
+    method: POST
+    status_code:
+      - 204
+  register: vault_step_down
+  changed_when:
+    - vault_step_down.status == 204
+
+# TODO: Not sure if unsealing should be a part of this role.
+# - name: Unseal vault
+#   ansible.builtin.uri:
+#     url: "http://127.0.0.1:8200/v1/sys/unseal"
+#     method: POST
+#     body:
+#       key: "{{ item }}"
+#     body_format: json
+#   loop: "{{ vault_unseal_keys[:3] }}"
+#   loop_control:
+#     label: "Unseal keys are hidden intentionally"
+#   no_log: yes
+#   register: vault_unseal
+#   changed_when:
+#     - vault_unseal.status == 200
+#   when: vault_initialized

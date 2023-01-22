@@ -5,7 +5,7 @@
   ansible.builtin.systemd:
     daemon_reload: yes
   notify:
-    - restart rundeck
+    - Restart rundeck
 
 - name: Restart rundeck
   ansible.builtin.service:

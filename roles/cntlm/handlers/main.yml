@@ -5,7 +5,7 @@
   ansible.builtin.systemd:
     daemon_reload: yes
   notify:
-    - restart software
+    - Restart software
 
 - name: Configure cntlm
   ansible.builtin.command:
@@ -35,7 +35,7 @@
     dest: /etc/cntlm.conf
     mode: "0640"
   notify:
-    - restart cntlm
+    - Restart cntlm
 
 - name: Restart cntlm
   ansible.builtin.service:

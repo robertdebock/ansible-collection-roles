@@ -20,6 +20,7 @@
   ansible.builtin.get_url:
     url: "{{ rundeck_download_url }}"
     dest: "{{ rundeck_rdeckbase }}/rundeck-{{ rundeck_version }}-{{ rundeck_release_date }}.war"
+    mode: "0640"
 
 - name: Unpack rundeck
   ansible.builtin.command:
@@ -32,7 +33,7 @@
     name: robertdebock.service
   vars:
     service_list:
-      - name: Rundeck
+      - name: rundeck
         description: Rundeck
         start_command: /usr/bin/java -Xmx{{ rundeck_xmx }}m -jar rundeck-{{ rundeck_version }}-{{ rundeck_release_date }}.war
         working_directory: "{{ rundeck_rdeckbase }}"
@@ -97,6 +98,7 @@
   ansible.builtin.get_url:
     url: "{{ item }}"
     dest: /opt/rundeck/libext
+    mode: "0640"
   loop: "{{ rundeck_plugins }}"
   when:
     - rundeck_plugins is defined

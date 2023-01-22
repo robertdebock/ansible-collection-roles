@@ -28,7 +28,7 @@
     name: robertdebock.service
   vars:
     service_list:
-      - name: Earlyoom
+      - name: earlyoom
         description: Early Out Of Memory Killer
         start_command: >-
           /usr/bin/earlyoom

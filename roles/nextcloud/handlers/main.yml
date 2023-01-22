@@ -1,7 +1,7 @@
 ---
 # handlers file for nextcloud
 
-- name: set memcache.distributed
+- name: Set memcache.distributed
   ansible.builtin.command:
     cmd: php occ config:system:set memcache.distributed --value="\OC\Memcache\Redis"
   args:
@@ -9,7 +9,7 @@
   become: yes
   become_user: "{{ nextcloud_httpd_owner }}"
 
-- name: set redis host
+- name: Set redis host
   ansible.builtin.command:
     cmd: php occ config:system:set redis host --value="localhost"
   args:
@@ -17,7 +17,7 @@
   become: yes
   become_user: "{{ nextcloud_httpd_owner }}"
 
-- name: set redis port
+- name: Set redis port
   ansible.builtin.command:
     cmd: php occ config:system:set redis port --value="6379"
   args:
@@ -25,7 +25,7 @@
   become: yes
   become_user: "{{ nextcloud_httpd_owner }}"
 
-- name: set trusted domains
+- name: Set trusted domains
   ansible.builtin.command:
     cmd: php occ config:system:set trusted_domains 1 --value={{ nextcloud_domain_url }}
   args:
@@ -33,7 +33,7 @@
   become: yes
   become_user: "{{ nextcloud_httpd_owner }}"
 
-- name: set permissions
+- name: Set permissions
   ansible.builtin.file:
     path: "{{ item.path }}"
     state: "{{ item.state | default(omit) }}"
@@ -44,7 +44,7 @@
   loop_control:
     label: "{{ item.path }}"
 
-- name: add missing indices
+- name: Add missing indices
   ansible.builtin.command:
     cmd: php occ db:add-missing-indices
   args:

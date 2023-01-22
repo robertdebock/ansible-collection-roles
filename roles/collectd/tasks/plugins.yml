@@ -34,6 +34,6 @@
 
 - name: Append configured plugin to list
   ansible.builtin.set_fact:
-    _new_plugins_configured: "{{ _new_plugins_configured + [ configured_plugin.dest ] }}"
+    _new_plugins_configured: "{{ _new_plugins_configured + [configured_plugin.dest] }}"
   when:
     - plugin.config is defined

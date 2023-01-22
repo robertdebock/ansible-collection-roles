@@ -4,5 +4,6 @@
     url: "{{ war.url }}"
     dest: "{{ tomcat_directory }}//{{ instance.name }}/webapps/"
     validate_certs: no
+    mode: "0640"
   when:
     - war.url is defined

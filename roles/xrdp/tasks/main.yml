@@ -25,6 +25,8 @@
     - Restart xrdp
 
 - name: Place 45-allow-colord
+  when:
+    - ansible_distribution == "Ubuntu"
   block:
     - name: Place 45-allow-colord.pkla
       ansible.builtin.copy:
@@ -41,8 +43,6 @@
         owner: root
         group: root
         mode: "0644"
-  when:
-    - ansible_distribution == "Ubuntu"
 
 - name: Start and enable xrdp
   ansible.builtin.service:

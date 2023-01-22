@@ -6,4 +6,4 @@ _filesytem_requirements:
     - e2fsprogs
     - util-linux
 
-filesystem_requirements: "{{ _filesytem_requirements[ansible_os_family] | default(_filesytem_requirements['default'] ) }}"
+filesystem_requirements: "{{ _filesytem_requirements[ansible_os_family] | default(_filesytem_requirements['default']) }}"

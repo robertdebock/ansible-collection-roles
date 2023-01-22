@@ -15,7 +15,7 @@
   community.general.filesystem:
     dev: "{{ item.dev }}"
     force: "{{ item.force | default(omit) }}"
-    fstype: "{{ item.fstype | default(filesytem_default_filesystem ) }}"
+    fstype: "{{ item.fstype | default(filesytem_default_filesystem) }}"
     state: "{{ item.state | default(omit) }}"
     opts: "{{ item.opts | default(omit) }}"
     resizefs: "{{ item.resizefs | default(omit) }}"

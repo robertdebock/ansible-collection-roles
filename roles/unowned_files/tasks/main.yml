@@ -24,6 +24,8 @@
     label: "{{ item.path }}"
 
 - name: Configure unowned files delete
+  when:
+    - not unowned_files_delete | bool
   block:
     - name: Set owner to unowned files
       ansible.builtin.file:
@@ -46,5 +48,3 @@
       loop: "{{ unowned_files_find_files.files }}"
       loop_control:
         label: "{{ item.path }}"
-  when:
-    - not unowned_files_delete | bool

@@ -7,6 +7,8 @@
   delegate_to: localhost
 
 - name: Run apt steps
+  when:
+    - ansible_pkg_mgr == "apt"
   block:
     - name: Add gpg key (apt)
       ansible.builtin.apt_key:
@@ -18,10 +20,10 @@
         repo: "{{ elastic_repo_apt_repo }}"
         filename: elasic-7.x
         state: present
-  when:
-    - ansible_pkg_mgr == "apt"
 
 - name: Run yum steps
+  when:
+    - ansible_pkg_mgr in [ "dnf", "rpm", "yum" ]
   block:
     - name: Add gpg key (rpm)
       ansible.builtin.rpm_key:
@@ -34,5 +36,3 @@
         description: Elastic repository for 7.x packages
         baseurl: "{{ elastic_repo_rpm_repo }}"
         gpgkey: "{{ elastic_repo_gpg_url }}"
-  when:
-    - ansible_pkg_mgr in [ "dnf", "rpm", "yum" ]

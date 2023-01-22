@@ -6,7 +6,7 @@ _obsproject_requirements:
   Debian:
     - ffmpeg
 
-obsproject_requirements: "{{ _obsproject_requirements[ansible_os_family] | default(_obsproject_requirements['default'] ) }}"
+obsproject_requirements: "{{ _obsproject_requirements[ansible_os_family] | default(_obsproject_requirements['default']) }}"
 
 obsproject_package:
   - obs-studio

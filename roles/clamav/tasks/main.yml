@@ -16,6 +16,9 @@
     - Update virus definitions
 
 - name: Manage selinux settings
+  when:
+    - ansible_selinux is defined
+    - ansible_selinux.status == "enabled"
   block:
     - name: Allowing system virus scanning
       ansible.posix.seboolean:
@@ -43,9 +46,6 @@
         - Create selinux mod for clamav
         - Create selinux pp for clamav
         - Load selinux pp for clamav
-  when:
-    - ansible_selinux is defined
-    - ansible_selinux.status == "enabled"
 
 - name: Place freshclam.conf
   ansible.builtin.template:

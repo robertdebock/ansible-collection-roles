@@ -7,7 +7,7 @@ _openssh_packages:
   Suse:
     - openssh
 
-openssh_packages: "{{ _openssh_packages[ansible_os_family] | default(_openssh_packages['default'] ) }}"
+openssh_packages: "{{ _openssh_packages[ansible_os_family] | default(_openssh_packages['default']) }}"
 
 _openssh_key_types:
   default:
@@ -44,10 +44,10 @@ _openssh_template_mode:
   RedHat: "600"
   Suse: "640"
 
-openssh_template_mode: "{{ _openssh_template_mode[ansible_os_family] | default(_openssh_template_mode['default'] ) }}"
+openssh_template_mode: "{{ _openssh_template_mode[ansible_os_family] | default(_openssh_template_mode['default']) }}"
 
 _openssh_sftp_server:
   default: /usr/libexec/openssh/sftp-server
   Debian: /usr/lib/openssh/sftp-server
 
-openssh_sftp_server: "{{ _openssh_sftp_server[ansible_os_family] | default(_openssh_sftp_server['default'] ) }}"
+openssh_sftp_server: "{{ _openssh_sftp_server[ansible_os_family] | default(_openssh_sftp_server['default']) }}"

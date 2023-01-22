@@ -4,11 +4,11 @@ Install and configure dhcpd on your system.
 
 |GitHub|GitLab|Quality|Downloads|Version|
 |------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-dhcpd/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-dhcpd/actions)|[![gitlab](https://gitlab.com/robertdebock/ansible-role-dhcpd/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-dhcpd)|[![quality](https://img.shields.io/ansible/quality/21853)](https://galaxy.ansible.com/robertdebock/dhcpd)|[![downloads](https://img.shields.io/ansible/role/d/21853)](https://galaxy.ansible.com/robertdebock/dhcpd)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-dhcpd.svg)](https://github.com/robertdebock/ansible-role-dhcpd/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-dhcpd/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-dhcpd/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-dhcpd/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-dhcpd)|[![quality](https://img.shields.io/ansible/quality/21853)](https://galaxy.ansible.com/robertdebock/dhcpd)|[![downloads](https://img.shields.io/ansible/role/d/21853)](https://galaxy.ansible.com/robertdebock/dhcpd)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-dhcpd.svg)](https://github.com/robertdebock/ansible-role-dhcpd/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
-This example is taken from `molecule/default/converge.yml` and is tested on each push, pull request and release.
+This example is taken from [`molecule/default/converge.yml`](https://github.com/robertdebock/ansible-role-dhcpd/blob/master/molecule/default/converge.yml) and is tested on each push, pull request and release.
 
 ```yaml
 ---
@@ -26,7 +26,7 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
     - role: robertdebock.roles.dhcpd
 ```
 
-The machine needs to be prepared. In CI this is done using `molecule/default/prepare.yml`:
+The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-dhcpd/blob/master/molecule/default/prepare.yml):
 
 ```yaml
 ---
@@ -45,7 +45,7 @@ Also see a [full explanation and example](https://robertdebock.nl/how-to-use-the
 
 ## [Role Variables](#role-variables)
 
-The default values for the variables are set in `defaults/main.yml`:
+The default values for the variables are set in [`defaults/main.yml`](https://github.com/robertdebock/ansible-role-dhcpd/blob/master/defaults/main.yml):
 
 ```yaml
 ---
@@ -88,9 +88,9 @@ The following roles are used to prepare a system. You can prepare your system in
 
 | Requirement | GitHub | GitLab |
 |-------------|--------|--------|
-|[robertdebock.apt_autostart](https://galaxy.ansible.com/robertdebock/apt_autostart)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-apt_autostart/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-apt_autostart/actions)|[![Build Status GitLab](https://gitlab.com/robertdebock/ansible-role-apt_autostart/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-apt_autostart)|
-|[robertdebock.bootstrap](https://galaxy.ansible.com/robertdebock/bootstrap)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-bootstrap/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-bootstrap/actions)|[![Build Status GitLab](https://gitlab.com/robertdebock/ansible-role-bootstrap/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-bootstrap)|
-|[robertdebock.core_dependencies](https://galaxy.ansible.com/robertdebock/core_dependencies)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-core_dependencies/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-core_dependencies/actions)|[![Build Status GitLab](https://gitlab.com/robertdebock/ansible-role-core_dependencies/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-core_dependencies)|
+|[robertdebock.apt_autostart](https://galaxy.ansible.com/robertdebock/apt_autostart)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-apt_autostart/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-apt_autostart/actions)|[![Build Status GitLab](https://gitlab.com/robertdebock-iac/ansible-role-apt_autostart/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-apt_autostart)|
+|[robertdebock.bootstrap](https://galaxy.ansible.com/robertdebock/bootstrap)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-bootstrap/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-bootstrap/actions)|[![Build Status GitLab](https://gitlab.com/robertdebock-iac/ansible-role-bootstrap/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-bootstrap)|
+|[robertdebock.core_dependencies](https://galaxy.ansible.com/robertdebock/core_dependencies)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-core_dependencies/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-core_dependencies/actions)|[![Build Status GitLab](https://gitlab.com/robertdebock-iac/ansible-role-core_dependencies/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-core_dependencies)|
 
 ## [Context](#context)
 
@@ -105,12 +105,12 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|alpine|all|
-|amazon|Candidate|
-|el|8|
-|debian|all|
-|fedora|all|
-|ubuntu|all|
+|[Alpine](https://hub.docker.com/repository/docker/robertdebock/alpine/general)|all|
+|[Amazon](https://hub.docker.com/repository/docker/robertdebock/amazonlinux/general)|Candidate|
+|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|8|
+|[Debian](https://hub.docker.com/repository/docker/robertdebock/debian/general)|all|
+|[Fedora](https://hub.docker.com/repository/docker/robertdebock/fedora/general)|all|
+|[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|all|
 
 The minimum version of Ansible required is 2.10, tests have been done to:
 
@@ -122,7 +122,7 @@ If you find issues, please register them in [GitHub](https://github.com/robertde
 
 ## [License](#license)
 
-Apache-2.0
+[Apache-2.0](https://github.com/robertdebock/ansible-role-dhcpd/blob/master/LICENSE).
 
 ## [Author Information](#author-information)
 

@@ -7,6 +7,9 @@
   delegate_to: localhost
 
 - name: Install zabbix repository
+  when:
+    - ansible_distribution in [ "CentOS", "RedHat", "Rocky" ] or
+      ansible_os_family in [ "Debian", "Suse" ]
   block:
     - name: Install rpm key
       ansible.builtin.rpm_key:
@@ -65,9 +68,6 @@
       when:
         - ansible_os_family in [ "RedHat", "Rocky" ]
         - ansible_distribution_major_version == "7"
-  when:
-    - ansible_distribution in [ "CentOS", "RedHat", "Rocky" ] or
-      ansible_os_family in [ "Debian", "Suse" ]
 
 - name: Flush handlers
   ansible.builtin.meta: flush_handlers

@@ -10,7 +10,7 @@ argument_specs:
         type: "str"
         default: oss
         description: "The license to use, `elastic` uses the \"Elastic\" license, `oss` uses the \"Apache 2.0\" license."
-        choises:
+        choices:
           - elastic
           - oss
       elasticsearch_network_host:

@@ -24,6 +24,8 @@
     - ansible_pkg_mgr in [ "dnf", "yum", "zypper" ]
 
 - name: Configure apt
+  when:
+    - ansible_pkg_mgr == "apt"
   block:
     - name: Add apt key
       ansible.builtin.apt_key:
@@ -34,8 +36,6 @@
       ansible.builtin.apt_repository:
         repo: "{{ jenkins_apt_repository_repo }}"
         state: present
-  when:
-    - ansible_pkg_mgr == "apt"
 
 - name: Add zypper repository
   community.general.zypper_repository:

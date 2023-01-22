@@ -1,0 +1,9 @@
+---
+# vars file for vault
+
+_vault_package:
+  oss: vault
+  ent: vault-enterprise
+  hsm: vault-enterprise-hsm
+
+vault_package: "{{ _vault_package[vault_type] }}"

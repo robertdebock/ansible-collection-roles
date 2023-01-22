@@ -1,9 +1,9 @@
 ---
 
-- name: do nothing
+- name: Do nothing
   ansible.builtin.wait_for:
 
-# - name: test if cis_X is set correctly
+# - name: Test if cis_X is set correctly
 #   assert:
 #     that:
 #       - cis_X is defined

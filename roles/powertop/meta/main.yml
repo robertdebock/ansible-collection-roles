@@ -30,5 +30,4 @@ galaxy_info:
   galaxy_tags:
     - powertop
 
-dependencies:
-  - robertdebock.roles.service
+dependencies: []

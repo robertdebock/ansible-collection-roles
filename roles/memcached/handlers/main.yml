@@ -5,7 +5,7 @@
   ansible.builtin.systemd:
     daemon_reload: yes
   notify:
-    - restart software
+    - Restart memcached
 
 - name: Restart memcached
   ansible.builtin.service:

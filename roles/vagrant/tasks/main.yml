@@ -10,6 +10,7 @@
   ansible.builtin.get_url:
     url: "{{ vagrant_package }}"
     dest: /tmp
+    mode: "0640"
 
 - name: Install vagrant rpm using package
   ansible.builtin.package:

@@ -35,6 +35,9 @@
     - ansible_default_ipv4 is defined
 
 - name: Modify selinux settings
+  when:
+    - ansible_selinux.status is defined
+    - ansible_selinux.status == "enabled"
   block:
     - name: Add haproxy_stats_port to http_port_t selinux type
       community.general.seport:
@@ -52,9 +55,6 @@
         persistent: yes
       notify:
         - Reboot
-  when:
-    - ansible_selinux.status is defined
-    - ansible_selinux.status == "enabled"
 
 - name: Flush handlers
   ansible.builtin.meta: flush_handlers

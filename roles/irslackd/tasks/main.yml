@@ -46,7 +46,7 @@
     name: robertdebock.service
   vars:
     service_list:
-      - name: Irslackd
+      - name: irslackd
         description: IRC Slack daemon
         start_command: "{{ irslackd_dest }}/irslackd -p {{ irslackd_port }} -a {{ irslackd_address }}"
         working_directory: "{{ irslackd_dest }}"

@@ -21,6 +21,9 @@
     USE: "X -cups -alsa -fontconfig"
 
 - name: Configure local rpm
+  when:
+    - java_rpm_source == "local"
+    - java_format == "rpm"
   block:
     - name: Copy oracle java (rpm)
       ansible.builtin.copy:
@@ -32,9 +35,6 @@
       ansible.builtin.package:
         name: "/tmp/{{ java_oracle_package }}"
         state: present
-  when:
-    - java_rpm_source == "local"
-    - java_format == "rpm"
 
 - name: Install oracle java (rpm) (repository)
   ansible.builtin.package:
@@ -45,6 +45,9 @@
     - java_format == "rpm"
 
 - name: Configure oracle targz
+  when:
+    - java_format == "targz"
+    - java_vendor == "oracle"
   block:
     - name: Ensure java_install_directory exists
       ansible.builtin.file:
@@ -57,9 +60,6 @@
         src: "{{ java_oracle_package }}"
         dest: "{{ java_install_directory }}"
         mode: "0755"
-  when:
-    - java_format == "targz"
-    - java_vendor == "oracle"
 
 - name: Install oracle java policy software (targz)
   ansible.builtin.unarchive:

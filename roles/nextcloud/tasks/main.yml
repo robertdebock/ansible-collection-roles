@@ -1,23 +1,23 @@
 ---
 # tasks file for nextcloud
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: install requirements
+- name: Install requirements
   ansible.builtin.package:
     name: "{{ nextcloud_requirements }}"
     state: present
 
-- name: place apache configuration
+- name: Place apache configuration
   ansible.builtin.template:
     src: nextcloud.conf.j2
     dest: "{{ nextcloud_config_directory }}/nextcloud.conf"
     mode: "0644"
 
-- name: modify selinux settings
+- name: Modify selinux settings
   ansible.posix.seboolean:
     name: "{{ item }}"
     state: yes
@@ -27,7 +27,7 @@
     - ansible_selinux.status == "enabled"
   loop: "{{ nextcloud_sebooleans }}"
 
-- name: install nextcloud
+- name: Install nextcloud
   ansible.builtin.unarchive:
     src: "{{ nextcloud_archive }}"
     dest: "{{ nextcloud_destination }}"
@@ -37,7 +37,7 @@
     creates: "{{ nextcloud_destination }}/nextcloud/occ"
     mode: "0775"
 
-- name: configure nextcloud
+- name: Configure nextcloud
   ansible.builtin.command:
     cmd: "{{ nextcloud_command }}"
     creates: "{{ nextcloud_destination }}/nextcloud/data/index.html"
@@ -46,14 +46,14 @@
   become: yes
   become_user: "{{ nextcloud_httpd_owner }}"
   notify:
-    - set memcache.distributed
-    - set redis host
-    - set redis port
-    - set trusted domains
-    - set permissions
-    - add missing indices
+    - Set memcache.distributed
+    - Set redis host
+    - Set redis port
+    - Set trusted domains
+    - Set permissions
+    - Add missing indices
 
-- name: install nextcloud app
+- name: Install nextcloud app
   ansible.builtin.command:
     cmd: php occ app:install {{ item.name }}
     chdir: "{{ nextcloud_destination }}/nextcloud"
@@ -66,9 +66,9 @@
   when:
     - nextcloud_apps is defined
   notify:
-    - set permissions
+    - Set permissions
 
-- name: include parameters
+- name: Include parameters
   ansible.builtin.include_tasks:
     file: parameters.yml
   loop: "{{ nextcloud_settings }}"
@@ -77,7 +77,7 @@
   when:
     - nextcloud_settings is defined
 
-- name: setup crontab
+- name: Setup crontab
   ansible.builtin.cron:
     name: nextcloud
     minute: "*/5"

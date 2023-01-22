@@ -7,4 +7,4 @@ _sysctl_requirements:
   RedHat:
     - procps-ng
 
-sysctl_requirements: "{{ _sysctl_requirements[ansible_os_family] | default(_sysctl_requirements['default'] ) }}"
+sysctl_requirements: "{{ _sysctl_requirements[ansible_os_family] | default(_sysctl_requirements['default']) }}"

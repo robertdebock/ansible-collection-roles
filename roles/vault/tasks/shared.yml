@@ -2,12 +2,14 @@
 
 - name: Install vault
   ansible.builtin.package:
-    name: vault
+    name: "{{ vault_package }}"
     state: present
   when:
     - vault_install_package
 
 - name: Ensure vault user and group exist
+  when:
+    - not vault_install_package
   block:
     - name: Ensure group vault exists
       ansible.builtin.group:
@@ -21,8 +23,6 @@
         shell: /bin/false
         group: vault
         system: yes
-  when:
-    - not vault_install_package
 
 - name: Create vault storage path
   ansible.builtin.file:
@@ -58,7 +58,7 @@
     group: "{{ vault_group }}"
     mode: "0755"
 
-- name: Place /etc/vaultd.d/config.hcl
+- name: Place /etc/vault.d/config.hcl
   ansible.builtin.template:
     src: config.hcl.j2
     dest: /etc/vault.d/vault.hcl
