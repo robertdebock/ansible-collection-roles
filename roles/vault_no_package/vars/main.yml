@@ -18,3 +18,8 @@ _vault_architecture_map:
   arm64: "arm64"
   i386: "386"
 vault_architecture: "{{ _vault_architecture_map[ansible_architecture] }}"
+
+# Set a few variables to make `tasks/main.yml` more readable.
+vault_destination: "{{ vault_path }}/bin/vault-{{ vault_version }}"
+vault_configuration_path: "{{ vault_path }}/etc/vault.d/vault.hcl"
+vault_license_path: " {{ vault_path }}/etc/vault.d/vault.hclic"

@@ -106,3 +106,10 @@
       - rsyslog_omit_local_logging is defined
       - rsyslog_omit_local_logging is boolean
     quiet: yes
+
+- name: Test if rsyslog_traditional_file_format is set correctly
+  ansible.builtin.assert:
+    that:
+      - rsyslog_traditional_file_format is defined
+      - rsyslog_traditional_file_format is boolean
+    quiet: yes

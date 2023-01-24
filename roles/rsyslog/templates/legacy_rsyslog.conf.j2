@@ -33,7 +33,9 @@
 # Use traditional timestamp format.
 # To enable high precision timestamps, comment out the following line.
 #
+{% if rsyslog_traditional_file_format %}
 $ActionFileDefaultTemplate RSYSLOG_TraditionalFileFormat
+{% endif %}
 
 #
 # Set the default permissions for all log files.

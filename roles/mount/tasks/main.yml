@@ -6,36 +6,37 @@
   run_once: yes
   delegate_to: localhost
 
-- name: Create mountpoint
-  ansible.builtin.file:
-    path: "{{ item.path }}"
-    state: directory
-    mode: "{{ item.mode | default(mount_default_mode) }}"
-    owner: "{{ item.owner | default(mount_default_owner) }}"
-    group: "{{ item.group | default(mount_default_group) }}"
-  loop: "{{ mount_requests }}"
-  loop_control:
-    label: "{{ item.path }}"
+- name: Process mount_requests
   when:
     - mount_requests is defined
-    - item.fstype != "swap"
+  block:
+    - name: Create mountpoint
+      ansible.builtin.file:
+        path: "{{ item.path }}"
+        state: directory
+        mode: "{{ item.mode | default(mount_default_mode) }}"
+        owner: "{{ item.owner | default(mount_default_owner) }}"
+        group: "{{ item.group | default(mount_default_group) }}"
+      loop: "{{ mount_requests }}"
+      loop_control:
+        label: "{{ item.path }}"
+      when:
+        - item.fstype != "swap"
 
-- name: Mount requested mounts
-  ansible.posix.mount:
-    backup: "{{ item.backup | default(omit) }}"
-    boot: "{{ item.boot | default(omit) }}"
-    dump: "{{ item.dump | default(omit) }}"
-    fstab: "{{ item.fstab | default(omit) }}"
-    fstype: "{{ item.fstype | default(omit) }}"
-    opts: "{{ item.opts | default(omit) }}"
-    passno: "{{ item.passno | default(omit) }}"
-    path: "{{ item.path }}"
-    src: "{{ item.src | default(omit) }}"
-    state: "{{ item.state | default('mounted') }}"
-  loop: "{{ mount_requests }}"
-  loop_control:
-    label: "{{ item.path }}"
-  when:
-    - mount_requests is defined
-  notify:
-    - Run swapon
+    - name: Mount requested mounts
+      ansible.posix.mount:
+        backup: "{{ item.backup | default(omit) }}"
+        boot: "{{ item.boot | default(omit) }}"
+        dump: "{{ item.dump | default(omit) }}"
+        fstab: "{{ item.fstab | default(omit) }}"
+        fstype: "{{ item.fstype | default(omit) }}"
+        opts: "{{ item.opts | default(omit) }}"
+        passno: "{{ item.passno | default(omit) }}"
+        path: "{{ item.path }}"
+        src: "{{ item.src | default(omit) }}"
+        state: "{{ item.state | default('mounted') }}"
+      loop: "{{ mount_requests }}"
+      loop_control:
+        label: "{{ item.path }}"
+      notify:
+        - Run swapon

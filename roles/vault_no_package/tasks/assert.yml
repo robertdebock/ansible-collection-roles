@@ -56,6 +56,7 @@
     that:
       - vault_api_addr is defined
       - vault_api_addr is string
+      - vault_api_addr is match("http")
     quiet: yes
 
 - name: Test if vault_retry_join is set correctly
@@ -73,3 +74,32 @@
       - item.address is string
     quiet: yes
   loop: "{{ vault_retry_join }}"
+
+- name: Test if vault_license is set correctly
+  ansible.builtin.assert:
+    that:
+      - vault_license is string
+      - vault_license | length > 0
+    quiet: yes
+  when:
+    - vault_license is defined
+
+- name: Test if vault_environment_variables is set correctly
+  ansible.builtin.assert:
+    that:
+      - vault_environment_variables is iterable
+    quiet: yes
+  when:
+    - vault_environment_variables is defined
+
+- name: Test if item in vault_environment_variables is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.name is defined
+      - item.name is string
+      - item.value is defined
+      - item.value is string
+    quiet: yes
+  loop: "{{ vault_environment_variables }}"
+  when:
+    - vault_environment_variables is defined

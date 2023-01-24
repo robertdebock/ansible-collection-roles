@@ -27,6 +27,8 @@
       - mount_requests is defined
       - mount_requests is iterable
     quiet: yes
+  when:
+    - mount_requests is defined
 
 - name: Test if item.backup in mount_requests is set correctly
   ansible.builtin.assert:

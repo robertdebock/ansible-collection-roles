@@ -19,7 +19,7 @@
     shell: "{{ vault_user_shell }}"
     group: "{{ vault_group }}"
 
-- name: Create Vault download directory
+- name: Create Vault download directory {{ vault_download_path }}
   ansible.builtin.file:
     path: "{{ vault_download_path }}"
     state: directory
@@ -37,7 +37,7 @@
     mode: "0644"
     remote_src: yes
 
-- name: Place vault.sh profile script
+- name: Place vault.sh profile script /etc/profile.d/vault.sh
   ansible.builtin.template:
     src: vault.sh.j2
     dest: /etc/profile.d/vault.sh
@@ -46,12 +46,12 @@
     mode: "0644"
     backup: yes
 
-- name: Check if vault_path exists
+- name: Check if path exists {{ vault_path }}
   ansible.builtin.stat:
     path: "{{ vault_path }}"
   register: vault_check_path
 
-- name: Create vault_path, set ownership if vault_path does not exists
+- name: Create, set ownership if vault_path does not exists {{ vault_path }}
   ansible.builtin.file:
     path: "{{ vault_path }}"
     state: directory
@@ -60,8 +60,9 @@
     mode: "0755"
   when:
     - not vault_check_path.stat.exists
+    - vault_path != ""
 
-- name: Create directory in Vault directory
+- name: Create directory in Vault directory {{ vault_path }}
   ansible.builtin.file:
     path: "{{ vault_path }}/{{ item }}"
     state: directory
@@ -70,10 +71,10 @@
     mode: "0755"
   loop: "{{ vault_directories }}"
 
-- name: Copy Vault binary
+- name: Copy Vault binary {{ vault_destination }}
   ansible.builtin.copy:
     src: "{{ vault_download_path }}/vault"
-    dest: "{{ vault_path }}/bin/vault-{{ vault_version }}"
+    dest: "{{ vault_destination }}"
     owner: "{{ vault_user }}"
     group: "{{ vault_group }}"
     mode: "0775"
@@ -81,38 +82,20 @@
   notify:
     - Step down
 
-- name: Flush handlers
-  ansible.builtin.meta: flush_handlers
-
-# - name: Register if vault.service file exists
-#   ansible.builtin.stat:
-#     path: "/etc/systemd/system/vault.service"
-#   register: systemd_service_file
-
-# - name: Stopping vault in case vault.service file exists
-#   ansible.builtin.debug:
-#     msg: "Stopping vault"
-#   when: systemd_service_file.stat.exists
-#   notify:
-#     - Stop vault
-
-# - name: Flush handlers
-#   ansible.builtin.meta: flush_handlers
-
 - name: Symlink Vault binary to {{ vault_version }}
   ansible.builtin.copy:
-    src: "{{ vault_path }}/bin/vault-{{ vault_version }}"
+    src: "{{ vault_destination }}"
     dest: "{{ vault_path }}/bin/vault"
     owner: "{{ vault_user }}"
     group: "{{ vault_group }}"
-    mode: "0775"
+    mode: "0755"
     remote_src: yes
     force: true
 
-- name: Place Vault configuration
+- name: Place Vault configuration {{ vault_configuration_path }}
   ansible.builtin.template:
     src: vault.hcl.j2
-    dest: "{{ vault_path }}/etc/vault.d/vault.hcl"
+    dest: "{{ vault_configuration_path }}"
     owner: "{{ vault_user }}"
     group: "{{ vault_group }}"
     mode: "0640"
@@ -120,10 +103,10 @@
   notify:
     - Restart vault
 
-- name: Place Vault license file
+- name: Place Vault license file {{ vault_license_path }}
   ansible.builtin.copy:
     content: "{{ vault_license }}"
-    dest: "{{ vault_path }}/etc/vault.d/vault.hclic"
+    dest: "{{ vault_license_path }}"
     owner: "{{ vault_user }}"
     group: "{{ vault_group }}"
     mode: "0400"
@@ -134,13 +117,7 @@
     - vault_license is defined
     - vault_license | length > 0
 
-# TODO: Not sure if this step is required.
-# - name: Get information on Vault user
-#   ansible.builtin.getent:
-#     database: passwd
-#     key: "{{ vault_user }}"
-
-- name: Copy Vault service file
+- name: Copy Vault service file /etc/systemd/system/vault.service
   ansible.builtin.template:
     src: vault.service.j2
     dest: "/etc/systemd/system/vault.service"
@@ -150,14 +127,13 @@
     backup: yes
   notify:
     - Daemon reload
+  when:
+    - ansible_service_mgr == "systemd"
 
 - name: Enable and start the Vault service
-  ansible.builtin.systemd:
+  ansible.builtin.service:
     name: vault
     state: started
     enabled: true
-  notify:
-    - Unseal vault
-
-- name: Flush handlers
-  ansible.builtin.meta: flush_handlers
+  when:
+    - ansible_service_mgr == "systemd"

@@ -2,7 +2,7 @@
 galaxy_info:
   author: robertdebock
   role_name: vault_no_package
-  description: Install and configure vault_no_package on your system.
+  description: Install and configure Vault without using a package manager on your system.
   license: Apache-2.0
   company: none
   min_ansible_version: "2.10"

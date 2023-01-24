@@ -1,6 +1,8 @@
 {{ ansible_managed | comment }}
 ui            = true
+{% if vault_license is defined %}
 license_path  = "{{ vault_path }}/etc/vault.d/vault.hclic"
+{% endif %}
 cluster_addr  = "https://{{ ansible_fqdn }}:8201"
 cluster_name  = "{{ vault_cluster_name }}"
 api_addr      = "{{ vault_api_addr }}"

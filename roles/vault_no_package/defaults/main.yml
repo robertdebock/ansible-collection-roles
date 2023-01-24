@@ -7,8 +7,8 @@ vault_version: "1.12.2"
 # Set the path where to (temporarily) download Vault.
 vault_download_path: "/tmp/vault-{{ vault_version }}"
 
-# Set the (base) path where to install Vault. This can be "/".
-vault_path: "/"
+# Set the (base) path where to install Vault. This can be "" or "/opt" for example.
+vault_path: ""
 
 # Set the user Vault will run under. The user "root" is not allowed.
 vault_user: vault
@@ -19,8 +19,8 @@ vault_user_shell: /bin/false
 # Set the group Vault will run under. The group "root" is not allowed.
 vault_group: vault
 
-# Set the address to communicate out.
-vault_api_addr: "{{ ansible_hostname }}"
+# Set the address to communicate out. This must include the protocol identifier. (`http` or `https`.)
+vault_api_addr: "http://{{ ansible_hostname }}:8200"
 
 # Set the name of the cluster. Used for Raft to form a high-available cluster.
 vault_cluster_name: my_cluster
@@ -28,3 +28,11 @@ vault_cluster_name: my_cluster
 # Set the hosts (IP of resolvable name) of the nodes in the cluster.
 vault_retry_join:
   - address: 127.0.0.1
+
+# Optionally set the license. This is required for Enterprise versions of Vault.
+# vault_license: "XYZ"
+
+# Optionally set environment variables.
+vault_environment_variables:
+  - name: ChrystokiConfigurationPath
+    value: /some/path/luna/config

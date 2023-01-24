@@ -1,6 +1,6 @@
 # [vault_no_package](#vault_no_package)
 
-Install and configure vault_no_package on your system.
+Install and configure Vault without using a package manager on your system.
 
 |GitHub|GitLab|Quality|Downloads|Version|
 |------|------|-------|---------|-------|
@@ -32,6 +32,7 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
 
   roles:
     - role: robertdebock.roles.bootstrap
+    - role: robertdebock.roles.core_dependencies
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.
@@ -44,15 +45,41 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 ---
 # defaults file for vault_no_package
 
-# Set the (base) path where to install Vault. This can be "/".
-vault_path: "/"
+# Set the version of Vault to install. This can be "1.12.2", or include the features such as "1.12.2+ent" or "1.12.2+ent.hsm".
+vault_version: "1.12.2"
 
-# Set the user Vault will run under.
+# Set the path where to (temporarily) download Vault.
+vault_download_path: "/tmp/vault-{{ vault_version }}"
+
+# Set the (base) path where to install Vault. This can be "" or "/opt" for example.
+vault_path: ""
+
+# Set the user Vault will run under. The user "root" is not allowed.
 vault_user: vault
 
-# Set the group Vault will run under.
+# Set the shell for the vault_user.
+vault_user_shell: /bin/false
 
+# Set the group Vault will run under. The group "root" is not allowed.
 vault_group: vault
+
+# Set the address to communicate out. This must include the protocol identifier. (`http` or `https`.)
+vault_api_addr: "http://{{ ansible_hostname }}:8200"
+
+# Set the name of the cluster. Used for Raft to form a high-available cluster.
+vault_cluster_name: my_cluster
+
+# Set the hosts (IP of resolvable name) of the nodes in the cluster.
+vault_retry_join:
+  - address: 127.0.0.1
+
+# Optionally set the license. This is required for Enterprise versions of Vault.
+# vault_license: "XYZ"
+
+# Optionally set environment variables.
+vault_environment_variables:
+  - name: ChrystokiConfigurationPath
+    value: /some/path/luna/config
 ```
 
 ## [Requirements](#requirements)
@@ -66,6 +93,7 @@ The following roles are used to prepare a system. You can prepare your system in
 | Requirement | GitHub | GitLab |
 |-------------|--------|--------|
 |[robertdebock.bootstrap](https://galaxy.ansible.com/robertdebock/bootstrap)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-bootstrap/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-bootstrap/actions)|[![Build Status GitLab](https://gitlab.com/robertdebock-iac/ansible-role-bootstrap/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-bootstrap)|
+|[robertdebock.core_dependencies](https://galaxy.ansible.com/robertdebock/core_dependencies)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-core_dependencies/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-core_dependencies/actions)|[![Build Status GitLab](https://gitlab.com/robertdebock-iac/ansible-role-core_dependencies/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-core_dependencies)|
 
 ## [Context](#context)
 

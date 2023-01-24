@@ -5,15 +5,17 @@ _powertools_repo_name:
   RedHat: powertools
   AlmaLinux_9: crb
 
-powertools_repo_name: "{{ _powertools_repo_name[ansible_distribution ~ '_'~ ansible_distribution_major_version] | default(
+powertools_repo_name: "{{ _powertools_repo_name[ansible_distribution ~ '_' ~ ansible_distribution_major_version] | default(
                           _powertools_repo_name[ansible_distribution] ) | default(
                           _powertools_repo_name[ansible_os_family] ) }}"
 
 _powertools_repo_file:
   RedHat: "{{ ansible_distribution }}-PowerTools.repo"
+  Rocky: "{{ ansible_distribution }}-PowerTools.repo"
   AlmaLinux_8: "almalinux-PowerTools.repo"
   AlmaLinux_9: "almalinux-crb.repo"
+  CentOS: "{{ ansible_distribution }}-{{ ansible_distribution_release }}-PowerTools.repo"
 
-powertools_repo_file: "{{ _powertools_repo_file[ansible_distribution ~ '_'~ ansible_distribution_major_version] | default(
+powertools_repo_file: "{{ _powertools_repo_file[ansible_distribution ~ '_' ~ ansible_distribution_major_version] | default(
                           _powertools_repo_file[ansible_distribution] ) | default(
                           _powertools_repo_file[ansible_os_family] ) }}"

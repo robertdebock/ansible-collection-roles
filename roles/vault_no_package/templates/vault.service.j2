@@ -10,7 +10,9 @@ StartLimitBurst=3
 
 [Service]
 Type=notify
-Environment=ChrystokiConfigurationPath=/ec/prod/app/hcvault/luna/config/
+{% for item in vault_environment_variables %}
+Environment={{ item.name }}={{ item.value }}
+{% endfor %}
 User={{ vault_user }}
 Group={{ vault_group }}
 ProtectSystem=full
