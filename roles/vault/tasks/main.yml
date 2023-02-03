@@ -6,25 +6,16 @@
   run_once: yes
   delegate_to: localhost
 
-- name: Run shared tasks
-  ansible.builtin.include_tasks:
-    file: shared.yml
+- name: Install prerequisites
+  ansible.builtin.package:
+    name: "{{ vault_prerequisites }}"
 
-- name: Run leader tasks
+- name: Include installation method specific tasks
   ansible.builtin.include_tasks:
-    file: leader.yml
+    file: "{{ vault_installation_method }}.yml"
 
-- name: Run follower tasks
-  ansible.builtin.include_tasks:
-    file: follower.yml
-  when:
-    - not ansible_check_mode
-    - inventory_hostname != vault_leader
-
-- name: Run provisioning tasks
-  ansible.builtin.include_tasks:
-    file: provisioning.yml
-  when:
-    - vault_kv_secrets is defined
-    - vault_root_token is defined or
-      vault_init_output.root_token is defined
+- name: Start vault
+  ansible.builtin.service:
+    name: vault
+    state: started
+    enabled: yes

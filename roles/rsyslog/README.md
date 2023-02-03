@@ -137,6 +137,9 @@ rsyslog_dest_conf_file: "/etc/rsyslog.conf"
 
 # Enable / Disable option OmitLocalLogging
 rsyslog_omit_local_logging: yes
+
+# Allow using the traditional file format.
+rsyslog_traditional_file_format: yes
 ```
 
 ## [Requirements](#requirements)

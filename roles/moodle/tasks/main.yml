@@ -37,6 +37,8 @@
   ansible.builtin.template:
     src: config.php.j2
     dest: "{{ moodle_httpd_data_directory }}/moodle/config.php"
+    owner: "{{ moodle_httpd_owner }}"
+    group: "{{ moodle_httpd_group }}"
     mode: "0640"
 
 - name: Setup cron job

@@ -1,9 +1,82 @@
 ---
 # vars file for vault
 
+# The `setcap` and openssl binaries must be avaible. The package differs per distribution.
+_vault_prerequisites:
+  default:
+    - file
+    - libcap
+    - openssl
+  Debian:
+    - file
+    - libcap2-bin
+    - openssl
+vault_prerequisites: "{{ _vault_prerequisites[ansible_os_family] | default(_vault_prerequisites['default']) }}"
+
+# The Vault binary includes an architecture reference, for example "amd64" or "386". This maps relates the ansible_architecture to the name that HashiCorp uses.
+_vault_architecture_map:
+  x86_64: "amd64"
+  arm64: "arm64"
+  i386: "386"
+vault_architecture: "{{ _vault_architecture_map[ansible_architecture] }}"
+
+# Map ansible_pkg_mgr to a "separator". Different package managers use different symbols to restrict a version.
+# For example:
+# APT: vault=1.2.3
+# DNF: vault-1.2.3
+_vault_version_separator:
+  default: "-"
+  apt: "="
+vault_version_separator: "{{ _vault_version_separator[ansible_pkg_mgr] | default(_vault_version_separator['default']) }}"
+
+# Map ansible_pkg_mgr to a "release". Only required for the `apt` package manager.
+_vault_version_release:
+  default: ""
+  apt: "-{{ vault_package_release }}"
+vault_version_release: "{{ _vault_version_release[ansible_pkg_mgr] | default(_vault_version_release['default']) }}"
+
+# Map vault_type to a package name.
 _vault_package:
   oss: vault
   ent: vault-enterprise
   hsm: vault-enterprise-hsm
 
-vault_package: "{{ _vault_package[vault_type] }}"
+# Combine the result of a couple of lookups.
+vault_package: "{{ _vault_package[vault_type] }}{{ vault_version_separator }}{{ vault_version }}{{ vault_version_release }}"
+
+# These are the directories that must exists. Used when vault_installation_method=binary. They are relative to `vault_path`.
+vault_directories:
+  - name: "{{ vault_path }}/etc/vault.d"
+    owner: "{{ vault_user }}"
+    group: "{{ vault_user }}"
+    mode: "0755"
+  - name: "{{ vault_path }}/usr/bin"
+    owner: root
+    group: root
+    mode: "0555"
+
+# Directories to create for Vault data.
+vault_data_directories:
+  - name: "{{ vault_data_directory }}/data"
+    owner: "{{ vault_user }}"
+    group: "{{ vault_user }}"
+    mode: "0755"
+  - name: "{{ vault_data_directory }}/tls"
+    owner: "{{ vault_user }}"
+    group: "{{ vault_user }}"
+    mode: "0700"
+
+# Specific modes for TLS material.
+vault_tls_files:
+  - name: "{{ vault_data_directory }}/tls/tls.crt"
+    owner: "{{ vault_user }}"
+    group: "{{ vault_user }}"
+    mode: "0600"
+  - name: "{{ vault_data_directory }}/tls/tls.key"
+    owner: "{{ vault_user }}"
+    group: "{{ vault_user }}"
+    mode: "0600"
+  - name: "{{ vault_data_directory }}/tls"
+    owner: "{{ vault_user }}"
+    group: "{{ vault_user }}"
+    mode: "0700"

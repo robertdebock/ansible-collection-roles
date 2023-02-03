@@ -1,0 +1,7 @@
+---
+# handlers file for vault_configuration
+
+- name: Restart Vault
+  ansible.builtin.service:
+    name: vault
+    state: restarted

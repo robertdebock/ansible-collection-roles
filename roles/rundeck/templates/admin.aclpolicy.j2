@@ -29,28 +29,13 @@ context:
   application: 'rundeck'
 for:
   resource:
-    - equals:
-        kind: project
-      allow: [create] # allow create of projects
-    - equals:
-        kind: system
-      allow: [read,enable_executions,disable_executions,admin] # allow read of system info, enable/disable all executions
-    - equals:
-        kind: system_acl
-      allow: [read,create,update,delete,admin] # allow modifying system ACL files
-    - equals:
-        kind: user
-      allow: [admin] # allow modify user profiles
+    - allow: '*' # allow create of projects
   project:
-    - match:
-        name: '.*'
-      allow: [read,import,export,configure,delete,promote,admin] # allow full access of all projects or use 'admin'
+    - allow: '*' # allow view/admin of all projects
   project_acl:
-    - match:
-        name: '.*'
-      allow: [read,create,update,delete,admin] # allow modifying project-specific ACL files
+    - allow: '*' # allow admin of all project-level ACL policies
   storage:
-    - allow: [read,create,update,delete] # allow access for /ssh-key/* storage content
-
+    - allow: '*' # allow read/create/update/delete for all /keys/* storage content
 by:
   group: admin
+

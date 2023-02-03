@@ -54,5 +54,3 @@
 
 - name: Flush handlers
   ansible.builtin.meta: flush_handlers
-  when:
-    - openssh_restart_immediately

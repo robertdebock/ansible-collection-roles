@@ -1,0 +1,28 @@
+---
+# tasks file for vault_configuration
+
+- name: Include assert.yml
+  ansible.builtin.import_tasks: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+- name: Create Vault Raft storage path
+  ansible.builtin.file:
+    path: "{{ vault_configuration_storage_raft.path }}"
+    state: directory
+    mode: "0750"
+    owner: "{{ vault_configuration_owner }}"
+    group: "{{ vault_configuration_group }}"
+  when:
+    - vault_configuration_storage_raft is defined
+
+- name: Place Vault configuration
+  ansible.builtin.template:
+    src: vault.hcl.j2
+    dest: /etc/vault.d/vault.hcl
+    mode: "0640"
+    owner: "{{ vault_configuration_owner }}"
+    group: "{{ vault_configuration_group }}"
+    # validate: vault operator diagnose -config %s
+  notify:
+    - Restart Vault

@@ -1,0 +1,251 @@
+{{ ansible_managed | comment }}
+
+#
+# GLOBAL SETTINGS
+#
+
+{% if vault_configuration_max_lease_ttl is defined and (vault_configuration_max_lease_ttl != "" or vault_configuration_max_lease_ttl != "768h") %}
+max_lease_ttl = "{{ vault_configuration_max_lease_ttl }}"
+{% endif %}
+{% if vault_configuration_default_lease_ttl is defined and (vault_configuration_default_lease_ttl != "" or vault_configuration_default_lease_ttl != "768h") %}
+default_lease_ttl = "{{ vault_configuration_default_lease_ttl }}"
+{% endif %}
+api_addr = "{{ vault_configuration_api_addr }}"
+{% if vault_configuration_cluster_addr is defined and vault_configuration_cluster_addr != "" %}
+cluster_addr = "{{ vault_configuration_cluster_addr }}"
+{% endif %}
+{% if vault_configuration_disable_cache is defined and vault_configuration_disable_cache %}
+disable_cache = true
+{% endif %}
+{% if vault_configuration_disable_mlock is defined and vault_configuration_disable_mlock %}
+disable_mlock = true
+{% endif %}
+{% if vault_configuration_disable_clustering is defined and vault_configuration_disable_clustering %}
+disable_clustering = true
+{% endif %}
+{% if vault_configuration_plugin_directory is defined and vault_configuration_plugin_directory != "" %}
+plugin_directory = "{{ vault_configuration_plugin_directory }}"
+{% endif %}
+{% if vault_configuration_ui is defined and vault_configuration_ui %}
+ui = true
+{% endif %}
+{% if vault_configuration_license_path is defined and vault_configuration_license_path != "" %}
+license_path = "{{ vault_configuration_license_path }}"
+{% endif %}
+{% if vault_configuration_log_level is defined and vault_configuration_log_level != "" %}
+log_level = "{{ vault_configuration_log_level }}"
+{% endif %}
+
+#
+# LISTENER SETTINGS
+#
+
+listener "tcp" {
+  address = "{{ vault_configuration_listener_tcp.address }}"
+{% if vault_configuration_listener_tcp.cluster_address is defined %}
+  cluster_address= "{{ vault_configuration_listener_tcp.cluster_address }}"
+{% endif %}
+{% if vault_configuration_listener_tcp.http_idle_timeout is defined and vault_configuration_listener_tcp.http_idle_timeout != "5m" %}
+  http_idle_timeout = "{{ vault_configuration_listener_tcp.http_idle_timeout }}"
+{% endif %}
+{% if vault_configuration_listener_tcp.http_read_header_timeout is defined and vault_configuration_listener_tcp.http_read_header_timeout != "10s" %}
+  http_read_header_timeout = "{{ vault_configuration_listener_tcp.http_read_header_timeout }}"
+{% endif %}
+{% if vault_configuration_listener_tcp.http_read_timeout is defined and vault_configuration_listener_tcp.http_read_timeout != "30s" %}
+  http_read_timeout = "{{ vault_configuration_listener_tcp.http_read_timeout }}"
+{% endif %}
+{% if vault_configuration_listener_tcp.http_write_timeout is defined and vault_configuration_listener_tcp.http_write_timeout != "0" %}
+  http_write_timeout = "{{ vault_configuration_listener_tcp.http_write_timeout }}"
+{% endif %}
+{% if vault_configuration_listener_tcp.max_request_size is defined and vault_configuration_listener_tcp.max_request_size != 33554432 %}
+  max_request_size = {{ vault_configuration_listener_tcp.max_request_size }}
+{% endif %}
+{% if vault_configuration_listener_tcp.max_request_duration is defined and vault_configuration_listener_tcp.max_request_duration != "90s" %}
+  max_request_duration = "{{ vault_configuration_listener_tcp.max_request_duration }}"
+{% endif %}
+{% if vault_configuration_listener_tcp.proxy_protocol_behavior is defined and vault_configuration_listener_tcp.proxy_protocol_behavior != "" %}
+  proxy_protocol_behavior = "{{ vault_configuration_listener_tcp.proxy_protocol_behavior }}"
+{% endif %}
+{% if vault_configuration_listener_tcp.proxy_protocol_authorized_addrs is defined and vault_configuration_listener_tcp.proxy_protocol_authorized_addrs != "" %}
+  proxy_protocol_authorized_addrs = "{{ vault_configuration_listener_tcp.proxy_protocol_authorized_addrs }}"
+{% endif %}
+{% if vault_configuration_listener_tcp.tls_disable is defined and vault_configuration_listener_tcp.tls_disable %}
+  tls_disable = true
+{% endif %}
+{% if vault_configuration_listener_tcp.tls_cert_file is defined and vault_configuration_listener_tcp.tls_cert_file != "" %}
+  tls_cert_file = "{{ vault_configuration_listener_tcp.tls_cert_file }}"
+{% endif %}
+{% if vault_configuration_listener_tcp.tls_key_file is defined and vault_configuration_listener_tcp.tls_key_file != "" %}
+  tls_key_file = "{{ vault_configuration_listener_tcp.tls_key_file }}"
+{% endif %}
+{% if vault_configuration_listener_tcp.tls_min_version is defined and (vault_configuration_listener_tcp.tls_min_version != "" or vault_configuration_listener_tcp.tls_min_version != "tls12") and not vault_configuration_listener_tcp.tls_disable %}
+  tls_min_version = "{{ vault_configuration_listener_tcp.tls_min_version }}"
+{% endif %}
+{% if vault_configuration_listener_tcp.tls_cipher_suites is defined and vault_configuration_listener_tcp.tls_cipher_suites != "" %}
+  tls_cipher_suites = "{{ vault_configuration_listener_tcp.tls_cipher_suites }}"
+{% endif %}
+{% if vault_configuration_listener_tcp.tls_require_and_verify_client_cert is defined and vault_configuration_listener_tcp.tls_require_and_verify_client_cert %}
+  tls_require_and_verify_client_cert = true
+{% endif %}
+{% if vault_configuration_listener_tcp.tls_client_ca_file is defined and vault_configuration_listener_tcp.tls_client_ca_file != "" %}
+  tls_client_ca_file = "{{ vault_configuration_listener_tcp.tls_client_ca_file }}"
+{% endif %}
+{% if vault_configuration_listener_tcp.tls_disable_client_certs is defined and vault_configuration_listener_tcp.tls_disable_client_certs %}
+  tls_disable_client_certs = true
+{% endif %}
+{% if vault_configuration_listener_tcp.x_forwarded_for_authorized_addrs is defined and vault_configuration_listener_tcp.x_forwarded_for_authorized_addrs != "" %}
+  x_forwarded_for_authorized_addrs = "{{ vault_configuration_listener_tcp.x_forwarded_for_authorized_addrs }}"
+{% endif %}
+{% if vault_configuration_listener_tcp.x_forwarded_for_hop_skips is defined and vault_configuration_listener_tcp.x_forwarded_for_hop_skips != 0 %}
+  x_forwarded_for_hop_skips = "{{ vault_configuration_listener_tcp.x_forwarded_for_hop_skips }}"
+{% endif %}
+{% if vault_configuration_listener_tcp.x_forwarded_for_reject_not_authorized is defined and not vault_configuration_listener_tcp.x_forwarded_for_reject_not_authorized %}
+  x_forwarded_for_reject_not_authorized = false
+{% endif %}
+{% if vault_configuration_listener_tcp.x_forwarded_for_reject_not_present is defined and not vault_configuration_listener_tcp.x_forwarded_for_reject_not_present %}
+  x_forwarded_for_reject_not_present = false
+{% endif %}
+{% if vault_configuration_listener_tcp.telemetry is defined and vault_configuration_listener_tcp.telemetry.unauthenticated_metrics_access is defined and vault_configuration_listener_tcp.telemetry.unauthenticated_metrics_access %}
+  telemetry {
+    unauthenticated_metrics_access = true
+  }
+{% endif %}
+{% if vault_configuration_listener_tcp.profiling is defined and (vault_configuration_listener_tcp.profiling.unauthenticated_pprof_access is defined and vault_configuration_listener_tcp.profiling.unauthenticated_pprof_access) or (vault_configuration_listener_tcp.profiling.unauthenticated_in_flight_request_access is defined and vault_configuration_listener_tcp.profiling.unauthenticated_in_flight_request_access) %}
+  profiling {
+{% if unauthenticated_pprof_access %}
+    unauthenticated_pprof_access = no
+{% endif %}
+{% if unauthenticated_in_flight_request_access %}
+    unauthenticated_in_flight_request_access
+{% endif %}
+  }
+{% endif %}
+}
+
+#
+# STORAGE SETTINGS
+#
+
+{% if vault_configuration_storage_raft %}
+storage "raft" {
+  path = "{{ vault_configuration_storage_raft.path }}"
+  node_id = "{{ vault_configuration_storage_raft.node_id }}"
+{% if vault_configuration_storage_raft.performance_multiplier is defined and vault_configuration_storage_raft.performance_multiplier != 0 %}
+  performance_multiplier = {{ vault_configuration_storage_raft.performance_multiplier }}
+{% endif %}
+{% if vault_configuration_storage_raft.trailing_logs is defined and vault_configuration_storage_raft.trailing_logs != 10000 %}
+  trailing_logs = {{ vault_configuration_storage_raft.trailing_logs }}
+{% endif %}
+{% if vault_configuration_storage_raft.snapshot_threshold is defined and vault_configuration_storage_raft.snapshot_threshold != 8192 %}
+  snapshot_threshold = {{ vault_configuration_storage_raft.snapshot_threshold }}
+{% endif %}
+{% if vault_configuration_storage_raft.retry_join is defined %}
+  retry_join {
+    leader_api_addr = "{{ vault_configuration_storage_raft.retry_join.leader_api_addr }}"
+{% if vault_configuration_storage_raft.retry_join.auto_join is defined and vault_configuration_storage_raft.retry_join.auto_join != "" %} 
+    auto_join = "{{ vault_configuration_storage_raft.retry_join.auto_join }}"
+{% endif %}
+{% if vault_configuration_storage_raft.retry_join.auto_join_scheme is defined and vault_configuration_storage_raft.retry_join.auto_join_scheme != "https" %}
+    auto_join_scheme = "{{ vault_configuration_storage_raft.retry_join.auto_join_scheme }}"
+{% endif %}
+{% if vault_configuration_storage_raft.retry_join.auto_join_port is defined and vault_configuration_storage_raft.retry_join.auto_join_port != 8200 %}
+    auto_join_port = {{ vault_configuration_storage_raft.retry_join.auto_join_port }}
+{% endif %}
+{% if vault_configuration_storage_raft.retry_join.leader_tls_servername is defined and vault_configuration_storage_raft.retry_join.leader_tls_servername != "" %}
+    leader_tls_servername = "{{ vault_configuration_storage_raft.retry_join.leader_tls_servername }}"
+{% endif %}
+{%if vault_configuration_storage_raft.retry_join.leader_ca_cert_file is defined and vault_configuration_storage_raft.retry_join.leader_ca_cert_file != "" %}
+    leader_ca_cert_file = "{{ vault_configuration_storage_raft.retry_join.leader_ca_cert_file }}"
+{% endif %}
+{% if vault_configuration_storage_raft.retry_join.leader_client_cert_file is defined and vault_configuration_storage_raft.retry_join.leader_client_cert_file != "" %}
+    leader_client_cert_file = "{{ vault_configuration_storage_raft.retry_join.leader_client_cert_file }}"
+{% endif %}
+{% if vault_configuration_storage_raft.retry_join.leader_client_key_file is defined and vault_configuration_storage_raft.retry_join.leader_client_key_file != "" %}
+    leader_client_key_file = "{{ vault_configuration_storage_raft.retry_join.leader_client_key_file }}"
+{% endif %}
+{% if vault_configuration_storage_raft.retry_join.leader_ca_cert is defined and vault_configuration_storage_raft.retry_join.leader_ca_cert != "" %}
+    leader_ca_cert = "{{ vault_configuration_storage_raft.retry_join.leader_ca_cert }}"
+{% endif %}
+{% if vault_configuration_storage_raft.retry_join.leader_client_cert is defined and vault_configuration_storage_raft.retry_join.leader_client_cert != "" %}
+    leader_client_cert = "{{ vault_configuration_storage_raft.retry_join.leader_client_cert }}"
+{% endif %}
+{% if vault_configuration_storage_raft.retry_join.leader_client_key is defined and vault_configuration_storage_raft.retry_join.leader_client_key != "" %}
+    leader_client_key =  "{{ vault_configuration_storage_raft.retry_join.leader_client_key }}"
+{% endif %}
+{% if vault_configuration_storage_raft.retry_join_as_non_voter %}
+  retry_join_as_non_voter = true
+{% endif %}
+{% if vault_configuration_storage_raft.max_entry_size is defined and vault_configuration_storage_raft.max_entry_size != 1048576 %}
+  max_entry_size = {{ vault_configuration_storage_raft.max_entry_size }}
+{% endif %}
+{% if vault_configuration_storage_raft.autopilot_reconcile_interval is defined and vault_configuration_storage_raft.autopilot_reconcile_interval != "10s" %}
+  autopilot_reconcile_interval = "{{ vault_configuration_storage_raft.autopilot_reconcile_interval }}"
+{% endif %}
+{% if vault_configuration_storage_raft.autopilot_update_interval is defined and vault_configuration_storage_raft.autopilot_update_interval != "2s" %}
+  autopilot_update_interval = "{{ vault_configuration_storage_raft.autopilot_update_interval }}"
+{% endif %}
+{% if vault_configuration_storage_raft.autopilot_upgrade_version is defined and vault_configuration_storage_raft.autopilot_upgrade_version != "" %}
+  autopilot_upgrade_version = "{{ vault_configuration_storage_raft.autopilot_upgrade_version }}"
+{% endif %}
+{% if vault_configuration_storage_raft.autopilot_redundancy_zone is defined and vault_configuration_storage_raft.autopilot_redundancy_zone != "" %}
+  autopilot_redundancy_zone = "{{ vault_configuration_storage_raft.autopilot_redundancy_zone }}"
+{% endif %}
+{% endif %}
+  }
+}
+{% endif %}
+
+{% if vault_configuration_seal_awskms is defined or vault_configuration_seal_azurekeyvault is defined %}
+#
+# (UN)SEAL SETTINGS
+#
+
+{% endif %}
+{% if vault_configuration_seal_awskms is defined %}
+seal "awskms" {
+{% if vault_configuration_seal_awskms.region is defined and vault_configuration_seal_awskms != "" %}
+  region     = "{{ vault_configuration_seal_awskms.region }}"
+{% endif %}
+{% if vault_configuration_seal_awskms.access_key is defined and vault_configuration_seal_awskms != "" %}
+  access_key = "{{ vault_configuration_seal_awskms.access_key }}"
+{% endif %}
+{% if vault_configuration_seal_awskms.secret_key is defined and vault_configuration_seal_awskms.secret_key != "" %}
+  secret_key = "{{ vault_configuration_seal_awskms.secret_key }}"
+{% endif %}
+{% if vault_configuration_seal_awskms.kms_key_id is defined and vault_configuration_seal_awskms.kms_key_id != "" %}
+  kms_key_id = "{{ vault_configuration_seal_awskms.kms_key_id }}"
+{% endif %}
+{% if vault_configuration_seal_awskms.endpoint is defined and vault_configuration_seal_awskms.endpoint != "" %}
+  endpoint   = "{{ vault_configuration_seal_awskms.endpoint }}"
+{% endif %}
+}
+{% endif %}
+
+{% if vault_configuration_seal_azurekeyvault is defined %}
+seal "azurekeyvault" {
+{% if vault_configuration_seal_azurekeyvault.tenant_id is defined and vault_configuration_seal_azurekeyvault.tenant_id != "" %}
+  tenant_id = "{{ vault_configuration_seal_azurekeyvault.tenant_id }}"
+{% endif %}
+{% if vault_configuration_seal_azurekeyvault.client_id is defined and vault_configuration_seal_azurekeyvault.client_id != "" %}
+  client_id = "{{ vault_configuration_seal_azurekeyvault.client_id }}"
+{% endif %}
+{% if vault_configuration_seal_azurekeyvault.client_secret is defined and vault_configuration_seal_azurekeyvault.client_secret != "" %}
+  client_secret = "{{ vault_configuration_seal_azurekeyvault.client_secret }}"
+{% endif %}
+{% if vault_configuration_seal_azurekeyvault.environment is defined and vault_configuration_seal_azurekeyvault.environment != "" %}
+  environment = "{{ vault_configuration_seal_azurekeyvault.environment }}"
+{% endif %}
+{% if vault_configuration_seal_azurekeyvault.vault_name is defined and vault_configuration_seal_azurekeyvault.vault_name != "" %}
+  vault_name = "{{ vault_configuration_seal_azurekeyvault.vault_name }}"
+{% endif %}
+{% if vault_configuration_seal_azurekeyvault.key_name is defined and vault_configuration_seal_azurekeyvault.key_name != "" %}
+  key_name = "{{ vault_configuration_seal_azurekeyvault.key_name }}"
+{% endif %}
+{% if vault_configuration_seal_azurekeyvault.resource is defined and vault_configuration_seal_azurekeyvault.resource != "" %}
+  resource = "{{ vault_configuration_seal_azurekeyvault.resource }}"
+{% endif %}
+{% if vault_configuration_seal_azurekeyvault.disabled is defined and vault_configuration_seal_azurekeyvault.disabled %}
+  disabled = true
+{% endif %}
+}
+{% endif %}

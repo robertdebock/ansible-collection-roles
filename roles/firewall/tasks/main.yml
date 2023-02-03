@@ -20,6 +20,15 @@
   when:
     - firewall_packages_required is defined
 
+- name: Start and enable firewall service
+  ansible.builtin.service:
+    name: "{{ firewall_service }}"
+    state: started
+    enabled: yes
+  when:
+    - ansible_connection not in [ "container", "docker", "community.docker.docker" ]
+    - firewall_service is defined
+
 - name: Open ports (ufw)
   community.general.ufw:
     rule: "{{ item.rule | default(firewall_default_rule) }}"
@@ -138,12 +147,3 @@
     label: "{{ item.name }}"
   notify:
     - Reload firewall
-
-- name: Start and enable firewall service
-  ansible.builtin.service:
-    name: "{{ firewall_service }}"
-    state: started
-    enabled: yes
-  when:
-    - ansible_connection not in [ "container", "docker", "community.docker.docker" ]
-    - firewall_service is defined

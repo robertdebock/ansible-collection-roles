@@ -44,4 +44,4 @@
   ansible.builtin.service:
     name: "{{ auditd_service }}"
     state: started
-    use: service
+    enabled: yes

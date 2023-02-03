@@ -1,19 +1,11 @@
 ---
 # handlers file for vault
 
+- name: Daemon reload
+  ansible.builtin.systemd:
+    daemon_reload: true
+
 - name: Restart vault
   ansible.builtin.service:
     name: vault
     state: restarted
-  notify:
-    - Unseal vault
-
-- name: Unseal vault
-  ansible.builtin.command:
-    cmd: vault operator unseal {{ item }}
-  environment:
-    VAULT_ADDR: "{{ vault_api_addr }}"
-  loop: "{{ vault_init_output.unseal_keys_b64 | default(vault_unseal_keys) }}"
-  loop_control:
-    label: "hidden"
-  no_log: yes

@@ -1,4 +1,3 @@
-{{ ansible_managed | comment }}
 [Unit]
 Description="HashiCorp Vault - A tool for managing secrets"
 Documentation=https://www.vaultproject.io/docs/
@@ -10,9 +9,7 @@ StartLimitBurst=3
 
 [Service]
 Type=notify
-{% for item in vault_environment_variables %}
-Environment={{ item.name }}={{ item.value }}
-{% endfor %}
+EnvironmentFile={{ vault_path }}/etc/vault.d/vault.env
 User={{ vault_user }}
 Group={{ vault_group }}
 ProtectSystem=full
@@ -23,7 +20,7 @@ SecureBits=keep-caps
 AmbientCapabilities=CAP_IPC_LOCK
 CapabilityBoundingSet=CAP_SYSLOG CAP_IPC_LOCK
 NoNewPrivileges=yes
-ExecStart={{ vault_path }}/bin/vault server -config={{ vault_path }}/etc/vault.d/vault.hcl
+ExecStart={{ vault_path }}/usr/bin/vault server -config={{ vault_path }}/etc/vault.d/vault.hcl
 ExecReload=/bin/kill --signal HUP $MAINPID
 KillMode=process
 KillSignal=SIGINT

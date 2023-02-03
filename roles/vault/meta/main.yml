@@ -2,21 +2,25 @@
 galaxy_info:
   author: robertdebock
   role_name: vault
-  description: Install, configure, initialize and unseal Hashicorp Vault.
+  description: Install Hashicorp Vault, either a package or a binary.
   license: Apache-2.0
   company: none
   min_ansible_version: "2.10"
 
   platforms:
+    - name: Amazon
+      versions:
+        - Candidate
     - name: Debian
       versions:
-        - bullseye
+        - all
     - name: EL
       versions:
-        - "8"
+        - all
     - name: Fedora
       versions:
         - "36"
+        - "37"
     - name: Ubuntu
       versions:
         - all

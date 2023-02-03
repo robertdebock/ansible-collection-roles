@@ -100,7 +100,7 @@
           - gitlab_default_projects_features_builds is defined
           - gitlab_default_projects_features_builds is boolean
           - gitlab_default_projects_features_container_registry is defined
-          - gitlab_default_projects_features_container_registry
+          - gitlab_default_projects_features_container_registry is boolean
         quiet: yes
 
     - name: Test if gitlab_rails_ldap_enabled is set correctly

@@ -69,7 +69,7 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 # defaults file for moodle
 
 # The version of moodle to install.
-moodle_version: 310
+moodle_version: 401
 
 # A path where to save the data.
 moodle_data_directory: /opt/moodledata
