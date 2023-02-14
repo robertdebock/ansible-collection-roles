@@ -91,3 +91,12 @@
     label: "{{ item.acl }}"
   when:
     - squid_rules is defined
+
+- name: Test if squid_logformat is set correctly
+  ansible.builtin.assert:
+    that:
+      - squid_logformat is string
+      - squid_logformat.split(" ") | length > 1
+    quiet: yes
+  when:
+    - squid_logformat is defined

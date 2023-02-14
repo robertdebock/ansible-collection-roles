@@ -11,11 +11,14 @@
     name: vm.swappiness
     value: "{{ swap_swappiness | string }}"
     state: present
+  when:
+    - swap_enabled
 
 - name: Manage swap files.
   when:
     - swap_files is defined
     - swap_files | length > 0
+    - swap_enabled
   notify:
     - Run swapon
   block:
@@ -24,6 +27,8 @@
         cmd: dd if=/dev/zero of={{ item.path }} bs=1048576 count={{ item.size }}
         creates: "{{ item.path }}"
       loop: "{{ swap_files }}"
+      loop_control:
+        label: "{{ item.path }}"
 
     - name: Set permission on swap file
       ansible.builtin.file:
@@ -32,12 +37,16 @@
         group: root
         mode: "600"
       loop: "{{ swap_files }}"
+      loop_control:
+        label: "{{ item.path }}"
 
     - name: Make swap file system
       community.general.filesystem:
         fstype: swap
         dev: "{{ item.path }}"
       loop: "{{ swap_files }}"
+      loop_control:
+        label: "{{ item.path }}"
 
     - name: Mount swap
       ansible.posix.mount:
@@ -49,3 +58,23 @@
         dump: "0"
         state: present
       loop: "{{ swap_files }}"
+      loop_control:
+        label: "{{ item.path }}"
+
+- name: Disable swap
+  when:
+    - not swap_enabled
+  block:
+    - name: Run swapoff
+      ansible.builtin.command:
+        cmd: swapoff --all
+      when:
+        - ansible_swaptotal_mb > 0
+      notify:
+        - Gather facts
+
+    - name: Remove swap from fstab
+      ansible.builtin.lineinfile:
+        path: /etc/fstab
+        regexp: '^([^#].*?\sswap\s+sw\s+.*)$'
+        state: absent

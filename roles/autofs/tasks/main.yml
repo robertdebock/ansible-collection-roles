@@ -64,6 +64,8 @@
       loop: "{{ autofs_maps }}"
       loop_control:
         label: "{{ item.mountpoint }}"
+      notify:
+        - Reload autofs
       when:
         - item.state is not defined or (item.state is defined and item.state == "present")
 

@@ -14,11 +14,28 @@
       - vault_configuration_group is string
     quiet: yes
 
+- name: Test if vault_configuration_license is set correctly
+  ansible.builtin.assert:
+    that:
+      - vault_configuration_license is string
+    quiet: yes
+  when:
+    - vault_configuration_license is defined
+
+- name: Test if vault_configuration_environment is set correctly
+  ansible.builtin.assert:
+    that:
+      - vault_configuration_environment is iterable
+    quiet: yes
+  when:
+    - vault_configuration_environment is defined
+
 - name: Test if vault_configuration_max_lease_ttl is set correctly
   ansible.builtin.assert:
     that:
       - vault_configuration_max_lease_ttl is defined
       - vault_configuration_max_lease_ttl is string
+      - vault_configuration_max_lease_ttl != ""
     quiet: yes
 
 - name: Test if vault_configuration_default_lease_ttl is set correctly
@@ -26,6 +43,7 @@
     that:
       - vault_configuration_default_lease_ttl is defined
       - vault_configuration_default_lease_ttl is string
+      - vault_configuration_default_lease_ttl != ""
     quiet: yes
 
 - name: Test if vault_configuration_api_addr is set correctly
@@ -123,49 +141,54 @@
   ansible.builtin.assert:
     that:
       - vault_configuration_listener_tcp.http_idle_timeout is defined
-      - vault_configuration_listener_tcp.http_idle_timeout is string
     quiet: yes
+  when:
+    - vault_configuration_listener_tcp.http_idle_timeout is string
 
 - name: Test if vault_configuration_listener_tcp.http_read_header_timeout is set correctly
   ansible.builtin.assert:
     that:
       - vault_configuration_listener_tcp.http_read_header_timeout is defined
-      - vault_configuration_listener_tcp.http_read_header_timeout is string
     quiet: yes
+  when:
+    - vault_configuration_listener_tcp.http_read_header_timeout is string
 
 - name: Test if vault_configuration_listener_tcp.http_read_timeout is set correctly
   ansible.builtin.assert:
     that:
       - vault_configuration_listener_tcp.http_read_timeout is defined
-      - vault_configuration_listener_tcp.http_read_timeout is string
     quiet: yes
+  when:
+    - vault_configuration_listener_tcp.http_read_timeout is string
 
 - name: Test if vault_configuration_listener_tcp.http_write_timeout is set correctly
   ansible.builtin.assert:
     that:
-      - vault_configuration_listener_tcp.http_write_timeout is defined
       - vault_configuration_listener_tcp.http_write_timeout is string or
         vault_configuration_listener_tcp.http_write_timeout is number
     quiet: yes
+  when:
+    - vault_configuration_listener_tcp.http_write_timeout is defined
 
 - name: Test if vault_configuration_listener_tcp.max_request_size is set correctly
   ansible.builtin.assert:
     that:
-      - vault_configuration_listener_tcp.max_request_size is defined
       - vault_configuration_listener_tcp.max_request_size is number
     quiet: yes
+  when:
+    - vault_configuration_listener_tcp.max_request_size is defined
 
 - name: Test if vault_configuration_listener_tcp.max_request_duration is set correctly
   ansible.builtin.assert:
     that:
-      - vault_configuration_listener_tcp.max_request_duration is defined
       - vault_configuration_listener_tcp.max_request_duration is string
     quiet: yes
+  when:
+    - vault_configuration_listener_tcp.max_request_duration is defined
 
 - name: Test if vault_configuration_listener_tcp.proxy_protocol_behavior is set correctly
   ansible.builtin.assert:
     that:
-      - vault_configuration_listener_tcp.proxy_protocol_behavior is defined
       - vault_configuration_listener_tcp.proxy_protocol_behavior is string
       - vault_configuration_listener_tcp.proxy_protocol_behavior in [ "use_always", "allow_authorized", "deny_unauthorized" ]
     quiet: yes
@@ -176,95 +199,108 @@
 - name: Test if vault_configuration_listener_tcp.proxy_protocol_authorized_addrs is set correctly
   ansible.builtin.assert:
     that:
-      - vault_configuration_listener_tcp.proxy_protocol_authorized_addrs is defined
       - vault_configuration_listener_tcp.proxy_protocol_authorized_addrs is string
     quiet: yes
+  when:
+    - vault_configuration_listener_tcp.proxy_protocol_authorized_addrs is defined
 
 - name: Test if vault_configuration_listener_tcp.tls_disable is set correctly
   ansible.builtin.assert:
     that:
-      - vault_configuration_listener_tcp.tls_disable is defined
       - vault_configuration_listener_tcp.tls_disable is boolean
     quiet: yes
+  when:
+    - vault_configuration_listener_tcp.tls_disable is defined
 
 - name: Test if vault_configuration_listener_tcp.tls_cert_file is set correctly
   ansible.builtin.assert:
     that:
-      - vault_configuration_listener_tcp.tls_cert_file is defined
       - vault_configuration_listener_tcp.tls_cert_file is string
     quiet: yes
+  when:
+    - vault_configuration_listener_tcp.tls_cert_file is defined
 
 - name: Test if vault_configuration_listener_tcp.tls_key_file is set correctly
   ansible.builtin.assert:
     that:
-      - vault_configuration_listener_tcp.tls_key_file is defined
       - vault_configuration_listener_tcp.tls_key_file is string
     quiet: yes
+  when:
+    - vault_configuration_listener_tcp.tls_key_file is defined
 
 - name: Test if vault_configuration_listener_tcp.tls_min_version is set correctly
   ansible.builtin.assert:
     that:
-      - vault_configuration_listener_tcp.tls_min_version is defined
       - vault_configuration_listener_tcp.tls_min_version is string
       - vault_configuration_listener_tcp.tls_min_version in [ "tls10", "tls11", "tls12", "tls13" ]
     quiet: yes
+  when:
+    - vault_configuration_listener_tcp.tls_min_version is defined
 
 - name: Test if vault_configuration_listener_tcp.tls_cipher_suites is set correctly
   ansible.builtin.assert:
     that:
-      - vault_configuration_listener_tcp.tls_cipher_suites is defined
       - vault_configuration_listener_tcp.tls_cipher_suites is string
     quiet: yes
+  when:
+    - vault_configuration_listener_tcp.tls_cipher_suites is defined
 
 - name: Test if vault_configuration_listener_tcp.tls_require_and_verify_client_cert is set correctly
   ansible.builtin.assert:
     that:
-      - vault_configuration_listener_tcp.tls_require_and_verify_client_cert is defined
       - vault_configuration_listener_tcp.tls_require_and_verify_client_cert is boolean
     quiet: yes
+  when:
+    - vault_configuration_listener_tcp.tls_require_and_verify_client_cert is defined
 
 - name: Test if vault_configuration_listener_tcp.tls_client_ca_file is set correctly
   ansible.builtin.assert:
     that:
-      - vault_configuration_listener_tcp.tls_client_ca_file is defined
       - vault_configuration_listener_tcp.tls_client_ca_file is string
     quiet: yes
+  when:
+    - vault_configuration_listener_tcp.tls_client_ca_file is defined
 
 - name: Test if vault_configuration_listener_tcp.tls_disable_client_certs is set correctly
   ansible.builtin.assert:
     that:
-      - vault_configuration_listener_tcp.tls_disable_client_certs is defined
       - vault_configuration_listener_tcp.tls_disable_client_certs is boolean
     quiet: yes
+  when:
+    - vault_configuration_listener_tcp.tls_disable_client_certs is defined
 
 - name: Test if vault_configuration_listener_tcp.x_forwarded_for_authorized_addrs is set correctly
   ansible.builtin.assert:
     that:
-      - vault_configuration_listener_tcp.x_forwarded_for_authorized_addrs is defined
       - vault_configuration_listener_tcp.x_forwarded_for_authorized_addrs is string
     quiet: yes
+  when:
+    - vault_configuration_listener_tcp.x_forwarded_for_authorized_addrs is defined
 
 - name: Test if vault_configuration_listener_tcp.x_forwarded_for_hop_skips is set correctly
   ansible.builtin.assert:
     that:
-      - vault_configuration_listener_tcp.x_forwarded_for_hop_skips is defined
       - vault_configuration_listener_tcp.x_forwarded_for_hop_skips is number
       - vault_configuration_listener_tcp.x_forwarded_for_hop_skips >= 0
     quiet: yes
+  when:
+    - vault_configuration_listener_tcp.x_forwarded_for_hop_skips is defined
 
 - name: Test if vault_configuration_listener_tcp.x_forwarded_for_reject_not_authorized is set correctly
   ansible.builtin.assert:
     that:
-      - vault_configuration_listener_tcp.x_forwarded_for_reject_not_authorized is defined
       - vault_configuration_listener_tcp.x_forwarded_for_reject_not_authorized is boolean
     quiet: yes
+  when:
+    - vault_configuration_listener_tcp.x_forwarded_for_reject_not_authorized is defined
 
 - name: Test if vault_configuration_listener_tcp.x_forwarded_for_reject_not_present is set correctly
   ansible.builtin.assert:
     that:
-      - vault_configuration_listener_tcp.x_forwarded_for_reject_not_present is defined
       - vault_configuration_listener_tcp.x_forwarded_for_reject_not_present is boolean
     quiet: yes
+  when:
+    - vault_configuration_listener_tcp.x_forwarded_for_reject_not_present is defined
 
 - name: Test if vault_configuration_listener_tcp.telemetry is set correctly
   ansible.builtin.assert:
@@ -277,10 +313,10 @@
 - name: Test if vault_configuration_listener_tcp.telemetry.unauthenticated_metrics_access is set correctly
   ansible.builtin.assert:
     that:
-      - vault_configuration_listener_tcp.telemetry.unauthenticated_metrics_access is defined
       - vault_configuration_listener_tcp.telemetry.unauthenticated_metrics_access is boolean
     quiet: yes
   when:
+    - vault_configuration_listener_tcp.telemetry.unauthenticated_metrics_access is defined
     - vault_configuration_listener_tcp.telemetry is defined
 
 - name: Test if vault_configuration_listener_tcp.profiling is set correctly
@@ -294,20 +330,20 @@
 - name: Test if vault_configuration_listener_tcp.profiling.unauthenticated_pprof_access is set correctly
   ansible.builtin.assert:
     that:
-      - vault_configuration_listener_tcp.profiling.unauthenticated_pprof_access is defined
       - vault_configuration_listener_tcp.profiling.unauthenticated_pprof_access is boolean
     quiet: yes
   when:
     - vault_configuration_listener_tcp.profiling is defined
+    - vault_configuration_listener_tcp.profiling.unauthenticated_pprof_access is defined
 
 - name: Test if vault_configuration_listener_tcp.profiling.unauthenticated_in_flight_request_access is set correctly
   ansible.builtin.assert:
     that:
-      - vault_configuration_listener_tcp.profiling.unauthenticated_in_flight_request_access is defined
       - vault_configuration_listener_tcp.profiling.unauthenticated_in_flight_request_access is boolean
     quiet: yes
   when:
     - vault_configuration_listener_tcp.profiling is defined
+    - vault_configuration_listener_tcp.profiling.unauthenticated_in_flight_request_access is defined
 
 - name: Test if vault_configuration_storage_raft is set correctly
   ansible.builtin.assert:
@@ -342,6 +378,7 @@
       - vault_configuration_storage_raft.performance_multiplier >= 0
     quiet: yes
   when:
+    - vault_configuration_storage_raft.performance_multiplier is defined
     - vault_configuration_storage_raft is defined
 
 - name: Test if vault_configuration_storage_raft.trailing_logs is set correctly
@@ -352,6 +389,7 @@
     quiet: yes
   when:
     - vault_configuration_storage_raft is defined
+    - vault_configuration_storage_raft.trailing_logs is defined
 
 - name: Test if vault_configuration_storage_raft.snapshot_threshold is set correctly
   ansible.builtin.assert:
@@ -361,126 +399,162 @@
     quiet: yes
   when:
     - vault_configuration_storage_raft is defined
+    - vault_configuration_storage_raft.snapshot_threshold is defined
 
 - name: Test if vault_configuration_storage_raft.retry_join is set correctly
   ansible.builtin.assert:
     that:
-      - vault_configuration_storage_raft.retry_join is mapping
+      - vault_configuration_storage_raft.retry_join is iterable
     quiet: yes
   when:
     - vault_configuration_storage_raft is defined
     - vault_configuration_storage_raft.retry_join is defined
 
-- name: Test if vault_configuration_storage_raft.retry_join.leader_api_addr is set correctly
+- name: Test if item.leader_api_addr is set correctly
   ansible.builtin.assert:
     that:
-      - vault_configuration_storage_raft.retry_join.leader_api_addr is string
+      - item.leader_api_addr is string
     quiet: yes
+  loop: "{{ vault_configuration_storage_raft.retry_join }}"
+  loop_control:
+    label: "{{ item.leader_api_addr }}"
   when:
     - vault_configuration_storage_raft is defined
     - vault_configuration_storage_raft.retry_join is defined
+    - item.leader_api_addr is defined
 
-- name: Test if vault_configuration_storage_raft.retry_join.auto_join is set correctly
+- name: Test if item.auto_join is set correctly
   ansible.builtin.assert:
     that:
-      - vault_configuration_storage_raft.retry_join.auto_join is string
+      - item.auto_join is string
     quiet: yes
+  loop: "{{ vault_configuration_storage_raft.retry_join }}"
+  loop_control:
+    label: "{{ item.auto_join | default('Not set') }}"
   when:
     - vault_configuration_storage_raft is defined
     - vault_configuration_storage_raft.retry_join is defined
+    - item.auto_join is defined
 
-- name: Test if vault_configuration_storage_raft.retry_join.auto_join_scheme is set correctly
+- name: Test if item.auto_join_scheme is set correctly
   ansible.builtin.assert:
     that:
-      - vault_configuration_storage_raft.retry_join.auto_join_scheme is string
-      - vault_configuration_storage_raft.retry_join.auto_join_scheme in [ "http", "https" ]
+      - item.auto_join_scheme is string
+      - item.auto_join_scheme in [ "http", "https" ]
     quiet: yes
+  loop: "{{ vault_configuration_storage_raft.retry_join }}"
+  loop_control:
+    label: "{{ item.auto_join_scheme | default('Not set') }}"
   when:
     - vault_configuration_storage_raft is defined
     - vault_configuration_storage_raft.retry_join is defined
+    - item.auto_join_scheme is defined
 
 - name: Test if vault_configuration_storage_raft.retry_join.auto_join_port is set correctly
   ansible.builtin.assert:
     that:
-      - vault_configuration_storage_raft.retry_join.auto_join_port is defined
-      - vault_configuration_storage_raft.retry_join.auto_join_port is number
-      - vault_configuration_storage_raft.retry_join.auto_join_port >= 0
-      - vault_configuration_storage_raft.retry_join.auto_join_port <= 64536
+      - item.auto_join_port is number
+      - item.auto_join_port >= 0
+      - item.auto_join_port <= 64536
     quiet: yes
+  loop: "{{ vault_configuration_storage_raft.retry_join }}"
+  loop_control:
+    label: "{{ item.auto_join_port | default('Not set') }}"
   when:
     - vault_configuration_storage_raft is defined
     - vault_configuration_storage_raft.retry_join is defined
+    - item.auto_join_port is defined
 
-- name: Test if vault_configuration_storage_raft.retry_join.leader_tls_servername is set correctly
+- name: Test if item.leader_tls_servername is set correctly
   ansible.builtin.assert:
     that:
-      - vault_configuration_storage_raft.retry_join.leader_tls_servername is string
+      - item.leader_tls_servername is string
     quiet: yes
+  loop: "{{ vault_configuration_storage_raft.retry_join }}"
+  loop_control:
+    label: "{{ item.leader_tls_servername | default('Not set') }}"
   when:
     - vault_configuration_storage_raft is defined
     - vault_configuration_storage_raft.retry_join is defined
-    - vault_configuration_storage_raft.retry_join.leader_tls_servername is defined
+    - item.leader_tls_servername is defined
 
-- name: Test if vault_configuration_storage_raft.retry_join.leader_ca_cert_file is set correctly
+- name: Test if item.leader_ca_cert_file is set correctly
   ansible.builtin.assert:
     that:
-      - vault_configuration_storage_raft.retry_join.leader_ca_cert_file is string
+      - item.leader_ca_cert_file is string
     quiet: yes
+  loop: "{{ vault_configuration_storage_raft.retry_join }}"
+  loop_control:
+    label: "{{ item.leader_ca_cert_file | default('Not set') }}"
   when:
     - vault_configuration_storage_raft is defined
     - vault_configuration_storage_raft.retry_join is defined
-    - vault_configuration_storage_raft.retry_join.leader_ca_cert_file is defined
+    - item.leader_ca_cert_file is defined
 
-- name: Test if vault_configuration_storage_raft.retry_join.leader_client_cert_file is set correctly
+- name: Test if item.leader_client_cert_file is set correctly
   ansible.builtin.assert:
     that:
-      - vault_configuration_storage_raft.retry_join.leader_client_cert_file is string
+      - item.leader_client_cert_file is string
     quiet: yes
+  loop: "{{ vault_configuration_storage_raft.retry_join }}"
+  loop_control:
+    label: "{{ item.leader_client_cert_file | default('Not set') }}"
   when:
     - vault_configuration_storage_raft is defined
     - vault_configuration_storage_raft.retry_join is defined
-    - vault_configuration_storage_raft.retry_join.leader_client_cert_file is defined
+    - item.leader_client_cert_file is defined
 
-- name: Test if vault_configuration_storage_raft.retry_join.leader_client_key_file is set correctly
+- name: Test if item.leader_client_key_file is set correctly
   ansible.builtin.assert:
     that:
-      - vault_configuration_storage_raft.retry_join.leader_client_key_file is string
+      - item.leader_client_key_file is string
     quiet: yes
+  loop: "{{ vault_configuration_storage_raft.retry_join }}"
+  loop_control:
+    label: "{{ item.leader_client_key_file | default('Not set') }}"
   when:
     - vault_configuration_storage_raft is defined
     - vault_configuration_storage_raft.retry_join is defined
-      - vault_configuration_storage_raft.retry_join.leader_client_key_file is defined
+    - item.leader_client_key_file is defined
 
-- name: Test if vault_configuration_storage_raft.retry_join.leader_ca_cert is set correctly
+- name: Test if item.leader_ca_cert is set correctly
   ansible.builtin.assert:
     that:
-      - vault_configuration_storage_raft.retry_join.leader_ca_cert is string
+      - item.leader_ca_cert is string
     quiet: yes
+  loop: "{{ vault_configuration_storage_raft.retry_join }}"
+  loop_control:
+    label: "{{ item.leader_ca_cert | default('Not set') }}"
   when:
     - vault_configuration_storage_raft is defined
     - vault_configuration_storage_raft.retry_join is defined
-    - vault_configuration_storage_raft.retry_join.leader_ca_cert is defined
+    - item.leader_ca_cert is defined
 
-
-- name: Test if vault_configuration_storage_raft.retry_join.leader_client_cert is set correctly
+- name: Test if item.leader_client_cert is set correctly
   ansible.builtin.assert:
     that:
-      - vault_configuration_storage_raft.retry_join.leader_client_cert is string
+      - item.leader_client_cert is string
     quiet: yes
+  loop: "{{ vault_configuration_storage_raft.leader_client_cert }}"
+  loop_control:
+    label: "{{ item.leader_client_cert | default('Not set') }}"
   when:
     - vault_configuration_storage_raft is defined
     - vault_configuration_storage_raft.retry_join is defined
-    - vault_configuration_storage_raft.retry_join.leader_client_cert is defined
+    - item.leader_client_cert is defined
 
-- name: Test if vault_configuration_storage_raft.retry_join.leader_client_key is set correctly
+- name: Test if item.leader_client_key is set correctly
   ansible.builtin.assert:
     that:
-      - vault_configuration_storage_raft.retry_join.leader_client_key is string
+      - item.leader_client_key is string
     quiet: yes
+  loop: "{{ vault_configuration_storage_raft.leader_client_cert }}"
+  loop_control:
+    label: "{{ item.leader_client_key | default('Not set') }}"
   when:
     - vault_configuration_storage_raft is defined
     - vault_configuration_storage_raft.retry_join is defined
-    - vault_configuration_storage_raft.retry_join.leader_client_key is defined
+    - item.leader_client_key is defined
 
 - name: Test if vault_configuration_storage_raft.retry_join_as_non_voter is set correctly
   ansible.builtin.assert:

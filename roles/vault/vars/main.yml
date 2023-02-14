@@ -37,12 +37,12 @@ vault_version_release: "{{ _vault_version_release[ansible_pkg_mgr] | default(_va
 
 # Map vault_type to a package name.
 _vault_package:
-  oss: vault
-  ent: vault-enterprise
-  hsm: vault-enterprise-hsm
+  oss: vault{{ vault_version_separator }}{{ vault_version }}{{ vault_version_release }}
+  ent: vault-enterprise{{ vault_version_separator }}{{ vault_version }}{{ vault_version_release }}+ent
+  hsm: vault-enterprise-hsm{{ vault_version_separator }}{{ vault_version }}{{ vault_version_release }}+ent.hsm
 
 # Combine the result of a couple of lookups.
-vault_package: "{{ _vault_package[vault_type] }}{{ vault_version_separator }}{{ vault_version }}{{ vault_version_release }}"
+vault_package: "{{ _vault_package[vault_type] }}"
 
 # These are the directories that must exists. Used when vault_installation_method=binary. They are relative to `vault_path`.
 vault_directories:

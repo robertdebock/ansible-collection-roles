@@ -27,3 +27,12 @@
   loop: "{{ swap_files }}"
   loop_control:
     label: "{{ item.path }}"
+  when:
+    - swap_files is defined
+
+- name: Test if swap_enabled item is set correctly
+  ansible.builtin.assert:
+    that:
+      - swap_enabled is defined
+      - swap_enabled is boolean
+    quiet: yes

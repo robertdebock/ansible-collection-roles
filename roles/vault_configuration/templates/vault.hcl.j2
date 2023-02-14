@@ -4,10 +4,10 @@
 # GLOBAL SETTINGS
 #
 
-{% if vault_configuration_max_lease_ttl is defined and (vault_configuration_max_lease_ttl != "" or vault_configuration_max_lease_ttl != "768h") %}
+{% if vault_configuration_max_lease_ttl is defined and vault_configuration_max_lease_ttl != "768h" %}
 max_lease_ttl = "{{ vault_configuration_max_lease_ttl }}"
 {% endif %}
-{% if vault_configuration_default_lease_ttl is defined and (vault_configuration_default_lease_ttl != "" or vault_configuration_default_lease_ttl != "768h") %}
+{% if vault_configuration_default_lease_ttl is defined and vault_configuration_default_lease_ttl != "768h" %}
 default_lease_ttl = "{{ vault_configuration_default_lease_ttl }}"
 {% endif %}
 api_addr = "{{ vault_configuration_api_addr }}"
@@ -78,7 +78,7 @@ listener "tcp" {
 {% if vault_configuration_listener_tcp.tls_key_file is defined and vault_configuration_listener_tcp.tls_key_file != "" %}
   tls_key_file = "{{ vault_configuration_listener_tcp.tls_key_file }}"
 {% endif %}
-{% if vault_configuration_listener_tcp.tls_min_version is defined and (vault_configuration_listener_tcp.tls_min_version != "" or vault_configuration_listener_tcp.tls_min_version != "tls12") and not vault_configuration_listener_tcp.tls_disable %}
+{% if vault_configuration_listener_tcp.tls_min_version is defined and vault_configuration_listener_tcp.tls_min_version != "tls12" and not vault_configuration_listener_tcp.tls_disable %}
   tls_min_version = "{{ vault_configuration_listener_tcp.tls_min_version }}"
 {% endif %}
 {% if vault_configuration_listener_tcp.tls_cipher_suites is defined and vault_configuration_listener_tcp.tls_cipher_suites != "" %}
@@ -140,39 +140,42 @@ storage "raft" {
   snapshot_threshold = {{ vault_configuration_storage_raft.snapshot_threshold }}
 {% endif %}
 {% if vault_configuration_storage_raft.retry_join is defined %}
+{% for item in vault_configuration_storage_raft.retry_join %}
   retry_join {
-    leader_api_addr = "{{ vault_configuration_storage_raft.retry_join.leader_api_addr }}"
-{% if vault_configuration_storage_raft.retry_join.auto_join is defined and vault_configuration_storage_raft.retry_join.auto_join != "" %} 
-    auto_join = "{{ vault_configuration_storage_raft.retry_join.auto_join }}"
+    leader_api_addr = "{{ item.leader_api_addr }}"
+{% if item.auto_join is defined and item.auto_join != "" %} 
+    auto_join = "{{ item.auto_join }}"
 {% endif %}
-{% if vault_configuration_storage_raft.retry_join.auto_join_scheme is defined and vault_configuration_storage_raft.retry_join.auto_join_scheme != "https" %}
-    auto_join_scheme = "{{ vault_configuration_storage_raft.retry_join.auto_join_scheme }}"
+{% if item.auto_join_scheme is defined and item.auto_join_scheme != "https" %}
+    auto_join_scheme = "{{ item.auto_join_scheme }}"
 {% endif %}
-{% if vault_configuration_storage_raft.retry_join.auto_join_port is defined and vault_configuration_storage_raft.retry_join.auto_join_port != 8200 %}
-    auto_join_port = {{ vault_configuration_storage_raft.retry_join.auto_join_port }}
+{% if item.auto_join_port is defined and item.auto_join_port != 8200 %}
+    auto_join_port = {{ item.auto_join_port }}
 {% endif %}
-{% if vault_configuration_storage_raft.retry_join.leader_tls_servername is defined and vault_configuration_storage_raft.retry_join.leader_tls_servername != "" %}
-    leader_tls_servername = "{{ vault_configuration_storage_raft.retry_join.leader_tls_servername }}"
+{% if item.leader_tls_servername is defined and item.leader_tls_servername != "" %}
+    leader_tls_servername = "{{ item.leader_tls_servername }}"
 {% endif %}
-{%if vault_configuration_storage_raft.retry_join.leader_ca_cert_file is defined and vault_configuration_storage_raft.retry_join.leader_ca_cert_file != "" %}
-    leader_ca_cert_file = "{{ vault_configuration_storage_raft.retry_join.leader_ca_cert_file }}"
+{%if item.leader_ca_cert_file is defined and item.leader_ca_cert_file != "" %}
+    leader_ca_cert_file = "{{ item.leader_ca_cert_file }}"
 {% endif %}
-{% if vault_configuration_storage_raft.retry_join.leader_client_cert_file is defined and vault_configuration_storage_raft.retry_join.leader_client_cert_file != "" %}
-    leader_client_cert_file = "{{ vault_configuration_storage_raft.retry_join.leader_client_cert_file }}"
+{% if item.leader_client_cert_file is defined and item.leader_client_cert_file != "" %}
+    leader_client_cert_file = "{{ item.leader_client_cert_file }}"
 {% endif %}
-{% if vault_configuration_storage_raft.retry_join.leader_client_key_file is defined and vault_configuration_storage_raft.retry_join.leader_client_key_file != "" %}
-    leader_client_key_file = "{{ vault_configuration_storage_raft.retry_join.leader_client_key_file }}"
+{% if item.leader_client_key_file is defined and item.leader_client_key_file != "" %}
+    leader_client_key_file = "{{ item.leader_client_key_file }}"
 {% endif %}
-{% if vault_configuration_storage_raft.retry_join.leader_ca_cert is defined and vault_configuration_storage_raft.retry_join.leader_ca_cert != "" %}
-    leader_ca_cert = "{{ vault_configuration_storage_raft.retry_join.leader_ca_cert }}"
+{% if item.leader_ca_cert is defined and item.leader_ca_cert != "" %}
+    leader_ca_cert = "{{ item.leader_ca_cert }}"
 {% endif %}
-{% if vault_configuration_storage_raft.retry_join.leader_client_cert is defined and vault_configuration_storage_raft.retry_join.leader_client_cert != "" %}
-    leader_client_cert = "{{ vault_configuration_storage_raft.retry_join.leader_client_cert }}"
+{% if item.leader_client_cert is defined and item.leader_client_cert != "" %}
+    leader_client_cert = "{{ item.leader_client_cert }}"
 {% endif %}
-{% if vault_configuration_storage_raft.retry_join.leader_client_key is defined and vault_configuration_storage_raft.retry_join.leader_client_key != "" %}
-    leader_client_key =  "{{ vault_configuration_storage_raft.retry_join.leader_client_key }}"
+{% if item.leader_client_key is defined and item.leader_client_key != "" %}
+    leader_client_key =  "{{ item.leader_client_key }}"
 {% endif %}
-{% if vault_configuration_storage_raft.retry_join_as_non_voter %}
+  }
+{% endfor %}
+{% if vault_configuration_storage_raft.retry_join_as_non_voter is defined and vault_configuration_storage_raft.retry_join_as_non_voter %}
   retry_join_as_non_voter = true
 {% endif %}
 {% if vault_configuration_storage_raft.max_entry_size is defined and vault_configuration_storage_raft.max_entry_size != 1048576 %}
@@ -191,7 +194,6 @@ storage "raft" {
   autopilot_redundancy_zone = "{{ vault_configuration_storage_raft.autopilot_redundancy_zone }}"
 {% endif %}
 {% endif %}
-  }
 }
 {% endif %}
 

@@ -26,8 +26,8 @@
     src: "https://releases.hashicorp.com/vault/{{ vault_version }}/vault_{{ vault_version }}_linux_{{ vault_architecture }}.zip"
     dest: "{{ vault_download_path }}"
     creates: "{{ vault_download_path }}/vault"
-    owner: "{{ vault_user }}"
-    group: "{{ vault_group }}"
+    owner: root
+    group: root
     mode: "0644"
     remote_src: yes
 
@@ -100,7 +100,7 @@
 
 - name: Set cap_ipc_lock=ep on /usr/bin/vault
   community.general.capabilities:
-    path: /usr/bin/vault
+    path: "{{ vault_path }}/usr/bin/vault"
     capability: cap_ipc_lock+ep
   changed_when: no
 
@@ -140,8 +140,8 @@
   ansible.builtin.copy:
     src: vault.hcl
     dest: "{{ vault_path }}/etc/vault.d/vault.hcl"
-    owner: "{{ vault_user }}"
-    group: "{{ vault_group }}"
+    owner: root
+    group: root
     mode: "0644"
     force: no
   notify:

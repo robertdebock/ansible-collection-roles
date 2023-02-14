@@ -12,6 +12,11 @@ core_dependencies_shared_packages:
   - unzip
 
 _core_dependencies_packages:
+  Archlinux:
+    - iproute2
+    - shadow
+    - subversion
+    - xz
   Alpine:
     - iproute2
     - shadow

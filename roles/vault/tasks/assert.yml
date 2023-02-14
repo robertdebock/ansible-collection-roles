@@ -55,6 +55,7 @@
     that:
       - vault_user is defined
       - vault_user is string
+      - vault_user != "root"
     quiet: yes
   when:
     - vault_installation_method == "binary"
@@ -64,6 +65,7 @@
     that:
       - vault_group is defined
       - vault_group is string
+      - vault_group != "root"
     quiet: yes
   when:
     - vault_installation_method == "binary"

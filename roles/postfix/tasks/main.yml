@@ -51,6 +51,81 @@
   when:
     - postfix_header_checks_template is defined
 
+- name: "Setting values for main.cf (1/2)"
+  ansible.builtin.set_fact:
+    _postfix_smtpd_recipient_restrictions_check_recipient_access: |
+      {% if postfix_recipient_access is defined %}
+      check_recipient_access hash:{{ postfix_recipient_access_path }},
+      {% endif %}
+    _postfix_smtpd_sender_restrictions_check_sender_access: |
+      {% if postfix_sender_access is defined %}
+      check_sender_access hash:{{ postfix_sender_access_path }},
+      {% endif %}
+
+- name: "Setting values for main.cf (2/2)"
+  ansible.builtin.set_fact:
+    _postfix_mynetworks: >-
+      {% if postfix_mynetworks is string %}{{ postfix_mynetworks }}
+      {% elif postfix_mynetworks is iterable and (postfix_mynetworks is not string and postfix_mynetworks is not mapping) %}
+      {% for network in postfix_mynetworks %}{{ network }}{% if not loop.last %}, {% endif %}{% endfor %}
+      {% endif %}
+    _postfix_mydestination: >-
+      {% if postfix_mydestination is defined %}
+      {% if postfix_mydestination is string %}
+      {{ postfix_mydestination }}
+      {% elif postfix_mydestination is iterable and (postfix_mydestination is not string and postfix_mydestination is not mapping) %}
+      {% for domain in postfix_mydestination %}{{ domain }}{% if not loop.last %}, {% endif %}{% endfor %}
+      {% endif %}
+      {% else %}
+      <None>
+      {% endif %}
+    _postfix_relay_domains: >-
+      {% if postfix_relay_domains is defined %}
+      {% if postfix_relay_domains is string %}
+      {{ postfix_relay_domains }}
+      {% elif postfix_relay_domains is iterable and (postfix_relay_domains is not string and postfix_relay_domains is not mapping) %}
+      {% for domain in postfix_relay_domains %}{{ domain }}{% if not loop.last %}, {% endif %}{% endfor %}
+      {% endif %}
+      {% else %}
+      <None>
+      {% endif %}
+    _postfix_smtpd_recipient_restrictions: >-
+      {% if postfix_smtpd_recipient_restrictions is defined %}
+      {% if postfix_smtpd_recipient_restrictions is string %}
+      {{ _postfix_smtpd_recipient_restrictions_check_recipient_access | trim }} {{ postfix_smtpd_recipient_restrictions }}
+      {% elif postfix_smtpd_recipient_restrictions is iterable and (postfix_smtpd_recipient_restrictions is not string and postfix_smtpd_recipient_restrictions is not mapping) %}
+      {{ _postfix_smtpd_recipient_restrictions_check_recipient_access | trim }} {% for domain in postfix_smtpd_recipient_restrictions %}{{ domain }}{% if not loop.last %}, {% endif %}{% endfor %}
+      {% endif %}
+      {% endif %}
+    _postfix_smtpd_sender_restrictions: >-
+      {% if postfix_smtpd_sender_restrictions is defined %}
+      {% if postfix_smtpd_sender_restrictions is string %}
+      {{ _postfix_smtpd_sender_restrictions_check_sender_access | trim }} {{ postfix_smtpd_sender_restrictions }}
+      {% elif postfix_smtpd_sender_restrictions is iterable and (postfix_smtpd_sender_restrictions is not string and postfix_smtpd_sender_restrictions is not mapping) %}
+      {{ _postfix_smtpd_sender_restrictions_check_sender_access | trim }} {% for domain in postfix_smtpd_sender_restrictions %}{{ domain }}{% if not loop.last %}, {% endif %}{% endfor %}
+      {% endif %}
+      {% endif %}
+    _postfix_virtual_mailbox_domains: >-
+      {% if postfix_virtual_mailbox_domains is defined %}
+      {% if postfix_virtual_mailbox_domains is string %}
+      {{ postfix_virtual_mailbox_domains }}
+      {% elif postfix_virtual_mailbox_domains is iterable and (postfix_virtual_mailbox_domains is not string and postfix_virtual_mailbox_domains is not mapping) %}
+      {% for domain in postfix_virtual_mailbox_domains %}{{ domain }}{% if not loop.last %}, {% endif %}{% endfor %}
+      {% endif %}
+      {% else %}
+      <None>
+      {% endif %}
+    _postfix_virtual_alias_domains: >-
+      {% if postfix_virtual_alias_domains is defined %}
+      {% if postfix_virtual_alias_domains is string %}
+      {{ postfix_virtual_alias_domains }}
+      {% elif postfix_virtual_alias_domains is iterable and (postfix_virtual_alias_domains is not string and postfix_virtual_alias_domains is not mapping) %}
+      {% for domain in postfix_virtual_alias_domains %}{{ domain }}{% if not loop.last %}, {% endif %}{% endfor %}
+      {% endif %}
+      {% else %}
+      <None>
+      {% endif %}
+
 - name: Configure postfix (main.cf)
   ansible.builtin.template:
     src: main.cf.j2

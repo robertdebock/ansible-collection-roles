@@ -3,7 +3,7 @@
 
 - name: Rebuild alias database
   ansible.builtin.command:
-    cmd: postmap "{{ postfix_alias_path }}"
+    cmd: postalias "{{ postfix_alias_path }}"
 
 - name: Rebuild sender_access database
   ansible.builtin.command:

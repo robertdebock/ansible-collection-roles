@@ -6,3 +6,6 @@ squid_port: 3128
 
 # The directory where (and how) to cache.
 squid_cache_dir: ufs /var/spool/squid 100 16 256
+
+# Location of squid's log file
+squid_access_log: /var/log/squid/access.log

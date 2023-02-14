@@ -25,3 +25,9 @@ _postfix_group:
   Suse: maildrop
 
 postfix_group: "{{ _postfix_group[ansible_os_family] | default(_postfix_group['default']) }}"
+
+_postfix_compatibility_level:
+  default: 2
+  jammy: 3.6
+
+postfix_compatibility_level: "{{ _postfix_compatibility_level[ansible_distribution_release] | default(_postfix_compatibility_level['default']) }}"

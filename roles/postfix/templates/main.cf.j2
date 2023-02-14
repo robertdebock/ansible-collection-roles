@@ -11,6 +11,25 @@
 # For best results, change no more than 2-3 parameters at a time,
 # and test if Postfix still works after every change.
 
+# COMPATIBILITY
+#
+# The compatibility_level determines what default settings Postfix
+# will use for main.cf and master.cf settings. These defaults will
+# change over time.
+#
+# To avoid breaking things, Postfix will use backwards-compatible
+# default settings and log where it uses those old backwards-compatible
+# default settings, until the system administrator has determined
+# if any backwards-compatible default settings need to be made
+# permanent in main.cf or master.cf.
+#
+# When this review is complete, update the compatibility_level setting
+# below as recommended in the RELEASE_NOTES file.
+#
+# The level below is what should be used with new (not upgrade) installs.
+#
+compatibility_level = {{ postfix_compatibility_level }}
+
 # SOFT BOUNCE
 #
 # The soft_bounce parameter provides a limited safety net for
@@ -170,8 +189,8 @@ inet_protocols = {{ postfix_inet_protocols }}
 #mydestination = $myhostname, localhost.$mydomain, localhost, $mydomain
 #mydestination = $myhostname, localhost.$mydomain, localhost, $mydomain,
 #	mail.$mydomain, www.$mydomain, ftp.$mydomain
-{% if postfix_mydestination is defined %}
-mydestination = {{ postfix_mydestination }}
+{% if _postfix_mydestination != "<None>" %}
+mydestination = {{ _postfix_mydestination | trim }}
 {% endif %}
 
 # REJECTING MAIL FOR UNKNOWN LOCAL USERS
@@ -272,7 +291,7 @@ unknown_local_recipient_reject_code = 550
 #mynetworks = 168.100.189.0/28, 127.0.0.0/8
 #mynetworks = $config_directory/mynetworks
 #mynetworks = hash:/etc/postfix/network_table
-mynetworks = {% for network in postfix_mynetworks %}{{ network }}{% if not loop.last %}, {% endif %}{% endfor %}
+mynetworks = {{ _postfix_mynetworks | trim }}
 
 # The relay_domains parameter restricts what destinations this system will
 # relay mail to.  See the smtpd_recipient_restrictions description in
@@ -303,25 +322,13 @@ mynetworks = {% for network in postfix_mynetworks %}{{ network }}{% if not loop.
 # permit_mx_backup restriction description in postconf(5).
 #
 #relay_domains = $mydestination
-{% if postfix_relay_domains is defined %}
-relay_domains = {{ postfix_relay_domains }}
+{% if _postfix_relay_domains != "<None>" %}
+relay_domains = {{ _postfix_relay_domains | trim }}
 {% endif %}
 
-{% if postfix_smtpd_recipient_restrictions is defined and postfix_recipient_access is not defined %}
-smtpd_recipient_restrictions = {% for smtpd_recipient_restriction in postfix_smtpd_recipient_restrictions %}{{ smtpd_recipient_restriction }}, {% endfor %}
-{% endif %}
+smtpd_recipient_restrictions = {{ _postfix_smtpd_recipient_restrictions | trim }}
 
-{% if postfix_smtpd_recipient_restrictions is defined and postfix_recipient_access is defined %}
-smtpd_recipient_restrictions = check_recipient_access hash:{{ postfix_recipient_access_path }}, {% for smtpd_recipient_restriction in postfix_smtpd_recipient_restrictions %}{{ smtpd_recipient_restriction }}, {% endfor %}
-{% endif %}
-
-{% if postfix_smtpd_sender_restrictions is defined and postfix_sender_access is not defined %}
-smtpd_sender_restrictions = {% for smtpd_sender_restriction in postfix_smtpd_sender_restrictions %}{{ smtpd_sender_restriction }}, {% endfor %}
-{% endif %}
-
-{% if postfix_smtpd_sender_restrictions is defined and postfix_sender_access is defined %}
-smtpd_sender_restrictions = check_sender_access hash:{{ postfix_sender_access_path }}, {% for smtpd_sender_restriction in postfix_smtpd_sender_restrictions %}{{ smtpd_sender_restriction }}, {% endfor %}
-{% endif %}
+smtpd_sender_restrictions = {{ _postfix_smtpd_sender_restrictions | trim }}
 
 
 # INTERNET OR INTRANET
@@ -763,12 +770,12 @@ virtual_mailbox_base = {{ postfix_virtual_mailbox_base }}
 virtual_mailbox_maps = {{ postfix_virtual_mailbox_maps }}
 {% endif %}
 
-{% if postfix_virtual_mailbox_domains is defined %}
-virtual_mailbox_domains = {{ postfix_virtual_mailbox_domains }}
+{% if _postfix_virtual_mailbox_domains | trim != "<None>" %}
+virtual_alias_domains = {{ _postfix_virtual_mailbox_domains | trim }}
 {% endif %}
 
-{% if postfix_virtual_alias_domains is defined %}
-virtual_alias_domains = {{ postfix_virtual_alias_domains }}
+{% if _postfix_virtual_alias_domains | trim != "<None>" %}
+virtual_mailbox_domains = {{ _postfix_virtual_alias_domains | trim }}
 {% endif %}
 
 {% if postix_virtual_alias_maps is defined %}

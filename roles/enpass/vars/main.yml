@@ -1,0 +1,75 @@
+---
+# vars file for enpass
+
+_enpass_requirements:
+  default: []
+  Debian:
+    - libcups2
+    - fontconfig
+    - libxcb-glx0
+    - libx11-xcb-dev
+    - libxcb-icccm4
+    - libxcb-image0
+    - libxcb-keysyms1
+    - libxcb-randr0-dev
+    - libxcb-render-util0
+    - libxcb-sync1
+    - libsm6
+    - libgtk-3-0
+    - libpulse0
+    - libgl1
+  RedHat-7:
+    - cups-libs
+    - fontconfig
+    - xcb-util-keysyms
+    - xcb-util-renderutil
+    - libSM
+    - libxkbcommon-x11
+    - gtk3
+    - pulseaudio-libs
+    - glibc
+  RedHat:
+    - cups-libs
+    - fontconfig
+    - gtk3
+    - libglvnd-glx
+    - libX11-xcb
+    - libSM
+    - libxkbcommon-x11
+    - xcb-util-keysyms
+    - xcb-util-renderutil
+  Suse:
+    - libcups2
+    - libxcb-glx0
+    - libX11-xcb1
+    - libxcb-keysyms1
+    - libxcb-randr0
+    - libxcb-render-util0
+    - libxcb-shape0
+    - libxcb-sync1
+    - libxcb-xfixes0
+    - libxcb-xkb1
+    - libxcb-xinput0
+    - libSM6
+    - libxkbcommon-x11-0
+    - libpulse0
+    - libgtk-3-0
+enpass_requirements: "{{ _enpass_requirements[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_enpass_requirements[ansible_os_family] | default(_enpass_requirements['default'])) }}"
+
+enpass_yum_repositories:
+  - name: enpass
+    description: Enpass password manager repository
+    baseurl: "https://yum.enpass.io/stable/$basearch/"
+    gpgcheck: yes
+    gpgkey: "https://yum.enpass.io/RPM-GPG-KEY-enpass-signing-key"
+  - name: enpass-testing
+    description: Enpass password manager repository
+    baseurl: "https://yum.enpass.io/testing/$basearch/"
+    gpgcheck: yes
+    gpgkey: "https://yum.enpass.io/RPM-GPG-KEY-enpass-signing-key"
+    enabled: no
+
+# - name: enpass
+#   repo: "https://yum.enpass.io/stable/x86_64/"
+# - name: enpass-testing
+#   repo: "https://yum.enpass.io/testing/x86_64"

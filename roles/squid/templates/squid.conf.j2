@@ -39,3 +39,11 @@ cache_replacement_policy {{ squid_cache_replacement_policy }}
 {% if squid_maximum_object_size_mb is defined %}
 maximum_object_size {{ squid_maximum_object_size_mb }} MB
 {% endif %}
+
+{% if squid_logformat is defined %}
+logformat {{ squid_logformat }}
+{% endif %}
+
+{% if squid_access_log is defined %}
+access_log {{ squid_access_log }}
+{% endif %}

@@ -55,6 +55,9 @@ swap_swappiness: 60
 # swap_files:
 #   - path: /my.swap
 #     size: 1024
+
+# You can disable swap if required.
+swap_enabled: yes
 ```
 
 ## [Requirements](#requirements)

@@ -1,4 +1,4 @@
 ---
 # vars file for terraform
 
-terraform_unarchive_src: "https://releases.hashicorp.com/terraform/{{ terraform_version }}/terraform_{{ terraform_version }}_linux_amd64.zip"
+terraform_unarchive_src: "https://{{ terraform_software_mirror }}/terraform/{{ terraform_version }}/terraform_{{ terraform_version }}_linux_amd64.zip"
