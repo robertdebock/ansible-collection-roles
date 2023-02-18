@@ -4,6 +4,7 @@
 _enpass_requirements:
   default: []
   Debian:
+    - ca-certificates
     - libcups2
     - fontconfig
     - libxcb-glx0

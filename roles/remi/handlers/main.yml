@@ -4,8 +4,6 @@
 - name: Reset php stream
   ansible.builtin.command:
     cmd: dnf --assumeyes module reset php
-  args:
-    warn: no
   when:
     - ansible_pkg_mgr == "dnf"
 

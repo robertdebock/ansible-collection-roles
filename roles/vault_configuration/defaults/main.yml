@@ -32,7 +32,6 @@ vault_configuration_disable_mlock: yes
 vault_configuration_disable_clustering: no
 vault_configuration_plugin_directory: ""
 vault_configuration_ui: no
-vault_configuration_license_path: ""
 vault_configuration_log_level: ""
 
 #

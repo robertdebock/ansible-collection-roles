@@ -97,13 +97,6 @@
       - vault_configuration_ui is boolean
     quiet: yes
 
-- name: Test if vault_configuration_license_path is set correctly
-  ansible.builtin.assert:
-    that:
-      - vault_configuration_license_path is defined
-      - vault_configuration_license_path is string
-    quiet: yes
-
 - name: Test if vault_configuration_log_level is set correctly
   ansible.builtin.assert:
     that:

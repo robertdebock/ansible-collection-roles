@@ -29,9 +29,9 @@
     name: "{{ item.name }}"
     device: "{{ item.device }}"
     state: "{{ item.state | default(luks_default_state) }}"
-    passphrase: "{{ item.passphrase | default(omit) }}"
-    keyfile: "{{ item.keyfile | default(omit) }}"
-  # no_log: true
+    passphrase: "{{ item.passphrase | default(omit) }}"  # noqa: args[module]
+    keyfile: "{{ item.keyfile | default(omit) }}"  # noqa: args[module]
+  no_log: true
   loop: "{{ luks_devices }}"
   loop_control:
     label: "{{ item.device }}"

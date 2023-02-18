@@ -19,7 +19,7 @@
 - name: Upgrade package
   ansible.builtin.package:
     name: "{{ item.item }}"
-    state: latest  # noqa 403 This task is to upgrade, latest is okay.
+    state: latest  # noqa package-latest This task is to upgrade, latest is okay.
   loop: "{{ upgrade_check_if_package_is_installed.results }}"
   loop_control:
     label: "{{ item.item }}"

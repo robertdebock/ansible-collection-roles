@@ -1,0 +1,33 @@
+---
+# tasks file for vault_snapshot
+
+- name: Include assert.yml
+  ansible.builtin.import_tasks: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+- name: Configure Vault auto snapshot
+  ansible.builtin.uri:
+    url: "{{ vault_snapshot_address }}/v1/sys/storage/raft/snapshot-auto/config/{{ item.name }}"
+    method: POST
+    headers:
+      X-Vault-Token: "{{ vault_snapshot_token }}"
+    body:
+      interval: "{{ item.interval_seconds }}"
+      retain: "{{ item.retain | default(omit) }}"
+      path_prefix: "{{ item.path_prefix | default(omit) }}"
+      storage_type: "{{ item.storage_type }}"
+      local_max_space: "{{ item.local_max_space | default(omit) }}"
+      aws_s3_bucket: "{{ item.aws_s3_bucket | default(omit) }}"
+      aws_s3_region: "{{ item.aws_s3_region | default(omit) }}"
+      aws_access_key_id: "{{ item.aws_access_key_id | default(omit) }}"
+      aws_secret_access_key: "{{ item.aws_secret_access_key | default(omit) }}"
+      aws_s3_enable_kms: "{{ item.aws_s3_enable_kms | default(omit) }}"
+      azure_container_name: "{{ item.azure_container_name | default(omit) }}"
+      azure_account_name: "{{ item.azure_account_name | default(omit) }}"
+      azure_account_key: "{{ item.azure_account_key | default(omit) }}"
+    body_format: json
+    status_code: 204
+  loop: "{{ vault_snapshot_schedules }}"
+  loop_control:
+    label: "{{ item.name }}"

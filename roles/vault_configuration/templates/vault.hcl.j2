@@ -29,8 +29,8 @@ plugin_directory = "{{ vault_configuration_plugin_directory }}"
 {% if vault_configuration_ui is defined and vault_configuration_ui %}
 ui = true
 {% endif %}
-{% if vault_configuration_license_path is defined and vault_configuration_license_path != "" %}
-license_path = "{{ vault_configuration_license_path }}"
+{% if vault_configuration_license is defined and vault_configuration_license != "" %}
+license_path = "/etc/vault.d/license.hclic"
 {% endif %}
 {% if vault_configuration_log_level is defined and vault_configuration_log_level != "" %}
 log_level = "{{ vault_configuration_log_level }}"

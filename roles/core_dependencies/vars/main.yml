@@ -1,6 +1,9 @@
 ---
 # vars file for core_dependencies
 
+core_dependencies_conflicting_packages:
+  - busybox-xz
+
 core_dependencies_shared_packages:
   - acl
   - at
