@@ -5,7 +5,9 @@
 vault_configuration_owner: vault
 vault_configuration_group: vault
 
-# Set the license. Rquired when `vault_type` is `"ent"` or `"hsm"`.
+# Set the license. Required when Vault enterprise is being used.
+# The role `robertdebock.vault` can install Vault enterprise by setting:
+# - `vault_type` to `"ent"` or `"hsm"`.
 # vault_configuration_license: "XYZABC"
 
 # Environment variables can be saved to /etc/vault.d.vault.env. These are loaded when starting Vault.

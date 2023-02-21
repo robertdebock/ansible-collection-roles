@@ -1,0 +1,15 @@
+---
+
+- name: Test if vault_initialize_addr is set correctly
+  ansible.builtin.assert:
+    that:
+      - vault_initialize_addr is defined
+      - vault_initialize_addr is string
+    quiet: yes
+
+- name: Test if vault_initialize_show_information is set correctly
+  ansible.builtin.assert:
+    that:
+      - vault_initialize_show_information is defined
+      - vault_initialize_show_information is boolean
+    quiet: yes

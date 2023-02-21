@@ -6,6 +6,19 @@
   run_once: yes
   delegate_to: localhost
 
+- name: List existing snapshots configured
+  ansible.builtin.uri:
+    url: "{{ vault_snapshot_address }}/v1/sys/storage/raft/snapshot-auto/config"
+    method: LIST
+    headers:
+      X-Vault-Token: "{{ vault_snapshot_token }}"
+    status_code:
+      - 404  # If no snapshots are configured, a `404`` is returned.
+      - 200
+  register: vault_snapshot_list
+  run_once: yes
+  changed_when: no
+
 - name: Configure Vault auto snapshot
   ansible.builtin.uri:
     url: "{{ vault_snapshot_address }}/v1/sys/storage/raft/snapshot-auto/config/{{ item.name }}"
@@ -31,3 +44,8 @@
   loop: "{{ vault_snapshot_schedules }}"
   loop_control:
     label: "{{ item.name }}"
+  run_once: yes
+  changed_when: yes
+  when:
+    - ( vault_snapshot_list.json.data.keys is defined and item.name not in vault_snapshot_list.json.data['keys'] ) or
+      vault_snapshot_list.json.data is not defined

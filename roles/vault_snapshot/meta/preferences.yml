@@ -1,2 +1,4 @@
 ---
-tox_parallel: yes
+github_variables_mapping:
+  - name: secrets.VAULT_LICENSE
+    variable: VAULT_LICENSE

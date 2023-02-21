@@ -50,25 +50,9 @@
     cmd: update-crypto-policies
 
 - name: Restart chronyd
-  block:
-    - name: Restart chronyd
-      ansible.builtin.service:
-        name: chronyd
-        state: restarted
-  rescue:
-    - name: Collect information
-      ansible.builtin.command:
-        cmd: "{{ item }}"
-      changed_when: no
-      register: cis_collect_information
-      loop:
-        - journalxtl -xe
-        - systemctl status chronyd
-
-    - name: Show information
-      ansible.builtin.debug:
-        msg: "{{ item }}"
-      loop: "{{ cis_collect_information.results }}"
+  ansible.builtin.service:
+    name: chronyd
+    state: restarted
   when:
     - not ansible_check_mode | bool
 

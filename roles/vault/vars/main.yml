@@ -20,26 +20,28 @@ _vault_architecture_map:
   i386: "386"
 vault_architecture: "{{ _vault_architecture_map[ansible_architecture] }}"
 
+# The structure of the package name depends per package manager and type (`oss`, `ent` or `ent+hsm`) installation:
+# OSS:
+#   APT: "vault={{ vault_version }}-{{ vault_package_release }}". For example: `vault=1.12.3-1`
+#   YUM: "vault-{{ vault_version }}-{{ vault_package_release }}". For example: `vault-1.12.3-1`
+# ENT:
+#   APT: "vault-enterprise={{ vault_version }}+ent-{{ vault_package_release }}". For example: `vault-enterprise=1.12.3+ent-1`
+#   YUM: "vault-enterprise-{{ vault-version }}+ent-{{ vault_package_release }}". For example: `vault-enterprise-1.12.3+ent-1`
+# ENT+HMS:
+#   APT: "vault-enterprise-hsm={{ vault_version }}+ent-{{ vault_package_release }}". For example: `vault-enterprise-hsm=1.12.3+ent-1``
+#   YUM: "vault-enterprise-hsm-{{ vault_version }}+ent-{{ vault_pacakge_release }}". For example: `vault-enterprise-hsm-1.12.3+ent-1`
+
 # Map ansible_pkg_mgr to a "separator". Different package managers use different symbols to restrict a version.
-# For example:
-# APT: vault=1.2.3
-# DNF: vault-1.2.3
 _vault_version_separator:
   default: "-"
   apt: "="
 vault_version_separator: "{{ _vault_version_separator[ansible_pkg_mgr] | default(_vault_version_separator['default']) }}"
 
-# Map ansible_pkg_mgr to a "release". Only required for the `apt` package manager.
-_vault_version_release:
-  default: ""
-  apt: "-{{ vault_package_release }}"
-vault_version_release: "{{ _vault_version_release[ansible_pkg_mgr] | default(_vault_version_release['default']) }}"
-
 # Map vault_type to a package name.
 _vault_package:
-  oss: vault{{ vault_version_separator }}{{ vault_version }}{{ vault_version_release }}
-  ent: vault-enterprise{{ vault_version_separator }}{{ vault_version }}{{ vault_version_release }}+ent
-  hsm: vault-enterprise-hsm{{ vault_version_separator }}{{ vault_version }}{{ vault_version_release }}+ent.hsm
+  oss: vault{{ vault_version_separator }}{{ vault_version }}-{{ vault_package_release }}
+  ent: vault-enterprise{{ vault_version_separator }}{{ vault_version }}+ent-{{ vault_package_release }}
+  hsm: vault-enterprise-hsm{{ vault_version_separator }}{{ vault_version }}+ent-{{ vault_package_release }}
 
 # Combine the result of a couple of lookups.
 vault_package: "{{ _vault_package[vault_type] }}"

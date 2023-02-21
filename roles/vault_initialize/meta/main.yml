@@ -1,8 +1,8 @@
 ---
 galaxy_info:
   author: robertdebock
-  role_name: vault_snapshot
-  description: Configure vault_snapshot on Vault.
+  role_name: vault_initialize
+  description: Initialize and unseal HashiCorp Vault.
   license: Apache-2.0
   company: none
   min_ansible_version: "2.10"
@@ -26,7 +26,6 @@ galaxy_info:
         - all
 
   galaxy_tags:
-    - vaultsnapshot
-    - snapshot
+    - vaultinitialize
 
 dependencies: []

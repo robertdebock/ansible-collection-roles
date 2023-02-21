@@ -19,7 +19,6 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 
   roles:
     - role: robertdebock.roles.vault
-      vault_installation_method: binary
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-vault/blob/master/molecule/default/prepare.yml):
@@ -48,10 +47,13 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 # defaults file for vault
 
 # Select the type of Vault to install. Either "oss", "ent" or "hsm".
+# `oss` means Open Source.
+# `ent` means Enterprise.
+# `hsm` means Enterprise with HSM support.
 vault_type: oss
 
 # Set the version of the package to install.
-vault_version: "1.12.2"
+vault_version: "1.12.3"
 
 # For package installations, a "release" is required. The package would for example be called `vault-1.12.2-1`.
 vault_package_release: "1"

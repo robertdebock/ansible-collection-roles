@@ -1,0 +1,82 @@
+---
+# tasks file for vault_initialize
+
+- name: Include assert.yml
+  ansible.builtin.import_tasks: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+- name: Read status of Vault
+  ansible.builtin.command:
+    cmd: vault status -format=yaml
+  environment:
+    VAULT_ADDR: "{{ vault_initialize_addr }}"
+  register: vault_initialize_status_raw
+  changed_when: no
+  failed_when: no
+  run_once: yes
+
+- name: Store vault_initialize_status as YAML
+  ansible.builtin.set_fact:
+    vault_initialize_status: "{{ vault_initialize_status_raw.stdout | from_yaml }}"
+  run_once: yes
+
+- name: Initialize Vault
+  ansible.builtin.command:
+    cmd: vault operator init -format=yaml
+  environment:
+    VAULT_ADDR: "{{ vault_initialize_addr }}"
+  register: vault_initialize_raw
+  when:
+    - not vault_initialize_status.initialized
+  changed_when: yes
+  run_once: yes
+
+- name: Store vault_initialize_raw output as YAML
+  ansible.builtin.set_fact:
+    vault_initialize: "{{ vault_initialize_raw.stdout | from_yaml }}"
+  when:
+    - vault_initialize_raw is defined
+    - vault_initialize_raw.stdout is defined
+  run_once: yes
+
+- name: Store root_token in /root/.vault-token
+  ansible.builtin.copy:
+    content: "{{ vault_initialize.root_token }}"
+    dest: /root/.vault-token
+    owner: root
+    group: root
+    mode: "0640"
+  when:
+    - vault_initialize is defined
+    - vault_initialize.root_token is defined
+
+- name: Unseal Vault
+  ansible.builtin.command:
+    cmd: vault operator unseal {{ item }}
+  environment:
+    VAULT_ADDR: "{{ vault_initialize_addr }}"
+  loop: "{{ vault_initialize.unseal_keys_b64 }}"
+  loop_control:
+    label: "Sensitive data is hidden."
+  when:
+    - vault_initialize_status.sealed
+    - vault_initialize_status.type == "shamir"
+  changed_when: yes
+
+- name: Show initialize information
+  when:
+    - vault_initialize_show_information
+    - vault_initialize_status is defined
+    - vault_initialize_status.unseal_keys_b64 is defined
+    - vault_initialize_status.root_token is defined
+  block:
+    - name: Show root_token
+      ansible.builtin.debug:
+        msg: "{{ vault_initialize_status.root_token }}"
+      run_once: yes
+
+    - name: Show unseal_keys
+      ansible.builtin.debug:
+        msg: "{{ vault_initialize_status.unseal_keys_b64 }}"
+      run_once: yes
