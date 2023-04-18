@@ -5,7 +5,7 @@ galaxy_info:
   description: Install the Elastic repository on your system.
   license: Apache-2.0
   company: none
-  min_ansible_version: "2.10"
+  min_ansible_version: "2.12"
 
   platforms:
     - name: Amazon
@@ -20,7 +20,8 @@ galaxy_info:
         - "8"
     - name: Fedora
       versions:
-        - all
+        - "36"
+        - "37"
     - name: Ubuntu
       versions:
         - all

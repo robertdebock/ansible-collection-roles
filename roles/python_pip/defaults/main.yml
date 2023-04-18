@@ -1,7 +1,8 @@
 ---
 # defaults file for python_pip
 
-# By default no modules should be installed.
+# By default no modules should be installed. Note: This does not work on Debian Bookworm.
+# See https://peps.python.org/pep-0668/
 python_pip_modules: []
 
 # Connect to a (pypi) proxy by setting this variable.

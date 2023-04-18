@@ -1,6 +1,16 @@
 ---
 # handlers file for owncloud
 
+- name: Set permission
+  ansible.builtin.file:
+    name: "{{ item.name }}"
+    owner: "{{ item.owner | default(omit) }}"
+    group: "{{ item.group | default(omit) }}"
+    mode: "{{ item.mode | default(omit) }}"
+  loop: "{{ owncloud_permissions }}"
+  loop_control:
+    label: "{{ item.name }}"
+
 - name: Set owncloud trusted domains
   ansible.builtin.lineinfile:
     path: "{{ owncloud_destination }}/owncloud/config/config.php"
@@ -12,3 +22,8 @@
   ansible.builtin.file:
     path: "{{ owncloud_destination }}/owncloud/config/config.php"
     state: absent
+
+- name: Restart httpd
+  ansible.builtin.service:
+    name: "{{ owncloud_httpd_service }}"
+    state: restarted

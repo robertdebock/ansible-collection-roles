@@ -18,7 +18,7 @@
 - name: Check space available
   ansible.builtin.assert:
     that:
-      - item.size_available | int >= kilobytes_available |int
+      - item.size_available | int >= kilobytes_available | int
     fail_msg: "{{ item.mount }} has {{ item.size_available }} KB, minimum required {{ kilobytes_available }}."
     quiet: yes
   loop: "{{ ansible_mounts }}"

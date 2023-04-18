@@ -4,6 +4,7 @@
 - name: Run swapon
   ansible.builtin.command:
     cmd: swapon
+  changed_when: yes
 
 - name: Gather facts
   ansible.builtin.setup:

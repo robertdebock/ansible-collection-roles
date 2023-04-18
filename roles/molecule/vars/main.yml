@@ -6,12 +6,12 @@ _molecule_requirements:
   Alpine:
     - linux-headers
     - rust
-  Debian:
-    - libssl-dev
   RedHat:
     - python3-devel
     - openssl-devel
+    - ansible
   Suse:
     - python3-devel
+    - ansible
 
 molecule_requirements: "{{ _molecule_requirements[ansible_os_family] | default(_molecule_requirements['default']) }}"

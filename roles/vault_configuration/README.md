@@ -36,35 +36,36 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
     - role: robertdebock.roles.hashicorp
     - role: robertdebock.roles.vault
 
-- name: Create TLS material on localhost
-  hosts: localhost
-  become: no
-  gather_facts: no
+# The contents of the files generated below has been pasted into `defaults/main.yml`.
+# - name: Create TLS material on localhost
+#   hosts: localhost
+#   become: no
+#   gather_facts: no
 
-  tasks:
-    - name: Install openssl
-      ansible.builtin.package:
-        name: openssl
+#   tasks:
+#     - name: Install openssl
+#       ansible.builtin.package:
+#         name: openssl
 
-    - name: Generate a private key for the CA
-      ansible.builtin.command:
-        cmd: openssl genpkey -algorithm RSA -out ca.key
+#     - name: Generate a private key for the CA
+#       ansible.builtin.command:
+#         cmd: openssl genpkey -algorithm RSA -out ca.key
 
-    - name: Create the root CA certificate
-      ansible.builtin.command:
-        cmd: openssl req -new -x509 -key ca.key -out ca.crt -subj "/C=NL/ST=UTRECHT/L=Breukelen/O=Robert de Bock/CN=CA Robert de Bock/emailAddress=robert@meinit.nl"
+#     - name: Create the root CA certificate
+#       ansible.builtin.command:
+#         cmd: openssl req -new -x509 -key ca.key -out ca.crt -subj "/C=NL/ST=UTRECHT/L=Breukelen/O=Robert de Bock/CN=CA Robert de Bock/emailAddress=robert@meinit.nl"
 
-    - name: Generate a private key for the server
-      ansible.builtin.command:
-        cmd: openssl genpkey -algorithm RSA -out vault.key
+#     - name: Generate a private key for the server
+#       ansible.builtin.command:
+#         cmd: openssl genpkey -algorithm RSA -out vault.key
 
-    - name: Create a certificate signing request (CSR) for the server
-      ansible.builtin.command:
-        cmd: openssl req -new -key vault.key -out vault.csr -subj "/C=NL/ST=UTRECHT/L=Breukelen/O=Robert de Bock/CN=vault.robertdebock.nl/emailAddress=robert@meinit.nl"
+#     - name: Create a certificate signing request (CSR) for the server
+#       ansible.builtin.command:
+#         cmd: openssl req -new -key vault.key -out vault.csr -subj "/C=NL/ST=UTRECHT/L=Breukelen/O=Robert de Bock/CN=vault.robertdebock.nl/emailAddress=robert@meinit.nl"
 
-    - name: Sign the server certificate with the CA
-      ansible.builtin.command:
-        cmd: openssl x509 -req -in vault.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out vault.crt
+#     - name: Sign the server certificate with the CA
+#       ansible.builtin.command:
+#         cmd: openssl x509 -req -in vault.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out vault.crt
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.
@@ -130,8 +131,62 @@ vault_configuration_listener_tcp:
   proxy_protocol_behavior: ""
   proxy_protocol_authorized_addrs: ""
   tls_disable: no
-  tls_cert_file: "/opt/vault/tls/vault.crt"
-  tls_key_file: "/opt/vault/tls/vault.key"
+  # You can specify a file (`tls_cert_file`) OR the content of the file (`tls_cert`).
+  # tls_cert_file: "/opt/vault/tls/vault.crt"
+  tls_cert: |
+    -----BEGIN CERTIFICATE-----
+    MIIDlDCCAnwCCQDKshDt/N9YbTANBgkqhkiG9w0BAQsFADCBiTELMAkGA1UEBhMC
+    TkwxEDAOBgNVBAgMB1VUUkVDSFQxEjAQBgNVBAcMCUJyZXVrZWxlbjEXMBUGA1UE
+    CgwOUm9iZXJ0IGRlIEJvY2sxGjAYBgNVBAMMEUNBIFJvYmVydCBkZSBCb2NrMR8w
+    HQYJKoZIhvcNAQkBFhByb2JlcnRAbWVpbml0Lm5sMB4XDTIzMDIxMzA4NTg1MloX
+    DTIzMDMxNTA4NTg1MlowgY0xCzAJBgNVBAYTAk5MMRAwDgYDVQQIDAdVVFJFQ0hU
+    MRIwEAYDVQQHDAlCcmV1a2VsZW4xFzAVBgNVBAoMDlJvYmVydCBkZSBCb2NrMR4w
+    HAYDVQQDDBV2YXVsdC5yb2JlcnRkZWJvY2submwxHzAdBgkqhkiG9w0BCQEWEHJv
+    YmVydEBtZWluaXQubmwwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDN
+    LeDgfuElvJL+EPY6zaPx/lF8nblytGvxIy/8BBpsu9wyvI0Ty9XXxk7alwdTM+mE
+    LYA1Nznnk0ekC9gaQTLRUGqTOJ92la0Z6M4/yVxe9gvN5yNsUjU01dXXiFzgx0e4
+    usdnrqkZchi5Ib0SunHm1sE0O3uEYdW9mJrqWb25HLLmQwtrztr9bE5PBUH8CzlX
+    fqM6+6e2e1pnmPmt533GtIJcwfBg+pUkc01EfhKzLjtILgAijfx+m+XjpKShGLUg
+    QTL4V9fmXCmPBP0IYjw8I5k64aBLTQ/oj1sw4EzkaVKxTtluiAENDf2x9yPaoH3x
+    PkPG36D5/4JK90THTihlAgMBAAEwDQYJKoZIhvcNAQELBQADggEBAAdPO8l+ww5p
+    YJKZ3COyzz/RWHQ4R1fH3KQE53Jk4kjARoEcuh34YQJ3uWbiyrMMorHUrKStWrEO
+    297pMizrA45bFm79gwoZ1yI/2WdejnC86JFdAbHRWLkEKs40Fy9JhEU0ouHLk7ya
+    Gr9hGKWNVJmnNpk+xpmIY1hi5L4Opb8/hRe16MzhpVivyenyekEpu4S0muZXvUKt
+    igLKDsMemBMADA1xS05IJ8PVfSpsGxhB9cga1DL94Bpq+p1ZSSbupQUNEIObi8BK
+    vIciVdKVLy30rGn2JGKSEQ9fnULuZUWxjOv0awqKRpFE5WVnav2iwF4pzvRxFw7Y
+    ba0Ft217IrI=
+    -----END CERTIFICATE-----
+  # You can specify a file (`tls_file_key`) OR the content of the file (`tls_key`).
+  # tls_key_file: "/opt/vault/tls/vault.key"
+  tls_key: |
+    -----BEGIN PRIVATE KEY-----
+    MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDNLeDgfuElvJL+
+    EPY6zaPx/lF8nblytGvxIy/8BBpsu9wyvI0Ty9XXxk7alwdTM+mELYA1Nznnk0ek
+    C9gaQTLRUGqTOJ92la0Z6M4/yVxe9gvN5yNsUjU01dXXiFzgx0e4usdnrqkZchi5
+    Ib0SunHm1sE0O3uEYdW9mJrqWb25HLLmQwtrztr9bE5PBUH8CzlXfqM6+6e2e1pn
+    mPmt533GtIJcwfBg+pUkc01EfhKzLjtILgAijfx+m+XjpKShGLUgQTL4V9fmXCmP
+    BP0IYjw8I5k64aBLTQ/oj1sw4EzkaVKxTtluiAENDf2x9yPaoH3xPkPG36D5/4JK
+    90THTihlAgMBAAECggEBAL0sxL8YHOyXPowkBXLYMYWob2dPYTHiKfft8osRGXAR
+    kYfyEr0i3iqRPBkM0QMkxPRKo3/tSGU8hPw6s2gZnwogc/MDbPuAK1bNMITdWl5v
+    yxhwOVfhQA9T7VNI9iGFe5pWFA6DmoPMkAD5m4NOBkDI1uAay9qV/eVOc98JGQU3
+    Scc5H9gMvxe2J0njyUv+W4p5y8oMz0iVxqDvbQEduUuVZ7xKp1YysitfKViss2ej
+    Ug3VcsPltuUrARfC/vO5PYJ2BXt9tHxPfu+nykGi42zAM6ex4xJyFiXnpZBOvjk1
+    XIklhN9CoelxoECAxl7YgtweRwlbKf7belYd61HkmS0CgYEA9/zlX/BjIgmQjG7T
+    odbb36pw9qW5M8ZVIIPQj5hndtPlGoESjcmHeogV1zAmsKvnQ6BuRUB4ZUh/nEpf
+    HMPY1UaJ1L9jR8GjXh9mlVMAStYVwOxU2iILYditQ+BzLbr4ChNriI/Zo1/wIhxZ
+    fk/cyutSF4z+RJ3C3+wPCk1n7H8CgYEA087pobuaiF5vSlnbjHIbb4zxPrxT1rW3
+    k5KTC6RyMVW92yoOr6Gwgizzyq+qW4YSs3lePfN9oHxkkFJ9SU1/uV2ta64fnsxI
+    HqbbgsMTKX1BbtkxNDYOCWvduJmC83LBYPVblPDvSr4G7zqxWyo3PQm9O/MrbtlW
+    zrjGJrEYSRsCgYAINB2CZvlgjuBxRNlLaUgsxf6mqiTOSalXQgUMOwZxL+FMVyi9
+    +AS7UPUoATfGcGleG1iKge95qkROb0dmNDRgGc1FdG9cWFOHMZK7Ldu8nghqMWc9
+    MBMgUYKp1Cr7QEwkSTAtfFS+ytWuyzFKtGmhbNdyX/+pVW606aI1vQnLEQKBgQC0
+    jXtHLR7sBGQmIzcuH88XZjP34J4vNzRIDfhfQk09lPOEsfNW8CQAs8UWEGzOHBow
+    99LISJnchm1LQaYfKHsqTpqYYhP+T/Fif6Y7b4MUKPvwPCDfevy4N0UIKYQhdr81
+    obHx4vh45EgRAh1Rs0jnNTgktINfuNFw4r23Gduz5QKBgD1qGo2Yjtk9blNV5v4Z
+    oEKp5NQ+2Fbkpwl9k+nyA9CaSs98uf7C7Br7vrt/JBjAu447p/myeT9GiJSao6xj
+    g8DTnnIvFuiLS9NKJMH4S2sd7P73j9djdV8J0qpxiEE6PMGjXrz455G6vowdKldu
+    xWZvV9q5Ouxf7iRPf3o2cfKw
+    -----END PRIVATE KEY-----
   tls_min_version: "tls12"
   tls_cipher_suites: ""
   tls_require_and_verify_client_cert: no
@@ -168,10 +223,33 @@ vault_configuration_storage_raft:
       auto_join_scheme: "https"
       auto_join_port: 8200
       leader_tls_servername: ""
-      leader_ca_cert_file: "/opt/vault/tls/ca.crt"
+      # You can specify a file (`leader_ca_cert_file`) OR the content of the file (`leader_ca_cert`).
+      # leader_ca_cert_file: "/opt/vault/tls/ca.crt"
+      leader_ca_cert: |
+        -----BEGIN CERTIFICATE-----
+        MIIDkDCCAngCCQCDSFQRyRuDWDANBgkqhkiG9w0BAQsFADCBiTELMAkGA1UEBhMC
+        TkwxEDAOBgNVBAgMB1VUUkVDSFQxEjAQBgNVBAcMCUJyZXVrZWxlbjEXMBUGA1UE
+        CgwOUm9iZXJ0IGRlIEJvY2sxGjAYBgNVBAMMEUNBIFJvYmVydCBkZSBCb2NrMR8w
+        HQYJKoZIhvcNAQkBFhByb2JlcnRAbWVpbml0Lm5sMB4XDTIzMDIxMzA4NTg1MVoX
+        DTIzMDMxNTA4NTg1MVowgYkxCzAJBgNVBAYTAk5MMRAwDgYDVQQIDAdVVFJFQ0hU
+        MRIwEAYDVQQHDAlCcmV1a2VsZW4xFzAVBgNVBAoMDlJvYmVydCBkZSBCb2NrMRow
+        GAYDVQQDDBFDQSBSb2JlcnQgZGUgQm9jazEfMB0GCSqGSIb3DQEJARYQcm9iZXJ0
+        QG1laW5pdC5ubDCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBALSXuMkY
+        ROOcKbZBb63oWoDE26I3MNLsCvTY7vqMAZU0Mshe7rv+TfIw8RIYV8vXS9fBo11U
+        ICG8q+q3vaDrFJR1Vfdk2GMrk/sTL+E4VzJirqLmaAAEzWAnQ+woGvYNXuGl9x3I
+        /B0CJcrRQOJi0lL7NKKQmMXwhdw/m5eZDjekfp+JyHt7vuhKlLaOcY2d6An4Pmc6
+        MxdQIFWy89HRU604uFFoExDNFZkEWr8a/bVGb8lRiG+AnxW0cuus1kgbl9/avW9d
+        kDDi7hE7FO9apr0GfF0nva6C39zaiUxG/ZB0IPWaAOsEHXhRtMUUJM6J9FT3LhPS
+        GGVV+bK5PEs/ekMCAwEAATANBgkqhkiG9w0BAQsFAAOCAQEAYJ1D2h7nEQoXC8Ka
+        w87hNP37oYDLgkXZoxNK+h5UBmYjMATGcZPbbeGsppdi3qRb3pEqNwCWlzETSJqG
+        0HzUSEeRjLp2mxLZuMHSlq+wRj2vtsN/IV5Gz/hs23LSxVXMEF7DLRSWY++sOPC9
+        /2bN3eJGhjMoDP4Pgr/h/7Kk2dqOrxR4Etgli7nxIKiUNpCAwhv+yodGz3qDBSj1
+        KWn9KbjlX/IIRakY9Gh7X+UDUWFJU30vU0so5hKKtrq0ZQoDCPhfYV9T0SLd5N3y
+        JHufLAJw5yK8WMpBOhqmnoGco48nnsRJ55qK8xeTiVGgsewhjyeHNMUP7RDDptua
+        mo3kZQ==
+        -----END CERTIFICATE-----
       leader_client_cert_file: ""
       leader_client_key_file: ""
-      leader_ca_cert: ""
       leader_client_cert: ""
       leader_client_key: ""
   retry_join_as_non_voter: no
@@ -300,7 +378,7 @@ vault_configuration_storage_raft:
 
 - pip packages listed in [requirements.txt](https://github.com/robertdebock/ansible-role-vault_configuration/blob/master/requirements.txt).
 
-## [Status of used roles](#status-of-requirements)
+## [State of used roles](#state-of-used-roles)
 
 The following roles are used to prepare a system. You can prepare your system in another way.
 
@@ -330,7 +408,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |[Fedora](https://hub.docker.com/repository/docker/robertdebock/fedora/general)|36, 37|
 |[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|all|
 
-The minimum version of Ansible required is 2.10, tests have been done to:
+The minimum version of Ansible required is 2.12, tests have been done to:
 
 - The previous version.
 - The current version.

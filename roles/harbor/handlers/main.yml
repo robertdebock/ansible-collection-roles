@@ -4,19 +4,23 @@
 - name: Create selinux mod for harbor
   ansible.builtin.command:
     cmd: checkmodule -M -m -o /home/harbor/my_harbor.mod /home/harbor/my_harbor.te
+  changed_when: yes
 
 - name: Create selinux pp for harbor
   ansible.builtin.command:
     cmd: semodule_package -o /home/harbor/my_harbor.pp -m /home/harbor/my_harbor.mod
+  changed_when: yes
 
 - name: Load selinux pp for harbor
   ansible.builtin.command:
     cmd: semodule -i /home/harbor/my_harbor.pp
+  changed_when: yes
 
 - name: Run installer
   ansible.builtin.command:
     cmd: ./install.sh
     chdir: /home/harbor
+  changed_when: yes
   environment:
     TERM: linux
   register: result

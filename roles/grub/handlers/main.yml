@@ -4,6 +4,7 @@
 - name: Update grub
   ansible.builtin.command:
     cmd: "{{ grub_update_grub_command }}"
+  changed_when: yes
   when:
     - ansible_connection not in [ "container", "docker", "community.docker.docker" ]
   notify:

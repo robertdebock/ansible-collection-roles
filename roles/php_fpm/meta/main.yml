@@ -5,7 +5,7 @@ galaxy_info:
   description: The purpose of this role is to install and configure php_fpm on your system.
   license: Apache-2.0
   company: none
-  min_ansible_version: "2.10"
+  min_ansible_version: "2.12"
 
   platforms:
     - name: EL
@@ -22,7 +22,7 @@ galaxy_info:
         - all
     - name: Ubuntu
       versions:
-        - bionic
+        - all
 
   galaxy_tags:
     - phpfpm

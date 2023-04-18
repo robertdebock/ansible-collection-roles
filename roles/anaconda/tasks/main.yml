@@ -57,7 +57,6 @@
       register: anaconda_getsebool_domain_can_mmap_files
       check_mode: no
       changed_when: no
-      failed_when: no
 
     - name: Modify selinux settings
       ansible.posix.seboolean:
@@ -66,6 +65,10 @@
         persistent: yes
       when:
         - anaconda_getsebool_domain_can_mmap_files.rc == 0
+  rescue:
+    - name: Could not change selinux settings
+      ansible.builtin.debug:
+        msg: "Could not change selinux settings, continuing."
 
 - name: Start and enable anaconda
   ansible.builtin.service:

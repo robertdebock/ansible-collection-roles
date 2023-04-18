@@ -1,0 +1,222 @@
+---
+
+- name: Test if arubascx_make_backup is set correctly
+  ansible.builtin.assert:
+    that:
+      - arubascx_backup is defined
+      - arubascx_backup is boolean
+    quiet: yes
+
+- name: Test if arubascx_backup_config_name is set correctly
+  ansible.builtin.assert:
+    that:
+      - arubascx_backup_config_name is defined
+      - arubascx_backup_config_name is string
+    quiet: yes
+  when:
+    - arubascx_backup
+
+- name: Test if arubascx_backup_output_file is set correctly
+  ansible.builtin.assert:
+    that:
+      - arubascx_backup_output_file is defined
+      - arubascx_backup_output_file is string
+    quiet: yes
+  when:
+    - arubascx_backup
+
+- name: Test if arubascx_banner is set correctly
+  ansible.builtin.assert:
+    that:
+      - arubascx_banner is string
+    quiet: yes
+  when:
+    - arubascx_banner is defined
+
+- name: Test if arubascx_lines is set correctly
+  ansible.builtin.assert:
+    that:
+      - arubascx_lines is iterable
+    quiet: yes
+  when:
+    - arubascx_lines is defined
+
+- name: Test if required arubascx_dns is set correctly
+  ansible.builtin.assert:
+    that:
+      - arubascx_dns is mapping
+      - arubascx_dns.primary is defined
+      - arubascx_dns.primary is string
+      - arubascx_dns.secondary is defined
+      - arubascx_dns.secondary is string
+      - arubascx_dns.dns_domain_name is defined
+      - arubascx_dns.dns_domain_name is string
+      - arubascx_dns.dns_domain_list is defined
+      - arubascx_dns.dns_domain_list is iterable
+      - arubascx_dns.dns_name_servers is defined
+      - arubascx_dns.dns_name_servers is iterable
+      - arubascx_dns.dns_host_v4_address_mapping is defined
+      - arubascx_dns.dns_host_v4_address_mapping is mapping
+      - arubascx_dns.vrf is defined
+      - arubascx_dns.vrf is string
+    quiet: yes
+  when:
+    - arubascx_dns is defined
+
+- name: Test if arubascx_dns.primary is set correctly
+  ansible.builtin.assert:
+    that:
+      - arubascx_dns.primary is string
+    quiet: yes
+  when:
+    - arubascx_dns is defined
+    - arubascx_dns.primary is defined
+
+- name: Test if arubascx_dns.secondary is set correctly
+  ansible.builtin.assert:
+    that:
+      - arubascx_dns.secondary is string
+    quiet: yes
+  when:
+    - arubascx_dns is defined
+    - arubascx_dns.secondary is defined
+
+- name: Test if arubascx_dns.dns_domain_name is set correctly
+  ansible.builtin.assert:
+    that:
+      - arubascx_dns.dns_domain_name is string
+    quiet: yes
+  when:
+    - arubascx_dns is defined
+    - arubascx_dns.dns_domain_name is defined
+
+- name: Test if arubascx_dns.dns_name_servers is set correctly
+  ansible.builtin.assert:
+    that:
+      - arubascx_dns.dns_name_servers is mapping
+    quiet: yes
+  when:
+    - arubascx_dns is defined
+    - arubascx_dns.dns_name_servers is defined
+
+- name: Test if arubascx_dns.dns_host_v4_address_mapping is set correctly
+  ansible.builtin.assert:
+    that:
+      - arubascx_dns.dns_host_v4_address_mapping is mapping
+    quiet: yes
+  when:
+    - arubascx_dns is defined
+    - arubascx_dns.dns_host_v4_address_mapping is defined
+
+- name: Test if arubascx_dns.vrf is set correctly
+  ansible.builtin.assert:
+    that:
+      - arubascx_dns.vrf is string
+    quiet: yes
+  when:
+    - arubascx_dns is defined
+    - arubascx_dns.vrf is defined
+
+- name: Test if arubascx_vlans is set correctly
+  ansible.builtin.assert:
+    that:
+      - arubascx_vlans is iterable
+      - arubascx_vlans | length > 0
+    quiet: yes
+  when:
+    - arubascx_vlans is defined
+
+- name: Test if required items in arubascx_vlans are set correctly
+  ansible.builtin.assert:
+    that:
+      - item.vlan_id is defined
+      - item.vlan_id is number
+    quiet: yes
+  loop: "{{ arubascx_vlans }}"
+  loop_control:
+    label: "{{ item.vlan_id }}"
+  when:
+    - arubascx_vlans is defined
+
+- name: Test if name in arubascx_vlans are set correctly
+  ansible.builtin.assert:
+    that:
+      - item.name is string
+    quiet: yes
+  loop: "{{ arubascx_vlans }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - arubascx_vlans is defined
+    - item.name is defined
+
+- name: Test if description in arubascx_vlans are set correctly
+  ansible.builtin.assert:
+    that:
+      - item.description is string
+    quiet: yes
+  loop: "{{ arubascx_vlans }}"
+  loop_control:
+    label: "{{ item.description }}"
+  when:
+    - arubascx_vlans is defined
+    - item.description is defined
+
+- name: Test if arubascx_interfaces is set correctly
+  ansible.builtin.assert:
+    that:
+      - arubascx_interfaces is iterable
+      - arubascx_interfaces | length > 0
+    quiet: yes
+  when:
+    - arubascx_interfaces is defined
+
+- name: Test if required items in arubascx_interfaces are set correctly
+  ansible.builtin.assert:
+    that:
+      - item.name is defined
+      - item.name is string
+    quiet: yes
+  loop: "{{ arubascx_interfaces }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - arubascx_interfaces is defined
+
+- name: Test if duplex in arubascx_interfaces are set correctly
+  ansible.builtin.assert:
+    that:
+      - item.duplex is string
+      - item.duplex in [ "full", "half" ]
+    quiet: yes
+  loop: "{{ arubascx_interfaces }}"
+  loop_control:
+    label: "{{ item.duplex | default('undefined') }}"
+  when:
+    - arubascx_interfaces is defined
+    - item.duplex is defined
+
+- name: Test if speeds in arubascx_interfaces are set correctly
+  ansible.builtin.assert:
+    that:
+      - item.speeds is iterable
+      - item.duplex is defined
+    quiet: yes
+  loop: "{{ arubascx_interfaces }}"
+  loop_control:
+    label: "{{ item.speeds | default('undefinded') }}"
+  when:
+    - arubascx_interfaces is defined
+    - item.speeds is defined
+
+- name: Test if enabled in arubascx_interfaces are set correctly
+  ansible.builtin.assert:
+    that:
+      - item.enabled is boolean
+    quiet: yes
+  loop: "{{ arubascx_interfaces }}"
+  loop_control:
+    label: "{{ item.enabled | default('undefined') }}"
+  when:
+    - arubascx_interfaces is defined
+    - item.enabled is defined

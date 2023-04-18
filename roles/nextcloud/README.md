@@ -18,7 +18,6 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
   gather_facts: yes
 
   roles:
-    - role: robertdebock.roles.httpd
     - role: robertdebock.roles.nextcloud
       nextcloud_apps:
         - name: richdocumentscode
@@ -95,7 +94,7 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 # defaults file for nextcloud
 
 # The version of nextcloud to install.
-nextcloud_version: "25.0.2"
+nextcloud_version: "25.0.4"
 
 # The domain under which this server will be available. For example:
 # "localhost" or "nextcloud.example.com". Does not include protocol identifier,
@@ -133,7 +132,7 @@ nextcloud_destination: "{{ _nextcloud_destination[ansible_distribution] | defaul
 
 - pip packages listed in [requirements.txt](https://github.com/robertdebock/ansible-role-nextcloud/blob/master/requirements.txt).
 
-## [Status of used roles](#status-of-requirements)
+## [State of used roles](#state-of-used-roles)
 
 The following roles are used to prepare a system. You can prepare your system in another way.
 
@@ -167,12 +166,11 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|[Debian](https://hub.docker.com/repository/docker/robertdebock/debian/general)|bullseye|
 |[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|8|
 |[opensuse](https://hub.docker.com/repository/docker/robertdebock/opensuse/general)|all|
-|[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|focal|
+|[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|jammy|
 
-The minimum version of Ansible required is 2.10, tests have been done to:
+The minimum version of Ansible required is 2.12, tests have been done to:
 
 - The previous version.
 - The current version.

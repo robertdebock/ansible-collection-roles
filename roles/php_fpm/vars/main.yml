@@ -14,14 +14,13 @@ php_fpm_packages: "{{ _php_fpm_packages[ansible_os_family] | default(_php_fpm_pa
 _php_fpm_directory:
   default: /etc
   Alpine: /etc/php7
+  Debian: /etc/php/8.2/fpm
   Debian-11: /etc/php/7.4/fpm
-  Debian: /etc/php/8.1/fpm
   Fedora: /etc
   openSUSE Leap: /etc/php7/fpm
-  Ubuntu-17: /etc/php/7.1/fpm
   Ubuntu-18: /etc/php/7.2/fpm
-  Ubuntu-19: /etc/php/7.2/fpm
-  Ubuntu: /etc/php/7.4/fpm
+  Ubuntu-20: /etc/php/7.4/fpm
+  Ubuntu: /etc/php/8.1/fpm
 
 php_fpm_directory: "{{ _php_fpm_directory[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_php_fpm_directory[ansible_distribution] | default(_php_fpm_directory['default'] )) }}"
 
@@ -50,14 +49,13 @@ php_fpm_include_directory: "{{ _php_fpm_include_directory[ansible_os_family] | d
 _php_fpm_service:
   default: php-fpm
   Alpine: php-fpm7
-  Debian: php8.1-fpm.service
+  Debian: php8.2-fpm.service
   Debian-11: php7.4-fpm.service
   Fedora: php-fpm
   openSUSE Leap: php-fpm
-  Ubuntu-17: php7.1-fpm.service
   Ubuntu-18: php7.2-fpm.service
-  Ubuntu-19: php7.2-fpm.service
-  Ubuntu: php7.4-fpm.service
+  Ubuntu-20: php7.4-fpm.service
+  Ubuntu: php8.1-fpm.service
 
 php_fpm_service: "{{ _php_fpm_service[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_php_fpm_service[ansible_distribution] | default(_php_fpm_service['default'] )) }}"
 

@@ -5,12 +5,9 @@ galaxy_info:
   description: Install and configure owncloud on your system.
   license: Apache-2.0
   company: none
-  min_ansible_version: "2.10"
+  min_ansible_version: "2.12"
 
   platforms:
-    - name: EL
-      versions:
-        - "8"
     - name: Debian
       versions:
         - bullseye
@@ -19,7 +16,7 @@ galaxy_info:
         - all
     - name: Ubuntu
       versions:
-        - bionic
+        - focal
 
   galaxy_tags:
     - owncloud

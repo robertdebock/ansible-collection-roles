@@ -75,8 +75,14 @@ listener "tcp" {
 {% if vault_configuration_listener_tcp.tls_cert_file is defined and vault_configuration_listener_tcp.tls_cert_file != "" %}
   tls_cert_file = "{{ vault_configuration_listener_tcp.tls_cert_file }}"
 {% endif %}
+{% if vault_configuration_listener_tcp.tls_cert is defined and vault_configuration_listener_tcp.tls_cert != "" %}
+  tls_cert_file = "/opt/vault/tls/vault.crt"
+{% endif %}
 {% if vault_configuration_listener_tcp.tls_key_file is defined and vault_configuration_listener_tcp.tls_key_file != "" %}
   tls_key_file = "{{ vault_configuration_listener_tcp.tls_key_file }}"
+{% endif %}
+{% if vault_configuration_listener_tcp.tls_key is defined and vault_configuration_listener_tcp.tls_key != "" %}
+  tls_key_file = "/opt/vault/tls/vault.key"
 {% endif %}
 {% if vault_configuration_listener_tcp.tls_min_version is defined and vault_configuration_listener_tcp.tls_min_version != "tls12" and not vault_configuration_listener_tcp.tls_disable %}
   tls_min_version = "{{ vault_configuration_listener_tcp.tls_min_version }}"
@@ -158,14 +164,14 @@ storage "raft" {
 {%if item.leader_ca_cert_file is defined and item.leader_ca_cert_file != "" %}
     leader_ca_cert_file = "{{ item.leader_ca_cert_file }}"
 {% endif %}
+{% if item.leader_ca_cert is defined and item.leader_ca_cert != "" %}
+    leader_ca_cert_file = "/opt/vault/tls/ca.crt"
+{% endif %}
 {% if item.leader_client_cert_file is defined and item.leader_client_cert_file != "" %}
     leader_client_cert_file = "{{ item.leader_client_cert_file }}"
 {% endif %}
 {% if item.leader_client_key_file is defined and item.leader_client_key_file != "" %}
     leader_client_key_file = "{{ item.leader_client_key_file }}"
-{% endif %}
-{% if item.leader_ca_cert is defined and item.leader_ca_cert != "" %}
-    leader_ca_cert = "{{ item.leader_ca_cert }}"
 {% endif %}
 {% if item.leader_client_cert is defined and item.leader_client_cert != "" %}
     leader_client_cert = "{{ item.leader_client_cert }}"

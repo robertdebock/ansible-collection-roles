@@ -17,20 +17,6 @@
       - squid_cache_dir.split(" ")[0] in [ "ufs", "aufs", "diskd", "rock", "null" ]
     quiet: yes
 
-- name: Test if squid_cache_dir is set correctly when no null driver is used
-  ansible.builtin.assert:
-    that:
-      - squid_cache_dir.split(" ")[2]
-      - squid_cache_dir.split(" ")[2] |int > 0
-      - squid_cache_dir.split(" ")[3]
-      - squid_cache_dir.split(" ")[3] |int > 0
-      - squid_cache_dir.split(" ")[4]
-      - squid_cache_dir.split(" ")[4] |int > 0
-    quiet: yes
-    fail_msg: "The null storage driver does not allow arguments to be set."
-  when:
-    - squid_cache_dir.split(" ")[0] != "null"
-
 - name: Test if squid_acls is set correctly
   ansible.builtin.assert:
     that:

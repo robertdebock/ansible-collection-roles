@@ -27,7 +27,8 @@
   ansible.builtin.command:
     cmd: "{{ sosreport_command }}"
   when:
-    - sosreport_find_sosreports.matched | int == 0
+    - sosreport_find_sosreports.matched == 0
+  changed_when: yes
 
 - name: Create local directory
   ansible.builtin.file:

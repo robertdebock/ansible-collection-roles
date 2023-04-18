@@ -121,3 +121,13 @@ nextcloud_permissions:
     mode: "0660"
 
 nextcloud_command: 'php occ maintenance:install --database "mysql" --database-name "{{ nextcloud_database_name }}" --database-user "{{ nextcloud_database_user }}" --database-pass "{{ nextcloud_database_pass }}" --database-host "{{ nextcloud_database_host }}" --admin-user "{{ nextcloud_admin_user }}" --admin-pass "{{ nextcloud_admin_pass }}"'
+
+
+_nextcloud_httpd_service:
+  default: httpd
+  Alpine: apache2
+  Debian: apache2
+  Suse: apache2
+  RedHat: httpd
+
+nextcloud_httpd_service: "{{ _nextcloud_httpd_service[ansible_os_family] | default(_nextcloud_httpd_service['default']) }}"

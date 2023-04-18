@@ -4,6 +4,7 @@
 - name: Run gitlab-ctl reconfigure
   ansible.builtin.command:
     cmd: gitlab-ctl reconfigure
+  changed_when: yes
 
 - name: Uninstall ruby
   ansible.builtin.package:

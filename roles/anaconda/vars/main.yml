@@ -5,10 +5,19 @@ anaconda_url: "https://repo.anaconda.com/archive/Anaconda{{ anaconda_python_vers
 
 anaconda_file: Anaconda{{ anaconda_python_version }}-{{ anaconda_version }}-Linux-{{ ansible_architecture }}.sh
 
-anaconda_requirements:
-  - name: bash
-    type: package
-  - name: bzip2
-    type: package
-  - name: pexpect
-    type: pip
+_anaconda_requirements:
+  default:
+    - name: bash
+      type: package
+    - name: bzip2
+      type: package
+    - name: pexpect
+      type: pip
+  Debian:
+    - name: bash
+      type: package
+    - name: bzip2
+      type: package
+    - name: python3-pexpect
+      type: package
+anaconda_requirements: "{{ _anaconda_requirements[ansible_os_family] | default(_anaconda_requirements['default']) }}"

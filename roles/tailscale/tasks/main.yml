@@ -1,0 +1,51 @@
+---
+# tasks file for tailscale
+
+- name: Install dependencies
+  ansible.builtin.package:
+    name: "{{ tailscale_dependencies }}"
+
+- name: Add the Tailscale repository (yum/dnf)
+  ansible.builtin.yum_repository:
+    name: tailscale-stable
+    description: Tailscale stable
+    baseurl: "{{ tailscale_repo_baseurl }}"
+    enabled: yes
+    gpgcheck: no
+    repo_gpgcheck: yes
+    gpgkey: "{{ tailscale_repo_gpgkey }}"
+  when:
+    - ansible_pkg_mgr == "yum" or
+      ansible_pkg_mgr == "dnf"
+
+- name: Configure apt repository
+  when:
+    - ansible_pkg_mgr == "apt"
+  block:
+    - name: Add apt key
+      ansible.builtin.apt_key:
+        url: "{{ tailscale_apt_key_url }}"
+        keyring: /usr/share/keyrings/tailscale-archive-keyring.gpg
+
+    - name: Apt apt repository
+      ansible.builtin.apt_repository:
+        repo: "{{ tailscale_apt_repo }}"
+        filename: tailscale
+        update_cache: yes
+
+- name: Add tailscale repository (zypper)
+  community.general.zypper_repository:
+    name: tailscale-stable
+    repo: "https://pkgs.tailscale.com/stable/opensuse/leap/15.2/tailscale.repo"
+  when:
+    - ansible_pkg_mgr == "zypper"
+
+- name: Install tailscale
+  ansible.builtin.package:
+    name: tailscale
+
+- name: Enable and start the server
+  ansible.builtin.service:
+    name: tailscaled
+    state: started
+    enabled: true

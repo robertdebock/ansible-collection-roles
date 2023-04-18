@@ -102,6 +102,7 @@
   when:
     - postgres_databases is defined or
       postgres_users is defined
+    - ansible_os_family != "Debian"
 
 - name: Flush handlers again
   ansible.builtin.meta: flush_handlers

@@ -18,7 +18,6 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
   gather_facts: yes
 
   roles:
-    - role: robertdebock.roles.httpd
     - role: robertdebock.roles.owncloud
 ```
 
@@ -74,7 +73,7 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 # defaults file for owncloud
 
 # The version of owncloud to install.
-owncloud_version: "10.8.0"
+owncloud_version: "10.11.0"
 
 # The domain under which this server will be available. For example:
 # "localhost" or "owncloud.example.com". Does not include protocol identifier,
@@ -94,7 +93,7 @@ owncloud_admin_pass: OwnCl0uD
 
 - pip packages listed in [requirements.txt](https://github.com/robertdebock/ansible-role-owncloud/blob/master/requirements.txt).
 
-## [Status of used roles](#status-of-requirements)
+## [State of used roles](#state-of-used-roles)
 
 The following roles are used to prepare a system. You can prepare your system in another way.
 
@@ -128,12 +127,11 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|8|
 |[Debian](https://hub.docker.com/repository/docker/robertdebock/debian/general)|bullseye|
 |[opensuse](https://hub.docker.com/repository/docker/robertdebock/opensuse/general)|all|
-|[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|bionic|
+|[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|focal|
 
-The minimum version of Ansible required is 2.10, tests have been done to:
+The minimum version of Ansible required is 2.12, tests have been done to:
 
 - The previous version.
 - The current version.

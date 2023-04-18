@@ -11,11 +11,14 @@
 - name: Create selinux mod for php_fpm
   ansible.builtin.command:
     cmd: checkmodule -M -m -o /etc/my-php-fpm.mod /etc/my-php-fpm.te
+  changed_when: yes
 
 - name: Create selinux pp for php_fpm
   ansible.builtin.command:
     cmd: semodule_package -o /etc/my-php-fpm.pp -m /etc/my-php-fpm.mod
+  changed_when: yes
 
 - name: Load selinux pp for php_fpm
   ansible.builtin.command:
     cmd: semodule -i /etc/my-php-fpm.pp
+  changed_when: yes

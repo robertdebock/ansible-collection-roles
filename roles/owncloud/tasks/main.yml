@@ -49,19 +49,11 @@
     chdir: "{{ owncloud_destination }}/owncloud"
   notify:
     - Set owncloud trusted domains
-  # no_log: yes
+    - Restart httpd
+    - Set permission
+  no_log: yes
   become: yes
   become_user: "{{ owncloud_httpd_owner }}"
-
-- name: Set permissions
-  ansible.builtin.file:
-    name: "{{ item.name }}"
-    owner: "{{ item.owner | default(omit) }}"
-    group: "{{ item.group | default(omit) }}"
-    mode: "{{ item.mode | default(omit) }}"
-  loop: "{{ owncloud_permissions }}"
-  loop_control:
-    label: "{{ item.name }}"
 
 - name: Setup crontab
   ansible.builtin.cron:

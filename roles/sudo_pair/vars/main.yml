@@ -1,5 +1,5 @@
 ---
-# vars file for sudo-pair
+# vars file for sudo_pair
 
 sudo_pair_url: "https://github.com/square/sudo_pair/archive/{{ sudo_pair_version }}.zip"
 sudo_pair_unpack_directory: /tmp/sudo_pair-{{ sudo_pair_version }}

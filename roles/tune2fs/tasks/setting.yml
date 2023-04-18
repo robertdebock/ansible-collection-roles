@@ -15,3 +15,4 @@
     - setting.maximum_count_mount is defined
     - setting.maximum_count_mount.stdout is defined
     - "'Maximum mount count:      {{ setting.maximum_count_mount }}' not in tune2fs_values.stdout"  # noqa: no-jinja-when
+  changed_when: yes

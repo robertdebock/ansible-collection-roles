@@ -13,7 +13,7 @@ _firewall_packages:
     RedHat: []
     Fedora:
       - ufw
-    openSUSE Leap:
+    Suse:
       - ufw
   required:
     default:
@@ -29,7 +29,7 @@ _firewall_packages:
     Fedora:
       - firewalld
       - python3-firewall
-    openSUSE Leap:
+    Suse:
       - firewalld
 
 firewall_packages_conflicting: "{{ _firewall_packages['conflicting'][ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_firewall_packages['conflicting'][ansible_os_family] | default(_firewall_packages['conflicting']['default'] )) }}"

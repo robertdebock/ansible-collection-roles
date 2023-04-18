@@ -56,14 +56,14 @@ jenkins_port: 8080
 jenkins_listen_address: "0.0.0.0"
 
 # The version of Jenkins to install. Not specifying a version, will install the latest available.
-# jenkins_version: "2.346.2"
+# jenkins_version: "2.399.1"
 ```
 
 ## [Requirements](#requirements)
 
 - pip packages listed in [requirements.txt](https://github.com/robertdebock/ansible-role-jenkins/blob/master/requirements.txt).
 
-## [Status of used roles](#status-of-requirements)
+## [State of used roles](#state-of-used-roles)
 
 The following roles are used to prepare a system. You can prepare your system in another way.
 
@@ -91,7 +91,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |[Debian](https://hub.docker.com/repository/docker/robertdebock/debian/general)|bullseye|
 |[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|all|
 
-The minimum version of Ansible required is 2.10, tests have been done to:
+The minimum version of Ansible required is 2.12, tests have been done to:
 
 - The previous version.
 - The current version.

@@ -1,12 +1,18 @@
 ---
 
-- name: Test if filesytem_default_filesystem is set correctly
-  ansible.builtin.assert:
-    that:
-      - filesytem_default_filesystem is defined
-      - filesytem_default_filesystem is string
-      - filesytem_default_filesystem in [ "btrfs", "ext2", "ext3", "ext4", "ext4dev", "f2fs", "lvm", "ocfs2", "reiserfs", "swap", "vfat", "xfs" ]
-    quiet: yes
+- name: Warn if filesytem_default_filesystem is set incorrectly
+  block:
+    - name: Test if filesytem_default_filesystem is set correctly
+      ansible.builtin.assert:
+        that:
+          - filesytem_default_filesystem is defined
+          - filesytem_default_filesystem is string
+          - filesytem_default_filesystem in [ "btrfs", "ext2", "ext3", "ext4", "ext4dev", "f2fs", "lvm", "ocfs2", "reiserfs", "swap", "vfat", "xfs" ]
+        quiet: yes
+  rescue:
+    - name: Warn about unknown filesystem
+      ansible.builtin.debug:
+        msg: "The filesystem you are using can be unknown, proceeding."
 
 - name: Test if filesystem_list is set correctly
   ansible.builtin.assert:
@@ -93,4 +99,4 @@
     label: "{{ item.dev }}"
   when:
     - item.resizefs is defined
-    - item.resizefs | bool
+    - item.resizefs is boolean

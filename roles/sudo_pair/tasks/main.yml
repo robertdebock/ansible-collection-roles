@@ -1,5 +1,5 @@
 ---
-# tasks file for sudo-pair
+# tasks file for sudo_pair
 
 - name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml

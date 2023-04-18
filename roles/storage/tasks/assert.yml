@@ -235,8 +235,7 @@
   ansible.builtin.assert:
     that:
       - item.mode is defined
-      - item.mode is number
-      - item.mode > 0
+      - item.mode is string
     quiet: yes
   loop: "{{ storage_mounts }}"
   loop_control:
@@ -272,7 +271,7 @@
   ansible.builtin.assert:
     that:
       - item.dump is defined
-      - item.dump is boolean
+      - item.dump is number
       - item.dump in [0, 1]
     quiet: yes
   loop: "{{ storage_mounts }}"

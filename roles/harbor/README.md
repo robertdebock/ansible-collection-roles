@@ -4,7 +4,7 @@ Install and configure harbor on your system.
 
 |GitHub|GitLab|Quality|Downloads|Version|
 |------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-harbor/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-harbor/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-harbor/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-harbor)|[![quality](https://img.shields.io/ansible/quality/)](https://galaxy.ansible.com/robertdebock/harbor)|[![downloads](https://img.shields.io/ansible/role/d/)](https://galaxy.ansible.com/robertdebock/harbor)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-harbor.svg)](https://github.com/robertdebock/ansible-role-harbor/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-harbor/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-harbor/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-harbor/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-harbor)|[![quality](https://img.shields.io/ansible/quality/61607)](https://galaxy.ansible.com/robertdebock/harbor)|[![downloads](https://img.shields.io/ansible/role/d/61607)](https://galaxy.ansible.com/robertdebock/harbor)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-harbor.svg)](https://github.com/robertdebock/ansible-role-harbor/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -72,7 +72,7 @@ harbor_external_url: ""
 
 - pip packages listed in [requirements.txt](https://github.com/robertdebock/ansible-role-harbor/blob/master/requirements.txt).
 
-## [Status of used roles](#status-of-requirements)
+## [State of used roles](#state-of-used-roles)
 
 The following roles are used to prepare a system. You can prepare your system in another way.
 
@@ -105,7 +105,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |[Fedora](https://hub.docker.com/repository/docker/robertdebock/fedora/general)|all|
 |[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|all|
 
-The minimum version of Ansible required is 2.10, tests have been done to:
+The minimum version of Ansible required is 2.12, tests have been done to:
 
 - The previous version.
 - The current version.

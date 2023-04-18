@@ -13,7 +13,6 @@
     enabled: yes
   when:
     - ansible_distribution == "Fedora"
-    - ansible_distribution_major_version | int > 33
 
 - name: Start and enable stratis
   ansible.builtin.service:

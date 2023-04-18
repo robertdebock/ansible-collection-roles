@@ -42,7 +42,7 @@ Also see a [full explanation and example](https://robertdebock.nl/how-to-use-the
 
 - pip packages listed in [requirements.txt](https://github.com/robertdebock/ansible-role-microsoft_repository_keys/blob/master/requirements.txt).
 
-## [Status of used roles](#status-of-requirements)
+## [State of used roles](#state-of-used-roles)
 
 The following roles are used to prepare a system. You can prepare your system in another way.
 
@@ -67,11 +67,11 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |[Alpine](https://hub.docker.com/repository/docker/robertdebock/alpine/general)|all|
 |[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|8|
 |[Debian](https://hub.docker.com/repository/docker/robertdebock/debian/general)|all|
-|[Fedora](https://hub.docker.com/repository/docker/robertdebock/fedora/general)|all|
+|[Fedora](https://hub.docker.com/repository/docker/robertdebock/fedora/general)|36, 37|
 |[opensuse](https://hub.docker.com/repository/docker/robertdebock/opensuse/general)|all|
 |[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|all|
 
-The minimum version of Ansible required is 2.10, tests have been done to:
+The minimum version of Ansible required is 2.12, tests have been done to:
 
 - The previous version.
 - The current version.

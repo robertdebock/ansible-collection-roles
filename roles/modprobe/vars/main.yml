@@ -7,5 +7,7 @@ _modprobe_requirements:
     - kmod
   Debian:
     - kmod
+  Suse:
+    - module-init-tools
 
 modprobe_requirements: "{{ _modprobe_requirements[ansible_os_family] | default(_modprobe_requirements['default']) }}"

@@ -50,5 +50,5 @@
     path: "{{ backup_remote_directory }}/{{ object.type }}-{{ object.name }}-{{ backup_timestamp }}.{{ object.format | default(backup_format) }}"
     state: absent
   when:
-    - backup_cleanup | bool
+    - backup_cleanup
     - object.type in [ "mysql", "postgres" ]

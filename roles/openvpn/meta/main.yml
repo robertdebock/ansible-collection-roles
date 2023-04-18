@@ -5,7 +5,7 @@ galaxy_info:
   description: Install and configure openvpn server or client on your system.
   license: Apache-2.0
   company: none
-  min_ansible_version: "2.10"
+  min_ansible_version: "2.12"
 
   platforms:
     - name: Amazon
@@ -19,8 +19,7 @@ galaxy_info:
         - "8"
     - name: Debian
       versions:
-        - bullseye
-        - bookworm
+        - all
     - name: Ubuntu
       versions:
         - focal

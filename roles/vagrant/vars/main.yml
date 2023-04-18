@@ -12,5 +12,8 @@ _vagrant_package:
 
 vagrant_package: "{{ _vagrant_package[ansible_pkg_mgr] | default(_vagrant_package['src']) }}"
 
-vagrant_pip_packages:
-  - python-vagrant
+_vagrant_pip_packages:
+  default:
+    - python-vagrant
+  Debian: []
+vagrant_pip_packages: "{{ _vagrant_pip_packages[ansible_os_family] | default(_vagrant_pip_package['default']) }}"

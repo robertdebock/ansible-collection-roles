@@ -6,6 +6,7 @@ _docker_packages:
     - docker
   Debian:
     - docker.io
+    - python3-docker
   RedHat-7:
     - docker-io
   RedHat:
@@ -13,8 +14,12 @@ _docker_packages:
 
 docker_packages: "{{ _docker_packages[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_docker_packages[ansible_os_family] | default(_docker_packages['default'] )) }}"
 
-docker_pip_packages:
-  - docker
+_docker_pip_packages:
+  default:
+    - docker
+  Debian: []
+
+docker_pip_packages: "{{ _docker_pip_packages[ansible_os_family] | default(_docker_pip_packages['default']) }}"
 
 _docker_service:
   default: docker

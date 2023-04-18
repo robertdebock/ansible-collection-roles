@@ -87,7 +87,7 @@ owncloud_sebooleans:
   - httpd_tmp_exec
   - httpd_unified
 
-owncloud_archive: "https://download.owncloud.org/community/owncloud-{{ owncloud_version }}.zip"
+owncloud_archive: "https://download.owncloud.com/server/owncloud-{{ owncloud_version }}.zip"
 
 _owncloud_destination:
   default: /var/www/html
@@ -134,3 +134,12 @@ owncloud_permissions:
     group: "{{ owncloud_httpd_group }}"
 
 owncloud_command: 'php occ maintenance:install --database "mysql" --database-name "{{ owncloud_database_name }}" --database-user "{{ owncloud_database_user }}" --database-pass "{{ owncloud_database_pass }}" --database-host "{{ owncloud_database_host }}" --admin-user "{{ owncloud_admin_user }}" --admin-pass "{{ owncloud_admin_pass }}"'
+
+_owncloud_httpd_service:
+  default: httpd
+  Alpine: apache2
+  Debian: apache2
+  Suse: apache2
+  RedHat: httpd
+
+owncloud_httpd_service: "{{ _owncloud_httpd_service[ansible_os_family] | default(_owncloud_httpd_service['default']) }}"

@@ -4,12 +4,10 @@
 - name: Install requirements
   ansible.builtin.package:
     name: "{{ molecule_requirements }}"
-    state: present
   become: yes
   become_user: root
 
-- name: Install molecule
+- name: Install molecule (pip)
   ansible.builtin.pip:
     name: molecule[ansible-core,docker,lint]
-    state: present
     extra_args: "{{ molecule_extra_args | default(omit) }}"

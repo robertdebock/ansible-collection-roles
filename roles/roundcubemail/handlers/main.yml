@@ -14,11 +14,14 @@
 - name: Create roundcubemail selinux mod
   ansible.builtin.command:
     cmd: checkmodule -M -m -o /etc/my-roundcubemail.mod /etc/my-roundcubemail.te
+  changed_when: yes
 
 - name: Create roundcubemail selinux pp
   ansible.builtin.command:
     cmd: semodule_package -o /etc/my-roundcubemail.pp -m /etc/my-roundcubemail.mod
+  changed_when: yes
 
 - name: Load roundcubemail selinux pp
   ansible.builtin.command:
     cmd: semodule -i /etc/my-roundcubemail.pp
+  changed_when: yes

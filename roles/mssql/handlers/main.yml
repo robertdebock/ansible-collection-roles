@@ -18,6 +18,7 @@
 - name: Configure mssql-server using mssql-conf
   ansible.builtin.command:
     cmd: /opt/mssql/bin/mssql-conf -n setup
+  changed_when: yes
   environment:
     MSSQL_SA_PASSWORD: "{{ mssql_sa_password }}"
     MSSQL_PID: "{{ mssql_pid }}"
@@ -26,3 +27,4 @@
 - name: Set network.ipaddress
   ansible.builtin.command:
     cmd: /opt/mssql/bin/mssql-conf set network.ipaddress {{ ansible_default_ipv4.address | default(ansible_all_ipv4_addresses[0]) }}
+  changed_when: yes

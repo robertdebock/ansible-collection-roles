@@ -73,3 +73,4 @@
   when:
     - ansible_hostname != nomad_server
     - ansible_hostname not in nomad_list_server_members.stdout
+  changed_when: yes

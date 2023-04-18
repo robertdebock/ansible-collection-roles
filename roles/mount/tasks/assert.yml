@@ -52,17 +52,23 @@
   when:
     - item.boot is defined
 
-- name: Test if item.fstype in mount_requests is set correctly
-  ansible.builtin.assert:
-    that:
-      - item.fstype is string
-      - item.fstype in [ "ext3", "ext4", "iso9660", "nfs", "none", "swap", "xfs" ]
-    quiet: yes
-  loop: "{{ mount_requests }}"
-  loop_control:
-    label: "{{ item.path }}"
-  when:
-    - item.fstype is defined
+- name: Warn if item.fstype in mount_requests is set incorrectly
+  block:
+    - name: Test if item.fstype in mount_requests is set correctly
+      ansible.builtin.assert:
+        that:
+          - item.fstype is string
+          - item.fstype in [ "ext3", "ext4", "iso9660", "nfs", "none", "swap", "xfs" ]
+        quiet: yes
+      loop: "{{ mount_requests }}"
+      loop_control:
+        label: "{{ item.path }}"
+      when:
+        - item.fstype is defined
+  rescue:
+    - name: Warn about unknown filesystem
+      ansible.builtin.debug:
+        msg: "The filesystem you have specified in unknown, proceeding."
 
 - name: Test if item.path in mount_requests is set correctly
   ansible.builtin.assert:

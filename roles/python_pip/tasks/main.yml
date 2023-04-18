@@ -37,15 +37,8 @@
     state: "{{ python_pip_pip_state }}"  # noqa package-latest
     executable: "{{ python_pip_executable | default(omit) }}"
   when:
-    - python_pip_update | bool
-
-# - name: Update setuptools
-#   ansible.builtin.pip:
-#     name: setuptools
-#     state: latest  # noqa package-latest
-#     executable: "{{ python_pip_executable | default(omit) }}"
-#   when:
-#     - python_pip_update | bool
+    - python_pip_update
+    - ansible_distribution_release != "bookworm"
 
 - name: Install requested modules
   ansible.builtin.pip:
@@ -56,3 +49,5 @@
   loop: "{{ python_pip_modules }}"
   loop_control:
     label: "{{ item.name }}"
+  when:
+    - ansible_distribution_release != "bookworm"

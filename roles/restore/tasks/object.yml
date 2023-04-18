@@ -23,11 +23,11 @@
 
 - name: Unarchive directory object
   ansible.builtin.command:
-    cmd: unzip "{{ restore_remote_directory }}/{{ latest_file.path | basename }}"
-    warn: no
+    cmd: unzip "{{ restore_remote_directory }}/{{ latest_file.path | basename }}"  # noqa command-instead-of-module
   when:
     - latest_file is defined
     - object.type == "directory"
+  changed_when: yes
 
 - name: Find extension
   ansible.builtin.set_fact:

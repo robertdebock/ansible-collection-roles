@@ -1,0 +1,23 @@
+---
+# vars file for tailscale
+
+_tailscale_dependencies:
+  default: []
+  RedHat:
+    - yum-utils
+  Debian:
+    - ca-certificates
+tailscale_dependencies: "{{ _tailscale_dependencies[ansible_os_family] | default(_tailscale_dependencies['default']) }}"
+
+_tailscale_repo_baseurl:
+  Fedora: "https://pkgs.tailscale.com/stable/{{ ansible_distribution | lower }}/$basearch"
+  Rocky: "https://pkgs.tailscale.com/stable/centos/{{ ansible_distribution_major_version }}/$basearch"
+tailscale_repo_baseurl: "{{ _tailscale_repo_baseurl[ansible_distribution] }}"
+
+_tailscale_repo_gpgkey:
+  Fedora: "https://pkgs.tailscale.com/stable/{{ ansible_distribution | lower }}/repo.gpg"
+  Rocky: "https://pkgs.tailscale.com/stable/centos/{{ ansible_distribution_major_version }}/repo.gpg"
+tailscale_repo_gpgkey: "{{ _tailscale_repo_gpgkey[ansible_distribution] }}"
+
+tailscale_apt_key_url: "https://pkgs.tailscale.com/stable/{{ ansible_distribution | lower }}/{{ ansible_distribution_release }}.noarmor.gpg"
+tailscale_apt_repo: deb [signed-by=/usr/share/keyrings/tailscale-archive-keyring.gpg] https://pkgs.tailscale.com/stable/{{ ansible_distribution | lower }} {{ ansible_distribution_release }} main

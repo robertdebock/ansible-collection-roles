@@ -10,6 +10,7 @@ _postgres_packages:
   Debian:
     - postgresql
     - postgresql-client
+    - python3-psycopg2
   RedHat:
     - postgresql-server
     - postgresql-devel

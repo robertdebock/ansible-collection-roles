@@ -67,8 +67,8 @@
     dest: "{{ java_install_directory }}"
     mode: "0755"
   when:
-    - java_jce | bool
-    - java_version | int == 8
+    - java_jce
+    - java_version == 8
     - java_vendor == "oracle"
 
 - name: Set alternative (targz)

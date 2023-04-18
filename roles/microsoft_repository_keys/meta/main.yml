@@ -5,7 +5,7 @@ galaxy_info:
   description: Trust microsofts gpg keys
   license: Apache-2.0
   company: none
-  min_ansible_version: "2.10"
+  min_ansible_version: "2.12"
 
   platforms:
     - name: Alpine
@@ -19,7 +19,8 @@ galaxy_info:
         - all
     - name: Fedora
       versions:
-        - all
+        - "36"
+        - "37"
     - name: opensuse
       versions:
         - all

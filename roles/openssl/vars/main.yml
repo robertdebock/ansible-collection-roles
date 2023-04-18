@@ -8,11 +8,16 @@ _openssl_requirements:
     - rust
     - cargo
     - openssl
-
+  Debian:
+    - openssl
+    - python3-openssl
 openssl_requirements: "{{ _openssl_requirements[ansible_os_family] | default(_openssl_requirements['default']) }}"
 
-openssl_pip_packages:
-  - pyOpenSSL
+_openssl_pip_packages:
+  default:
+    - pyOpenSSL
+  Debian: []
+openssl_pip_packages: "{{ _openssl_pip_packages[ansible_os_family] | default(_openssl_pip_packages['default']) }}"
 
 _openssl_key_directory:
   default: /tmp

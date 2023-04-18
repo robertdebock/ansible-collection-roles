@@ -213,6 +213,15 @@
   when:
     - vault_configuration_listener_tcp.tls_cert_file is defined
 
+- name: Test if vault_configuration_listener_tcp.tls_cert is set correctly
+  ansible.builtin.assert:
+    that:
+      - vault_configuration_listener_tcp.tls_cert is string
+      - vault_configuration_listener_tcp.tls_cert_file is not defined
+    quiet: yes
+  when:
+    - vault_configuration_listener_tcp.tls_cert is defined
+
 - name: Test if vault_configuration_listener_tcp.tls_key_file is set correctly
   ansible.builtin.assert:
     that:
@@ -220,6 +229,15 @@
     quiet: yes
   when:
     - vault_configuration_listener_tcp.tls_key_file is defined
+
+- name: Test if vault_configuration_listener_tcp.tls_key is set correctly
+  ansible.builtin.assert:
+    that:
+      - vault_configuration_listener_tcp.tls_key is string
+      - vault_configuration_listener_tcp.tls_key_file is not defined
+    quiet: yes
+  when:
+    - vault_configuration_listener_tcp.tls_key is defined
 
 - name: Test if vault_configuration_listener_tcp.tls_min_version is set correctly
   ansible.builtin.assert:
@@ -483,6 +501,21 @@
     - vault_configuration_storage_raft is defined
     - vault_configuration_storage_raft.retry_join is defined
     - item.leader_ca_cert_file is defined
+
+- name: Test if item.leader_ca_cert is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.leader_ca_cert is string
+      - item.leder_ca_cert_file is not defined
+    quiet: yes
+  loop: "{{ vault_configuration_storage_raft.retry_join }}"
+  loop_control:
+    label: "{{ item.leader_ca_cert_file | default('Not set') }}"
+  when:
+    - vault_configuration_storage_raft is defined
+    - vault_configuration_storage_raft.retry_join is defined
+    - item.leader_ca_cert is defined
+
 
 - name: Test if item.leader_client_cert_file is set correctly
   ansible.builtin.assert:

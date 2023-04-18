@@ -13,3 +13,4 @@
       - artifactory_flavour is defined
       - artifactory_flavour is string
       - artifactory_flavour in [ "cpp-ce", "jcr", "oss" ]
+    quiet: yes

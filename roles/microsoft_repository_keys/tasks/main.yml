@@ -7,3 +7,9 @@
     state: present
   when:
     - ansible_os_family == "Debian"
+
+- name: Add rpm key
+  ansible.builtin.rpm_key:
+    key: "{{ microsoft_repository_keys_url }}"
+  when:
+    - ansible_os_family == "RedHat"

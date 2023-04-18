@@ -17,6 +17,7 @@
 - name: Make cntlm
   ansible.builtin.command:
     cmd: make -j {{ ansible_processor_vcpus * 2 }}
+    creates: "{{ cntlm_tmp }}/cntlm-{{ cntlm_version }}/cntlm"
   args:
     chdir: "{{ cntlm_tmp }}/cntlm-{{ cntlm_version }}"
 

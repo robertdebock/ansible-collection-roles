@@ -8,7 +8,7 @@
 
 - name: Install keepalived
   ansible.builtin.package:
-    name: keepalived
+    name: "{{ keepalived_packages }}"
     state: present
 
 - name: Configure keepalived

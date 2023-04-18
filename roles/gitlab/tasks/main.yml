@@ -55,19 +55,21 @@
       ansible.builtin.command:
         cmd: gitlab-rake --version
       changed_when: no
-      failed_when: no
       register: gitlab_rake_version
     - name: Use gitlab-rake to check db migrations
       ansible.builtin.command:
         cmd: "gitlab-rake db:migrate:status"
       changed_when: no
-      failed_when: no
       register: gitlab_rake_database_migrations
       until: '"  down    " not in gitlab_rake_database_migrations.stdout'
       retries: "{{ gitlab_database_migrations_retries }}"
       delay: 60
       when:
         - gitlab_rake_version.rc == 0
+  rescue:
+    - name: Inform user of non-critical error
+      ansible.builtin.debug:
+        msg: "Could not check database migrations, continuing."
 
 - name: Install gitlab
   ansible.builtin.package:

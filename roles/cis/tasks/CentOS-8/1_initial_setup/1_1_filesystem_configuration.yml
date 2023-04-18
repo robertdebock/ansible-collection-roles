@@ -225,6 +225,7 @@
 - name: 1.1.11 Ensure separate partition exists for /var/log (Scored)
   ansible.builtin.shell:
     cmd: set -o pipefail && mount | grep -E '\s/var/log\s'
+  changed_when: no
   register: cis_var_log
   failed_when:
     - cis_var_log | length != 1
@@ -234,6 +235,7 @@
 - name: 1.1.12 Ensure separate partition exists for /var/log/audit (Scored)
   ansible.builtin.shell:
     cmd: set -o pipefail && mount | grep -E '\s/var/log/audit\s'
+  changed_when: no
   register: cis_var_log_audit
   failed_when:
     - cis_var_log_audit | length != 1
@@ -243,6 +245,7 @@
 - name: 1.1.13 Ensure separate partition exists for /home (Scored)
   ansible.builtin.shell:
     cmd: set -o pipefail && mount | grep -E '\s/home\s'
+  changed_when: no
   register: cis_home_audit
   failed_when:
     - cis_home_audit | length != 1

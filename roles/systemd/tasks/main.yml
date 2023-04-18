@@ -111,4 +111,3 @@
     enabled: yes
   when:
     - ansible_distribution == "Fedora"
-    - ansible_distribution_major_version | int > 33

@@ -1,0 +1,11 @@
+---
+# vars file for keepalived
+
+_keepalived_packages:
+  default:
+    - keepalived
+  Alpine:
+    - keepalived
+    - keepalived-sample-config
+
+keepalived_packages: "{{ _keepalived_packages[ansible_os_family] | default(_keepalived_packages['default']) }}"

@@ -25,9 +25,9 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
           megabytes_available: 64
         - name: /etc/hostname
           gigabytes_available: 4
-        - name: /etc/hosts
-          inodes_available: 65536
-          gigabytes_available: 1
+        # - name: /etc/hosts
+        #   inodes_available: 65536
+        #   gigabytes_available: 1
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-diskspace/blob/master/molecule/default/prepare.yml):
@@ -68,7 +68,7 @@ diskspace_mounts: []
 
 - pip packages listed in [requirements.txt](https://github.com/robertdebock/ansible-role-diskspace/blob/master/requirements.txt).
 
-## [Status of used roles](#status-of-requirements)
+## [State of used roles](#state-of-used-roles)
 
 The following roles are used to prepare a system. You can prepare your system in another way.
 
@@ -97,7 +97,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |[opensuse](https://hub.docker.com/repository/docker/robertdebock/opensuse/general)|all|
 |[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|all|
 
-The minimum version of Ansible required is 2.10, tests have been done to:
+The minimum version of Ansible required is 2.12, tests have been done to:
 
 - The previous version.
 - The current version.

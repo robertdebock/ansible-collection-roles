@@ -17,12 +17,17 @@
   ansible.builtin.meta: reset_connection
 
 - name: Try to install pip packages
-  ansible.builtin.pip:
-    name: "{{ core_dependencies_pip_packages }}"
-    state: present
-  failed_when: no
-  notify:
-    - Gather facts
+  block:
+    - name: Install pip packages
+      ansible.builtin.pip:
+        name: "{{ core_dependencies_pip_packages }}"
+        state: present
+      notify:
+        - Gather facts
+  rescue:
+    - name: Inform user of non-critical failure
+      ansible.builtin.debug:
+        msg: "Could not install pip packages, continuing."
 
 - name: Flush handlers
   ansible.builtin.meta: flush_handlers

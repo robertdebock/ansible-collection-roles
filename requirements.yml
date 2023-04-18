@@ -1,6 +1,7 @@
 ---
 collections:
   - name: ansible.posix
+  - name: arubanetworks.aoscx
   - name: awx.awx
   - name: community.crypto
   - name: community.general
