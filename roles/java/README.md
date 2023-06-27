@@ -17,18 +17,28 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
   become: yes
   gather_facts: yes
 
+  # We want to test some non-default version of java, to ensure we can install a specific version.
+  vars:
+    _desired_java_version:
+      default: 8
+      Amazon: 17
+      Debian: 11
+      Debian-bookworm: 17
+    desired_java_version: "{{ _desired_java_version[ansible_distribution ~ '-' ~ ansible_distribution_release] | default(_desired_java_version[ansible_distribution] | default(_desired_java_version['default'])) }}"
+
   roles:
     - role: robertdebock.roles.java
+      java_version: "{{ desired_java_version }}"
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-java/blob/master/molecule/default/prepare.yml):
 
 ```yaml
 ---
-- name: Default
+- name: Prepare
   hosts: all
-  gather_facts: no
   become: yes
+  gather_facts: no
 
   roles:
     - role: robertdebock.roles.bootstrap
@@ -50,8 +60,8 @@ java_vendor: openjdk
 # Set the variable to install the type, valid values are "jre" and "jdk".
 java_type: jre
 
-# Set the version of java, valid values are 6, 7, 8, 9, 10, 11, 12 or 13.
-# By default, a distibution default is used, mapped in `vars/main.yml`.
+# Set the version of java, valid values are 6, 7, 8, 9, 10, 11, 12, 13 or 17.
+# By default, a distribution default is used, mapped in `vars/main.yml`.
 # By setting java_version, you overwrite this default to your selected
 # version.
 java_version: "{{ java_default_version }}"
@@ -102,7 +112,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |---------|----|
 |[Alpine](https://hub.docker.com/repository/docker/robertdebock/alpine/general)|all|
 |[Amazon](https://hub.docker.com/repository/docker/robertdebock/amazonlinux/general)|Candidate|
-|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|8|
+|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|8, 9|
 |[Debian](https://hub.docker.com/repository/docker/robertdebock/debian/general)|all|
 |[Fedora](https://hub.docker.com/repository/docker/robertdebock/fedora/general)|all|
 |[opensuse](https://hub.docker.com/repository/docker/robertdebock/opensuse/general)|all|

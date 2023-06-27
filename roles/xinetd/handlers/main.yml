@@ -5,5 +5,3 @@
   ansible.builtin.service:
     name: xinetd
     state: restarted
-  when:
-    - not ansible_check_mode

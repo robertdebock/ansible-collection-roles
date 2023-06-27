@@ -12,7 +12,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 
 ```yaml
 ---
-- name: converge
+- name: Converge
   hosts: all
   become: yes
   gather_facts: yes
@@ -33,7 +33,7 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
 
 ```yaml
 ---
-- name: prepare
+- name: Prepare
   hosts: all
   become: yes
   gather_facts: no
@@ -42,7 +42,7 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
     - role: robertdebock.roles.bootstrap
 
   tasks:
-    - name: make disk image
+    - name: Make disk image
       command: truncate -s 16M "{{ item }}"
       args:
         creates: "{{ item }}"
@@ -109,7 +109,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |[Alpine](https://hub.docker.com/repository/docker/robertdebock/alpine/general)|all|
 |[Amazon](https://hub.docker.com/repository/docker/robertdebock/amazonlinux/general)|all|
 |[Debian](https://hub.docker.com/repository/docker/robertdebock/debian/general)|all|
-|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|8|
+|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|8, 9|
 |[Fedora](https://hub.docker.com/repository/docker/robertdebock/fedora/general)|all|
 |[opensuse](https://hub.docker.com/repository/docker/robertdebock/opensuse/general)|all|
 |[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|all|

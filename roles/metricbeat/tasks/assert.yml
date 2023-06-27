@@ -1,13 +1,14 @@
 ---
 
-- name: Test if metricbeat_version is set correctly
+- name: assert | Test if metricbeat_version is set correctly
   ansible.builtin.assert:
     that:
       - metricbeat_version is defined
       - metricbeat_version is string
+      - metricbeat_version is not none
     quiet: yes
 
-- name: Test if metricbeat_modules is set correctly
+- name: assert | Test if metricbeat_modules is set correctly
   ansible.builtin.assert:
     that:
       - metricbeat_modules is iterable
@@ -15,7 +16,7 @@
   when:
     - metricbeat_modules is defined
 
-- name: Test if item in metricbeat_modules is set correctly
+- name: assert | Test if item in metricbeat_modules is set correctly
   ansible.builtin.assert:
     that:
       - item.name is defined
@@ -27,30 +28,33 @@
   when:
     - metricbeat_modules is defined
 
-- name: Test if metricbeat_elasticsearch_hosts is set correctly
+- name: assert | Test if metricbeat_elasticsearch_hosts is set correctly
   ansible.builtin.assert:
     that:
       - metricbeat_elasticsearch_hosts is defined
       - metricbeat_elasticsearch_hosts is iterable
     quiet: yes
 
-- name: Test if metricbeat_elasticsearch_username is set correctly
+- name: assert | Test if metricbeat_elasticsearch_username is set correctly
   ansible.builtin.assert:
     that:
       - metricbeat_elasticsearch_username is defined
       - metricbeat_elasticsearch_username is string
+      - metricbeat_elasticsearch_username is not none
     quiet: yes
 
-- name: Test if metricbeat_elasticsearch_password is set correctly
+- name: assert | Test if metricbeat_elasticsearch_password is set correctly
   ansible.builtin.assert:
     that:
       - metricbeat_elasticsearch_password is defined
       - metricbeat_elasticsearch_password is string
+      - metricbeat_elasticsearch_password is not none
     quiet: yes
 
-- name: Test if metricbeat_kibana_host is set correctly
+- name: assert | Test if metricbeat_kibana_host is set correctly
   ansible.builtin.assert:
     that:
       - metricbeat_kibana_host is defined
       - metricbeat_kibana_host is string
+      - metricbeat_kibana_host is not none
     quiet: yes

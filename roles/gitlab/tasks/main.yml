@@ -93,7 +93,9 @@
     - name: Place ssl material
       when:
         - gitlab_ssl_crt is defined
-        - gitlab_ssl_cey is defined
+        - gitlab_ssl_crt is not none
+        - gitlab_ssl_key is defined
+        - gitlab_ssl_key is not none
       block:
         - name: Place ssl certificate
           ansible.builtin.copy:
@@ -127,6 +129,7 @@
 - name: Place trusted-certs
   when:
     - gitlab_trusted_certs is defined
+    - gitlab_trusted_certs | length > 0
   block:
     - name: Make trusted-certs directories
       ansible.builtin.file:
@@ -159,6 +162,7 @@
     - Run gitlab-ctl reconfigure
   when:
     - gitlab_configuration_file is defined
+    - gitlab_configuration_file is not none
 
 - name: Show initial root password
   when:

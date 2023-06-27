@@ -12,5 +12,3 @@
   ansible.builtin.service:
     name: "{{ httpd_service }}"
     state: restarted
-  when:
-    - not ansible_check_mode

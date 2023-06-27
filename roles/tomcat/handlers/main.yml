@@ -9,5 +9,3 @@
   ansible.builtin.service:
     name: "{{ instance_name }}"
     state: restarted
-  when:
-    - not ansible_check_mode

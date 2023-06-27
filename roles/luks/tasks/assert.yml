@@ -1,6 +1,6 @@
 ---
 
-- name: Test if luks_default_state is set correctly
+- name: assert | Test if luks_default_state is set correctly
   ansible.builtin.assert:
     that:
       - luks_default_state is defined
@@ -8,7 +8,7 @@
       - luks_default_state in [ "absent", "closed", "opened", "present" ]
     quiet: yes
 
-- name: Test if luks_devices is set correctly
+- name: assert | Test if luks_devices is set correctly
   ansible.builtin.assert:
     that:
       - luks_devices is iterable
@@ -16,11 +16,12 @@
   when:
     - luks_devices is defined
 
-- name: Test if item.name in luks_devices is set correctly
+- name: assert | Test if item.name in luks_devices is set correctly
   ansible.builtin.assert:
     that:
       - item.name is defined
       - item.name is string
+      - item.name is not none
     quiet: yes
   loop: "{{ luks_devices }}"
   loop_control:
@@ -28,11 +29,12 @@
   when:
     - luks_devices is defined
 
-- name: Test if item.device in luks_devices is set correctly
+- name: assert | Test if item.device in luks_devices is set correctly
   ansible.builtin.assert:
     that:
       - item.device is defined
       - item.device is string
+      - item.device is not none
     quiet: yes
   loop: "{{ luks_devices }}"
   loop_control:
@@ -40,7 +42,7 @@
   when:
     - luks_devices is defined
 
-- name: Test if item.state in luks_devices is set correctly
+- name: assert | Test if item.state in luks_devices is set correctly
   ansible.builtin.assert:
     that:
       - item.state in [ "absent", "present" ]
@@ -52,10 +54,11 @@
     - luks_devices is defined
     - item.state is defined
 
-- name: Test if item.passphrase in luks_devices is set correctly
+- name: assert | Test if item.passphrase in luks_devices is set correctly
   ansible.builtin.assert:
     that:
       - item.passphrase is string
+      - item.passphrase is not none
     quiet: yes
   loop: "{{ luks_devices }}"
   loop_control:
@@ -64,10 +67,11 @@
     - luks_devices is defined
     - item.passphrase is defined
 
-- name: Test if item.keyfile in luks_devices is set correctly
+- name: assert | Test if item.keyfile in luks_devices is set correctly
   ansible.builtin.assert:
     that:
       - item.keyfile is string
+      - item.keyfile is not none
     quiet: yes
   loop: "{{ luks_devices }}"
   loop_control:
@@ -76,7 +80,7 @@
     - luks_devices is defined
     - item.keyfile is defined
 
-- name: Test if either keyfile or passphrase is used
+- name: assert | Test if either keyfile or passphrase is used
   ansible.builtin.assert:
     that:
       - item.passphrase is not defined
@@ -88,7 +92,7 @@
     - luks_devices is defined
     - item.keyfile is defined
 
-- name: Test if either passphrase or keyfile is used
+- name: assert | Test if either passphrase or keyfile is used
   ansible.builtin.assert:
     that:
       - item.keyfile is not defined
@@ -100,7 +104,7 @@
     - luks_devices is defined
     - item.passphrase is defined
 
-- name: Test if either passphrase or keyfile are set
+- name: assert | Test if either passphrase or keyfile are set
   ansible.builtin.assert:
     that:
       - item.keyfile is defined or

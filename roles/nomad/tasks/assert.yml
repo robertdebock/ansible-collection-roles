@@ -1,29 +1,30 @@
 ---
 
-- name: Test if nomad_install_package is set correctly
+- name: assert | Test if nomad_install_package is set correctly
   ansible.builtin.assert:
     that:
       - nomad_install_package is defined
       - nomad_install_package is boolean
     quiet: yes
 
-- name: Test if nomad_server is set correctly
+- name: assert | Test if nomad_server is set correctly
   ansible.builtin.assert:
     that:
       - nomad_server is defined
       - nomad_server is boolean
     quiet: yes
 
-- name: Test if nomad_server_bind_addr is set correctly
+- name: assert | Test if nomad_server_bind_addr is set correctly
   ansible.builtin.assert:
     that:
       - nomad_server_bind_addr is defined
       - nomad_server_bind_addr is string
+      - nomad_server_bind_addr is not none
     quiet: yes
   when:
     - nomad_server
 
-- name: Test if nomad_server_log_level is set correctly
+- name: assert | Test if nomad_server_log_level is set correctly
   ansible.builtin.assert:
     that:
       - nomad_server_log_level is defined
@@ -33,16 +34,17 @@
   when:
     - nomad_server
 
-- name: Test if nomad_server_data_dir is set correctly
+- name: assert | Test if nomad_server_data_dir is set correctly
   ansible.builtin.assert:
     that:
       - nomad_server_data_dir is defined
       - nomad_server_data_dir is string
+      - nomad_server_data_dir is not none
     quiet: yes
   when:
     - nomad_server
 
-- name: Test if nomad_server_bootstrap_expect is set correctly
+- name: assert | Test if nomad_server_bootstrap_expect is set correctly
   ansible.builtin.assert:
     that:
       - nomad_server_bootstrap_expect is defined
@@ -51,7 +53,7 @@
   when:
     - nomad_server
 
-- name: Test if nomad_server_bootstrap_expect is odd
+- name: assert | Test if nomad_server_bootstrap_expect is odd
   ansible.builtin.assert:
     that:
       - nomad_server_bootstrap_expect is not divisibleby 2
@@ -60,14 +62,14 @@
   when:
     - nomad_server
 
-- name: Test if nomdad_agent is set correctly
+- name: assert | Test if nomdad_agent is set correctly
   ansible.builtin.assert:
     that:
       - nomad_agent is defined
       - nomad_agent is boolean
     quiet: yes
 
-- name: Test if nomad_agent_log_level is set correctly
+- name: assert | Test if nomad_agent_log_level is set correctly
   ansible.builtin.assert:
     that:
       - nomad_agent_log_level is defined
@@ -77,16 +79,17 @@
   when:
     - nomad_agent
 
-- name: Test if nomad_agent_data_dir is set correctly
+- name: assert | Test if nomad_agent_data_dir is set correctly
   ansible.builtin.assert:
     that:
       - nomad_agent_data_dir is defined
       - nomad_agent_data_dir is string
+      - nomad_agent_data_dir is not none
     quiet: yes
   when:
     - nomad_agent
 
-- name: Test if nomad_agent_servers is set correctly
+- name: assert | Test if nomad_agent_servers is set correctly
   ansible.builtin.assert:
     that:
       - nomad_agent_servers is defined
@@ -95,11 +98,12 @@
   when:
     - nomad_agent
 
-- name: Test if item in nomad_agent_servers is set correctly
+- name: assert | Test if item in nomad_agent_servers is set correctly
   ansible.builtin.assert:
     that:
       - item.name is defined
       - item.name is string
+      - item.name is not none
       - item.port is defined
       - item.port is number
       - item.port > 0
@@ -111,7 +115,7 @@
   when:
     - nomad_agent
 
-- name: Test if nomad_server and nomad_agent are set correctly
+- name: assert | Test if nomad_server and nomad_agent are set correctly
   ansible.builtin.assert:
     that:
       - nomad_server != nomad_agent

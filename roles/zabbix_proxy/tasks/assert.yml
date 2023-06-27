@@ -1,6 +1,6 @@
 ---
 
-- name: Test if zabbix_proxy_mode is set correctly
+- name: assert | Test if zabbix_proxy_mode is set correctly
   ansible.builtin.assert:
     that:
       - zabbix_proxy_mode is defined
@@ -8,14 +8,15 @@
       - zabbix_proxy_mode in [ "0", "1" ]
     quiet: yes
 
-- name: Test if zabbix_proxy_server is set correctly
+- name: assert | Test if zabbix_proxy_server is set correctly
   ansible.builtin.assert:
     that:
       - zabbix_proxy_server is defined
       - zabbix_proxy_server is string
+      - zabbix_proxy_server is not none
     quiet: yes
 
-- name: Test if zabbix_proxy_server_port is set correctly
+- name: assert | Test if zabbix_proxy_server_port is set correctly
   ansible.builtin.assert:
     that:
       - zabbix_proxy_server_port is defined
@@ -24,42 +25,47 @@
       - zabbix_proxy_server_port < 65536
     quiet: yes
 
-- name: Test if zabbix_proxy_hostname is set correctly
+- name: assert | Test if zabbix_proxy_hostname is set correctly
   ansible.builtin.assert:
     that:
       - zabbix_proxy_hostname is defined
       - zabbix_proxy_hostname is string
+      - zabbix_proxy_hostname is not none
     quiet: yes
 
-- name: Test if zabbix_proxy_database_hostname is set correctly
+- name: assert | Test if zabbix_proxy_database_hostname is set correctly
   ansible.builtin.assert:
     that:
       - zabbix_proxy_database_hostname is defined
       - zabbix_proxy_database_hostname is string
+      - zabbix_proxy_database_hostname is not none
     quiet: yes
 
-- name: Test if zabbix_proxy_database_name is set correctly
+- name: assert | Test if zabbix_proxy_database_name is set correctly
   ansible.builtin.assert:
     that:
       - zabbix_proxy_database_name is defined
       - zabbix_proxy_database_name is string
+      - zabbix_proxy_database_name is not none
     quiet: yes
 
-- name: Test if zabbix_proxy_database_user is set correctly
+- name: assert | Test if zabbix_proxy_database_user is set correctly
   ansible.builtin.assert:
     that:
       - zabbix_proxy_database_user is defined
       - zabbix_proxy_database_user is string
+      - zabbix_proxy_database_user is not none
     quiet: yes
 
-- name: Test if zabbix_proxy_database_password is set correctly
+- name: assert | Test if zabbix_proxy_database_password is set correctly
   ansible.builtin.assert:
     that:
       - zabbix_proxy_database_password is defined
       - zabbix_proxy_database_password is string
+      - zabbix_proxy_database_password is not none
     quiet: yes
 
-- name: Test if zabbix_proxy_database_port is set correctly
+- name: assert | Test if zabbix_proxy_database_port is set correctly
   ansible.builtin.assert:
     that:
       - zabbix_proxy_database_port is defined

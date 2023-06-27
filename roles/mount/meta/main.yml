@@ -17,6 +17,7 @@ galaxy_info:
     - name: EL
       versions:
         - "8"
+        - "9"
     - name: Fedora
       versions:
         - all
@@ -26,7 +27,9 @@ galaxy_info:
     - name: Ubuntu
       versions:
         - all
+
   galaxy_tags:
     - mount
+    - system
 
 dependencies: []

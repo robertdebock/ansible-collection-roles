@@ -1,6 +1,6 @@
 {{ ansible_managed | comment }}
 
-{% if item.backend_url is defined %}
+{% if ( item.backend_url is defined ) or ( item.remote is defined ) %}
 <IfModule !proxy_module>
    LoadModule proxy_module {{ httpd_modules_path }}/mod_proxy.so
 </IfModule>

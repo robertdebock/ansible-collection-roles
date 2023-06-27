@@ -5,8 +5,6 @@
   ansible.builtin.service:
     name: "{{ php_fpm_service }}"
     state: restarted
-  when:
-    - not ansible_check_mode
 
 - name: Create selinux mod for php_fpm
   ansible.builtin.command:

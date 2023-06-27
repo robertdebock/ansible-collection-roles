@@ -13,12 +13,10 @@ galaxy_info:
         - all
     - name: EL
       versions:
-        - "7"
-        - "8"
+        - all
     - name: Fedora
       versions:
-        - "36"
-        - "37"
+        - all
     - name: opensuse
       versions:
         - all
@@ -30,5 +28,6 @@ galaxy_info:
     - enpass
     - passwordmanager
     - password
+    - security
 
 dependencies: []

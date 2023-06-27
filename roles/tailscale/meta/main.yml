@@ -10,7 +10,7 @@ galaxy_info:
   platforms:
     - name: Amazon
       versions:
-        - all
+        - Candidate
     - name: Debian
       versions:
         - all
@@ -31,5 +31,7 @@ galaxy_info:
     - tailscale
     - network
     - vpn
+    - networking
+    - security
 
 dependencies: []

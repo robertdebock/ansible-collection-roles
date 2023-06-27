@@ -1,10 +1,11 @@
 ---
-- name: Install collectd plugin dependencies
+
+- name: plugins | Install collectd plugin dependencies
   ansible.builtin.package:
     name: "{{ _collectd_plugin_dependencies[plugin.name][ansible_distribution] | default(_collectd_plugin_dependencies[plugin.name][ansible_os_family] | default(_collectd_plugin_dependencies[plugin.name]['default'])) }}"  # noqa 204 Needs to be long, sorry lint.
     state: present
 
-- name: Find all plugins files not complying to the index based naming convention (001-plugin_name.conf)
+- name: plugins | Find all plugins files not complying to the index based naming convention (001-plugin_name.conf)
   ansible.builtin.find:
     paths: "{{ collectd_conf_include_dir }}"
     file_type: file
@@ -12,13 +13,15 @@
     use_regex: yes
   register: collectd_files_to_delete
 
-- name: Remove obsolete plugin files
+- name: plugins | Remove obsolete plugin files
   ansible.builtin.file:
     path: "{{ item.path }}"
     state: absent
-  with_items: "{{ collectd_files_to_delete.files }}"
+  loop: "{{ collectd_files_to_delete.files }}"
+  loop_control:
+    label: "{{ item.path }}"
 
-- name: Configure collectd plugins
+- name: plugins | Configure collectd plugins
   ansible.builtin.template:
     src: collectd.d/plugin.conf.j2
     dest: "{{ collectd_conf_include_dir }}/{{ '%03d' | format(index + 1) }}-{{ plugin.name }}.conf"
@@ -32,7 +35,7 @@
   notify:
     - Restart collectd
 
-- name: Append configured plugin to list
+- name: plugins | Append configured plugin to list
   ansible.builtin.set_fact:
     _new_plugins_configured: "{{ _new_plugins_configured + [configured_plugin.dest] }}"
   when:

@@ -1,28 +1,31 @@
 ---
 
-- name: Test if gitlab_runner_name is set correctly
+- name: assert | Test if gitlab_runner_name is set correctly
   ansible.builtin.assert:
     that:
       - gitlab_runner_name is defined
       - gitlab_runner_name is string
+      - gitlab_runner_name is not none
     quiet: yes
 
-- name: Test if gitlab_runner_registration_token is set correctly
+- name: assert | Test if gitlab_runner_registration_token is set correctly
   ansible.builtin.assert:
     that:
       - gitlab_runner_registration_token is string
+      - gitlab_runner_registration_token is not none
     quiet: yes
   when:
     - gitlab_runner_registration_token is defined
 
-- name: Test if gitlab_runner_url is set correctly
+- name: assert | Test if gitlab_runner_url is set correctly
   ansible.builtin.assert:
     that:
       - gitlab_runner_url is defined
       - gitlab_runner_url is string
+      - gitlab_runner_url is not none
     quiet: yes
 
-- name: Test if gitlab_runner_tags is set correctly
+- name: assert | Test if gitlab_runner_tags is set correctly
   ansible.builtin.assert:
     that:
       - gitlab_runner_tags is iterable
@@ -30,30 +33,32 @@
   when:
     - gitlab_runner_tags is defined
 
-- name: Test if gitlab_runner_executor is set correctly
+- name: assert | Test if gitlab_runner_executor is set correctly
   ansible.builtin.assert:
     that:
       - gitlab_runner_executor is string
       - gitlab_runner_executor in [ "ssh", "shell", "parallels", "virtualbox", "docker", "docker_machine", "kubernetes", "custom" ]
     quiet: yes
 
-- name: Test if gitlab_runner_docker_image is set correctly
+- name: assert | Test if gitlab_runner_docker_image is set correctly
   ansible.builtin.assert:
     that:
       - gitlab_runner_docker_image is defined
       - gitlab_runner_docker_image is string
+      - gitlab_runner_docker_image is not none
     quiet: yes
   when:
     - gitlab_runner_executor == "docker"
 
-- name: Test if gitlab_runner_version is set correctly
+- name: assert | Test if gitlab_runner_version is set correctly
   ansible.builtin.assert:
     that:
       - gitlab_runner_version is defined
       - gitlab_runner_version is string
+      - gitlab_runner_version is not none
     quiet: yes
 
-- name: Test if gitlab_runner_concurrency is set correctly
+- name: assert | Test if gitlab_runner_concurrency is set correctly
   ansible.builtin.assert:
     that:
       - gitlab_runner_concurrency is defined

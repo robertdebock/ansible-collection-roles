@@ -61,3 +61,5 @@
     src: roundcube.conf.j2
     dest: "{{ roundcubemail_httpd_configuration }}"
     mode: "0644"
+  notify:
+    - Restart httpd

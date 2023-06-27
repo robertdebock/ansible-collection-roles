@@ -1,17 +1,18 @@
 ---
-- name: Find files in {{ object.path }}
+
+- name: specific_file_collector | Find files in {{ object.path }}
   ansible.builtin.find:
     paths: "{{ object.path }}"
     pattern: "{{ object.pattern }}"
   register: forensics_find_files
 
-- name: Create storage directory
+- name: specific_file_collector | Create storage directory
   ansible.builtin.file:
     path: "{{ forensics_local_storage_path }}/{{ inventory_hostname_short }}/{{ object.path }}"
     state: directory
     mode: "0750"
 
-- name: Fetch files
+- name: specific_file_collector | Fetch files
   ansible.builtin.fetch:
     src: "{{ item.path }}"
     dest: "{{ forensics_local_storage_path }}/{{ inventory_hostname_short }}/{{ object.path | basename }}"

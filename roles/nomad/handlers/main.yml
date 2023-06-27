@@ -5,5 +5,3 @@
   ansible.builtin.service:
     name: nomad
     state: restarted
-  when:
-    - not ansible_check_mode

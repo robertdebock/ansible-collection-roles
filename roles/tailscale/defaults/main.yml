@@ -1,0 +1,13 @@
+---
+# defaults file for tailscale
+
+# You can configure your tailscale node to act as an exit node.
+# Enabling this, sets the required sysctl settings and adds a firewalld rule.
+tailscale_exit_node: no
+
+# To route traffice for certain subnets through tailscale, add them here.
+tailscale_advertise_routes: []
+
+# Nodes can authenticate with the tailscale service using an authkey.
+# These keys can be created here: https://login.tailscale.com/admin/settings/keys
+tailscale_authkey: ""

@@ -1,36 +1,40 @@
 ---
 
-- name: Test if restore_directory is set correctly
+- name: assert | Test if restore_directory is set correctly
   ansible.builtin.assert:
     that:
       - restore_directory is defined
       - restore_directory is string
+      - restore_directory is not none
     quiet: yes
 
-- name: Test if restore_remote_directory is set correctly
+- name: assert | Test if restore_remote_directory is set correctly
   ansible.builtin.assert:
     that:
       - restore_remote_directory is defined
       - restore_remote_directory is string
+      - restore_remote_directory is not none
     quiet: yes
 
-- name: Test if restore_objects is set correctly
+- name: assert | Test if restore_objects is set correctly
   ansible.builtin.assert:
     that:
       - restore_objects is defined
       - restore_objects is iterable
     quiet: yes
 
-- name: Test if item in restore_objects is set correctly
+- name: assert | Test if item in restore_objects is set correctly
   ansible.builtin.assert:
     that:
       - item.name is defined
       - item.name is string
+      - item.name is not none
       - item.type is defined
       - item.type is string
       - item.type in [ "directory", "mysql", "postgres" ]
       - item.destination is defined
       - item.destination is string
+      - item.destination is not none
     quiet: yes
   loop: "{{ restore_objects }}"
   loop_control:

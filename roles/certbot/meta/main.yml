@@ -11,12 +11,13 @@ galaxy_info:
     - name: EL
       versions:
         - "8"
+        - "9"
     - name: Debian
       versions:
         - all
     - name: Fedora
       versions:
-        - "36"
+        - all
     - name: opensuse
       versions:
         - all
@@ -28,5 +29,6 @@ galaxy_info:
     - certbot
     - acme
     - letsencrypt
+    - security
 
 dependencies: []

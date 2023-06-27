@@ -7,17 +7,41 @@ _tailscale_dependencies:
     - yum-utils
   Debian:
     - ca-certificates
+  Suse:
+    - python3-rpm
 tailscale_dependencies: "{{ _tailscale_dependencies[ansible_os_family] | default(_tailscale_dependencies['default']) }}"
 
 _tailscale_repo_baseurl:
+  Amazon: "https://pkgs.tailscale.com/stable/opensuse/leap/15.2/$basearch"
   Fedora: "https://pkgs.tailscale.com/stable/{{ ansible_distribution | lower }}/$basearch"
-  Rocky: "https://pkgs.tailscale.com/stable/centos/{{ ansible_distribution_major_version }}/$basearch"
+  Rocky: &tailscale_repo_baseurl_enterpriselinux "https://pkgs.tailscale.com/stable/centos/{{ ansible_distribution_major_version }}/$basearch"
+  openSUSE Leap: "https://pkgs.tailscale.com/stable/opensuse/leap/15.2/tailscale.repo"
+  CentOS: *tailscale_repo_baseurl_enterpriselinux
 tailscale_repo_baseurl: "{{ _tailscale_repo_baseurl[ansible_distribution] }}"
 
 _tailscale_repo_gpgkey:
+  Amazon: "https://pkgs.tailscale.com/stable/amazon-linux/2/repo.gpg"
   Fedora: "https://pkgs.tailscale.com/stable/{{ ansible_distribution | lower }}/repo.gpg"
-  Rocky: "https://pkgs.tailscale.com/stable/centos/{{ ansible_distribution_major_version }}/repo.gpg"
+  Rocky: &tailscale_repo_gpgkey_enterpriselinux "https://pkgs.tailscale.com/stable/centos/{{ ansible_distribution_major_version }}/repo.gpg"
+  CentOS: *tailscale_repo_gpgkey_enterpriselinux
 tailscale_repo_gpgkey: "{{ _tailscale_repo_gpgkey[ansible_distribution] }}"
 
 tailscale_apt_key_url: "https://pkgs.tailscale.com/stable/{{ ansible_distribution | lower }}/{{ ansible_distribution_release }}.noarmor.gpg"
 tailscale_apt_repo: deb [signed-by=/usr/share/keyrings/tailscale-archive-keyring.gpg] https://pkgs.tailscale.com/stable/{{ ansible_distribution | lower }} {{ ansible_distribution_release }} main
+
+_tailscale_sysclt_file:
+  false: /etc/sysctl.conf
+  true: /etc/sysctl.d/99-tailscale.conf
+tailscale_sysctl_file: "{{ _tailscale_sysclt_file[tailscale_sysctl_d.stat.exists] }}"
+
+_tailscale_sysctl_packages:
+  default:
+    - procps
+  RedHat:
+    - procps-ng
+tailscale_sysclt_packages: "{{ _tailscale_sysctl_packages[ansible_os_family] | default(_tailscale_sysctl_packages['default']) }}"
+
+_tailscale_up_command:
+  yes: tailscale up --authkey "{{ tailscale_authkey }}" --advertise-exit-node
+  no: tailscale up --authkey "{{ tailscale_authkey }}"
+tailscale_up_command: "{{ _tailscale_up_command[tailscale_exit_node] }}"

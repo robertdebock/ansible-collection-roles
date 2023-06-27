@@ -1,0 +1,9 @@
+---
+# vars file for fips
+
+fips_exit_codes:
+  - 0  # fips-mode-setup is enabled
+  - 1  # fips-mode-setup is inconsistent
+  - 2  # fips-mode-setup is disabled
+
+fips_disabled_code: 2

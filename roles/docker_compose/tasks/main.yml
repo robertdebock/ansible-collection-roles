@@ -6,14 +6,22 @@
   run_once: yes
   delegate_to: localhost
 
-- name: Install docker-compose
+- name: Install docker-compose package
+  ansible.builtin.package:
+    name: docker-compose
+    state: present
+  when:
+    - docker_compose_installation_type == "package"
+
+- name: Install docker-compose as a binary
+  when:
+    - docker_compose_installation_type == "binary"
   block:
-    - name: Install docker-compose package
+    - name: Install required packages
       ansible.builtin.package:
-        name: docker-compose
-        state: present
-  rescue:
-    - name: Install docker-compose binary
+        name: "{{ docker_compose_binary_required_packages }}"
+
+    - name: Install binary
       ansible.builtin.get_url:
         url: "{{ docker_compose_url }}"
         dest: /usr/local/bin/docker-compose

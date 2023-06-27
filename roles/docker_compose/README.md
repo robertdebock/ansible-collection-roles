@@ -12,7 +12,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 
 ```yaml
 ---
-- name: converge
+- name: Converge
   hosts: all
   become: yes
   gather_facts: yes
@@ -25,7 +25,7 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
 
 ```yaml
 ---
-- name: prepare
+- name: Prepare
   hosts: all
   become: yes
   gather_facts: no
@@ -44,7 +44,15 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 ---
 # defaults file for docker_compose
 
-docker_compose_version: "1.27.4"
+# The version of Docker compose to install.
+# The versions `1.*` do not start with a `v`.
+# The versions `2.*` do start with a `v`.
+# You can check available versions here:
+# https://github.com/docker/compose/releases
+docker_compose_version: "v2.18.1"
+
+# Where to download the docker binary from.
+docker_compose_url: "https://github.com/docker/compose/releases/download/{{ docker_compose_version }}/docker-compose-{{ system | lower }}-{{ docker_compose_architecture }}"
 ```
 
 ## [Requirements](#requirements)
@@ -74,9 +82,9 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |---------|----|
 |[Alpine](https://hub.docker.com/repository/docker/robertdebock/alpine/general)|all|
 |[Amazon](https://hub.docker.com/repository/docker/robertdebock/amazonlinux/general)|Candidate|
-|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|8|
+|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|8, 9|
 |[Debian](https://hub.docker.com/repository/docker/robertdebock/debian/general)|all|
-|[Fedora](https://hub.docker.com/repository/docker/robertdebock/fedora/general)|36|
+|[Fedora](https://hub.docker.com/repository/docker/robertdebock/fedora/general)|all|
 |[opensuse](https://hub.docker.com/repository/docker/robertdebock/opensuse/general)|all|
 |[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|all|
 

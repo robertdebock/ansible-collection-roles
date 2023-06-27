@@ -53,8 +53,6 @@
   ansible.builtin.service:
     name: chronyd
     state: restarted
-  when:
-    - not ansible_check_mode | bool
 
 - name: Net.ipv4.route.flush
   ansible.posix.sysctl:
@@ -81,12 +79,8 @@
     name: auditd
     state: restarted
     use: service  # systemctl can't restart auditd, service can: https://access.redhat.com/solutions/2664811
-  when:
-    - not ansible_check_mode | bool
 
 - name: Restart rsyslog
   ansible.builtin.service:
     name: rsyslog
     state: restarted
-  when:
-    - not ansible_check_mode | bool

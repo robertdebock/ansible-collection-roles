@@ -5,6 +5,3 @@
   ansible.builtin.service:
     name: "{{ openssh_service }}"
     state: restarted
-  when:
-    - not ansible_check_mode
-    - openssh_restart_immediately

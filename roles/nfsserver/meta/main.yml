@@ -17,6 +17,7 @@ galaxy_info:
     - name: EL
       versions:
         - "8"
+        - "9"
     - name: Debian
       versions:
         - bullseye
@@ -34,5 +35,7 @@ galaxy_info:
     - nfs
     - nfsserver
     - exports
+    - system
+    - networking
 
 dependencies: []

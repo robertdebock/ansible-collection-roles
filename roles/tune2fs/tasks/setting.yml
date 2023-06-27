@@ -1,5 +1,6 @@
 ---
-- name: Get values
+
+- name: setting | Get values
   ansible.builtin.command:
     cmd: tune2fs -l "{{ setting.device }}"
   changed_when: no
@@ -7,7 +8,7 @@
   when:
     - ansible_connection not in [ "container", "docker", "community.docker.docker" ]
 
-- name: Set maximum_count_mount
+- name: setting | Set maximum_count_mount
   ansible.builtin.command:
     cmd: tune2fs -c {{ setting.maximum_count_mount }} {{ setting.device }}
   when:

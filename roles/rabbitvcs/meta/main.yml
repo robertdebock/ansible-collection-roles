@@ -17,5 +17,6 @@ galaxy_info:
 
   galaxy_tags:
     - rabbitvcs
+    - development
 
 dependencies: []

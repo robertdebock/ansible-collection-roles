@@ -58,6 +58,7 @@
     day: "{{ item.day | default(omit) }}"
     month: "{{ item.month | default(omit) }}"
     weekday: "{{ item.weekday | default(omit) }}"
+    special_time: "{{ item.special_time | default(omit) }}"
     job: "{{ item.job }}"
     state: "{{ item.state | default('present') }}"
     user: "{{ item.user | default(omit) }}"

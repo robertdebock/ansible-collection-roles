@@ -1,54 +1,56 @@
 ---
 
-- name: Test if ntp_state is set correctly
+- name: assert | Test if ntp_state is set correctly
   ansible.builtin.assert:
     that:
       - ntp_state is defined
       - ntp_state in [ "started", "stopped" ]
     quiet: yes
 
-- name: Test if ntp_enabled is set correctly
+- name: assert | Test if ntp_enabled is set correctly
   ansible.builtin.assert:
     that:
       - ntp_enabled is defined
       - ntp_enabled is boolean
     quiet: yes
 
-- name: Test if ntp_interfaces is set correctly
+- name: assert | Test if ntp_interfaces is set correctly
   ansible.builtin.assert:
     that:
       - ntp_interfaces is defined
       - ntp_interfaces is iterable
     quiet: yes
 
-- name: Test if item in ntp_interfaces is set correctly
+- name: assert | Test if item in ntp_interfaces is set correctly
   ansible.builtin.assert:
     that:
       - item.address is defined
       - item.address is string
+      - item.address is not none
     quiet: yes
   loop: "{{ ntp_interfaces }}"
   loop_control:
     label: "{{ item.address }}"
 
-- name: Test if ntp_pool is set correctly
+- name: assert | Test if ntp_pool is set correctly
   ansible.builtin.assert:
     that:
       - ntp_pool is defined
       - ntp_pool is iterable
     quiet: yes
 
-- name: Test if item in ntp_pool is set correctly
+- name: assert | Test if item in ntp_pool is set correctly
   ansible.builtin.assert:
     that:
       - item.name is defined
       - item.name is string
+      - item.name is not none
     quiet: yes
   loop: "{{ ntp_pool }}"
   loop_control:
     label: "{{ item.name }}"
 
-- name: Test if ntp_server is set correctly
+- name: assert | Test if ntp_server is set correctly
   ansible.builtin.assert:
     that:
       - ntp_server is iterable
@@ -56,18 +58,20 @@
   when:
     - ntp_server is defined
 
-- name: Test if item in ntp_server is set correctly
+- name: assert | Test if item in ntp_server is set correctly
   ansible.builtin.assert:
     that:
       - item.name is defined
       - item.name is string
+      - item.name is not none
     quiet: yes
   when:
     - ntp_server is defined
 
-- name: Test if ntp_timezone is set correctly
+- name: assert | Test if ntp_timezone is set correctly
   ansible.builtin.assert:
     that:
       - ntp_timezone is defined
       - ntp_timezone is string
+      - ntp_timezone is not none
     quiet: yes

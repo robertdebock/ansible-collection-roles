@@ -1,5 +1,6 @@
 ---
-- name: Test storage_partitions
+
+- name: partition | Test storage_partitions
   ansible.builtin.assert:
     that:
       - partition.name is defined
@@ -8,7 +9,7 @@
         partition.part_end is defined
     quiet: yes
 
-- name: Create partitions
+- name: partition | Create partitions
   community.general.parted:
     device: "{{ partition.name }}"
     number: "{{ partition.number }}"

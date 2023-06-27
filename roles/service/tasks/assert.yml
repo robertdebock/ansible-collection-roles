@@ -1,27 +1,30 @@
 ---
 
-- name: Test if service_list is set correctly
+- name: assert | Test if service_list is set correctly
   ansible.builtin.assert:
     that:
       - service_list is defined
       - service_list is iterable
     quiet: yes
 
-- name: Test if item in service_list is set correctly
+- name: assert | Test if item in service_list is set correctly
   ansible.builtin.assert:
     that:
       - item.name is defined
       - item.name is string
+      - item.name is not none
       - item.description is defined
       - item.description is string
+      - item.description is not none
       - item.start_command is defined
       - item.start_command is string
+      - item.start_command is not none
     quiet: yes
   loop: "{{ service_list }}"
   loop_control:
     label: "{{ item.name }}"
 
-- name: Test if type in service_list is set correctly
+- name: assert | Test if type in service_list is set correctly
   ansible.builtin.assert:
     that:
       - item.type is string
@@ -33,7 +36,7 @@
   when:
     - item.type is defined
 
-- name: Test if environment_variables in service_list is set correctly
+- name: assert | Test if environment_variables in service_list is set correctly
   ansible.builtin.assert:
     that:
       - item.environment_variables is iterable
@@ -44,7 +47,7 @@
   when:
     - item.environment_variables is defined
 
-- name: Test if restart_mode in service_list is set correctly
+- name: assert | Test if restart_mode in service_list is set correctly
   ansible.builtin.assert:
     that:
       - item.restart_mode is string
@@ -56,7 +59,7 @@
   when:
     - item.restart_mode is defined
 
-- name: Test if restart_seconds in service_list is set correctly
+- name: assert | Test if restart_seconds in service_list is set correctly
   ansible.builtin.assert:
     that:
       - item.seconds is number
@@ -68,7 +71,7 @@
   when:
     - item.seconds is defined
 
-- name: Test if state in service_list is set correctly
+- name: assert | Test if state in service_list is set correctly
   ansible.builtin.assert:
     that:
       - item.state is string
@@ -80,7 +83,7 @@
   when:
     - item.state is defined
 
-- name: Test if enabled in service_list is set correctly
+- name: assert | Test if enabled in service_list is set correctly
   ansible.builtin.assert:
     that:
       - item.enabled is boolean

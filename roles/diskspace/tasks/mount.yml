@@ -1,21 +1,21 @@
 ---
 
-- name: Convert to kilobytes
+- name: mount | Convert to kilobytes
   delegate_to: localhost
   block:
-    - name: Convert megabytes to kilobytes
+    - name: mount | Convert megabytes to kilobytes
       ansible.builtin.set_fact:
         kilobytes_available: "{{ mount.megabytes_available * 1024 }}"
       when:
         - mount.megabytes_available is defined
 
-    - name: Convert gigabytes to kilobytes
+    - name: mount | Convert gigabytes to kilobytes
       ansible.builtin.set_fact:
         kilobytes_available: "{{ mount.gigabytes_available * 1024 * 1024 }}"
       when:
         - mount.gigabytes_available is defined
 
-- name: Check space available
+- name: mount | Check space available
   ansible.builtin.assert:
     that:
       - item.size_available | int >= kilobytes_available | int
@@ -29,7 +29,7 @@
     - mount.megabytes_available is defined or
       mount.gigabytes_available is defined
 
-- name: Check inodes available
+- name: mount | Check inodes available
   ansible.builtin.assert:
     that:
       - item.inode_available | int >= mount.inodes_available | int

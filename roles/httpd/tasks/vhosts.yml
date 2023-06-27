@@ -1,6 +1,6 @@
 ---
 
-- name: Create docroot
+- name: vhosts | Create docroot
   ansible.builtin.file:
     path: "{{ item.documentroot }}"
     state: directory
@@ -13,7 +13,7 @@
     - item.documentroot is defined
     - item.create_docroot is not defined or item.create_docroot
 
-- name: Configure vhosts
+- name: vhosts | Configure vhosts
   ansible.builtin.template:
     src: vhost.conf.j2
     dest: "{{ httpd_config_directory }}/{{ item.name }}.conf"

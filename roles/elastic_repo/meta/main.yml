@@ -16,17 +16,16 @@ galaxy_info:
         - all
     - name: EL
       versions:
-        - "7"
-        - "8"
+        - all
     - name: Fedora
       versions:
-        - "36"
-        - "37"
+        - all
     - name: Ubuntu
       versions:
         - all
 
   galaxy_tags:
     - elasticrepo
+    - monitoring
 
 dependencies: []

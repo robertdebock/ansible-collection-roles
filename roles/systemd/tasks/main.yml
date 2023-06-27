@@ -61,6 +61,7 @@
   when:
     - systemd_logind is defined
   notify:
+    - Unmask systemd-logind
     - Restart systemd-logind
 
 - name: Configure resolved.conf

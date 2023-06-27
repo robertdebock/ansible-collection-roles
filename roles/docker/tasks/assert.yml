@@ -1,6 +1,6 @@
 ---
 
-- name: Test if docker_privileged_users is set correctly
+- name: assert | Test if docker_privileged_users is set correctly
   ansible.builtin.assert:
     that:
       - docker_privileged_users is iterable

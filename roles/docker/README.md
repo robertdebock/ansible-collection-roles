@@ -40,8 +40,8 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
 ---
 - name: Prepare
   hosts: all
-  gather_facts: no
   become: yes
+  gather_facts: no
 
   roles:
     - role: robertdebock.roles.bootstrap
@@ -63,8 +63,8 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 
 # Add users to the privileged docker group. For example:
 # docker_privileged_users:
-#  - UserA
-#  - UserB
+#   - UserA
+#   - UserB
 docker_privileged_users: []
 ```
 

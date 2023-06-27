@@ -90,7 +90,7 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
 
 ```yaml
 ---
-- name: prepare
+- name: Prepare
   hosts: all
   become: yes
   gather_facts: no
@@ -100,7 +100,7 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
     - role: robertdebock.roles.cron
 
   post_tasks:
-    - name: create log directory
+    - name: Create log directory
       ansible.builtin.file:
         path: "{{ item }}"
         state: directory
@@ -114,8 +114,9 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
         - /var/log/example-delaycompress
         - /var/log/example-script
         - /var/log/example-sharedscripts
+        - /var/log/example-dateyesterday
 
-    - name: create log file
+    - name: Create log file
       ansible.builtin.copy:
         dest: "{{ item }}"
         content: "example"
@@ -129,6 +130,7 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
         - /var/log/example-delaycompress/app.log
         - /var/log/example-script/app.log
         - /var/log/example-sharedscripts/app.log
+        - /var/log/example-dateyesterday/app.log
         - /var/log/btmp
         - /var/log/wtmp
         - /var/log/hawkey.log

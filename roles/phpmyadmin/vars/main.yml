@@ -54,6 +54,7 @@ _phpmyadmin_requirements:
     - php-mysql
     - php-mbstring
     - php-zip
+    - php-xml
   openSUSE Leap:
     - php7-json
     - php7-mysql

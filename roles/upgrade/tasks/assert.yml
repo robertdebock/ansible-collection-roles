@@ -1,6 +1,6 @@
 ---
 
-- name: Test if upgrade_packages is set correctly
+- name: assert | Test if upgrade_packages is set correctly
   ansible.builtin.assert:
     that:
       - upgrade_packages is iterable
@@ -8,11 +8,12 @@
   when:
     - upgrade_packages is defined
 
-- name: Test if item in upgrade_packages is set correctly
+- name: assert | Test if item in upgrade_packages is set correctly
   ansible.builtin.assert:
     that:
       - item is defined
       - item is string
+      - item is not none
     quiet: yes
   loop: "{{ upgrade_packages }}"
   when:

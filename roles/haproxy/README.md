@@ -102,12 +102,12 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
 
     httpd_data_directory: "{{ _httpd_data_directory[ansible_os_family] | default(_httpd_data_directory['default'] ) }}"
   post_tasks:
-    - name: place health check
+    - name: Place health check
       ansible.builtin.copy:
         content: 'ok'
         dest: "{{ httpd_data_directory }}/health.html"
 
-    - name: place sample page
+    - name: Place sample page
       ansible.builtin.copy:
         content: 'Hello world!'
         dest: "{{ httpd_data_directory }}/index.html"

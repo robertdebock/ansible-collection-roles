@@ -6,52 +6,42 @@
   run_once: yes
   delegate_to: localhost
 
-- name: Check if the installation directory exist
-  ansible.builtin.stat:
+- name: Create the temporary directory
+  ansible.builtin.file:
+    path: "{{ eclipse_tmp_path }}/eclipse-{{ eclipse_release }}"
+    recurse: yes
+    state: directory
+    mode: "0755"
+
+- name: Unarchive eclipse to temporary directory
+  ansible.builtin.unarchive:
+    src: "{{ eclipse_archive }}"
+    dest: "{{ eclipse_tmp_path }}/eclipse-{{ eclipse_release }}"
+    remote_src: yes
+    creates: "{{ eclipse_tmp_path }}/eclipse-{{ eclipse_release }}/eclipse"
+    mode: "0755"
+
+- name: Create the installation directory
+  ansible.builtin.file:
     path: "{{ eclipse_install_path }}"
-  register: eclipse_install_path_state
+    # recurse: yes
+    state: directory
+    mode: "0755"
 
-- name: Install Eclipse
-  when:
-    - not eclipse_install_path_state.stat.exists
-  block:
-    - name: Create the temporary directory
-      ansible.builtin.file:
-        path: "{{ eclipse_tmp_path }}/eclipse-{{ eclipse_release }}"
-        recurse: yes
-        state: directory
-        mode: "0755"
+- name: Copy temporary installation files to the installation destination
+  ansible.builtin.copy:
+    src: "{{ eclipse_tmp_path }}/eclipse-{{ eclipse_release }}/eclipse/"
+    dest: "{{ eclipse_install_path }}/"
+    remote_src: yes
+    mode: "0755"
 
-    - name: Unarchive eclipse to temporary directory
-      ansible.builtin.unarchive:
-        src: "{{ eclipse_archive }}"
-        dest: "{{ eclipse_tmp_path }}/eclipse-{{ eclipse_release }}"
-        remote_src: yes
-        creates: "{{ eclipse_tmp_path }}/eclipse-{{ eclipse_release }}/eclipse"
-        mode: "0755"
-
-    - name: Create the installation directory
-      ansible.builtin.file:
-        path: "{{ eclipse_install_path }}"
-        recurse: yes
-        state: directory
-        mode: "0755"
-
-    - name: Copy temporary installation files to the installation destination
-      ansible.builtin.copy:
-        src: "{{ eclipse_tmp_path }}/eclipse-{{ eclipse_release }}/eclipse/"
-        dest: "{{ eclipse_install_path }}/"
-        remote_src: yes
-        mode: "0755"
-      delegate_to: "{{ inventory_hostname }}"
-
-    - name: Install plugins
-      ansible.builtin.command:
-        cmd: "{{ eclipse_plugin_install_command }} \"{{ item.name }}\""
-        creates: "{{ eclipse_install_path }}/features/{{ item.name | regex_replace('.feature.group.*') }}*"
-      loop: "{{ eclipse_plugins }}"
-      loop_control:
-        label: "{{ item.name }}"
+- name: Install plugins
+  ansible.builtin.command:
+    cmd: "{{ eclipse_plugin_install_command }} \"{{ item.name }}\""
+    creates: "{{ eclipse_install_path }}/features/{{ item.name | regex_replace('.feature.group.*') }}*"
+  loop: "{{ eclipse_plugins }}"
+  loop_control:
+    label: "{{ item.name }}"
 
 - name: Link eclipse to /usr/bin/eclipse-VERSION
   ansible.builtin.file:
@@ -86,12 +76,14 @@
   when:
     - eclipse_install_lombok
   block:
+    # TODO: This task is not idempotent
     - name: Download Lombok
       ansible.builtin.get_url:
         url: https://projectlombok.org/downloads/lombok-{{ eclipse_lombok_version }}.jar
         dest: "{{ eclipse_install_path }}/lombok.jar"
         mode: "0664"
 
+    # TODO: This task is not idempotent
     - name: Store Lombok version
       ansible.builtin.copy:
         dest: "{{ eclipse_install_path }}/lombok.jar.version"
@@ -99,6 +91,7 @@
           {{ eclipse_lombok_version }}
         mode: "0664"
 
+    # TODO: This task is not idempotent
     - name: Configure Lombok in Eclipse ini file
       ansible.builtin.lineinfile:
         path: "{{ eclipse_install_path }}/eclipse.ini"

@@ -1,6 +1,8 @@
 ---
 # vars file for postgres
 
+# The package name of postgresql differs between distributions.
+# This map is used to determine the correct package name for each distribution.
 _postgres_packages:
   default:
     - postgresql-server
@@ -14,25 +16,40 @@ _postgres_packages:
   RedHat:
     - postgresql-server
     - postgresql-devel
-
 postgres_packages: "{{ _postgres_packages[ansible_os_family] | default(_postgres_packages['default']) }}"
 
+# The default postgres version for each distribution differs and is used in the directory structure.
+# This map is used to determine the correct version for each distribution.
+_postgres_version:
+  Ubuntu:
+    bionic: 10
+    focal: 12
+    jammy: 14
+  Debian:
+    bullseye: 13
+    bookworm: 15
+postgres_version: "{{ _postgres_version[ansible_distribution][ansible_distribution_release] | default('no-match-found') }}"
+
+# The default postgres directory for each distribution differs.
+# This map is used to determine the correct directory for each distribution.
 _postgres_dir:
   default: /var/lib/pgsql/data
   Alpine: /var/lib/pgsql
-  Debian: /var/lib/postgresql/11
-
+  Debian: /var/lib/postgresql/{{ postgres_version }}
 postgres_dir: "{{ _postgres_dir[ansible_os_family] | default(_postgres_dir['default']) }}"
 
+# The default postgres configuration directory for each distribution differs.
+# This map is used to determine the correct directory for each distribution.
 _postgres_conf_dir:
   default: "{{ postgres_dir }}"
   Alpine: /etc/postgresql
-  Debian: /etc/postgresql/11/main
-
+  Debian: /etc/postgresql/{{ postgres_version }}/main
 postgres_conf_dir: "{{ _postgres_conf_dir[ansible_os_family] | default(_postgres_conf_dir['default']) }}"
 
+# The default postgresql socket directory for each distribution differs.
+# This map is used to determine the correct directory for each distribution.
 _postgres_socket_directory:
   default: /var/run/postgresql
   Alpine: /run/postgresql
-
+  Debian: /run/postgresql
 postgres_socket_directory: "{{ _postgres_socket_directory[ansible_os_family] | default(_postgres_socket_directory['default']) }}"

@@ -1,5 +1,6 @@
 ---
-- name: Create server service
+
+- name: server | Create server service
   ansible.builtin.import_role:
     name: robertdebock.service
   vars:
@@ -10,7 +11,7 @@
   notify:
     - Restart dsvpn-server
 
-- name: Start dsvpn-server
+- name: server | Start dsvpn-server
   ansible.builtin.service:
     name: dsvpn-server
     state: started

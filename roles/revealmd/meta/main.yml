@@ -24,6 +24,7 @@ galaxy_info:
     - git
     - npm
     - slides
+    - development
 
 dependencies:
   - role: robertdebock.npm

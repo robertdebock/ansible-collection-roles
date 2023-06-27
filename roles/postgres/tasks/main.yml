@@ -45,7 +45,7 @@
     - name: Listen_addresses
       value: "{{ postgres_listen_addresses }}"
     - name: Unix_socket_directories
-      value: "{{ postgres_unix_socket_directories }}"
+      value: "{{ postgres_socket_directory }}"
     - name: Log_timezone
       value: "{{ postgres_log_timezone }}"
     - name: Datestyle
@@ -115,7 +115,7 @@
     owner: "{{ item.owner | default(omit) }}"
     trust_input: "{{ item.trust_input | default(omit) }}"
     state: "{{ item.state | default(omit) }}"
-    login_unix_socket: "{{ postgres_socket_directory }}"
+    port: "{{ postgres_port }}"
   loop: "{{ postgres_databases }}"
   loop_control:
     label: "{{ item.name }}"
@@ -130,8 +130,7 @@
     db: "{{ item.db | default(omit) }}"
     password: "{{ item.password }}"
     expires: "{{ item.expires | default(omit) }}"
-    # port: "{{ postgres_port }}"
-    login_unix_socket: "{{ postgres_socket_directory }}"
+    port: "{{ postgres_port }}"
   loop: "{{ postgres_users }}"
   loop_control:
     label: "{{ item.name }}"

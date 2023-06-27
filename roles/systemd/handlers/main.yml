@@ -5,20 +5,22 @@
   ansible.builtin.service:
     name: systemd-journald
     state: restarted
-  when:
-    - not ansible_check_mode
+
+- name: Unmask systemd-logind
+  ansible.builtin.systemd:
+    name: systemd-logind
+    masked: no
 
 - name: Restart systemd-logind
   ansible.builtin.service:
     name: systemd-logind
     state: restarted
-  when:
-    - not ansible_check_mode
 
 - name: Restart systemd-resolved
   ansible.builtin.service:
     name: systemd-resolved
     state: restarted
   when:
-    - not ansible_check_mode
     - ansible_os_family != "Suse"
+    - ansible_distribution != "RedHat" and
+      ansible_distribution_major_version != "9"

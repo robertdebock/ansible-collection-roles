@@ -18,7 +18,7 @@ _buildtools_packages:
     - gcc
     - make
     - perl-Digest-SHA
-    - python2-devel
+    - python3-devel
     - libffi-devel
   Debian:
     - bison

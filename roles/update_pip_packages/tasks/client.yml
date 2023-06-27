@@ -1,18 +1,18 @@
 ---
 
-- name: Check for broken requirements before changes
+- name: client | Check for broken requirements before changes
   ansible.builtin.command:
     cmd: "{{ client }} check"
   changed_when: no
 
-- name: Get all installed packages for {{ client }}
+- name: client | Get all installed packages for {{ client }}
   community.general.pip_package_info:
     clients: "{{ client }}"
   register: update_pip_packages
   environment:
     path: "/bin:/usr/local/bin"
 
-- name: Include package.yml
+- name: client | Include package.yml
   ansible.builtin.include_tasks:
     file: package.yml
   with_dict: "{{ update_pip_packages.packages[client] }}"
@@ -20,7 +20,7 @@
     loop_var: package
     label: "{{ package.key }}"
 
-- name: Check for broken requirements after changes
+- name: client | Check for broken requirements after changes
   ansible.builtin.command:
     cmd: "{{ client }} check"
   changed_when: no

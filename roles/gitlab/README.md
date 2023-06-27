@@ -29,7 +29,7 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
 
 ```yaml
 ---
-- name: prepare
+- name: Prepare
   hosts: all
   become: yes
   gather_facts: no
@@ -52,7 +52,7 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 # Please have a look at this repository for available package version:
 # community: "https://packages.gitlab.com/gitlab/gitlab-ce"
 # enterprise: "https://packages.gitlab.com/gitlab/gitlab-ee"
-gitlab_version: "15.5.1"
+gitlab_version: "16.0.3"
 
 # A part of the version is the "release", mostly "0". See repositories above.
 gitlab_release: 0
@@ -422,7 +422,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|7, 8|
+|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|all|
 |[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|focal|
 
 The minimum version of Ansible required is 2.12, tests have been done to:

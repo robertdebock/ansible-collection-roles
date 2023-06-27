@@ -20,5 +20,6 @@ galaxy_info:
 
   galaxy_tags:
     - minikube
+    - development
 
 dependencies: []

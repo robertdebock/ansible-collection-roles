@@ -27,13 +27,13 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
 ---
 - name: Prepare
   hosts: all
-  gather_facts: no
   become: yes
+  gather_facts: no
 
   roles:
     - role: robertdebock.roles.bootstrap
-    - role: robertdebock.roles.ca_certificates
-    - role: robertdebock.roles.epel
+    # - role: robertdebock.roles.ca_certificates
+    # - role: robertdebock.roles.epel
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.
@@ -46,9 +46,7 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 ---
 # defaults file for npm
 
-# The npm_registry is mapped in `vars/main.yml` to a usable default,
-# you can overwrite it here if required.
-npm_registry: "{{ _npm_registry[ansible_distribution] | default(_npm_registry['default']) }}"
+npm_registry: "https://registry.npmjs.org/"
 ```
 
 ## [Requirements](#requirements)
@@ -79,7 +77,8 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |container|tags|
 |---------|----|
 |[Alpine](https://hub.docker.com/repository/docker/robertdebock/alpine/general)|all|
-|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|8|
+|[Amazon](https://hub.docker.com/repository/docker/robertdebock/amazonlinux/general)|Candidate|
+|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|8, 9|
 |[Debian](https://hub.docker.com/repository/docker/robertdebock/debian/general)|bullseye|
 |[Fedora](https://hub.docker.com/repository/docker/robertdebock/fedora/general)|all|
 |[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|all|

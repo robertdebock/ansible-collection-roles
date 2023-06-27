@@ -1,12 +1,13 @@
 ---
-- name: Test volumegroup
+
+- name: volumegroup | Test volumegroup
   ansible.builtin.assert:
     that:
       - volumegroup.name is defined
       - volumegroup.devices is defined
     quiet: yes
 
-- name: Create volume groups
+- name: volumegroup | Create volume groups
   community.general.lvg:
     vg: "{{ volumegroup.name }}"
     pvs: "{{ volumegroup.devices | join(', ') }}"

@@ -1,9 +1,12 @@
 ---
 # defaults file for postgres
 
+# The port to listen to.
 postgres_port: 5432
+
+# The interface (address) to listen to. Set to "0.0.0.0" to listen on all interfaces.
 postgres_listen_addresses: "127.0.0.1"
-postgres_unix_socket_directories: "{{ postgres_socket_directory }}"
+
 postgres_max_wal_size: 1GB
 postgres_min_wal_size: 80MB
 postgres_log_timezone: UTC

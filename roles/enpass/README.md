@@ -63,8 +63,8 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |container|tags|
 |---------|----|
 |[Debian](https://hub.docker.com/repository/docker/robertdebock/debian/general)|all|
-|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|7, 8|
-|[Fedora](https://hub.docker.com/repository/docker/robertdebock/fedora/general)|36, 37|
+|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|all|
+|[Fedora](https://hub.docker.com/repository/docker/robertdebock/fedora/general)|all|
 |[opensuse](https://hub.docker.com/repository/docker/robertdebock/opensuse/general)|all|
 |[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|all|
 

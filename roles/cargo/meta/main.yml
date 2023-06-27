@@ -17,6 +17,7 @@ galaxy_info:
     - name: EL
       versions:
         - "8"
+        - "9"
     - name: Debian
       versions:
         - all
@@ -34,5 +35,6 @@ galaxy_info:
     - cargo
     - rust
     - packager
+    - development
 
 dependencies: []

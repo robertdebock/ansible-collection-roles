@@ -4,7 +4,7 @@ Install and configure tailscale on your system.
 
 |GitHub|GitLab|Quality|Downloads|Version|
 |------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-tailscale/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-tailscale/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-tailscale/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-tailscale)|[![quality](https://img.shields.io/ansible/quality/)](https://galaxy.ansible.com/robertdebock/tailscale)|[![downloads](https://img.shields.io/ansible/role/d/)](https://galaxy.ansible.com/robertdebock/tailscale)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-tailscale.svg)](https://github.com/robertdebock/ansible-role-tailscale/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-tailscale/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-tailscale/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-tailscale/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-tailscale)|[![quality](https://img.shields.io/ansible/quality/62034)](https://galaxy.ansible.com/robertdebock/tailscale)|[![downloads](https://img.shields.io/ansible/role/d/62034)](https://galaxy.ansible.com/robertdebock/tailscale)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-tailscale.svg)](https://github.com/robertdebock/ansible-role-tailscale/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -19,6 +19,17 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 
   roles:
     - role: robertdebock.roles.tailscale
+      # When setting the `tailscale_authkey`, a node can join automatically.
+      # In case the `tailscale_authkey` is unset, registration of the node is manual.
+      # tailscale_authkey: "tskey-auth-KEY_IDENTITY-KEY_SERET_KEY_SERET_KEY_SERET_KE"
+      #
+      # You can request the node to publish itself as an exit node.
+      # tailscale_exit_node: yes
+      #
+      # You can advertise certain routes to the Tailscale network.
+      # tailscale_advertise_routes:
+      #   - 10.0.0.0/24
+      #   - 10.0.1.0/24
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-tailscale/blob/master/molecule/default/prepare.yml):
@@ -36,6 +47,25 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.
 
+## [Role Variables](#role-variables)
+
+The default values for the variables are set in [`defaults/main.yml`](https://github.com/robertdebock/ansible-role-tailscale/blob/master/defaults/main.yml):
+
+```yaml
+---
+# defaults file for tailscale
+
+# You can configure your tailscale node to act as an exit node.
+# Enabling this, sets the required sysctl settings and adds a firewalld rule.
+tailscale_exit_node: no
+
+# To route traffice for certain subnets through tailscale, add them here.
+tailscale_advertise_routes: []
+
+# Nodes can authenticate with the tailscale service using an authkey.
+# These keys can be created here: https://login.tailscale.com/admin/settings/keys
+tailscale_authkey: ""
+```
 
 ## [Requirements](#requirements)
 
@@ -62,7 +92,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|[Amazon](https://hub.docker.com/repository/docker/robertdebock/amazonlinux/general)|all|
+|[Amazon](https://hub.docker.com/repository/docker/robertdebock/amazonlinux/general)|Candidate|
 |[Debian](https://hub.docker.com/repository/docker/robertdebock/debian/general)|all|
 |[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|all|
 |[Fedora](https://hub.docker.com/repository/docker/robertdebock/fedora/general)|all|

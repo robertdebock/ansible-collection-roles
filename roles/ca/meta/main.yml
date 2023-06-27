@@ -11,6 +11,7 @@ galaxy_info:
     - name: EL
       versions:
         - "8"
+        - "9"
     - name: Debian
       versions:
         - all
@@ -29,5 +30,6 @@ galaxy_info:
     - certificate
     - authority
     - openssl
+    - security
 
 dependencies: []

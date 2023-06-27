@@ -34,5 +34,3 @@
   ansible.builtin.service:
     name: unbound
     state: restarted
-  when:
-    - not ansible_check_mode

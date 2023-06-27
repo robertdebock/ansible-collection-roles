@@ -1,78 +1,86 @@
 ---
 
-- name: Test if postfix_myhostname is set correctly
+- name: assert | Test if postfix_myhostname is set correctly
   ansible.builtin.assert:
     that:
       - postfix_myhostname is defined
       - postfix_myhostname is string
+      - postfix_myhostname is not none
     quiet: yes
 
-- name: Test if postfix_mydomain is set correctly
+- name: assert | Test if postfix_mydomain is set correctly
   ansible.builtin.assert:
     that:
       - postfix_mydomain is defined
       - postfix_mydomain is string
+      - postfix_mydomain is not none
     quiet: yes
 
-- name: Test if postfix_myorigin is set correctly
+- name: assert | Test if postfix_myorigin is set correctly
   ansible.builtin.assert:
     that:
       - postfix_myorigin is defined
       - postfix_myorigin is string
+      - postfix_myorigin is not none
     quiet: yes
 
-- name: Test if postfix_inet_interfaces is set correctly
+- name: assert | Test if postfix_inet_interfaces is set correctly
   ansible.builtin.assert:
     that:
       - postfix_inet_interfaces is defined
       - postfix_inet_interfaces is string
+      - postfix_inet_interfaces is not none
     quiet: yes
 
-- name: Test if postfix_banner is set correctly
+- name: assert | Test if postfix_banner is set correctly
   ansible.builtin.assert:
     that:
       - postfix_banner is string
+      - postfix_banner is not none
     quiet: yes
   when:
     - postfix_banner is defined
 
-- name: Test if postfix_mydestination is set correctly
+- name: assert | Test if postfix_mydestination is set correctly
   ansible.builtin.assert:
     that:
       - postfix_mydestination is defined
       - postfix_mydestination is iterable or postfix_mydestination is string
+      - postfix_mydestination is not none
     quiet: yes
 
-- name: Test if postfix_mynetworks is set correctly
+- name: assert | Test if postfix_mynetworks is set correctly
   ansible.builtin.assert:
     that:
       - postfix_mynetworks is defined
       - postfix_mynetworks is iterable or postfix_mynetworks is string
+      - postfix_mynetworks is not none
     quiet: yes
 
-- name: Test if postfix_smtpd_recipient_restrictions is set correctly
+- name: assert | Test if postfix_smtpd_recipient_restrictions is set correctly
   ansible.builtin.assert:
     that:
       - postfix_smtpd_recipient_restrictions is defined
       - postfix_smtpd_recipient_restrictions is iterable
     quiet: yes
 
-- name: Test if postfix_smtpd_sender_restrictions is set correctly
+- name: assert | Test if postfix_smtpd_sender_restrictions is set correctly
   ansible.builtin.assert:
     that:
       - postfix_smtpd_sender_restrictions is defined
       - postfix_smtpd_sender_restrictions is iterable
     quiet: yes
 
-- name: Test if postfix_tls_protocols is set correctly
+- name: assert | Test if postfix_tls_protocols is set correctly
   ansible.builtin.assert:
     that:
       - postfix_tls_protocols is string
+      - postfix_tls_protocols is not none
     quiet: yes
   when:
     - postfix_tls_protocols is defined
 
-- name: Test if postfix_smtp_tls_security_level is set correctly
+- name: assert | Test if postfix_smtp_tls_security_level is set correctly
   ansible.builtin.assert:
     that:
       - postfix_smtp_tls_security_level is defined
@@ -80,7 +88,7 @@
       - postfix_smtp_tls_security_level in [ "dane", "encrypt", "fingerprint", "may", "none", "secure", "verify" ]
     quiet: yes
 
-- name: Test if postfix_biff is set correctly
+- name: assert | Test if postfix_biff is set correctly
   ansible.builtin.assert:
     that:
       - postfix_biff is boolean
@@ -88,7 +96,7 @@
   when:
     - postfix_biff is defined
 
-- name: Test if postfix_append_dot_mydomain is set correctly
+- name: assert | Test if postfix_append_dot_mydomain is set correctly
   ansible.builtin.assert:
     that:
       - postfix_append_dot_mydomain is boolean
@@ -96,71 +104,79 @@
   when:
     - postfix_append_dot_mydomain is defined
 
-- name: Test if postfix_alias_maps is set correctly
+- name: assert | Test if postfix_alias_maps is set correctly
   ansible.builtin.assert:
     that:
       - postfix_alias_maps is string
+      - postfix_alias_maps is not none
     quiet: yes
   when:
     - postfix_alias_maps is defined
 
-- name: Test if postfix_virtual_mailbox_base is set correctly
+- name: assert | Test if postfix_virtual_mailbox_base is set correctly
   ansible.builtin.assert:
     that:
       - postfix_virtual_mailbox_base is string
+      - postfix_virtual_mailbox_base is not none
     quiet: yes
   when:
     - postfix_virtual_mailbox_base is defined
 
-- name: Test if postfix_virtual_mailbox_maps is set correctly
+- name: assert | Test if postfix_virtual_mailbox_maps is set correctly
   ansible.builtin.assert:
     that:
       - postfix_virtual_mailbox_maps is string
+      - postfix_virtual_mailbox_maps is not none
     quiet: yes
   when:
     - postfix_virtual_mailbox_maps is defined
 
-- name: Test if postfix_virtual_mailbox_domains is set correctly
+- name: assert | Test if postfix_virtual_mailbox_domains is set correctly
   ansible.builtin.assert:
     that:
       - postfix_virtual_mailbox_domains is string
+      - postfix_virtual_mailbox_domains is not none
     quiet: yes
   when:
     - postfix_virtual_mailbox_domains is defined
 
-- name: Test if postfix_virtual_alias_domains is set correctly
+- name: assert | Test if postfix_virtual_alias_domains is set correctly
   ansible.builtin.assert:
     that:
       - postfix_virtual_alias_domains is string
+      - postfix_virtual_alias_domains is not none
     quiet: yes
   when:
     - postfix_virtual_alias_domains is defined
 
-- name: Test if postfix_virtual_alias_maps is set correctly
+- name: assert | Test if postfix_virtual_alias_maps is set correctly
   ansible.builtin.assert:
     that:
       - postfix_virtual_alias_maps is string
+      - postfix_virtual_alias_maps is not none
     quiet: yes
   when:
     - postfix_virtual_alias_maps is defined
 
-- name: Test if postfix_virtual_uid_maps is set correctly
+- name: assert | Test if postfix_virtual_uid_maps is set correctly
   ansible.builtin.assert:
     that:
       - postfix_virtual_uid_maps is string
+      - postfix_virtual_uid_maps is not none
     quiet: yes
   when:
     - postfix_virtual_uid_maps is defined
 
-- name: Test if postfix_virtual_gid_maps is set correctly
+- name: assert | Test if postfix_virtual_gid_maps is set correctly
   ansible.builtin.assert:
     that:
       - postfix_virtual_gid_maps is string
+      - postfix_virtual_gid_maps is not none
     quiet: yes
   when:
     - postfix_virtual_gid_maps is defined
 
-- name: Test if postfix_smtpd_sasl_auth_enable is set correctly
+- name: assert | Test if postfix_smtpd_sasl_auth_enable is set correctly
   ansible.builtin.assert:
     that:
       - postfix_smtpd_sasl_auth_enable is boolean
@@ -168,15 +184,16 @@
   when:
     - postfix_smtpd_sasl_auth_enable is defined
 
-- name: Test if postfix_smtpd_sasl_local_domain is set correctly
+- name: assert | Test if postfix_smtpd_sasl_local_domain is set correctly
   ansible.builtin.assert:
     that:
       - postfix_smtpd_sasl_local_domain is string
+      - postfix_smtpd_sasl_local_domain is not none
     quiet: yes
   when:
     - postfix_smtpd_sasl_local_domain is defined
 
-- name: Test if postfix_smtpd_sasl_security_options is set correctly
+- name: assert | Test if postfix_smtpd_sasl_security_options is set correctly
   ansible.builtin.assert:
     that:
       - postfix_smtpd_sasl_security_options is string
@@ -185,7 +202,7 @@
   when:
     - postfix_smtpd_sasl_security_options is defined
 
-- name: Test if postfix_smtpd_sasl_authenticated_header is set correctly
+- name: assert | Test if postfix_smtpd_sasl_authenticated_header is set correctly
   ansible.builtin.assert:
     that:
       - postfix_smtpd_sasl_authenticated_header is boolean
@@ -193,7 +210,7 @@
   when:
     - postfix_smtpd_sasl_authenticated_header is defined
 
-- name: Test if postfix_broken_sasl_auth_clients is set correctly
+- name: assert | Test if postfix_broken_sasl_auth_clients is set correctly
   ansible.builtin.assert:
     that:
       - postfix_broken_sasl_auth_clients is boolean
@@ -201,23 +218,25 @@
   when:
     - postfix_broken_sasl_auth_clients is defined
 
-- name: Test if postfix_smtpd_tls_cert_file is set correctly
+- name: assert | Test if postfix_smtpd_tls_cert_file is set correctly
   ansible.builtin.assert:
     that:
       - postfix_smtpd_tls_cert_file is string
+      - postfix_smtpd_tls_cert_file is not none
     quiet: yes
   when:
     - postfix_smtpd_tls_cert_file is defined
 
-- name: Test if postfix_smtpd_tls_key_file is set correctly
+- name: assert | Test if postfix_smtpd_tls_key_file is set correctly
   ansible.builtin.assert:
     that:
       - postfix_smtpd_tls_key_file is string
+      - postfix_smtpd_tls_key_file is not none
     quiet: yes
   when:
     - postfix_smtpd_tls_key_file is defined
 
-- name: Test if postfix_smtpd_tls_received_header is set correctly
+- name: assert | Test if postfix_smtpd_tls_received_header is set correctly
   ansible.builtin.assert:
     that:
       - postfix_smtpd_tls_received_header is boolean
@@ -225,7 +244,7 @@
   when:
     - postfix_smtpd_tls_received_header is defined
 
-- name: Test if postfix_smtpd_tls_security_level is set correctly
+- name: assert | Test if postfix_smtpd_tls_security_level is set correctly
   ansible.builtin.assert:
     that:
       - postfix_smtpd_tls_security_level is string
@@ -234,7 +253,7 @@
   when:
     - postfix_smtpd_tls_security_level is defined
 
-- name: Test if postfix_smtpd_tls_ask_ccert is set correctly
+- name: assert | Test if postfix_smtpd_tls_ask_ccert is set correctly
   ansible.builtin.assert:
     that:
       - postfix_smtpd_tls_ask_ccert is boolean
@@ -242,7 +261,7 @@
   when:
     - postfix_smtpd_tls_ask_ccert is defined
 
-- name: Test if postfix_smtpd_tls_loglevel is set correctly
+- name: assert | Test if postfix_smtpd_tls_loglevel is set correctly
   ansible.builtin.assert:
     that:
       - postfix_smtpd_tls_loglevel is number
@@ -251,47 +270,52 @@
   when:
     - postfix_smtpd_tls_loglevel is defined
 
-- name: Test if postfix_smtpd_tls_session_cache_database is set correctly
+- name: assert | Test if postfix_smtpd_tls_session_cache_database is set correctly
   ansible.builtin.assert:
     that:
       - postfix_smtpd_tls_session_cache_database is string
+      - postfix_smtpd_tls_session_cache_database is not none
     quiet: yes
   when:
     - postfix_smtpd_tls_session_cache_database is defined
 
-- name: Test if postfix_smtp_tls_cert_file is set correctly
+- name: assert | Test if postfix_smtp_tls_cert_file is set correctly
   ansible.builtin.assert:
     that:
       - postfix_smtp_tls_cert_file is string
+      - postfix_smtp_tls_cert_file is not none
     quiet: yes
   when:
     - postfix_smtp_tls_cert_file is defined
 
-- name: Test if postfix_smtp_tls_key_file is set correctly
+- name: assert | Test if postfix_smtp_tls_key_file is set correctly
   ansible.builtin.assert:
     that:
       - postfix_smtp_tls_key_file is string
+      - postfix_smtp_tls_key_file is not none
     quiet: yes
   when:
     - postfix_smtp_tls_key_file is defined
 
-- name: Test if postfix_smtp_tls_session_cache_database is set correctly
+- name: assert | Test if postfix_smtp_tls_session_cache_database is set correctly
   ansible.builtin.assert:
     that:
       - postfix_smtp_tls_session_cache_database is string
+      - postfix_smtp_tls_session_cache_database is not none
     quiet: yes
   when:
     - postfix_smtp_tls_session_cache_database is defined
 
-- name: Test if postfix_tls_random_source is set correctly
+- name: assert | Test if postfix_tls_random_source is set correctly
   ansible.builtin.assert:
     that:
       - postfix_tls_random_source is string
+      - postfix_tls_random_source is not none
     quiet: yes
   when:
     - postfix_tls_random_source is defined
 
-- name: Test if postfix_smtpd_tls_mandatory_protocols is set correctly
+- name: assert | Test if postfix_smtpd_tls_mandatory_protocols is set correctly
   ansible.builtin.assert:
     that:
       - postfix_smtpd_tls_mandatory_protocols is string
@@ -300,7 +324,7 @@
   when:
     - postfix_smtpd_tls_mandatory_protocols is defined
 
-- name: Test if postfix_smtp_tls_mandatory_protocols is set correctly
+- name: assert | Test if postfix_smtp_tls_mandatory_protocols is set correctly
   ansible.builtin.assert:
     that:
       - postfix_smtp_tls_mandatory_protocols is string
@@ -309,23 +333,25 @@
   when:
     - postfix_smtp_tls_mandatory_protocols is defined
 
-- name: Test if postfix_virtual_transport is set correctly
+- name: assert | Test if postfix_virtual_transport is set correctly
   ansible.builtin.assert:
     that:
       - postfix_virtual_transport is string
+      - postfix_virtual_transport is not none
     quiet: yes
   when:
     - postfix_virtual_transport is defined
 
-- name: Test if postfix_home_mailbox is set correctly
+- name: assert | Test if postfix_home_mailbox is set correctly
   ansible.builtin.assert:
     that:
       - postfix_home_mailbox is string
+      - postfix_home_mailbox is not none
     quiet: yes
   when:
     - postfix_home_mailbox is defined
 
-- name: Test if postfix_message_size_limit is set correctly
+- name: assert | Test if postfix_message_size_limit is set correctly
   ansible.builtin.assert:
     that:
       - postfix_message_size_limit is number
@@ -333,7 +359,7 @@
   when:
     - postfix_message_size_limit is defined
 
-- name: Test if postfix_smtpd_helo_required is set correctly
+- name: assert | Test if postfix_smtpd_helo_required is set correctly
   ansible.builtin.assert:
     that:
       - postfix_smtpd_helo_required is boolean
@@ -341,15 +367,16 @@
   when:
     - postfix_smtpd_helo_required is defined
 
-- name: Test if postfix_anvil_rate_time_unit is set correctly
+- name: assert | Test if postfix_anvil_rate_time_unit is set correctly
   ansible.builtin.assert:
     that:
       - postfix_anvil_rate_time_unit is string
+      - postfix_anvil_rate_time_unit is not none
     quiet: yes
   when:
     - postfix_anvil_rate_time_unit is defined
 
-- name: Test if postfix_smtpd_client_connection_rate_limit is set correctly
+- name: assert | Test if postfix_smtpd_client_connection_rate_limit is set correctly
   ansible.builtin.assert:
     that:
       - postfix_smtpd_client_connection_rate_limit is number
@@ -357,7 +384,7 @@
   when:
     - postfix_smtpd_client_connection_rate_limit is defined
 
-- name: Test if postfix_smtpd_client_connection_count_limit is set correctly
+- name: assert | Test if postfix_smtpd_client_connection_count_limit is set correctly
   ansible.builtin.assert:
     that:
       - postfix_smtpd_client_connection_count_limit is number
@@ -365,26 +392,29 @@
   when:
     - postfix_smtpd_client_connection_count_limit is defined
 
-- name: Test if postfix_bounce_queue_lifetime is set correctly
+- name: assert | Test if postfix_bounce_queue_lifetime is set correctly
   ansible.builtin.assert:
     that:
       - postfix_bounce_queue_lifetime is string
+      - postfix_bounce_queue_lifetime is not none
     quiet: yes
   when:
     - postfix_bounce_queue_lifetime is defined
 
-- name: Test if postfix_readme_directory is set correctly
+- name: assert | Test if postfix_readme_directory is set correctly
   ansible.builtin.assert:
     that:
       - postfix_readme_directory is string
+      - postfix_readme_directory is not none
     quiet: yes
   when:
     - postfix_readme_directory is defined
 
-- name: Test if postfix_html_directory is set correctly
+- name: assert | Test if postfix_html_directory is set correctly
   ansible.builtin.assert:
     that:
       - postfix_html_directory is string
+      - postfix_html_directory is not none
     quiet: yes
   when:
     - postfix_html_directory is defined

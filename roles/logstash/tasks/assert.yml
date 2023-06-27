@@ -1,6 +1,6 @@
 ---
 
-- name: Test if logstash_type is set correctly
+- name: assert | Test if logstash_type is set correctly
   ansible.builtin.assert:
     that:
       - logstash_type is defined

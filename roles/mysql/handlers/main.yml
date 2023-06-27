@@ -9,8 +9,6 @@
   ansible.builtin.service:
     name: "{{ mysql_service }}"
     state: restarted
-  when:
-    - not ansible_check_mode
 
 - name: Set root password
   community.mysql.mysql_user:

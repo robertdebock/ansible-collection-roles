@@ -35,7 +35,8 @@ _collectd_plugin_dependencies:
     default: []
     Alpine:
       - collectd-write_http
-    Amazon: []
+    Amazon:
+      - collectd-write_http
     RedHat:
       - collectd-write_http
 

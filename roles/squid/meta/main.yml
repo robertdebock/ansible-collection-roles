@@ -17,6 +17,7 @@ galaxy_info:
     - name: EL
       versions:
         - "8"
+        - "9"
     - name: Debian
       versions:
         - all
@@ -33,5 +34,7 @@ galaxy_info:
   galaxy_tags:
     - proxy
     - squid
+    - system
+    - networking
 
 dependencies: []

@@ -27,7 +27,7 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
 
 ```yaml
 ---
-- name: prepare
+- name: Prepare
   hosts: all
   become: yes
   gather_facts: no
@@ -36,14 +36,14 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
     - role: robertdebock.roles.bootstrap
 
   tasks:
-    - name: install apt-transport-https ca-certificates
+    - name: Install apt-transport-https ca-certificates
       ansible.builtin.package:
         name: "{{ item }}"
       loop:
         - apt-transport-https
         - ca-certificates
 
-    - name: install yarn public key
+    - name: Install yarn public key
       ansible.builtin.apt_key:
         url: "https://dl.yarnpkg.com/debian/pubkey.gpg"
         validate_certs: no

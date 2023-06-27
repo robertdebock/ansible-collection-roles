@@ -1,6 +1,6 @@
 ---
 
-- name: Test if vault_type is set correctly
+- name: assert | Test if vault_type is set correctly
   ansible.builtin.assert:
     that:
       - vault_type is defined
@@ -8,23 +8,25 @@
       - vault_type in [ "oss", "ent", "hsm" ]
     quiet: yes
 
-- name: Test if vault_version is set correctly
+- name: assert | Test if vault_version is set correctly
   ansible.builtin.assert:
     that:
       - vault_version is defined
       - vault_version is string
+      - vault_version is not none
     quiet: yes
 
-- name: Test if vault_package_release is set correctly
+- name: assert | Test if vault_package_release is set correctly
   ansible.builtin.assert:
     that:
       - vault_package_release is defined
       - vault_package_release is string
+      - vault_package_release is not none
     quiet: yes
   when:
     - vault_installation_method == "package"
 
-- name: Test if vault_installation_method is set correctly
+- name: assert | Test if vault_installation_method is set correctly
   ansible.builtin.assert:
     that:
       - vault_installation_method is defined
@@ -32,54 +34,59 @@
       - vault_installation_method in [ "package", "binary" ]
     quiet: yes
 
-- name: Test if vault_download_path is set correctly
+- name: assert | Test if vault_download_path is set correctly
   ansible.builtin.assert:
     that:
       - vault_download_path is defined
       - vault_download_path is string
+      - vault_download_path is not none
     quiet: yes
   when:
     - vault_installation_method == "binary"
 
-- name: Test if vault_path is set correctly
+- name: assert | Test if vault_path is set correctly
   ansible.builtin.assert:
     that:
       - vault_path is defined
       - vault_path is string
+      - vault_path is not none
     quiet: yes
   when:
     - vault_installation_method == "binary"
 
-- name: Test if vault_user is set correctly
+- name: assert | Test if vault_user is set correctly
   ansible.builtin.assert:
     that:
       - vault_user is defined
       - vault_user is string
+      - vault_user is not none
       - vault_user != "root"
     quiet: yes
   when:
     - vault_installation_method == "binary"
 
-- name: Test if vault_group is set correctly
+- name: assert | Test if vault_group is set correctly
   ansible.builtin.assert:
     that:
       - vault_group is defined
       - vault_group is string
+      - vault_group is not none
       - vault_group != "root"
     quiet: yes
   when:
     - vault_installation_method == "binary"
 
-- name: Test if vault_user_shell is set correctly
+- name: assert | Test if vault_user_shell is set correctly
   ansible.builtin.assert:
     that:
       - vault_user_shell is defined
       - vault_user_shell is string
+      - vault_user_shell is not none
     quiet: yes
   when:
     - vault_installation_method == "binary"
 
-- name: Test if vault_data_directories is set correctly
+- name: assert | Test if vault_data_directories is set correctly
   ansible.builtin.assert:
     that:
       - vault_data_directories is defined
@@ -88,11 +95,12 @@
   when:
     - vault_installation_method == "binary"
 
-- name: Test if vault_data_directory is set correctly
+- name: assert | Test if vault_data_directory is set correctly
   ansible.builtin.assert:
     that:
       - vault_data_directory is defined
       - vault_data_directory is string
+      - vault_data_directory is not none
     quiet: yes
   when:
     - vault_installation_method == "binary"

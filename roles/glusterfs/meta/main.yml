@@ -24,5 +24,6 @@ galaxy_info:
     - glusterfs
     - server
     - system
+    - storage
 
 dependencies: []

@@ -18,7 +18,7 @@ _httpd_packages:
     - lynx
     - w3m
 
-httpd_packages: "{{ _httpd_packages[ansible_os_family] | default(_httpd_packages['default']) }}"
+httpd_packages: "{{ httpd_additionnal_modules + _httpd_packages[ansible_os_family] | default(_httpd_packages['default']) }}"
 
 _httpd_ssl_packages:
   default:

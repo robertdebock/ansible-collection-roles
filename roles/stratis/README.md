@@ -38,7 +38,7 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
 
 ```yaml
 ---
-- name: prepare
+- name: Prepare
   hosts: all
   become: yes
   gather_facts: no
@@ -56,27 +56,29 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
     - role: robertdebock.roles.bootstrap
 
   tasks:
-    - name: create storage file
-      command: dd if=/dev/zero of=/{{ item.name }} bs=1M count=1K
+    - name: Create storage file
+      ansible.builtin.command: dd if=/dev/zero of=/{{ item.name }} bs=1M count=1K
       args:
         creates: "/{{ item.name }}"
       loop: "{{ devices }}"
       notify:
-        - create loopback device
-        - loopback device to storage file
+        - Create loopback device
+        - Loopback device to storage file
       loop_control:
         label: "/{{ item.name }}"
 
   handlers:
-    - name: create loopback device
-      command: mknod /dev/{{ item.name }} b {{ item.major }} {{ item.minor }}
+    - name: Create loopback device
+      ansible.builtin.command:
+        cmd: mknod /dev/{{ item.name }} b {{ item.major }} {{ item.minor }}
       loop: "{{ devices }}"
       loop_control:
         label: "/dev/{{ item.name }}"
       changed_when: no
 
-    - name: loopback device to storage file
-      command: losetup /dev/{{ item.name }} /{{ item.name }}
+    - name: Loopback device to storage file
+      ansible.builtin.command:
+        cmd: losetup /dev/{{ item.name }} /{{ item.name }}
       loop: "{{ devices }}"
       failed_when: no
       loop_control:
@@ -112,7 +114,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|8|
+|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|8, 9|
 
 The minimum version of Ansible required is 2.12, tests have been done to:
 

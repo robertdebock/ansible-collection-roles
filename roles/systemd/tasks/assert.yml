@@ -1,6 +1,6 @@
 ---
 
-- name: Test if systemd_default_target is set correctly
+- name: assert | Test if systemd_default_target is set correctly
   ansible.builtin.assert:
     that:
       - systemd_default_target is defined
@@ -8,7 +8,7 @@
       - systemd_default_target in [ "multi-user.target", "graphical.target", "rescue.target" ]
     quiet: yes
 
-- name: Test if systemd_coredump is set correctly
+- name: assert | Test if systemd_coredump is set correctly
   ansible.builtin.assert:
     that:
       - systemd_coredump is iterable
@@ -16,18 +16,19 @@
   when:
     - systemd_coredump is defined
 
-- name: Test if item in systemd_coredump is set correctly
+- name: assert | Test if item in systemd_coredump is set correctly
   ansible.builtin.assert:
     that:
       - item.option is defined
       - item.option is string
+      - item.option is not none
       - item.value is defined
     quiet: yes
   loop: "{{ systemd_coredump }}"
   when:
     - systemd_coredump is defined
 
-- name: Test if systemd_journald is set correctly
+- name: assert | Test if systemd_journald is set correctly
   ansible.builtin.assert:
     that:
       - systemd_journald is iterable
@@ -35,18 +36,19 @@
   when:
     - systemd_journald is defined
 
-- name: Test if item in systemd_journald is set correctly
+- name: assert | Test if item in systemd_journald is set correctly
   ansible.builtin.assert:
     that:
       - item.option is defined
       - item.option is string
+      - item.option is not none
       - item.value is defined
     quiet: yes
   loop: "{{ systemd_journald }}"
   when:
     - systemd_journald is defined
 
-- name: Test if systemd_logind is set correctly
+- name: assert | Test if systemd_logind is set correctly
   ansible.builtin.assert:
     that:
       - systemd_logind is iterable
@@ -54,18 +56,19 @@
   when:
     - systemd_logind is defined
 
-- name: Test if item in systemd_logind is set correctly
+- name: assert | Test if item in systemd_logind is set correctly
   ansible.builtin.assert:
     that:
       - item.option is defined
       - item.option is string
+      - item.option is not none
       - item.value is defined
     quiet: yes
   loop: "{{ systemd_logind }}"
   when:
     - systemd_logind is defined
 
-- name: Test if systemd_resolved is set correctly
+- name: assert | Test if systemd_resolved is set correctly
   ansible.builtin.assert:
     that:
       - systemd_resolved is iterable
@@ -73,18 +76,19 @@
   when:
     - systemd_resolved is defined
 
-- name: Test if item in systemd_resolved is set correctly
+- name: assert | Test if item in systemd_resolved is set correctly
   ansible.builtin.assert:
     that:
       - item.option is defined
       - item.option is string
+      - item.option is not none
       - item.value is defined
     quiet: yes
   loop: "{{ systemd_resolved }}"
   when:
     - systemd_resolved is defined
 
-- name: Test if systemd_system is set correctly
+- name: assert | Test if systemd_system is set correctly
   ansible.builtin.assert:
     that:
       - systemd_system is iterable
@@ -92,18 +96,19 @@
   when:
     - systemd_system is defined
 
-- name: Test if item in systemd_system is set correctly
+- name: assert | Test if item in systemd_system is set correctly
   ansible.builtin.assert:
     that:
       - item.option is defined
       - item.option is string
+      - item.option is not none
       - item.value is defined
     quiet: yes
   loop: "{{ systemd_system }}"
   when:
     - systemd_system is defined
 
-- name: Test if systemd_user is set correctly
+- name: assert | Test if systemd_user is set correctly
   ansible.builtin.assert:
     that:
       - systemd_user is iterable
@@ -111,11 +116,12 @@
   when:
     - systemd_user is defined
 
-- name: Test if item in systemd_user is set correctly
+- name: assert | Test if item in systemd_user is set correctly
   ansible.builtin.assert:
     that:
       - item.option is defined
       - item.option is string
+      - item.option is not none
       - item.value is defined
     quiet: yes
   loop: "{{ systemd_user }}"

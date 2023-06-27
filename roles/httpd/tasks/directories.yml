@@ -1,6 +1,6 @@
 ---
 
-- name: Create directories
+- name: directories | Create directories
   ansible.builtin.file:
     path: "{{ item.path }}"
     state: directory
@@ -9,7 +9,7 @@
   loop_control:
     label: "{{ item.path }}"
 
-- name: Configure directories
+- name: directories | Configure directories
   ansible.builtin.template:
     src: directory.conf.j2
     dest: "{{ httpd_config_directory }}/{{ item.name }}.conf"

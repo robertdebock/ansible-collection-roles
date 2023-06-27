@@ -1,0 +1,23 @@
+---
+galaxy_info:
+  author: robertdebock
+  role_name: fips
+  description: Install and configure fips on your system.
+  license: Apache-2.0
+  company: none
+  min_ansible_version: "2.12"
+
+  platforms:
+    - name: EL
+      versions:
+        - "8"
+        - "9"
+
+  galaxy_tags:
+    - fips
+    - infrastructure
+    - linux
+    - security
+    - system
+
+dependencies: []

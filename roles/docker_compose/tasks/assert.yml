@@ -1,8 +1,17 @@
 ---
 
-- name: Test if docker_compose_version is set correctly
+- name: assert | Test if docker_compose_version is set correctly
   ansible.builtin.assert:
     that:
       - docker_compose_version is defined
       - docker_compose_version is string
+      - docker_compose_version is not none
+    quiet: yes
+
+- name: assert | Test if docker_compose_url is set correctly
+  ansible.builtin.assert:
+    that:
+      - docker_compose_url is defined
+      - docker_compose_url is string
+      - docker_compose_url is not none
     quiet: yes

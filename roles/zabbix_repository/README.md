@@ -19,6 +19,8 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 
   roles:
     - role: robertdebock.roles.zabbix_repository
+      zabbix_repository_cleanup_requirements: no
+      zabbix_repository_revert_crypto_policy: no
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-zabbix_repository/blob/master/molecule/default/prepare.yml):
@@ -27,8 +29,8 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
 ---
 - name: Prepare
   hosts: all
-  gather_facts: no
   become: yes
+  gather_facts: no
 
   roles:
     - role: robertdebock.roles.bootstrap
@@ -50,6 +52,14 @@ zabbix_repository_version_major: "5.4"
 
 # The `zabbix_version_minor` is a single numerical value.
 zabbix_repository_version_minor: 1
+
+# An extra package is required for RHEL9 (`crypto-policies-scripts`).
+# This variable determines if it should be removed or not.
+zabbix_repository_cleanup_requirements: yes
+
+# The crypto policy must be modified on RHEL9. This variable determines if
+# the policy should be switched back to the default.
+zabbix_repository_revert_crypto_policy: yes
 ```
 
 ## [Requirements](#requirements)
@@ -78,7 +88,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|8|
+|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|8, 9|
 |[Debian](https://hub.docker.com/repository/docker/robertdebock/debian/general)|bullseye|
 |[opensuse](https://hub.docker.com/repository/docker/robertdebock/opensuse/general)|all|
 |[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|bionic, focal|

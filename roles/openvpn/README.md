@@ -18,13 +18,13 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
   gather_facts: yes
 
   tasks:
-    - name: create openvpn server
+    - name: Create openvpn server
       ansible.builtin.include_role:
         name: robertdebock.openvpn
       vars:
         openvpn_role: "server"
 
-    - name: copy certificates and keys from the server to the client
+    - name: Copy certificates and keys from the server to the client
       ansible.builtin.copy:
         src: /etc/openvpn/easy-rsa/pki/{{ item }}
         dest: /etc/openvpn/client/{{ item | basename }}
@@ -36,7 +36,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
         - private/client.key
         - ta.key
 
-    - name: create openvpn client
+    - name: Create openvpn client
       ansible.builtin.include_role:
         name: robertdebock.openvpn
       vars:
@@ -48,17 +48,14 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
 
 ```yaml
 ---
-- name: Prepare server
+- name: Prepare
   hosts: all
-  gather_facts: no
   become: yes
+  gather_facts: no
 
   roles:
     - role: robertdebock.roles.bootstrap
-    # - role: robertdebock.roles.buildtools
     - role: robertdebock.roles.epel
-    # - role: robertdebock.roles.python_pip
-    # - role: robertdebock.roles.openssl
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.
@@ -109,8 +106,8 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |---------|----|
 |[Amazon](https://hub.docker.com/repository/docker/robertdebock/amazonlinux/general)|Candidate|
 |[Debian](https://hub.docker.com/repository/docker/robertdebock/debian/general)|all|
-|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|8|
-|[Debian](https://hub.docker.com/repository/docker/robertdebock/debian/general)|bullseye, bookworm|
+|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|8, 9|
+|[Debian](https://hub.docker.com/repository/docker/robertdebock/debian/general)|all|
 |[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|focal|
 
 The minimum version of Ansible required is 2.12, tests have been done to:

@@ -18,9 +18,9 @@ galaxy_info:
       versions:
         - all
     - name: Fedora
-      versions:
-        - "36"
+      versions:  # Will never work on "all", as rawhide is not supported by HC.
         - "37"
+        - "38"
     - name: Ubuntu
       versions:
         - all
@@ -28,5 +28,6 @@ galaxy_info:
   galaxy_tags:
     - vaultsnapshot
     - snapshot
+    - security
 
 dependencies: []

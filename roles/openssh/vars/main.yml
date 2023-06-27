@@ -9,13 +9,10 @@ _openssh_packages:
 
 openssh_packages: "{{ _openssh_packages[ansible_os_family] | default(_openssh_packages['default']) }}"
 
-_openssh_key_types:
-  default:
-    - rsa
-    - ecdsa
-    - ed25519
-
-openssh_key_types: "{{ _openssh_key_types[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_openssh_key_types['default'] ) }}"
+openssh_key_types:
+  - rsa
+  - ecdsa
+  - ed25519
 
 openssh_run_directory: /run/sshd
 

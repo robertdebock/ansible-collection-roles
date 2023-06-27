@@ -7,4 +7,3 @@
     state: restarted
   when:
     - cron_service | length
-    - not ansible_check_mode

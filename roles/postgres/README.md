@@ -20,13 +20,19 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
   roles:
     - role: robertdebock.roles.postgres
       postgres_port: 6543
+      postgres_databases:
+        - name: test
+      postgres_users:
+        - name: test
+          password: test
+          db: test
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-postgres/blob/master/molecule/default/prepare.yml):
 
 ```yaml
 ---
-- name: prepare
+- name: Prepare
   hosts: all
   become: yes
   gather_facts: no
@@ -48,9 +54,12 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 ---
 # defaults file for postgres
 
+# The port to listen to.
 postgres_port: 5432
+
+# The interface (address) to listen to. Set to "0.0.0.0" to listen on all interfaces.
 postgres_listen_addresses: "127.0.0.1"
-postgres_unix_socket_directories: "{{ postgres_socket_directory }}"
+
 postgres_max_wal_size: 1GB
 postgres_min_wal_size: 80MB
 postgres_log_timezone: UTC
@@ -118,7 +127,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |container|tags|
 |---------|----|
 |[Alpine](https://hub.docker.com/repository/docker/robertdebock/alpine/general)|all|
-|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|8|
+|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|8, 9|
 |[Debian](https://hub.docker.com/repository/docker/robertdebock/debian/general)|all|
 |[Fedora](https://hub.docker.com/repository/docker/robertdebock/fedora/general)|all|
 |[opensuse](https://hub.docker.com/repository/docker/robertdebock/opensuse/general)|all|

@@ -12,7 +12,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 
 ```yaml
 ---
-- name: converge
+- name: Converge
   hosts: all
   become: yes
   gather_facts: yes
@@ -35,37 +35,6 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
     - role: robertdebock.roles.core_dependencies
     - role: robertdebock.roles.hashicorp
     - role: robertdebock.roles.vault
-
-# The contents of the files generated below has been pasted into `defaults/main.yml`.
-# - name: Create TLS material on localhost
-#   hosts: localhost
-#   become: no
-#   gather_facts: no
-
-#   tasks:
-#     - name: Install openssl
-#       ansible.builtin.package:
-#         name: openssl
-
-#     - name: Generate a private key for the CA
-#       ansible.builtin.command:
-#         cmd: openssl genpkey -algorithm RSA -out ca.key
-
-#     - name: Create the root CA certificate
-#       ansible.builtin.command:
-#         cmd: openssl req -new -x509 -key ca.key -out ca.crt -subj "/C=NL/ST=UTRECHT/L=Breukelen/O=Robert de Bock/CN=CA Robert de Bock/emailAddress=robert@meinit.nl"
-
-#     - name: Generate a private key for the server
-#       ansible.builtin.command:
-#         cmd: openssl genpkey -algorithm RSA -out vault.key
-
-#     - name: Create a certificate signing request (CSR) for the server
-#       ansible.builtin.command:
-#         cmd: openssl req -new -key vault.key -out vault.csr -subj "/C=NL/ST=UTRECHT/L=Breukelen/O=Robert de Bock/CN=vault.robertdebock.nl/emailAddress=robert@meinit.nl"
-
-#     - name: Sign the server certificate with the CA
-#       ansible.builtin.command:
-#         cmd: openssl x509 -req -in vault.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out vault.crt
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.
@@ -405,7 +374,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |[Amazon](https://hub.docker.com/repository/docker/robertdebock/amazonlinux/general)|Candidate|
 |[Debian](https://hub.docker.com/repository/docker/robertdebock/debian/general)|all|
 |[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|all|
-|[Fedora](https://hub.docker.com/repository/docker/robertdebock/fedora/general)|36, 37|
+|[Fedora](https://hub.docker.com/repository/docker/robertdebock/fedora/general)|37, 38|
 |[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|all|
 
 The minimum version of Ansible required is 2.12, tests have been done to:

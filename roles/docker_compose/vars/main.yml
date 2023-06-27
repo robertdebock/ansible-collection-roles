@@ -1,4 +1,24 @@
 ---
 # vars file for docker_compose
 
-docker_compose_url: "https://github.com/docker/compose/releases/download/{{ docker_compose_version }}/docker-compose-Linux-x86_64"
+# A map to relate the Ansible architecture to the Docker Compose architecture.
+_docker_compose_architecture:
+  x86_64: x86_64
+  arm64: aarch64
+docker_compose_architecture: "{{ _docker_compose_architecture[ansible_architecture] }}"
+
+# The type of installation (either `package` or `binary`) depends on the
+# distribution, os_family and distribution_major release.
+_docker_compose_installation_type:
+  default: package
+  Amazon: binary
+  RedHat:
+    default: package
+    "9": binary
+docker_compose_installation_type: "{{ _docker_compose_installation_type[ansible_distribution][ansible_distribution_major_version] | default(_docker_compose_installation_type[ansible_distribution]['default']) | default(_docker_compose_installation_type[ansible_distribution]) | default(_docker_compose_installation_type['default']) }}"
+
+_docker_compose_binary_required_packages:
+  default: []
+  RedHat:
+    - libxcrypt-compat
+docker_compose_binary_required_packages: "{{ _docker_compose_binary_required_packages[ansible_os_family] | default(_docker_compose_binary_required_packages['default']) }}"

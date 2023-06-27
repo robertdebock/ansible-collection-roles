@@ -11,15 +11,13 @@ galaxy_info:
     - name: Alpine
       versions:
         - all
-    - name: Amazon
-      versions:
-        - all
     - name: Debian
       versions:
         - all
     - name: EL
       versions:
         - "8"
+        - "9"
     - name: Fedora
       versions:
         - all
@@ -32,5 +30,7 @@ galaxy_info:
 
   galaxy_tags:
     - snmpd
+    - monitoring
+    - system
 
 dependencies: []

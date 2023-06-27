@@ -1,5 +1,7 @@
 {{ ansible_managed | comment }}
 
+{{ apache_global_vhost_settings }}
+
 LoadModule rewrite_module {{ httpd_modules_path }}/mod_rewrite.so
 
 <VirtualHost *:{{ httpd_port }}>

@@ -1,8 +1,8 @@
 ---
 
-- name: Set value
+- name: parameters | Set value
   block:
-    - name: List value
+    - name: parameters | List value
       ansible.builtin.command:
         cmd: php occ config:app:get {{ item.section }} {{ item.name }} --output yaml
         chdir: "{{ nextcloud_destination }}/nextcloud"
@@ -13,7 +13,7 @@
       failed_when:
         - nextcloud_list_value.stdout | from_yaml != item.value
   rescue:
-    - name: Set nextcloud parameter
+    - name: parameters | Set nextcloud parameter
       ansible.builtin.command:
         cmd: php occ config:app:set {{ item.section }} {{ item.name }} --value {{ item.value }}
         chdir: "{{ nextcloud_destination }}/nextcloud"

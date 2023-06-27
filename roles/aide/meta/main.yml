@@ -14,12 +14,13 @@ galaxy_info:
     - name: EL
       versions:
         - "8"
+        - "9"
     - name: Debian
       versions:
         - bullseye
     - name: Fedora
       versions:
-        - "36"
+        - all
     - name: opensuse
       versions:
         - all
@@ -30,5 +31,8 @@ galaxy_info:
   galaxy_tags:
     - aide
     - ids
+    - monitoring
+    - system
+    - security
 
 dependencies: []

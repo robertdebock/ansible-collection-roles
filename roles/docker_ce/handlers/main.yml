@@ -5,8 +5,6 @@
   ansible.builtin.service:
     name: "{{ docker_ce_service }}"
     state: restarted
-  when:
-    - not ansible_check_mode
 
 - name: Apt update cache
   ansible.builtin.apt:

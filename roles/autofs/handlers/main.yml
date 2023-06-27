@@ -5,12 +5,8 @@
   ansible.builtin.service:
     name: "{{ autofs_service }}"
     state: restarted
-  when:
-    - not ansible_check_mode
 
 - name: Reload autofs
   ansible.builtin.service:
     name: "{{ autofs_service }}"
     state: reloaded
-  when:
-    - not ansible_check_mode

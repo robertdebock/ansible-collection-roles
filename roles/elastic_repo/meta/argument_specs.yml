@@ -13,3 +13,11 @@ argument_specs:
         choices:
           - elastic
           - oss
+      elastic_repo_cleanup_requirements:
+        type: "bool"
+        default: yes
+        description: "Remove the `crypto-policies-scripts` package on RHEL9."
+      elastic_repo_revert_crypto_policy:
+        type: "bool"
+        default: yes
+        description: "Switch back to the default crypto policy on RHEL9."

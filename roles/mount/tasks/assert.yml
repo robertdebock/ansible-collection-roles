@@ -1,27 +1,30 @@
 ---
 
-- name: Test if mount_default_mode is set correctly
+- name: assert | Test if mount_default_mode is set correctly
   ansible.builtin.assert:
     that:
       - mount_default_mode is defined
       - mount_default_mode is string
+      - mount_default_mode is not none
     quiet: yes
 
-- name: Test if mount_default_owner is set correctly
+- name: assert | Test if mount_default_owner is set correctly
   ansible.builtin.assert:
     that:
       - mount_default_owner is defined
       - mount_default_owner is string
+      - mount_default_owner is not none
     quiet: yes
 
-- name: Test if mount_default_group is set correctly
+- name: assert | Test if mount_default_group is set correctly
   ansible.builtin.assert:
     that:
       - mount_default_group is defined
       - mount_default_group is string
+      - mount_default_group is not none
     quiet: yes
 
-- name: Test if mount_requests is set correctly
+- name: assert | Test if mount_requests is set correctly
   ansible.builtin.assert:
     that:
       - mount_requests is defined
@@ -30,7 +33,7 @@
   when:
     - mount_requests is defined
 
-- name: Test if item.backup in mount_requests is set correctly
+- name: assert | Test if item.backup in mount_requests is set correctly
   ansible.builtin.assert:
     that:
       - item.backup is boolean
@@ -41,7 +44,7 @@
   when:
     - item.backup is defined
 
-- name: Test if item.boot in mount_requests is set correctly
+- name: assert | Test if item.boot in mount_requests is set correctly
   ansible.builtin.assert:
     that:
       - item.boot is boolean
@@ -52,9 +55,9 @@
   when:
     - item.boot is defined
 
-- name: Warn if item.fstype in mount_requests is set incorrectly
+- name: assert | Warn if item.fstype in mount_requests is set incorrectly
   block:
-    - name: Test if item.fstype in mount_requests is set correctly
+    - name: assert | Test if item.fstype in mount_requests is set correctly
       ansible.builtin.assert:
         that:
           - item.fstype is string
@@ -66,21 +69,22 @@
       when:
         - item.fstype is defined
   rescue:
-    - name: Warn about unknown filesystem
+    - name: assert | Warn about unknown filesystem
       ansible.builtin.debug:
         msg: "The filesystem you have specified in unknown, proceeding."
 
-- name: Test if item.path in mount_requests is set correctly
+- name: assert | Test if item.path in mount_requests is set correctly
   ansible.builtin.assert:
     that:
       - item.path is defined
       - item.path is string
+      - item.path is not none
     quiet: yes
   loop: "{{ mount_requests }}"
   loop_control:
     label: "{{ item.path }}"
 
-- name: Test if item.state in mount_requests is set correctly
+- name: assert | Test if item.state in mount_requests is set correctly
   ansible.builtin.assert:
     that:
       - item.state is string

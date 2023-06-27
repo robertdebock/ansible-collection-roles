@@ -5,5 +5,3 @@
   ansible.builtin.service:
     name: zabbix-proxy
     state: restarted
-  when:
-    - not ansible_check_mode

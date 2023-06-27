@@ -1,5 +1,6 @@
 ---
-- name: Find most recent object
+
+- name: object | Find most recent object
   ansible.builtin.find:
     paths: "{{ restore_directory }}/{{ inventory_hostname }}"
     patterns: "{{ object.type }}-{{ object.name }}-*"
@@ -7,13 +8,13 @@
   delegate_to: localhost
   become: no
 
-- name: Select latest_file in restore_found_files
+- name: object | Select latest_file in restore_found_files
   ansible.builtin.set_fact:
     latest_file: "{{ restore_found_files.files | sort(attribute='mtime') | last }}"
   when:
     - restore_found_files.files | length
 
-- name: Copy latest_file
+- name: object | Copy latest_file
   ansible.builtin.copy:
     src: "{{ latest_file.path }}"
     dest: "{{ restore_remote_directory }}/{{ latest_file.path | basename }}"
@@ -21,7 +22,7 @@
   when:
     - latest_file is defined
 
-- name: Unarchive directory object
+- name: object | Unarchive directory object
   ansible.builtin.command:
     cmd: unzip "{{ restore_remote_directory }}/{{ latest_file.path | basename }}"  # noqa command-instead-of-module
   when:
@@ -29,14 +30,14 @@
     - object.type == "directory"
   changed_when: yes
 
-- name: Find extension
+- name: object | Find extension
   ansible.builtin.set_fact:
     latest_file_extension: "{{ latest_file.path | basename | splitext | last }}"
   when:
     - latest_file is defined
     - object.type == "mysql"
 
-- name: Unarchive mysql object
+- name: object | Unarchive mysql object
   ansible.builtin.unarchive:
     src: "{{ restore_remote_directory }}/{{ latest_file.path | basename }}"
     dest: "{{ restore_remote_directory }}"
@@ -48,7 +49,7 @@
     - object.type == "mysql"
     - latest_file_extension in [ ".gz", ".tgz", ".tar", ".zip" ]
 
-- name: Import mysql database
+- name: object | Import mysql database
   community.mysql.mysql_db:
     name: "{{ object.destination }}"
     target: "{{ restore_remote_directory }}/{{ latest_file.path | basename | splitext | first }}.sql"
@@ -60,7 +61,7 @@
     - latest_file is defined
     - object.type == "mysql"
 
-- name: Unarchive postgres object
+- name: object | Unarchive postgres object
   ansible.builtin.unarchive:
     src: "{{ restore_remote_directory }}/{{ latest_file.path | basename }}"
     dest: "{{ restore_remote_directory }}"
@@ -72,7 +73,7 @@
     - object.type == "postgres"
     - latest_file_extension in [ ".gz", ".tgz", ".tar", ".zip" ]
 
-- name: Import postgres database
+- name: object | Import postgres database
   community.postgresql.postgresql_db:
     name: "{{ object.destination }}"
     target: "{{ restore_remote_directory }}/{{ latest_file.path | basename | splitext | first }}.sql"

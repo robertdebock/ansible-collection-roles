@@ -19,5 +19,6 @@ galaxy_info:
     - jenkins
     - server
     - system
+    - development
 
 dependencies: []

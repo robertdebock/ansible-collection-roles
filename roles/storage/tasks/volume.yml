@@ -1,5 +1,6 @@
 ---
-- name: Test volume
+
+- name: volume | Test volume
   ansible.builtin.assert:
     that:
       - volume.name is defined
@@ -7,7 +8,7 @@
       - volume.size is defined
     quiet: yes
 
-- name: Create logical volume
+- name: volume | Create logical volume
   community.general.lvol:
     lv: "{{ volume.name }}"
     vg: "{{ volume.vg }}"

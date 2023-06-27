@@ -1,8 +1,9 @@
 ---
 
-- name: Test if minikube_user is set correctly
+- name: assert | Test if minikube_user is set correctly
   ansible.builtin.assert:
     that:
       - minikube_user is defined
       - minikube_user is string
+      - minikube_user is not none
     quiet: yes

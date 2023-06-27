@@ -1,11 +1,11 @@
 ---
 
-- name: Create Vault group
+- name: binary | Create Vault group
   ansible.builtin.group:
     name: "{{ vault_group }}"
     system: yes
 
-- name: Create Vault user
+- name: binary | Create Vault user
   ansible.builtin.user:
     name: "{{ vault_user }}"
     create_home: no
@@ -13,7 +13,7 @@
     shell: "{{ vault_user_shell }}"
     group: "{{ vault_group }}"
 
-- name: Create Vault download directory
+- name: binary | Create Vault download directory
   ansible.builtin.file:
     path: "{{ vault_download_path }}"
     state: directory
@@ -21,7 +21,7 @@
     group: "{{ vault_group }}"
     mode: "0755"
 
-- name: Download Vault binary
+- name: binary | Download Vault binary
   ansible.builtin.unarchive:
     src: "https://releases.hashicorp.com/vault/{{ vault_version }}/vault_{{ vault_version }}_linux_{{ vault_architecture }}.zip"
     dest: "{{ vault_download_path }}"
@@ -31,12 +31,12 @@
     mode: "0644"
     remote_src: yes
 
-- name: Check if vault_path exists
+- name: binary | Check if vault_path exists
   ansible.builtin.stat:
     path: "{{ vault_path }}"
   register: vault_check_path
 
-- name: Create vault_path if it does not exists
+- name: binary | Create vault_path if it does not exists
   ansible.builtin.file:
     path: "{{ vault_path }}"
     state: directory
@@ -47,7 +47,7 @@
     - not vault_check_path.stat.exists
     - vault_path != ""
 
-- name: Create directory in vault_path
+- name: binary | Create directory in vault_path
   ansible.builtin.file:
     path: "{{ item.name }}"
     state: directory
@@ -58,7 +58,7 @@
   loop_control:
     label: "{{ item.name }}"
 
-- name: Create data directory
+- name: binary | Create data directory
   ansible.builtin.file:
     path: "{{ item.name }}"
     state: directory
@@ -69,7 +69,7 @@
   loop_control:
     label: "{{ item.name }}"
 
-- name: Generate TLS key and certificate
+- name: binary | Generate TLS key and certificate
   ansible.builtin.command:
     cmd: openssl req -out tls.crt -new -keyout tls.key -newkey rsa:4096 -nodes -sha256 -x509 -subj "/O=HashiCorp/CN=Vault" -days 1095
     chdir: /opt/vault/tls
@@ -77,7 +77,7 @@
   notify:
     - Restart vault
 
-- name: Set ownership of tls material
+- name: binary | Set ownership of tls material
   ansible.builtin.file:
     path: "{{ item.name }}"
     owner: "{{ item.owner }}"
@@ -87,7 +87,7 @@
   loop_control:
     label: "{{ item.name }}"
 
-- name: Copy Vault binary
+- name: binary | Copy Vault binary
   ansible.builtin.copy:
     src: "{{ vault_download_path }}/vault"
     dest: "{{ vault_path }}/usr/bin/vault"
@@ -98,13 +98,13 @@
   notify:
     - Restart vault
 
-- name: Set cap_ipc_lock=ep on /usr/bin/vault
+- name: binary | Set cap_ipc_lock=ep on /usr/bin/vault
   community.general.capabilities:
     path: "{{ vault_path }}/usr/bin/vault"
     capability: cap_ipc_lock+ep
   changed_when: no
 
-- name: Touch vault.env
+- name: binary | Touch vault.env
   ansible.builtin.file:
     path: "{{ vault_path }}/etc/vault.d/vault.env"
     owner: "{{ vault_user }}"
@@ -116,7 +116,7 @@
   notify:
     - Restart vault
 
-- name: Create /usr/lib/systemd/system
+- name: binary | Create /usr/lib/systemd/system
   ansible.builtin.file:
     path: /usr/lib/systemd/system
     state: directory
@@ -124,7 +124,7 @@
     group: root
     mode: "0755"
 
-- name: Copy Vault service file
+- name: binary | Copy Vault service file
   ansible.builtin.template:
     src: vault.service.j2
     dest: "/usr/lib/systemd/system/vault.service"
@@ -136,7 +136,7 @@
   when:
     - ansible_service_mgr == "systemd"
 
-- name: Copy vault configuration
+- name: binary | Copy vault configuration
   ansible.builtin.copy:
     src: vault.hcl
     dest: "{{ vault_path }}/etc/vault.d/vault.hcl"
@@ -147,5 +147,5 @@
   notify:
     - Restart vault
 
-- name: Flush handlers
+- name: binary | Flush handlers
   ansible.builtin.meta: flush_handlers

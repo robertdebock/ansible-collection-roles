@@ -6,40 +6,9 @@
   run_once: yes
   delegate_to: localhost
 
-- name: Configure debian
-  when:
-    - ansible_distribution == "Debian"
-  block:
-    - name: Install nodejs key
-      ansible.builtin.apt_key:
-        url: "{{ npm_apt_key }}"
-        state: present
-        validate_certs: "{{ npm_validate_certs }}"
-
-    - name: Install nodejs deb repository
-      ansible.builtin.apt_repository:
-        repo: "{{ item }}"
-        state: present
-      loop: "{{ npm_apt_repositories }}"
-
-- name: Install nodejs rpm repository
-  ansible.builtin.yum_repository:
-    name: "{{ item.name }}"
-    state: present
-    description: "{{ item.description }}"
-    baseurl: "{{ item.baseurl }}"
-    gpgkey: "{{ npm_gpg_key }}"
-  loop: "{{ npm_yum_repositories }}"
-  when:
-    - ansible_distribution == "CentOS"
-    - ansible_distribution_major_version == "6"
-  loop_control:
-    label: "{{ item.name }}"
-
 - name: Install npm
   ansible.builtin.package:
-    name: "{{ npm_packages }}"
-    state: present
+    name: npm
 
 - name: Set the registry
   ansible.builtin.lineinfile:

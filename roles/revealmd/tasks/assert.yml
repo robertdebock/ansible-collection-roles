@@ -1,20 +1,22 @@
 ---
 
-- name: Test if revealmd_directory is set correctly
+- name: assert | Test if revealmd_directory is set correctly
   ansible.builtin.assert:
     that:
       - revealmd_directory is defined
       - revealmd_directory is string
+      - revealmd_directory is not none
     quiet: yes
 
-- name: Test if revealmd_presentation is set correctly
+- name: assert | Test if revealmd_presentation is set correctly
   ansible.builtin.assert:
     that:
       - revealmd_presentation is defined
       - revealmd_presentation is string
+      - revealmd_presentation is not none
     quiet: yes
 
-- name: Test if revealmd_port is set correctly
+- name: assert | Test if revealmd_port is set correctly
   ansible.builtin.assert:
     that:
       - revealmd_port is defined
@@ -23,9 +25,10 @@
       - revealmd_port < 65536
     quiet: yes
 
-- name: Test if revealmd_options is set correctly
+- name: assert | Test if revealmd_options is set correctly
   ansible.builtin.assert:
     that:
       - revealmd_options is defined
       - revealmd_options is string
+      - revealmd_options is not none
     quiet: yes

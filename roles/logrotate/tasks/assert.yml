@@ -1,6 +1,6 @@
 ---
 
-- name: Test if logrotate_frequency is set correctly
+- name: assert | Test if logrotate_frequency is set correctly
   ansible.builtin.assert:
     that:
       - logrotate_frequency is defined
@@ -8,7 +8,7 @@
       - logrotate_frequency in [ "daily", "weekly", "monthly" ]
     quiet: yes
 
-- name: Test if logrotate_keep is set correctly
+- name: assert | Test if logrotate_keep is set correctly
   ansible.builtin.assert:
     that:
       - logrotate_keep is defined
@@ -16,35 +16,37 @@
       - logrotate_keep >= 0
     quiet: yes
 
-- name: Test if logrotate_compress is set correctly
+- name: assert | Test if logrotate_compress is set correctly
   ansible.builtin.assert:
     that:
       - logrotate_compress is defined
       - logrotate_compress is boolean
     quiet: yes
 
-- name: Test if logrotate_dateext is set correctly
+- name: assert | Test if logrotate_dateext is set correctly
   ansible.builtin.assert:
     that:
       - logrotate_dateext is defined
       - logrotate_dateext is boolean
     quiet: yes
 
-- name: Test if logrotate_user is set correctly
+- name: assert | Test if logrotate_user is set correctly
   ansible.builtin.assert:
     that:
       - logrotate_user is defined
       - logrotate_user is string
+      - logrotate_user is not none
     quiet: yes
 
-- name: Test if logrotate_group is set correctly
+- name: assert | Test if logrotate_group is set correctly
   ansible.builtin.assert:
     that:
       - logrotate_group is defined
       - logrotate_group is string
+      - logrotate_group is not none
     quiet: yes
 
-- name: Test if logrotate_entries is set correctly
+- name: assert | Test if logrotate_entries is set correctly
   ansible.builtin.assert:
     that:
       - logrotate_entries is iterable
@@ -52,13 +54,15 @@
   when:
     - logrotate_entries is defined
 
-- name: Test if mandatory items in logrotate_entries are set correctly
+- name: assert | Test if mandatory items in logrotate_entries are set correctly
   ansible.builtin.assert:
     that:
       - item.name is defined
       - item.name is string
+      - item.name is not none
       - item.path is defined
       - item.path is string
+      - item.path is not none
     quiet: yes
   loop: "{{ logrotate_entries }}"
   loop_control:
@@ -66,7 +70,7 @@
   when:
     - logrotate_entries is defined
 
-- name: Test if frequency in logrotate_entries is set correctly
+- name: assert | Test if frequency in logrotate_entries is set correctly
   ansible.builtin.assert:
     that:
       - item.frequency is string
@@ -78,7 +82,7 @@
   when:
     - item.frequency is defined
 
-- name: Test if keep in logrotate_entries is set correctly
+- name: assert | Test if keep in logrotate_entries is set correctly
   ansible.builtin.assert:
     that:
       - item.keep is integer
@@ -90,7 +94,7 @@
   when:
     - item.keep is defined
 
-- name: Test if compress in logrotate_entries is set correctly
+- name: assert | Test if compress in logrotate_entries is set correctly
   ansible.builtin.assert:
     that:
       - item.compress is boolean
@@ -101,7 +105,7 @@
   when:
     - item.compress is defined
 
-- name: Test if delaycompress in logrotate_entries is set correctly
+- name: assert | Test if delaycompress in logrotate_entries is set correctly
   ansible.builtin.assert:
     that:
       - item.delaycompress is boolean
@@ -112,10 +116,11 @@
   when:
     - item.delaycompress is defined
 
-- name: Test if postrotate in logrotate_entries is set correctly
+- name: assert | Test if postrotate in logrotate_entries is set correctly
   ansible.builtin.assert:
     that:
       - item.postrotate is string
+      - item.postrotate is not none
     quiet: yes
   loop: "{{ logrotate_entries }}"
   loop_control:
@@ -123,7 +128,7 @@
   when:
     - item.postrotate is defined
 
-- name: Test if missingok in logrotate_entries is set correctly
+- name: assert | Test if missingok in logrotate_entries is set correctly
   ansible.builtin.assert:
     that:
       - item.missingok is boolean
@@ -134,7 +139,7 @@
   when:
     - item.missingok is defined
 
-- name: Test if nomissingok in logrotate_entries is set correctly
+- name: assert | Test if nomissingok in logrotate_entries is set correctly
   ansible.builtin.assert:
     that:
       - item.nomissingok is boolean
@@ -145,15 +150,18 @@
   when:
     - item.nomissingok is defined
 
-- name: Test if create_* in logrotate_entries is set correctly
+- name: assert | Test if create_* in logrotate_entries is set correctly
   ansible.builtin.assert:
     that:
       - item.create_mode is defined
       - item.create_mode is string
+      - item.create_mode is not none
       - item.create_user is defined
       - item.create_user is string
+      - item.create_user is not none
       - item.create_group is defined
       - item.create_group is string
+      - item.create_group is not none
     quiet: yes
   loop: "{{ logrotate_entries }}"
   loop_control:
@@ -163,10 +171,11 @@
       item.create_user is defined or
       item.create_group is defined
 
-- name: Test if minsize in logrotate_entries is set correctly
+- name: assert | Test if minsize in logrotate_entries is set correctly
   ansible.builtin.assert:
     that:
       - item.minsize is string
+      - item.minsize is not none
     quiet: yes
   loop: "{{ logrotate_entries }}"
   loop_control:
@@ -174,7 +183,7 @@
   when:
     - item.minsize is defined
 
-- name: Test if notifempty in logrotate_entries is set correctly
+- name: assert | Test if notifempty in logrotate_entries is set correctly
   ansible.builtin.assert:
     that:
       - item.notifempty is boolean
@@ -185,7 +194,7 @@
   when:
     - item.notifempty is defined
 
-- name: Test if copylog in logrotate_entries is set correctly
+- name: assert | Test if copylog in logrotate_entries is set correctly
   ansible.builtin.assert:
     that:
       - item.copylog is boolean
@@ -196,7 +205,7 @@
   when:
     - item.copylog is defined
 
-- name: Test if copytruncate in logrotate_entries is set correctly
+- name: assert | Test if copytruncate in logrotate_entries is set correctly
   ansible.builtin.assert:
     that:
       - item.copytruncate is boolean
@@ -207,7 +216,7 @@
   when:
     - item.copytruncate is defined
 
-- name: Test if sharedscripts in logrotate_entries is set correctly
+- name: assert | Test if sharedscripts in logrotate_entries is set correctly
   ansible.builtin.assert:
     that:
       - item.sharedscripts is boolean
@@ -218,7 +227,7 @@
   when:
     - item.sharedscripts is defined
 
-- name: Test if dateext in logrotate_entries is set correctly
+- name: assert | Test if dateext in logrotate_entries is set correctly
   ansible.builtin.assert:
     that:
       - item.dateext is boolean
@@ -229,10 +238,11 @@
   when:
     - item.dateext is defined
 
-- name: Test if dateformat in logrotate_entries is set correctly
+- name: assert | Test if dateformat in logrotate_entries is set correctly
   ansible.builtin.assert:
     that:
       - item.dateformat is string
+      - item.dateformat is not none
     quiet: yes
   loop: "{{ logrotate_entries }}"
   loop_control:
@@ -240,7 +250,7 @@
   when:
     - item.dateformat is defined
 
-- name: Test if dateyesterday in logrotate_entries is set correctly
+- name: assert | Test if dateyesterday in logrotate_entries is set correctly
   ansible.builtin.assert:
     that:
       - item.dateyesterday is boolean

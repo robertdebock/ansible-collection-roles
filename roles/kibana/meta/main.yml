@@ -16,12 +16,10 @@ galaxy_info:
         - all
     - name: EL
       versions:
-        - "7"
-        - "8"
+        - all
     - name: Fedora
       versions:
-        - "36"
-        - "37"
+        - all
     - name: Ubuntu
       versions:
         - focal
@@ -29,5 +27,6 @@ galaxy_info:
 
   galaxy_tags:
     - kibana
+    - monitoring
 
 dependencies: []

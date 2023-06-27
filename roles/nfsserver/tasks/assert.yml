@@ -1,6 +1,6 @@
 ---
 
-- name: Test if nfsserver_exports is set correctly
+- name: assert | Test if nfsserver_exports is set correctly
   ansible.builtin.assert:
     that:
       - nfsserver_exports is iterable
@@ -8,11 +8,12 @@
   when:
     - nfsserver_exports is defined
 
-- name: Test if item in nfsserver_exports is set correctly
+- name: assert | Test if item in nfsserver_exports is set correctly
   ansible.builtin.assert:
     that:
       - item.share is defined
       - item.share is string
+      - item.share is not none
       - item.hosts is defined
       - item.hosts is iterable
     quiet: yes
@@ -22,7 +23,7 @@
   when:
     - nfsserver_exports is defined
 
-- name: Test if item in nfsserver_exports.hosts is set correctly
+- name: assert | Test if item in nfsserver_exports.hosts is set correctly
   ansible.builtin.include_tasks:
     file: assert_export.yml
   loop: "{{ nfsserver_exports }}"

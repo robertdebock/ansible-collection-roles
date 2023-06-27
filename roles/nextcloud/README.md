@@ -31,7 +31,7 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
 
 ```yaml
 ---
-- name: prepare
+- name: Prepare
   hosts: all
   become: yes
   gather_facts: no
@@ -51,13 +51,13 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
     - role: robertdebock.roles.httpd
     - role: robertdebock.roles.redis
 
-- name: continue prepare with facts
+- name: Continue prepare with facts
   hosts: all
   become: yes
   gather_facts: yes
 
   pre_tasks:
-    - name: include remi
+    - name: Include remi
       ansible.builtin.include_role:
         name: robertdebock.remi
       when:
@@ -166,7 +166,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|8|
+|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|8, 9|
 |[opensuse](https://hub.docker.com/repository/docker/robertdebock/opensuse/general)|all|
 |[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|jammy|
 

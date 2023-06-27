@@ -103,3 +103,13 @@ _roundcubemail_httpd_configuration:
   Suse: /etc/apache2/conf.d/roundcubemail.conf
 
 roundcubemail_httpd_configuration: "{{ _roundcubemail_httpd_configuration[ansible_os_family] | default(_roundcubemail_httpd_configuration['default']) }}"
+
+
+_roundcube_httpd_service:
+  default: httpd
+  Alpine: apache2
+  Debian: apache2
+  Suse: apache2
+  RedHat: httpd
+
+roundcube_httpd_service: "{{ _roundcube_httpd_service[ansible_os_family] | default(_roundcube_httpd_service['default']) }}"

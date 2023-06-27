@@ -11,6 +11,7 @@ galaxy_info:
     - name: EL
       versions:
         - "8"
+        - "9"
     - name: Ubuntu
       versions:
         - bionic
@@ -18,5 +19,6 @@ galaxy_info:
 
   galaxy_tags:
     - tigervnc
+    - networking
 
 dependencies: []

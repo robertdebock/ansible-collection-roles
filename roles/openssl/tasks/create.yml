@@ -1,12 +1,13 @@
 ---
-- name: Create ssl key
+
+- name: create | Create ssl key
   community.crypto.openssl_privatekey:
     path: "{{ openssl_key_directory }}/{{ item.name }}.key"
     mode: "640"
     owner: "{{ openssl_file_owner }}"
     group: "{{ openssl_file_group }}"
 
-- name: Create ssl csr
+- name: create | Create ssl csr
   community.crypto.openssl_csr:
     path: "{{ openssl_csr_directory }}/{{ item.name }}.csr"
     privatekey_path: "{{ openssl_key_directory }}/{{ item.name }}.key"
@@ -15,7 +16,7 @@
     owner: "{{ openssl_file_owner }}"
     group: "{{ openssl_file_group }}"
 
-- name: Create ssl certificates
+- name: create | Create ssl certificates
   community.crypto.x509_certificate:
     path: "{{ openssl_crt_directory }}/{{ item.name }}.crt"
     privatekey_path: "{{ openssl_key_directory }}/{{ item.name }}.key"
@@ -25,7 +26,7 @@
     owner: "{{ openssl_file_owner }}"
     group: "{{ openssl_file_group }}"
 
-- name: Create PKCS#12 file
+- name: create | Create PKCS#12 file
   community.crypto.openssl_pkcs12:
     action: export
     path: "{{ openssl_key_directory }}/{{ item.name }}.p12"
@@ -37,17 +38,17 @@
     owner: "{{ openssl_file_owner }}"
     group: "{{ openssl_file_group }}"
 
-- name: Read private key
+- name: create | Read private key
   ansible.builtin.slurp:
     src: "{{ openssl_key_directory }}/{{ item.name }}.key"
   register: openssl_private_key
 
-- name: Read certificate
+- name: create | Read certificate
   ansible.builtin.slurp:
     src: "{{ openssl_crt_directory }}/{{ item.name }}.crt"
   register: openssl_certifcate
 
-- name: Create combined private_key and certificate file
+- name: create | Create combined private_key and certificate file
   ansible.builtin.copy:
     dest: "{{ openssl_key_directory }}/{{ item.name }}.keycrt"
     content: |-

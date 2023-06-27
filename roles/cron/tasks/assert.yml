@@ -1,27 +1,30 @@
 ---
 
-- name: Test if cron_shell is set correctly
+- name: assert | Test if cron_shell is set correctly
   ansible.builtin.assert:
     that:
       - cron_shell is defined
       - cron_shell is string
+      - cron_shell is not none
     quiet: yes
 
-- name: Test if cron_path is set correctly
+- name: assert | Test if cron_path is set correctly
   ansible.builtin.assert:
     that:
       - cron_path is defined
       - cron_path is string
+      - cron_path is not none
     quiet: yes
 
-- name: Test if cron_mailto is set correctly
+- name: assert | Test if cron_mailto is set correctly
   ansible.builtin.assert:
     that:
       - cron_mailto is defined
       - cron_mailto is string
+      - cron_mailto is not none
     quiet: yes
 
-- name: Test if cron_jobs is set correctly
+- name: assert | Test if cron_jobs is set correctly
   ansible.builtin.assert:
     that:
       - cron_jobs is iterable
@@ -29,13 +32,15 @@
   when:
     - cron_jobs is defined
 
-- name: Test if item in cron_jobs is set correctly
+- name: assert | Test if item in cron_jobs is set correctly
   ansible.builtin.assert:
     that:
       - item.name is defined
       - item.name is string
+      - item.name is not none
       - item.job is defined
       - item.job is string
+      - item.job is not none
     quiet: yes
   loop: "{{ cron_jobs }}"
   loop_control:
@@ -43,7 +48,7 @@
   when:
     - cron_jobs is defined
 
-- name: Test if item.minute is set correctly
+- name: assert | Test if item.minute is set correctly
   ansible.builtin.assert:
     that:
       - item.minute >= 0
@@ -57,7 +62,7 @@
     - item.minute is defined
     - item.minute is number
 
-- name: Test if item.hour is set correctly
+- name: assert | Test if item.hour is set correctly
   ansible.builtin.assert:
     that:
       - item.hour >= 0
@@ -71,7 +76,7 @@
     - item.hour is defined
     - item.hour is number
 
-- name: Test if item.weekday is set correctly
+- name: assert | Test if item.weekday is set correctly
   ansible.builtin.assert:
     that:
       - item.weekday >= 0

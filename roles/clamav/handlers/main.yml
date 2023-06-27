@@ -6,8 +6,6 @@
     name: "{{ item }}"
     state: restarted
   loop: "{{ clamav_services }}"
-  when:
-    - not ansible_check_mode
 
 - name: Ensure logfiles exists
   ansible.builtin.file:
@@ -25,8 +23,6 @@
     name: "{{ item }}"
     state: stopped
   loop: "{{ clamav_services }}"
-  when:
-    - not ansible_check_mode
 
 - name: Update virus definitions
   ansible.builtin.command:
@@ -36,8 +32,6 @@
   async: 900
   poll: 0
   register: updatevirusdefinitions
-  when:
-    - not ansible_check_mode
 
 - name: Create selinux mod for clamav
   ansible.builtin.command:

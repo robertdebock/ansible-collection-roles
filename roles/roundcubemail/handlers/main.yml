@@ -25,3 +25,8 @@
   ansible.builtin.command:
     cmd: semodule -i /etc/my-roundcubemail.pp
   changed_when: yes
+
+- name: Restart httpd
+  ansible.builtin.service:
+    name: "{{ roundcube_httpd_service }}"
+    state: restarted

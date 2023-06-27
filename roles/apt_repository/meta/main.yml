@@ -15,5 +15,7 @@ galaxy_info:
   galaxy_tags:
     - apt
     - repository
+    - system
+    - security
 
 dependencies: []

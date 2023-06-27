@@ -17,6 +17,7 @@ galaxy_info:
     - name: EL
       versions:
         - "8"
+        - "9"
     - name: Fedora
       versions:
         - all
@@ -28,5 +29,6 @@ galaxy_info:
     - dnsmasq
     - dns
     - dhcp
+    - system
 
 dependencies: []

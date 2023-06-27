@@ -1,20 +1,21 @@
 ---
 
-- name: Test if git_repository_destination is set correctly
+- name: assert | Test if git_repository_destination is set correctly
   ansible.builtin.assert:
     that:
       - git_repository_destination is defined
       - git_repository_destination is string
+      - git_repository_destination is not none
     quiet: yes
 
-- name: Test if git_force is set correctly
+- name: assert | Test if git_force is set correctly
   ansible.builtin.assert:
     that:
       - git_force is defined
       - git_force is boolean
     quiet: yes
 
-- name: Test if git_repositories is set correctly
+- name: assert | Test if git_repositories is set correctly
   ansible.builtin.assert:
     that:
       - git_repositories is iterable
@@ -22,13 +23,15 @@
   when:
     - git_repositories is defined
 
-- name: Test if item in git_repositories is set correctly
+- name: assert | Test if item in git_repositories is set correctly
   ansible.builtin.assert:
     that:
       - item.repo is defined
       - item.repo is string
+      - item.repo is not none
       - item.dest is defined
       - item.dest is string
+      - item.dest is not none
     quiet: yes
   loop: "{{ git_repositories }}"
   loop_control:
@@ -36,7 +39,7 @@
   when:
     - git_repositories is defined
 
-- name: Test if item in git_repositories with force is set correctly
+- name: assert | Test if item in git_repositories with force is set correctly
   ansible.builtin.assert:
     that:
       - item.version is boolean

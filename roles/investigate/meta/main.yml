@@ -32,5 +32,6 @@ galaxy_info:
 
   galaxy_tags:
     - investigate
+    - security
 
 dependencies: []

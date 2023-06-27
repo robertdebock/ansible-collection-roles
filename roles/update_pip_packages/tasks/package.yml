@@ -1,6 +1,6 @@
 ---
 
-- name: Update package {{ package.key }}
+- name: package | Update package {{ package.key }}
   ansible.builtin.pip:
     name: "{{ package.key }}"
     state: latest  # noqa package-latest

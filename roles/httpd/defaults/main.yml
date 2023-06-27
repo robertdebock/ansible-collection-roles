@@ -24,3 +24,10 @@ httpd_openssl_key: "{{ httpd_openssl_key_directory }}/apache-httpd.key"
 
 # If the "it works" page should be kept
 httpd_remove_example: no
+
+# Additionnal httpd module to install
+
+httpd_additionnal_modules: []
+
+apache_global_vhost_settings: |
+  DirectoryIndex index.php index.html

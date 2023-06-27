@@ -35,5 +35,6 @@ galaxy_info:
     - cve202144228
     - log4shell
     - log4j
+    - security
 
 dependencies: []

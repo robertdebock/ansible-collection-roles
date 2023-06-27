@@ -1,38 +1,42 @@
 ---
 
-- name: Test if mysql_bind_address is set correctly
+- name: assert | Test if mysql_bind_address is set correctly
   ansible.builtin.assert:
     that:
       - mysql_bind_address is defined
       - mysql_bind_address is string
+      - mysql_bind_address is not none
     quiet: yes
 
-- name: Test if mysql_root_password is set correctly
+- name: assert | Test if mysql_root_password is set correctly
   ansible.builtin.assert:
     that:
       - mysql_root_password is defined
       - mysql_root_password is string
+      - mysql_root_password is not none
     quiet: yes
 
-- name: Test if mysql_innodb_buffer_pool_size is set correctly
+- name: assert | Test if mysql_innodb_buffer_pool_size is set correctly
   ansible.builtin.assert:
     that:
       - mysql_innodb_buffer_pool_size is defined
       - mysql_innodb_buffer_pool_size is string
+      - mysql_innodb_buffer_pool_size is not none
     quiet: yes
 
-- name: Test if mysql_innodb_io_capacity is set correctly
+- name: assert | Test if mysql_innodb_io_capacity is set correctly
   ansible.builtin.assert:
     that:
       - mysql_innodb_io_capacity is defined
       - mysql_innodb_io_capacity is integer
     quiet: yes
 
-- name: Test item.name item in mysql_databases is set correctly
+- name: assert | Test item.name item in mysql_databases is set correctly
   ansible.builtin.assert:
     that:
       - item.name is defined
       - item.name is string
+      - item.name is not none
     quiet: yes
   loop: "{{ mysql_databases }}"
   loop_control:
@@ -40,7 +44,7 @@
   when:
     - mysql_databases is defined
 
-- name: Test item.state in mysql_databases is set correctly
+- name: assert | Test item.state in mysql_databases is set correctly
   ansible.builtin.assert:
     that:
       - item.state is string
@@ -53,10 +57,11 @@
     - mysql_databases is defined
     - item.state is defined
 
-- name: Test item.target in mysql_databases is set correctly
+- name: assert | Test item.target in mysql_databases is set correctly
   ansible.builtin.assert:
     that:
       - item.target is string
+      - item.target is not none
     quiet: yes
   loop: "{{ mysql_databases }}"
   loop_control:
@@ -65,10 +70,11 @@
     - mysql_databases is defined
     - item.target is defined
 
-- name: Test item.encoding in mysql_databases is set correctly
+- name: assert | Test item.encoding in mysql_databases is set correctly
   ansible.builtin.assert:
     that:
       - item.encoding is string
+      - item.encoding is not none
     quiet: yes
   loop: "{{ mysql_databases }}"
   loop_control:
@@ -77,10 +83,11 @@
     - mysql_databases is defined
     - item.encoding is defined
 
-- name: Test item.collation in mysql_databases is set correctly
+- name: assert | Test item.collation in mysql_databases is set correctly
   ansible.builtin.assert:
     that:
       - item.collation is string
+      - item.collation is not none
     quiet: yes
   loop: "{{ mysql_databases }}"
   loop_control:
@@ -89,10 +96,11 @@
     - mysql_databases is defined
     - item.collation is defined
 
-- name: Test item.name in mysql_users is set correctly
+- name: assert | Test item.name in mysql_users is set correctly
   ansible.builtin.assert:
     that:
       - item.name is string
+      - item.name is not none
     quiet: yes
   loop: "{{ mysql_users }}"
   loop_control:
@@ -100,10 +108,11 @@
   when:
     - mysql_users is defined
 
-- name: Test item.password in mysql_users is set correctly
+- name: assert | Test item.password in mysql_users is set correctly
   ansible.builtin.assert:
     that:
       - item.password is string
+      - item.password is not none
     quiet: yes
   loop: "{{ mysql_users }}"
   loop_control:
@@ -112,10 +121,11 @@
     - mysql_users is defined
     - item.password is defined
 
-- name: Test item.priv in mysql_users is set correctly
+- name: assert | Test item.priv in mysql_users is set correctly
   ansible.builtin.assert:
     that:
       - item.priv is string
+      - item.priv is not none
     quiet: yes
   loop: "{{ mysql_users }}"
   loop_control:
@@ -124,10 +134,11 @@
     - mysql_users is defined
     - item.priv is defined
 
-- name: Test item.host in mysql_users is set correctly
+- name: assert | Test item.host in mysql_users is set correctly
   ansible.builtin.assert:
     that:
       - item.name is string
+      - item.name is not none
     quiet: yes
   loop: "{{ mysql_users }}"
   loop_control:
@@ -136,7 +147,7 @@
     - mysql_users is defined
     - item.host is defined
 
-- name: Test item.host_all in mysql_users is set correctly
+- name: assert | Test item.host_all in mysql_users is set correctly
   ansible.builtin.assert:
     that:
       - item.host_all is boolean
@@ -148,7 +159,7 @@
     - mysql_users is defined
     - item.host_all is defined
 
-- name: Test item.update_password in mysql_users is set correctly
+- name: assert | Test item.update_password in mysql_users is set correctly
   ansible.builtin.assert:
     that:
       - item.update_password is string

@@ -11,5 +11,3 @@
   ansible.builtin.service:
     name: memcached
     state: restarted
-  when:
-    - not ansible_check_mode

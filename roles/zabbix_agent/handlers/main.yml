@@ -20,5 +20,3 @@
   ansible.builtin.service:
     name: "{{ zabbix_agent_service }}"
     state: restarted
-  when:
-    - not ansible_check_mode

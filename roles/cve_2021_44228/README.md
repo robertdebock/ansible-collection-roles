@@ -25,7 +25,7 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
 
 ```yaml
 ---
-- name: prepare
+- name: Prepare
   hosts: all
   become: yes
   gather_facts: no
@@ -40,7 +40,7 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
     - ../../vars/main.yml
 
   post_tasks:
-    - name: install required software
+    - name: Install required software
       ansible.builtin.package:
         name: ["{{ cve_2021_44228_ps_package }}", unzip]
 ```

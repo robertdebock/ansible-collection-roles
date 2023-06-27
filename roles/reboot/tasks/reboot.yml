@@ -1,21 +1,22 @@
 ---
-- name: Flush notified handlers
+
+- name: reboot | Flush notified handlers
   ansible.builtin.meta: flush_handlers
 
-- name: Reboot the machine
+- name: reboot | Reboot the machine
   ansible.builtin.shell:
     cmd: "(sleep {{ reboot_delay }} && {{ reboot_command }} &)"  # noqa no-changed-when This was before the reboot module existed.
   async: 1
   poll: 0
   failed_when: no
 
-- name: 1 wait for the start of reboot
+- name: reboot | 1 wait for the start of reboot
   ansible.builtin.pause:
     seconds: "{{ reboot_delay }}"
 
-- name: 2 wait for the machine to be up
+- name: reboot | 2 wait for the machine to be up
   ansible.builtin.wait_for_connection:
     delay: "{{ reboot_up_delay }}"
 
-- name: 3 gather facts after reboot
+- name: reboot | 3 gather facts after reboot
   ansible.builtin.setup:

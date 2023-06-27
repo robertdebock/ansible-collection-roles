@@ -29,7 +29,7 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
 
 ```yaml
 ---
-- name: prepare
+- name: Prepare
   hosts: all
   become: yes
   gather_facts: no
@@ -99,8 +99,8 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |---------|----|
 |[Amazon](https://hub.docker.com/repository/docker/robertdebock/amazonlinux/general)|all|
 |[Debian](https://hub.docker.com/repository/docker/robertdebock/debian/general)|all|
-|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|7, 8|
-|[Fedora](https://hub.docker.com/repository/docker/robertdebock/fedora/general)|36, 37|
+|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|all|
+|[Fedora](https://hub.docker.com/repository/docker/robertdebock/fedora/general)|all|
 |[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|focal, bionic|
 
 The minimum version of Ansible required is 2.12, tests have been done to:

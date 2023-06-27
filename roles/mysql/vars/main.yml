@@ -4,6 +4,7 @@
 _mysql_name:
   default: mariadb
   RedHat-8: mysql
+  RedHat-9: mysql
   Amazon-2018: mysql
 
 mysql_name: "{{ _mysql_name[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_mysql_name['default'] ) }}"
@@ -31,9 +32,12 @@ _mysql_packages:
     - "{{ mysql_name }}-server"
     - "{{ mysql_name }}-devel"
     - MySQL-python
-  RedHat:
+  RedHat-8:
     - "{{ mysql_name }}-server"
     - "{{ mysql_name }}-devel"
+    - python3-PyMySQL
+  RedHat:
+    - "{{ mysql_name }}-server"
     - python3-PyMySQL
 
 mysql_packages: "{{ _mysql_packages[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_mysql_packages[ansible_os_family] | default(_mysql_packages['default'] )) }}"
@@ -46,9 +50,11 @@ mysql_initialize_command: "{{ _mysql_initialize_command[ansible_os_family] }}"
 
 _mysql_service:
   default: "{{ mysql_name }}"
-  RedHat-8: "{{ mysql_name }}d"
+  RedHat:
+    "8": "{{ mysql_name }}d"
+    "9": "{{ mysql_name }}d"
 
-mysql_service: "{{ _mysql_service[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_mysql_service['default'] ) }}"
+mysql_service: "{{ _mysql_service[ansible_os_family][ansible_distribution_major_version] | default(_mysql_service['default']) }}"
 
 _mysql_socket:
   default: /var/run/mysql/mysql.sock

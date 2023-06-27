@@ -28,5 +28,6 @@ galaxy_info:
   galaxy_tags:
     - cloud
     - haproxy
+    - networking
 
 dependencies: []

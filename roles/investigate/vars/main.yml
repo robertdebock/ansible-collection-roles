@@ -10,6 +10,14 @@ _investigate_packages:
     - bash-completion
     - curl
     - screen
+  Amazon:
+    - net-tools
+    - tcpdump
+    - telnet
+    - bash
+    - bash-completion
+    - curl-minimal
+    - screen
   Debian:
     - net-tools
     - tcpdump

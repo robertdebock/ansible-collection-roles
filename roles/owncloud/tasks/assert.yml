@@ -1,57 +1,65 @@
 ---
 
-- name: Test if owncloud_version is set correctly
+- name: assert | Test if owncloud_version is set correctly
   ansible.builtin.assert:
     that:
       - owncloud_version is defined
       - owncloud_version is string
+      - owncloud_version is not none
     quiet: yes
 
-- name: Test if owncloud_domain_url is set correctly
+- name: assert | Test if owncloud_domain_url is set correctly
   ansible.builtin.assert:
     that:
       - owncloud_domain_url is defined
       - owncloud_domain_url is string
+      - owncloud_domain_url is not none
     quiet: yes
 
-- name: Test if owncloud_database_name is set correctly
+- name: assert | Test if owncloud_database_name is set correctly
   ansible.builtin.assert:
     that:
       - owncloud_database_name is defined
       - owncloud_database_name is string
+      - owncloud_database_name is not none
     quiet: yes
 
-- name: Test if owncloud_database_user is set correctly
+- name: assert | Test if owncloud_database_user is set correctly
   ansible.builtin.assert:
     that:
       - owncloud_database_user is defined
       - owncloud_database_user is string
+      - owncloud_database_user is not none
     quiet: yes
 
-- name: Test if owncloud_database_pass is set correctly
+- name: assert | Test if owncloud_database_pass is set correctly
   ansible.builtin.assert:
     that:
       - owncloud_database_pass is defined
       - owncloud_database_pass is string
+      - owncloud_database_pass is not none
     quiet: yes
 
-- name: Test if owncloud_database_host is set correctly
+- name: assert | Test if owncloud_database_host is set correctly
   ansible.builtin.assert:
     that:
       - owncloud_database_host is defined
       - owncloud_database_host is string
+      - owncloud_database_host is not none
     quiet: yes
 
-- name: Test if owncloud_admin_user is set correctly
+- name: assert | Test if owncloud_admin_user is set correctly
   ansible.builtin.assert:
     that:
       - owncloud_admin_user is defined
       - owncloud_admin_user is string
+      - owncloud_admin_user is not none
     quiet: yes
 
-- name: Test if owncloud_admin_pass is set correctly
+- name: assert | Test if owncloud_admin_pass is set correctly
   ansible.builtin.assert:
     that:
       - owncloud_admin_pass is defined
       - owncloud_admin_pass is string
+      - owncloud_admin_pass is not none
     quiet: yes

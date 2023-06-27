@@ -1,6 +1,6 @@
 ---
 
-- name: Test if fail2ban_loglevel is set correctly
+- name: assert | Test if fail2ban_loglevel is set correctly
   ansible.builtin.assert:
     that:
       - fail2ban_loglevel is defined
@@ -8,14 +8,15 @@
       - fail2ban_loglevel in [ "CRITICAL", "ERROR", "WARNING", "NOTICE", "INFO", "DEBUG" ]
     quiet: yes
 
-- name: Test if fail2ban_logtarget is set correctly
+- name: assert | Test if fail2ban_logtarget is set correctly
   ansible.builtin.assert:
     that:
       - fail2ban_logtarget is defined
       - fail2ban_logtarget is string
+      - fail2ban_logtarget is not none
     quiet: yes
 
-- name: Test if fail2ban_ignoreself is set correctly
+- name: assert | Test if fail2ban_ignoreself is set correctly
   ansible.builtin.assert:
     that:
       - fail2ban_ignoreself is defined
@@ -23,14 +24,14 @@
       - fail2ban_ignoreself in [ "false", "true" ]
     quiet: yes
 
-- name: Test if fail2ban_ignoreips is set correctly
+- name: assert | Test if fail2ban_ignoreips is set correctly
   ansible.builtin.assert:
     that:
       - fail2ban_ignoreips is defined
       - fail2ban_ignoreips is iterable
     quiet: yes
 
-- name: Test if fail2ban_bantime is set correctly
+- name: assert | Test if fail2ban_bantime is set correctly
   ansible.builtin.assert:
     that:
       - fail2ban_bantime is defined
@@ -38,7 +39,7 @@
       - fail2ban_bantime >= -1 and fail2ban_bantime !=0
     quiet: yes
 
-- name: Test if fail2ban_findtime is set correctly
+- name: assert | Test if fail2ban_findtime is set correctly
   ansible.builtin.assert:
     that:
       - fail2ban_findtime is defined
@@ -46,7 +47,7 @@
       - fail2ban_findtime > 0
     quiet: yes
 
-- name: Test if fail2ban_maxretry is set correctly
+- name: assert | Test if fail2ban_maxretry is set correctly
   ansible.builtin.assert:
     that:
       - fail2ban_maxretry is defined
@@ -54,21 +55,23 @@
       - fail2ban_maxretry > 0
     quiet: yes
 
-- name: Test if fail2ban_destemail is set correctly
+- name: assert | Test if fail2ban_destemail is set correctly
   ansible.builtin.assert:
     that:
       - fail2ban_destemail is defined
       - fail2ban_destemail is string
+      - fail2ban_destemail is not none
     quiet: yes
 
-- name: Test if fail2ban_sender is set correctly
+- name: assert | Test if fail2ban_sender is set correctly
   ansible.builtin.assert:
     that:
       - fail2ban_sender is defined
       - fail2ban_sender is string
+      - fail2ban_sender is not none
     quiet: yes
 
-- name: Test if fail2ban_configuration is set correctly
+- name: assert | Test if fail2ban_configuration is set correctly
   ansible.builtin.assert:
     that:
       - fail2ban_configuration is iterable
@@ -76,14 +79,16 @@
   when:
     - fail2ban_configuration is defined
 
-- name: Test if item in fail2ban_configuration is set correctly
+- name: assert | Test if item in fail2ban_configuration is set correctly
   ansible.builtin.assert:
     that:
       - item.option is defined
       - item.option is string
+      - item.option is not none
       - item.value is defined
       - item.section is defined
       - item.section is string
+      - item.section is not none
     quiet: yes
   loop: "{{ fail2ban_configuration }}"
   loop_control:
@@ -91,14 +96,16 @@
   when:
     - fail2ban_configuration is defined
 
-- name: Test if fail2ban_jail_configuration is set correctly
+- name: assert | Test if fail2ban_jail_configuration is set correctly
   ansible.builtin.assert:
     that:
       - item.option is defined
       - item.option is string
+      - item.option is not none
       - item.value is defined
       - item.section is defined
       - item.section is string
+      - item.section is not none
     quiet: yes
   loop: "{{ fail2ban_jail_configuration }}"
   loop_control:
@@ -106,10 +113,11 @@
   when:
     - fail2ban_jail_configuration is defined
 
-- name: Test if item in fail2ban_filterd_path is set correctly
+- name: assert | Test if item in fail2ban_filterd_path is set correctly
   ansible.builtin.assert:
     that:
       - fail2ban_filterd_path is string
+      - fail2ban_filterd_path is not none
     quiet: yes
   when:
     - fail2ban_filterd_path is defined

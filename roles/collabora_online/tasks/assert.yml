@@ -1,6 +1,6 @@
 ---
 
-- name: Test if collabora_online_type is set correctly
+- name: assert | Test if collabora_online_type is set correctly
   ansible.builtin.assert:
     that:
       - collabora_online_type is defined
@@ -8,32 +8,35 @@
       - collabora_online_type in [ "code", "licensed" ]
     quiet: yes
 
-- name: Test if collabora_online_version is set correctly
+- name: assert | Test if collabora_online_version is set correctly
   ansible.builtin.assert:
     that:
       - collabora_online_version is defined
       - collabora_online_version is string
+      - collabora_online_version is not none
     quiet: yes
   when:
     - collabora_online_type == "licensed"
 
-- name: Test if collabora_online_secret_key is set correctly
+- name: assert | Test if collabora_online_secret_key is set correctly
   ansible.builtin.assert:
     that:
       - collabora_online_secret_key is string
+      - collabora_online_secret_key is not none
     quiet: yes
   when:
     - collabora_online_secret_key is defined
 
-- name: Test if collabora_online_allowed_languages is set correctly
+- name: assert | Test if collabora_online_allowed_languages is set correctly
   ansible.builtin.assert:
     that:
       - collabora_online_allowed_languages is string
+      - collabora_online_allowed_languages is not none
     quiet: yes
   when:
     - collabora_online_allowed_languages is defined
 
-- name: Test if collabora_online_ssl_enabled is set correctly
+- name: assert | Test if collabora_online_ssl_enabled is set correctly
   ansible.builtin.assert:
     that:
       - collabora_online_ssl_enabled is defined
@@ -41,22 +44,26 @@
       - collabora_online_ssl_enabled in [ "false", "true" ]
     quiet: yes
 
-- name: Test if collabora_online_ssl_* is set correctly
+- name: assert | Test if collabora_online_ssl_* is set correctly
   ansible.builtin.assert:
     that:
       - collabora_online_ssl_cert is defined
       - collabora_online_ssl_cert is string
+      - collabora_online_ssl_cert is not none
       - collabora_online_ssl_key is defined
       - collabora_online_ssl_key is string
+      - collabora_online_ssl_key is not none
       - collabora_online_ssl_ca is defined
       - collabora_online_ssl_ca is string
+      - collabora_online_ssl_ca is not none
       - collabora_online_ciphers is defined
       - collabora_online_ciphers is string
+      - collabora_online_ciphers is not none
     quiet: yes
   when:
     - collabora_online_ssl_enabled
 
-- name: Test if collabora_online_mount_jail_tree is set correctly
+- name: assert | Test if collabora_online_mount_jail_tree is set correctly
   ansible.builtin.assert:
     that:
       - collabora_online_mount_jail_tree is defined
@@ -64,7 +71,7 @@
       - collabora_online_mount_jail_tree in [ "false", "true" ]
     quiet: yes
 
-- name: Test if collabora_online_log_level is set correctly
+- name: assert | Test if collabora_online_log_level is set correctly
   ansible.builtin.assert:
     that:
       - collabora_online_log_level is defined
@@ -72,18 +79,24 @@
       - collabora_online_log_level in [ "0", "1", "2", "3", "4", "5", "6", "7", "8", "none", "fatal", "critical", "error", "warning", "notice", "information", "debug", "trace" ]
     quiet: yes
 
-- name: Test if collabora_online_admin_username is set correctly
+- name: assert | Test if collabora_online_admin_username is set correctly
   ansible.builtin.assert:
     that:
       - collabora_online_admin_username is defined
       - collabora_online_admin_username is string
+      - collabora_online_admin_username is not none
       - collabora_online_admin_password is defined
+      - collabora_online_admin_password is string
+      - collabora_online_admin_password is not none
     quiet: yes
 
-- name: Test if collabora_online_admin_password is set correctly
+- name: assert | Test if collabora_online_admin_password is set correctly
   ansible.builtin.assert:
     that:
       - collabora_online_admin_password is defined
       - collabora_online_admin_password is string
+      - collabora_online_admin_password is not none
       - collabora_online_admin_username is defined
+      - collabora_online_admin_username is string
+      - collabora_online_admin_username is not none
     quiet: yes

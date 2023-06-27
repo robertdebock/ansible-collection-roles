@@ -11,12 +11,8 @@
   ansible.builtin.service:
     name: postgresql
     state: restarted
-  when:
-    - not ansible_check_mode
 
 - name: Reload postgres
   ansible.builtin.service:
     name: postgresql
     state: reloaded
-  when:
-    - not ansible_check_mode

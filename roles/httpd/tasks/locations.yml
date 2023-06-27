@@ -1,6 +1,6 @@
 ---
 
-- name: Enable modules
+- name: locations | Enable modules
   community.general.apache2_module:
     name: "{{ item }}"
     state: present
@@ -10,7 +10,7 @@
   when:
     - ansible_os_family in [ "Debian", "Suse" ]
 
-- name: Configure locations
+- name: locations | Configure locations
   ansible.builtin.template:
     src: location.conf.j2
     dest: "{{ httpd_config_directory }}/{{ item.name }}.conf"

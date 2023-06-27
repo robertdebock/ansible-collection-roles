@@ -29,8 +29,8 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
 ---
 - name: Prepare
   hosts: all
-  gather_facts: no
   become: yes
+  gather_facts: no
 
   roles:
     - role: robertdebock.roles.bootstrap
@@ -154,10 +154,6 @@ openssh_trusted_user_ca_keys: none
 
 # For example: "openssh_allow_groups: wheel my_group"
 # openssh_allow_groups: wheel
-
-# Whether to restart openssh immediately or after
-# all other Ansible tasks have been completed.
-openssh_restart_immediately: no
 ```
 
 ## [Requirements](#requirements)
@@ -188,7 +184,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |---------|----|
 |[Alpine](https://hub.docker.com/repository/docker/robertdebock/alpine/general)|all|
 |[Amazon](https://hub.docker.com/repository/docker/robertdebock/amazonlinux/general)|Candidate|
-|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|8|
+|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|8, 9|
 |[Debian](https://hub.docker.com/repository/docker/robertdebock/debian/general)|all|
 |[Fedora](https://hub.docker.com/repository/docker/robertdebock/fedora/general)|all|
 |[opensuse](https://hub.docker.com/repository/docker/robertdebock/opensuse/general)|all|

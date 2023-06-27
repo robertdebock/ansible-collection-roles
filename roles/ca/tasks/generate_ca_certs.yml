@@ -1,9 +1,10 @@
 ---
-- name: Set root CA path
+
+- name: generate_ca_certs | Set root CA path
   ansible.builtin.set_fact:
     ca_root_path: "{{ ca_path }}/rootCA"
 
-- name: Generate root ca certificate signing request
+- name: generate_ca_certs | Generate root ca certificate signing request
   community.crypto.openssl_csr:
     path: "{{ ca_root_path }}/{{ ca_root_csr_path }}"
     privatekey_path: "{{ ca_root_path }}/{{ ca_root_privatekey_path }}"
@@ -15,18 +16,18 @@
     organizational_unit_name: "{{ ca_organizational_unit_name | default(omit) }}"
     state_or_province_name: "{{ ca_state_or_province_name | default(omit) }}"
 
-- name: Generate root ca certificate
+- name: generate_ca_certs | Generate root ca certificate
   ansible.builtin.command:
     chdir: "{{ ca_root_path }}"
     cmd: "openssl ca {{ ca_root_cert_params }}"
     creates: "{{ ca_root_path }}/{{ ca_root_certificate_path }}"
 
-- name: Save root ca certificate
+- name: generate_ca_certs | Save root ca certificate
   ansible.builtin.slurp:
     src: "{{ ca_root_path }}/{{ ca_root_certificate_path }}"
   register: _cacert_root
 
-- name: Generate ca certificate signing request
+- name: generate_ca_certs | Generate ca certificate signing request
   community.crypto.openssl_csr:
     path: "{{ ca_root_path }}/{{ ca_csr_path }}"
     privatekey_path: "{{ ca_path }}/{{ ca_privatekey_path }}"
@@ -38,18 +39,18 @@
     organizational_unit_name: "{{ ca_organizational_unit_name | default(omit) }}"
     state_or_province_name: "{{ ca_state_or_province_name | default(omit) }}"
 
-- name: Generate ca certificate
+- name: generate_ca_certs | Generate ca certificate
   ansible.builtin.command:
     chdir: "{{ ca_root_path }}"
     cmd: "openssl ca {{ ca_cert_params }}"
     creates: "{{ ca_root_path }}/{{ ca_certificate_path }}"
 
-- name: Save ca certificate
+- name: generate_ca_certs | Save ca certificate
   ansible.builtin.slurp:
     src: "{{ ca_root_path }}/{{ ca_certificate_path }}"
   register: _cacert
 
-- name: Create ca chain
+- name: generate_ca_certs | Create ca chain
   ansible.builtin.copy:
     content: "{{ _cacert.content | b64decode }}{{ _cacert_root.content | b64decode }}"
     dest: "{{ ca_path }}/{{ ca_certificate_path }}"

@@ -1,6 +1,6 @@
 ---
 
-- name: Test if item in share.hosts.host is set correctly
+- name: assert_host | Test if item in share.hosts.host is set correctly
   ansible.builtin.assert:
     that:
       - host.name is defined

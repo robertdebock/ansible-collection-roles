@@ -4,8 +4,6 @@
 _dhcpd_packages:
   default:
     - dhcp
-  Amazon:
-    - dhcp
   Debian:
     - isc-dhcp-server
   CentOS-7:
