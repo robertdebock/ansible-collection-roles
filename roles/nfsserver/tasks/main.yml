@@ -6,7 +6,7 @@
   run_once: yes
   delegate_to: localhost
 
-- name: Install pacakges
+- name: Install packages
   ansible.builtin.package:
     name: "{{ nfsserver_packages }}"
 

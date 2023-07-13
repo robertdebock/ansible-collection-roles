@@ -20,6 +20,13 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
   roles:
     - role: robertdebock.roles.consul
       consul_bootstrap_expect: 1
+      consul_encrypt: "6r73CP0icJrap1tsQ17yuqzVguho4/yz+aI/dkVg2Kk="
+      consul_bind_addr: "0.0.0.0"
+      consul_services:
+        - name: web
+          tags:
+            - rails
+          port: 80
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-consul/blob/master/molecule/default/prepare.yml):
@@ -52,7 +59,7 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 consul_install_package: yes
 
 # This flag controls the datacenter in which the agent is running.
-consul_datacenter: dc1
+consul_datacenter: my-dc-1
 
 # This flag provides a data directory for the agent to store state.
 consul_data_dir: /opt/consul
@@ -70,7 +77,7 @@ consul_server: yes
 # consul_bootstrap_expect: 3
 
 # Specifies the secret key to use for encryption of Consul network traffic.
-# consul_encrypt: "GEZzRM+2P+FiUcyrx9Fte8NbwtTlX3NA"
+# consul_encrypt: "6r73CP0icJrap1tsQ17yuqzVguho4/yz+aI/dkVg2Kk="
 
 # Similar to -join but allows retrying a join until it is successful.
 # consul_retry_join:
@@ -88,6 +95,9 @@ consul_server: yes
 #     tags:
 #       - rails
 #     port: 80
+
+# In same cases you may not want to start Consul as a service, because you are "bootstrapping" for example.
+consule_service_started_and_enabled: yes
 ```
 
 ## [Requirements](#requirements)

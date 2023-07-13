@@ -66,10 +66,11 @@
   notify:
     - Rndc reload
 
-- name: Create zone files
+- name: Create zone file
   ansible.builtin.template:
     src: zone.j2
-    dest: "{{ dns_datadir }}/{{ item.name }}.conf"
+    dest: "{{ dns_datadir }}/{{ item.name }}.db"
+    validate: named-checkzone {{ item.name }} %s
     mode: "0640"
     owner: "{{ dns_owner }}"
     group: "{{ dns_group }}"
@@ -78,7 +79,7 @@
     label: "{{ item.name }}"
   when:
     - item.type is undefined or
-      item.type == "master"
+      item.type in [ "primary" ]
   notify:
     - Rndc reload
 

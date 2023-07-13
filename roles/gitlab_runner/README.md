@@ -12,7 +12,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 
 ```yaml
 ---
-- name: converge
+- name: Converge
   hosts: all
   become: yes
   gather_facts: yes
@@ -67,7 +67,7 @@ gitlab_runner_executor: docker
 gitlab_runner_docker_image: "alpine:latest"
 
 # The version of the GitLab runner to install.
-gitlab_runner_version: "15.5.0"
+gitlab_runner_version: "16.1.0"
 
 # Set the amount of concurrent jobs.
 gitlab_runner_concurrency: "{{ ansible_processor_vcpus }}"

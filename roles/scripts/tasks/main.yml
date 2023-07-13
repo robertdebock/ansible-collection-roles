@@ -1,0 +1,29 @@
+---
+# tasks file for scripts
+
+- name: Include assert.yml
+  ansible.builtin.import_tasks: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+- name: Create script directory
+  ansible.builtin.file:
+    path: "{{ item.directory }}"
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+  loop: "{{ scripts }}"
+  loop_control:
+    label: "{{ item.directory }}"
+
+- name: Place script
+  ansible.builtin.template:
+    src: script.sh.j2
+    dest: "{{ item.directory }}/{{ item.name }}.sh"
+    owner: root
+    group: root
+    mode: "0755"
+  loop: "{{ scripts }}"
+  loop_control:
+    label: "{{ item.name }}"

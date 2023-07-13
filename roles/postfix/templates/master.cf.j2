@@ -10,10 +10,10 @@
 #               (yes)   (yes)   (yes)   (never) (100)
 # ==========================================================================
 {% if postfix_spamassassin is defined %}
-smtp      inet  n       -       n       -       -       smtpd -o content_filter=spamassassin
+{{ postfix_smtp_listen_port }}      inet  n       -       n       -       -       smtpd -o content_filter=spamassassin
 spamassassin     unix   -       n       n       -       -       pipe flags=R user={{ postfix_spamassassin_user | default('spamd') }} argv=/usr/bin/spamc -e /usr/sbin/sendmail -oi -f ${sender} ${recipient}
 {% else %}
-smtp      inet  n       -       n       -       -       smtpd
+{{ postfix_smtp_listen_port }}      inet  n       -       n       -       -       smtpd
 {% endif %}
 {% if postfix_clamav is defined %}
 scan      unix  -       -       n       -       16      smtp

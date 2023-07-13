@@ -27,7 +27,7 @@
     state: touch
     owner: consul
     group: consul
-    mode: "0640"
+    mode: "0644"
     modification_time: preserve
     access_time: preserve
 
@@ -41,7 +41,7 @@
   notify:
     - Restart consul
 
-- name: Configure consul service
+- name: Configure a service in consul
   ansible.builtin.template:
     src: service.hcl.j2
     dest: /etc/consul.d/service-{{ item.name }}-{{ item.port }}.hcl
@@ -49,6 +49,8 @@
     group: consul
     mode: "0644"
   loop: "{{ consul_services }}"
+  loop_control:
+    label: "{{ item.name }}"
   notify:
     - Restart consul
   when:
@@ -59,3 +61,5 @@
     name: consul
     state: started
     enabled: yes
+  when:
+    - consule_service_started_and_enabled

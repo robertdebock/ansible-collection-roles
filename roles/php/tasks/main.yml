@@ -9,7 +9,6 @@
 - name: Install php
   ansible.builtin.package:
     name: "{{ php_packages }}"
-    state: present
 
 - name: Find used php.ini
   ansible.builtin.shell:

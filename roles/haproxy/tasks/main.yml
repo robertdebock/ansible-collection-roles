@@ -31,8 +31,6 @@
     mode: "0640"
   notify:
     - Restart haproxy
-  when:
-    - ansible_default_ipv4 is defined
 
 - name: Modify selinux settings
   when:

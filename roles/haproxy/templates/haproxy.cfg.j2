@@ -57,9 +57,11 @@ backend {{ backend.name }}
     mode {{ backend.mode | default('http') }}
 {% for server in backend.servers %}
 {% if server.name is defined %}
-    server {{ server.name }} {{ server.address | default(hostvars[server.name]['ansible_default_ipv4']['address']) }}:{{ server.port | default(backend.port) }} {{ backend.options | join(' ') }}
-{% else %}
-    server {{ server }} {{ hostvars[server]['ansible_default_ipv4']['address'] }}:{{ backend.port }} {{ backend.options | join(' ') }}
+    server {{ server.name }} {{ server.address | default(hostvars[server.name]['ansible_default_ipv4']['address']) }}:{{ server.port | default(backend.port) }} {% if backend.options is defined %}{{ backend.options | join(' ') }}{% endif %}
+
+{% elif ansible_default_ipv4 is defined %}
+    server {{ server }} {{ hostvars[server]['ansible_default_ipv4']['address'] }}:{{ backend.port }} {% if backend.options is defined %}{{ backend.options | join(' ') }}{% endif %}
+
 {% endif %}
 {% endfor %}
 {% endfor %}

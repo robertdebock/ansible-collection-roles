@@ -55,8 +55,8 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
           options:
             - check
         - name: smtp
-          httpcheck: yes
-          balance: roundrobin
+          balance: leastconn
+          mode: tcp
           # You can also refer to a list of servers.
           servers:
             - name: first
@@ -66,8 +66,6 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
               address: "127.0.0.2"
               port: 25
           port: 25
-          options:
-            - check
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-haproxy/blob/master/molecule/default/prepare.yml):

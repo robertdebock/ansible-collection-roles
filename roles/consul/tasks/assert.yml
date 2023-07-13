@@ -106,8 +106,17 @@
       - item.port is defined
       - item.port is number
       - item.port > 0
-      - item.port =< 65536
+      - item.port <= 65536
     quiet: yes
   when:
     - consul_services is defined
   loop: "{{ consul_services }}"
+  loop_control:
+    label: "{{ item.name }}"
+
+- name: assert | Test if consule_service_started_and_enabled is set correctly
+  ansible.builtin.assert:
+    that:
+      - consule_service_started_and_enabled defined
+      - consule_service_started_and_enabled boolean
+    quiet: yes

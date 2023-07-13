@@ -418,3 +418,10 @@
     quiet: yes
   when:
     - postfix_html_directory is defined
+
+- name: assert | Test if postfix_smtp_listen_port is set correctly
+  ansible.builtin.assert:
+    that:
+      - postfix_smtp_listen_port is number or
+        postfix_smtp_listen_port is string
+    quiet: yes

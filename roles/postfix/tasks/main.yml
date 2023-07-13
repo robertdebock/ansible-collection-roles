@@ -134,7 +134,7 @@
     mode: "0644"
   notify:
     - Validate configuration
-    - Reload postfix
+    - Restart postfix
 
 - name: Configure postfix (master.cf)
   ansible.builtin.template:

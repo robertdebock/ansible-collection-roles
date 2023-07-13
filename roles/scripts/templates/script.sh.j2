@@ -1,0 +1,11 @@
+#!{{ scripts_shell }}
+
+{{ ansible_managed | comment }}
+
+cd {{ item.directory }}
+while true ; do
+{% for line in item.lines %}
+  {{ line }}
+{% endfor %}
+  sleep {{ item.sleep }}
+done

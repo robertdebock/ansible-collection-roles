@@ -9,11 +9,20 @@ _gitlab_runner_requirements:
     - git
     - openssl
   RedHat:
-    - curl
-    - yum-utils
-    - openssl
+    "7":
+      - curl
+      - yum-utils
+      - openssl
+    "8":
+      - curl
+      - yum-utils
+      - openssl
+    "9":
+      - curl-minimal
+      - yum-utils
+      - openssl
 
-gitlab_runner_requirements: "{{ _gitlab_runner_requirements[ansible_os_family] }}"
+gitlab_runner_requirements: "{{ _gitlab_runner_requirements[ansible_os_family][ansible_distribution_major_version] | default(_gitlab_runner_requirements[ansible_os_family]) }}"
 
 _gitlab_runner_package_type:
   Debian: deb

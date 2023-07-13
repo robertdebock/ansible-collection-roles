@@ -10,6 +10,14 @@
   when:
     - mount_requests is defined
   block:
+    - name: Check of mountpoint exists
+      ansible.builtin.stat:
+        path: "{{ item.path }}"
+      loop: "{{ mount_requests }}"
+      loop_control:
+        label: "{{ item.path }}"
+      register: mount_requests_check
+
     - name: Create mountpoint
       ansible.builtin.file:
         path: "{{ item.path }}"
@@ -20,8 +28,10 @@
       loop: "{{ mount_requests }}"
       loop_control:
         label: "{{ item.path }}"
+        index_var: index
       when:
         - item.fstype != "swap"
+        - not mount_requests_check.results[index].stat.exists
 
     - name: Mount requested mounts
       ansible.posix.mount:

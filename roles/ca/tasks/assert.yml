@@ -67,7 +67,8 @@
 - name: assert | Test if item of ca_requests is set correctly
   ansible.builtin.assert:
     that:
-      - item is string
+      - item is string or
+        item is iterable
       - item is not none
     quiet: yes
   loop: "{{ ca_requests }}"

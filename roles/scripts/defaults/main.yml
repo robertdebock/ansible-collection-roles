@@ -1,0 +1,17 @@
+---
+# defaults file for scripts
+
+# The shell that will be used for scritps.
+scripts_shell: /bin/bash
+
+# A list of scripts to place on your system.
+scripts: []
+
+# This is an example of how to use this role:
+# scripts:
+#   - name: my_script
+#     directory: /opt/scripts/my_directory
+#     lines:
+#       - echo "Hello world!"
+#       - echo "I'm done."
+#     sleep: 60
