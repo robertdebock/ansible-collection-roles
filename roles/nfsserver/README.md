@@ -21,6 +21,9 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
     - role: robertdebock.roles.nfsserver
       nfsserver_exports:
         - share: /mnt/export
+          owner: root
+          group: root
+          mode: "0755"
           hosts:
             - name: "10.0.0.0/24"
               options:
@@ -33,6 +36,9 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
                 - sync
                 - no_wdelay
         - share: /mnt/export2
+          owner: root
+          group: root
+          mode: "0755"
           hosts:
             - name: "10.2.3.0/24"
               options:
@@ -65,6 +71,9 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 # You can define a list of exports:
 # nfsserver_exports:
 #   - share: /mnt/export
+#     owner: root
+#     group: root
+#     mode: "0755"
 #     hosts:
 #       - name: "10.0.0.0/24"
 #         options:

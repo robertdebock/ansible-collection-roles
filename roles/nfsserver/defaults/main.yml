@@ -4,6 +4,9 @@
 # You can define a list of exports:
 # nfsserver_exports:
 #   - share: /mnt/export
+#     owner: root
+#     group: root
+#     mode: "0755"
 #     hosts:
 #       - name: "10.0.0.0/24"
 #         options:

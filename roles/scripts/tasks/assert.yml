@@ -51,10 +51,11 @@
 - name: assert | Test if item.sleep in scripts is set correctly
   ansible.builtin.assert:
     that:
-      - item.sleep is defined
       - item.sleep is number
       - item.sleep >= 0
     quiet: yes
+  when:
+    - item.sleep is defined
   loop: "{{ scripts }}"
   loop_control:
     label: "{{ item.name }}"

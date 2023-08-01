@@ -10,6 +10,17 @@
   ansible.builtin.package:
     name: "{{ nfsserver_packages }}"
 
+- name: Create all exported directories
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ item.owner }}"
+    group: "{{ item.group }}"
+    mode: "{{ item.mode }}"
+  loop: "{{ nfsserver_exports }}"
+  loop_control:
+    label: "{{ item.share }}"
+
 - name: Configure exports
   ansible.builtin.template:
     src: exports.j2

@@ -1,0 +1,5 @@
+---
+# vars file for php_unsupported
+
+# The php package to install. (string)
+php_package: php{{ php_version }}

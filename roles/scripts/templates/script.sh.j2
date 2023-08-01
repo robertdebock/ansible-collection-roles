@@ -7,5 +7,7 @@ while true ; do
 {% for line in item.lines %}
   {{ line }}
 {% endfor %}
+{% if item.sleep is defined %}
   sleep {{ item.sleep }}
+{% endif %}
 done

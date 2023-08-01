@@ -1,0 +1,30 @@
+---
+# tasks file for php_unsupported
+
+- name: Include assert.yml
+  ansible.builtin.import_tasks: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+- name: Install ppa:ondrej/php repository
+  ansible.builtin.apt_repository:
+    repo: ppa:ondrej/php
+    state: present
+    validate_certs: no
+    update_cache: yes
+  when:
+    - ansible_pkg_mgr == 'apt'
+
+- name: Install php
+  ansible.builtin.apt:
+    name: "{{ php_package }}"
+  when:
+    - ansible_pkg_mgr == 'apt'
+
+- name: Install php packages
+  ansible.builtin.apt:
+    name: "{{ item }}"
+  loop: "{{ php_packages }}"
+  when:
+    - ansible_pkg_mgr == 'apt'
+    - php_packages | length > 0

@@ -16,6 +16,15 @@
       - item.share is not none
       - item.hosts is defined
       - item.hosts is iterable
+      - item.owner is defined
+      - item.owner is string
+      - item.owner is not none
+      - item.group is defined
+      - item.group is string
+      - item.group is not none
+      - item.mode is defined
+      - item.mode is string
+      - item.mode is not none
     quiet: yes
   loop: "{{ nfsserver_exports }}"
   loop_control:
