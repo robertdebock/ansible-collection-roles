@@ -18,7 +18,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
   gather_facts: yes
 
   roles:
-    - role: robertdebock.roles.grub
+    - role: robertdebock.roles.roles.grub
       grub_options:
         - option: cgroup_enable
           value: memory
@@ -36,7 +36,7 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
   gather_facts: no
 
   roles:
-    - role: robertdebock.roles.bootstrap
+    - role: robertdebock.roles.roles.bootstrap
 
   tasks:
     - name: Make /etc/default

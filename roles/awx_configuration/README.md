@@ -18,7 +18,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
   gather_facts: yes
 
   roles:
-    - role: robertdebock.roles.awx_configuration
+    - role: robertdebock.roles.roles.awx_configuration
       awx_configuration_ci: yes
       awx_configuration_organizations:
         - name: My organization
@@ -45,7 +45,7 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
   gather_facts: no
 
   roles:
-    - role: robertdebock.roles.bootstrap
+    - role: robertdebock.roles.roles.bootstrap
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.

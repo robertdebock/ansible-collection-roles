@@ -18,7 +18,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
   gather_facts: yes
 
   roles:
-    - role: robertdebock.roles.natrouter
+    - role: robertdebock.roles.roles.natrouter
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-natrouter/blob/master/molecule/default/prepare.yml):
@@ -31,8 +31,8 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
   gather_facts: no
 
   roles:
-    - role: robertdebock.roles.bootstrap
-    - role: robertdebock.roles.sysctl
+    - role: robertdebock.roles.roles.bootstrap
+    - role: robertdebock.roles.roles.sysctl
       sysctl_items:
         - name: net.ipv4.ip_forward
           value: 1

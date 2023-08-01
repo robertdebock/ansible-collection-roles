@@ -18,7 +18,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
   gather_facts: yes
 
   roles:
-    - role: robertdebock.roles.redis
+    - role: robertdebock.roles.roles.redis
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-redis/blob/master/molecule/default/prepare.yml):
@@ -31,14 +31,14 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
   gather_facts: no
 
   roles:
-    - role: robertdebock.roles.bootstrap
-    - role: robertdebock.roles.epel
-    - role: robertdebock.roles.apt_autostart
-    - role: robertdebock.roles.sysctl
+    - role: robertdebock.roles.roles.bootstrap
+    - role: robertdebock.roles.roles.epel
+    - role: robertdebock.roles.roles.apt_autostart
+    - role: robertdebock.roles.roles.sysctl
       sysctl_items:
         - name: vm.overcommit_memory
           value: 1
-    - role: robertdebock.roles.grub
+    - role: robertdebock.roles.roles.grub
       grub_options:
         - option: transparent_hugepage
           value: never

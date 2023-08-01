@@ -18,7 +18,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
   gather_facts: yes
 
   roles:
-    - role: robertdebock.roles.aide
+    - role: robertdebock.roles.roles.aide
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-aide/blob/master/molecule/default/prepare.yml):
@@ -31,9 +31,9 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
   gather_facts: no
 
   roles:
-    - role: robertdebock.roles.bootstrap
-    - role: robertdebock.roles.cron
-    - role: robertdebock.roles.postfix
+    - role: robertdebock.roles.roles.bootstrap
+    - role: robertdebock.roles.roles.cron
+    - role: robertdebock.roles.roles.postfix
       postfix_myhostname: "smtp.example.com"
       postfix_mydomain: "example.com"
       postfix_myorigin: "example.com"

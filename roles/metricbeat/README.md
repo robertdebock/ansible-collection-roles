@@ -18,7 +18,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
   gather_facts: yes
 
   roles:
-    - role: robertdebock.roles.metricbeat
+    - role: robertdebock.roles.roles.metricbeat
       metricbeat_elasticsearch_password: "My-P@s5w0rd."
       metricbeat_modules:
         - name: system
@@ -35,9 +35,9 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
   gather_facts: no
 
   roles:
-    - role: robertdebock.roles.bootstrap
-    - role: robertdebock.roles.core_dependencies
-    - role: robertdebock.roles.elastic_repo
+    - role: robertdebock.roles.roles.bootstrap
+    - role: robertdebock.roles.roles.core_dependencies
+    - role: robertdebock.roles.roles.elastic_repo
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.

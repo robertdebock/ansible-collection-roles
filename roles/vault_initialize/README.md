@@ -18,7 +18,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
   gather_facts: yes
 
   roles:
-    - role: robertdebock.roles.vault_initialize
+    - role: robertdebock.roles.roles.vault_initialize
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-vault_initialize/blob/master/molecule/default/prepare.yml):
@@ -31,11 +31,11 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
   gather_facts: no
 
   roles:
-    - role: robertdebock.roles.bootstrap
-    - role: robertdebock.roles.core_dependencies
-    - role: robertdebock.roles.hashicorp
-    - role: robertdebock.roles.vault
-    - role: robertdebock.roles.vault_configuration
+    - role: robertdebock.roles.roles.bootstrap
+    - role: robertdebock.roles.roles.core_dependencies
+    - role: robertdebock.roles.roles.hashicorp
+    - role: robertdebock.roles.roles.vault
+    - role: robertdebock.roles.roles.vault_configuration
       vault_configuration_listener_tcp:
         address: "127.0.0.1:8200"
         cluster_address: "127.0.0.1:8201"

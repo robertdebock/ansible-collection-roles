@@ -24,7 +24,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
       register: token_raw
 
   roles:
-    - role: robertdebock.roles.vault_snapshot
+    - role: robertdebock.roles.roles.vault_snapshot
       vault_snapshot_token: "{{ token_raw['content'] | b64decode }}"
       vault_snapshot_schedules:
         - name: hourly
@@ -63,12 +63,12 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
   gather_facts: no
 
   roles:
-    - role: robertdebock.roles.bootstrap
-    - role: robertdebock.roles.core_dependencies
-    - role: robertdebock.roles.hashicorp
-    - role: robertdebock.roles.vault
+    - role: robertdebock.roles.roles.bootstrap
+    - role: robertdebock.roles.roles.core_dependencies
+    - role: robertdebock.roles.roles.hashicorp
+    - role: robertdebock.roles.roles.vault
       vault_type: ent
-    - role: robertdebock.roles.vault_configuration
+    - role: robertdebock.roles.roles.vault_configuration
       vault_configuration_license: "{{ lookup('ansible.builtin.env', 'VAULT_LICENSE') }}"
       vault_configuration_listener_tcp:
         address: "127.0.0.1:8200"

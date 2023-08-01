@@ -18,7 +18,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
   gather_facts: yes
 
   roles:
-    - role: robertdebock.roles.ansible
+    - role: robertdebock.roles.roles.ansible
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-ansible/blob/master/molecule/default/prepare.yml):
@@ -31,10 +31,10 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
   become: yes
 
   roles:
-    - role: robertdebock.roles.bootstrap
-    - role: robertdebock.roles.epel
-    - role: robertdebock.roles.buildtools
-    - role: robertdebock.roles.python_pip
+    - role: robertdebock.roles.roles.bootstrap
+    - role: robertdebock.roles.roles.epel
+    - role: robertdebock.roles.roles.buildtools
+    - role: robertdebock.roles.roles.python_pip
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.

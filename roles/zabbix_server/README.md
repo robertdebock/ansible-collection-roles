@@ -18,7 +18,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
   gather_facts: yes
 
   roles:
-    - role: robertdebock.roles.zabbix_server
+    - role: robertdebock.roles.roles.zabbix_server
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-zabbix_server/blob/master/molecule/default/prepare.yml):
@@ -31,10 +31,10 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
   gather_facts: no
 
   roles:
-    - role: robertdebock.roles.bootstrap
-    - role: robertdebock.roles.selinux
-    - role: robertdebock.roles.container_docs
-    - role: robertdebock.roles.mysql
+    - role: robertdebock.roles.roles.bootstrap
+    - role: robertdebock.roles.roles.selinux
+    - role: robertdebock.roles.roles.container_docs
+    - role: robertdebock.roles.roles.mysql
       mysql_databases:
         - name: zabbix
           encoding: utf8
@@ -43,9 +43,9 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
         - name: zabbix
           password: zabbix
           priv: "zabbix.*:ALL"
-    - role: robertdebock.roles.ca_certificates
-    - role: robertdebock.roles.zabbix_repository
-    - role: robertdebock.roles.core_dependencies
+    - role: robertdebock.roles.roles.ca_certificates
+    - role: robertdebock.roles.roles.zabbix_repository
+    - role: robertdebock.roles.roles.core_dependencies
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.

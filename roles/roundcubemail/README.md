@@ -21,12 +21,12 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
     ../../vars/main.yml
 
   roles:
-    - role: robertdebock.roles.httpd
+    - role: robertdebock.roles.roles.httpd
       httpd_vhosts:
         - name: docroot
           servername: localhost
           documentroot: "{{ roundcubemail_install_directory }}"
-    - role: robertdebock.roles.roundcubemail
+    - role: robertdebock.roles.roles.roundcubemail
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-roundcubemail/blob/master/molecule/default/prepare.yml):
@@ -39,23 +39,23 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
   gather_facts: no
 
   roles:
-    - role: robertdebock.roles.bootstrap
-    - role: robertdebock.roles.epel
-    - role: robertdebock.roles.buildtools
-    - role: robertdebock.roles.python_pip
-    - role: robertdebock.roles.openssl
+    - role: robertdebock.roles.roles.bootstrap
+    - role: robertdebock.roles.roles.epel
+    - role: robertdebock.roles.roles.buildtools
+    - role: robertdebock.roles.roles.python_pip
+    - role: robertdebock.roles.roles.openssl
       openssl_items:
         - name: apache-httpd
           common_name: "{{ ansible_fqdn }}"
-    - role: robertdebock.roles.selinux
-    - role: robertdebock.roles.httpd
-    - role: robertdebock.roles.php
+    - role: robertdebock.roles.roles.selinux
+    - role: robertdebock.roles.roles.httpd
+    - role: robertdebock.roles.roles.php
       php_upload_max_filesize: 5M
       php_post_max_size: 6M
       php_date_timezone: Europe/Amsterdam
       php_extension:
         - mcrypt.so
-    - role: robertdebock.roles.mysql
+    - role: robertdebock.roles.roles.mysql
       mysql_databases:
         - name: roundcube
       mysql_users:

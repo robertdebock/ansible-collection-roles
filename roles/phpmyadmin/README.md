@@ -18,8 +18,8 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
   gather_facts: yes
 
   roles:
-    - role: robertdebock.roles.httpd
-    - role: robertdebock.roles.phpmyadmin
+    - role: robertdebock.roles.roles.httpd
+    - role: robertdebock.roles.roles.phpmyadmin
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-phpmyadmin/blob/master/molecule/default/prepare.yml):
@@ -32,23 +32,23 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
   gather_facts: no
 
   roles:
-    - role: robertdebock.roles.bootstrap
-    - role: robertdebock.roles.core_dependencies
-    - role: robertdebock.roles.buildtools
-    - role: robertdebock.roles.epel
-    - role: robertdebock.roles.python_pip
-    - role: robertdebock.roles.openssl
+    - role: robertdebock.roles.roles.bootstrap
+    - role: robertdebock.roles.roles.core_dependencies
+    - role: robertdebock.roles.roles.buildtools
+    - role: robertdebock.roles.roles.epel
+    - role: robertdebock.roles.roles.python_pip
+    - role: robertdebock.roles.roles.openssl
       openssl_items:
         - name: apache-httpd
           common_name: "{{ ansible_fqdn }}"
-    - role: robertdebock.roles.selinux
-    - role: robertdebock.roles.httpd
-    - role: robertdebock.roles.mysql
+    - role: robertdebock.roles.roles.selinux
+    - role: robertdebock.roles.roles.httpd
+    - role: robertdebock.roles.roles.mysql
       mysql_users:
         - name: admin
           password: P@s5-W0rd
           priv: "*.*:ALL"
-    - role: robertdebock.roles.php
+    - role: robertdebock.roles.roles.php
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.

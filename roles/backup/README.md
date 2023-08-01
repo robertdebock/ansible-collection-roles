@@ -18,7 +18,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
   gather_facts: yes
 
   roles:
-    - role: robertdebock.roles.backup
+    - role: robertdebock.roles.roles.backup
       backup_cleanup: no
 ```
 
@@ -32,16 +32,16 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
   gather_facts: no
 
   roles:
-    - role: robertdebock.roles.bootstrap
-    - role: robertdebock.roles.mysql
+    - role: robertdebock.roles.roles.bootstrap
+    - role: robertdebock.roles.roles.mysql
       mysql_databases:
         - name: test_db
           encoding: utf8
           collation: utf8_bin
-    - role: robertdebock.roles.buildtools
-    - role: robertdebock.roles.epel
-    - role: robertdebock.roles.python_pip
-    - role: robertdebock.roles.postgres
+    - role: robertdebock.roles.roles.buildtools
+    - role: robertdebock.roles.roles.epel
+    - role: robertdebock.roles.roles.python_pip
+    - role: robertdebock.roles.roles.postgres
       postgres_databases:
         - name: test_db
           state: present

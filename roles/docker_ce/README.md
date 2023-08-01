@@ -18,7 +18,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
   gather_facts: yes
 
   roles:
-    - role: robertdebock.roles.docker_ce
+    - role: robertdebock.roles.roles.docker_ce
       docker_ce_privileged_users:
         - woody
         - buzz
@@ -34,11 +34,11 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
   gather_facts: no
 
   roles:
-    - role: robertdebock.roles.bootstrap
-    - role: robertdebock.roles.epel
-    - role: robertdebock.roles.buildtools
-    - role: robertdebock.roles.python_pip
-    - role: robertdebock.roles.core_dependencies
+    - role: robertdebock.roles.roles.bootstrap
+    - role: robertdebock.roles.roles.epel
+    - role: robertdebock.roles.roles.buildtools
+    - role: robertdebock.roles.roles.python_pip
+    - role: robertdebock.roles.roles.core_dependencies
 
   tasks:
     - name: Create test case users

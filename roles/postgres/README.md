@@ -18,7 +18,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
   gather_facts: yes
 
   roles:
-    - role: robertdebock.roles.postgres
+    - role: robertdebock.roles.roles.postgres
       postgres_port: 6543
       postgres_databases:
         - name: test
@@ -38,10 +38,10 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
   gather_facts: no
 
   roles:
-    - role: robertdebock.roles.bootstrap
-    - role: robertdebock.roles.buildtools
-    - role: robertdebock.roles.epel
-    - role: robertdebock.roles.python_pip
+    - role: robertdebock.roles.roles.bootstrap
+    - role: robertdebock.roles.roles.buildtools
+    - role: robertdebock.roles.roles.epel
+    - role: robertdebock.roles.roles.python_pip
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.

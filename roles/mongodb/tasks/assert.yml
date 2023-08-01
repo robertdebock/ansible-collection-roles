@@ -1,0 +1,14 @@
+---
+
+# - name: assert | Test if mongodb_X is set correctly
+#   ansible.builtin.assert:
+#     that:
+#       - mongodb_X is defined
+#       - mongodb_X is string
+#       - mongodb_X is not none
+#       - mongodb_X is iterable
+#       - mongodb_X is number
+#       - mongodb_X is boolean
+#       - mongodb_X = 0
+#       - mongodb_X in [ "a", "b" ]
+#     quiet: yes

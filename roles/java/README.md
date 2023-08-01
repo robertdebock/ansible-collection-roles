@@ -27,7 +27,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
     desired_java_version: "{{ _desired_java_version[ansible_distribution ~ '-' ~ ansible_distribution_release] | default(_desired_java_version[ansible_distribution] | default(_desired_java_version['default'])) }}"
 
   roles:
-    - role: robertdebock.roles.java
+    - role: robertdebock.roles.roles.java
       java_version: "{{ desired_java_version }}"
 ```
 
@@ -41,7 +41,7 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
   gather_facts: no
 
   roles:
-    - role: robertdebock.roles.bootstrap
+    - role: robertdebock.roles.roles.bootstrap
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.

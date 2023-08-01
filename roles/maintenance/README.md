@@ -18,7 +18,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
   gather_facts: yes
 
   roles:
-    - role: robertdebock.roles.maintenance
+    - role: robertdebock.roles.roles.maintenance
       maintenance_files_to_empty:
         - /tmp/some_file.txt
 ```
@@ -33,7 +33,7 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
   gather_facts: no
 
   roles:
-    - role: robertdebock.roles.bootstrap
+    - role: robertdebock.roles.roles.bootstrap
 
   tasks:
     - name: Create a file
