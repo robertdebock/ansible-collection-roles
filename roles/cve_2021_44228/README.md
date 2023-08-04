@@ -18,7 +18,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
   gather_facts: yes
 
   roles:
-    - role: robertdebock.roles.roles.cve_2021_44228
+    - role: robertdebock.roles.cve_2021_44228
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-cve_2021_44228/blob/master/molecule/default/prepare.yml):
@@ -31,7 +31,7 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
   gather_facts: no
 
   roles:
-    - role: robertdebock.roles.roles.bootstrap
+    - role: robertdebock.roles.bootstrap
 
   # The role is prepared to install extra software and also remove when
   # the role is done. This is not idempotent, so in this playbook, the

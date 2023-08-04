@@ -18,7 +18,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
   gather_facts: yes
 
   roles:
-    - role: robertdebock.roles.roles.tailscale
+    - role: robertdebock.roles.tailscale
       # When setting the `tailscale_authkey`, a node can join automatically.
       # In case the `tailscale_authkey` is unset, registration of the node is manual.
       # tailscale_authkey: "tskey-auth-KEY_IDENTITY-KEY_SERET_KEY_SERET_KEY_SERET_KE"
@@ -42,7 +42,7 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
   gather_facts: no
 
   roles:
-    - role: robertdebock.roles.roles.bootstrap
+    - role: robertdebock.roles.bootstrap
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.

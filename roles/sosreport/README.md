@@ -18,7 +18,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
   gather_facts: yes
 
   roles:
-    - role: robertdebock.roles.roles.sosreport
+    - role: robertdebock.roles.sosreport
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-sosreport/blob/master/molecule/default/prepare.yml):
@@ -32,7 +32,7 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
   serial: 30%
 
   roles:
-    - role: robertdebock.roles.roles.bootstrap
+    - role: robertdebock.roles.bootstrap
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.

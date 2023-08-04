@@ -18,7 +18,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
   gather_facts: yes
 
   roles:
-    - role: robertdebock.roles.roles.nextcloud
+    - role: robertdebock.roles.nextcloud
       nextcloud_apps:
         - name: richdocumentscode
       nextcloud_settings:
@@ -37,19 +37,19 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
   gather_facts: no
 
   roles:
-    - role: robertdebock.roles.roles.bootstrap
-    - role: robertdebock.roles.roles.core_dependencies
-    - role: robertdebock.roles.roles.cron
-    - role: robertdebock.roles.roles.buildtools
-    - role: robertdebock.roles.roles.epel
-    - role: robertdebock.roles.roles.python_pip
-    - role: robertdebock.roles.roles.openssl
+    - role: robertdebock.roles.bootstrap
+    - role: robertdebock.roles.core_dependencies
+    - role: robertdebock.roles.cron
+    - role: robertdebock.roles.buildtools
+    - role: robertdebock.roles.epel
+    - role: robertdebock.roles.python_pip
+    - role: robertdebock.roles.openssl
       openssl_items:
         - name: apache-httpd
           common_name: "{{ ansible_fqdn }}"
-    - role: robertdebock.roles.roles.selinux
-    - role: robertdebock.roles.roles.httpd
-    - role: robertdebock.roles.roles.redis
+    - role: robertdebock.roles.selinux
+    - role: robertdebock.roles.httpd
+    - role: robertdebock.roles.redis
 
 - name: Continue prepare with facts
   hosts: all
@@ -67,12 +67,12 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
           - php74
 
   roles:
-    - role: robertdebock.roles.roles.php
+    - role: robertdebock.roles.php
       php_memory_limit: 512M
       php_upload_max_filesize: 8G
       php_post_max_size: 8G
-    - role: robertdebock.roles.roles.php_fpm
-    - role: robertdebock.roles.roles.mysql
+    - role: robertdebock.roles.php_fpm
+    - role: robertdebock.roles.mysql
       mysql_databases:
         - name: nextcloud
           encoding: utf8

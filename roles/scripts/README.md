@@ -4,7 +4,7 @@ Place scripts on your system.
 
 |GitHub|GitLab|Quality|Downloads|Version|
 |------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-scripts/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-scripts/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-scripts/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-scripts)|[![quality](https://img.shields.io/ansible/quality/)](https://galaxy.ansible.com/robertdebock/scripts)|[![downloads](https://img.shields.io/ansible/role/d/)](https://galaxy.ansible.com/robertdebock/scripts)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-scripts.svg)](https://github.com/robertdebock/ansible-role-scripts/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-scripts/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-scripts/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-scripts/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-scripts)|[![quality](https://img.shields.io/ansible/quality/62753)](https://galaxy.ansible.com/robertdebock/scripts)|[![downloads](https://img.shields.io/ansible/role/d/62753)](https://galaxy.ansible.com/robertdebock/scripts)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-scripts.svg)](https://github.com/robertdebock/ansible-role-scripts/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -18,7 +18,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
   gather_facts: yes
 
   roles:
-    - role: robertdebock.roles.roles.scripts
+    - role: robertdebock.roles.scripts
       scripts:
         - name: my_script
           directory: /opt/scripts/my_directory
@@ -38,7 +38,7 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
   gather_facts: no
 
   roles:
-    - role: robertdebock.roles.roles.bootstrap
+    - role: robertdebock.roles.bootstrap
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.

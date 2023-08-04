@@ -1,0 +1,210 @@
+---
+
+- name: assert | Test if vsftpd_anonymous_enable is set correctly
+  ansible.builtin.assert:
+    that:
+      - vsftpd_anonymous_enable is defined
+      - vsftpd_anonymous_enable is boolean
+    quiet: yes
+
+- name: assert | Test if vsftpd_local_enable is set correctly
+  ansible.builtin.assert:
+    that:
+      - vsftpd_local_enable is defined
+      - vsftpd_local_enable is boolean
+    quiet: yes
+
+- name: assert | Test if vsftpd_write_enable is set correctly
+  ansible.builtin.assert:
+    that:
+      - vsftpd_write_enable is defined
+      - vsftpd_write_enable is boolean
+    quiet: yes
+
+- name: assert | Test if vsftpd_local_umask is set correctly
+  ansible.builtin.assert:
+    that:
+      - vsftpd_local_umask is defined
+      - vsftpd_local_umask is string
+      - vsftpd_local_umask is not none
+    quiet: yes
+
+- name: assert | Test if vsftpd_anon_upload_enable is set correctly
+  ansible.builtin.assert:
+    that:
+      - vsftpd_anon_upload_enable is defined
+      - vsftpd_anon_upload_enable is boolean
+    quiet: yes
+
+- name: assert | Test if vsftpd_anon_mkdir_write_enable is set correctly
+  ansible.builtin.assert:
+    that:
+      - vsftpd_anon_mkdir_write_enable is defined
+      - vsftpd_anon_mkdir_write_enable is boolean
+    quiet: yes
+
+- name: assert | Test if vsftpd_dirmessage_enable is set correctly
+  ansible.builtin.assert:
+    that:
+      - vsftpd_dirmessage_enable is defined
+      - vsftpd_dirmessage_enable is boolean
+    quiet: yes
+
+- name: assert | Test if vsftpd_xferlog_enable is set correctly
+  ansible.builtin.assert:
+    that:
+      - vsftpd_xferlog_enable is defined
+      - vsftpd_xferlog_enable is boolean
+    quiet: yes
+
+- name: assert | Test if vsftpd_connect_from_port_20 is set correctly
+  ansible.builtin.assert:
+    that:
+      - vsftpd_connect_from_port_20 is defined
+      - vsftpd_connect_from_port_20 is boolean
+    quiet: yes
+
+- name: assert | Test if vsftpd_chown_uploads is set correctly
+  ansible.builtin.assert:
+    that:
+      - vsftpd_chown_uploads is defined
+      - vsftpd_chown_uploads is boolean
+    quiet: yes
+
+- name: assert | Test if vsftpd_xferlog_file is set correctly
+  ansible.builtin.assert:
+    that:
+      - vsftpd_xferlog_file is defined
+      - vsftpd_xferlog_file is string
+      - vsftpd_xferlog_file is not none
+    quiet: yes
+
+- name: assert | Test if vsftpd_xferlog_std_format is set correctly
+  ansible.builtin.assert:
+    that:
+      - vsftpd_xferlog_std_format is defined
+      - vsftpd_xferlog_std_format is boolean
+    quiet: yes
+
+- name: assert | Test if vsftpd_idle_session_timeout is set correctly
+  ansible.builtin.assert:
+    that:
+      - vsftpd_idle_session_timeout is defined
+      - vsftpd_idle_session_timeout is number
+    quiet: yes
+
+- name: assert | Test if vsftpd_data_connection_timeout is set correctly
+  ansible.builtin.assert:
+    that:
+      - vsftpd_data_connection_timeout is defined
+      - vsftpd_data_connection_timeout is number
+    quiet: yes
+
+- name: assert | Test if vsftpd_nopriv_user is set correctly
+  ansible.builtin.assert:
+    that:
+      - vsftpd_nopriv_user is defined
+      - vsftpd_nopriv_user is string
+    quiet: yes
+
+- name: assert | Test if vsftpd_async_abor_enable is set correctly
+  ansible.builtin.assert:
+    that:
+      - vsftpd_async_abor_enable is defined
+      - vsftpd_async_abor_enable is boolean
+    quiet: yes
+
+- name: assert | Test if vsftpd_ascii_upload_enable is set correctly
+  ansible.builtin.assert:
+    that:
+      - vsftpd_ascii_upload_enable is defined
+      - vsftpd_ascii_upload_enable is boolean
+    quiet: yes
+
+- name: assert | Test if vsftpd_ascii_download_enable is set correctly
+  ansible.builtin.assert:
+    that:
+      - vsftpd_ascii_download_enable is defined
+      - vsftpd_ascii_download_enable is boolean
+    quiet: yes
+
+- name: assert | Test if vsftpd_ftpd_banner is set correctly
+  ansible.builtin.assert:
+    that:
+      - vsftpd_ftpd_banner is defined
+      - vsftpd_ftpd_banner is string
+      - vsftpd_ftpd_banner is not none
+    quiet: yes
+
+- name: assert | Test if vsftpd_deny_email_enable is set correctly
+  ansible.builtin.assert:
+    that:
+      - vsftpd_deny_email_enable is defined
+      - vsftpd_deny_email_enable is boolean
+    quiet: yes
+
+- name: assert | Test if vsftpd_banned_email_file is set correctly
+  ansible.builtin.assert:
+    that:
+      - vsftpd_banned_email_file is defined
+      - vsftpd_banned_email_file is string
+      - vsftpd_banned_email_file is not none
+    quiet: yes
+
+- name: assert | Test if vsftpd_chroot_local_user is set correctly
+  ansible.builtin.assert:
+    that:
+      - vsftpd_chroot_local_user is defined
+      - vsftpd_chroot_local_user is boolean
+    quiet: yes
+
+- name: assert | Test if vsftpd_chroot_list_enable is set correctly
+  ansible.builtin.assert:
+    that:
+      - vsftpd_chroot_list_enable is defined
+      - vsftpd_chroot_list_enable is boolean
+    quiet: yes
+
+- name: assert | Test if vsftpd_chroot_list_file is set correctly
+  ansible.builtin.assert:
+    that:
+      - vsftpd_chroot_list_file is defined
+      - vsftpd_chroot_list_file is string
+      - vsftpd_chroot_list_file is not none
+    quiet: yes
+
+- name: assert | Test if vsftpd_ls_recurse_enable is set correctly
+  ansible.builtin.assert:
+    that:
+      - vsftpd_ls_recurse_enable is defined
+      - vsftpd_ls_recurse_enable is boolean
+    quiet: yes
+
+- name: assert | Test if vsftpd_listen is set correctly
+  ansible.builtin.assert:
+    that:
+      - vsftpd_listen is defined
+      - vsftpd_listen is boolean
+    quiet: yes
+
+- name: assert | Test if vsftpd_listen_ipv6 is set correctly
+  ansible.builtin.assert:
+    that:
+      - vsftpd_listen_ipv6 is defined
+      - vsftpd_listen_ipv6 is boolean
+    quiet: yes
+
+- name: assert | Test if vsftpd_pam_service_name is set correctly
+  ansible.builtin.assert:
+    that:
+      - vsftpd_pam_service_name is defined
+      - vsftpd_pam_service_name is string
+      - vsftpd_pam_service_name is not none
+    quiet: yes
+
+- name: assert | Test if vsftpd_userlist_enable is set correctly
+  ansible.builtin.assert:
+    that:
+      - vsftpd_userlist_enable is defined
+      - vsftpd_userlist_enable is boolean
+    quiet: yes

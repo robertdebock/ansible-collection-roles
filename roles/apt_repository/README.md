@@ -18,7 +18,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
   gather_facts: yes
 
   roles:
-    - role: robertdebock.roles.roles.apt_repository
+    - role: robertdebock.roles.apt_repository
       apt_repositories:
         - repo: "deb https://dl.yarnpkg.com/debian/ stable main"
 ```
@@ -33,7 +33,7 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
   gather_facts: no
 
   roles:
-    - role: robertdebock.roles.roles.bootstrap
+    - role: robertdebock.roles.bootstrap
 
   tasks:
     - name: Install apt-transport-https ca-certificates

@@ -4,7 +4,7 @@ Install an unsupported version of php on your system.
 
 |GitHub|GitLab|Quality|Downloads|Version|
 |------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-php_unsupported/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-php_unsupported/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-php_unsupported/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-php_unsupported)|[![quality](https://img.shields.io/ansible/quality/)](https://galaxy.ansible.com/robertdebock/php_unsupported)|[![downloads](https://img.shields.io/ansible/role/d/)](https://galaxy.ansible.com/robertdebock/php_unsupported)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-php_unsupported.svg)](https://github.com/robertdebock/ansible-role-php_unsupported/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-php_unsupported/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-php_unsupported/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-php_unsupported/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-php_unsupported)|[![quality](https://img.shields.io/ansible/quality/62900)](https://galaxy.ansible.com/robertdebock/php_unsupported)|[![downloads](https://img.shields.io/ansible/role/d/62900)](https://galaxy.ansible.com/robertdebock/php_unsupported)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-php_unsupported.svg)](https://github.com/robertdebock/ansible-role-php_unsupported/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -18,7 +18,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
   gather_facts: yes
 
   roles:
-    - role: robertdebock.roles.roles.php_unsupported
+    - role: robertdebock.roles.php_unsupported
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-php_unsupported/blob/master/molecule/default/prepare.yml):
@@ -31,7 +31,7 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
   gather_facts: no
 
   roles:
-    - role: robertdebock.roles.roles.bootstrap
+    - role: robertdebock.roles.bootstrap
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.
@@ -93,8 +93,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|[Debian](https://hub.docker.com/repository/docker/robertdebock/debian/general)|all|
-|[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|all|
+|[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|jammy, focal|
 
 The minimum version of Ansible required is 2.12, tests have been done to:
 

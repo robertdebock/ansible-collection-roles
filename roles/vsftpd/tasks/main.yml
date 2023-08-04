@@ -1,0 +1,27 @@
+---
+# tasks file for vsftpd
+
+- name: Include assert.yml
+  ansible.builtin.import_tasks: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+- name: Install vsftpd
+  ansible.builtin.package:
+    name: vsftpd
+
+- name: Configure vsftpd
+  ansible.builtin.template:
+    src: vsftpd.conf.j2
+    dest: /etc/vsftpd/vsftpd.conf
+    owner: root
+    group: root
+    mode: '0600'
+  notify:
+    - Restart vsftpd
+
+- name: Start and enable vsftpd
+  ansible.builtin.service:
+    name: vsftpd
+    state: started
+    enabled: yes

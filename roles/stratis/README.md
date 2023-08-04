@@ -18,7 +18,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
   gather_facts: yes
 
   roles:
-    - role: robertdebock.roles.roles.stratis
+    - role: robertdebock.roles.stratis
   # It's not easy to test block-devices in CI. That's why the next block
   # of variables is commented, but left here as an example.
   #    stratis_pools:
@@ -53,7 +53,7 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
         minor: 3
 
   roles:
-    - role: robertdebock.roles.roles.bootstrap
+    - role: robertdebock.roles.bootstrap
 
   tasks:
     - name: Create storage file

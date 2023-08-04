@@ -22,7 +22,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
     - ../../defaults/main.yml
 
   roles:
-    - role: robertdebock.roles.roles.httpd
+    - role: robertdebock.roles.httpd
       # https_ssl_enable: yes
       httpd_port: 8080
       httpd_ssl_port: 8443
@@ -82,11 +82,11 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
   gather_facts: no
 
   roles:
-    - role: robertdebock.roles.roles.bootstrap
-    - role: robertdebock.roles.roles.epel
-    - role: robertdebock.roles.roles.buildtools
-    - role: robertdebock.roles.roles.python_pip
-    - role: robertdebock.roles.roles.openssl
+    - role: robertdebock.roles.bootstrap
+    - role: robertdebock.roles.epel
+    - role: robertdebock.roles.buildtools
+    - role: robertdebock.roles.python_pip
+    - role: robertdebock.roles.openssl
       openssl_items:
         - name: apache-httpd
           common_name: "{{ ansible_fqdn }}"

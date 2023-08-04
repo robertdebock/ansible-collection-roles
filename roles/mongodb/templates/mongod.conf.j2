@@ -1,0 +1,16 @@
+{{ ansible_managed | comment }}
+
+storage:
+  dbPath: {{ mongodb_dbpath }}
+
+systemLog:
+  destination: file
+  logAppend: true
+  path: {{ mongodb_systemlog_path }}
+
+net:
+  port: {{ mongodb_port }}
+  bindIp: {{ mongodb_bindip }}
+
+processManagement:
+  timeZoneInfo: /usr/share/zoneinfo

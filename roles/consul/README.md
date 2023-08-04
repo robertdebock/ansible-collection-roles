@@ -18,7 +18,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
   gather_facts: no
 
   roles:
-    - role: robertdebock.roles.roles.consul
+    - role: robertdebock.roles.consul
       consul_bootstrap_expect: 1
       consul_encrypt: "6r73CP0icJrap1tsQ17yuqzVguho4/yz+aI/dkVg2Kk="
       consul_bind_addr: "0.0.0.0"
@@ -39,9 +39,9 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
   gather_facts: no
 
   roles:
-    - role: robertdebock.roles.roles.bootstrap
-    - role: robertdebock.roles.roles.core_dependencies
-    - role: robertdebock.roles.roles.hashicorp
+    - role: robertdebock.roles.bootstrap
+    - role: robertdebock.roles.core_dependencies
+    - role: robertdebock.roles.hashicorp
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.

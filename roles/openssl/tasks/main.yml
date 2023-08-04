@@ -19,7 +19,7 @@
   ansible.builtin.file:
     path: "{{ openssl_key_directory }}"
     state: directory
-    mode: "750"
+    mode: "700"
     owner: "{{ openssl_file_owner }}"
     group: "{{ openssl_file_group }}"
 

@@ -4,7 +4,7 @@ Install and configure mongodb on your system.
 
 |GitHub|GitLab|Quality|Downloads|Version|
 |------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-mongodb/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-mongodb/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-mongodb/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-mongodb)|[![quality](https://img.shields.io/ansible/quality/)](https://galaxy.ansible.com/robertdebock/mongodb)|[![downloads](https://img.shields.io/ansible/role/d/)](https://galaxy.ansible.com/robertdebock/mongodb)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-mongodb.svg)](https://github.com/robertdebock/ansible-role-mongodb/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-mongodb/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-mongodb/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-mongodb/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-mongodb)|[![quality](https://img.shields.io/ansible/quality/62903)](https://galaxy.ansible.com/robertdebock/mongodb)|[![downloads](https://img.shields.io/ansible/role/d/62903)](https://galaxy.ansible.com/robertdebock/mongodb)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-mongodb.svg)](https://github.com/robertdebock/ansible-role-mongodb/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -45,6 +45,12 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 ---
 # defaults file for mongodb
 
+# You can overwrite the mongodb_dbpath, which is determined in `vars/main.yml`.
+# When you overwrite this value, please ensure the directory exists and has the correct permissions and ownership.
+mongodb_dbpath: "{{ mongodb_default_dbpath }}"
+mongodb_systemlog_path: /var/log/mongodb/mongod.log
+mongodb_port: 27017
+mongodb_bindip: "127.0.0.1"
 ```
 
 ## [Requirements](#requirements)
@@ -73,7 +79,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|[Debian](https://hub.docker.com/repository/docker/robertdebock/debian/general)|all|
+|[Debian](https://hub.docker.com/repository/docker/robertdebock/debian/general)|bullseye|
 |[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|all|
 |[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|all|
 

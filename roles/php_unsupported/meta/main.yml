@@ -8,12 +8,10 @@ galaxy_info:
   min_ansible_version: "2.12"
 
   platforms:
-    - name: Debian
-      versions:
-        - all
     - name: Ubuntu
       versions:
-        - all
+        - jammy
+        - focal
 
   galaxy_tags:
     - phpunsupported

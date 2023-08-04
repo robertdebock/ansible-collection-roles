@@ -18,7 +18,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
   gather_facts: yes
 
   roles:
-    - role: robertdebock.roles.roles.turn
+    - role: robertdebock.roles.turn
       turn_listening_ip: "0.0.0.0"
       turn_external_ip: "1.2.3.4"
 ```
@@ -33,8 +33,8 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
   gather_facts: no
 
   roles:
-    - role: robertdebock.roles.roles.bootstrap
-    - role: robertdebock.roles.roles.epel
+    - role: robertdebock.roles.bootstrap
+    - role: robertdebock.roles.epel
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.

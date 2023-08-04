@@ -83,7 +83,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
         dateyesterday: yes
 
   roles:
-    - role: robertdebock.roles.roles.logrotate
+    - role: robertdebock.roles.logrotate
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-logrotate/blob/master/molecule/default/prepare.yml):
@@ -96,8 +96,8 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
   gather_facts: no
 
   roles:
-    - role: robertdebock.roles.roles.bootstrap
-    - role: robertdebock.roles.roles.cron
+    - role: robertdebock.roles.bootstrap
+    - role: robertdebock.roles.cron
 
   post_tasks:
     - name: Create log directory
