@@ -4,7 +4,7 @@ Install and configure vsftpd on your system.
 
 |GitHub|GitLab|Quality|Downloads|Version|
 |------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-vsftpd/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-vsftpd/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-vsftpd/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-vsftpd)|[![quality](https://img.shields.io/ansible/quality/)](https://galaxy.ansible.com/robertdebock/vsftpd)|[![downloads](https://img.shields.io/ansible/role/d/)](https://galaxy.ansible.com/robertdebock/vsftpd)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-vsftpd.svg)](https://github.com/robertdebock/ansible-role-vsftpd/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-vsftpd/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-vsftpd/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-vsftpd/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-vsftpd)|[![quality](https://img.shields.io/ansible/quality/62916)](https://galaxy.ansible.com/robertdebock/vsftpd)|[![downloads](https://img.shields.io/ansible/role/d/62916)](https://galaxy.ansible.com/robertdebock/vsftpd)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-vsftpd.svg)](https://github.com/robertdebock/ansible-role-vsftpd/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -160,6 +160,24 @@ vsftpd_listen_ipv6: yes
 
 vsftpd_pam_service_name: vsftpd
 vsftpd_userlist_enable: yes
+
+# If enabled, vsftpd will display directory listings with the time
+# in  your  local  time  zone.  The default is to display GMT. The
+# times returned by the MDTM FTP command are also affected by this
+# option.
+vsftpd_use_localtime: yes
+
+# This option should be the name of a directory which is empty.  Also, the
+# directory should not be writable by the ftp user. This directory is used
+# as a secure chroot() jail at times vsftpd does not require filesystem
+# access.
+vsftpd_secure_chroot_dir: /var/run/vsftpd/empty
+
+# This option specifies the location of the RSA certificate to use for SSL
+# encrypted connections.
+# vsftpd_rsa_cert_file: /etc/ssl/certs/ssl-cert-snakeoil.pem
+# vsftpd_rsa_private_key_file: /etc/ssl/private/ssl-cert-snakeoil.key
+vsftpd_ssl_enable: no
 ```
 
 ## [Requirements](#requirements)
@@ -188,7 +206,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |container|tags|
 |---------|----|
 |[Alpine](https://hub.docker.com/repository/docker/robertdebock/alpine/general)|all|
-|[Amazon](https://hub.docker.com/repository/docker/robertdebock/amazonlinux/general)|all|
+|[Amazon](https://hub.docker.com/repository/docker/robertdebock/amazonlinux/general)|Candidate|
 |[Debian](https://hub.docker.com/repository/docker/robertdebock/debian/general)|all|
 |[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|all|
 |[Fedora](https://hub.docker.com/repository/docker/robertdebock/fedora/general)|all|

@@ -185,6 +185,7 @@
     that:
       - vsftpd_listen is defined
       - vsftpd_listen is boolean
+      - vsftpd_listen != vsftpd_listen_ipv6
     quiet: yes
 
 - name: assert | Test if vsftpd_listen_ipv6 is set correctly
@@ -207,4 +208,45 @@
     that:
       - vsftpd_userlist_enable is defined
       - vsftpd_userlist_enable is boolean
+    quiet: yes
+
+- name: assert | Test if vsftpd_use_localtime is set correctly
+  ansible.builtin.assert:
+    that:
+      - vsftpd_use_localtime is defined
+      - vsftpd_use_localtime is boolean
+    quiet: yes
+
+- name: assert | Test if vsftpd_secure_chroot_dir is set correctly
+  ansible.builtin.assert:
+    that:
+      - vsftpd_secure_chroot_dir is defined
+      - vsftpd_secure_chroot_dir is string
+      - vsftpd_secure_chroot_dir is not none
+    quiet: yes
+
+- name: assert | Test if vsftpd_rsa_cert_file is set correctly
+  ansible.builtin.assert:
+    that:
+      - vsftpd_rsa_cert_file is string
+      - vsftpd_rsa_cert_file is not none
+    quiet: yes
+  when:
+    - vsftpd_rsa_cert_file is defined
+
+- name: assert | Test if vsftpd_rsa_private_key_file is set correctly
+  ansible.builtin.assert:
+    that:
+      - vsftpd_rsa_private_key_file is defined
+      - vsftpd_rsa_private_key_file is string
+      - vsftpd_rsa_private_key_file is not none
+    quiet: yes
+  when:
+    - vsftpd_rsa_private_key_file is defined
+
+- name: assert | Test if vsftpd_ssl_enable is set correctly
+  ansible.builtin.assert:
+    that:
+      - vsftpd_ssl_enable is defined
+      - vsftpd_ssl_enable is boolean
     quiet: yes

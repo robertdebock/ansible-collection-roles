@@ -1,0 +1,89 @@
+---
+# tasks file for bareos
+
+- name: Include assert.yml
+  ansible.builtin.import_tasks: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+- name: Add repository (rpm)
+  ansible.builtin.yum_repository:
+    name: "{{ item.name }}"
+    description: "{{ item.description }}"
+    baseurl: "{{ item.baseurl }}"
+    gpgcheck: yes
+    gpgkey: "{{ item.gpgkey }}"
+  loop: "{{ bareos_repositories }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - ansible_pkg_mgr in [ "dnf", "yum" ]
+
+- name: Run tasks on apt based distributions
+  when:
+    - ansible_pkg_mgr in [ "apt" ]
+  block:
+    - name: Trust GPG key (apt)
+      ansible.builtin.apt_key:
+        url: "{{ bareos_gpg_key }}"
+
+    - name: Add repository (apt)
+      ansible.builtin.apt_repository:
+        repo: "{{ item.repo }}"
+        state: present
+        filename: "{{ item.name }}"
+        update_cache: yes
+      loop: "{{ bareos_repositories }}"
+      loop_control:
+        label: "{{ item.name }}"
+
+    - name: Prevent db installation (deb)
+      ansible.builtin.debconf:
+        name: bareos-database-common
+        question: bareos-database-common/dbconfig-install
+        value: "false"
+        vtype: boolean
+      when:
+        - bareos_role == "dir"
+
+- name: Run tasks on zypper based distributions
+  when:
+    - ansible_pkg_mgr in [ "zypper" ]
+  block:
+    - name: Import a key from a url
+      ansible.builtin.rpm_key:
+        key: "{{ bareos_gpg_key }}"
+
+    - name: Add repository (zypper)
+      ansible.builtin.zypper_repository:
+        name: "{{ item.name }}"
+        repo: "{{ item.zypper_repo }}"
+      loop: "{{ bareos_repositories }}"
+      loop_control:
+        label: "{{ item.name }}"
+
+- name: Install bareos packages for {{ bareos_role }}
+  ansible.builtin.package:
+    name: "{{ bareos_packages }}"
+
+- name: Run database setup scripts
+  ansible.builtin.command:
+    cmd: "{{ item }}"
+    creates: "/var/log/bareos/{{ item | basename }}.log"
+  become_user: postgres
+  become: yes
+  register: bareos_setup_database
+  loop: "{{ bareos_dir_install_scripts }}"
+  loop_control:
+    label: "{{ item | basename }}"
+  when:
+    - bareos_role == "dir"
+    # - ansible_pkg_mgr not in [ "apt" ]
+  notify:
+    - Write results of database setup to file
+
+- name: Start service {{ bareos_service }}
+  ansible.builtin.service:
+    name: "{{ bareos_service }}"
+    state: started
+    enabled: yes

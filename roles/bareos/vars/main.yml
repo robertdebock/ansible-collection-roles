@@ -1,0 +1,59 @@
+---
+# vars file for bareos
+
+# The URL differs for community and subscription versions.
+_bareos_url:
+  community: "https://download.bareos.org"
+  subscription: "https://download.bareos.com"
+bareos_url: "{{ _bareos_url[bareos_type] }}"
+
+# Different distributions have different repository URLs.
+_bareos_repository_url:
+  default: "{{ bareos_url }}/{{ bareos_release }}/{{ ansible_distribution }}_{{ ansible_distribution_major_version }}"
+  Fedora: "{{ bareos_url }}/{{ bareos_release }}/{{ ansible_distribution }}_{{ ansible_distribution_major_version }}"
+  RedHat: "{{ bareos_url }}/{{ bareos_release }}/EL_{{ ansible_distribution_major_version }}"
+  Suse: "{{ bareos_url }}/{{ bareos_release }}/SUSE_{{ ansible_distribution_major_version }}"
+  Ubuntu: "{{ bareos_url }}/{{ bareos_release }}/xUbuntu_{{ ansible_distribution_version }}"
+bareos_repository_url: "{{ _bareos_repository_url[ansible_distribution] | default(_bareos_repository_url[ansible_os_family] | default(_bareos_repository_url['default'])) }}"
+
+# Debian and RedHat use a different structure.
+_bareos_gpg_key:
+  default: "{{ bareos_repository_url }}/RPM-GPG-KEY"
+  Debian: "{{ bareos_repository_url }}/bareos-keyring.gpg"
+bareos_gpg_key: "{{ _bareos_gpg_key[ansible_os_family] | default(_bareos_gpg_key['default']) }}"
+
+# A list of repositories. The items in this list contains parameters for both dnf/yum and apt.
+bareos_repositories:
+  - name: bareos
+    description: Backup Archiving Recovery Open Sourced
+    baseurl: "{{ bareos_repository_url }}"
+    gpgkey: "{{ bareos_gpg_key }}"
+    repo: "deb {{ bareos_repository_url }} /"
+    zypper_repo: "{{ bareos_repository_url }}"
+
+# Each role has a different set of packages.
+_bareos_packages:
+  fd:
+    - bareos-filedaemon
+  sd:
+    - bareos-storage
+    - bareos-storage-tape
+  dir:
+    - bareos-database-postgresql
+    - bareos-database-tools
+    - bareos-director
+    - bareos-webui
+bareos_packages: "{{ _bareos_packages[bareos_role] }}"
+
+# There are services for each role.
+_bareos_service:
+  fd: "bareos-fd"
+  sd: "bareos-sd"
+  dir: "bareos-dir"
+bareos_service: "{{ _bareos_service[bareos_role] }}"
+
+# A list of script to setup the database.
+bareos_dir_install_scripts:
+  - /usr/lib/bareos/scripts/create_bareos_database
+  - /usr/lib/bareos/scripts/make_bareos_tables
+  - /usr/lib/bareos/scripts/grant_bareos_privileges

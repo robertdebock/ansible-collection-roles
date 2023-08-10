@@ -29,3 +29,14 @@ listen={{ vsftpd_listen | ansible.builtin.ternary('YES', 'NO') }}
 listen_ipv6={{ vsftpd_listen_ipv6 | ansible.builtin.ternary('YES', 'NO') }}
 pam_service_name={{ vsftpd_pam_service_name }}
 userlist_enable={{ vsftpd_userlist_enable | ansible.builtin.ternary('YES', 'NO') }}
+use_localtime={{ vsftpd_use_localtime | ansible.builtin.ternary('YES', 'NO') }}
+{% if vsftpd_secure_chroot_dir %}
+secure_chroot_dir={{ vsftpd_secure_chroot_dir }}
+{% endif %}
+{% if vsftpd_rsa_cert_file is defined %}
+rsa_cert_file={{ vsftpd_rsa_cert_file }}
+{% endif %}
+{% if vsftpd_rsa_private_key_file is defined %}
+rsa_private_key_file={{ vsftpd_rsa_private_key_file }}
+{% endif %}
+ssl_enable={{ vsftpd_ssl_enable | ansible.builtin.ternary('YES', 'NO') }}

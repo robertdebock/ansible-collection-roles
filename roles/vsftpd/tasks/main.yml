@@ -13,10 +13,10 @@
 - name: Configure vsftpd
   ansible.builtin.template:
     src: vsftpd.conf.j2
-    dest: /etc/vsftpd/vsftpd.conf
+    dest: "{{ vsftpd_configuration_file }}"
     owner: root
     group: root
-    mode: '0600'
+    mode: "{{ vsftpd_configuration_file_mode }}"
   notify:
     - Restart vsftpd
 
