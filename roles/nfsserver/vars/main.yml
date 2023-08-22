@@ -18,13 +18,11 @@ nfsserver_packages: "{{ _nfsserver_packages[ansible_os_family] }}"
 _nfsserver_services:
   Alpine:
     - nfs
-  Archlinux:
+  default:
     - nfs-server
-  Debian:
-    - nfs-kernel-server
-  RedHat:
-    - nfs-server
+  # Debian:
+  #   - nfs-kernel-server
   Suse:
     - nfsserver
 
-nfsserver_services: "{{ _nfsserver_services[ansible_os_family] }}"
+nfsserver_services: "{{ _nfsserver_services[ansible_os_family] | default(_nfsserver_services['default']) }}"

@@ -57,3 +57,11 @@ bareos_dir_install_scripts:
   - /usr/lib/bareos/scripts/create_bareos_database
   - /usr/lib/bareos/scripts/make_bareos_tables
   - /usr/lib/bareos/scripts/grant_bareos_privileges
+
+# The configuration file for each role or component.
+_bareos_configuration_file:
+  fd: "/etc/bareos/bareos-fd.d/client/myself.conf"
+  sd: "/etc/bareos/bareos-sd.d/storage/bareos-sd.conf"
+  dir: "/etc/bareos/bareos-dir.d/director/bareos-dir.conf"
+
+bareos_configuration_file: "{{ _bareos_configuration_file[bareos_role] }}"

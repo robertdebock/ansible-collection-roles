@@ -1,0 +1,5 @@
+---
+# vars file for bareos_fd
+
+bareos_fd_packages:
+  - bareos-filedaemon

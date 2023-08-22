@@ -15,11 +15,17 @@
   when:
     - ansible_pkg_mgr in [ "yum", "dnf" ]
 
-- name: Place apt repository
-  ansible.builtin.apt_repository:
-    repo: "deb https://packages.microsoft.com/repos/code stable main"
+- name: Configure APT systems
   when:
     - ansible_pkg_mgr in [ "apt" ]
+  block:
+    - name: Trust apt key microsoft.asc
+      ansible.builtin.apt_key:
+        url: "https://packages.microsoft.com/keys/microsoft.asc"
+
+    - name: Place apt repository
+      ansible.builtin.apt_repository:
+        repo: "deb https://packages.microsoft.com/repos/code stable main"
 
 - name: Install visual studio code
   ansible.builtin.package:

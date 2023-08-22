@@ -1,0 +1,8 @@
+---
+# defaults file for bareos_repository
+
+# What type of Bareos to install, either "community" or "subscription".
+bareos_type: community
+
+# What release to use, either "current", "next" or "release".
+bareos_release: current

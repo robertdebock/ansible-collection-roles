@@ -1,0 +1,13 @@
+---
+
+argument_specs:
+  main:
+    short_description: "Install and configure BareOS Storage Daemon on your system."
+    description: >
+      Install and configure BareOS Storage Daemon on your system.
+    author: Robert de Bock
+    options:
+      bareos_sd_hostname:
+        type: "str"
+        default: "{{ ansible_fqdn}}"
+        description: "The hostname of the Storage Daemon."

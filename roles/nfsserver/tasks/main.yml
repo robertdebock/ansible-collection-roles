@@ -9,10 +9,12 @@
 - name: Install packages
   ansible.builtin.package:
     name: "{{ nfsserver_packages }}"
+  notify:
+    - Restart nfs server
 
 - name: Create all exported directories
   ansible.builtin.file:
-    path: "{{ item }}"
+    path: "{{ item.share }}"
     state: directory
     owner: "{{ item.owner }}"
     group: "{{ item.group }}"

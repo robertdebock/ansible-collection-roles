@@ -1,0 +1,6 @@
+---
+# vars file for bareos_sd
+
+bareos_sd_packages:
+  - bareos-storage
+  - bareos-storage-tape

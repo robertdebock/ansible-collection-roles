@@ -1,0 +1,4 @@
+---
+roles:
+  - name: robertdebock.bootstrap
+  - name: robertdebock.bareos_repository

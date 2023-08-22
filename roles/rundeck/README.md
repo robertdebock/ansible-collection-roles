@@ -47,8 +47,8 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 # defaults file for rundeck
 
 # Rundeck version to install
-rundeck_version: "4.9.0"
-rundeck_release_date: 20230111
+rundeck_version: "4.15.0"
+rundeck_release_date: 20230725
 
 # Where to install rundeck.
 rundeck_rdeckbase: /opt/rundeck

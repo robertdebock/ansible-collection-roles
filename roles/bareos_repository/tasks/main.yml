@@ -1,0 +1,58 @@
+---
+# tasks file for bareos_repository
+
+- name: Include assert.yml
+  ansible.builtin.import_tasks: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+- name: Add repository (rpm)
+  ansible.builtin.yum_repository:
+    name: "{{ item.name }}"
+    description: "{{ item.description }}"
+    baseurl: "{{ item.baseurl }}"
+    gpgcheck: yes
+    gpgkey: "{{ item.gpgkey }}"
+  loop: "{{ bareos_repositories }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - ansible_pkg_mgr in [ "dnf", "yum" ]
+
+- name: Run tasks on apt based distributions
+  when:
+    - ansible_pkg_mgr in [ "apt" ]
+  block:
+    - name: Install CA certificates (apt)
+      ansible.builtin.package:
+        name: ca-certificates
+
+    - name: Trust GPG key (apt)
+      ansible.builtin.apt_key:
+        url: "{{ bareos_gpg_key }}"
+
+    - name: Add repository (apt)
+      ansible.builtin.apt_repository:
+        repo: "{{ item.repo }}"
+        state: present
+        filename: "{{ item.name }}"
+        update_cache: yes
+      loop: "{{ bareos_repositories }}"
+      loop_control:
+        label: "{{ item.name }}"
+
+- name: Run tasks on zypper based distributions
+  when:
+    - ansible_pkg_mgr in [ "zypper" ]
+  block:
+    - name: Import gpg key (zypper)
+      ansible.builtin.rpm_key:
+        key: "{{ bareos_gpg_key }}"
+
+    - name: Add repository (zypper)
+      ansible.builtin.zypper_repository:
+        name: "{{ item.name }}"
+        repo: "{{ item.zypper_repo }}"
+      loop: "{{ bareos_repositories }}"
+      loop_control:
+        label: "{{ item.name }}"

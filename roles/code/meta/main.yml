@@ -19,9 +19,7 @@ galaxy_info:
         - all
     - name: Ubuntu
       versions:
-        - focal
-        - bionic
-
+        - all
   galaxy_tags:
     - code
     - development

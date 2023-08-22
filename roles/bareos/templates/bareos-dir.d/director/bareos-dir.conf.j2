@@ -1,0 +1,11 @@
+# {{ ansible_managed }}
+
+# Based on https://docs.bareos.org/Configuration/Director.html
+
+Director {
+  Name = {{ bareos_dir_hostname }}
+  Password = {{ bareos_dir_password }}
+  QueryFile = "{{ bareos_dir_queryfile }}"
+  Maximum Concurrent Jobs = {{ bareos_dir_max_concurrent_jobs }}
+  Messages = {{ bareos_dir_messages }}
+}

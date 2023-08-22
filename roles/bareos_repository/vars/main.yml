@@ -1,0 +1,32 @@
+---
+# vars file for bareos_repository
+
+# The URL differs for community and subscription versions.
+_bareos_url:
+  community: "https://download.bareos.org"
+  subscription: "https://download.bareos.com"
+bareos_url: "{{ _bareos_url[bareos_type] }}"
+
+# Different distributions have different repository URLs.
+_bareos_repository_url:
+  default: "{{ bareos_url }}/{{ bareos_release }}/{{ ansible_distribution }}_{{ ansible_distribution_major_version }}"
+  Fedora: "{{ bareos_url }}/{{ bareos_release }}/{{ ansible_distribution }}_{{ ansible_distribution_major_version }}"
+  RedHat: "{{ bareos_url }}/{{ bareos_release }}/EL_{{ ansible_distribution_major_version }}"
+  Suse: "{{ bareos_url }}/{{ bareos_release }}/SUSE_{{ ansible_distribution_major_version }}"
+  Ubuntu: "{{ bareos_url }}/{{ bareos_release }}/xUbuntu_{{ ansible_distribution_version }}"
+bareos_repository_url: "{{ _bareos_repository_url[ansible_distribution] | default(_bareos_repository_url[ansible_os_family] | default(_bareos_repository_url['default'])) }}"
+
+# Debian and RedHat use a different structure.
+_bareos_gpg_key:
+  default: "{{ bareos_repository_url }}/RPM-GPG-KEY"
+  Debian: "{{ bareos_repository_url }}/bareos-keyring.gpg"
+bareos_gpg_key: "{{ _bareos_gpg_key[ansible_os_family] | default(_bareos_gpg_key['default']) }}"
+
+# A list of repositories. The items in this list contains parameters for both dnf/yum and apt.
+bareos_repositories:
+  - name: bareos
+    description: Backup Archiving Recovery
+    baseurl: "{{ bareos_repository_url }}"
+    gpgkey: "{{ bareos_gpg_key }}"
+    repo: "deb {{ bareos_repository_url }} /"
+    zypper_repo: "{{ bareos_repository_url }}"

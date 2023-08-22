@@ -1,0 +1,27 @@
+---
+# tasks file for bareos_sd
+
+- name: Include assert.yml
+  ansible.builtin.import_tasks: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+- name: Install packages
+  ansible.builtin.package:
+    name: "{{ bareos_sd_packages }}"
+
+- name: Place bareos-sd.conf
+  ansible.builtin.template:
+    src: bareos-sd.conf.j2
+    dest: "/etc/bareos/bareos-sd.d/storage/bareos-sd.conf"
+    owner: bareos
+    group: bareos
+    mode: "0640"
+  notify:
+    - Restart bareos-sd
+
+- name: Start bareos-sd
+  ansible.builtin.service:
+    name: bareos-sd
+    state: started
+    enabled: yes

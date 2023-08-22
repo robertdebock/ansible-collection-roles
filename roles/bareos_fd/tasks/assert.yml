@@ -1,0 +1,59 @@
+---
+
+- name: assert | Test if bareos_fd_hostname is set correctly
+  ansible.builtin.assert:
+    that:
+      - bareos_fd_hostname is defined
+      - bareos_fd_hostname is string
+      - bareos_fd_hostname is not none
+    quiet: yes
+
+- name: assert | Test if bareos_fd_directors is set correctly
+  ansible.builtin.assert:
+    that:
+      - bareos_fd_directors is iterable
+    quiet: yes
+  when:
+    - bareos_fd_directors is defined
+
+- name: assert | Test if items in bareos_fd_directors are set correctly
+  ansible.builtin.assert:
+    that:
+      - item.name is defined
+      - item.name is string
+      - item.name is not none
+      - item.password is defined
+      - item.password is string
+      - item.password is not none
+      - item.monitor is defined
+      - item.monitor is boolean
+    quiet: yes
+  loop: "{{ bareos_fd_directors }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - bareos_fd_directors is defined
+
+- name: assert | Test if bareos_fd_messages is set correctly
+  ansible.builtin.assert:
+    that:
+      - bareos_fd_messages is iterable
+    quiet: yes
+  when:
+    - bareos_fd_messages is defined
+
+- name: assert | Test if items in bareos_fd_messages are set correctly
+  ansible.builtin.assert:
+    that:
+      - item.name is defined
+      - item.name is string
+      - item.name is not none
+      - item.director is defined
+      - item.director is string
+      - item.director is not none
+    quiet: yes
+  loop: "{{ bareos_fd_messages }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - bareos_fd_messages is defined

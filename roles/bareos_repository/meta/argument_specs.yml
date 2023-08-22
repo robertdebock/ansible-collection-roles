@@ -1,0 +1,25 @@
+---
+
+argument_specs:
+  main:
+    short_description: "Setup the bareos repositories."
+    description: >
+      Install the BareOS repositories.
+      After applying this role, you can install bareos packages.
+    author: Robert de Bock
+    options:
+      bareos_type:
+        type: "str"
+        default: community
+        description: "What type of Bareos to install, either 'community' or 'subscription'."
+        choices:
+          - community
+          - subscription
+      bareos_release:
+        type: "str"
+        default: current
+        description: "What release to use, either 'current', 'next' or 'release'."
+        choices:
+          - current
+          - next
+          - release

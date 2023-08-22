@@ -1,0 +1,28 @@
+---
+
+# # bareos_dir_messages: Daemon
+
+argument_specs:
+  main:
+    short_description: "Install and configure BareOS Director on your system."
+    description: >
+      Install and configure BareOS Director on your system.
+    author: Robert de Bock
+    options:
+      bareos_dir_hostname:
+        type: "str"
+        default: "{{ ansible_fqdn}}"
+        description: "The hostname of the Director."
+      bareos_dir_password:
+        type: "str"
+        description: "The password for the Director."
+      bareos_dir_queryfile:
+        type: "str"
+        default: "/usr/lib/bareos/scripts/query.sql"
+        description: "The query file."
+      bareos_dir_max_concurrent_jobs:
+        type: "int"
+        description: "The maximum number of concurrent jobs."
+      bareos_dir_messages:
+        type: "str"
+        description: "The messages to show."

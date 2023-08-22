@@ -1,0 +1,50 @@
+---
+# tasks file for bareos_fd
+
+- name: Include assert.yml
+  ansible.builtin.import_tasks: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+- name: Install packages
+  ansible.builtin.package:
+    name: "{{ bareos_fd_packages }}"
+
+- name: Place myself.conf
+  ansible.builtin.template:
+    src: myself.conf.j2
+    dest: "/etc/bareos/bareos-fd.d/client/myself.conf"
+    owner: bareos
+    group: bareos
+    mode: "0640"
+  notify:
+    - Restart bareos-fd
+
+- name: Place bareos-dir.conf
+  ansible.builtin.template:
+    src: bareos-dir.conf.j2
+    dest: "/etc/bareos/bareos-fd.d/director/bareos-dir.conf"
+    owner: bareos
+    group: bareos
+    mode: "0640"
+  notify:
+    - Restart bareos-fd
+
+- name: Place messages
+  ansible.builtin.template:
+    src: message.conf.j2
+    dest: "/etc/bareos/bareos-fd.d/messages/{{ item.name | capitalize }}.conf"
+    owner: bareos
+    group: bareos
+    mode: "0640"
+  loop: "{{ bareos_fd_messages }}"
+  loop_control:
+    label: "{{ item.name }}"
+  notify:
+    - Restart bareos-fd
+
+- name: Start bareos-fd
+  ansible.builtin.service:
+    name: bareos-fd
+    state: started
+    enabled: yes

@@ -1,0 +1,5 @@
+---
+# defaults file for bareos_sd
+
+# The Storage Daemon has these configuration parameters.
+bareos_sd_hostname: "{{ ansible_fqdn }}"

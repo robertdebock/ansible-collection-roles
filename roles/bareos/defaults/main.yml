@@ -14,3 +14,25 @@ bareos_version: 22
 # You can only select one role, so if you want to have mulitple roles on a server,
 # you need to run this role multiple times, each time with a different role.
 bareos_role: fd
+
+# The director has these configuration parameters. (Only used when bareos_role is "dir")
+# bareos_dir_hostname: "{{ ansible_fqdn }}"
+# bareos_dir_password: "secretpassword"
+# bareos_dir_queryfile: "/usr/lib/bareos/scripts/query.sql"
+# bareos_dir_max_concurrent_jobs: 10
+# bareos_dir_messages: Daemon
+
+# The client has these configuration parameters. (Only used when bareos_role is "fd")
+# bareos_fd_hostname: "{{ ansible_fqdn }}"
+# bareos_fd_max_job_bandwidth: "10 mb/s"
+# bareos_fd_directors:
+#   - name: "bareos-dir"
+#     password: "secretpassword"
+#     monitor: no
+# bareos_fd_messages:
+#   - name: "Standard"
+#     director: "client1-dir = all, !skipped, !restored"
+#     description: "Send relevant messages to the Director."
+
+# The Storage Daemon has these configuration parameters. (Only used when bareos_role is "sd")
+# bareos_sd_hostname: "{{ ansible_fqdn }}"

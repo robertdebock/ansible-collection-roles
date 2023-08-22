@@ -1,0 +1,9 @@
+---
+
+- name: assert | Test if bareos_sd_hostname is set correctly
+  ansible.builtin.assert:
+    that:
+      - bareos_sd_hostname is defined
+      - bareos_sd_hostname is string
+      - bareos_sd_hostname is not none
+    quiet: yes

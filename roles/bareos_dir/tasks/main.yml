@@ -1,0 +1,52 @@
+---
+# tasks file for bareos_dir
+
+- name: Include assert.yml
+  ansible.builtin.import_tasks: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+- name: Prevent db installation (apt)
+  ansible.builtin.debconf:
+    name: bareos-database-common
+    question: bareos-database-common/dbconfig-install
+    value: "false"
+    vtype: boolean
+  when:
+    - ansible_pkg_mgr in [ "apt" ]
+
+- name: Install packages
+  ansible.builtin.package:
+    name: "{{ bareos_dir_packages }}"
+
+- name: Run database setup scripts
+  ansible.builtin.command:
+    cmd: "{{ item }}"
+    creates: "/var/log/bareos/{{ item | basename }}.log"
+  become_user: postgres
+  become: yes
+  register: bareos_setup_database
+  loop: "{{ bareos_dir_install_scripts }}"
+  loop_control:
+    label: "{{ item | basename }}"
+  notify:
+    - Write results of database setup to file
+
+- name: Run handlers
+  ansible.builtin.meta: flush_handlers
+
+- name: Place bareos-dir.conf
+  ansible.builtin.template:
+    src: bareos-dir.conf.j2
+    dest: "/etc/bareos/bareos-dir.d/director/bareos-dir.conf"
+    owner: bareos
+    group: bareos
+    mode: "0640"
+  notify:
+    - Restart bareos-dir
+
+- name: Start bareos-dir
+  ansible.builtin.service:
+    name: bareos-dir
+    state: started
+    enabled: yes

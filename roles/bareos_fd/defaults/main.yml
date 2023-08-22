@@ -1,0 +1,14 @@
+---
+# defaults file for bareos_fd
+
+# The client has these configuration parameters.
+bareos_fd_hostname: "{{ ansible_fqdn }}"
+# bareos_fd_max_job_bandwidth: "10 mb/s" # <- Please set your own value
+# bareos_fd_directors:
+#   - name: "bareos-dir"
+#     password: "secretpassword"
+#     monitor: no
+# bareos_fd_messages: # <- Please set your own value
+#   - name: "Standard"
+#     director: "client1-dir = all, !skipped, !restored"
+#     description: "Send relevant messages to the Director."

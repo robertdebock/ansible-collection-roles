@@ -1,0 +1,24 @@
+---
+
+# # bareos_dir_messages: Daemon
+
+argument_specs:
+  main:
+    short_description: "Install and configure BareOS File Daemon on your system."
+    description: >
+      Install and configure BareOS File Daemon on your system.
+    author: Robert de Bock
+    options:
+      bareos_fd_hostname:
+        type: "str"
+        default: "{{ ansible_fqdn}}"
+        description: "The hostname of the File Daemon."
+      bareos_fd_max_job_bandwidth:
+        type: "str"
+        description: "The maximum bandwidth to use."
+      bareos_fd_directors:
+        type: "list"
+        description: "The Directors to connect to."
+      bareos_fd_messages:
+        type: "list"
+        description: "The Messages to configure."

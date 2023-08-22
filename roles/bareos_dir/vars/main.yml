@@ -1,0 +1,15 @@
+---
+# vars file for bareos_dir
+
+# The packages to install.
+bareos_dir_packages:
+  - bareos-database-postgresql
+  - bareos-database-tools
+  - bareos-director
+  # - bareos-webui # <- No sure if this is required.
+
+# A list of script to setup the database.
+bareos_dir_install_scripts:
+  - /usr/lib/bareos/scripts/create_bareos_database
+  - /usr/lib/bareos/scripts/make_bareos_tables
+  - /usr/lib/bareos/scripts/grant_bareos_privileges

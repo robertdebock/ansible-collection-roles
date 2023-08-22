@@ -1,0 +1,9 @@
+---
+# defaults file for bareos_dir
+
+# The director has these configuration parameters.
+bareos_dir_hostname: "{{ ansible_fqdn }}"
+# bareos_dir_password: "secretpassword" # <- Please set your own password.
+bareos_dir_queryfile: "/usr/lib/bareos/scripts/query.sql"
+# bareos_dir_max_concurrent_jobs: 10 # <- Please set your own value.
+# bareos_dir_messages: Daemon # <- Please set your own.

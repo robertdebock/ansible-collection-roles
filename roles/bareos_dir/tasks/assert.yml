@@ -1,0 +1,40 @@
+---
+
+- name: assert | Test if bareos_dir_hostname is set correctly
+  ansible.builtin.assert:
+    that:
+      - bareos_dir_hostname is defined
+      - bareos_dir_hostname is string
+      - bareos_dir_hostname is not none
+    quiet: yes
+
+- name: assert | Test if bareos_dir_password is set correctly
+  ansible.builtin.assert:
+    that:
+      - bareos_dir_password is defined
+      - bareos_dir_password is string
+      - bareos_dir_password is not none
+    quiet: yes
+
+- name: assert | Test if bareos_dir_queryfile is set correctly
+  ansible.builtin.assert:
+    that:
+      - bareos_dir_queryfile is defined
+      - bareos_dir_queryfile is string
+      - bareos_dir_queryfile is not none
+    quiet: yes
+
+- name: assert | Test if bareos_dir_max_concurrent_jobs is set correctly
+  ansible.builtin.assert:
+    that:
+      - bareos_dir_max_concurrent_jobs is defined
+      - bareos_dir_max_concurrent_jobs is number
+    quiet: yes
+
+- name: assert | Test if bareos_dir_messages is set correctly
+  ansible.builtin.assert:
+    that:
+      - bareos_dir_messages is defined
+      - bareos_dir_messages is string
+      - bareos_dir_messages is not none
+    quiet: yes

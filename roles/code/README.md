@@ -69,7 +69,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |[Debian](https://hub.docker.com/repository/docker/robertdebock/debian/general)|all|
 |[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|all|
 |[Fedora](https://hub.docker.com/repository/docker/robertdebock/fedora/general)|all|
-|[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|focal, bionic|
+|[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|all|
 
 The minimum version of Ansible required is 2.12, tests have been done to:
 

@@ -62,7 +62,7 @@
       loop_control:
         label: "{{ item.name }}"
 
-- name: Install bareos packages for {{ bareos_role }}
+- name: Install packages for {{ bareos_role }}
   ansible.builtin.package:
     name: "{{ bareos_packages }}"
 
@@ -78,9 +78,68 @@
     label: "{{ item | basename }}"
   when:
     - bareos_role == "dir"
-    # - ansible_pkg_mgr not in [ "apt" ]
   notify:
     - Write results of database setup to file
+
+- name: Run handlers
+  ansible.builtin.meta: flush_handlers
+
+- name: Place configurations for fd
+  when:
+    - bareos_role == "fd"
+  notify:
+    - Restart service {{ bareos_service }}
+  block:
+    - name: Place myself.conf for fd
+      ansible.builtin.template:
+        src: bareos-fd.d/client/myself.conf.j2
+        dest: "/etc/bareos/bareos-fd.d/client/myself.conf"
+        owner: bareos
+        group: bareos
+        mode: "0640"
+
+    - name: Place bareos-dir.conf for fd
+      ansible.builtin.template:
+        src: bareos-fd.d/director/bareos-dir.conf.j2
+        dest: "/etc/bareos/bareos-fd.d/director/bareos-dir.conf"
+        owner: bareos
+        group: bareos
+        mode: "0640"
+
+    - name: Place messages for fd
+      ansible.builtin.template:
+        src: bareos-fd.d/messages/message.conf.j2
+        dest: "/etc/bareos/bareos-fd.d/messages/{{ item.name | capitalize }}.conf"
+        owner: bareos
+        group: bareos
+        mode: "0640"
+      loop: "{{ bareos_fd_messages }}"
+      loop_control:
+        label: "{{ item.name }}"
+
+- name: Place bareos-sd.conf for sd
+  ansible.builtin.template:
+    src: bareos-sd.d/storage/bareos-sd.conf.j2
+    dest: "/etc/bareos/bareos-sd.d/storage/bareos-sd.conf"
+    owner: bareos
+    group: bareos
+    mode: "0640"
+  notify:
+    - Restart service {{ bareos_service }}
+  when:
+    - bareos_role == "sd"
+
+- name: Place bareos-dir.conf for dir
+  ansible.builtin.template:
+    src: bareos-dir.d/director/bareos-dir.conf.j2
+    dest: "/etc/bareos/bareos-dir.d/director/bareos-dir.conf"
+    owner: bareos
+    group: bareos
+    mode: "0640"
+  notify:
+    - Restart service {{ bareos_service }}
+  when:
+    - bareos_role == "dir"
 
 - name: Start service {{ bareos_service }}
   ansible.builtin.service:
