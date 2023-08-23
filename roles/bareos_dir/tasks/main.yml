@@ -45,6 +45,19 @@
   notify:
     - Restart bareos-dir
 
+- name: Place messages
+  ansible.builtin.template:
+    src: message.conf.j2
+    dest: "/etc/bareos/bareos-dir.d/messages/{{ item.name | capitalize }}.conf"
+    owner: bareos
+    group: bareos
+    mode: "0640"
+  loop: "{{ bareos_dir_messages }}"
+  loop_control:
+    label: "{{ item.name }}"
+  notify:
+    - Restart bareos-dir
+
 - name: Start bareos-dir
   ansible.builtin.service:
     name: bareos-dir

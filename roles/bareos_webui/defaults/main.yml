@@ -1,0 +1,14 @@
+---
+# defaults file for bareos_webui
+
+# A list of directors to connect to.
+# bareos_webui_directors:
+#   - name: localhost-dir
+#     enabled: yes
+#     diraddress: localhost
+
+# Configuration for the webui.
+# bareos_webui_configuration:
+#   - section: session
+#     option: timeout
+#     value: 3600

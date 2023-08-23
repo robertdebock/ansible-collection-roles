@@ -1,0 +1,42 @@
+---
+
+- name: assert | Test if bareos_webui_directors is set correctly
+  ansible.builtin.assert:
+    that:
+      - bareos_webui_directors is defined
+      - bareos_webui_directors is iterable
+    quiet: yes
+
+- name: assert | Test if items in bareos_webui_directors are set correctly
+  ansible.builtin.assert:
+    that:
+      - item.name is defined
+      - item.name is string
+      - item.enabled is defined
+      - item.enabled is boolean
+      - item.diraddress is defined
+      - item.diraddress is string
+    quiet: yes
+  loop: "{{ bareos_webui_directors }}"
+  loop_control:
+    label: "{{ item.name }}"
+
+- name: assert | Test if bareos_webui_configuration is set correctly
+  ansible.builtin.assert:
+    that:
+      - bareos_webui_configuration is defined
+      - bareos_webui_configuration is iterable
+    quiet: yes
+
+- name: assert | Test if items in bareos_webui_configuration are set correctly
+  ansible.builtin.assert:
+    that:
+      - item.section is defined
+      - item.section is string
+      - item.option is defined
+      - item.option is string
+      - item.value is defined
+    quiet: yes
+  loop: "{{ bareos_webui_configuration }}"
+  loop_control:
+    label: "{{ item.section }}:{{ item.option }}"

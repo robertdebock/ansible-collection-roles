@@ -1,0 +1,6 @@
+---
+roles:
+  - name: robertdebock.bootstrap
+  - name: robertdebock.bareos_repository
+collections:
+  - name: ansible.posix

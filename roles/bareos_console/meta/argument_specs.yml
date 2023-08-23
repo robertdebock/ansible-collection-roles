@@ -1,0 +1,17 @@
+---
+
+# # bareos_dir_messages: Daemon
+
+argument_specs:
+  main:
+    short_description: "Install and configure BareOS Console (bconsole) on your system."
+    description: >
+      Install and configure BareOS Console (bconsole) on your system.
+    author: Robert de Bock
+    options:
+      bareos_bconsole_directors:
+        type: "list"
+        description: "A list of directors to connect to."
+      bareos_bconsole_users:
+        type: "list"
+        description: "A list of users to allow access."

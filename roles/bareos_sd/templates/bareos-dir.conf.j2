@@ -1,0 +1,8 @@
+{% if bareos_sd_directors is defined  %}
+{% for director in bareos_sd_directors %}
+Director {
+  Name = {{ director.name }}
+  Password = "{{ director.password }}"
+}
+{% endfor %}
+{% endif %}

@@ -11,3 +11,9 @@ argument_specs:
         type: "str"
         default: "{{ ansible_fqdn}}"
         description: "The hostname of the Storage Daemon."
+      bareos_sd_directors:
+        type: "list"
+        description: "A list of directors to connect to."
+      bareos_sd_messages:
+        type: "list"
+        description: "A list of messages to send to the director."

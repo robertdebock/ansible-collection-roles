@@ -3,3 +3,14 @@
 
 # The Storage Daemon has these configuration parameters.
 bareos_sd_hostname: "{{ ansible_fqdn }}"
+
+# You can configure what Directors are allowed to connect to the Storage Daemon.
+# bareos_sd_directors:
+#   - name: dir-1
+#     password: "somepassword"
+
+# You can configure what messages are sent to the Director.
+# bareos_sd_messages: # <- Please set your own value
+#   - name: "Standard"
+#     director: "dir-1 = all, !skipped, !restored"
+#     description: "Send all messages to the Director."

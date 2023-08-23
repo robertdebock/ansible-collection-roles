@@ -1,0 +1,17 @@
+---
+
+# # bareos_dir_messages: Daemon
+
+argument_specs:
+  main:
+    short_description: "Install and configure BareOS WebUI on your system."
+    description: >
+      Install and configure BareOS WebUI on your system.
+    author: Robert de Bock
+    options:
+      bareos_webui_directors:
+        type: "list"
+        description: "A list of directors to connect to.."
+      bareos_webui_configuration:
+        type: "list"
+        description: "Configuration for the webui."

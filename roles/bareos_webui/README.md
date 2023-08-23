@@ -1,14 +1,14 @@
-# [bareos_sd](#bareos_sd)
+# [bareos_webui](#bareos_webui)
 
-Install and configure BareOS Storage Daemon on your system.
+Install and configure BareOS WebUI on your system.
 
 |GitHub|GitLab|Quality|Downloads|Version|
 |------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-bareos_sd/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-bareos_sd/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-bareos_sd/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-bareos_sd)|[![quality](https://img.shields.io/ansible/quality/63100)](https://galaxy.ansible.com/robertdebock/bareos_sd)|[![downloads](https://img.shields.io/ansible/role/d/63100)](https://galaxy.ansible.com/robertdebock/bareos_sd)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-bareos_sd.svg)](https://github.com/robertdebock/ansible-role-bareos_sd/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-bareos_webui/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-bareos_webui/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-bareos_webui/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-bareos_webui)|[![quality](https://img.shields.io/ansible/quality/)](https://galaxy.ansible.com/robertdebock/bareos_webui)|[![downloads](https://img.shields.io/ansible/role/d/)](https://galaxy.ansible.com/robertdebock/bareos_webui)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-bareos_webui.svg)](https://github.com/robertdebock/ansible-role-bareos_webui/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
-This example is taken from [`molecule/default/converge.yml`](https://github.com/robertdebock/ansible-role-bareos_sd/blob/master/molecule/default/converge.yml) and is tested on each push, pull request and release.
+This example is taken from [`molecule/default/converge.yml`](https://github.com/robertdebock/ansible-role-bareos_webui/blob/master/molecule/default/converge.yml) and is tested on each push, pull request and release.
 
 ```yaml
 ---
@@ -18,17 +18,18 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
   gather_facts: yes
 
   roles:
-    - role: robertdebock.roles.bareos_sd
-      bareos_sd_directors:
-        - name: dir-1
-          password: "somepassword"
-      bareos_sd_messages:
-        - name: "Standard"
-          director: "dir-1 = all, !skipped, !restored"
-          description: "Send all messages to the Director."
+    - role: robertdebock.roles.bareos_webui
+      bareos_webui_directors:
+        - name: localhost-dir
+          enabled: yes
+          diraddress: localhost
+      bareos_webui_configuration:
+        - section: session
+          option: timeout
+          value: 3600
 ```
 
-The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-bareos_sd/blob/master/molecule/default/prepare.yml):
+The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-bareos_webui/blob/master/molecule/default/prepare.yml):
 
 ```yaml
 ---
@@ -46,30 +47,28 @@ Also see a [full explanation and example](https://robertdebock.nl/how-to-use-the
 
 ## [Role Variables](#role-variables)
 
-The default values for the variables are set in [`defaults/main.yml`](https://github.com/robertdebock/ansible-role-bareos_sd/blob/master/defaults/main.yml):
+The default values for the variables are set in [`defaults/main.yml`](https://github.com/robertdebock/ansible-role-bareos_webui/blob/master/defaults/main.yml):
 
 ```yaml
 ---
-# defaults file for bareos_sd
+# defaults file for bareos_webui
 
-# The Storage Daemon has these configuration parameters.
-bareos_sd_hostname: "{{ ansible_fqdn }}"
+# A list of directors to connect to.
+# bareos_webui_directors:
+#   - name: localhost-dir
+#     enabled: yes
+#     diraddress: localhost
 
-# You can configure what Directors are allowed to connect to the Storage Daemon.
-# bareos_sd_directors:
-#   - name: dir-1
-#     password: "somepassword"
-
-# You can configure what messages are sent to the Director.
-# bareos_sd_messages: # <- Please set your own value
-#   - name: "Standard"
-#     director: "dir-1 = all, !skipped, !restored"
-#     description: "Send all messages to the Director."
+# Configuration for the webui.
+# bareos_webui_configuration:
+#   - section: session
+#     option: timeout
+#     value: 3600
 ```
 
 ## [Requirements](#requirements)
 
-- pip packages listed in [requirements.txt](https://github.com/robertdebock/ansible-role-bareos_sd/blob/master/requirements.txt).
+- pip packages listed in [requirements.txt](https://github.com/robertdebock/ansible-role-bareos_webui/blob/master/requirements.txt).
 
 ## [State of used roles](#state-of-used-roles)
 
@@ -85,7 +84,7 @@ The following roles are used to prepare a system. You can prepare your system in
 This role is a part of many compatible roles. Have a look at [the documentation of these roles](https://robertdebock.nl/) for further information.
 
 Here is an overview of related roles:
-![dependencies](https://raw.githubusercontent.com/robertdebock/ansible-role-bareos_sd/png/requirements.png "Dependencies")
+![dependencies](https://raw.githubusercontent.com/robertdebock/ansible-role-bareos_webui/png/requirements.png "Dependencies")
 
 ## [Compatibility](#compatibility)
 
@@ -96,7 +95,6 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |[Debian](https://hub.docker.com/repository/docker/robertdebock/debian/general)|all|
 |[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|8, 9|
 |[Fedora](https://hub.docker.com/repository/docker/robertdebock/fedora/general)|37|
-|[opensuse](https://hub.docker.com/repository/docker/robertdebock/opensuse/general)|all|
 |[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|jammy|
 
 The minimum version of Ansible required is 2.12, tests have been done to:
@@ -105,11 +103,11 @@ The minimum version of Ansible required is 2.12, tests have been done to:
 - The current version.
 - The development version.
 
-If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-bareos_sd/issues)
+If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-bareos_webui/issues)
 
 ## [License](#license)
 
-[Apache-2.0](https://github.com/robertdebock/ansible-role-bareos_sd/blob/master/LICENSE).
+[Apache-2.0](https://github.com/robertdebock/ansible-role-bareos_webui/blob/master/LICENSE).
 
 ## [Author Information](#author-information)
 

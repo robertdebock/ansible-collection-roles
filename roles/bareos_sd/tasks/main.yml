@@ -20,6 +20,29 @@
   notify:
     - Restart bareos-sd
 
+- name: Place bareos-dir.conf.j2
+  ansible.builtin.template:
+    src: bareos-dir.conf.j2
+    dest: "/etc/bareos/bareos-sd.d/director/bareos-dir.conf"
+    owner: bareos
+    group: bareos
+    mode: "0640"
+  notify:
+    - Restart bareos-sd
+
+- name: Place messages
+  ansible.builtin.template:
+    src: message.conf.j2
+    dest: "/etc/bareos/bareos-sd.d/messages/{{ item.name | capitalize }}.conf"
+    owner: bareos
+    group: bareos
+    mode: "0640"
+  loop: "{{ bareos_sd_messages }}"
+  loop_control:
+    label: "{{ item.name }}"
+  notify:
+    - Restart bareos-sd
+
 - name: Start bareos-sd
   ansible.builtin.service:
     name: bareos-sd

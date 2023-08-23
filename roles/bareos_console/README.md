@@ -1,14 +1,14 @@
-# [bareos_sd](#bareos_sd)
+# [bareos_console](#bareos_console)
 
-Install and configure BareOS Storage Daemon on your system.
+Install and configure BareOS Console (bconsole) on your system.
 
 |GitHub|GitLab|Quality|Downloads|Version|
 |------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-bareos_sd/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-bareos_sd/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-bareos_sd/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-bareos_sd)|[![quality](https://img.shields.io/ansible/quality/63100)](https://galaxy.ansible.com/robertdebock/bareos_sd)|[![downloads](https://img.shields.io/ansible/role/d/63100)](https://galaxy.ansible.com/robertdebock/bareos_sd)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-bareos_sd.svg)](https://github.com/robertdebock/ansible-role-bareos_sd/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-bareos_console/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-bareos_console/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-bareos_console/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-bareos_console)|[![quality](https://img.shields.io/ansible/quality/)](https://galaxy.ansible.com/robertdebock/bareos_console)|[![downloads](https://img.shields.io/ansible/role/d/)](https://galaxy.ansible.com/robertdebock/bareos_console)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-bareos_console.svg)](https://github.com/robertdebock/ansible-role-bareos_console/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
-This example is taken from [`molecule/default/converge.yml`](https://github.com/robertdebock/ansible-role-bareos_sd/blob/master/molecule/default/converge.yml) and is tested on each push, pull request and release.
+This example is taken from [`molecule/default/converge.yml`](https://github.com/robertdebock/ansible-role-bareos_console/blob/master/molecule/default/converge.yml) and is tested on each push, pull request and release.
 
 ```yaml
 ---
@@ -18,17 +18,15 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
   gather_facts: yes
 
   roles:
-    - role: robertdebock.roles.bareos_sd
-      bareos_sd_directors:
-        - name: dir-1
-          password: "somepassword"
-      bareos_sd_messages:
-        - name: "Standard"
-          director: "dir-1 = all, !skipped, !restored"
-          description: "Send all messages to the Director."
+    - role: robertdebock.roles.bareos_console
+      bareos_bconsole_directors:
+        - name: bareos-dir
+          address: localhost
+          password: "MySuperSecretPassword"
+          description: "Bareos Console credentials for local Director"
 ```
 
-The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-bareos_sd/blob/master/molecule/default/prepare.yml):
+The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-bareos_console/blob/master/molecule/default/prepare.yml):
 
 ```yaml
 ---
@@ -39,37 +37,35 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
 
   roles:
     - role: robertdebock.roles.bootstrap
-    - role: robertdebock.roles.bareos_repository
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.
 
 ## [Role Variables](#role-variables)
 
-The default values for the variables are set in [`defaults/main.yml`](https://github.com/robertdebock/ansible-role-bareos_sd/blob/master/defaults/main.yml):
+The default values for the variables are set in [`defaults/main.yml`](https://github.com/robertdebock/ansible-role-bareos_console/blob/master/defaults/main.yml):
 
 ```yaml
 ---
-# defaults file for bareos_sd
+# defaults file for bareos_console
 
-# The Storage Daemon has these configuration parameters.
-bareos_sd_hostname: "{{ ansible_fqdn }}"
+# A list of directors to connect to.
+# bareos_bconsole_directors:
+#   - name: bareos-dir
+#     address: localhost
+#     password: "MySuperSecretPassword"
+#     description: "Bareos Console credentials for local Director"
 
-# You can configure what Directors are allowed to connect to the Storage Daemon.
-# bareos_sd_directors:
-#   - name: dir-1
-#     password: "somepassword"
-
-# You can configure what messages are sent to the Director.
-# bareos_sd_messages: # <- Please set your own value
-#   - name: "Standard"
-#     director: "dir-1 = all, !skipped, !restored"
-#     description: "Send all messages to the Director."
+# A list of users to allow access.
+# bareos_bconsole_users:
+#   - name: my-user
+#     password: "MySuperSecretPassword"
+#     director: bareos-dir
 ```
 
 ## [Requirements](#requirements)
 
-- pip packages listed in [requirements.txt](https://github.com/robertdebock/ansible-role-bareos_sd/blob/master/requirements.txt).
+- pip packages listed in [requirements.txt](https://github.com/robertdebock/ansible-role-bareos_console/blob/master/requirements.txt).
 
 ## [State of used roles](#state-of-used-roles)
 
@@ -85,7 +81,7 @@ The following roles are used to prepare a system. You can prepare your system in
 This role is a part of many compatible roles. Have a look at [the documentation of these roles](https://robertdebock.nl/) for further information.
 
 Here is an overview of related roles:
-![dependencies](https://raw.githubusercontent.com/robertdebock/ansible-role-bareos_sd/png/requirements.png "Dependencies")
+![dependencies](https://raw.githubusercontent.com/robertdebock/ansible-role-bareos_console/png/requirements.png "Dependencies")
 
 ## [Compatibility](#compatibility)
 
@@ -105,11 +101,11 @@ The minimum version of Ansible required is 2.12, tests have been done to:
 - The current version.
 - The development version.
 
-If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-bareos_sd/issues)
+If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-bareos_console/issues)
 
 ## [License](#license)
 
-[Apache-2.0](https://github.com/robertdebock/ansible-role-bareos_sd/blob/master/LICENSE).
+[Apache-2.0](https://github.com/robertdebock/ansible-role-bareos_console/blob/master/LICENSE).
 
 ## [Author Information](#author-information)
 

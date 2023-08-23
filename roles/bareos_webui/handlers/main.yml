@@ -1,0 +1,7 @@
+---
+# handlers file for bareos_webui
+
+- name: Restart httpd
+  ansible.builtin.service:
+    name: "{{ bareos_webui_httpd_service }}"
+    state: restarted

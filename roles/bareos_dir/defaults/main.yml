@@ -6,4 +6,15 @@ bareos_dir_hostname: "{{ ansible_fqdn }}"
 # bareos_dir_password: "secretpassword" # <- Please set your own password.
 bareos_dir_queryfile: "/usr/lib/bareos/scripts/query.sql"
 # bareos_dir_max_concurrent_jobs: 10 # <- Please set your own value.
-# bareos_dir_messages: Daemon # <- Please set your own.
+# bareos_dir_message: Daemon # <- Please set your own.
+
+# You need to configure Director with all clients.
+# bareos_dir_clients:
+#   - name: client1
+#     address: 127.0.0.1
+#     password: "MySecretPassword"
+
+# bareos_dir_messages:
+#   - name: "Standard"
+#     director: "dir-1 = all, !skipped, !restored"
+#     description: "Send all messages to the Director."

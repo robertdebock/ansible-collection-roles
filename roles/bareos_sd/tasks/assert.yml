@@ -7,3 +7,51 @@
       - bareos_sd_hostname is string
       - bareos_sd_hostname is not none
     quiet: yes
+
+- name: assert | Test if bareos_sd_directors is set correctly
+  ansible.builtin.assert:
+    that:
+      - bareos_sd_directors is iterable
+    quiet: yes
+  when:
+    - bareos_sd_directors is defined
+
+- name: assert | Test if items in bareos_sd_directors are set correctly
+  ansible.builtin.assert:
+    that:
+      - item.name is defined
+      - item.name is string
+      - item.name is not none
+      - item.password is defined
+      - item.password is string
+      - item.password is not none
+    quiet: yes
+  loop: "{{ bareos_sd_directors }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - bareos_sd_directors is defined
+
+- name: assert | Test if bareos_sd_messages is set correctly
+  ansible.builtin.assert:
+    that:
+      - bareos_sd_messages is iterable
+    quiet: yes
+  when:
+    - bareos_sd_messages is defined
+
+- name: assert | Test if items in bareos_sd_messages are set correctly
+  ansible.builtin.assert:
+    that:
+      - item.name is defined
+      - item.name is string
+      - item.name is not none
+      - item.director is defined
+      - item.director is string
+      - item.director is not none
+    quiet: yes
+  loop: "{{ bareos_sd_messages }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - bareos_sd_messages is defined

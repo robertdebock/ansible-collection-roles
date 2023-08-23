@@ -1,0 +1,22 @@
+{{ ansible_managed | comment }}
+
+{% if bareos_bconsole_directors is defined %}
+{% for director in bareos_bconsole_directors %}
+Director {
+   Name = {{ director.name }}
+   Address = {{ director.address }}
+   Password = "{{ director.password }}"
+   Description = "{{ director.description }}"
+}
+{% endfor %}
+{% endif %}
+
+{% if bareos_bconsole_users is defined %}
+{% for user in bareos_bconsole_users %}
+Console {
+   Name = {{ user.name }}
+   Password = "{{ user.password }}"
+   Director = {{ user.director }}
+}
+{% endfor %}
+{% endif %}
