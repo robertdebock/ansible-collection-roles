@@ -1,15 +1,33 @@
 ---
 # vars file for bareos_dir
 
+# The requirements for bareos-dir.
+_bareos_dir_requirements:
+  default: []
+  Debian:
+    - procps
+bareos_dir_requirements: "{{ _bareos_dir_requirements[ansible_os_family] | default(_bareos_dir_requirements['default']) }}"
+
 # The packages to install.
 bareos_dir_packages:
   - bareos-database-postgresql
   - bareos-database-tools
   - bareos-director
-  # - bareos-webui # <- No sure if this is required.
 
 # A list of script to setup the database.
 bareos_dir_install_scripts:
   - /usr/lib/bareos/scripts/create_bareos_database
   - /usr/lib/bareos/scripts/make_bareos_tables
   - /usr/lib/bareos/scripts/grant_bareos_privileges
+
+_bareos_dir_debug_packages:
+  default:
+    - "bareos-director-debuginfo"
+    - gdb
+  Debian:
+    - "bareos-dbg"
+    - gdb
+  RedHat-7:
+    - "bareos-debuginfo"
+    - gdb
+bareos_dir_debug_packages: "{{ _bareos_dir_debug_packages[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_bareos_dir_debug_packages[ansible_os_family] | default(_bareos_dir_debug_packages['default'])) }}"

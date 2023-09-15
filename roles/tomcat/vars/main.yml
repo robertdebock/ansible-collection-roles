@@ -1,0 +1,13 @@
+---
+# vars file for tomcat
+
+
+# If you want to download Tomcat from another location, adjust these parameters
+# to your liking. For "normal" use, this does not require modification.
+_tomcat_unarchive_urls:
+  7: "{{ tomcat_mirror }}/dist/tomcat/tomcat-7/v{{ tomcat_version7 }}/bin/apache-tomcat-{{ tomcat_version7 }}.tar.gz"
+  8: "{{ tomcat_mirror }}/dist/tomcat/tomcat-8/v{{ tomcat_version8 }}/bin/apache-tomcat-{{ tomcat_version8 }}.tar.gz"
+  9: "{{ tomcat_mirror }}/dist/tomcat/tomcat-9/v{{ tomcat_version9 }}/bin/apache-tomcat-{{ tomcat_version9 }}.tar.gz"
+  10: "{{ tomcat_mirror }}/dist/tomcat/tomcat-10/v{{ tomcat_version10 }}/bin/apache-tomcat-{{ tomcat_version10 }}.tar.gz"
+
+tomcat_unarchive_url: "{{ _tomcat_unarchive_urls[tomcat_version] }}"

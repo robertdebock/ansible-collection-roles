@@ -17,5 +17,7 @@
     dest: /etc/bareos/bconsole.conf
     owner: root
     group: bareos
-    mode: '0640'
+    mode: "0640"
     validate: /usr/sbin/bconsole --test-config --config %s
+  when:
+    - bareos_console_directors is defined

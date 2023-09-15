@@ -2,15 +2,36 @@
 # defaults file for bareos_sd
 
 # The Storage Daemon has these configuration parameters.
-bareos_sd_hostname: "{{ ansible_fqdn }}"
 
-# You can configure what Directors are allowed to connect to the Storage Daemon.
-# bareos_sd_directors:
-#   - name: dir-1
-#     password: "somepassword"
+# Backup the configuration files.
+bareos_sd_backup_configurations: no
 
-# You can configure what messages are sent to the Director.
-# bareos_sd_messages: # <- Please set your own value
-#   - name: "Standard"
-#     director: "dir-1 = all, !skipped, !restored"
-#     description: "Send all messages to the Director."
+# Install debug packages. This requires the debug repositories to be enabled.
+bareos_sd_install_debug_packages: no
+
+# The hostname of the Storage Daemon.
+bareos_sd_hostname: "{{ inventory_hostname }}"
+
+# The messages configuration to use.
+bareos_sd_message: "Standard"
+
+# The amount of jobs to run concurrently.
+bareos_sd_max_concurrent_jobs: 20
+
+# Enable TLS.
+bareos_sd_tls_enable: yes
+
+# Verify the peer.
+bareos_sd_tls_verify_peer: no
+
+# A list of devices to configure.
+bareos_sd_devices: []
+
+# A list of directors to connect to.
+bareos_sd_directors: []
+
+# A list of messages to send to the director.
+bareos_sd_messages: []
+
+# A list of S3 profiles to configure.
+bareos_sd_s3_profiles: []

@@ -104,7 +104,8 @@ openssh_trusted_user_ca_keys: none
 
 # Restrict access to this (space separated list) of users or groups.
 # For example: "openssh_allow_users: root my_user"
-# openssh_allow_users: root
+# openssh_allow_users:
+#  - root
 
-# For example: "openssh_allow_groups: wheel my_group"
-# openssh_allow_groups: wheel
+# openssh_allow_groups:
+#  - wheel

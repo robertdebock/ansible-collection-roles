@@ -66,6 +66,19 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
               address: "127.0.0.2"
               port: 25
           port: 25
+      haproxy_listen_default_balance: roundrobin
+      haproxy_listens:
+        - name: listen
+          address: "*"
+          httpcheck: yes
+          listen_port: 8081
+          balance: roundrobin
+          # You can refer to hosts in an Ansible group.
+          # The `ansible_default_ipv4` will be used as an address to connect to.
+          servers: "{{ groups['all'] }}"
+          port: 8080
+          options:
+            - maxconn 100000
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-haproxy/blob/master/molecule/default/prepare.yml):
@@ -135,6 +148,15 @@ haproxy_timeout_server: 1m
 haproxy_timeout_http_keep_alive: 10s
 haproxy_timeout_check: 10s
 haproxy_maxconn: 3000
+
+# A list of frontends. See `molecule/
+haproxy_frontends: []
+haproxy_backend_default_balance: roundrobin
+haproxy_backends: []
+
+# For the listening lists:
+haproxy_listen_default_balance: roundrobin
+haproxy_listens: []
 ```
 
 ## [Requirements](#requirements)

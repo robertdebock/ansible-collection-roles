@@ -13,7 +13,10 @@
     baseurl: "{{ item.baseurl }}"
     gpgcheck: yes
     gpgkey: "{{ item.gpgkey }}"
-  loop: "{{ bareos_repositories }}"
+    username: "{{ item.username | default(omit) }}"
+    password: "{{ item.password | default(omit) }}"
+  no_log: yes
+  loop: "{{ bareos_repository_list }}"
   loop_control:
     label: "{{ item.name }}"
   when:
@@ -27,17 +30,39 @@
       ansible.builtin.package:
         name: ca-certificates
 
-    - name: Trust GPG key (apt)
-      ansible.builtin.apt_key:
-        url: "{{ bareos_gpg_key }}"
+    - name: Download gpg key (apt)
+      ansible.builtin.get_url:
+        url: "{{ bareos_repository_gpg_key }}"
+        dest: /etc/apt/bareos.gpg
+        username: "{{ bareos_repository_username }}"
+        password: "{{ bareos_repository_password }}"
+        owner: root
+        group: root
+        mode: "0644"
+      no_log: yes
+
+    - name: Place credentials file (apt)
+      ansible.builtin.copy:
+        content: |
+          machine download.bareos.com
+          login {{ bareos_repository_username }}
+          password {{ bareos_repository_password }}
+        dest: /etc/apt/auth.conf.d/download_bareos_com.conf
+        owner: root
+        group: root
+        mode: "0600"
+      no_log: yes
+      when:
+        - bareos_repository_type == "subscription"
 
     - name: Add repository (apt)
       ansible.builtin.apt_repository:
-        repo: "{{ item.repo }}"
+        repo: "{{ item.deb_repo }}"
         state: present
         filename: "{{ item.name }}"
         update_cache: yes
-      loop: "{{ bareos_repositories }}"
+      no_log: yes
+      loop: "{{ bareos_repository_list }}"
       loop_control:
         label: "{{ item.name }}"
 
@@ -45,14 +70,78 @@
   when:
     - ansible_pkg_mgr in [ "zypper" ]
   block:
+    - name: Download gpg key (zypper)
+      ansible.builtin.get_url:
+        url: "{{ bareos_repository_gpg_key }}"
+        dest: /etc/gnupg/bareos.gpg
+        username: "{{ bareos_repository_username }}"
+        password: "{{ bareos_repository_password }}"
+        owner: root
+        group: root
+        mode: "0644"
+      no_log: yes
+
     - name: Import gpg key (zypper)
       ansible.builtin.rpm_key:
-        key: "{{ bareos_gpg_key }}"
+        key: /etc/gnupg/bareos.gpg
+
+    - name: Place credentials file (zypper)
+      ansible.builtin.copy:
+        content: |
+          username={{ bareos_repository_username }}
+          password={{ bareos_repository_password }}
+        dest: /etc/zypp/credentials.d/bareos
+        owner: root
+        group: root
+        mode: "0600"
+      no_log: yes
+      when:
+        - bareos_repository_type == "subscription"
 
     - name: Add repository (zypper)
       ansible.builtin.zypper_repository:
         name: "{{ item.name }}"
-        repo: "{{ item.zypper_repo }}"
-      loop: "{{ bareos_repositories }}"
+        repo: "{{ item.repo }}"
+      loop: "{{ bareos_repository_list }}"
       loop_control:
         label: "{{ item.name }}"
+
+- name: Enable tracebacks
+  when:
+    - bareos_repository_enable_tracebacks
+  block:
+    - name: Add debuginfo repository (rpm)
+      ansible.builtin.yum_repository:
+        name: "{{ item.name }}"
+        description: "{{ item.description }}"
+        baseurl: "{{ item.baseurl }}"
+        gpgcheck: yes
+        gpgkey: "{{ item.gpgkey }}"
+        username: "{{ item.username | default(omit) }}"
+        password: "{{ item.password | default(omit) }}"
+      no_log: yes
+      loop: "{{ bareos_repository_debug_list }}"
+      loop_control:
+        label: "{{ item.name }}"
+      when:
+        - ansible_pkg_mgr in [ "dnf", "yum" ]
+
+    - name: Add repository (zypper)
+      ansible.builtin.zypper_repository:
+        name: "{{ item.name }}"
+        repo: "{{ item.repo }}"
+      loop: "{{ bareos_repository_debug_list }}"
+      loop_control:
+        label: "{{ item.name }}"
+      when:
+        - ansible_pkg_mgr in [ "zypper" ]
+
+    - name: Install required packages
+      ansible.builtin.package:
+        name: "{{ bareos_repository_debug_required_packages }}"
+
+    - name: Disable ptrace_scope
+      ansible.posix.sysctl:
+        name: kernel.yama.ptrace_scope
+        value: 0
+        sysctl_set: yes

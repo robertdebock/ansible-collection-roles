@@ -1,4 +1,5 @@
 {{ ansible_managed | comment }}
+
 global
     log         127.0.0.1 local2
     chroot      /var/lib/haproxy
@@ -62,6 +63,26 @@ backend {{ backend.name }}
 {% elif ansible_default_ipv4 is defined %}
     server {{ server }} {{ hostvars[server]['ansible_default_ipv4']['address'] }}:{{ backend.port }} {% if backend.options is defined %}{{ backend.options | join(' ') }}{% endif %}
 
+{% endif %}
+{% endfor %}
+{% endfor %}
+
+
+{% for listen in haproxy_listens %}
+listen {{ listen.name }}
+    bind {{ listen.address }}:{{ listen.listen_port }}{% if listen.ssl is defined and listen.ssl == true %} ssl{% endif %}{% if listen.crts is defined and listen.crts | length >0 %}{% for crt in listen.crts %} crt {{ crt }}{% endfor %}{% endif %}
+
+{% if listen.httpcheck %}
+    option httpchk {% if listen.httpcheck_method is defined %}{{ listen.httpcheck_method }}{% endif %}
+{% endif %}
+
+    balance {{ listen.balance | default(haproxy_listen_default_balance) }}
+    mode {{ listen.mode | default('tcp') }}
+{% for server in listen.servers %}
+{% if server.name is defined %}
+    server {{ server.name }} {{ server.address | default(hostvars[server.name]['ansible_default_ipv4']['address']) }}:{{ server.port | default(listen.port) }} {{ listen.options | join(' ') }}
+{% else %}
+    server {{ server }} {{ hostvars[server]['ansible_default_ipv4']['address'] }}:{{ listen.port }} {{ listen.options | join(' ') }}
 {% endif %}
 {% endfor %}
 {% endfor %}

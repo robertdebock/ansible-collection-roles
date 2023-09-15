@@ -429,3 +429,19 @@
       - openssh_trusted_user_ca_keys is string
       - openssh_trusted_user_ca_keys is not none
     quiet: yes
+
+- name: assert | Test if openssh_allow_users is set correctly
+  ansible.builtin.assert:
+    that:
+      - openssh_allow_users is iterable
+    quiet: yes
+  when:
+    - openssh_allow_users is defined
+
+- name: assert | Test if openssh_allow_groups is set correctly
+  ansible.builtin.assert:
+    that:
+      - openssh_allow_groups is iterable
+    quiet: yes
+  when:
+    - openssh_allow_groups is defined

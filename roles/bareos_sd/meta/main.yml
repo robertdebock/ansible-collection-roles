@@ -2,7 +2,7 @@
 galaxy_info:
   author: robertdebock
   role_name: bareos_sd
-  description: Install and configure BareOS Storage Daemon on your system.
+  description: Install and configure [Bareos](https://www.bareos.com/) Storage Daemon.
   license: Apache-2.0
   company: none
   min_ansible_version: "2.12"
@@ -10,13 +10,17 @@ galaxy_info:
   platforms:
     - name: Debian
       versions:
-        - all
+        - bookworm
+        - bullseye
+        - buster
     - name: EL
       versions:
+        - "7"
         - "8"
         - "9"
     - name: Fedora
       versions:
+        - "36"
         - "37"
     - name: opensuse
       versions:
@@ -24,6 +28,7 @@ galaxy_info:
     - name: Ubuntu
       versions:
         - jammy
+        - focal
 
   galaxy_tags:
     - bareos

@@ -9,16 +9,59 @@ argument_specs:
       Install and configure BareOS File Daemon on your system.
     author: Robert de Bock
     options:
+      bareos_fd_backup_configurations:
+        type: "bool"
+        default: no
+        description: "Backup existing configurations."
+      bareos_fd_install_debug_packages:
+        type: "bool"
+        default: no
+        description: "Install debug packages. This requires the debug repositories to be enabled."
       bareos_fd_hostname:
         type: "str"
-        default: "{{ ansible_fqdn}}"
+        default: "{{ inventory_hostname }}"
         description: "The hostname of the File Daemon."
       bareos_fd_max_job_bandwidth:
         type: "str"
+        default: "10 mb/s"
         description: "The maximum bandwidth to use."
+      bareos_fd_message:
+        type: "str"
+        default: "Standard"
+        description: "The message to use."
+      bareos_fd_maximum_concurrent_jobs:
+        type: "int"
+        default: 20
+        description: "The maximum number of concurrent jobs."
+      bareos_fd_tls_enable:
+        type: "bool"
+        default: yes
+        description: "Enable TLS."
+      bareos_fd_tls_verify_peer:
+        type: "bool"
+        default: no
+        description: "Verify the peer."
+      bareos_fd_heartbeat_interval:
+        type: "int"
+        default: 0
+        description: "The inteval in seconds to send a heartbeat."
       bareos_fd_directors:
         type: "list"
+        default: []
         description: "The Directors to connect to."
       bareos_fd_messages:
         type: "list"
+        default: []
         description: "The Messages to configure."
+      bareos_fd_encryption_enabled:
+        type: "bool"
+        default: no
+        description: "For encryption of data, set this to `yes`."
+      bareos_fd_encryption_private_key:
+        type: "str"
+        default: ""
+        description: "You may bring your own private key. If not specified, a new one will be generated."
+      bareos_fd_encryption_master_public_key:
+        type: "str"
+        default: ""
+        description: "The master public key to use."

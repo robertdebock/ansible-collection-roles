@@ -45,7 +45,7 @@
     mode: "0755"
   when:
     - not vault_check_path.stat.exists
-    - vault_path != ""
+    - vault_path | length > 0
 
 - name: binary | Create directory in vault_path
   ansible.builtin.file:

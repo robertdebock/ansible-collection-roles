@@ -110,6 +110,11 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
     - role: robertdebock.roles.bootstrap
     - role: robertdebock.roles.core_dependencies
     - role: robertdebock.roles.java
+      # __java_version:
+      #   default: 8
+      #   Debian: 11
+      #   Debian-bookworm: 17
+      # java_version: "{{ _desired_java_version[ansible_distribution ~ '-' ~ ansible_distribution_release] | default(_desired_java_version[ansible_distribution] | default(_desired_java_version['default'])) }}"
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.
@@ -125,7 +130,7 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 # Some "sane" defaults.
 tomcat_name: tomcat
 tomcat_directory: /opt
-tomcat_version: 8
+tomcat_version: 9
 tomcat_user: tomcat
 tomcat_group: tomcat
 tomcat_xms: 512M
@@ -189,21 +194,10 @@ tomcat_instances:
 tomcat_version7: "7.0.109"
 tomcat_version8: "8.5.73"
 tomcat_version9: "9.0.55"
+tomcat_version10: "10.1.12"
 
 # The location where to download Apache Tomcat from.
 tomcat_mirror: "https://archive.apache.org"
-
-# If you want to download Tomcat from another location, adjust these parameters
-# to your liking. For "normal" use, this does not require modification.
-_tomcat_unarchive_urls:
-  7:
-    url: "{{ tomcat_mirror }}/dist/tomcat/tomcat-7/v{{ tomcat_version7 }}/bin/apache-tomcat-{{ tomcat_version7 }}.tar.gz"
-  8:
-    url: "{{ tomcat_mirror }}/dist/tomcat/tomcat-8/v{{ tomcat_version8 }}/bin/apache-tomcat-{{ tomcat_version8 }}.tar.gz"
-  9:
-    url: "{{ tomcat_mirror }}/dist/tomcat/tomcat-9/v{{ tomcat_version9 }}/bin/apache-tomcat-{{ tomcat_version9 }}.tar.gz"
-
-tomcat_unarchive_url: "{{ _tomcat_unarchive_urls[tomcat_version].url }}"
 ```
 
 ## [Requirements](#requirements)

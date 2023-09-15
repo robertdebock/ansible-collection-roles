@@ -1,7 +1,5 @@
 ---
 
-# # bareos_dir_messages: Daemon
-
 argument_specs:
   main:
     short_description: "Install and configure BareOS Director on your system."
@@ -9,12 +7,17 @@ argument_specs:
       Install and configure BareOS Director on your system.
     author: Robert de Bock
     options:
+      bareos_dir_backup_configurations:
+        type: "bool"
+        default: no
+        description: "Backup the configuration files."
       bareos_dir_hostname:
         type: "str"
-        default: "{{ ansible_fqdn}}"
+        default: "{{ inventory_hostname }}"
         description: "The hostname of the Director."
       bareos_dir_password:
         type: "str"
+        default: "secretpassword"
         description: "The password for the Director."
       bareos_dir_queryfile:
         type: "str"
@@ -22,13 +25,65 @@ argument_specs:
         description: "The query file."
       bareos_dir_max_concurrent_jobs:
         type: "int"
+        default: 10
         description: "The maximum number of concurrent jobs."
       bareos_dir_message:
         type: "str"
-        description: "The messages to show."
+        default: "Daemon"
+        description: "The messages configuration to use."
+      bareos_dir_tls_enable:
+        type: "bool"
+        default: yes
+        description: "Enable TLS."
+      bareos_dir_tls_verify_peer:
+        type: "bool"
+        default: no
+        description: "Verify the peer."
+      bareos_dir_catalogs:
+        type: "list"
+        default: []
+        description: "A list of catalogs to configure."
+      bareos_dir_consoles:
+        type: "list"
+        default: []
+        description: "A list of consoled to configure."
       bareos_dir_clients:
         type: "list"
+        default: []
         description: "A list of clients to configure."
+      bareos_dir_filesets:
+        type: "list"
+        default: []
+        description: "A list of filesets to configure."
+      bareos_dir_jobdefs:
+        type: "list"
+        default: []
+        description: "A list of jobdefs to configure."
+      bareos_dir_jobs:
+        type: "list"
+        default: []
+        description: "A list of jobs to configure."
       bareos_dir_messages:
         type: "list"
+        default: []
         description: "A list of messages to configure."
+      bareos_dir_pools:
+        type: "list"
+        default: []
+        description: "A list of pools to configure."
+      bareos_dir_profiles:
+        type: "list"
+        default: []
+        description: "A list of profiles to configure."
+      bareos_dir_schedules:
+        type: "list"
+        default: []
+        description: "A list of schedules to configure."
+      bareos_dir_storages:
+        type: "list"
+        default: []
+        description: "A list of storages to configure."
+      bareos_dir_install_debug_packages:
+        type: "bool"
+        default: no
+        description: "Install debug packages. This requires the debug repositories to be enabled."

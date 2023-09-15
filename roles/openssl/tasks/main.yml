@@ -15,7 +15,7 @@
   ansible.builtin.pip:
     name: "{{ openssl_pip_packages }}"
   when:
-    - openssl_pip_package | length > 0
+    - openssl_pip_packages | length > 0
 
 - name: Create key directory
   ansible.builtin.file:

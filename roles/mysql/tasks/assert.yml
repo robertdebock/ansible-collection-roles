@@ -28,7 +28,7 @@
   ansible.builtin.assert:
     that:
       - mysql_innodb_io_capacity is defined
-      - mysql_innodb_io_capacity is integer
+      - mysql_innodb_io_capacity is number
     quiet: yes
 
 - name: assert | Test item.name item in mysql_databases is set correctly

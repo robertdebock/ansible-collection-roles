@@ -1,0 +1,40 @@
+{{ ansible_managed | comment }}
+
+{% if item.enabled is defined and item.enabled or item.enabled is not defined %}
+FileSet {
+  Name = "{{ item.name }}"
+  Description = "{{ item.description }}"
+  Include {
+    Options {
+      Signature = {{ item.include.options.signature }}
+{% if item.include.options.one_fs is defined %}
+      One FS = {{ item.include.options.one_fs | ternary('Yes', 'No') }}
+{% endif %}
+{% if item.include.options.fs_types is defined %}
+{% for fs_type in item.include.options.fs_types %}
+      FS Type = {{ fs_type }}
+{% endfor %}
+{% endif %}
+{% if item.include.options.compression is defined %}
+      Compression = {{ item.include.options.compression }}
+{% endif %}
+    }
+{% if item.include.exclude_dirs_containing is defined %}
+      Exclude Dir Containing = {{ item.include.exclude_dirs_containing }}
+{% endif %}
+
+{% for file in item.include.files %}
+    File = {{ file }}
+{% endfor %}
+  }
+{% if item.exclude is defined %}
+  Exclude {
+{% for file in item.exclude.files %}
+    File = {{ file }}
+{% endfor %}
+  }
+{% endif %}
+}
+{% else %}
+# This file is not enabled.
+{% endif %}

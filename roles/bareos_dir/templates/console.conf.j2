@@ -1,0 +1,25 @@
+{{ ansible_managed | comment }}
+
+{% if item.enabled is defined and item.enabled or item.enabled is not defined %}
+Console {
+  Name = "{{ item.name }}"
+{% if item.description is defined %}
+  Description = "{{ item.description }}"
+{% endif %}
+  Password = "{{ item.password }}"
+{% if item.commandacl is defined %}
+  CommandACL = {{ item.commandacl | join(', ') }}
+{% endif %}
+{% if item.jobacl is defined %}
+  JobACL = {{ item.jobacl | join(', ') }}
+{% endif %}
+{% if item.profile is defined %}
+  Profile = "{{ item.profile }}"
+{% endif %}
+{% if item.tlsenable is defined %}
+  TlsEnable = {{ item.tlsenable | ternary('Yes', 'No') }}
+{% endif %}
+}
+{% else %}
+# This file is not enabled.
+{% endif %}

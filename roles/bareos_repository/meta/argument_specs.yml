@@ -8,14 +8,22 @@ argument_specs:
       After applying this role, you can install bareos packages.
     author: Robert de Bock
     options:
-      bareos_type:
+      bareos_repository_type:
         type: "str"
         default: community
         description: "What type of Bareos to install, either 'community' or 'subscription'."
         choices:
           - community
           - subscription
-      bareos_release:
+      bareos_repository_username:
+        type: "str"
+        default: ""
+        description: "The subscription username for the repository."
+      bareos_repository_password:
+        type: "str"
+        default: ""
+        description: "The subscription password for the repository."
+      bareos_repository_release:
         type: "str"
         default: current
         description: "What release to use, either 'current', 'next' or 'release'."
@@ -23,3 +31,11 @@ argument_specs:
           - current
           - next
           - release
+      bareos_repository_version:
+        type: "int"
+        default: 22
+        description: "The version of Bareos to install. Only affects `bareos_repository_type: subscription`."
+      bareos_repository_enable_tracebacks:
+        type: "bool"
+        default: false
+        description: "You can enable tracebacks for troubleshooting purposes."

@@ -1,0 +1,73 @@
+---
+
+argument_specs:
+  main:
+    short_description: "Install and configure haproxy on your system."
+    description: >
+      Install and configure haproxy on your system.
+    author: Robert de Bock
+    options:
+      haproxy_stats:
+        type: "bool"
+        default: yes
+        description: "Configure stats in HAProxy?"
+      haproxy_stats_port:
+        type: "int"
+        default: 1936
+        description: "The port for HAProxy stats."
+      haproxy_stats_bind_addr:
+        type: "str"
+        default: "0.0.0.0"
+        description: "The address to bind HAProxy stats to."
+      haproxy_retries:
+        type: "int"
+        default: 3
+        description: "The number of retries."
+      haproxy_timeout_http_request:
+        type: "str"
+        default: "10s"
+        description: "The timeout for HTTP requests."
+      haproxy_timeout_connect:
+        type: "str"
+        default: "10s"
+        description: "The timeout for connecting."
+      haproxy_timeout_client:
+        type: "str"
+        default: "1m"
+        description: "The timeout for clients."
+      haproxy_timeout_server:
+        type: "str"
+        default: "1m"
+        description: "The timeout for servers."
+      haproxy_timeout_http_keep_alive:
+        type: "str"
+        default: "10s"
+        description: "The interval for HTTP keep-alive."
+      haproxy_timeout_check:
+        type: "str"
+        default: "10s"
+        description: "The timeout for checks."
+      haproxy_maxconn:
+        type: "int"
+        default: 3000
+        description: "The maximum number of connections."
+      haproxy_frontends:
+        type: "list"
+        default: []
+        description: "A list of frontends."
+      haproxy_backend_default_balance:
+        type: "str"
+        default: "roundrobin"
+        description: "The default balance for backends."
+      haproxy_backends:
+        type: "list"
+        default: []
+        description: "A list of backends."
+      haproxy_listen_default_balance:
+        type: "str"
+        default: "roundrobin"
+        description: "The default balance for listens."
+      haproxy_listens:
+        type: "list"
+        default: []
+        description: "A list of listens."

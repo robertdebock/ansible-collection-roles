@@ -2,7 +2,21 @@
 # defaults file for bareos_repository
 
 # What type of Bareos to install, either "community" or "subscription".
-bareos_type: community
+bareos_repository_type: community
+
+# The subscription username for the repository.
+bareos_repository_username: ""
+
+# The subscription password for the repository.
+bareos_repository_password: ""
 
 # What release to use, either "current", "next" or "release".
-bareos_release: current
+# When using `bareos_repository_type: community` this can be set to "release" or "testing".
+bareos_repository_release: current
+
+# The version of Bareos to install.
+# Only affects `bareos_repository_type: subscription`.
+bareos_repository_version: 22
+
+# You can enable tracebacks for troubleshooting purposes.
+bareos_repository_enable_tracebacks: no

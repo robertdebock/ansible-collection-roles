@@ -19,8 +19,10 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 
   roles:
     - role: robertdebock.roles.openssh
-      openssh_allow_users: root
-      openssh_allow_groups: root
+      openssh_allow_users:
+        - root
+      openssh_allow_groups:
+        - root
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-openssh/blob/master/molecule/default/prepare.yml):
@@ -150,10 +152,11 @@ openssh_trusted_user_ca_keys: none
 
 # Restrict access to this (space separated list) of users or groups.
 # For example: "openssh_allow_users: root my_user"
-# openssh_allow_users: root
+# openssh_allow_users:
+#  - root
 
-# For example: "openssh_allow_groups: wheel my_group"
-# openssh_allow_groups: wheel
+# openssh_allow_groups:
+#  - wheel
 ```
 
 ## [Requirements](#requirements)

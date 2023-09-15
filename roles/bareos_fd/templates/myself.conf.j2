@@ -1,5 +1,25 @@
-# {{ ansible_managed }}
+{{ ansible_managed | comment }}
 
 Client {
-  Name = {{ bareos_fd_hostname }}
+  Name = "{{ bareos_fd_hostname }}"
+  Messages = "{{ bareos_fd_message }}"
+{% if not bareos_fd_tls_enable %}
+  TLS Enable = No
+{% endif %}
+{% if bareos_fd_tls_verify_peer %}
+  TLS Verify Peer = Yes
+{% endif %}
+{% if bareos_fd_heartbeat_interval != 0 %}
+  Heartbeat Interval = {{ bareos_fd_heartbeat_interval }}
+{% endif %}
+{% if bareos_fd_maximum_concurrent_jobs != 20 %}
+  Maximum Concurrent Jobs = {{ bareos_fd_max_concurrent_jobs }}
+{% endif %}
+{% if bareos_fd_encryption_enabled %}
+  PKI Signatures = Yes
+  PKI Encryption = Yes
+  PKI Keypair = "/etc/bareos/{{ bareos_fd_hostname }}.pem"
+  PKI Master Key = "/etc/bareos/master.pub.key"
+  PKI Cipher = aes128
+{% endif %}
 }

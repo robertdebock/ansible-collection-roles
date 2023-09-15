@@ -12,7 +12,12 @@
   when:
     - item.stdout is defined
 
-- name: Restart bareos-dir
+- name: Check configuration
+  ansible.builtin.command: "bareos-dir --test-config"
+  changed_when: false
+  become_user: bareos
+
+- name: Reload bareos-dir
   ansible.builtin.service:
     name: bareos-dir
-    state: restarted
+    state: reloaded

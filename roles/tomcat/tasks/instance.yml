@@ -56,7 +56,9 @@
     dest: "{{ tomcat_directory }}/{{ instance.name }}/bin/setenv.sh"
     mode: "0644"
   when:
-    - (instance.java_opts is defined) or (instance.xms is defined) or (instance.xmx is defined)
+    - instance.java_opts is defined or
+      instance.xms is defined or
+      instance.xmx is defined
   notify:
     - Restart tomcat instance
 

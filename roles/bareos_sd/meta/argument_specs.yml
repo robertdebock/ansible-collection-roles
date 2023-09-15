@@ -7,13 +7,47 @@ argument_specs:
       Install and configure BareOS Storage Daemon on your system.
     author: Robert de Bock
     options:
+      bareos_sd_backup_configurations:
+        type: "bool"
+        default: no
+        description: "Backup the configuration files."
       bareos_sd_hostname:
         type: "str"
-        default: "{{ ansible_fqdn}}"
+        default: "{{ inventory_hostname }}"
         description: "The hostname of the Storage Daemon."
+      bareos_sd_message:
+        type: "str"
+        default: "Standard"
+        description: "The messages configuration to use."
+      bareos_sd_max_concurrent_jobs:
+        type: "int"
+        default: 20
+        description: "The amount of jobs to run concurrently."
+      bareos_sd_tls_enable:
+        type: "bool"
+        default: yes
+        description: "Enable TLS."
+      bareos_sd_tls_verify_peer:
+        type: "bool"
+        default: no
+        description: "Verify the peer."
+      bareos_sd_devices:
+        type: "list"
+        default: []
+        description: "A list of devices to configure."
       bareos_sd_directors:
         type: "list"
+        default: []
         description: "A list of directors to connect to."
       bareos_sd_messages:
         type: "list"
+        default: []
         description: "A list of messages to send to the director."
+      bareos_sd_s3_profiles:
+        type: "list"
+        default: []
+        description: "A list of S3 profiles to configure."
+      bareos_sd_install_debug_packages:
+        type: "bool"
+        default: no
+        description: "Install debug packages. This requires the debug repositories to be enabled."

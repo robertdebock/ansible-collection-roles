@@ -1,22 +1,24 @@
 {{ ansible_managed | comment }}
 
-{% if bareos_bconsole_directors is defined %}
-{% for director in bareos_bconsole_directors %}
+{% if bareos_console_directors is defined %}
+{% for director in bareos_console_directors %}
 Director {
-   Name = {{ director.name }}
-   Address = {{ director.address }}
-   Password = "{{ director.password }}"
+   Name = "{{ director.name }}"
+{% if director.description is defined %}
    Description = "{{ director.description }}"
-}
-{% endfor %}
 {% endif %}
-
-{% if bareos_bconsole_users is defined %}
-{% for user in bareos_bconsole_users %}
-Console {
-   Name = {{ user.name }}
-   Password = "{{ user.password }}"
-   Director = {{ user.director }}
+{% if director.address is defined %}
+   Address = "{{ director.address }}"
+{% endif %}
+{% if director.password is defined %}
+   Password = "[md5]{{ director.password | md5 }}"
+{% endif %}
+{% if director.tls_enable is defined %}
+   TLS Enable = {{ director.tls_enable | ternary('Yes', 'No') }}
+{% endif %}
+{% if director.tls_verify_peer is defined %}
+   TLS Verify Peer = {{ director.tls_verify_peer | ternary('Yes', 'No') }}
+{% endif %}
 }
 {% endfor %}
 {% endif %}

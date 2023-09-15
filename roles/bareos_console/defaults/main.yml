@@ -1,15 +1,4 @@
 ---
 # defaults file for bareos_console
 
-# A list of directors to connect to.
-# bareos_bconsole_directors:
-#   - name: bareos-dir
-#     address: localhost
-#     password: "MySuperSecretPassword"
-#     description: "Bareos Console credentials for local Director"
-
-# A list of users to allow access.
-# bareos_bconsole_users:
-#   - name: my-user
-#     password: "MySuperSecretPassword"
-#     director: bareos-dir
+bareos_console_directors: []

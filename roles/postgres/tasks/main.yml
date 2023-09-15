@@ -138,3 +138,4 @@
     - postgres_users is defined
   become_user: postgres
   become: yes
+  no_log: yes

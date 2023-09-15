@@ -1,0 +1,12 @@
+{{ ansible_managed | comment }}
+
+{% if item.enabled is defined and item.enabled or item.enabled is not defined %}
+Catalog {
+  Name = {{ item.name }}
+  dbname = "{{ item.dbname }}"
+  dbuser = "{{ item.dbuser }}"
+  dbpassword = "{{ item.dbpassword }}"
+}
+{% else %}
+# This file is not enabled.
+{% endif %}

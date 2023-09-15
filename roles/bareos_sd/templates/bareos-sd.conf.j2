@@ -1,5 +1,15 @@
-# {{ ansible_managed }}
+{{ ansible_managed | comment }}
 
 Storage {
-  Name = {{ bareos_sd_hostname }}
+  Name = "{{ bareos_sd_hostname }}"
+  Messages = "{{ bareos_sd_message }}"
+{% if bareos_sd_max_concurrent_jobs != 20 %}
+  Maximum Concurrent Jobs = {{ bareos_sd_max_concurrent_jobs }}
+{% endif %}
+{% if not bareos_sd_tls_enable %}
+  TLS Enable = No
+{% endif %}
+{% if bareos_sd_tls_verify_peer %}
+  TLS Verify Peer = Yes
+{% endif %}
 }

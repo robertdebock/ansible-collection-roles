@@ -1,10 +1,10 @@
 # [bareos_webui](#bareos_webui)
 
-Install and configure BareOS WebUI on your system.
+Install and configure [Bareos](https://www.bareos.com/) WebUI on your system.
 
 |GitHub|GitLab|Quality|Downloads|Version|
 |------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-bareos_webui/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-bareos_webui/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-bareos_webui/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-bareos_webui)|[![quality](https://img.shields.io/ansible/quality/)](https://galaxy.ansible.com/robertdebock/bareos_webui)|[![downloads](https://img.shields.io/ansible/role/d/)](https://galaxy.ansible.com/robertdebock/bareos_webui)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-bareos_webui.svg)](https://github.com/robertdebock/ansible-role-bareos_webui/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-bareos_webui/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-bareos_webui/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-bareos_webui/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-bareos_webui)|[![quality](https://img.shields.io/ansible/quality/63113)](https://galaxy.ansible.com/robertdebock/bareos_webui)|[![downloads](https://img.shields.io/ansible/role/d/63113)](https://galaxy.ansible.com/robertdebock/bareos_webui)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-bareos_webui.svg)](https://github.com/robertdebock/ansible-role-bareos_webui/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -23,10 +23,8 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
         - name: localhost-dir
           enabled: yes
           diraddress: localhost
-      bareos_webui_configuration:
-        - section: session
-          option: timeout
-          value: 3600
+        - name: disabled-dir
+          enabled: no
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-bareos_webui/blob/master/molecule/default/prepare.yml):
@@ -53,17 +51,12 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 ---
 # defaults file for bareos_webui
 
-# A list of directors to connect to.
-# bareos_webui_directors:
-#   - name: localhost-dir
-#     enabled: yes
-#     diraddress: localhost
+bareos_webui_configuration:
+  - section: session
+    option: timeout
+    value: 3600
 
-# Configuration for the webui.
-# bareos_webui_configuration:
-#   - section: session
-#     option: timeout
-#     value: 3600
+bareos_webui_directors: []
 ```
 
 ## [Requirements](#requirements)
@@ -92,10 +85,10 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|[Debian](https://hub.docker.com/repository/docker/robertdebock/debian/general)|all|
+|[Debian](https://hub.docker.com/repository/docker/robertdebock/debian/general)|bookworm, bullseye, buster|
 |[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|8, 9|
-|[Fedora](https://hub.docker.com/repository/docker/robertdebock/fedora/general)|37|
-|[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|jammy|
+|[Fedora](https://hub.docker.com/repository/docker/robertdebock/fedora/general)|36, 37|
+|[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|jammy, focal|
 
 The minimum version of Ansible required is 2.12, tests have been done to:
 

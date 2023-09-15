@@ -1,0 +1,22 @@
+{{ ansible_managed | comment }}
+
+{% if item.enabled is defined and item.enabled or item.enabled is not defined %}
+Storage {
+  Name = "{{ item.name }}"
+  Address = "{{ item.address }}"
+  Password = "{{ item.password }}"
+  Device = "{{ item.device }}"
+  Media Type = "{{ item.media_type }}"
+{% if item.tls_enable is defined %}
+  TLS Enable = {{ item.tls_enable | ternary('Yes', 'No') }}
+{% endif %}
+{% if item.tls_verify_peer is defined %}
+  TLS Verify Peer = {{ item.tls_verify_peer | ternary('Yes', 'No') }}
+{% endif %}
+{% if item.maximum_concurrent_jobs is defined %}
+  Maximum Concurrent Jobs = {{ item.maximum_concurrent_jobs }}
+{% endif %}
+}
+{% else %}
+# This file is not enabled.
+{% endif %}

@@ -1,7 +1,19 @@
-# {{ ansible_managed }}
+{{ ansible_managed | comment }}
 
+{% if item.enabled is defined and item.enabled or item.enabled is not defined %}
 Messages {
-  Name = {{ item.name }}
-  Director = {{ item.director }}
-  Description = {{ item.description }}
+  Name = "{{ item.name }}"
+  Description = "{{ item.description }}"
+{% if item.director is defined %}
+  Director = {{ item.director.server }} = {{ item.director.messages | join(', ') }}
+{% endif %}
+{% if item.append is defined %}
+  Append = "{{ item.append.file }}" = {{ item.append.messages | join(', ') }}
+{% endif %}
+{% if item.console is defined %}
+  Console = {{ item.console | join(', ') }}
+{% endif %}
 }
+{% else %}
+# This file is not enabled.
+{% endif %}

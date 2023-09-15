@@ -1,10 +1,10 @@
 # [bareos_console](#bareos_console)
 
-Install and configure BareOS Console (bconsole) on your system.
+Install and configure [Bareos](https://www.bareos.com/) Console (bconsole) on your system.
 
 |GitHub|GitLab|Quality|Downloads|Version|
 |------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-bareos_console/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-bareos_console/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-bareos_console/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-bareos_console)|[![quality](https://img.shields.io/ansible/quality/)](https://galaxy.ansible.com/robertdebock/bareos_console)|[![downloads](https://img.shields.io/ansible/role/d/)](https://galaxy.ansible.com/robertdebock/bareos_console)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-bareos_console.svg)](https://github.com/robertdebock/ansible-role-bareos_console/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-bareos_console/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-bareos_console/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-bareos_console/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-bareos_console)|[![quality](https://img.shields.io/ansible/quality/63108)](https://galaxy.ansible.com/robertdebock/bareos_console)|[![downloads](https://img.shields.io/ansible/role/d/63108)](https://galaxy.ansible.com/robertdebock/bareos_console)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-bareos_console.svg)](https://github.com/robertdebock/ansible-role-bareos_console/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -19,11 +19,13 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 
   roles:
     - role: robertdebock.roles.bareos_console
-      bareos_bconsole_directors:
+      bareos_console_directors:
         - name: bareos-dir
           address: localhost
           password: "MySuperSecretPassword"
           description: "Bareos Console credentials for local Director"
+          tls_enable: yes
+          tls_verify_peer: no
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-bareos_console/blob/master/molecule/default/prepare.yml):
@@ -37,6 +39,7 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
 
   roles:
     - role: robertdebock.roles.bootstrap
+    - role: robertdebock.roles.bareos_repository
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.
@@ -49,18 +52,7 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 ---
 # defaults file for bareos_console
 
-# A list of directors to connect to.
-# bareos_bconsole_directors:
-#   - name: bareos-dir
-#     address: localhost
-#     password: "MySuperSecretPassword"
-#     description: "Bareos Console credentials for local Director"
-
-# A list of users to allow access.
-# bareos_bconsole_users:
-#   - name: my-user
-#     password: "MySuperSecretPassword"
-#     director: bareos-dir
+bareos_console_directors: []
 ```
 
 ## [Requirements](#requirements)
@@ -89,11 +81,11 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|[Debian](https://hub.docker.com/repository/docker/robertdebock/debian/general)|all|
-|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|8, 9|
-|[Fedora](https://hub.docker.com/repository/docker/robertdebock/fedora/general)|37|
+|[Debian](https://hub.docker.com/repository/docker/robertdebock/debian/general)|bookworm, bullseye, buster|
+|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|7, 8, 9|
+|[Fedora](https://hub.docker.com/repository/docker/robertdebock/fedora/general)|36, 37|
 |[opensuse](https://hub.docker.com/repository/docker/robertdebock/opensuse/general)|all|
-|[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|jammy|
+|[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|jammy, focal|
 
 The minimum version of Ansible required is 2.12, tests have been done to:
 

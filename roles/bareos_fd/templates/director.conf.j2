@@ -1,0 +1,31 @@
+{{ ansible_managed | comment }}
+
+{% if item.enabled is defined and item.enabled or item.enabled is not defined %}
+Director {
+  Name = {{ item.name }}
+{% if item.description is defined %}
+  Description = "{{ item.description }}"
+{% endif %}
+  Password = "[md5]{{ item.password | md5 }}"
+{% if item.monitor is defined and item.monitor %}
+  Monitor = Yes
+{% endif %}
+{% if item.address is defined %}
+  Address = "{{ item.address }}"
+{% endif %}
+{% if item.connection_from_client_to_director is defined %}
+  Connection From Client To Director = {{ item.connection_from_client_to_director | ternary('Yes', 'No') }}
+{% endif %}
+{% if item.connection_from_director_to_client is defined %}
+  Connection From Director To Client = {{ item.connection_from_director_to_client | ternary('Yes', 'No') }}
+{% endif %}
+{% if item.tls_enable is defined %}
+  TLS Enable = {{ item.tls_enable | ternary('Yes', 'No') }}
+{% endif %}
+{% if item.tls_verify_peer is defined %}
+  TLS Verify Peer = {{ item.tls_verify_peer | ternary('Yes', 'No') }}
+{% endif %}
+}
+{% else %}
+# This file is not enabled.
+{% endif %}

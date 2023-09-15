@@ -1,0 +1,19 @@
+{{ ansible_managed | comment }}
+
+{% if item.enabled is defined and item.enabled or item.enabled is not defined %}
+Profile {
+  Name = "{{ item.name }}"
+  JobAcl = "{{ item.jobacl | join('", "') }}"
+  ClientAcl = "{{ item.clientacl | join('", "') }}"
+  StorageAcl = "{{ item.storageacl | join('", "') }}"
+  ScheduleAcl = "{{ item.scheduleacl | join('", "') }}"
+  PoolAcl = "{{ item.poolacl | join('", "') }}"
+  CommandAcl = "{{ item.commandacl | join('", "') }}"
+  FileSetAcl = "{{ item.filesetacl | join('", "') }}"
+  CatalogAcl = "{{ item.catalogacl | join('", "') }}"
+  WhereAcl = "{{ item.whereacl | join('", "') }}"
+  PluginOptionsAcl = "{{ item.pluginoptionsacl | join('", "') }}"
+}
+{% else %}
+# This file is not enabled.
+{% endif %}

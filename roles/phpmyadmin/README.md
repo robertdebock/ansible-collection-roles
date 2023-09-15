@@ -62,7 +62,7 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 # defaults file for phpmyadmin
 
 # The version of PHPMyAdmin to install
-phpmyadmin_version: "5.1.1"
+phpmyadmin_version: "5.2.1"
 
 # Where to connect to for the database.
 phpmyadmin_database_host: localhost
@@ -125,7 +125,6 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|8, 9|
 |[Debian](https://hub.docker.com/repository/docker/robertdebock/debian/general)|all|
 |[Fedora](https://hub.docker.com/repository/docker/robertdebock/fedora/general)|all|
-|[opensuse](https://hub.docker.com/repository/docker/robertdebock/opensuse/general)|all|
 |[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|all|
 
 The minimum version of Ansible required is 2.12, tests have been done to:

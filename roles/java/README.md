@@ -17,18 +17,8 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
   become: yes
   gather_facts: yes
 
-  # We want to test some non-default version of java, to ensure we can install a specific version.
-  vars:
-    _desired_java_version:
-      default: 8
-      Amazon: 17
-      Debian: 11
-      Debian-bookworm: 17
-    desired_java_version: "{{ _desired_java_version[ansible_distribution ~ '-' ~ ansible_distribution_release] | default(_desired_java_version[ansible_distribution] | default(_desired_java_version['default'])) }}"
-
   roles:
     - role: robertdebock.roles.java
-      java_version: "{{ desired_java_version }}"
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-java/blob/master/molecule/default/prepare.yml):

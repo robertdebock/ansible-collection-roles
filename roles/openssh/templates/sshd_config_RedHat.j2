@@ -148,11 +148,11 @@ Subsystem {{ openssh_subsystem }}
 #	ForceCommand cvs server
 
 {% if openssh_allow_users is defined %}
-AllowUsers {{ openssh_allow_users }}
+AllowUsers {{ openssh_allow_users | join(' ') }}
 {% endif %}
 
 {% if openssh_allow_groups is defined %}
-AllowGroups {{ openssh_allow_groups }}
+AllowGroups {{ openssh_allow_groups | join(' ') }}
 {% endif %}
 
 TrustedUserCAKeys {{ openssh_trusted_user_ca_keys }}

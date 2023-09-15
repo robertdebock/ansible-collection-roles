@@ -15,9 +15,19 @@
   when:
     - ansible_pkg_mgr in [ "apt" ]
 
+- name: Install requirements
+  ansible.builtin.package:
+    name: "{{ bareos_dir_requirements }}"
+
 - name: Install packages
   ansible.builtin.package:
     name: "{{ bareos_dir_packages }}"
+
+- name: Install debug packages
+  ansible.builtin.package:
+    name: "{{ bareos_dir_debug_packages }}"
+  when:
+    - bareos_dir_install_debug_packages
 
 - name: Run database setup scripts
   ansible.builtin.command:
@@ -42,21 +52,175 @@
     owner: bareos
     group: bareos
     mode: "0640"
+    backup: "{{ bareos_dir_backup_configurations }}"
   notify:
-    - Restart bareos-dir
+    - Check configuration
+    - Reload bareos-dir
 
-- name: Place messages
+- name: Place catalog
   ansible.builtin.template:
-    src: message.conf.j2
-    dest: "/etc/bareos/bareos-dir.d/messages/{{ item.name | capitalize }}.conf"
+    src: catalog.conf.j2
+    dest: "/etc/bareos/bareos-dir.d/catalog/{{ item.name }}.conf"
     owner: bareos
     group: bareos
     mode: "0640"
+    backup: "{{ bareos_dir_backup_configurations }}"
+  loop: "{{ bareos_dir_catalogs }}"
+  loop_control:
+    label: "{{ item.name }}"
+  notify:
+    - Check configuration
+    - Reload bareos-dir
+
+- name: Place console
+  ansible.builtin.template:
+    src: console.conf.j2
+    dest: "/etc/bareos/bareos-dir.d/console/{{ item.name }}.conf"
+    owner: bareos
+    group: bareos
+    mode: "0644"
+    backup: "{{ bareos_dir_backup_configurations }}"
+  loop: "{{ bareos_dir_consoles }}"
+  loop_control:
+    label: "{{ item.name }}"
+  notify:
+    - Check configuration
+    - Reload bareos-dir
+
+- name: Place client
+  ansible.builtin.template:
+    src: client.conf.j2
+    dest: "/etc/bareos/bareos-dir.d/client/{{ item.name }}.conf"
+    owner: bareos
+    group: bareos
+    mode: "0640"
+    backup: "{{ bareos_dir_backup_configurations }}"
+  loop: "{{ bareos_dir_clients }}"
+  loop_control:
+    label: "{{ item.name }}"
+  notify:
+    - Check configuration
+    - Reload bareos-dir
+
+- name: Place fileset
+  ansible.builtin.template:
+    src: fileset.conf.j2
+    dest: "/etc/bareos/bareos-dir.d/fileset/{{ item.name }}.conf"
+    owner: bareos
+    group: bareos
+    mode: "0640"
+    backup: "{{ bareos_dir_backup_configurations }}"
+  loop: "{{ bareos_dir_filesets }}"
+  loop_control:
+    label: "{{ item.name }}"
+  notify:
+    - Check configuration
+    - Reload bareos-dir
+
+- name: Place job
+  ansible.builtin.template:
+    src: job.conf.j2
+    dest: "/etc/bareos/bareos-dir.d/job/{{ item.name }}.conf"
+    owner: bareos
+    group: bareos
+    mode: "0640"
+    backup: "{{ bareos_dir_backup_configurations }}"
+  loop: "{{ bareos_dir_jobs }}"
+  loop_control:
+    label: "{{ item.name }}"
+  notify:
+    - Check configuration
+    - Reload bareos-dir
+
+- name: Place jobdef
+  ansible.builtin.template:
+    src: jobdef.conf.j2
+    dest: "/etc/bareos/bareos-dir.d/jobdefs/{{ item.name }}.conf"
+    owner: bareos
+    group: bareos
+    mode: "0640"
+    backup: "{{ bareos_dir_backup_configurations }}"
+  loop: "{{ bareos_dir_jobdefs }}"
+  loop_control:
+    label: "{{ item.name }}"
+  notify:
+    - Check configuration
+    - Reload bareos-dir
+
+- name: Place message
+  ansible.builtin.template:
+    src: message.conf.j2
+    dest: "/etc/bareos/bareos-dir.d/messages/{{ item.name }}.conf"
+    owner: bareos
+    group: bareos
+    mode: "0640"
+    backup: "{{ bareos_dir_backup_configurations }}"
   loop: "{{ bareos_dir_messages }}"
   loop_control:
     label: "{{ item.name }}"
   notify:
-    - Restart bareos-dir
+    - Check configuration
+    - Reload bareos-dir
+
+- name: Place pool
+  ansible.builtin.template:
+    src: pool.conf.j2
+    dest: "/etc/bareos/bareos-dir.d/pool/{{ item.name }}.conf"
+    owner: bareos
+    group: bareos
+    mode: "0640"
+    backup: "{{ bareos_dir_backup_configurations }}"
+  loop: "{{ bareos_dir_pools }}"
+  loop_control:
+    label: "{{ item.name }}"
+  notify:
+    - Check configuration
+    - Reload bareos-dir
+
+- name: Place profile
+  ansible.builtin.template:
+    src: profile.conf.j2
+    dest: "/etc/bareos/bareos-dir.d/profile/{{ item.name }}.conf"
+    owner: bareos
+    group: bareos
+    mode: "0644"
+    backup: "{{ bareos_dir_backup_configurations }}"
+  loop: "{{ bareos_dir_profiles }}"
+  loop_control:
+    label: "{{ item.name }}"
+  notify:
+    - Check configuration
+    - Reload bareos-dir
+
+- name: Place schedule
+  ansible.builtin.template:
+    src: schedule.conf.j2
+    dest: "/etc/bareos/bareos-dir.d/schedule/{{ item.name }}.conf"
+    owner: bareos
+    group: bareos
+    mode: "0644"
+    backup: "{{ bareos_dir_backup_configurations }}"
+  loop: "{{ bareos_dir_schedules }}"
+  loop_control:
+    label: "{{ item.name }}"
+  notify:
+    - Check configuration
+    - Reload bareos-dir
+
+- name: Place storage
+  ansible.builtin.template:
+    src: storage.conf.j2
+    dest: "/etc/bareos/bareos-dir.d/storage/{{ item.name }}.conf"
+    owner: bareos
+    group: bareos
+    mode: "0640"
+    backup: "{{ bareos_dir_backup_configurations }}"
+  loop: "{{ bareos_dir_storages }}"
+  loop_control:
+    label: "{{ item.name }}"
+  notify:
+    - Check configuration
+    - Reload bareos-dir
 
 - name: Start bareos-dir
   ansible.builtin.service:

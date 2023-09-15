@@ -1,0 +1,21 @@
+{{ ansible_managed | comment }}
+
+{% if item.enabled is defined and item.enabled or item.enabled is not defined %}
+JobDefs {
+  Name = "{{ item.name }}"
+  Type = {{ item.type }}
+  Level = {{ item.level }}
+  FileSet = "{{ item.fileset }}"
+  Schedule = "{{ item.schedule }}"
+  Storage = "{{ item.storage }}"
+  Messages = "{{ item.messages }}"
+  Pool = {{ item.pool }}
+  Priority = {{ item.priority }}
+  Write Bootstrap = "{{ item.write_bootstrap }}"
+  Full Backup Pool = {{ item.full_backup_pool }}
+  Differential Backup Pool = {{ item.differential_backup_pool }}
+  Incremental Backup Pool = {{ item.incremental_backup_pool }}
+}
+{% else %}
+# This file is not enabled.
+{% endif %}

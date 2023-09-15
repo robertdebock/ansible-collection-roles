@@ -9,9 +9,6 @@ argument_specs:
       Install and configure BareOS Console (bconsole) on your system.
     author: Robert de Bock
     options:
-      bareos_bconsole_directors:
+      bareos_console_directors:
         type: "list"
         description: "A list of directors to connect to."
-      bareos_bconsole_users:
-        type: "list"
-        description: "A list of users to allow access."

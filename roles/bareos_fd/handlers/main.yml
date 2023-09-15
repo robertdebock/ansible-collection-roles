@@ -1,7 +1,11 @@
 ---
 # handlers file for bareos_fd
 
-- name: Restart bareos-fd
+- name: Check configuration
+  ansible.builtin.command: "/usr/sbin/bareos-fd --test-config"
+  changed_when: false
+
+- name: Restart bareos-filedaemon
   ansible.builtin.service:
-    name: bareos-fd
+    name: "{{ bareos_fd_service }}"
     state: restarted

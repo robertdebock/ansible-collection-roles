@@ -1,0 +1,69 @@
+---
+
+- name: encryption | Install python cryptography package
+  ansible.builtin.package:
+    name: "{{ bareos_fd_encryption_packages }}"
+
+- name: encryption | Generate private key
+  community.crypto.openssl_privatekey:
+    path: /etc/bareos/{{ bareos_fd_hostname }}-private.key
+    owner: bareos
+    group: bareos
+    mode: "0600"
+    return_content: yes
+  register: bareos_fd_encryption_private_key_generated
+  when:
+    - bareos_fd_encryption_private_key == ""
+
+- name: encryption | Place private key
+  ansible.builtin.copy:
+    content: "{{ bareos_fd_encryption_private_key }}"
+    dest: /etc/bareos/{{ bareos_fd_hostname }}-private.key
+    owner: bareos
+    group: bareos
+    mode: "0600"
+  when:
+    - bareos_fd_encryption_private_key != ""
+
+- name: encryption | Generate csr for public key
+  community.crypto.openssl_csr:
+    path: /etc/bareos/{{ bareos_fd_hostname }}-public.csr
+    privatekey_path: /etc/bareos/{{ bareos_fd_hostname }}-private.key
+    common_name: "{{ bareos_fd_hostname }}"
+    owner: bareos
+    group: bareos
+    mode: "0644"
+
+- name: encryption | Generate public key
+  community.crypto.x509_certificate:
+    path: /etc/bareos/{{ bareos_fd_hostname }}-public.key
+    privatekey_path: /etc/bareos/{{ bareos_fd_hostname }}-private.key
+    csr_path: /etc/bareos/{{ bareos_fd_hostname }}-public.csr
+    provider: selfsigned
+    return_content: yes
+    owner: bareos
+    group: bareos
+    mode: "0644"
+  register: bareos_fd_encryption_public_key
+
+- name: encryption | Combine private and public key
+  ansible.builtin.copy:
+    content: "{{ bareos_fd_encryption_private_key_generated.privatekey | default(bareos_fd_encryption_private_key) }}{{ bareos_fd_encryption_public_key.certificate }}"
+    dest: /etc/bareos/{{ bareos_fd_hostname }}.pem
+    owner: bareos
+    group: bareos
+    mode: "0600"
+  notify:
+    - Check configuration
+    - Restart bareos-filedaemon
+
+- name: encryption | Place master public key
+  ansible.builtin.copy:
+    content: "{{ bareos_fd_encryption_master_public_key }}"
+    dest: /etc/bareos/master.pub.key
+    owner: bareos
+    group: bareos
+    mode: "0640"
+  notify:
+    - Check configuration
+    - Restart bareos-filedaemon

@@ -1,0 +1,28 @@
+{{ ansible_managed | comment }}
+
+{% if item.enabled is defined and item.enabled or item.enabled is not defined %}
+Device {
+  Name = "{{ item.name }}"
+{% if item.description is defined %}
+  Description = "{{ item.description }}"
+{% endif %}
+{% if item.maximum_concurrent_jobs is defined %}
+  Maximum Concurrent Jobs = {{ item.maximum_concurrent_jobs }}
+{% endif %}
+  Media Type = "{{ item.media_type }}"
+  Archive Device = "{{ item.archive_device }}"
+{% if item.device_type is defined %}
+  Device Type = "{{ item.device_type }}"
+{% endif %}
+{% if item.device_options is defined %}
+  Device Options = "{{ item.device_options }}"
+{% endif %}
+  LabelMedia = {{ item.label_media | ternary('yes', 'No') }}
+  Random Access = {{ item.random_access | ternary('yes', 'No') }}
+  AutomaticMount = {{ item.automatic_mount | ternary('yes', 'No') }}
+  RemovableMedia = {{ item.removable_media | ternary('yes', 'No') }}
+  AlwaysOpen = {{ item.always_open | ternary('yes', 'No') }}
+}
+{% else %}
+# This file is not enabled.
+{% endif %}

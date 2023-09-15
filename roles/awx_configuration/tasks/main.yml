@@ -17,6 +17,7 @@
   loop: "{{ awx_configuration_organizations }}"
   when:
     - not awx_configuration_ci
+  no_log: yes
 
 - name: Manage credentials
   awx.awx.credential:
@@ -31,3 +32,4 @@
   loop: "{{ awx_configuration_credentials }}"
   when:
     - not awx_configuration_ci
+  no_log: yes

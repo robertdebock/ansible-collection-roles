@@ -3,7 +3,7 @@
 
 # The release to install.
 # See https://www.eclipse.org/downloads/packages/release
-eclipse_release: 2022-12
+eclipse_release: 2023-06
 
 # The release version to install, either: R, RC1, M3, M2 or M1.
 eclipse_release_version: R
@@ -16,6 +16,12 @@ eclipse_tmp_path: /tmp
 
 # The path where to install eclipse.
 eclipse_install_path: /opt/eclipse-{{ eclipse_release }}
+
+# The mirror to use for downloading eclipse.
+# The mirrors keep the 3 last versions.
+# eclipse_archive_mirror: "https://ftp.fau.de/eclipse/technology/epp/downloads/release"
+# eclipse_archive_mirror: "https://download.eclipse.org/technology/epp/downloads/release"
+eclipse_archive_mirror: "http://ftp.snt.utwente.nl/pub/software/eclipse/technology/epp/downloads/release"
 
 # What path(s) would you like to link to the eclipse installation?
 eclipse_link_paths:

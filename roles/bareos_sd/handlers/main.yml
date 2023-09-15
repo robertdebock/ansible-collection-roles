@@ -1,6 +1,10 @@
 ---
 # handlers file for bareos_sd
 
+- name: Check configuration
+  ansible.builtin.command: "/usr/sbin/bareos-sd --test-config"
+  changed_when: false
+
 - name: Restart bareos-sd
   ansible.builtin.service:
     name: bareos-sd

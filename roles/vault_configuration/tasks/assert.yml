@@ -111,7 +111,7 @@
     quiet: yes
   when:
     - vault_configuration_log_level is defined
-    - vault_configuration_log_level != ""
+    - vault_configuration_log_level | length > 0
 
 - name: assert | Test if vault_configuration_listener_tcp is set correctly
   ansible.builtin.assert:
@@ -197,7 +197,7 @@
     quiet: yes
   when:
     - vault_configuration_listener_tcp.proxy_protocol_behavior is defined
-    - vault_configuration_listener_tcp.proxy_protocol_behavior != ""
+    - vault_configuration_listener_tcp.proxy_protocol_behavior | length > 0
 
 - name: assert | Test if vault_configuration_listener_tcp.proxy_protocol_authorized_addrs is set correctly
   ansible.builtin.assert:

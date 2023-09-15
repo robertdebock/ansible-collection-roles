@@ -7,7 +7,7 @@
       - bareos_webui_directors is iterable
     quiet: yes
 
-- name: assert | Test if items in bareos_webui_directors are set correctly
+- name: assert | Test if items in bareos_webui_directors are set correctly when enabled
   ansible.builtin.assert:
     that:
       - item.name is defined
@@ -20,6 +20,22 @@
   loop: "{{ bareos_webui_directors }}"
   loop_control:
     label: "{{ item.name }}"
+  when:
+    - item.enabled
+
+- name: assert | Test if items in bareos_webui_directors are set correctly when not enabled
+  ansible.builtin.assert:
+    that:
+      - item.name is defined
+      - item.name is string
+      - item.enabled is defined
+      - item.enabled is boolean
+    quiet: yes
+  loop: "{{ bareos_webui_directors }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - not item.enabled
 
 - name: assert | Test if bareos_webui_configuration is set correctly
   ansible.builtin.assert:

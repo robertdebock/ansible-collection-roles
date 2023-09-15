@@ -71,6 +71,9 @@ gitlab_runner_version: "16.1.0"
 
 # Set the amount of concurrent jobs.
 gitlab_runner_concurrency: "{{ ansible_processor_vcpus }}"
+
+# Activate or deactivate privileged runner
+gitlab_runner_privileged: true
 ```
 
 ## [Requirements](#requirements)

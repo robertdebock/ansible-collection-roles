@@ -6,6 +6,10 @@
   run_once: yes
   delegate_to: localhost
 
+- name: Install requirements
+  ansible.builtin.package:
+    name: "{{ bareos_webui_requirements }}"
+
 - name: Install bareos-webui
   ansible.builtin.package:
     name: bareos-webui
@@ -17,10 +21,10 @@
     path: /etc/bareos-webui/directors.ini
     section: "{{ item.name }}"
     option: enabled
-    value: "{{ item.enabled | ternary('true', 'false') }}"
+    value: "{{ item.enabled | ternary('Yes', 'No') }}"
     owner: root
     group: root
-    mode: '0644'
+    mode: "0644"
   loop: "{{ bareos_webui_directors }}"
   loop_control:
     label: "{{ item.name }}"
@@ -33,10 +37,12 @@
     value: "{{ item.diraddress }}"
     owner: root
     group: root
-    mode: '0644'
+    mode: "0644"
   loop: "{{ bareos_webui_directors }}"
   loop_control:
     label: "{{ item.name }}"
+  when:
+    - item.enabled
 
 - name: Set settings for configuration.ini
   ansible.builtin.ini_file:
@@ -46,7 +52,7 @@
     value: "{{ item.value }}"
     owner: root
     group: root
-    mode: '0644'
+    mode: "0644"
   loop: "{{ bareos_webui_configuration }}"
   loop_control:
     label: "{{ item.section }}:{{ item.option }}"
@@ -59,12 +65,3 @@
   when:
     - ansible_selinux.status is defined
     - ansible_selinux.status == "enabled"
-
-# As the web-ui may not have bconsole installed and configured, this task is disabled for now.
-# - name: Create user for bareos-webui
-#   ansible.builtin.shell:
-#     cmd: |
-#       bconsole << EOF
-#       configure add console name=admin password=secret profile=webui-admin tlsenable=false
-#       quit
-#       EOF

@@ -1,0 +1,28 @@
+{{ ansible_managed | comment }}
+
+{% if item.enabled is defined and item.enabled or item.enabled is not defined %}
+Pool {
+  Name = {{ item.name }}
+  Pool Type = {{ item.pool_type }}
+{% if item.recycle is defined %}
+  Recycle = {{ item.recycle | ternary('Yes', 'No') }}
+{% endif %}
+{% if item.autoprune is defined %}
+  AutoPrune = {{ item.autoprune | ternary('Yes', 'No') }}
+{% endif %}
+{% if item.volume_retention is defined %}
+  Volume Retention = {{ item.volume_retention }}
+{% endif %}
+{% if item.maximum_volume_bytes is defined %}
+  Maximum Volume Bytes = {{ item.maximum_volume_bytes }}
+{% endif %}
+{% if item.maximum_volumes is defined %}
+  Maximum Volumes = {{ item.maximum_volumes }}
+{% endif %}
+{% if item.label_format is defined %}
+  Label Format = "{{ item.label_format }}"
+{% endif %}
+}
+{% else %}
+# This file is not enabled.
+{% endif %}

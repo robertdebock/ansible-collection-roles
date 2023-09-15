@@ -4,3 +4,16 @@
 bareos_sd_packages:
   - bareos-storage
   - bareos-storage-tape
+
+# A map to define the packages to install for debugging.
+_bareos_sd_debug_packages:
+  default:
+    - bareos-storage-debuginfo
+    - gdb
+  Debian:
+    - bareos-dbg
+    - gdb
+  RedHat-7:
+    - bareos-debuginfo
+    - gdb
+bareos_sd_debug_packages: "{{ _bareos_sd_debug_packages[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_bareos_sd_debug_packages[ansible_os_family] | default(_bareos_sd_debug_packages['default'])) }}"

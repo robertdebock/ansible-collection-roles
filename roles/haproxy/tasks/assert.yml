@@ -218,3 +218,82 @@
     label: "{{ item.name }}"
   when:
     - item.http_check.expect is defined
+
+- name: assert | Test if haproxy_listens is set correctly
+  ansible.builtin.assert:
+    that:
+      - haproxy_listens is defined
+      - haproxy_listens is iterable
+    quiet: yes
+
+- name: assert | Test if item in haproxy_listens is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.name is defined
+      - item.name is string
+      - item.name is not none
+      - item.address is defined
+      - item.address is string
+      - item.address is not none
+      - (item.balance is defined
+        and item.balance is string
+        and item.balance in [ "roundrobin", "static-rr", "leastconn", "first", "source", "uri", "url_param", "hdr", "rdp-cookie" ])
+        or item.balance is undefined
+      - item.listen_port is defined
+      - item.listen_port is number
+      - item.listen_port > 0
+      - item.listen_port < 65536
+      - item.port is defined
+      - item.port is number
+      - item.port > 0
+      - item.port < 65536
+      - item.servers is defined
+      - item.servers is iterable
+    quiet: yes
+  loop: "{{ haproxy_listens }}"
+  loop_control:
+    label: "{{ item.name }}"
+
+- name: assert | Test if item in haproxy_listens with ssl is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.ssl is boolean
+      - item.crts is defined
+      - item.crts is iterable
+    quiet: yes
+  loop: "{{ haproxy_listens }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - item.ssl is defined
+
+- name: assert | Test if optional item haproxy_listens is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.mode is string
+      - item.mode in [ "http", "tcp" ]
+    quiet: yes
+  loop: "{{ haproxy_listens }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - item.mode is defined
+
+- name: assert | Test if haproxy_listen_default_balance is set correctly
+  ansible.builtin.assert:
+    that:
+      - haproxy_listen_default_balance is defined
+      - haproxy_listen_default_balance is string
+      - haproxy_listen_default_balance in [ "roundrobin", "static-rr", "leastconn", "first", "source", "uri", "url_param", "hdr", "rdp-cookie" ]
+    quiet: yes
+
+- name: assert | Test if httpcheck item in haproxy_listens is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.httpcheck is boolean
+    quiet: yes
+  loop: "{{ haproxy_listens }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - item.httpcheck is defined

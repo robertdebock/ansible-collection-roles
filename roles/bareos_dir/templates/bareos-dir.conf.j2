@@ -1,9 +1,17 @@
-# {{ ansible_managed }}
+{{ ansible_managed | comment }}
 
 Director {
-  Name = {{ bareos_dir_hostname }}
-  Password = {{ bareos_dir_password }}
+  Name = "{{ bareos_dir_hostname }}"
+  Password = "{{ bareos_dir_password }}"
   QueryFile = "{{ bareos_dir_queryfile }}"
+{% if bareos_dir_max_concurrent_jobs != 1 %}
   Maximum Concurrent Jobs = {{ bareos_dir_max_concurrent_jobs }}
-  Messages = {{ bareos_dir_message }}
+{% endif %}
+  Messages = "{{ bareos_dir_message }}"
+{% if not bareos_dir_tls_enable %}
+  TLS Enable = No
+{% endif %}
+{% if bareos_dir_tls_verify_peer %}
+  TLS Verify Peer = Yes
+{% endif %}
 }

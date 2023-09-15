@@ -1,19 +1,53 @@
 ---
 
-- name: assert | Test if bareos_type is set correctly
+- name: assert | Test if bareos_repository_type is set correctly
   ansible.builtin.assert:
     that:
-      - bareos_type is defined
-      - bareos_type is string
-      - bareos_type is not none
-      - bareos_type in [ "community", "subscription" ]
+      - bareos_repository_type is defined
+      - bareos_repository_type in [ "community", "subscription" ]
     quiet: yes
 
-- name: assert | Test if bareos_release is set correctly
+- name: assert | Test if bareos_repository_username is set correctly
   ansible.builtin.assert:
     that:
-      - bareos_release is defined
-      - bareos_release is string
-      - bareos_release is not none
-      - bareos_release in [ "current", "next", "release" ]
+      - bareos_repository_username is defined
+      - bareos_repository_username is string
+      - bareos_repository_username != ""
+    quiet: yes
+  when:
+    - bareos_repository_type == "subscription"
+
+- name: assert | Test if bareos_repository_password is set correctly
+  ansible.builtin.assert:
+    that:
+      - bareos_repository_password is defined
+      - bareos_repository_password is string
+      - bareos_repository_password != ""
+    quiet: yes
+  when:
+    - bareos_repository_type == "subscription"
+
+- name: assert | Test if bareos_repository_release is set correctly
+  ansible.builtin.assert:
+    that:
+      - bareos_repository_release is defined
+      - bareos_repository_release in [ "current", "next", "release" ]
+    quiet: yes
+
+# bareos_repository_version
+- name: assert | Test if bareos_repository_version is set correctly
+  ansible.builtin.assert:
+    that:
+      - bareos_repository_version is defined
+      - bareos_repository_version is number
+      - bareos_repository_version in [ 20, 21, 22 ]
+    quiet: yes
+  when:
+    - bareos_repository_type == "subscription"
+
+- name: assert | Test if bareos_repository_enable_tracebacks is set correctly
+  ansible.builtin.assert:
+    that:
+      - bareos_repository_enable_tracebacks is defined
+      - bareos_repository_enable_tracebacks is boolean
     quiet: yes

@@ -10,6 +10,12 @@
   ansible.builtin.package:
     name: "{{ bareos_sd_packages }}"
 
+- name: Install debug packages
+  ansible.builtin.package:
+    name: "{{ bareos_sd_debug_packages }}"
+  when:
+    - bareos_sd_install_debug_packages
+
 - name: Place bareos-sd.conf
   ansible.builtin.template:
     src: bareos-sd.conf.j2
@@ -17,30 +23,84 @@
     owner: bareos
     group: bareos
     mode: "0640"
+    backup: "{{ bareos_sd_backup_configurations }}"
   notify:
+    - Check configuration
     - Restart bareos-sd
 
-- name: Place bareos-dir.conf.j2
+- name: Place device
   ansible.builtin.template:
-    src: bareos-dir.conf.j2
-    dest: "/etc/bareos/bareos-sd.d/director/bareos-dir.conf"
+    src: device.conf.j2
+    dest: "/etc/bareos/bareos-sd.d/device/{{ item.name }}.conf"
     owner: bareos
     group: bareos
     mode: "0640"
+    backup: "{{ bareos_sd_backup_configurations }}"
+  loop: "{{ bareos_sd_devices }}"
+  loop_control:
+    label: "{{ item.name }}"
   notify:
+    - Check configuration
     - Restart bareos-sd
 
-- name: Place messages
+- name: Place director
+  ansible.builtin.template:
+    src: director.conf.j2
+    dest: "/etc/bareos/bareos-sd.d/director/{{ item.name }}.conf"
+    owner: bareos
+    group: bareos
+    mode: "0640"
+    backup: "{{ bareos_sd_backup_configurations }}"
+  loop: "{{ bareos_sd_directors }}"
+  loop_control:
+    label: "{{ item.name }}"
+  notify:
+    - Check configuration
+    - Restart bareos-sd
+
+- name: Place message
   ansible.builtin.template:
     src: message.conf.j2
-    dest: "/etc/bareos/bareos-sd.d/messages/{{ item.name | capitalize }}.conf"
+    dest: "/etc/bareos/bareos-sd.d/messages/{{ item.name }}.conf"
     owner: bareos
     group: bareos
     mode: "0640"
+    backup: "{{ bareos_sd_backup_configurations }}"
   loop: "{{ bareos_sd_messages }}"
   loop_control:
     label: "{{ item.name }}"
   notify:
+    - Check configuration
+    - Restart bareos-sd
+
+- name: Install bareos-storage-droplet.
+  ansible.builtin.package:
+    name: bareos-storage-droplet
+  when:
+    - bareos_sd_s3_profiles | length > 0
+
+- name: Create /etc/bareos/bareos-sd.d/device/droplet
+  ansible.builtin.file:
+    path: /etc/bareos/bareos-sd.d/device/droplet
+    state: directory
+    owner: bareos
+    group: bareos
+    mode: "0755"
+  when:
+    - bareos_sd_s3_profiles | length > 0
+
+- name: Place S3 profile
+  ansible.builtin.template:
+    src: s3.profile.j2
+    dest: /etc/bareos/bareos-sd.d/device/droplet/{{ item.name }}.profile
+    owner: bareos
+    group: bareos
+    mode: "0600"
+  loop: "{{ bareos_sd_s3_profiles }}"
+  loop_control:
+    label: "{{ item.name }}"
+  notify:
+    - Check configuration
     - Restart bareos-sd
 
 - name: Start bareos-sd

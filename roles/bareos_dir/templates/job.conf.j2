@@ -1,0 +1,45 @@
+{{ ansible_managed | comment }}
+
+{% if item.enabled is defined and item.enabled or item.enabled is not defined %}
+Job {
+  Name = "{{ item.name }}"
+  Description = "{{ item.description }}"
+{% if item.pool is defined %}
+  Pool = "{{ item.pool }}"
+{% endif %}
+{% if item.type is defined %}
+  Type = "{{ item.type }}"
+{% endif %}
+  Client = "{{ item.client }}"
+  FileSet = "{{ item.fileset }}"
+{% if item.storage is defined %}
+  Storage = "{{ item.storage }}"
+{% endif %}
+{% if item.messages is defined %}
+  Messages = "{{ item.messages }}"
+{% endif %}
+{% if item.jobdefs is defined %}
+  Job Defs = "{{ item.jobdefs }}"
+{% endif %}
+{% if item.level is defined %}
+  Level = {{ item.level }}
+{% endif %}
+{% if item.schedule is defined %}
+  Schedule = "{{ item.schedule }}"
+{% endif %}
+{% if item.runbeforejob is defined %}
+  Run Before Job = "{{ item.runbeforejob }}"
+{% endif %}
+{% if item.runafterjob is defined %}
+  Run After Job = "{{ item.runafterjob }}"
+{% endif %}
+{% if item.where is defined %}
+  Where = "{{ item.where }}"
+{% endif %}
+{% if item.maximum_concurrent_jobs is defined %}
+  Maximum Concurrent Jobs = {{ item.maximum_concurrent_jobs }}
+{% endif %}
+}
+{% else %}
+# This file is not enabled.
+{% endif %}

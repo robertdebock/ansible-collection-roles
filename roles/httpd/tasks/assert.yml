@@ -85,7 +85,6 @@
       - item.servername is defined
       - item.servername is string
     quiet: yes
-    quiet: yes
   loop: "{{ httpd_vhosts }}"
   loop_control:
     label: "{{ item.name }}"

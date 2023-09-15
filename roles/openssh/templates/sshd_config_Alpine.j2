@@ -72,9 +72,9 @@ AcceptEnv {{ item }}
 Subsystem {{ openssh_subsystem }}
 
 {% if openssh_allow_users is defined %}
-AllowUsers {{ openssh_allow_users }}
+AllowUsers {{ openssh_allow_users | join(' ') }}
 {% endif %}
 
 {% if openssh_allow_groups is defined %}
-AllowGroups {{ openssh_allow_groups }}
+AllowGroups {{ openssh_allow_groups | join(' ') }}
 {% endif %}

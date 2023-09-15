@@ -59,6 +59,7 @@
     - zabbix_web_groups is defined
     - ansible_connection not in [ "container", "docker", "community.docker.docker" ]
   run_once: yes
+  no_log: yes
 
 - name: Add zabbix hosts
   community.zabbix.zabbix_host:

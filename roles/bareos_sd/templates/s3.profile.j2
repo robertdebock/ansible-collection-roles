@@ -1,0 +1,10 @@
+{{ ansible_managed | comment }}
+
+host                  = "{{ item.host }}"
+use_https             = {{ item.use_https | ternary("true", "false") }}
+access_key            = {{ item.access_key }}
+secret_key            = {{ item.secret_key }}
+pricing_dir           = "{{ item.pricing_dir }}"
+backend               = {{ item.backend }}
+aws_auth_sign_version = {{ item.aws_auth_sign_version }}
+aws_region            = {{ item.aws_region }}

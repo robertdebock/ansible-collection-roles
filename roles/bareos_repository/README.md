@@ -1,6 +1,6 @@
 # [bareos_repository](#bareos_repository)
 
-Setup the BareOS repositories.
+Setup the [Bareos](https://www.bareos.com/) repositories.
 
 |GitHub|GitLab|Quality|Downloads|Version|
 |------|------|-------|---------|-------|
@@ -19,6 +19,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 
   roles:
     - role: robertdebock.roles.bareos_repository
+      bareos_repository_enable_tracebacks: yes
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-bareos_repository/blob/master/molecule/default/prepare.yml):
@@ -45,10 +46,24 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 # defaults file for bareos_repository
 
 # What type of Bareos to install, either "community" or "subscription".
-bareos_type: community
+bareos_repository_type: community
+
+# The subscription username for the repository.
+bareos_repository_username: ""
+
+# The subscription password for the repository.
+bareos_repository_password: ""
 
 # What release to use, either "current", "next" or "release".
-bareos_release: current
+# When using `bareos_repository_type: community` this can be set to "release" or "testing".
+bareos_repository_release: current
+
+# The version of Bareos to install.
+# Only affects `bareos_repository_type: subscription`.
+bareos_repository_version: 22
+
+# You can enable tracebacks for troubleshooting purposes.
+bareos_repository_enable_tracebacks: no
 ```
 
 ## [Requirements](#requirements)
@@ -76,11 +91,11 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|[Debian](https://hub.docker.com/repository/docker/robertdebock/debian/general)|all|
-|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|8, 9|
-|[Fedora](https://hub.docker.com/repository/docker/robertdebock/fedora/general)|37|
+|[Debian](https://hub.docker.com/repository/docker/robertdebock/debian/general)|bookworm, bullseye, buster|
+|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|7, 8, 9|
+|[Fedora](https://hub.docker.com/repository/docker/robertdebock/fedora/general)|36, 37|
 |[opensuse](https://hub.docker.com/repository/docker/robertdebock/opensuse/general)|all|
-|[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|jammy|
+|[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|jammy, focal|
 
 The minimum version of Ansible required is 2.12, tests have been done to:
 

@@ -1,7 +1,29 @@
-# {{ ansible_managed }}
+{{ ansible_managed | comment}}
 
+{% if item.enabled is defined and item.enabled or item.enabled is not defined %}
 Messages {
-  Name = {{ item.name }}
-  Director = {{ item.director }}
-  Description = {{ item.description }}
+  Name = "{{ item.name }}"
+  Description = "{{ item.description }}"
+{% if item.append is defined %}
+{% for append in item.append %}
+  Append = "{{ append.file }}" = {{ append.messages | join(', ') }}
+{% endfor %}
+{% endif %}
+{% if item.catalog is defined %}
+  Catalog = {{ item.catalog | join(', ') }}
+{% endif %}
+{% if item.console is defined %}
+  Console = {{ item.console | join(', ') }}
+{% endif %}
+{% if item.mailcommand is defined %}
+  mailcommand = "{{ item.mailcommand }}"
+{% endif %}
+{% if item.mail is defined %}
+{% for mail in item.mail %}
+  mail = {{ mail.to }} = {{ mail.messages | join(', ') }}
+{% endfor %}
+{% endif %}
 }
+{% else %}
+# This file is not enabled.
+{% endif %}
