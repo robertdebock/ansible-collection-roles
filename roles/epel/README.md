@@ -1,10 +1,10 @@
-# [epel](#epel)
+# [Ansible role epel](#epel)
 
 Install epel on your system.
 
-|GitHub|GitLab|Quality|Downloads|Version|
-|------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-epel/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-epel/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-epel/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-epel)|[![quality](https://img.shields.io/ansible/quality/21643)](https://galaxy.ansible.com/robertdebock/epel)|[![downloads](https://img.shields.io/ansible/role/d/21643)](https://galaxy.ansible.com/robertdebock/epel)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-epel.svg)](https://github.com/robertdebock/ansible-role-epel/releases/)|
+|GitHub|GitLab|Downloads|Version|
+|------|------|---------|-------|
+|[![github](https://github.com/robertdebock/ansible-role-epel/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-epel/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-epel/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-epel)|[![downloads](https://img.shields.io/ansible/role/d/24491)](https://galaxy.ansible.com/robertdebock/epel)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-epel.svg)](https://github.com/robertdebock/ansible-role-epel/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -62,7 +62,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|all|
+|[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|all|
 
 The minimum version of Ansible required is 2.12, tests have been done to:
 
@@ -70,7 +70,7 @@ The minimum version of Ansible required is 2.12, tests have been done to:
 - The current version.
 - The development version.
 
-If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-epel/issues)
+If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-epel/issues).
 
 ## [License](#license)
 

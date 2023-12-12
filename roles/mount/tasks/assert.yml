@@ -1,6 +1,6 @@
 ---
 
-- name: assert | Test if mount_default_mode is set correctly
+- name: assert | Test mount_default_mode
   ansible.builtin.assert:
     that:
       - mount_default_mode is defined
@@ -8,7 +8,7 @@
       - mount_default_mode is not none
     quiet: yes
 
-- name: assert | Test if mount_default_owner is set correctly
+- name: assert | Test mount_default_owner
   ansible.builtin.assert:
     that:
       - mount_default_owner is defined
@@ -16,7 +16,7 @@
       - mount_default_owner is not none
     quiet: yes
 
-- name: assert | Test if mount_default_group is set correctly
+- name: assert | Test mount_default_group
   ansible.builtin.assert:
     that:
       - mount_default_group is defined
@@ -24,7 +24,7 @@
       - mount_default_group is not none
     quiet: yes
 
-- name: assert | Test if mount_requests is set correctly
+- name: assert | Test mount_requests
   ansible.builtin.assert:
     that:
       - mount_requests is defined
@@ -33,7 +33,7 @@
   when:
     - mount_requests is defined
 
-- name: assert | Test if item.backup in mount_requests is set correctly
+- name: assert | Test item.backup in mount_requests
   ansible.builtin.assert:
     that:
       - item.backup is boolean
@@ -44,7 +44,7 @@
   when:
     - item.backup is defined
 
-- name: assert | Test if item.boot in mount_requests is set correctly
+- name: assert | Test item.boot in mount_requests
   ansible.builtin.assert:
     that:
       - item.boot is boolean
@@ -57,7 +57,7 @@
 
 - name: assert | Warn if item.fstype in mount_requests is set incorrectly
   block:
-    - name: assert | Test if item.fstype in mount_requests is set correctly
+    - name: assert | Test item.fstype in mount_requests
       ansible.builtin.assert:
         that:
           - item.fstype is string
@@ -73,7 +73,7 @@
       ansible.builtin.debug:
         msg: "The filesystem you have specified in unknown, proceeding."
 
-- name: assert | Test if item.path in mount_requests is set correctly
+- name: assert | Test item.path in mount_requests
   ansible.builtin.assert:
     that:
       - item.path is defined
@@ -84,7 +84,7 @@
   loop_control:
     label: "{{ item.path }}"
 
-- name: assert | Test if item.state in mount_requests is set correctly
+- name: assert | Test item.state in mount_requests
   ansible.builtin.assert:
     that:
       - item.state is string

@@ -1,6 +1,6 @@
 ---
 
-- name: assert | Test if gitea_version is set correctly
+- name: assert | Test gitea_version
   ansible.builtin.assert:
     that:
       - gitea_version is defined

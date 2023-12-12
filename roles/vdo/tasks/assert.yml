@@ -1,6 +1,6 @@
 ---
 
-- name: assert | Test if vdo_devices is set correctly
+- name: assert | Test vdo_devices
   ansible.builtin.assert:
     that:
       - vdo_devices is iterable
@@ -8,7 +8,7 @@
   when:
     - vdo_devices is defined
 
-- name: assert | Test if item in vdo_devices is set correctly
+- name: assert | Test item in vdo_devices
   ansible.builtin.assert:
     that:
       - item.name is defined

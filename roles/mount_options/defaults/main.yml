@@ -1,0 +1,53 @@
+---
+# defaults file for mount_options
+
+# Creating mountpoints can be done with [this role](https://galaxy.ansible.com/robertdebock/mount).
+
+# You can add or remove mount options for an existing mount point.
+# mount_options:
+#   - path: /boot/efi
+#     add_options:
+#       - noexec
+#     remove_options:
+#       - noatime
+
+# Here is a set used in may compliancy frameworks.
+# mount_options:
+#   - path: /dev/shm
+#     add_options:
+#       - nodev
+#       - noexec
+#       - nosuid
+#   - path: /var/log
+#     add_options:
+#       - nodev
+#       - noexec
+#       - nosuid
+#   - path: /home
+#     add_options:
+#       - nodev
+#       - nosuid
+#   - path: /boot
+#     add_options:
+#       - nodev
+#       - nosuid
+#   - path: /tmp
+#     add_options:
+#       - nodev
+#       - noexec
+#       - nosuid
+#   - path: /var/tmp
+#     add_options:
+#       - nodev
+#       - noexec
+#       - nosuid
+#   - path: /var/log/audit
+#     add_options:
+#       - nodev
+#       - noexec
+#       - nosuid
+#   - path: /var
+#     add_options:
+#       - nodev
+
+mount_options: []

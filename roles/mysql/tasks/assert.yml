@@ -1,6 +1,6 @@
 ---
 
-- name: assert | Test if mysql_bind_address is set correctly
+- name: assert | Test mysql_bind_address
   ansible.builtin.assert:
     that:
       - mysql_bind_address is defined
@@ -8,7 +8,7 @@
       - mysql_bind_address is not none
     quiet: yes
 
-- name: assert | Test if mysql_root_password is set correctly
+- name: assert | Test mysql_root_password
   ansible.builtin.assert:
     that:
       - mysql_root_password is defined
@@ -16,7 +16,7 @@
       - mysql_root_password is not none
     quiet: yes
 
-- name: assert | Test if mysql_innodb_buffer_pool_size is set correctly
+- name: assert | Test mysql_innodb_buffer_pool_size
   ansible.builtin.assert:
     that:
       - mysql_innodb_buffer_pool_size is defined
@@ -24,14 +24,14 @@
       - mysql_innodb_buffer_pool_size is not none
     quiet: yes
 
-- name: assert | Test if mysql_innodb_io_capacity is set correctly
+- name: assert | Test mysql_innodb_io_capacity
   ansible.builtin.assert:
     that:
       - mysql_innodb_io_capacity is defined
       - mysql_innodb_io_capacity is number
     quiet: yes
 
-- name: assert | Test item.name item in mysql_databases is set correctly
+- name: assert | Test item.name item in mysql_databases
   ansible.builtin.assert:
     that:
       - item.name is defined
@@ -44,7 +44,7 @@
   when:
     - mysql_databases is defined
 
-- name: assert | Test item.state in mysql_databases is set correctly
+- name: assert | Test item.state in mysql_databases
   ansible.builtin.assert:
     that:
       - item.state is string
@@ -57,7 +57,7 @@
     - mysql_databases is defined
     - item.state is defined
 
-- name: assert | Test item.target in mysql_databases is set correctly
+- name: assert | Test item.target in mysql_databases
   ansible.builtin.assert:
     that:
       - item.target is string
@@ -70,7 +70,7 @@
     - mysql_databases is defined
     - item.target is defined
 
-- name: assert | Test item.encoding in mysql_databases is set correctly
+- name: assert | Test item.encoding in mysql_databases
   ansible.builtin.assert:
     that:
       - item.encoding is string
@@ -83,7 +83,7 @@
     - mysql_databases is defined
     - item.encoding is defined
 
-- name: assert | Test item.collation in mysql_databases is set correctly
+- name: assert | Test item.collation in mysql_databases
   ansible.builtin.assert:
     that:
       - item.collation is string
@@ -96,7 +96,7 @@
     - mysql_databases is defined
     - item.collation is defined
 
-- name: assert | Test item.name in mysql_users is set correctly
+- name: assert | Test item.name in mysql_users
   ansible.builtin.assert:
     that:
       - item.name is string
@@ -108,7 +108,7 @@
   when:
     - mysql_users is defined
 
-- name: assert | Test item.password in mysql_users is set correctly
+- name: assert | Test item.password in mysql_users
   ansible.builtin.assert:
     that:
       - item.password is string
@@ -121,7 +121,7 @@
     - mysql_users is defined
     - item.password is defined
 
-- name: assert | Test item.priv in mysql_users is set correctly
+- name: assert | Test item.priv in mysql_users
   ansible.builtin.assert:
     that:
       - item.priv is string
@@ -134,7 +134,7 @@
     - mysql_users is defined
     - item.priv is defined
 
-- name: assert | Test item.host in mysql_users is set correctly
+- name: assert | Test item.host in mysql_users
   ansible.builtin.assert:
     that:
       - item.name is string
@@ -147,7 +147,7 @@
     - mysql_users is defined
     - item.host is defined
 
-- name: assert | Test item.host_all in mysql_users is set correctly
+- name: assert | Test item.host_all in mysql_users
   ansible.builtin.assert:
     that:
       - item.host_all is boolean
@@ -159,7 +159,7 @@
     - mysql_users is defined
     - item.host_all is defined
 
-- name: assert | Test item.update_password in mysql_users is set correctly
+- name: assert | Test item.update_password in mysql_users
   ansible.builtin.assert:
     that:
       - item.update_password is string

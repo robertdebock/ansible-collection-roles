@@ -1,15 +1,15 @@
 ---
 
 # TODO: This variable should start with `autofs_`.
-- name: assert | Test if slash_replace_char is set correctly
+- name: assert | Test autofs_slash_replace_char
   ansible.builtin.assert:
     that:
-      - slash_replace_char is defined
-      - slash_replace_char is string
-      - slash_replace_char | length in [ 0, 1 ]
+      - autofs_slash_replace_char is defined
+      - autofs_slash_replace_char is string
+      - autofs_slash_replace_char | length in [ 0, 1 ]
     quiet: yes
 
-- name: assert | Test if autofs_maps is set correctly
+- name: assert | Test autofs_maps
   ansible.builtin.assert:
     that:
       - autofs_maps is iterable
@@ -17,7 +17,7 @@
   when:
     - autofs_maps is defined
 
-- name: assert | Test if item in autofs_maps is set correctly
+- name: assert | Test item in autofs_maps
   ansible.builtin.assert:
     that:
       - item.mountpoint is defined
@@ -33,7 +33,7 @@
     - autofs_maps is defined
     - item.state is undefined or (item.state is defined and item.state == "present")
 
-- name: assert | Test if item name in autofs_maps is set correctly
+- name: assert | Test item name in autofs_maps
   ansible.builtin.assert:
     that:
       - item.name is string
@@ -46,7 +46,7 @@
     - autofs_maps is defined
     - item.name is defined
 
-- name: assert | Test if item.state in autofs_maps is set correctly
+- name: assert | Test item.state in autofs_maps
   ansible.builtin.assert:
     that:
       - item.mountpoint is defined
@@ -60,7 +60,7 @@
     - autofs_maps is defined
     - item.state is defined and item.state == "absent"
 
-- name: assert | Test if options item in autofs_maps is set correctly
+- name: assert | Test options item in autofs_maps
   ansible.builtin.assert:
     that:
       - item.options is iterable
@@ -72,3 +72,11 @@
     - autofs_maps is defined
     - item.options is defined
     - item.state is undefined or (item.state is defined and item.state == "present")
+
+- name: assert | Test autofs_service_state
+  ansible.builtin.assert:
+    that:
+      - autofs_service_state is defined
+      - autofs_service_state is string
+      - autofs_service_state in [ "started", "stopped" ]
+    quiet: yes

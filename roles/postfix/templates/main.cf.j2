@@ -894,3 +894,10 @@ smtpd_client_connection_count_limit = {{ postfix_smtpd_client_connection_count_l
 {% if postfix_bounce_queue_lifetime is defined %}
 bounce_queue_lifetime = {{ postfix_bounce_queue_lifetime }}
 {% endif %}
+
+# https://stafwag.github.io/blog/blog/2018/03/04/postfix-smarthost-with-authentication/
+smtp_use_tls = {{ postfix_smtp_use_tls | ternary('yes', 'no') }}
+smtp_sasl_auth_enable = {{ postfix_smtp_sasl_auth_enable | ternary('yes', 'no') }}
+smtp_sasl_password_maps = {{ postfix_smtp_sasl_password_map }}
+smtp_sasl_security_options = {{ postfix_smtp_sasl_security_options }}
+smtp_tls_wrappermode = {{ postfix_smtp_tls_wrappermode | ternary('yes', 'no') }}

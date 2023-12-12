@@ -1,10 +1,10 @@
-# [collabora_online](#collabora_online)
+# [Ansible role collabora_online](#collabora_online)
 
 Install and configure Collabora Online CODE on your system.
 
-|GitHub|GitLab|Quality|Downloads|Version|
-|------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-collabora_online/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-collabora_online/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-collabora_online/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-collabora_online)|[![quality](https://img.shields.io/ansible/quality/55445)](https://galaxy.ansible.com/robertdebock/collabora_online)|[![downloads](https://img.shields.io/ansible/role/d/55445)](https://galaxy.ansible.com/robertdebock/collabora_online)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-collabora_online.svg)](https://github.com/robertdebock/ansible-role-collabora_online/releases/)|
+|GitHub|GitLab|Downloads|Version|
+|------|------|---------|-------|
+|[![github](https://github.com/robertdebock/ansible-role-collabora_online/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-collabora_online/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-collabora_online/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-collabora_online)|[![downloads](https://img.shields.io/ansible/role/d/24462)](https://galaxy.ansible.com/robertdebock/collabora_online)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-collabora_online.svg)](https://github.com/robertdebock/ansible-role-collabora_online/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -34,9 +34,9 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
     - role: robertdebock.roles.bootstrap
     - role: robertdebock.roles.ca_certificates
     - role: robertdebock.roles.users
-      users_group_list:
+      users_groups:
         - name: cool
-      users_user_list:
+      users:
         - name: cool
           group: cool
           home: /opt/cool
@@ -120,8 +120,8 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|7, 8, 9|
-|[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|bionic, focal|
+|[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|7, 8|
+|[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|bionic, focal|
 
 The minimum version of Ansible required is 2.12, tests have been done to:
 
@@ -129,7 +129,7 @@ The minimum version of Ansible required is 2.12, tests have been done to:
 - The current version.
 - The development version.
 
-If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-collabora_online/issues)
+If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-collabora_online/issues).
 
 ## [License](#license)
 

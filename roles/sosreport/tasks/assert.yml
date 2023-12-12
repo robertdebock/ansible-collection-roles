@@ -1,6 +1,6 @@
 ---
 
-- name: assert | Test if sosreport_remote_location is set correctly
+- name: assert | Test sosreport_remote_location
   ansible.builtin.assert:
     that:
       - sosreport_remote_location is defined
@@ -8,7 +8,7 @@
       - sosreport_remote_location is not none
     quiet: yes
 
-- name: assert | Test if sosreport_local_location is set correctly
+- name: assert | Test sosreport_local_location
   ansible.builtin.assert:
     that:
       - sosreport_local_location is defined

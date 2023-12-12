@@ -1,6 +1,6 @@
 ---
 
-- name: assert | Test if ulimit_items is set correctly
+- name: assert | Test ulimit_items
   ansible.builtin.assert:
     that:
       - ulimit_items is iterable
@@ -8,7 +8,7 @@
   when:
     - ulimit_items is defined
 
-- name: assert | Test if item in ulimit_items is set correctly
+- name: assert | Test item in ulimit_items
   ansible.builtin.assert:
     that:
       - item.limit_item is defined
@@ -44,7 +44,7 @@
       - rtprio
       - chroot
 
-- name: assert | Test if ulimit_domain is set correctly
+- name: assert | Test ulimit_domain
   ansible.builtin.assert:
     that:
       - ulimit_domain is defined
@@ -52,7 +52,7 @@
       - ulimit_domain is not none
     quiet: yes
 
-- name: assert | Test if ulimit_limit_type is set correctly
+- name: assert | Test ulimit_limit_type
   ansible.builtin.assert:
     that:
       - ulimit_limit_type is defined
@@ -60,7 +60,7 @@
       - ulimit_limit_type in [ "hard", "soft", "-" ]
     quiet: yes
 
-- name: assert | Test if ulimit_dest is set correctly
+- name: assert | Test ulimit_dest
   ansible.builtin.assert:
     that:
       - ulimit_dest is defined
@@ -68,7 +68,7 @@
       - ulimit_dest is not none
     quiet: yes
 
-- name: assert | Test if ulimit_backup is set correctly
+- name: assert | Test ulimit_backup
   ansible.builtin.assert:
     that:
       - ulimit_backup is defined

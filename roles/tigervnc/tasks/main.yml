@@ -2,7 +2,8 @@
 # tasks file for tigervnc
 
 - name: Import assert.yml
-  ansible.builtin.import_tasks: assert.yml
+  ansible.builtin.import_tasks:
+    file: assert.yml
   run_once: yes
   delegate_to: localhost
 
@@ -21,7 +22,7 @@
 
 - name: Generate vnc password
   ansible.builtin.shell:
-    cmd: set -o pipefail ; printf "{{ tigervnc_password }}\n{{ tigervnc_password }}\n" | vncpasswd
+    cmd: 'set -o pipefail && printf "{{ tigervnc_password }}\n{{ tigervnc_password }}\n" | vncpasswd'
     creates: /home/{{ tigervnc_username }}/.vnc/passwd
     executable: /bin/bash
   become: yes

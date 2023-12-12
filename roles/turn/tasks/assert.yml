@@ -1,62 +1,62 @@
 ---
 
-- name: assert | Test if turn_listening_port is set correctly
+- name: assert | Test turn_listening_port
   ansible.builtin.assert:
     that:
       - turn_listening_port is defined
       - turn_listening_port is number
     quiet: yes
 
-- name: assert | Test if turn_fingerprint is set correctly
+- name: assert | Test turn_fingerprint
   ansible.builtin.assert:
     that:
       - turn_fingerprint is defined
       - turn_fingerprint is boolean
     quiet: yes
 
-- name: assert | Test if turn_lt_cred_mech is set correctly
+- name: assert | Test turn_lt_cred_mech
   ansible.builtin.assert:
     that:
       - turn_lt_cred_mech is defined
       - turn_lt_cred_mech is boolean
     quiet: yes
 
-- name: assert | Test if turn_use_auth_secret is set correctly
+- name: assert | Test turn_use_auth_secret
   ansible.builtin.assert:
     that:
       - turn_use_auth_secret is defined
       - turn_use_auth_secret is boolean
     quiet: yes
 
-- name: assert | Test if turn_bps_quota is set correctly
+- name: assert | Test turn_bps_quota
   ansible.builtin.assert:
     that:
       - turn_bps_quota is defined
       - turn_bps_quota is number
     quiet: yes
 
-- name: assert | Test if turn_no_loopback_peers is set correctly
+- name: assert | Test turn_no_loopback_peers
   ansible.builtin.assert:
     that:
       - turn_no_loopback_peers is defined
       - turn_no_loopback_peers is boolean
     quiet: yes
 
-- name: assert | Test if turn_no_multicast_peers is set correctly
+- name: assert | Test turn_no_multicast_peers
   ansible.builtin.assert:
     that:
       - turn_no_multicast_peers is defined
       - turn_no_multicast_peers is boolean
     quiet: yes
 
-- name: assert | Test if turn_simple_log is set correctly
+- name: assert | Test turn_simple_log
   ansible.builtin.assert:
     that:
       - turn_simple_log is defined
       - turn_simple_log is boolean
     quiet: yes
 
-- name: assert | Test if turn_static_auth_secret is set correctly
+- name: assert | Test turn_static_auth_secret
   ansible.builtin.assert:
     that:
       - turn_static_auth_secret is defined
@@ -64,7 +64,7 @@
       - turn_static_auth_secret is not none
     quiet: yes
 
-- name: assert | Test if turn_realm is set correctly
+- name: assert | Test turn_realm
   ansible.builtin.assert:
     that:
       - turn_realm is defined
@@ -72,28 +72,28 @@
       - turn_realm is not none
     quiet: yes
 
-- name: assert | Test if turn_total_quota is set correctly
+- name: assert | Test turn_total_quota
   ansible.builtin.assert:
     that:
       - turn_total_quota is defined
       - turn_total_quota is number
     quiet: yes
 
-- name: assert | Test if turn_stale_nonce is set correctly
+- name: assert | Test turn_stale_nonce
   ansible.builtin.assert:
     that:
       - turn_stale_nonce is defined
       - turn_stale_nonce is number
     quiet: yes
 
-- name: assert | Test if turn_lt_cred_mech and turn_use_auth_secret are exclusive
+- name: assert | Test turn_lt_cred_mech and turn_use_auth_secret are exclusive
   ansible.builtin.assert:
     that:
       - (turn_lt_cred_mech and not turn_use_auth_secret) or
         (not turn_lt_cred_mech and turn_use_auth_secret)
     quiet: yes
 
-- name: assert | Test if turn_cli_password is set correctly
+- name: assert | Test turn_cli_password
   ansible.builtin.assert:
     that:
       - turn_cli_password is defined
@@ -101,7 +101,7 @@
       - turn_cli_password is not none
     quiet: yes
 
-- name: assert | Test if turn_server_name is set correctly
+- name: assert | Test turn_server_name
   ansible.builtin.assert:
     that:
       - turn_server_name is defined
@@ -109,7 +109,7 @@
       - turn_server_name is not none
     quiet: yes
 
-- name: assert | Test if turn_listening_ip is set correctly
+- name: assert | Test turn_listening_ip
   ansible.builtin.assert:
     that:
       - turn_listening_ip is defined
@@ -117,7 +117,7 @@
       - turn_listening_ip is not none
     quiet: yes
 
-- name: assert | Test if turn_external_ip is set correctly
+- name: assert | Test turn_external_ip
   ansible.builtin.assert:
     that:
       - turn_external_ip is defined

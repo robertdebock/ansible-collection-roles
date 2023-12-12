@@ -1,14 +1,6 @@
 ---
 
-- name: assert | Test if elasticsearch_type is set correctly
-  ansible.builtin.assert:
-    that:
-      - elasticsearch_type is defined
-      - elasticsearch_type is string
-      - elasticsearch_type in [ "elastic", "oss" ]
-    quiet: yes
-
-- name: assert | Test if elasticsearch_network_host is set correctly
+- name: assert | Test elasticsearch_network_host
   ansible.builtin.assert:
     that:
       - elasticsearch_network_host is defined
@@ -16,7 +8,7 @@
       - elasticsearch_network_host is not none
     quiet: yes
 
-- name: assert | Test if elasticsearch_http_port is set correctly
+- name: assert | Test elasticsearch_http_port
   ansible.builtin.assert:
     that:
       - elasticsearch_http_port is defined
@@ -25,14 +17,14 @@
       - elasticsearch_http_port <= 65536
     quiet: yes
 
-- name: assert | Test if elasticsearch_discovery_seed_hosts is set correctly
+- name: assert | Test elasticsearch_discovery_seed_hosts
   ansible.builtin.assert:
     that:
       - elasticsearch_discovery_seed_hosts is defined
       - elasticsearch_discovery_seed_hosts is iterable
     quiet: yes
 
-- name: assert | Test if elasticsearch_cluster_initial_master_nodes is set correctly
+- name: assert | Test elasticsearch_cluster_initial_master_nodes
   ansible.builtin.assert:
     that:
       - elasticsearch_cluster_initial_master_nodes is defined

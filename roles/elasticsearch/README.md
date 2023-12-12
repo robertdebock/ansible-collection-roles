@@ -1,10 +1,10 @@
-# [elasticsearch](#elasticsearch)
+# [Ansible role elasticsearch](#elasticsearch)
 
 Install and configure Elasticsearch on your system.
 
-|GitHub|GitLab|Quality|Downloads|Version|
-|------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-elasticsearch/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-elasticsearch/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-elasticsearch/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-elasticsearch)|[![quality](https://img.shields.io/ansible/quality/56420)](https://galaxy.ansible.com/robertdebock/elasticsearch)|[![downloads](https://img.shields.io/ansible/role/d/56420)](https://galaxy.ansible.com/robertdebock/elasticsearch)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-elasticsearch.svg)](https://github.com/robertdebock/ansible-role-elasticsearch/releases/)|
+|GitHub|GitLab|Downloads|Version|
+|------|------|---------|-------|
+|[![github](https://github.com/robertdebock/ansible-role-elasticsearch/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-elasticsearch/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-elasticsearch/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-elasticsearch)|[![downloads](https://img.shields.io/ansible/role/d/24488)](https://galaxy.ansible.com/robertdebock/elasticsearch)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-elasticsearch.svg)](https://github.com/robertdebock/ansible-role-elasticsearch/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -46,10 +46,6 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 ---
 # defaults file for elasticsearch
 
-# Elastic offers both "oss" (Apache 2.0 license) and "elastic"
-# (Elastic license). Select the type here. Either "oss" or "elastic"
-elasticsearch_type: oss
-
 # The IP address to bind on.
 elasticsearch_network_host: "0.0.0.0"
 
@@ -90,11 +86,11 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|[Amazon](https://hub.docker.com/repository/docker/robertdebock/amazonlinux/general)|all|
-|[Debian](https://hub.docker.com/repository/docker/robertdebock/debian/general)|all|
-|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|all|
-|[Fedora](https://hub.docker.com/repository/docker/robertdebock/fedora/general)|all|
-|[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|focal, bionic|
+|[Amazon](https://hub.docker.com/r/robertdebock/amazonlinux)|all|
+|[Debian](https://hub.docker.com/r/robertdebock/debian)|all|
+|[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|all|
+|[Fedora](https://hub.docker.com/r/robertdebock/fedora/)|all|
+|[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|focal, bionic|
 
 The minimum version of Ansible required is 2.12, tests have been done to:
 
@@ -102,7 +98,7 @@ The minimum version of Ansible required is 2.12, tests have been done to:
 - The current version.
 - The development version.
 
-If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-elasticsearch/issues)
+If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-elasticsearch/issues).
 
 ## [License](#license)
 

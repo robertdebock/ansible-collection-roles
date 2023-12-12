@@ -1,6 +1,6 @@
 ---
 
-- name: assert | Test if modprobe_modules is set correctly
+- name: assert | Test modprobe_modules
   ansible.builtin.assert:
     that:
       - modprobe_modules is iterable
@@ -8,7 +8,7 @@
   when:
     - modprobe_modules is defined
 
-- name: assert | Test if item in modprobe_modules is set correctly
+- name: assert | Test item in modprobe_modules
   ansible.builtin.assert:
     that:
       - item is defined

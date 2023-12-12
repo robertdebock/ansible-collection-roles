@@ -1,6 +1,6 @@
 ---
 
-- name: assert | Test if selinux_state is set correctly
+- name: assert | Test selinux_state
   ansible.builtin.assert:
     that:
       - selinux_state is defined
@@ -8,7 +8,7 @@
       - selinux_state in [ "disabled", "enforcing", "permissive" ]
     quiet: yes
 
-- name: assert | Test if selinux_policy is set correctly
+- name: assert | Test selinux_policy
   ansible.builtin.assert:
     that:
       - selinux_policy is defined
@@ -16,14 +16,14 @@
       - selinux_policy in [ "default", "minimum", "mls", "targeted" ]
     quiet: yes
 
-- name: assert | Test if selinux_reboot is set correctly
+- name: assert | Test selinux_reboot
   ansible.builtin.assert:
     that:
       - selinux_reboot is defined
       - selinux_reboot is boolean
     quiet: yes
 
-- name: assert | Test if selinux_booleans is set correctly
+- name: assert | Test selinux_booleans
   ansible.builtin.assert:
     that:
       - selinux_booleans is iterable
@@ -31,7 +31,7 @@
   when:
     - selinux_booleans is defined
 
-- name: assert | Test if item.name in selinux_booleans is set correctly
+- name: assert | Test item.name in selinux_booleans
   ansible.builtin.assert:
     that:
       - item.name is defined
@@ -44,7 +44,7 @@
   when:
     - selinux_booleans is defined
 
-- name: assert | Test if item.state in selinux_booleans is set correctly
+- name: assert | Test item.state in selinux_booleans
   ansible.builtin.assert:
     that:
       - item.state is boolean
@@ -56,7 +56,7 @@
     - selinux_booleans is defined
     - item.state is defined
 
-- name: assert | Test if item.persistent in selinux_booleans is set correctly
+- name: assert | Test item.persistent in selinux_booleans
   ansible.builtin.assert:
     that:
       - item.persistent is boolean

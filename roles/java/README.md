@@ -1,10 +1,10 @@
-# [java](#java)
+# [Ansible role java](#java)
 
 Install and configure java on your system.
 
-|GitHub|GitLab|Quality|Downloads|Version|
-|------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-java/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-java/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-java/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-java)|[![quality](https://img.shields.io/ansible/quality/22732)](https://galaxy.ansible.com/robertdebock/java)|[![downloads](https://img.shields.io/ansible/role/d/22732)](https://galaxy.ansible.com/robertdebock/java)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-java.svg)](https://github.com/robertdebock/ansible-role-java/releases/)|
+|GitHub|GitLab|Downloads|Version|
+|------|------|---------|-------|
+|[![github](https://github.com/robertdebock/ansible-role-java/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-java/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-java/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-java)|[![downloads](https://img.shields.io/ansible/role/d/24518)](https://galaxy.ansible.com/robertdebock/java)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-java.svg)](https://github.com/robertdebock/ansible-role-java/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -19,6 +19,13 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 
   roles:
     - role: robertdebock.roles.java
+# To install Oracle java 21 package:
+# NOTE: Please download Java yourself, place it in `files/`.
+# This is to avoid licensing issues.
+# java_source: local
+# java_type: jdk
+# java_format: deb
+# java_version: 21
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-java/blob/master/molecule/default/prepare.yml):
@@ -50,20 +57,20 @@ java_vendor: openjdk
 # Set the variable to install the type, valid values are "jre" and "jdk".
 java_type: jre
 
-# Set the version of java, valid values are 6, 7, 8, 9, 10, 11, 12, 13 or 17.
+# Set the version of java, valid values are 6, 7, 8, 9, 10, 11, 12, 13 17, 19, 20 or 21.
 # By default, a distribution default is used, mapped in `vars/main.yml`.
 # By setting java_version, you overwrite this default to your selected
 # version.
 java_version: "{{ java_default_version }}"
 
-# Set the format of the installation source, valid values are "targz" and
-# "rpm". This is only valid with "java_vendor == oracle"
+# Set the format of the installation source, valid values are "deb", "rpm" or "targz".
+# This is only valid with "java_vendor == oracle"
 java_format: targz
 
 # Where do the RPMs come from when installing Oracle RPMs?
 # Either "local" or "repository".
 # Valid for "java_vendor == oracle" and "java_format" == "rpm"
-java_rpm_source: local
+java_source: local
 
 # Choose if you can JCE installed. Only applicable for (both):
 # - java_vendor == "oracle"
@@ -100,13 +107,13 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|[Alpine](https://hub.docker.com/repository/docker/robertdebock/alpine/general)|all|
-|[Amazon](https://hub.docker.com/repository/docker/robertdebock/amazonlinux/general)|Candidate|
-|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|8, 9|
-|[Debian](https://hub.docker.com/repository/docker/robertdebock/debian/general)|all|
-|[Fedora](https://hub.docker.com/repository/docker/robertdebock/fedora/general)|all|
-|[opensuse](https://hub.docker.com/repository/docker/robertdebock/opensuse/general)|all|
-|[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|all|
+|[Alpine](https://hub.docker.com/r/robertdebock/alpine)|all|
+|[Amazon](https://hub.docker.com/r/robertdebock/amazonlinux)|Candidate|
+|[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|8, 9|
+|[Debian](https://hub.docker.com/r/robertdebock/debian)|all|
+|[Fedora](https://hub.docker.com/r/robertdebock/fedora/)|all|
+|[opensuse](https://hub.docker.com/r/robertdebock/opensuse)|all|
+|[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|all|
 
 The minimum version of Ansible required is 2.12, tests have been done to:
 
@@ -114,7 +121,7 @@ The minimum version of Ansible required is 2.12, tests have been done to:
 - The current version.
 - The development version.
 
-If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-java/issues)
+If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-java/issues).
 
 ## [License](#license)
 

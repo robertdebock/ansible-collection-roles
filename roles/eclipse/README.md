@@ -1,10 +1,10 @@
-# [eclipse](#eclipse)
+# [Ansible role eclipse](#eclipse)
 
 Install eclipse and plugins on your system.
 
-|GitHub|GitLab|Quality|Downloads|Version|
-|------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-eclipse/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-eclipse/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-eclipse/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-eclipse)|[![quality](https://img.shields.io/ansible/quality/45618)](https://galaxy.ansible.com/robertdebock/eclipse)|[![downloads](https://img.shields.io/ansible/role/d/45618)](https://galaxy.ansible.com/robertdebock/eclipse)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-eclipse.svg)](https://github.com/robertdebock/ansible-role-eclipse/releases/)|
+|GitHub|GitLab|Downloads|Version|
+|------|------|---------|-------|
+|[![github](https://github.com/robertdebock/ansible-role-eclipse/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-eclipse/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-eclipse/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-eclipse)|[![downloads](https://img.shields.io/ansible/role/d/24486)](https://galaxy.ansible.com/robertdebock/eclipse)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-eclipse.svg)](https://github.com/robertdebock/ansible-role-eclipse/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -58,7 +58,7 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 
 # The release to install.
 # See https://www.eclipse.org/downloads/packages/release
-eclipse_release: 2022-12
+eclipse_release: 2023-06
 
 # The release version to install, either: R, RC1, M3, M2 or M1.
 eclipse_release_version: R
@@ -71,6 +71,12 @@ eclipse_tmp_path: /tmp
 
 # The path where to install eclipse.
 eclipse_install_path: /opt/eclipse-{{ eclipse_release }}
+
+# The mirror to use for downloading eclipse.
+# The mirrors keep the 3 last versions.
+# eclipse_archive_mirror: "https://ftp.fau.de/eclipse/technology/epp/downloads/release"
+# eclipse_archive_mirror: "https://download.eclipse.org/technology/epp/downloads/release"
+eclipse_archive_mirror: "http://ftp.snt.utwente.nl/pub/software/eclipse/technology/epp/downloads/release"
 
 # What path(s) would you like to link to the eclipse installation?
 eclipse_link_paths:
@@ -123,12 +129,12 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|[Amazon](https://hub.docker.com/repository/docker/robertdebock/amazonlinux/general)|Candidate|
-|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|8, 9|
-|[Debian](https://hub.docker.com/repository/docker/robertdebock/debian/general)|all|
-|[Fedora](https://hub.docker.com/repository/docker/robertdebock/fedora/general)|all|
-|[opensuse](https://hub.docker.com/repository/docker/robertdebock/opensuse/general)|all|
-|[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|all|
+|[Amazon](https://hub.docker.com/r/robertdebock/amazonlinux)|Candidate|
+|[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|8, 9|
+|[Debian](https://hub.docker.com/r/robertdebock/debian)|all|
+|[Fedora](https://hub.docker.com/r/robertdebock/fedora/)|all|
+|[opensuse](https://hub.docker.com/r/robertdebock/opensuse)|all|
+|[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|all|
 
 The minimum version of Ansible required is 2.12, tests have been done to:
 
@@ -136,7 +142,7 @@ The minimum version of Ansible required is 2.12, tests have been done to:
 - The current version.
 - The development version.
 
-If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-eclipse/issues)
+If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-eclipse/issues).
 
 ## [License](#license)
 

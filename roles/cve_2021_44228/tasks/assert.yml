@@ -1,34 +1,34 @@
 ---
 
-- name: assert | Test if cve_2021_44228_check_processes is set correctly
+- name: assert | Test cve_2021_44228_check_processes
   ansible.builtin.assert:
     that:
       - cve_2021_44228_check_processes is defined
       - cve_2021_44228_check_processes is boolean
     quiet: yes
 
-- name: assert | Test if cve_2021_44228_check_packages is set correctly
+- name: assert | Test cve_2021_44228_check_packages
   ansible.builtin.assert:
     that:
       - cve_2021_44228_check_packages is defined
       - cve_2021_44228_check_packages is boolean
     quiet: yes
 
-- name: assert | Test if cve_2021_44228_check_files is set correctly
+- name: assert | Test cve_2021_44228_check_files
   ansible.builtin.assert:
     that:
       - cve_2021_44228_check_files is defined
       - cve_2021_44228_check_files is boolean
     quiet: yes
 
-- name: assert | Test if cve_2021_44228_check_archives s set correctly
+- name: assert | Test cve_2021_44228_check_archives s set correctly
   ansible.builtin.assert:
     that:
       - cve_2021_44228_check_archives is defined
       - cve_2021_44228_check_archives is boolean
     quiet: yes
 
-- name: assert | Test if cve_2021_44228_paths_to_check is set correctly
+- name: assert | Test cve_2021_44228_paths_to_check
   ansible.builtin.assert:
     that:
       - cve_2021_44228_paths_to_check is defined

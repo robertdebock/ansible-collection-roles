@@ -1,10 +1,10 @@
-# [apt_autostart](#apt_autostart)
+# [Ansible role apt_autostart](#apt_autostart)
 
 Enable or disable automatic starting of services upon installation of packages.
 
-|GitHub|GitLab|Quality|Downloads|Version|
-|------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-apt_autostart/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-apt_autostart/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-apt_autostart/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-apt_autostart)|[![quality](https://img.shields.io/ansible/quality/33996)](https://galaxy.ansible.com/robertdebock/apt_autostart)|[![downloads](https://img.shields.io/ansible/role/d/33996)](https://galaxy.ansible.com/robertdebock/apt_autostart)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-apt_autostart.svg)](https://github.com/robertdebock/ansible-role-apt_autostart/releases/)|
+|GitHub|GitLab|Downloads|Version|
+|------|------|---------|-------|
+|[![github](https://github.com/robertdebock/ansible-role-apt_autostart/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-apt_autostart/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-apt_autostart/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-apt_autostart)|[![downloads](https://img.shields.io/ansible/role/d/24437)](https://galaxy.ansible.com/robertdebock/apt_autostart)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-apt_autostart.svg)](https://github.com/robertdebock/ansible-role-apt_autostart/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -73,8 +73,8 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|[Debian](https://hub.docker.com/repository/docker/robertdebock/debian/general)|all|
-|[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|all|
+|[Debian](https://hub.docker.com/r/robertdebock/debian)|all|
+|[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|all|
 
 The minimum version of Ansible required is 2.12, tests have been done to:
 
@@ -82,7 +82,7 @@ The minimum version of Ansible required is 2.12, tests have been done to:
 - The current version.
 - The development version.
 
-If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-apt_autostart/issues)
+If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-apt_autostart/issues).
 
 ## [License](#license)
 

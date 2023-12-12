@@ -1,6 +1,6 @@
 ---
 
-- name: assert | Test if bios_update_temporary_directory is set correctly
+- name: assert | Test bios_update_temporary_directory
   ansible.builtin.assert:
     that:
       - bios_update_temporary_directory is defined
@@ -8,7 +8,7 @@
       - bios_update_temporary_directory is not none
     quiet: yes
 
-- name: assert | Test if bios_update_url is set correctly
+- name: assert | Test bios_update_url
   ansible.builtin.assert:
     that:
       - bios_update_url is defined
@@ -16,7 +16,7 @@
       - bios_update_url is not none
     quiet: yes
 
-- name: assert | Test if bios_update_flash_drive is set correctly
+- name: assert | Test bios_update_flash_drive
   ansible.builtin.assert:
     that:
       - bios_update_flash_drive is defined
@@ -24,7 +24,7 @@
       - bios_update_flash_drive is not none
     quiet: yes
 
-- name: assert | Test if bios_update_write is set correctly
+- name: assert | Test bios_update_write
   ansible.builtin.assert:
     that:
       - bios_update_write is defined

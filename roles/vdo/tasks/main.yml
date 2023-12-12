@@ -2,7 +2,8 @@
 # tasks file for vdo
 
 - name: Import assert.yml
-  ansible.builtin.import_tasks: assert.yml
+  ansible.builtin.import_tasks:
+    file: assert.yml
   run_once: yes
   delegate_to: localhost
 
@@ -11,11 +12,14 @@
     name: "{{ vdo_packages }}"
     state: present
 
-- name: Start and enable service
+- name: Start and enable service on RHEL 8
   ansible.builtin.service:
     name: "{{ vdo_service }}"
     state: started
     enabled: yes
+  when:
+    - ansible_os_family == "RedHat"
+    - ansible_distribution_major_version == 8
 
 - name: Create vdo device
   community.general.vdo:

@@ -1,6 +1,6 @@
 ---
 
-- name: assert | Test if rundeck_version is set correctly
+- name: assert | Test rundeck_version
   ansible.builtin.assert:
     that:
       - rundeck_version is defined
@@ -8,7 +8,7 @@
       - rundeck_version is not none
     quiet: yes
 
-- name: assert | Test if rundeck_release_date is set correctly
+- name: assert | Test rundeck_release_date
   ansible.builtin.assert:
     that:
       - rundeck_release_date is defined
@@ -17,7 +17,7 @@
       - rundeck_release_date is not none
     quiet: yes
 
-- name: assert | Test if rundeck_rdeckbase is set correctly
+- name: assert | Test rundeck_rdeckbase
   ansible.builtin.assert:
     that:
       - rundeck_rdeckbase is defined
@@ -25,7 +25,7 @@
       - rundeck_rdeckbase is not none
     quiet: yes
 
-- name: assert | Test if rundeck_xmx is set correctly
+- name: assert | Test rundeck_xmx
   ansible.builtin.assert:
     that:
       - rundeck_xmx is defined
@@ -33,7 +33,7 @@
       - rundeck_xmx > rundeck_xms | int
     quiet: yes
 
-- name: assert | Test if rundeck_xms is set correctly
+- name: assert | Test rundeck_xms
   ansible.builtin.assert:
     that:
       - rundeck_xms is defined
@@ -41,7 +41,7 @@
       - rundeck_xms < rundeck_xmx | int
     quiet: yes
 
-- name: assert | Test if rundeck_maxmetaspacesize is set correctly
+- name: assert | Test rundeck_maxmetaspacesize
   ansible.builtin.assert:
     that:
       - rundeck_maxmetaspacesize is defined
@@ -50,7 +50,7 @@
       - rundeck_maxmetaspacesize < rundeck_xmx | int
     quiet: yes
 
-- name: assert | Test if rundeck_port is set correctly
+- name: assert | Test rundeck_port
   ansible.builtin.assert:
     that:
       - rundeck_port is defined
@@ -59,7 +59,7 @@
       - rundeck_port < 65536
     quiet: yes
 
-- name: assert | Test if rundeck_address is set correctly
+- name: assert | Test rundeck_address
   ansible.builtin.assert:
     that:
       - rundeck_address is defined
@@ -67,7 +67,7 @@
       - rundeck_address is not none
     quiet: yes
 
-- name: assert | Test if rundeck_url is set correctly
+- name: assert | Test rundeck_url
   ansible.builtin.assert:
     that:
       - rundeck_url is defined
@@ -75,7 +75,7 @@
       - rundeck_url is not none
     quiet: yes
 
-- name: assert | Test if rundeck_config is set correctly
+- name: assert | Test rundeck_config
   ansible.builtin.assert:
     that:
       - rundeck_config is defined
@@ -94,21 +94,21 @@
   loop_control:
     label: "{{ item.parameter }}"
 
-- name: assert | Test if rundeck_framework is set correctly
+- name: assert | Test rundeck_framework
   ansible.builtin.assert:
     that:
       - rundeck_framework is defined
       - rundeck_framework is iterable
     quiet: yes
 
-- name: assert | Test if rundeck_users is set correctly
+- name: assert | Test rundeck_users
   ansible.builtin.assert:
     that:
       - rundeck_users is defined
       - rundeck_users is iterable
     quiet: yes
 
-- name: assert | Test if rundeck_plugins is set correctly
+- name: assert | Test rundeck_plugins
   ansible.builtin.assert:
     that:
       - rundeck_plugins is defined

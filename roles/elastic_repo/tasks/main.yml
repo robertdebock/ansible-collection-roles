@@ -1,8 +1,9 @@
 ---
 # tasks file for elastic_repo
 
-- name: Include assert.yml
-  ansible.builtin.import_tasks: assert.yml
+- name: Import assert.yml
+  ansible.builtin.import_tasks:
+    file: assert.yml
   run_once: yes
   delegate_to: localhost
 
@@ -17,7 +18,7 @@
 
     - name: Apt apt repository
       ansible.builtin.apt_repository:
-        repo: "{{ elastic_repo_apt_repo }}"
+        repo: "deb https://artifacts.elastic.co/packages/8.x/apt stable main"
         filename: elasic-8.x
         state: present
 
@@ -60,5 +61,5 @@
       ansible.builtin.yum_repository:
         name: elastic-8.x
         description: Elastic repository for 8.x packages
-        baseurl: "{{ elastic_repo_rpm_repo }}"
+        baseurl: "https://artifacts.elastic.co/packages/8.x/yum"
         gpgkey: "{{ elastic_repo_gpg_url }}"

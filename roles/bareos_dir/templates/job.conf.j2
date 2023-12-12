@@ -1,22 +1,28 @@
 {{ ansible_managed | comment }}
 
 {% if item.enabled is defined and item.enabled or item.enabled is not defined %}
-Job {
+{{ bareos_dir_template_type }} {
   Name = "{{ item.name }}"
-  Description = "{{ item.description }}"
-{% if item.pool is defined %}
-  Pool = "{{ item.pool }}"
-{% endif %}
-{% if item.type is defined %}
-  Type = "{{ item.type }}"
-{% endif %}
-  Client = "{{ item.client }}"
-  FileSet = "{{ item.fileset }}"
-{% if item.storage is defined %}
-  Storage = "{{ item.storage }}"
-{% endif %}
 {% if item.messages is defined %}
   Messages = "{{ item.messages }}"
+{% endif %}
+{% if item.pool is defined %}
+  Pool = {{ item.pool }}
+{% endif %}
+{% if item.type is defined %}
+  Type = {{ item.type }}
+{% endif %}
+{% if item.description is defined %}
+  Description = "{{ item.description }}"
+{% endif %}
+{% if item.client is defined %}
+  Client = "{{ item.client }}"
+{% endif %}
+{% if item.fileset is defined %}
+  FileSet = "{{ item.fileset }}"
+{% endif %}
+{% if item.storage is defined %}
+  Storage = "{{ item.storage }}"
 {% endif %}
 {% if item.jobdefs is defined %}
   Job Defs = "{{ item.jobdefs }}"

@@ -36,3 +36,8 @@ types_floats:
 types_map:
   value1: something
   value2: not-something
+
+# A list of lists.
+types_lists:
+  - [one, two, three]
+  - [aa, bb, cc]

@@ -2,7 +2,8 @@
 # tasks file for firewall
 
 - name: Import assert.yml
-  ansible.builtin.import_tasks: assert.yml
+  ansible.builtin.import_tasks:
+    file: assert.yml
   run_once: yes
   delegate_to: localhost
 
@@ -32,7 +33,7 @@
 - name: Open ports (ufw)
   community.general.ufw:
     rule: "{{ item.rule | default(firewall_default_rule) }}"
-    port: "{{ item.name }}"
+    to_port: "{{ item.name }}"
     proto: "{{ item.protocol | default(firewall_default_protocol) }}"
   loop: "{{ firewall_services }}"
   when:
@@ -45,7 +46,7 @@
 - name: Close ports (ufw)
   community.general.ufw:
     rule: "{{ item.rule | default(firewall_default_rule) }}"
-    port: "{{ item.name }}"
+    to_port: "{{ item.name }}"
     proto: "{{ item.protocol | default(firewall_default_protocol) }}"
     delete: yes
   loop: "{{ firewall_services }}"

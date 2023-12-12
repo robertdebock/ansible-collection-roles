@@ -1,6 +1,6 @@
 ---
 
-- name: assert | Test if gitlab_runner_name is set correctly
+- name: assert | Test gitlab_runner_name
   ansible.builtin.assert:
     that:
       - gitlab_runner_name is defined
@@ -8,7 +8,7 @@
       - gitlab_runner_name is not none
     quiet: yes
 
-- name: assert | Test if gitlab_runner_registration_token is set correctly
+- name: assert | Test gitlab_runner_registration_token
   ansible.builtin.assert:
     that:
       - gitlab_runner_registration_token is string
@@ -17,7 +17,7 @@
   when:
     - gitlab_runner_registration_token is defined
 
-- name: assert | Test if gitlab_runner_url is set correctly
+- name: assert | Test gitlab_runner_url
   ansible.builtin.assert:
     that:
       - gitlab_runner_url is defined
@@ -25,7 +25,7 @@
       - gitlab_runner_url is not none
     quiet: yes
 
-- name: assert | Test if gitlab_runner_tags is set correctly
+- name: assert | Test gitlab_runner_tags
   ansible.builtin.assert:
     that:
       - gitlab_runner_tags is iterable
@@ -33,14 +33,14 @@
   when:
     - gitlab_runner_tags is defined
 
-- name: assert | Test if gitlab_runner_executor is set correctly
+- name: assert | Test gitlab_runner_executor
   ansible.builtin.assert:
     that:
       - gitlab_runner_executor is string
       - gitlab_runner_executor in [ "ssh", "shell", "parallels", "virtualbox", "docker", "docker_machine", "kubernetes", "custom" ]
     quiet: yes
 
-- name: assert | Test if gitlab_runner_docker_image is set correctly
+- name: assert | Test gitlab_runner_docker_image
   ansible.builtin.assert:
     that:
       - gitlab_runner_docker_image is defined
@@ -50,7 +50,7 @@
   when:
     - gitlab_runner_executor == "docker"
 
-- name: assert | Test if gitlab_runner_version is set correctly
+- name: assert | Test gitlab_runner_version
   ansible.builtin.assert:
     that:
       - gitlab_runner_version is defined
@@ -58,7 +58,7 @@
       - gitlab_runner_version is not none
     quiet: yes
 
-- name: assert | Test if gitlab_runner_concurrency is set correctly
+- name: assert | Test gitlab_runner_concurrency
   ansible.builtin.assert:
     that:
       - gitlab_runner_concurrency is defined

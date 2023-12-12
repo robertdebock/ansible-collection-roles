@@ -1,8 +1,9 @@
 ---
 # tasks file for bareos_sd
 
-- name: Include assert.yml
-  ansible.builtin.import_tasks: assert.yml
+- name: Import assert.yml
+  ansible.builtin.import_tasks:
+    file: assert.yml
   run_once: yes
   delegate_to: localhost
 

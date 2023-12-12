@@ -1,10 +1,10 @@
-# [scripts](#scripts)
+# [Ansible role scripts](#scripts)
 
 Place scripts on your system.
 
-|GitHub|GitLab|Quality|Downloads|Version|
-|------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-scripts/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-scripts/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-scripts/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-scripts)|[![quality](https://img.shields.io/ansible/quality/62753)](https://galaxy.ansible.com/robertdebock/scripts)|[![downloads](https://img.shields.io/ansible/role/d/62753)](https://galaxy.ansible.com/robertdebock/scripts)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-scripts.svg)](https://github.com/robertdebock/ansible-role-scripts/releases/)|
+|GitHub|GitLab|Downloads|Version|
+|------|------|---------|-------|
+|[![github](https://github.com/robertdebock/ansible-role-scripts/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-scripts/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-scripts/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-scripts)|[![downloads](https://img.shields.io/ansible/role/d/32192)](https://galaxy.ansible.com/robertdebock/scripts)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-scripts.svg)](https://github.com/robertdebock/ansible-role-scripts/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -92,13 +92,13 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|[Alpine](https://hub.docker.com/repository/docker/robertdebock/alpine/general)|all|
-|[Amazon](https://hub.docker.com/repository/docker/robertdebock/amazonlinux/general)|all|
-|[Debian](https://hub.docker.com/repository/docker/robertdebock/debian/general)|all|
-|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|all|
-|[Fedora](https://hub.docker.com/repository/docker/robertdebock/fedora/general)|all|
-|[opensuse](https://hub.docker.com/repository/docker/robertdebock/opensuse/general)|all|
-|[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|all|
+|[Alpine](https://hub.docker.com/r/robertdebock/alpine)|all|
+|[Amazon](https://hub.docker.com/r/robertdebock/amazonlinux)|all|
+|[Debian](https://hub.docker.com/r/robertdebock/debian)|all|
+|[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|all|
+|[Fedora](https://hub.docker.com/r/robertdebock/fedora/)|all|
+|[opensuse](https://hub.docker.com/r/robertdebock/opensuse)|all|
+|[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|all|
 
 The minimum version of Ansible required is 2.12, tests have been done to:
 
@@ -106,7 +106,7 @@ The minimum version of Ansible required is 2.12, tests have been done to:
 - The current version.
 - The development version.
 
-If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-scripts/issues)
+If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-scripts/issues).
 
 ## [License](#license)
 

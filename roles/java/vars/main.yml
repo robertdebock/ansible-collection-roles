@@ -87,26 +87,25 @@ _java_openjdk_package:
 java_openjdk_package: "{{ _java_openjdk_package[java_type][java_version | int][ansible_distribution] | default(_java_openjdk_package[java_type][java_version | int]['default'] | default([])) }}"
 
 _java_package:
-  oracle:
-    jre:
-      8:
-        targz: jre-8u191-linux-x64.tar.gz
-        rpm: jre-8u191-linux-x64.rpm
-        directory: jre1.8.0_191
-      10:
-        targz: jre-10.0.2_linux-x64_bin.tar.gz
-        rpm: jre-10.0.2_linux-x64_bin.rpm
-        directory: jre-10.0.2
-    jdk:
-      8:
-        targz: jdk-8u191-linux-x64.tar.gz
-        rpm: jdk-8u191-linux-x64.rpm
-        directory: jdk1.8.0_191
-      10:
-        targz: jdk-10.0.2_linux-x64_bin.tar.gz
-        rpm: jdk-10.0.2_linux-x64_bin.rpm
-        directory: jdk-10.0.2
-
-java_oracle_package: "{{ _java_oracle_package[java_type][java_version][java_format] | default([]) }}"
-
-java_oracle_directory: "{{ _java_oracle_package[java_type][java_version]['directory'] }}"
+  jre:
+    8:
+      deb: jre-8u191-linux-x64.deb
+      rpm: jre-8u191-linux-x64.rpm
+      targz: jre-8u191-linux-x64.tar.gz
+    10:
+      deb: jre-10.0.2_linux-x64_bin.deb
+      rpm: jre-10.0.2_linux-x64_bin.rpm
+      targz: jre-10.0.2_linux-x64_bin.tar.gz
+  jdk:
+    8:
+      deb: jdk-8u191-linux-x64.deb
+      rpm: jdk-8u191-linux-x64.rpm
+      targz: jdk-8u191-linux-x64.tar.gz
+    10:
+      deb: jdk-10.0.2_linux-x64_bin.deb
+      rpm: jdk-10.0.2_linux-x64_bin.rpm
+      targz: jdk-10.0.2_linux-x64_bin.tar.gz
+    21:
+      deb: jdk-21_linux-x64_bin.deb
+      rpm: jdk-21_linux-x64_bin.rpm
+java_package: "{{ _java_package[java_type][java_version][java_format] | default([]) }}"

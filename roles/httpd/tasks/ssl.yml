@@ -1,5 +1,4 @@
 ---
-
 - name: ssl | Install ssl packages
   ansible.builtin.package:
     name: "{{ httpd_ssl_packages }}"
@@ -17,7 +16,7 @@
 - name: ssl | Configure redirect from http to https
   ansible.builtin.template:
     src: default_vhost.conf.j2
-    dest: "{{ httpd_config_directory }}/default_vhost.conf"
+    dest: "{{ httpd_config_directory }}/{{ default_vhost_conf }}"
     mode: "0644"
   notify:
     - Test httpd configuration validity

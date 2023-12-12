@@ -1,6 +1,6 @@
 ---
 
-- name: assert | Test if dhcpd_ipv4_interface is set correctly
+- name: assert | Test dhcpd_ipv4_interface
   ansible.builtin.assert:
     that:
       - dhcpd_ipv4_interface is defined
@@ -8,7 +8,7 @@
       - dhcpd_ipv4_interface is not none
     quiet: yes
 
-- name: assert | Test if dhcpd_default_lease_time is set correctly
+- name: assert | Test dhcpd_default_lease_time
   ansible.builtin.assert:
     that:
       - dhcpd_default_lease_time is defined
@@ -16,7 +16,7 @@
       - dhcpd_default_lease_time > 0
     quiet: yes
 
-- name: assert | Test if dhcpd_max_lease_time is set correctly
+- name: assert | Test dhcpd_max_lease_time
   ansible.builtin.assert:
     that:
       - dhcpd_max_lease_time is defined
@@ -24,7 +24,7 @@
       - dhcpd_max_lease_time > 0
     quiet: yes
 
-- name: assert | Test if dhcpd_subnet_mask is set correctly
+- name: assert | Test dhcpd_subnet_mask
   ansible.builtin.assert:
     that:
       - dhcpd_subnet_mask is defined
@@ -32,7 +32,7 @@
       - dhcpd_subnet_mask is not none
     quiet: yes
 
-- name: assert | Test if dhcpd_broadcast_address is set correctly
+- name: assert | Test dhcpd_broadcast_address
   ansible.builtin.assert:
     that:
       - dhcpd_broadcast_address is defined
@@ -40,7 +40,7 @@
       - dhcpd_broadcast_address is not none
     quiet: yes
 
-- name: assert | Test if dhcpd_routers is set correctly
+- name: assert | Test dhcpd_routers
   ansible.builtin.assert:
     that:
       - dhcpd_routers is defined
@@ -48,14 +48,14 @@
       - dhcpd_routers is not none
     quiet: yes
 
-- name: assert | Test if dhcpd_domain_name_servers is set correctly
+- name: assert | Test dhcpd_domain_name_servers
   ansible.builtin.assert:
     that:
       - dhcpd_domain_name_servers is defined
       - dhcpd_domain_name_servers is iterable
     quiet: yes
 
-- name: assert | Test if dhcpd_domain_search is set correctly
+- name: assert | Test dhcpd_domain_search
   ansible.builtin.assert:
     that:
       - dhcpd_domain_search is defined
@@ -63,7 +63,7 @@
       - dhcpd_domain_search is not none
     quiet: yes
 
-- name: assert | Test if dhcpd_filename is set correctly
+- name: assert | Test dhcpd_filename
   ansible.builtin.assert:
     that:
       - dhcpd_filename is defined
@@ -71,7 +71,7 @@
       - dhcpd_filename is not none
     quiet: yes
 
-- name: assert | Test if dhcpd_next_server is set correctly
+- name: assert | Test dhcpd_next_server
   ansible.builtin.assert:
     that:
       - dhcpd_next_server is defined
@@ -79,7 +79,7 @@
       - dhcpd_next_server is not none
     quiet: yes
 
-- name: assert | Test if dhcpd_subnets is set correctly
+- name: assert | Test dhcpd_subnets
   ansible.builtin.assert:
     that:
       - dhcpd_subnets is iterable
@@ -89,7 +89,7 @@
     - dhcpd_subnets is string
     - dhcpd_subnets is not none
 
-- name: assert | Test if item in dhcpd_subnets is set correctly
+- name: assert | Test item in dhcpd_subnets
   ansible.builtin.assert:
     that:
       - item.network is defined

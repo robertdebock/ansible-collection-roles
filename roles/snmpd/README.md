@@ -1,10 +1,10 @@
-# [snmpd](#snmpd)
+# [Ansible role snmpd](#snmpd)
 
 Install and configure snmpd on your system.
 
-|GitHub|GitLab|Quality|Downloads|Version|
-|------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-snmpd/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-snmpd/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-snmpd/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-snmpd)|[![quality](https://img.shields.io/ansible/quality/55193)](https://galaxy.ansible.com/robertdebock/snmpd)|[![downloads](https://img.shields.io/ansible/role/d/55193)](https://galaxy.ansible.com/robertdebock/snmpd)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-snmpd.svg)](https://github.com/robertdebock/ansible-role-snmpd/releases/)|
+|GitHub|GitLab|Downloads|Version|
+|------|------|---------|-------|
+|[![github](https://github.com/robertdebock/ansible-role-snmpd/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-snmpd/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-snmpd/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-snmpd)|[![downloads](https://img.shields.io/ansible/role/d/24588)](https://galaxy.ansible.com/robertdebock/snmpd)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-snmpd.svg)](https://github.com/robertdebock/ansible-role-snmpd/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -128,12 +128,12 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|[Alpine](https://hub.docker.com/repository/docker/robertdebock/alpine/general)|all|
-|[Debian](https://hub.docker.com/repository/docker/robertdebock/debian/general)|all|
-|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|8, 9|
-|[Fedora](https://hub.docker.com/repository/docker/robertdebock/fedora/general)|all|
-|[opensuse](https://hub.docker.com/repository/docker/robertdebock/opensuse/general)|all|
-|[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|all|
+|[Alpine](https://hub.docker.com/r/robertdebock/alpine)|all|
+|[Debian](https://hub.docker.com/r/robertdebock/debian)|all|
+|[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|8, 9|
+|[Fedora](https://hub.docker.com/r/robertdebock/fedora/)|all|
+|[opensuse](https://hub.docker.com/r/robertdebock/opensuse)|all|
+|[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|all|
 
 The minimum version of Ansible required is 2.12, tests have been done to:
 
@@ -141,7 +141,7 @@ The minimum version of Ansible required is 2.12, tests have been done to:
 - The current version.
 - The development version.
 
-If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-snmpd/issues)
+If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-snmpd/issues).
 
 ## [License](#license)
 

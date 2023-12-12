@@ -1,27 +1,27 @@
 ---
 
-- name: assert | Test if types_strings is set correctly
+- name: assert | Test types_strings
   ansible.builtin.assert:
     that:
       - types_strings is defined
       - types_strings is iterable
     quiet: yes
 
-- name: assert | Test if types_integers is set correctly
+- name: assert | Test types_integers
   ansible.builtin.assert:
     that:
       - types_integers is defined
       - types_integers is iterable
     quiet: yes
 
-- name: assert | Test if types_booleans is set correctly
+- name: assert | Test types_booleans
   ansible.builtin.assert:
     that:
       - types_booleans is defined
       - types_booleans is iterable
     quiet: yes
 
-- name: assert | Test if types_floats is set correctly
+- name: assert | Test types_floats
   ansible.builtin.assert:
     that:
       - types_floats is defined

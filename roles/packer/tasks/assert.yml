@@ -1,6 +1,6 @@
 ---
 
-- name: assert | Test if packer_version is set correctly
+- name: assert | Test packer_version
   ansible.builtin.assert:
     that:
       - packer_version is defined

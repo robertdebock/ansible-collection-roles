@@ -7,6 +7,7 @@ storage_default_fstype: ext4
 #   - name: /dev/sdb
 #     number: 1
 #     part_end: 4GiB
+#     label: gpt
 #   - name: /dev/sdb
 #     number: 2
 #     flags:
@@ -14,7 +15,6 @@ storage_default_fstype: ext4
 #     part_start: 4GiB
 #     part_end: 8GiB
 
-# The `size` is the physical extend size.
 # storage_volumegroups:
 #   - name: group1
 #     devices:
@@ -25,7 +25,6 @@ storage_default_fstype: ext4
 #       - /dev/sdb2
 #     size: 128M
 
-# Sizes in megabytes.
 # storage_volumes:
 #   - name: var1
 #     vg: group1

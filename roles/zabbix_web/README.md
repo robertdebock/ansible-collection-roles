@@ -1,10 +1,10 @@
-# [zabbix_web](#zabbix_web)
+# [Ansible role zabbix_web](#zabbix_web)
 
 Install and configure zabbix_web on your system.
 
-|GitHub|GitLab|Quality|Downloads|Version|
-|------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-zabbix_web/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-zabbix_web/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-zabbix_web/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-zabbix_web)|[![quality](https://img.shields.io/ansible/quality/35789)](https://galaxy.ansible.com/robertdebock/zabbix_web)|[![downloads](https://img.shields.io/ansible/role/d/35789)](https://galaxy.ansible.com/robertdebock/zabbix_web)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-zabbix_web.svg)](https://github.com/robertdebock/ansible-role-zabbix_web/releases/)|
+|GitHub|GitLab|Downloads|Version|
+|------|------|---------|-------|
+|[![github](https://github.com/robertdebock/ansible-role-zabbix_web/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-zabbix_web/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-zabbix_web/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-zabbix_web)|[![downloads](https://img.shields.io/ansible/role/d/24637)](https://galaxy.ansible.com/robertdebock/zabbix_web)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-zabbix_web.svg)](https://github.com/robertdebock/ansible-role-zabbix_web/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -148,10 +148,10 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|8, 9|
-|[Debian](https://hub.docker.com/repository/docker/robertdebock/debian/general)|bullseye|
-|[opensuse](https://hub.docker.com/repository/docker/robertdebock/opensuse/general)|all|
-|[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|bionic, focal|
+|[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|8, 9|
+|[Debian](https://hub.docker.com/r/robertdebock/debian)|bullseye|
+|[opensuse](https://hub.docker.com/r/robertdebock/opensuse)|all|
+|[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|bionic, focal|
 
 The minimum version of Ansible required is 2.12, tests have been done to:
 
@@ -159,7 +159,7 @@ The minimum version of Ansible required is 2.12, tests have been done to:
 - The current version.
 - The development version.
 
-If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-zabbix_web/issues)
+If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-zabbix_web/issues).
 
 ## [License](#license)
 

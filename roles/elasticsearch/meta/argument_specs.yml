@@ -6,13 +6,6 @@ argument_specs:
     description: Install and configure Elasticsearch on your system.
     author: Robert de Bock
     options:
-      elasticsearch_type:
-        type: "str"
-        default: oss
-        description: "The license to use, `elastic` uses the \"Elastic\" license, `oss` uses the \"Apache 2.0\" license."
-        choices:
-          - elastic
-          - oss
       elasticsearch_network_host:
         type: "str"
         default: "0.0.0.0"

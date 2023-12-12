@@ -1,10 +1,10 @@
-# [awx_configuration](#awx_configuration)
+# [Ansible role awx_configuration](#awx_configuration)
 
 Configure AWX.
 
-|GitHub|GitLab|Quality|Downloads|Version|
-|------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-awx_configuration/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-awx_configuration/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-awx_configuration/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-awx_configuration)|[![quality](https://img.shields.io/ansible/quality/60492)](https://galaxy.ansible.com/robertdebock/awx_configuration)|[![downloads](https://img.shields.io/ansible/role/d/60492)](https://galaxy.ansible.com/robertdebock/awx_configuration)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-awx_configuration.svg)](https://github.com/robertdebock/ansible-role-awx_configuration/releases/)|
+|GitHub|GitLab|Downloads|Version|
+|------|------|---------|-------|
+|[![github](https://github.com/robertdebock/ansible-role-awx_configuration/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-awx_configuration/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-awx_configuration/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-awx_configuration)|[![downloads](https://img.shields.io/ansible/role/d/24447)](https://galaxy.ansible.com/robertdebock/awx_configuration)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-awx_configuration.svg)](https://github.com/robertdebock/ansible-role-awx_configuration/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -107,13 +107,13 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|[Alpine](https://hub.docker.com/repository/docker/robertdebock/alpine/general)|all|
-|[Amazon](https://hub.docker.com/repository/docker/robertdebock/amazonlinux/general)|all|
-|[Debian](https://hub.docker.com/repository/docker/robertdebock/debian/general)|all|
-|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|all|
-|[Fedora](https://hub.docker.com/repository/docker/robertdebock/fedora/general)|all|
-|[opensuse](https://hub.docker.com/repository/docker/robertdebock/opensuse/general)|all|
-|[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|all|
+|[Alpine](https://hub.docker.com/r/robertdebock/alpine)|all|
+|[Amazon](https://hub.docker.com/r/robertdebock/amazonlinux)|all|
+|[Debian](https://hub.docker.com/r/robertdebock/debian)|all|
+|[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|all|
+|[Fedora](https://hub.docker.com/r/robertdebock/fedora/)|all|
+|[opensuse](https://hub.docker.com/r/robertdebock/opensuse)|all|
+|[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|all|
 
 The minimum version of Ansible required is 2.12, tests have been done to:
 
@@ -121,7 +121,7 @@ The minimum version of Ansible required is 2.12, tests have been done to:
 - The current version.
 - The development version.
 
-If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-awx_configuration/issues)
+If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-awx_configuration/issues).
 
 ## [License](#license)
 

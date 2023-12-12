@@ -1,6 +1,6 @@
 ---
 
-- name: assert | Test if cntlm_version is set correctly
+- name: assert | Test cntlm_version
   ansible.builtin.assert:
     that:
       - cntlm_version is defined
@@ -8,7 +8,7 @@
       - cntlm_version is not none
     quiet: yes
 
-- name: assert | Test if cntlm_release is set correctly
+- name: assert | Test cntlm_release
   ansible.builtin.assert:
     that:
       - cntlm_release is defined
@@ -17,7 +17,7 @@
       - cntlm_release > 0
     quiet: yes
 
-- name: assert | Test if cntlm_download_mirror is set correctly
+- name: assert | Test cntlm_download_mirror
   ansible.builtin.assert:
     that:
       - cntlm_download_mirror is defined
@@ -25,7 +25,7 @@
       - cntlm_download_mirror is not none
     quiet: yes
 
-- name: assert | Test if cntlm_username is set correctly
+- name: assert | Test cntlm_username
   ansible.builtin.assert:
     that:
       - cntlm_username is defined
@@ -33,7 +33,7 @@
       - cntlm_username is not none
     quiet: yes
 
-- name: assert | Test if cntlm_password is set correctly
+- name: assert | Test cntlm_password
   ansible.builtin.assert:
     that:
       - cntlm_password is defined
@@ -41,7 +41,7 @@
       - cntlm_password is not none
     quiet: yes
 
-- name: assert | Test if cntlm_domain is set correctly
+- name: assert | Test cntlm_domain
   ansible.builtin.assert:
     that:
       - cntlm_domain is defined
@@ -49,7 +49,7 @@
       - cntlm_domain is not none
     quiet: yes
 
-- name: assert | Test if cntlm_proxy is set correctly
+- name: assert | Test cntlm_proxy
   ansible.builtin.assert:
     that:
       - cntlm_proxy is defined
@@ -57,7 +57,7 @@
       - cntlm_proxy is not none
     quiet: yes
 
-- name: assert | Test if cntlm_listen is set correctly
+- name: assert | Test cntlm_listen
   ansible.builtin.assert:
     that:
       - cntlm_listen is defined
@@ -66,7 +66,7 @@
       - cntlm_listen < 65536
     quiet: yes
 
-- name: assert | Test if cntlm_noproxy is set correctly
+- name: assert | Test cntlm_noproxy
   ansible.builtin.assert:
     that:
       - cntlm_noproxy is defined
@@ -74,7 +74,7 @@
       - cntlm_noproxy is not none
     quiet: yes
 
-- name: assert | Test if cntlm_tmp is set correctly
+- name: assert | Test cntlm_tmp
   ansible.builtin.assert:
     that:
       - cntlm_tmp is defined
@@ -82,28 +82,28 @@
       - cntlm_tmp is not none
     quiet: yes
 
-- name: assert | Test if cntlm_allows is set correctly
+- name: assert | Test cntlm_allows
   ansible.builtin.assert:
     that:
       - cntlm_allows is defined
       - cntlm_allows is iterable
     quiet: yes
 
-- name: assert | Test if cntlm_denies is set correctly
+- name: assert | Test cntlm_denies
   ansible.builtin.assert:
     that:
       - cntlm_denies is defined
       - cntlm_denies is iterable
     quiet: yes
 
-- name: assert | Test if gateway_enabled is set correctly
+- name: assert | Test gateway_enabled
   ansible.builtin.assert:
     that:
       - gateway_enabled is defined
       - gateway_enabled is boolean
     quiet: yes
 
-- name: assert | Test if cntlm_allows_include_local_ipv4 is set correctly
+- name: assert | Test cntlm_allows_include_local_ipv4
   ansible.builtin.assert:
     that:
       - cntlm_allows_include_local_ipv4 is defined

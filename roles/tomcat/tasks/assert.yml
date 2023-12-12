@@ -1,6 +1,6 @@
 ---
 
-- name: assert | Test if tomcat_mirror is set correctly
+- name: assert | Test tomcat_mirror
   ansible.builtin.assert:
     that:
       - tomcat_mirror is defined
@@ -8,7 +8,7 @@
       - tomcat_mirror is not none
     quiet: yes
 
-- name: assert | Test if tomcat_name is set correctly
+- name: assert | Test tomcat_name
   ansible.builtin.assert:
     that:
       - tomcat_name is defined
@@ -16,7 +16,7 @@
       - tomcat_name is not none
     quiet: yes
 
-- name: assert | Test if tomcat_directory is set correctly
+- name: assert | Test tomcat_directory
   ansible.builtin.assert:
     that:
       - tomcat_directory is defined
@@ -24,7 +24,7 @@
       - tomcat_directory is not none
     quiet: yes
 
-- name: assert | Test if tomcat_version is set correctly
+- name: assert | Test tomcat_version
   ansible.builtin.assert:
     that:
       - tomcat_version is defined
@@ -32,7 +32,7 @@
       - tomcat_version in [ 7, 8, 9, 10 ]
     quiet: yes
 
-- name: assert | Test if tomcat_user is set correctly
+- name: assert | Test tomcat_user
   ansible.builtin.assert:
     that:
       - tomcat_user is defined
@@ -40,7 +40,7 @@
       - tomcat_user is not none
     quiet: yes
 
-- name: assert | Test if tomcat_group is set correctly
+- name: assert | Test tomcat_group
   ansible.builtin.assert:
     that:
       - tomcat_group is defined
@@ -48,7 +48,7 @@
       - tomcat_group is not none
     quiet: yes
 
-- name: assert | Test if tomcat_xms is set correctly
+- name: assert | Test tomcat_xms
   ansible.builtin.assert:
     that:
       - tomcat_xms is defined
@@ -56,7 +56,7 @@
       - tomcat_xms is not none
     quiet: yes
 
-- name: assert | Test if tomcat_xmx is set correctly
+- name: assert | Test tomcat_xmx
   ansible.builtin.assert:
     that:
       - tomcat_xmx is defined
@@ -64,7 +64,7 @@
       - tomcat_xmx is not none
     quiet: yes
 
-- name: assert | Test if tomcat_non_ssl_connector_port is set correctly
+- name: assert | Test tomcat_non_ssl_connector_port
   ansible.builtin.assert:
     that:
       - tomcat_non_ssl_connector_port is defined
@@ -73,7 +73,7 @@
       - tomcat_non_ssl_connector_port < 65536
     quiet: yes
 
-- name: assert | Test if tomcat_ssl_connector_port is set correctly
+- name: assert | Test tomcat_ssl_connector_port
   ansible.builtin.assert:
     that:
       - tomcat_ssl_connector_port is defined
@@ -82,7 +82,7 @@
       - tomcat_ssl_connector_port < 65536
     quiet: yes
 
-- name: assert | Test if tomcat_shutdown_port is set correctly
+- name: assert | Test tomcat_shutdown_port
   ansible.builtin.assert:
     that:
       - tomcat_shutdown_port is defined
@@ -91,14 +91,14 @@
       - tomcat_shutdown_port < 65536
     quiet: yes
 
-- name: assert | Test if tomcat_ajp_enabled is set correctly
+- name: assert | Test tomcat_ajp_enabled
   ansible.builtin.assert:
     that:
       - tomcat_ajp_enabled is defined
       - tomcat_ajp_enabled is boolean
     quiet: yes
 
-- name: assert | Test if tomcat_ajp_port is set correctly
+- name: assert | Test tomcat_ajp_port
   ansible.builtin.assert:
     that:
       - tomcat_ajp_port is defined
@@ -107,7 +107,7 @@
       - tomcat_ajp_port < 65536
     quiet: yes
 
-- name: assert | Test if port collisions occur is set correctly
+- name: assert | Test port collisions occur
   ansible.builtin.assert:
     that:
       - tomcat_non_ssl_connector_port != tomcat_ssl_connector_port
@@ -118,7 +118,7 @@
       - tomcat_shutdown_port != tomcat_ajp_port
     quiet: yes
 
-- name: assert | Test if tomcat_jre_home is set correctly
+- name: assert | Test tomcat_jre_home
   ansible.builtin.assert:
     that:
       - tomcat_jre_home is defined
@@ -126,28 +126,28 @@
       - tomcat_jre_home is not none
     quiet: yes
 
-- name: assert | Test if tomcat_service_state is set correctly
+- name: assert | Test tomcat_service_state
   ansible.builtin.assert:
     that:
       - tomcat_service_state is defined
       - tomcat_service_state in [ "reloaded", "restarted", "started", "stopped" ]
     quiet: yes
 
-- name: assert | Test if tomcat_service_enabled is set correctly
+- name: assert | Test tomcat_service_enabled
   ansible.builtin.assert:
     that:
       - tomcat_service_enabled is defined
       - tomcat_service_enabled is boolean
     quiet: yes
 
-- name: assert | Test if tomcat_instances is set correctly
+- name: assert | Test tomcat_instances
   ansible.builtin.assert:
     that:
       - tomcat_instances is defined
       - tomcat_instances is iterable
     quiet: yes
 
-- name: assert | Test if tomcat_address is set correctly
+- name: assert | Test tomcat_address
   ansible.builtin.assert:
     that:
       - tomcat_address is defined
@@ -155,14 +155,14 @@
       - tomcat_address is not none
     quiet: yes
 
-- name: assert | Test if tomcat_access_log_enabled is set correctly
+- name: assert | Test tomcat_access_log_enabled
   ansible.builtin.assert:
     that:
       - tomcat_access_log_enabled is defined
       - tomcat_access_log_enabled is boolean
     quiet: yes
 
-- name: assert | Test if tomcat_access_log_directory is set correctly
+- name: assert | Test tomcat_access_log_directory
   ansible.builtin.assert:
     that:
       - tomcat_access_log_directory is defined
@@ -172,7 +172,7 @@
   when:
     - tomcat_access_log_enabled
 
-- name: assert | Test if tomcat_access_log_prefix is set correctly
+- name: assert | Test tomcat_access_log_prefix
   ansible.builtin.assert:
     that:
       - tomcat_access_log_prefix is defined
@@ -182,7 +182,7 @@
   when:
     - tomcat_access_log_enabled
 
-- name: assert | Test if tomcat_access_log_suffix is set correctly
+- name: assert | Test tomcat_access_log_suffix
   ansible.builtin.assert:
     that:
       - tomcat_access_log_suffix is defined
@@ -192,7 +192,7 @@
   when:
     - tomcat_access_log_enabled
 
-- name: assert | Test if tomcat_access_log_pattern is set correctly
+- name: assert | Test tomcat_access_log_pattern
   ansible.builtin.assert:
     that:
       - tomcat_access_log_pattern is defined
@@ -202,7 +202,7 @@
   when:
     - tomcat_access_log_enabled
 
-- name: assert | Test if item.name in tomcat_instances is set correctly
+- name: assert | Test item.name in tomcat_instances
   ansible.builtin.assert:
     that:
       - item.name is defined
@@ -214,7 +214,7 @@
   loop_control:
     label: "{{ item.name }}"
 
-- name: assert | Test if item.version in tomcat_instances is set correctly
+- name: assert | Test item.version in tomcat_instances
   ansible.builtin.assert:
     that:
       - item.version is defined
@@ -227,7 +227,7 @@
   when:
     - item.version is defined
 
-- name: assert | Test if item.non_ssl_connector_port in tomcat_instances is set correctly
+- name: assert | Test item.non_ssl_connector_port in tomcat_instances
   ansible.builtin.assert:
     that:
       - item.non_ssl_connector_port is number
@@ -240,7 +240,7 @@
   when:
     - item.non_ssl_connector_port is defined
 
-- name: assert | Test if item.ssl_connector_port in tomcat_instances is set correctly
+- name: assert | Test item.ssl_connector_port in tomcat_instances
   ansible.builtin.assert:
     that:
       - item.ssl_connector_port is number
@@ -253,7 +253,7 @@
   when:
     - item.ssl_connector_port is defined
 
-- name: assert | Test if item.shutdown_port in tomcat_instances is set correctly
+- name: assert | Test item.shutdown_port in tomcat_instances
   ansible.builtin.assert:
     that:
       - item.shutdown_port is number
@@ -266,7 +266,7 @@
   when:
     - item.shutdown_port is defined
 
-- name: assert | Test if item.ajp_enabled in tomcat_instances is set correctly
+- name: assert | Test item.ajp_enabled in tomcat_instances
   ansible.builtin.assert:
     that:
       - item.ajp_enabled is boolean
@@ -277,7 +277,7 @@
   when:
     - item.ajp_enabled is defined
 
-- name: assert | Test if item.ajp_port in tomcat_instances is set correctly
+- name: assert | Test item.ajp_port in tomcat_instances
   ansible.builtin.assert:
     that:
       - item.ajp_port is number
@@ -290,7 +290,7 @@
   when:
     - item.ajp_port is defined
 
-- name: assert | Test if item.address in tomcat_instances is set correctly
+- name: assert | Test item.address in tomcat_instances
   ansible.builtin.assert:
     that:
       - item.address is defined
@@ -303,7 +303,7 @@
   when:
     - tomcat_address is undefined
 
-- name: assert | Test if item.java_opts in tomcat_instances is set correctly
+- name: assert | Test item.java_opts in tomcat_instances
   ansible.builtin.assert:
     that:
       - item.java_opts is iterable
@@ -314,7 +314,7 @@
   when:
     - item.java_opts is defined
 
-- name: assert | Test if item.access_log_enabled in tomcat_instances is set correctly
+- name: assert | Test item.access_log_enabled in tomcat_instances
   ansible.builtin.assert:
     that:
       - item.access_log_enabled is boolean
@@ -325,7 +325,7 @@
   when:
     - item.access_log_enabled is defined
 
-- name: assert | Test if item.access_log_directory in tomcat_instances is set correctly
+- name: assert | Test item.access_log_directory in tomcat_instances
   ansible.builtin.assert:
     that:
       - item.access_log_directory is string
@@ -337,7 +337,7 @@
   when:
     - item.access_log_directory is defined
 
-- name: assert | Test if item.access_log_prefix in tomcat_instances is set correctly
+- name: assert | Test item.access_log_prefix in tomcat_instances
   ansible.builtin.assert:
     that:
       - item.access_log_prefix is string
@@ -349,7 +349,7 @@
   when:
     - item.access_log_prefix is defined
 
-- name: assert | Test if item.access_log_suffix in tomcat_instances is set correctly
+- name: assert | Test item.access_log_suffix in tomcat_instances
   ansible.builtin.assert:
     that:
       - item.access_log_suffix is string
@@ -361,7 +361,7 @@
   when:
     - item.access_log_suffix is defined
 
-- name: assert | Test if item.access_log_pattern in tomcat_instances is set correctly
+- name: assert | Test item.access_log_pattern in tomcat_instances
   ansible.builtin.assert:
     that:
       - item.access_log_pattern is string
@@ -373,7 +373,7 @@
   when:
     - item.access_log_pattern is defined
 
-- name: assert | Test if item.config_files in tomcat_instances is set correctly
+- name: assert | Test item.config_files in tomcat_instances
   ansible.builtin.assert:
     that:
       - item.config_files is iterable
@@ -384,7 +384,7 @@
   when:
     - item.config_files is defined
 
-- name: assert | Test if item.service_state in tomcat_instances is set correctly
+- name: assert | Test item.service_state in tomcat_instances
   ansible.builtin.assert:
     that:
       - item.service_state in [ "reloaded", "restarted", "started", "stopped" ]
@@ -395,7 +395,7 @@
   when:
     - item.service_state is defined
 
-- name: assert | Test if item.service_enabled in tomcat_instances is set correctly
+- name: assert | Test item.service_enabled in tomcat_instances
   ansible.builtin.assert:
     that:
       - item.service_enabled is boolean
@@ -406,7 +406,7 @@
   when:
     - item.service_enabled is defined
 
-- name: assert | Test if item.packet_size in tomcat_instances is set correctly
+- name: assert | Test item.packet_size in tomcat_instances
   ansible.builtin.assert:
     that:
       - item.packet_size is number
@@ -419,7 +419,7 @@
   when:
     - item.packet_size is defined
 
-- name: assert | Test if item.ajp_secret in tomcat_instances is set correctly
+- name: assert | Test item.ajp_secret in tomcat_instances
   ansible.builtin.assert:
     that:
       - item.ajp_secret is string

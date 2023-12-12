@@ -6,13 +6,6 @@ argument_specs:
     description: Add the Elastic repository so software can be installed.
     author: Robert de Bock
     options:
-      elastic_repo_license:
-        type: "str"
-        default: oss
-        description: "The license to use, `elastic` uses the \"Elastic\" license, `oss` uses the \"Apache 2.0\" license."
-        choices:
-          - elastic
-          - oss
       elastic_repo_cleanup_requirements:
         type: "bool"
         default: yes

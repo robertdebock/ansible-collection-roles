@@ -13,3 +13,9 @@
     lv: "{{ volume.name }}"
     vg: "{{ volume.vg }}"
     size: "{{ volume.size }}"
+    opts: "{{ volume.opts | default(omit) }}"
+  notify:
+    - Run vgscan --mknodes
+
+- name: volume | Run handlers
+  ansible.builtin.meta: flush_handlers

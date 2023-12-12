@@ -1,8 +1,9 @@
 ---
 # tasks file for bareos_repository
 
-- name: Include assert.yml
-  ansible.builtin.import_tasks: assert.yml
+- name: Import assert.yml
+  ansible.builtin.import_tasks:
+    file: assert.yml
   run_once: yes
   delegate_to: localhost
 
@@ -99,9 +100,10 @@
         - bareos_repository_type == "subscription"
 
     - name: Add repository (zypper)
-      ansible.builtin.zypper_repository:
+      community.general.zypper_repository:
         name: "{{ item.name }}"
         repo: "{{ item.repo }}"
+        state: present
       loop: "{{ bareos_repository_list }}"
       loop_control:
         label: "{{ item.name }}"
@@ -127,9 +129,10 @@
         - ansible_pkg_mgr in [ "dnf", "yum" ]
 
     - name: Add repository (zypper)
-      ansible.builtin.zypper_repository:
+      community.general.zypper_repository:
         name: "{{ item.name }}"
         repo: "{{ item.repo }}"
+        state: present
       loop: "{{ bareos_repository_debug_list }}"
       loop_control:
         label: "{{ item.name }}"
@@ -143,5 +146,5 @@
     - name: Disable ptrace_scope
       ansible.posix.sysctl:
         name: kernel.yama.ptrace_scope
-        value: 0
+        value: "0"
         sysctl_set: yes

@@ -1,6 +1,6 @@
 ---
 
-- name: assert | Test if natrouter_public_interface is set correctly
+- name: assert | Test natrouter_public_interface
   ansible.builtin.assert:
     that:
       - natrouter_public_interface is defined
@@ -8,7 +8,7 @@
       - natrouter_public_interface is not none
     quiet: yes
 
-- name: assert | Test if natrouter_private_network is set correctly
+- name: assert | Test natrouter_private_network
   ansible.builtin.assert:
     that:
       - natrouter_private_network is defined
@@ -16,7 +16,7 @@
       - natrouter_private_network is not none
     quiet: yes
 
-- name: assert | Test if natrouter_destination is set correctly
+- name: assert | Test natrouter_destination
   ansible.builtin.assert:
     that:
       - natrouter_destination is defined
@@ -24,14 +24,14 @@
       - natrouter_destination is not none
     quiet: yes
 
-- name: assert | Test if natrouter_protocols is set correctly
+- name: assert | Test natrouter_protocols
   ansible.builtin.assert:
     that:
       - natrouter_protocols is defined
       - natrouter_protocols is iterable
     quiet: yes
 
-- name: assert | Test if item in natrouter_protocols is set correctly
+- name: assert | Test item in natrouter_protocols
   ansible.builtin.assert:
     that:
       - item is defined

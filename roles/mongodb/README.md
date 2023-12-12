@@ -1,10 +1,10 @@
-# [mongodb](#mongodb)
+# [Ansible role mongodb](#mongodb)
 
 Install and configure mongodb on your system.
 
-|GitHub|GitLab|Quality|Downloads|Version|
-|------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-mongodb/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-mongodb/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-mongodb/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-mongodb)|[![quality](https://img.shields.io/ansible/quality/62903)](https://galaxy.ansible.com/robertdebock/mongodb)|[![downloads](https://img.shields.io/ansible/role/d/62903)](https://galaxy.ansible.com/robertdebock/mongodb)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-mongodb.svg)](https://github.com/robertdebock/ansible-role-mongodb/releases/)|
+|GitHub|GitLab|Downloads|Version|
+|------|------|---------|-------|
+|[![github](https://github.com/robertdebock/ansible-role-mongodb/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-mongodb/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-mongodb/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-mongodb)|[![downloads](https://img.shields.io/ansible/role/d/32302)](https://galaxy.ansible.com/robertdebock/mongodb)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-mongodb.svg)](https://github.com/robertdebock/ansible-role-mongodb/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -79,9 +79,9 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|[Debian](https://hub.docker.com/repository/docker/robertdebock/debian/general)|bullseye|
-|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|all|
-|[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|all|
+|[Debian](https://hub.docker.com/r/robertdebock/debian)|bullseye|
+|[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|all|
+|[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|all|
 
 The minimum version of Ansible required is 2.12, tests have been done to:
 
@@ -89,7 +89,7 @@ The minimum version of Ansible required is 2.12, tests have been done to:
 - The current version.
 - The development version.
 
-If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-mongodb/issues)
+If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-mongodb/issues).
 
 ## [License](#license)
 

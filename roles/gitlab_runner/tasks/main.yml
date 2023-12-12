@@ -2,7 +2,8 @@
 # tasks file for gitlab_runner
 
 - name: Import assert.yml
-  ansible.builtin.import_tasks: assert.yml
+  ansible.builtin.import_tasks:
+    file: assert.yml
   run_once: yes
   delegate_to: localhost
 
@@ -43,7 +44,7 @@
           gitlab-runner register --non-interactive
           --name "{{ gitlab_runner_name }}"
           --url "{{ gitlab_runner_url }}"
-          --token "{{ gitlab_runner_registration_token }}"
+          --registration-token "{{ gitlab_runner_registration_token }}"
           --tag-list "{{ gitlab_runner_tags | join(',') }}"
           --executor "{{ gitlab_runner_executor }}"
           --docker-image "{{ gitlab_runner_docker_image }}"
@@ -56,6 +57,15 @@
       changed_when: yes
       when:
         - gitlab_runner_name not in gitlab_runner_get_registration_status.stderr
+
+- name: Set concurrency in config.toml
+  ansible.builtin.lineinfile:
+    path: /etc/gitlab-runner/config.toml
+    regexp: '^concurrent = '
+    line: "concurrent = {{ gitlab_runner_concurrency }}"
+    state: present
+  notify:
+    - Restart gitlab-runner
 
 - name: Start and enable gitlab-runner
   ansible.builtin.service:

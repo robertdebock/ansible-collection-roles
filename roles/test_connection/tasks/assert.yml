@@ -1,6 +1,6 @@
 ---
 
-- name: assert | Test if test_connection_report_host is set correctly
+- name: assert | Test test_connection_report_host
   ansible.builtin.assert:
     that:
       - test_connection_report_host is defined
@@ -8,7 +8,7 @@
       - test_connection_report_host is not none
     quiet: yes
 
-- name: assert | Test if test_connection_report_directory is set correctly
+- name: assert | Test test_connection_report_directory
   ansible.builtin.assert:
     that:
       - test_connection_report_directory is defined
@@ -16,7 +16,7 @@
       - test_connection_report_directory is not none
     quiet: yes
 
-- name: assert | Test if test_connection_timeout is set correctly
+- name: assert | Test test_connection_timeout
   ansible.builtin.assert:
     that:
       - test_connection_timeout is defined

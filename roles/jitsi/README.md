@@ -1,10 +1,10 @@
-# [jitsi](#jitsi)
+# [Ansible role jitsi](#jitsi)
 
 Install and configure jitsi on your system.
 
-|GitHub|GitLab|Quality|Downloads|Version|
-|------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-jitsi/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-jitsi/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-jitsi/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-jitsi)|[![quality](https://img.shields.io/ansible/quality/47727)](https://galaxy.ansible.com/robertdebock/jitsi)|[![downloads](https://img.shields.io/ansible/role/d/47727)](https://galaxy.ansible.com/robertdebock/jitsi)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-jitsi.svg)](https://github.com/robertdebock/ansible-role-jitsi/releases/)|
+|GitHub|GitLab|Downloads|Version|
+|------|------|---------|-------|
+|[![github](https://github.com/robertdebock/ansible-role-jitsi/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-jitsi/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-jitsi/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-jitsi)|[![downloads](https://img.shields.io/ansible/role/d/24520)](https://galaxy.ansible.com/robertdebock/jitsi)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-jitsi.svg)](https://github.com/robertdebock/ansible-role-jitsi/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -96,7 +96,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|[Debian](https://hub.docker.com/repository/docker/robertdebock/debian/general)|bullseye|
+|[Debian](https://hub.docker.com/r/robertdebock/debian)|bullseye|
 
 The minimum version of Ansible required is 2.12, tests have been done to:
 
@@ -104,7 +104,7 @@ The minimum version of Ansible required is 2.12, tests have been done to:
 - The current version.
 - The development version.
 
-If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-jitsi/issues)
+If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-jitsi/issues).
 
 ## [License](#license)
 

@@ -2,7 +2,8 @@
 # tasks file for cntlm
 
 - name: Import assert.yml
-  ansible.builtin.import_tasks: assert.yml
+  ansible.builtin.import_tasks:
+    file: assert.yml
   run_once: yes
   delegate_to: localhost
 
@@ -75,7 +76,7 @@
 
 - name: Generate hash
   ansible.builtin.shell:
-    cmd: "set -o pipefail ; {{ cntlm_hash_command }} | tee /etc/cntlm.hash"
+    cmd: "set -o pipefail && {{ cntlm_hash_command }} | tee /etc/cntlm.hash"
     creates: /etc/cntlm.hash
     executable: /bin/bash
   register: cntlm_generate_hash

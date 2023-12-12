@@ -1,6 +1,6 @@
 ---
 
-- name: assert_instances | Test if authentication is set correctly
+- name: assert_instances | Test authentication
   ansible.builtin.assert:
     that:
       - instance.authentication is defined
@@ -8,7 +8,7 @@
       - instance.authentication is iterable
     quiet: yes
 
-- name: assert_instances | Test if item in instance.authentication is set correctly
+- name: assert_instances | Test item in instance.authentication
   ansible.builtin.assert:
     that:
       - instance.authentication.auth_type is defined
@@ -19,7 +19,7 @@
       - instance.authentication.auth_pass | length <= 20
     quiet: yes
 
-- name: assert_instances | Test if item in instance.virtual_ipaddresses is set correctly
+- name: assert_instances | Test item in instance.virtual_ipaddresses
   ansible.builtin.assert:
     that:
       - item | length > 0
@@ -35,7 +35,7 @@
   loop_control:
     label: "{{ item.name }}"
 
-- name: assert_instances | Test if item in instance.unicast_src_ip is set correctly
+- name: assert_instances | Test item in instance.unicast_src_ip
   ansible.builtin.assert:
     that:
       - item.unicast_src_ip is string
@@ -49,7 +49,7 @@
   when:
     - item.unicast_src_ip is defined
 
-- name: assert_instances | Test if item in instance.check_status_command is set correctly
+- name: assert_instances | Test item in instance.check_status_command
   ansible.builtin.assert:
     that:
       - item.check_status_command is string

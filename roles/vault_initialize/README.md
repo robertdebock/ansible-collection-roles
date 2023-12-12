@@ -1,10 +1,10 @@
-# [vault_initialize](#vault_initialize)
+# [Ansible role vault_initialize](#vault_initialize)
 
 Initialize and unseal HashiCorp Vault.
 
-|GitHub|GitLab|Quality|Downloads|Version|
-|------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-vault_initialize/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-vault_initialize/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-vault_initialize/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-vault_initialize)|[![quality](https://img.shields.io/ansible/quality/61578)](https://galaxy.ansible.com/robertdebock/vault_initialize)|[![downloads](https://img.shields.io/ansible/role/d/61578)](https://galaxy.ansible.com/robertdebock/vault_initialize)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-vault_initialize.svg)](https://github.com/robertdebock/ansible-role-vault_initialize/releases/)|
+|GitHub|GitLab|Downloads|Version|
+|------|------|---------|-------|
+|[![github](https://github.com/robertdebock/ansible-role-vault_initialize/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-vault_initialize/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-vault_initialize/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-vault_initialize)|[![downloads](https://img.shields.io/ansible/role/d/24625)](https://galaxy.ansible.com/robertdebock/vault_initialize)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-vault_initialize.svg)](https://github.com/robertdebock/ansible-role-vault_initialize/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -92,11 +92,11 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|[Amazon](https://hub.docker.com/repository/docker/robertdebock/amazonlinux/general)|Candidate|
-|[Debian](https://hub.docker.com/repository/docker/robertdebock/debian/general)|all|
-|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|all|
-|[Fedora](https://hub.docker.com/repository/docker/robertdebock/fedora/general)|37, 38|
-|[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|all|
+|[Amazon](https://hub.docker.com/r/robertdebock/amazonlinux)|Candidate|
+|[Debian](https://hub.docker.com/r/robertdebock/debian)|all|
+|[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|all|
+|[Fedora](https://hub.docker.com/r/robertdebock/fedora/)|37, 38|
+|[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|all|
 
 The minimum version of Ansible required is 2.12, tests have been done to:
 
@@ -104,7 +104,7 @@ The minimum version of Ansible required is 2.12, tests have been done to:
 - The current version.
 - The development version.
 
-If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-vault_initialize/issues)
+If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-vault_initialize/issues).
 
 ## [License](#license)
 

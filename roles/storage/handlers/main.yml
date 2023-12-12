@@ -4,6 +4,13 @@
 - name: Reload systemd
   ansible.builtin.systemd:
     daemon_reload: yes
+  when:
+    - ansible_service_mgr == 'systemd'
+
+- name: Run vgscan --mknodes
+  ansible.builtin.command:
+    cmd: vgscan --mknodes
+  changed_when: yes
 
 - name: Refresh facts
   ansible.builtin.setup:

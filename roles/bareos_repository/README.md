@@ -1,10 +1,10 @@
-# [bareos_repository](#bareos_repository)
+# [Ansible role bareos_repository](#bareos_repository)
 
 Setup the [Bareos](https://www.bareos.com/) repositories.
 
-|GitHub|GitLab|Quality|Downloads|Version|
-|------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-bareos_repository/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-bareos_repository/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-bareos_repository/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-bareos_repository)|[![quality](https://img.shields.io/ansible/quality/63098)](https://galaxy.ansible.com/robertdebock/bareos_repository)|[![downloads](https://img.shields.io/ansible/role/d/63098)](https://galaxy.ansible.com/robertdebock/bareos_repository)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-bareos_repository.svg)](https://github.com/robertdebock/ansible-role-bareos_repository/releases/)|
+|GitHub|GitLab|Downloads|Version|
+|------|------|---------|-------|
+|[![github](https://github.com/robertdebock/ansible-role-bareos_repository/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-bareos_repository/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-bareos_repository/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-bareos_repository)|[![downloads](https://img.shields.io/ansible/role/d/32425)](https://galaxy.ansible.com/robertdebock/bareos_repository)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-bareos_repository.svg)](https://github.com/robertdebock/ansible-role-bareos_repository/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -91,11 +91,11 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|[Debian](https://hub.docker.com/repository/docker/robertdebock/debian/general)|bookworm, bullseye, buster|
-|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|7, 8, 9|
-|[Fedora](https://hub.docker.com/repository/docker/robertdebock/fedora/general)|36, 37|
-|[opensuse](https://hub.docker.com/repository/docker/robertdebock/opensuse/general)|all|
-|[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|jammy, focal|
+|[Debian](https://hub.docker.com/r/robertdebock/debian)|bookworm, bullseye, buster|
+|[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|7, 8, 9|
+|[Fedora](https://hub.docker.com/r/robertdebock/fedora/)|37, 38|
+|[opensuse](https://hub.docker.com/r/robertdebock/opensuse)|all|
+|[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|jammy, focal|
 
 The minimum version of Ansible required is 2.12, tests have been done to:
 
@@ -103,7 +103,7 @@ The minimum version of Ansible required is 2.12, tests have been done to:
 - The current version.
 - The development version.
 
-If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-bareos_repository/issues)
+If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-bareos_repository/issues).
 
 ## [License](#license)
 

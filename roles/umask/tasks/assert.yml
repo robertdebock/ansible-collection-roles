@@ -1,6 +1,6 @@
 ---
 
-- name: assert | Test if umask is set correctly
+- name: assert | Test umask
   ansible.builtin.assert:
     that:
       - umask is defined
@@ -8,7 +8,7 @@
       - umask is not none
     quiet: yes
 
-- name: assert | Test if umask_users is set correctly
+- name: assert | Test umask_users
   ansible.builtin.assert:
     that:
       - umask_users is defined

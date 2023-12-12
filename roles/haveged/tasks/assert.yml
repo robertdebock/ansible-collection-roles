@@ -1,6 +1,6 @@
 ---
 
-- name: assert | Test if haveged_write_wakeup_threshold is set correctly
+- name: assert | Test haveged_write_wakeup_threshold
   ansible.builtin.assert:
     that:
       - haveged_write_wakeup_threshold is defined

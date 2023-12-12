@@ -19,6 +19,9 @@ vault_configuration_group: vault
 #   - name: no_proxy
 #     value: "direct.example.com,other.example.com"
 
+# Specify the location where TLS material should be placed. This is typically `/opt/vault/tls`.
+vault_configuration_tls_directory: "/opt/vault/tls"
+
 #
 # GLOBAL SETTINGS
 #
@@ -40,90 +43,95 @@ vault_configuration_log_level: ""
 # LISTENER SETTINGS
 #
 
-# These are settings for the listener. The only current valid listener is "tcp".
-# Values used below are taken from https://developer.hashicorp.com/vault/docs/configuration/listener/tcp
-vault_configuration_listener_tcp:
-  address: "127.0.0.1:8200"
-  cluster_address: "127.0.0.1:8201"
-  http_idle_timeout: "5m"
-  http_read_header_timeout: "10s"
-  http_read_timeout: "30s"
-  http_write_timeout: "0"
-  max_request_size: 33554432
-  max_request_duration: "90s"
-  proxy_protocol_behavior: ""
-  proxy_protocol_authorized_addrs: ""
-  tls_disable: no
-  # You can specify a file (`tls_cert_file`) OR the content of the file (`tls_cert`).
-  # tls_cert_file: "/opt/vault/tls/vault.crt"
-  tls_cert: |
-    -----BEGIN CERTIFICATE-----
-    MIIDlDCCAnwCCQDKshDt/N9YbTANBgkqhkiG9w0BAQsFADCBiTELMAkGA1UEBhMC
-    TkwxEDAOBgNVBAgMB1VUUkVDSFQxEjAQBgNVBAcMCUJyZXVrZWxlbjEXMBUGA1UE
-    CgwOUm9iZXJ0IGRlIEJvY2sxGjAYBgNVBAMMEUNBIFJvYmVydCBkZSBCb2NrMR8w
-    HQYJKoZIhvcNAQkBFhByb2JlcnRAbWVpbml0Lm5sMB4XDTIzMDIxMzA4NTg1MloX
-    DTIzMDMxNTA4NTg1MlowgY0xCzAJBgNVBAYTAk5MMRAwDgYDVQQIDAdVVFJFQ0hU
-    MRIwEAYDVQQHDAlCcmV1a2VsZW4xFzAVBgNVBAoMDlJvYmVydCBkZSBCb2NrMR4w
-    HAYDVQQDDBV2YXVsdC5yb2JlcnRkZWJvY2submwxHzAdBgkqhkiG9w0BCQEWEHJv
-    YmVydEBtZWluaXQubmwwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDN
-    LeDgfuElvJL+EPY6zaPx/lF8nblytGvxIy/8BBpsu9wyvI0Ty9XXxk7alwdTM+mE
-    LYA1Nznnk0ekC9gaQTLRUGqTOJ92la0Z6M4/yVxe9gvN5yNsUjU01dXXiFzgx0e4
-    usdnrqkZchi5Ib0SunHm1sE0O3uEYdW9mJrqWb25HLLmQwtrztr9bE5PBUH8CzlX
-    fqM6+6e2e1pnmPmt533GtIJcwfBg+pUkc01EfhKzLjtILgAijfx+m+XjpKShGLUg
-    QTL4V9fmXCmPBP0IYjw8I5k64aBLTQ/oj1sw4EzkaVKxTtluiAENDf2x9yPaoH3x
-    PkPG36D5/4JK90THTihlAgMBAAEwDQYJKoZIhvcNAQELBQADggEBAAdPO8l+ww5p
-    YJKZ3COyzz/RWHQ4R1fH3KQE53Jk4kjARoEcuh34YQJ3uWbiyrMMorHUrKStWrEO
-    297pMizrA45bFm79gwoZ1yI/2WdejnC86JFdAbHRWLkEKs40Fy9JhEU0ouHLk7ya
-    Gr9hGKWNVJmnNpk+xpmIY1hi5L4Opb8/hRe16MzhpVivyenyekEpu4S0muZXvUKt
-    igLKDsMemBMADA1xS05IJ8PVfSpsGxhB9cga1DL94Bpq+p1ZSSbupQUNEIObi8BK
-    vIciVdKVLy30rGn2JGKSEQ9fnULuZUWxjOv0awqKRpFE5WVnav2iwF4pzvRxFw7Y
-    ba0Ft217IrI=
-    -----END CERTIFICATE-----
-  # You can specify a file (`tls_file_key`) OR the content of the file (`tls_key`).
-  # tls_key_file: "/opt/vault/tls/vault.key"
-  tls_key: |
-    -----BEGIN PRIVATE KEY-----
-    MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDNLeDgfuElvJL+
-    EPY6zaPx/lF8nblytGvxIy/8BBpsu9wyvI0Ty9XXxk7alwdTM+mELYA1Nznnk0ek
-    C9gaQTLRUGqTOJ92la0Z6M4/yVxe9gvN5yNsUjU01dXXiFzgx0e4usdnrqkZchi5
-    Ib0SunHm1sE0O3uEYdW9mJrqWb25HLLmQwtrztr9bE5PBUH8CzlXfqM6+6e2e1pn
-    mPmt533GtIJcwfBg+pUkc01EfhKzLjtILgAijfx+m+XjpKShGLUgQTL4V9fmXCmP
-    BP0IYjw8I5k64aBLTQ/oj1sw4EzkaVKxTtluiAENDf2x9yPaoH3xPkPG36D5/4JK
-    90THTihlAgMBAAECggEBAL0sxL8YHOyXPowkBXLYMYWob2dPYTHiKfft8osRGXAR
-    kYfyEr0i3iqRPBkM0QMkxPRKo3/tSGU8hPw6s2gZnwogc/MDbPuAK1bNMITdWl5v
-    yxhwOVfhQA9T7VNI9iGFe5pWFA6DmoPMkAD5m4NOBkDI1uAay9qV/eVOc98JGQU3
-    Scc5H9gMvxe2J0njyUv+W4p5y8oMz0iVxqDvbQEduUuVZ7xKp1YysitfKViss2ej
-    Ug3VcsPltuUrARfC/vO5PYJ2BXt9tHxPfu+nykGi42zAM6ex4xJyFiXnpZBOvjk1
-    XIklhN9CoelxoECAxl7YgtweRwlbKf7belYd61HkmS0CgYEA9/zlX/BjIgmQjG7T
-    odbb36pw9qW5M8ZVIIPQj5hndtPlGoESjcmHeogV1zAmsKvnQ6BuRUB4ZUh/nEpf
-    HMPY1UaJ1L9jR8GjXh9mlVMAStYVwOxU2iILYditQ+BzLbr4ChNriI/Zo1/wIhxZ
-    fk/cyutSF4z+RJ3C3+wPCk1n7H8CgYEA087pobuaiF5vSlnbjHIbb4zxPrxT1rW3
-    k5KTC6RyMVW92yoOr6Gwgizzyq+qW4YSs3lePfN9oHxkkFJ9SU1/uV2ta64fnsxI
-    HqbbgsMTKX1BbtkxNDYOCWvduJmC83LBYPVblPDvSr4G7zqxWyo3PQm9O/MrbtlW
-    zrjGJrEYSRsCgYAINB2CZvlgjuBxRNlLaUgsxf6mqiTOSalXQgUMOwZxL+FMVyi9
-    +AS7UPUoATfGcGleG1iKge95qkROb0dmNDRgGc1FdG9cWFOHMZK7Ldu8nghqMWc9
-    MBMgUYKp1Cr7QEwkSTAtfFS+ytWuyzFKtGmhbNdyX/+pVW606aI1vQnLEQKBgQC0
-    jXtHLR7sBGQmIzcuH88XZjP34J4vNzRIDfhfQk09lPOEsfNW8CQAs8UWEGzOHBow
-    99LISJnchm1LQaYfKHsqTpqYYhP+T/Fif6Y7b4MUKPvwPCDfevy4N0UIKYQhdr81
-    obHx4vh45EgRAh1Rs0jnNTgktINfuNFw4r23Gduz5QKBgD1qGo2Yjtk9blNV5v4Z
-    oEKp5NQ+2Fbkpwl9k+nyA9CaSs98uf7C7Br7vrt/JBjAu447p/myeT9GiJSao6xj
-    g8DTnnIvFuiLS9NKJMH4S2sd7P73j9djdV8J0qpxiEE6PMGjXrz455G6vowdKldu
-    xWZvV9q5Ouxf7iRPf3o2cfKw
-    -----END PRIVATE KEY-----
-  tls_min_version: "tls12"
-  tls_cipher_suites: ""
-  tls_require_and_verify_client_cert: no
-  tls_client_ca_file: ""
-  tls_disable_client_certs: no
-  x_forwarded_for_authorized_addrs: ""
-  x_forwarded_for_hop_skips: 0
-  x_forwarded_for_reject_not_authorized: yes
-  x_forwarded_for_reject_not_present: yes
-  telemetry:
-    unauthenticated_metrics_access: no
-  profiling:
-    unauthenticated_pprof_access: no
-    unauthenticated_in_flight_request_access: no
+# These are "listener" settings, there can be multiple listeners.
+vault_configuration_listeners:
+  - type: "tcp"
+    address: "127.0.0.1:8200"
+    cluster_address: "127.0.0.1:8201"
+    http_idle_timeout: "5m"
+    http_read_header_timeout: "10s"
+    http_read_timeout: "30s"
+    http_write_timeout: "0"
+    max_request_size: 33554432
+    max_request_duration: "90s"
+    proxy_protocol_behavior: ""
+    proxy_protocol_authorized_addrs: ""
+    tls_disable: no
+    # You can specify a file (`tls_cert_file`) OR the content of the file (`tls_cert`).
+    # tls_cert_file: "/opt/vault/tls/vault.crt"
+    tls_cert: |
+      -----BEGIN CERTIFICATE-----
+      MIIDlDCCAnwCCQDKshDt/N9YbTANBgkqhkiG9w0BAQsFADCBiTELMAkGA1UEBhMC
+      TkwxEDAOBgNVBAgMB1VUUkVDSFQxEjAQBgNVBAcMCUJyZXVrZWxlbjEXMBUGA1UE
+      CgwOUm9iZXJ0IGRlIEJvY2sxGjAYBgNVBAMMEUNBIFJvYmVydCBkZSBCb2NrMR8w
+      HQYJKoZIhvcNAQkBFhByb2JlcnRAbWVpbml0Lm5sMB4XDTIzMDIxMzA4NTg1MloX
+      DTIzMDMxNTA4NTg1MlowgY0xCzAJBgNVBAYTAk5MMRAwDgYDVQQIDAdVVFJFQ0hU
+      MRIwEAYDVQQHDAlCcmV1a2VsZW4xFzAVBgNVBAoMDlJvYmVydCBkZSBCb2NrMR4w
+      HAYDVQQDDBV2YXVsdC5yb2JlcnRkZWJvY2submwxHzAdBgkqhkiG9w0BCQEWEHJv
+      YmVydEBtZWluaXQubmwwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDN
+      LeDgfuElvJL+EPY6zaPx/lF8nblytGvxIy/8BBpsu9wyvI0Ty9XXxk7alwdTM+mE
+      LYA1Nznnk0ekC9gaQTLRUGqTOJ92la0Z6M4/yVxe9gvN5yNsUjU01dXXiFzgx0e4
+      usdnrqkZchi5Ib0SunHm1sE0O3uEYdW9mJrqWb25HLLmQwtrztr9bE5PBUH8CzlX
+      fqM6+6e2e1pnmPmt533GtIJcwfBg+pUkc01EfhKzLjtILgAijfx+m+XjpKShGLUg
+      QTL4V9fmXCmPBP0IYjw8I5k64aBLTQ/oj1sw4EzkaVKxTtluiAENDf2x9yPaoH3x
+      PkPG36D5/4JK90THTihlAgMBAAEwDQYJKoZIhvcNAQELBQADggEBAAdPO8l+ww5p
+      YJKZ3COyzz/RWHQ4R1fH3KQE53Jk4kjARoEcuh34YQJ3uWbiyrMMorHUrKStWrEO
+      297pMizrA45bFm79gwoZ1yI/2WdejnC86JFdAbHRWLkEKs40Fy9JhEU0ouHLk7ya
+      Gr9hGKWNVJmnNpk+xpmIY1hi5L4Opb8/hRe16MzhpVivyenyekEpu4S0muZXvUKt
+      igLKDsMemBMADA1xS05IJ8PVfSpsGxhB9cga1DL94Bpq+p1ZSSbupQUNEIObi8BK
+      vIciVdKVLy30rGn2JGKSEQ9fnULuZUWxjOv0awqKRpFE5WVnav2iwF4pzvRxFw7Y
+      ba0Ft217IrI=
+      -----END CERTIFICATE-----
+    # You can specify a file (`tls_file_key`) OR the content of the file (`tls_key`).
+    # tls_key_file: "/opt/vault/tls/vault.key"
+    tls_key: |
+      -----BEGIN PRIVATE KEY-----
+      MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDNLeDgfuElvJL+
+      EPY6zaPx/lF8nblytGvxIy/8BBpsu9wyvI0Ty9XXxk7alwdTM+mELYA1Nznnk0ek
+      C9gaQTLRUGqTOJ92la0Z6M4/yVxe9gvN5yNsUjU01dXXiFzgx0e4usdnrqkZchi5
+      Ib0SunHm1sE0O3uEYdW9mJrqWb25HLLmQwtrztr9bE5PBUH8CzlXfqM6+6e2e1pn
+      mPmt533GtIJcwfBg+pUkc01EfhKzLjtILgAijfx+m+XjpKShGLUgQTL4V9fmXCmP
+      BP0IYjw8I5k64aBLTQ/oj1sw4EzkaVKxTtluiAENDf2x9yPaoH3xPkPG36D5/4JK
+      90THTihlAgMBAAECggEBAL0sxL8YHOyXPowkBXLYMYWob2dPYTHiKfft8osRGXAR
+      kYfyEr0i3iqRPBkM0QMkxPRKo3/tSGU8hPw6s2gZnwogc/MDbPuAK1bNMITdWl5v
+      yxhwOVfhQA9T7VNI9iGFe5pWFA6DmoPMkAD5m4NOBkDI1uAay9qV/eVOc98JGQU3
+      Scc5H9gMvxe2J0njyUv+W4p5y8oMz0iVxqDvbQEduUuVZ7xKp1YysitfKViss2ej
+      Ug3VcsPltuUrARfC/vO5PYJ2BXt9tHxPfu+nykGi42zAM6ex4xJyFiXnpZBOvjk1
+      XIklhN9CoelxoECAxl7YgtweRwlbKf7belYd61HkmS0CgYEA9/zlX/BjIgmQjG7T
+      odbb36pw9qW5M8ZVIIPQj5hndtPlGoESjcmHeogV1zAmsKvnQ6BuRUB4ZUh/nEpf
+      HMPY1UaJ1L9jR8GjXh9mlVMAStYVwOxU2iILYditQ+BzLbr4ChNriI/Zo1/wIhxZ
+      fk/cyutSF4z+RJ3C3+wPCk1n7H8CgYEA087pobuaiF5vSlnbjHIbb4zxPrxT1rW3
+      k5KTC6RyMVW92yoOr6Gwgizzyq+qW4YSs3lePfN9oHxkkFJ9SU1/uV2ta64fnsxI
+      HqbbgsMTKX1BbtkxNDYOCWvduJmC83LBYPVblPDvSr4G7zqxWyo3PQm9O/MrbtlW
+      zrjGJrEYSRsCgYAINB2CZvlgjuBxRNlLaUgsxf6mqiTOSalXQgUMOwZxL+FMVyi9
+      +AS7UPUoATfGcGleG1iKge95qkROb0dmNDRgGc1FdG9cWFOHMZK7Ldu8nghqMWc9
+      MBMgUYKp1Cr7QEwkSTAtfFS+ytWuyzFKtGmhbNdyX/+pVW606aI1vQnLEQKBgQC0
+      jXtHLR7sBGQmIzcuH88XZjP34J4vNzRIDfhfQk09lPOEsfNW8CQAs8UWEGzOHBow
+      99LISJnchm1LQaYfKHsqTpqYYhP+T/Fif6Y7b4MUKPvwPCDfevy4N0UIKYQhdr81
+      obHx4vh45EgRAh1Rs0jnNTgktINfuNFw4r23Gduz5QKBgD1qGo2Yjtk9blNV5v4Z
+      oEKp5NQ+2Fbkpwl9k+nyA9CaSs98uf7C7Br7vrt/JBjAu447p/myeT9GiJSao6xj
+      g8DTnnIvFuiLS9NKJMH4S2sd7P73j9djdV8J0qpxiEE6PMGjXrz455G6vowdKldu
+      xWZvV9q5Ouxf7iRPf3o2cfKw
+      -----END PRIVATE KEY-----
+    tls_min_version: "tls12"
+    tls_cipher_suites: ""
+    tls_require_and_verify_client_cert: no
+    tls_client_ca_file: ""
+    tls_disable_client_certs: no
+    x_forwarded_for_authorized_addrs: ""
+    x_forwarded_for_hop_skips: 0
+    x_forwarded_for_reject_not_authorized: yes
+    x_forwardesd_for_reject_not_present: yes
+    telemetry:
+      unauthenticated_metrics_access: no
+    profiling:
+      unauthenticated_pprof_access: no
+      unauthenticated_in_flight_request_access: no
+  - type: "unix"
+    address: "/run/vault/vault.sock"
+    socket_mode: "666"
+    socket_user: "vault"
+    socket_group: "vault"
 
 #
 # STORAGE SETTINGS
@@ -262,22 +270,21 @@ vault_configuration_storage_raft:
 #   disabled: no
 
 # An HSM supporting PKCS11 can be used to unseal Vault.
-# NOT IMPLEMENTED.
 # vault_configuration_seal_pkcs11:
-#   lib:
-#   slot:
-#   token_label:
-#   pin:
-#   key_label:
-#   default_key_label:
-#   key_id:
-#   hmac_key_label:
-#   default_hmac_key_label:
-#   hmac_key_id:
-#   mechanism:
-#   hmac_mechanism:
-#   generate_key:
-#   force_rw_session:
+#   lib: "/usr/vault/lib/libCryptoki2_64.so"
+#   slot: "2305843009213693953"
+#   # token_label: ""
+#   pin: "AAAA-BBBB-CCCC-DDDD"
+#   key_label: "vault-hsm-key"
+#   # default_key_label: ""
+#   # key_id: ""
+#   hmac_key_label: "vault-hsm-hmac-key"
+#   # default_hmac_key_label: ""
+#   # hmac_key_id: ""
+#   # mechanism: ""
+#   # hmac_mechanism: ""
+#   # generate_key: ""
+#   # force_rw_session: ""
 #   disabled: no
 
 # Another Vault (with the Transit secrets engine) can be used to unseal Vault.

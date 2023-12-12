@@ -14,7 +14,7 @@ galaxy_info:
     - name: EL
       versions:
         - "8"
-        - "9"
+        # - "9"  # Segmentation fault when staring autofs.service
     - name: Fedora
       versions:
         - all

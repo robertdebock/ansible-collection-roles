@@ -1,7 +1,18 @@
 ---
 # vars file for cargo
 
-cargo_requirements:
-  - curl
-  - file
-  - bash
+_cargo_requirements:
+  default:
+    - curl
+    - file
+    - bash
+  RedHat-9:
+    - curl-minimal
+    - file
+    - bash
+  RedHat-2023:  # This is for amazonlinux:lastest
+    - curl-minimal
+    - file
+    - bash
+
+cargo_requirements: "{{ _cargo_requirements[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_cargo_requirements['default']) }}"

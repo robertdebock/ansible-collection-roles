@@ -1,6 +1,6 @@
 ---
 
-- name: assert | Test if owncloud_version is set correctly
+- name: assert | Test owncloud_version
   ansible.builtin.assert:
     that:
       - owncloud_version is defined
@@ -8,7 +8,7 @@
       - owncloud_version is not none
     quiet: yes
 
-- name: assert | Test if owncloud_domain_url is set correctly
+- name: assert | Test owncloud_domain_url
   ansible.builtin.assert:
     that:
       - owncloud_domain_url is defined
@@ -16,7 +16,7 @@
       - owncloud_domain_url is not none
     quiet: yes
 
-- name: assert | Test if owncloud_database_name is set correctly
+- name: assert | Test owncloud_database_name
   ansible.builtin.assert:
     that:
       - owncloud_database_name is defined
@@ -24,7 +24,7 @@
       - owncloud_database_name is not none
     quiet: yes
 
-- name: assert | Test if owncloud_database_user is set correctly
+- name: assert | Test owncloud_database_user
   ansible.builtin.assert:
     that:
       - owncloud_database_user is defined
@@ -32,7 +32,7 @@
       - owncloud_database_user is not none
     quiet: yes
 
-- name: assert | Test if owncloud_database_pass is set correctly
+- name: assert | Test owncloud_database_pass
   ansible.builtin.assert:
     that:
       - owncloud_database_pass is defined
@@ -40,7 +40,7 @@
       - owncloud_database_pass is not none
     quiet: yes
 
-- name: assert | Test if owncloud_database_host is set correctly
+- name: assert | Test owncloud_database_host
   ansible.builtin.assert:
     that:
       - owncloud_database_host is defined
@@ -48,7 +48,7 @@
       - owncloud_database_host is not none
     quiet: yes
 
-- name: assert | Test if owncloud_admin_user is set correctly
+- name: assert | Test owncloud_admin_user
   ansible.builtin.assert:
     that:
       - owncloud_admin_user is defined
@@ -56,7 +56,7 @@
       - owncloud_admin_user is not none
     quiet: yes
 
-- name: assert | Test if owncloud_admin_pass is set correctly
+- name: assert | Test owncloud_admin_pass
   ansible.builtin.assert:
     that:
       - owncloud_admin_pass is defined

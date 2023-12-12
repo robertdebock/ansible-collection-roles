@@ -1,10 +1,10 @@
-# [node_red](#node_red)
+# [Ansible role node_red](#node_red)
 
 Install and configure Node RED on your system.
 
-|GitHub|GitLab|Quality|Downloads|Version|
-|------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-node_red/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-node_red/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-node_red/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-node_red)|[![quality](https://img.shields.io/ansible/quality/50571)](https://galaxy.ansible.com/robertdebock/node_red)|[![downloads](https://img.shields.io/ansible/role/d/50571)](https://galaxy.ansible.com/robertdebock/node_red)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-node_red.svg)](https://github.com/robertdebock/ansible-role-node_red/releases/)|
+|GitHub|GitLab|Downloads|Version|
+|------|------|---------|-------|
+|[![github](https://github.com/robertdebock/ansible-role-node_red/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-node_red/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-node_red/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-node_red)|[![downloads](https://img.shields.io/ansible/role/d/24551)](https://galaxy.ansible.com/robertdebock/node_red)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-node_red.svg)](https://github.com/robertdebock/ansible-role-node_red/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -36,9 +36,9 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
     - role: robertdebock.roles.epel
     - role: robertdebock.roles.npm
     - role: robertdebock.roles.users
-      users_group_list:
+      users_groups:
         - name: nodered
-      users_user_list:
+      users:
         - name: nodered
           group: nodered
 ```
@@ -95,10 +95,10 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|[Debian](https://hub.docker.com/repository/docker/robertdebock/debian/general)|bullseye|
-|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|8, 9|
-|[Fedora](https://hub.docker.com/repository/docker/robertdebock/fedora/general)|all|
-|[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|focal|
+|[Debian](https://hub.docker.com/r/robertdebock/debian)|bullseye|
+|[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|8, 9|
+|[Fedora](https://hub.docker.com/r/robertdebock/fedora/)|all|
+|[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|focal|
 
 The minimum version of Ansible required is 2.12, tests have been done to:
 
@@ -106,7 +106,7 @@ The minimum version of Ansible required is 2.12, tests have been done to:
 - The current version.
 - The development version.
 
-If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-node_red/issues)
+If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-node_red/issues).
 
 ## [License](#license)
 

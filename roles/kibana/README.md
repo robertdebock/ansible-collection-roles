@@ -1,10 +1,10 @@
-# [kibana](#kibana)
+# [Ansible role kibana](#kibana)
 
 Install and configure Kibana on your system.
 
-|GitHub|GitLab|Quality|Downloads|Version|
-|------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-kibana/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-kibana/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-kibana/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-kibana)|[![quality](https://img.shields.io/ansible/quality/56421)](https://galaxy.ansible.com/robertdebock/kibana)|[![downloads](https://img.shields.io/ansible/role/d/56421)](https://galaxy.ansible.com/robertdebock/kibana)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-kibana.svg)](https://github.com/robertdebock/ansible-role-kibana/releases/)|
+|GitHub|GitLab|Downloads|Version|
+|------|------|---------|-------|
+|[![github](https://github.com/robertdebock/ansible-role-kibana/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-kibana/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-kibana/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-kibana)|[![downloads](https://img.shields.io/ansible/role/d/24523)](https://galaxy.ansible.com/robertdebock/kibana)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-kibana.svg)](https://github.com/robertdebock/ansible-role-kibana/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -88,11 +88,11 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|[Amazon](https://hub.docker.com/repository/docker/robertdebock/amazonlinux/general)|all|
-|[Debian](https://hub.docker.com/repository/docker/robertdebock/debian/general)|all|
-|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|all|
-|[Fedora](https://hub.docker.com/repository/docker/robertdebock/fedora/general)|all|
-|[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|focal, bionic|
+|[Amazon](https://hub.docker.com/r/robertdebock/amazonlinux)|all|
+|[Debian](https://hub.docker.com/r/robertdebock/debian)|all|
+|[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|all|
+|[Fedora](https://hub.docker.com/r/robertdebock/fedora/)|all|
+|[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|focal, bionic|
 
 The minimum version of Ansible required is 2.12, tests have been done to:
 
@@ -100,7 +100,7 @@ The minimum version of Ansible required is 2.12, tests have been done to:
 - The current version.
 - The development version.
 
-If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-kibana/issues)
+If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-kibana/issues).
 
 ## [License](#license)
 

@@ -10,3 +10,10 @@
   community.general.filesystem:
     dev: "{{ filesystem.name }}"
     fstype: "{{ filesystem.fstype | default(storage_default_fstype) }}"
+  when:
+    - ansible_os_family != 'Alpine'
+  notify:
+    - Reload systemd
+
+- name: filesystem | Run handlers
+  ansible.builtin.meta: flush_handlers

@@ -2,13 +2,15 @@
 # tasks file for zabbix_agent
 
 - name: Import assert.yml
-  ansible.builtin.import_tasks: assert.yml
+  ansible.builtin.import_tasks:
+    file: assert.yml
   run_once: yes
   delegate_to: localhost
 
 - name: Install zabbix-agent software
   ansible.builtin.package:
     name: zabbix-agent
+    disable_gpg_check: yes
     state: present
 
 - name: Configuring zabbix agent

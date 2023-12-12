@@ -1,10 +1,10 @@
-# [postfix](#postfix)
+# [Ansible role postfix](#postfix)
 
 Install and configure postfix on your system.
 
-|GitHub|GitLab|Quality|Downloads|Version|
-|------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-postfix/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-postfix/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-postfix/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-postfix)|[![quality](https://img.shields.io/ansible/quality/22976)](https://galaxy.ansible.com/robertdebock/postfix)|[![downloads](https://img.shields.io/ansible/role/d/22976)](https://galaxy.ansible.com/robertdebock/postfix)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-postfix.svg)](https://github.com/robertdebock/ansible-role-postfix/releases/)|
+|GitHub|GitLab|Downloads|Version|
+|------|------|---------|-------|
+|[![github](https://github.com/robertdebock/ansible-role-postfix/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-postfix/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-postfix/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-postfix)|[![downloads](https://img.shields.io/ansible/role/d/24567)](https://galaxy.ansible.com/robertdebock/postfix)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-postfix.svg)](https://github.com/robertdebock/ansible-role-postfix/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -19,7 +19,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 
   roles:
     - role: robertdebock.roles.postfix
-      postfix_relayhost: "[relay.example.com]"
+      # postfix_relayhost: "[relay.example.com]"
       postfix_myhostname: "smtp.example.com"
       postfix_mydomain: "example.com"
       postfix_myorigin: "example.com"
@@ -29,6 +29,16 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
       postfix_aliases:
         - name: root
           destination: test@example.com
+      # Ziggo settings: ("email-address" and "email-password" are placeholders)
+      postfix_relayhost: "[smtp.ziggo.nl]:587"
+      postfix_smtp_use_tls: yes
+      postfix_smtp_sasl_auth_enable: yes
+      postfix_smtp_sasl_password_map: "hash:/etc/postfix/relay_pass"
+      postfix_smtp_sasl_security_options: ""
+      postfix_smtp_tls_wrappermode: no
+      postfix_smtp_tls_security_level: may
+      postfix_smtp_sasl_password_map_content: |
+        [smtp.ziggo.nl]:587 email-address:email-password
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-postfix/blob/master/molecule/default/prepare.yml):
@@ -269,6 +279,13 @@ postfix_smtp_tls_security_level: none
 # Postfix used `/etc/services` to map service names to port numbers like `2525`.
 # So either specifcy a port number or a service name like `smtp`.
 postfix_smtp_listen_port: smtp
+
+postfix_smtp_use_tls: no
+postfix_smtp_sasl_auth_enable: no
+postfix_smtp_sasl_password_map: ""
+postfix_smtp_sasl_security_options: ""
+postfix_smtp_tls_wrappermode: no
+postfix_smtp_sasl_password_map_content: ""
 ```
 
 ## [Requirements](#requirements)
@@ -297,11 +314,11 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|[Amazon](https://hub.docker.com/repository/docker/robertdebock/amazonlinux/general)|2018.03|
-|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|all|
-|[Debian](https://hub.docker.com/repository/docker/robertdebock/debian/general)|all|
-|[Fedora](https://hub.docker.com/repository/docker/robertdebock/fedora/general)|all|
-|[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|all|
+|[Amazon](https://hub.docker.com/r/robertdebock/amazonlinux)|2018.03|
+|[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|all|
+|[Debian](https://hub.docker.com/r/robertdebock/debian)|all|
+|[Fedora](https://hub.docker.com/r/robertdebock/fedora/)|all|
+|[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|all|
 
 The minimum version of Ansible required is 2.12, tests have been done to:
 
@@ -309,7 +326,7 @@ The minimum version of Ansible required is 2.12, tests have been done to:
 - The current version.
 - The development version.
 
-If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-postfix/issues)
+If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-postfix/issues).
 
 ## [License](#license)
 

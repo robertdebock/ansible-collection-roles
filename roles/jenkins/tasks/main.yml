@@ -2,7 +2,8 @@
 # tasks file for jenkins
 
 - name: Import assert.yml
-  ansible.builtin.import_tasks: assert.yml
+  ansible.builtin.import_tasks:
+    file: assert.yml
   run_once: yes
   delegate_to: localhost
 
@@ -67,8 +68,10 @@
 - name: Configure jenkins
   ansible.builtin.template:
     src: jenkins.j2
-    dest: "{{ jenkins_configuration_directory }}"
-    mode: "0640"
+    dest: "{{ jenkins_configuration_directory }}/jenkins"
+    force: true
+    backup: true
+    mode: "0644"
   notify:
     - Restart jenkins
 

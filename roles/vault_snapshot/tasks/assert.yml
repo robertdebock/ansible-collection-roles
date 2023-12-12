@@ -1,6 +1,6 @@
 ---
 
-- name: assert | Test if vault_snapshot_address is set correctly
+- name: assert | Test vault_snapshot_address
   ansible.builtin.assert:
     that:
       - vault_snapshot_address is defined
@@ -8,7 +8,7 @@
       - vault_snapshot_address is not none
     quiet: yes
 
-- name: assert | Test if vault_snapshot_token is set correctly
+- name: assert | Test vault_snapshot_token
   ansible.builtin.assert:
     that:
       - vault_snapshot_token is defined
@@ -16,14 +16,14 @@
       - vault_snapshot_token is not none
     quiet: yes
 
-- name: assert | Test if vault_snapshot_schedules is set correctly
+- name: assert | Test vault_snapshot_schedules
   ansible.builtin.assert:
     that:
       - vault_snapshot_schedules is defined
       - vault_snapshot_schedules is iterable
     quiet: yes
 
-- name: assert | Test if item.name in vault_snapshot_schedules is set correctly
+- name: assert | Test item.name in vault_snapshot_schedules
   ansible.builtin.assert:
     that:
       - item.name is defined
@@ -34,7 +34,7 @@
   loop_control:
     label: "{{ item.name }}"
 
-- name: assert | Test if item.interval_seconds in vault_snapshot_schedules is set correctly
+- name: assert | Test item.interval_seconds in vault_snapshot_schedules
   ansible.builtin.assert:
     that:
       - item.interval_seconds is defined
@@ -44,7 +44,7 @@
   loop_control:
     label: "{{ item.interval_seconds }}"
 
-- name: assert | Test if item.retain in vault_snapshot_schedules is set correctly
+- name: assert | Test item.retain in vault_snapshot_schedules
   ansible.builtin.assert:
     that:
       - item.retain is number
@@ -55,7 +55,7 @@
   when:
     - item.retain is defined
 
-- name: assert | Test if item.path_prefix in vault_snapshot_schedules is set correctly
+- name: assert | Test item.path_prefix in vault_snapshot_schedules
   ansible.builtin.assert:
     that:
       - item.path_prefix is defined
@@ -68,7 +68,7 @@
   when:
     - item.storage_type == "local"
 
-- name: assert | Test if item.storage_type in vault_snapshot_schedules is set correctly
+- name: assert | Test item.storage_type in vault_snapshot_schedules
   ansible.builtin.assert:
     that:
       - item.storage_type is defined
@@ -79,7 +79,7 @@
   loop_control:
     label: "{{ item.storage_type }}"
 
-- name: assert | Test if item.local_max_space in vault_snapshot_schedules is set correctly
+- name: assert | Test item.local_max_space in vault_snapshot_schedules
   ansible.builtin.assert:
     that:
       - item.local_max_space is number
@@ -91,7 +91,7 @@
     - item.storage_type == "local"
     - item.local_max_space is defined
 
-- name: assert | Test if item.aws_s3_bucket in vault_snapshot_schedules is set correctly
+- name: assert | Test item.aws_s3_bucket in vault_snapshot_schedules
   ansible.builtin.assert:
     that:
       - item.aws_s3_bucket is defined
@@ -104,7 +104,7 @@
   when:
     - item.storage_type == "aws-s3"
 
-- name: assert | Test if item.aws_s3_region in vault_snapshot_schedules is set correctly
+- name: assert | Test item.aws_s3_region in vault_snapshot_schedules
   ansible.builtin.assert:
     that:
       - item.aws_s3_region is defined
@@ -117,7 +117,7 @@
   when:
     - item.storage_type == "aws-s3"
 
-- name: assert | Test if item.aws_access_key_id in vault_snapshot_schedules is set correctly
+- name: assert | Test item.aws_access_key_id in vault_snapshot_schedules
   ansible.builtin.assert:
     that:
       - item.aws_access_key_id is string
@@ -130,7 +130,7 @@
     - item.storage_type == "aws-s3"
     - item.aws_access_key_id is defined
 
-- name: assert | Test if item.aws_secret_access_key in vault_snapshot_schedules is set correctly
+- name: assert | Test item.aws_secret_access_key in vault_snapshot_schedules
   ansible.builtin.assert:
     that:
       - item.aws_secret_access_key is string
@@ -143,7 +143,7 @@
     - item.storage_type == "aws-s3"
     - item.aws_secret_access_key is defined
 
-- name: assert | Test if item.aws_s3_enable_kms in vault_snapshot_schedules is set correctly
+- name: assert | Test item.aws_s3_enable_kms in vault_snapshot_schedules
   ansible.builtin.assert:
     that:
       - item.aws_s3_enable_kms is boolean
@@ -155,7 +155,7 @@
     - item.storage_type == "aws-s3"
     - item.aws_s3_enable_kms is defined
 
-- name: assert | Test if item.azure_container_name in vault_snapshot_schedules is set correctly
+- name: assert | Test item.azure_container_name in vault_snapshot_schedules
   ansible.builtin.assert:
     that:
       - item.azure_container_name is defined
@@ -168,7 +168,7 @@
   when:
     - item.storage_type == "azure-blob"
 
-- name: assert | Test if item.azure_account_name in vault_snapshot_schedules is set correctly
+- name: assert | Test item.azure_account_name in vault_snapshot_schedules
   ansible.builtin.assert:
     that:
       - item.azure_account_name is string
@@ -181,7 +181,7 @@
     - item.storage_type == "azure-blob"
     - item.azure_account_name is defined
 
-- name: assert | Test if item.azure_account_key in vault_snapshot_schedules is set correctly
+- name: assert | Test item.azure_account_key in vault_snapshot_schedules
   ansible.builtin.assert:
     that:
       - item.azure_account_key is string
@@ -193,3 +193,10 @@
   when:
     - item.storage_type == "azure-blob"
     - item.azure_account_key is defined
+
+- name: assert | Test vault_snapshot_ssl_verify
+  ansible.builtin.assert:
+    that:
+      - vault_snapshot_ssl_verify is defined
+      - vault_snapshot_ssl_verify is boolean
+    quiet: yes

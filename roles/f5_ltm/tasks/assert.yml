@@ -1,6 +1,6 @@
 ---
 
-- name: assert | Test if item in f5_ltm_provider is set correctly
+- name: assert | Test item in f5_ltm_provider
   ansible.builtin.assert:
     that:
       - f5_ltm_provider.server is defined
@@ -22,7 +22,7 @@
   when:
     - f5_ltm_provider is defined
 
-- name: assert | Test if f5_ltm_partition is set correctly
+- name: assert | Test f5_ltm_partition
   ansible.builtin.assert:
     that:
       - f5_ltm_partition is defined
@@ -30,7 +30,7 @@
       - f5_ltm_partition is not none
     quiet: yes
 
-- name: assert | Test if f5_ltm_hostname is set correctly
+- name: assert | Test f5_ltm_hostname
   ansible.builtin.assert:
     that:
       - f5_ltm_hostname is defined
@@ -38,7 +38,7 @@
       - f5_ltm_hostname is not none
     quiet: yes
 
-- name: assert | Test if f5_ltm_timezone is set correctly
+- name: assert | Test f5_ltm_timezone
   ansible.builtin.assert:
     that:
       - f5_ltm_timezone is defined
@@ -46,14 +46,14 @@
       - f5_ltm_timezone is not none
     quiet: yes
 
-- name: assert | Test if f5_ltm_ntp_servers is set correctly
+- name: assert | Test f5_ltm_ntp_servers
   ansible.builtin.assert:
     that:
       - f5_ltm_ntp_servers is defined
       - f5_ltm_ntp_servers is iterable
     quiet: yes
 
-- name: assert | Test if f5_ltm_nodes is set correctly
+- name: assert | Test f5_ltm_nodes
   ansible.builtin.assert:
     that:
       - f5_ltm_nodes is iterable
@@ -61,7 +61,7 @@
   when:
     - f5_ltm_nodes is defined
 
-- name: assert | Test if item in f5_ltm_nodes is set correctly
+- name: assert | Test item in f5_ltm_nodes
   ansible.builtin.assert:
     that:
       - item.name is defined
@@ -77,7 +77,7 @@
   when:
     - f5_ltm_nodes is defined
 
-- name: assert | Test if f5_ltm_pools is set correctly
+- name: assert | Test f5_ltm_pools
   ansible.builtin.assert:
     that:
       - f5_ltm_pools is iterable
@@ -85,7 +85,7 @@
   when:
     - f5_ltm_pools is defined
 
-- name: assert | Test if item in f5_ltm_pools is set correctly
+- name: assert | Test item in f5_ltm_pools
   ansible.builtin.assert:
     that:
       - item.name is defined
@@ -107,7 +107,7 @@
   when:
     - f5_ltm_pools is defined
 
-- name: assert | Test if f5_ltm_pool_members is set correctly
+- name: assert | Test f5_ltm_pool_members
   ansible.builtin.assert:
     that:
       - f5_ltm_pool_members is iterable
@@ -115,7 +115,7 @@
   when:
     - f5_ltm_pool_members is defined
 
-- name: assert | Test if item in f5_ltm_pool_members is set correctly
+- name: assert | Test item in f5_ltm_pool_members
   ansible.builtin.assert:
     that:
       - item.name is defined
@@ -130,7 +130,7 @@
   when:
     - f5_ltm_pool_members is defined
 
-- name: assert | Test if f5_ltm_virtual_servers is set correctly
+- name: assert | Test f5_ltm_virtual_servers
   ansible.builtin.assert:
     that:
       - f5_ltm_virtual_servers is iterable
@@ -138,7 +138,7 @@
   when:
     - f5_ltm_virtual_servers is defined
 
-- name: assert | Test if item in f5_ltm_virtual_servers is set correctly
+- name: assert | Test item in f5_ltm_virtual_servers
   ansible.builtin.assert:
     that:
       - item.name is defined

@@ -1,10 +1,10 @@
-# [elastic_repo](#elastic_repo)
+# [Ansible role elastic_repo](#elastic_repo)
 
 Install the Elastic repository on your system.
 
-|GitHub|GitLab|Quality|Downloads|Version|
-|------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-elastic_repo/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-elastic_repo/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-elastic_repo/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-elastic_repo)|[![quality](https://img.shields.io/ansible/quality/56415)](https://galaxy.ansible.com/robertdebock/elastic_repo)|[![downloads](https://img.shields.io/ansible/role/d/56415)](https://galaxy.ansible.com/robertdebock/elastic_repo)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-elastic_repo.svg)](https://github.com/robertdebock/ansible-role-elastic_repo/releases/)|
+|GitHub|GitLab|Downloads|Version|
+|------|------|---------|-------|
+|[![github](https://github.com/robertdebock/ansible-role-elastic_repo/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-elastic_repo/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-elastic_repo/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-elastic_repo)|[![downloads](https://img.shields.io/ansible/role/d/24487)](https://galaxy.ansible.com/robertdebock/elastic_repo)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-elastic_repo.svg)](https://github.com/robertdebock/ansible-role-elastic_repo/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -51,11 +51,6 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 # An alternative package which contains only features that are available
 # under the Apache 2.0 license is also available.
 
-# Elastic has two versions of the packages:
-# - "elastic" using the "Elastic" license.
-# - "oss" using the Apache 2.0 license.
-elastic_repo_license: oss
-
 # An extra package is required for RHEL9 (`crypto-policies-scripts`).
 # This variable determines if it should be removed or not.
 elastic_repo_cleanup_requirements: yes
@@ -91,11 +86,11 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|[Amazon](https://hub.docker.com/repository/docker/robertdebock/amazonlinux/general)|all|
-|[Debian](https://hub.docker.com/repository/docker/robertdebock/debian/general)|all|
-|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|all|
-|[Fedora](https://hub.docker.com/repository/docker/robertdebock/fedora/general)|all|
-|[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|all|
+|[Amazon](https://hub.docker.com/r/robertdebock/amazonlinux)|all|
+|[Debian](https://hub.docker.com/r/robertdebock/debian)|all|
+|[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|all|
+|[Fedora](https://hub.docker.com/r/robertdebock/fedora/)|all|
+|[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|all|
 
 The minimum version of Ansible required is 2.12, tests have been done to:
 
@@ -103,7 +98,7 @@ The minimum version of Ansible required is 2.12, tests have been done to:
 - The current version.
 - The development version.
 
-If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-elastic_repo/issues)
+If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-elastic_repo/issues).
 
 ## [License](#license)
 

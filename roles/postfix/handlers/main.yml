@@ -21,6 +21,11 @@
     cmd: postmap /etc/postfix/transport
   changed_when: yes
 
+- name: Rebuild sasl_password_map database
+  ansible.builtin.command:
+    cmd: postmap /etc/postfix/sasl_passwd
+  changed_when: yes
+
 - name: Validate configuration
   ansible.builtin.command:
     cmd: postconf

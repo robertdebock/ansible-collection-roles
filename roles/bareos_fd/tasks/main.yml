@@ -1,8 +1,9 @@
 ---
 # tasks file for bareos_fd
 
-- name: Include assert.yml
-  ansible.builtin.import_tasks: assert.yml
+- name: Import assert.yml
+  ansible.builtin.import_tasks:
+    file: assert.yml
   run_once: yes
   delegate_to: localhost
 
@@ -59,7 +60,8 @@
     - Restart bareos-filedaemon
 
 - name: Import encryption tasklist
-  ansible.builtin.import_tasks: encryption.yml
+  ansible.builtin.import_tasks:
+    file: encryption.yml
   when:
     - bareos_fd_encryption_enabled
 

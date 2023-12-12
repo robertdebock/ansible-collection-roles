@@ -1,10 +1,10 @@
-# [etherpad](#etherpad)
+# [Ansible role etherpad](#etherpad)
 
 Install and configure Etherpad on your system.
 
-|GitHub|GitLab|Quality|Downloads|Version|
-|------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-etherpad/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-etherpad/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-etherpad/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-etherpad)|[![quality](https://img.shields.io/ansible/quality/38333)](https://galaxy.ansible.com/robertdebock/etherpad)|[![downloads](https://img.shields.io/ansible/role/d/38333)](https://galaxy.ansible.com/robertdebock/etherpad)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-etherpad.svg)](https://github.com/robertdebock/ansible-role-etherpad/releases/)|
+|GitHub|GitLab|Downloads|Version|
+|------|------|---------|-------|
+|[![github](https://github.com/robertdebock/ansible-role-etherpad/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-etherpad/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-etherpad/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-etherpad)|[![downloads](https://img.shields.io/ansible/role/d/24492)](https://galaxy.ansible.com/robertdebock/etherpad)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-etherpad.svg)](https://github.com/robertdebock/ansible-role-etherpad/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -86,8 +86,8 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|[Debian](https://hub.docker.com/repository/docker/robertdebock/debian/general)|bullseye|
-|[Fedora](https://hub.docker.com/repository/docker/robertdebock/fedora/general)|all|
+|[Debian](https://hub.docker.com/r/robertdebock/debian)|bullseye|
+|[Fedora](https://hub.docker.com/r/robertdebock/fedora/)|all|
 
 The minimum version of Ansible required is 2.12, tests have been done to:
 
@@ -95,7 +95,7 @@ The minimum version of Ansible required is 2.12, tests have been done to:
 - The current version.
 - The development version.
 
-If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-etherpad/issues)
+If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-etherpad/issues).
 
 ## [License](#license)
 

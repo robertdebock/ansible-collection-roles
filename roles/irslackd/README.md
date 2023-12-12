@@ -1,10 +1,10 @@
-# [irslackd](#irslackd)
+# [Ansible role irslackd](#irslackd)
 
 Install and configure irslackd on your system.
 
-|GitHub|GitLab|Quality|Downloads|Version|
-|------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-irslackd/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-irslackd/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-irslackd/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-irslackd)|[![quality](https://img.shields.io/ansible/quality/30532)](https://galaxy.ansible.com/robertdebock/irslackd)|[![downloads](https://img.shields.io/ansible/role/d/30532)](https://galaxy.ansible.com/robertdebock/irslackd)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-irslackd.svg)](https://github.com/robertdebock/ansible-role-irslackd/releases/)|
+|GitHub|GitLab|Downloads|Version|
+|------|------|---------|-------|
+|[![github](https://github.com/robertdebock/ansible-role-irslackd/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-irslackd/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-irslackd/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-irslackd)|[![downloads](https://img.shields.io/ansible/role/d/24517)](https://galaxy.ansible.com/robertdebock/irslackd)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-irslackd.svg)](https://github.com/robertdebock/ansible-role-irslackd/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -99,10 +99,10 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|8, 9|
-|[Debian](https://hub.docker.com/repository/docker/robertdebock/debian/general)|bullseye|
-|[Fedora](https://hub.docker.com/repository/docker/robertdebock/fedora/general)|all|
-|[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|focal|
+|[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|8, 9|
+|[Debian](https://hub.docker.com/r/robertdebock/debian)|bullseye|
+|[Fedora](https://hub.docker.com/r/robertdebock/fedora/)|all|
+|[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|focal|
 
 The minimum version of Ansible required is 2.12, tests have been done to:
 
@@ -110,7 +110,7 @@ The minimum version of Ansible required is 2.12, tests have been done to:
 - The current version.
 - The development version.
 
-If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-irslackd/issues)
+If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-irslackd/issues).
 
 ## [License](#license)
 

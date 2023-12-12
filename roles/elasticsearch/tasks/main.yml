@@ -1,14 +1,15 @@
 ---
 # tasks file for elasticsearch
 
-- name: Include assert.yml
-  ansible.builtin.import_tasks: assert.yml
+- name: Import assert.yml
+  ansible.builtin.import_tasks:
+    file: assert.yml
   run_once: yes
   delegate_to: localhost
 
 - name: Install elasticsearch
   ansible.builtin.package:
-    name: "{{ elasticsearch_packages }}"
+    name: elasticsearch
     state: present
 
 - name: Configure elasticsearch

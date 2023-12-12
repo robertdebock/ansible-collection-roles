@@ -1,6 +1,6 @@
 ---
 
-- name: assert_awx_configuration_organizations | Test if awx_configuration_organizations.name is set correctly
+- name: assert_awx_configuration_organizations | Test awx_configuration_organizations.name
   ansible.builtin.assert:
     that:
       - item.name is defined
@@ -8,7 +8,7 @@
       - item.name is not none
     quiet: yes
 
-- name: assert_awx_configuration_organizations | Test if awx_configuration_organizations.description is set correctly
+- name: assert_awx_configuration_organizations | Test awx_configuration_organizations.description
   ansible.builtin.assert:
     that:
       - item.description is defined
@@ -16,7 +16,7 @@
       - item.description is not none
     quiet: yes
 
-- name: assert_awx_configuration_organizations | Test if awx_configuration_organizations.galaxy_credentials is set correctly
+- name: assert_awx_configuration_organizations | Test awx_configuration_organizations.galaxy_credentials
   ansible.builtin.assert:
     that:
       - item.galaxy_credentials is iterable

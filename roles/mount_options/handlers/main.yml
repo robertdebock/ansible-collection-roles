@@ -1,0 +1,10 @@
+---
+# handlers file for mount_options
+
+- name: Remount filesystems
+  ansible.posix.mount:
+    path: "{{ item.path }}"
+    state: remounted
+  loop: "{{ mount_options }}"
+  loop_control:
+    label: "{{ item.path }}"

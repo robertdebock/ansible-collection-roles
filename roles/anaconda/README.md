@@ -1,10 +1,10 @@
-# [anaconda](#anaconda)
+# [Ansible role anaconda](#anaconda)
 
 Install anaconda on your system.
 
-|GitHub|GitLab|Quality|Downloads|Version|
-|------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-anaconda/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-anaconda/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-anaconda/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-anaconda)|[![quality](https://img.shields.io/ansible/quality/37541)](https://galaxy.ansible.com/robertdebock/anaconda)|[![downloads](https://img.shields.io/ansible/role/d/37541)](https://galaxy.ansible.com/robertdebock/anaconda)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-anaconda.svg)](https://github.com/robertdebock/ansible-role-anaconda/releases/)|
+|GitHub|GitLab|Downloads|Version|
+|------|------|---------|-------|
+|[![github](https://github.com/robertdebock/ansible-role-anaconda/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-anaconda/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-anaconda/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-anaconda)|[![downloads](https://img.shields.io/ansible/role/d/24434)](https://galaxy.ansible.com/robertdebock/anaconda)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-anaconda.svg)](https://github.com/robertdebock/ansible-role-anaconda/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -96,11 +96,11 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|8, 9|
-|[Debian](https://hub.docker.com/repository/docker/robertdebock/debian/general)|all|
-|[Fedora](https://hub.docker.com/repository/docker/robertdebock/fedora/general)|all|
-|[opensuse](https://hub.docker.com/repository/docker/robertdebock/opensuse/general)|all|
-|[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|all|
+|[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|8, 9|
+|[Debian](https://hub.docker.com/r/robertdebock/debian)|all|
+|[Fedora](https://hub.docker.com/r/robertdebock/fedora/)|all|
+|[opensuse](https://hub.docker.com/r/robertdebock/opensuse)|all|
+|[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|all|
 
 The minimum version of Ansible required is 2.12, tests have been done to:
 
@@ -108,7 +108,7 @@ The minimum version of Ansible required is 2.12, tests have been done to:
 - The current version.
 - The development version.
 
-If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-anaconda/issues)
+If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-anaconda/issues).
 
 ## [License](#license)
 

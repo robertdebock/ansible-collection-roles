@@ -8,7 +8,7 @@ _clamav_packages:
     - clamav-scanner
     - clamav-server
     - clamav-update
-  Amazon-2:
+  Amazon-2023:
     - clamav
     - clamav-update
     - clamd

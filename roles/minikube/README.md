@@ -1,10 +1,10 @@
-# [minikube](#minikube)
+# [Ansible role minikube](#minikube)
 
 Install and configure minikube on your system.
 
-|GitHub|GitLab|Quality|Downloads|Version|
-|------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-minikube/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-minikube/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-minikube/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-minikube)|[![quality](https://img.shields.io/ansible/quality/42933)](https://galaxy.ansible.com/robertdebock/minikube)|[![downloads](https://img.shields.io/ansible/role/d/42933)](https://galaxy.ansible.com/robertdebock/minikube)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-minikube.svg)](https://github.com/robertdebock/ansible-role-minikube/releases/)|
+|GitHub|GitLab|Downloads|Version|
+|------|------|---------|-------|
+|[![github](https://github.com/robertdebock/ansible-role-minikube/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-minikube/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-minikube/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-minikube)|[![downloads](https://img.shields.io/ansible/role/d/24539)](https://galaxy.ansible.com/robertdebock/minikube)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-minikube.svg)](https://github.com/robertdebock/ansible-role-minikube/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -45,7 +45,7 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
         - name: fs.protected_regular
           value: 0
     - role: robertdebock.roles.users
-      users_user_list:
+      users:
         - name: minikube
           groups: docker
 ```
@@ -101,9 +101,9 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|[Debian](https://hub.docker.com/repository/docker/robertdebock/debian/general)|all|
-|[Fedora](https://hub.docker.com/repository/docker/robertdebock/fedora/general)|all|
-|[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|all|
+|[Debian](https://hub.docker.com/r/robertdebock/debian)|all|
+|[Fedora](https://hub.docker.com/r/robertdebock/fedora/)|all|
+|[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|all|
 
 The minimum version of Ansible required is 2.12, tests have been done to:
 
@@ -111,7 +111,7 @@ The minimum version of Ansible required is 2.12, tests have been done to:
 - The current version.
 - The development version.
 
-If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-minikube/issues)
+If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-minikube/issues).
 
 ## [License](#license)
 

@@ -1,10 +1,10 @@
-# [mysql](#mysql)
+# [Ansible role mysql](#mysql)
 
 Install and configure mysql on your system.
 
-|GitHub|GitLab|Quality|Downloads|Version|
-|------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-mysql/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-mysql/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-mysql/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-mysql)|[![quality](https://img.shields.io/ansible/quality/22971)](https://galaxy.ansible.com/robertdebock/mysql)|[![downloads](https://img.shields.io/ansible/role/d/22971)](https://galaxy.ansible.com/robertdebock/mysql)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-mysql.svg)](https://github.com/robertdebock/ansible-role-mysql/releases/)|
+|GitHub|GitLab|Downloads|Version|
+|------|------|---------|-------|
+|[![github](https://github.com/robertdebock/ansible-role-mysql/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-mysql/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-mysql/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-mysql)|[![downloads](https://img.shields.io/ansible/role/d/24546)](https://galaxy.ansible.com/robertdebock/mysql)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-mysql.svg)](https://github.com/robertdebock/ansible-role-mysql/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -64,6 +64,27 @@ mysql_innodb_buffer_pool_size: 1G
 
 # The io capacity.
 mysql_innodb_io_capacity: 4000
+
+# You can set the mysql(d) options here.
+# As this is a list, it's difficult to merge with another list.
+# This means you'd have to redefine the entire list and append
+# your options to it.
+mysql_configuration_options:
+  - option: bind-address
+    section: mysqld
+    value: "{{ mysql_bind_address }}"
+  - option: socket
+    section: mysqld
+    value: "{{ mysql_socket }}"
+  - section: mysqld
+    option: innodb_buffer_pool_size
+    value: "{{ mysql_innodb_buffer_pool_size }}"
+  - section: mysqld
+    option: innodb_io_capacity
+    value: "{{ mysql_innodb_io_capacity }}"
+  - section: mysqld
+    option: log-bin-trust-function-creators
+    value: "1"
 ```
 
 ## [Requirements](#requirements)
@@ -91,11 +112,11 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|[Debian](https://hub.docker.com/repository/docker/robertdebock/debian/general)|bullseye|
-|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|8, 9|
-|[Fedora](https://hub.docker.com/repository/docker/robertdebock/fedora/general)|all|
-|[opensuse](https://hub.docker.com/repository/docker/robertdebock/opensuse/general)|all|
-|[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|all|
+|[Debian](https://hub.docker.com/r/robertdebock/debian)|bullseye|
+|[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|8, 9|
+|[Fedora](https://hub.docker.com/r/robertdebock/fedora/)|all|
+|[opensuse](https://hub.docker.com/r/robertdebock/opensuse)|all|
+|[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|all|
 
 The minimum version of Ansible required is 2.12, tests have been done to:
 
@@ -103,7 +124,7 @@ The minimum version of Ansible required is 2.12, tests have been done to:
 - The current version.
 - The development version.
 
-If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-mysql/issues)
+If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-mysql/issues).
 
 ## [License](#license)
 

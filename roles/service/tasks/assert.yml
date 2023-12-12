@@ -1,13 +1,13 @@
 ---
 
-- name: assert | Test if service_list is set correctly
+- name: assert | Test service_list
   ansible.builtin.assert:
     that:
       - service_list is defined
       - service_list is iterable
     quiet: yes
 
-- name: assert | Test if item in service_list is set correctly
+- name: assert | Test item in service_list
   ansible.builtin.assert:
     that:
       - item.name is defined
@@ -24,7 +24,7 @@
   loop_control:
     label: "{{ item.name }}"
 
-- name: assert | Test if type in service_list is set correctly
+- name: assert | Test type in service_list
   ansible.builtin.assert:
     that:
       - item.type is string
@@ -36,7 +36,7 @@
   when:
     - item.type is defined
 
-- name: assert | Test if environment_variables in service_list is set correctly
+- name: assert | Test environment_variables in service_list
   ansible.builtin.assert:
     that:
       - item.environment_variables is iterable
@@ -47,7 +47,7 @@
   when:
     - item.environment_variables is defined
 
-- name: assert | Test if restart_mode in service_list is set correctly
+- name: assert | Test restart_mode in service_list
   ansible.builtin.assert:
     that:
       - item.restart_mode is string
@@ -59,7 +59,7 @@
   when:
     - item.restart_mode is defined
 
-- name: assert | Test if restart_seconds in service_list is set correctly
+- name: assert | Test restart_seconds in service_list
   ansible.builtin.assert:
     that:
       - item.seconds is number
@@ -71,7 +71,7 @@
   when:
     - item.seconds is defined
 
-- name: assert | Test if state in service_list is set correctly
+- name: assert | Test state in service_list
   ansible.builtin.assert:
     that:
       - item.state is string
@@ -83,7 +83,7 @@
   when:
     - item.state is defined
 
-- name: assert | Test if enabled in service_list is set correctly
+- name: assert | Test enabled in service_list
   ansible.builtin.assert:
     that:
       - item.enabled is boolean

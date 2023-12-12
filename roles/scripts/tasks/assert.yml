@@ -1,13 +1,13 @@
 ---
 
-- name: assert | Test if scripts_shell is set correctly
+- name: assert | Test scripts_shell
   ansible.builtin.assert:
     that:
       - scripts_shell is defined
       - scripts_shell in [ "/bin/sh", "/bin/bash" ]
     quiet: yes
 
-- name: assert | Test if scripts is set correctly
+- name: assert | Test scripts
   ansible.builtin.assert:
     that:
       - scripts is iterable
@@ -15,7 +15,7 @@
   when:
     - scripts is defined
 
-- name: assert | Test if item.name in scripts is set correctly
+- name: assert | Test item.name in scripts
   ansible.builtin.assert:
     that:
       - item.name is defined
@@ -26,7 +26,7 @@
   loop_control:
     label: "{{ item.name }}"
 
-- name: assert | Test if item.directory in scripts is set correctly
+- name: assert | Test item.directory in scripts
   ansible.builtin.assert:
     that:
       - item.directory is defined
@@ -37,7 +37,7 @@
   loop_control:
     label: "{{ item.directory }}"
 
-- name: assert | Test if item.lines in scripts is set correctly
+- name: assert | Test item.lines in scripts
   ansible.builtin.assert:
     that:
       - item.lines is defined
@@ -48,7 +48,7 @@
   loop_control:
     label: "{{ item.lines }}"
 
-- name: assert | Test if item.sleep in scripts is set correctly
+- name: assert | Test item.sleep in scripts
   ansible.builtin.assert:
     that:
       - item.sleep is number

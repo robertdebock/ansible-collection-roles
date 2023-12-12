@@ -1,6 +1,6 @@
 ---
 
-- name: assert | Test if systemd_default_target is set correctly
+- name: assert | Test systemd_default_target
   ansible.builtin.assert:
     that:
       - systemd_default_target is defined
@@ -8,7 +8,7 @@
       - systemd_default_target in [ "multi-user.target", "graphical.target", "rescue.target" ]
     quiet: yes
 
-- name: assert | Test if systemd_coredump is set correctly
+- name: assert | Test systemd_coredump
   ansible.builtin.assert:
     that:
       - systemd_coredump is iterable
@@ -16,7 +16,7 @@
   when:
     - systemd_coredump is defined
 
-- name: assert | Test if item in systemd_coredump is set correctly
+- name: assert | Test item in systemd_coredump
   ansible.builtin.assert:
     that:
       - item.option is defined
@@ -28,7 +28,7 @@
   when:
     - systemd_coredump is defined
 
-- name: assert | Test if systemd_journald is set correctly
+- name: assert | Test systemd_journald
   ansible.builtin.assert:
     that:
       - systemd_journald is iterable
@@ -36,7 +36,7 @@
   when:
     - systemd_journald is defined
 
-- name: assert | Test if item in systemd_journald is set correctly
+- name: assert | Test item in systemd_journald
   ansible.builtin.assert:
     that:
       - item.option is defined
@@ -48,7 +48,7 @@
   when:
     - systemd_journald is defined
 
-- name: assert | Test if systemd_logind is set correctly
+- name: assert | Test systemd_logind
   ansible.builtin.assert:
     that:
       - systemd_logind is iterable
@@ -56,7 +56,7 @@
   when:
     - systemd_logind is defined
 
-- name: assert | Test if item in systemd_logind is set correctly
+- name: assert | Test item in systemd_logind
   ansible.builtin.assert:
     that:
       - item.option is defined
@@ -68,7 +68,7 @@
   when:
     - systemd_logind is defined
 
-- name: assert | Test if systemd_resolved is set correctly
+- name: assert | Test systemd_resolved
   ansible.builtin.assert:
     that:
       - systemd_resolved is iterable
@@ -76,7 +76,7 @@
   when:
     - systemd_resolved is defined
 
-- name: assert | Test if item in systemd_resolved is set correctly
+- name: assert | Test item in systemd_resolved
   ansible.builtin.assert:
     that:
       - item.option is defined
@@ -88,7 +88,7 @@
   when:
     - systemd_resolved is defined
 
-- name: assert | Test if systemd_system is set correctly
+- name: assert | Test systemd_system
   ansible.builtin.assert:
     that:
       - systemd_system is iterable
@@ -96,7 +96,7 @@
   when:
     - systemd_system is defined
 
-- name: assert | Test if item in systemd_system is set correctly
+- name: assert | Test item in systemd_system
   ansible.builtin.assert:
     that:
       - item.option is defined
@@ -108,7 +108,7 @@
   when:
     - systemd_system is defined
 
-- name: assert | Test if systemd_user is set correctly
+- name: assert | Test systemd_user
   ansible.builtin.assert:
     that:
       - systemd_user is iterable
@@ -116,7 +116,7 @@
   when:
     - systemd_user is defined
 
-- name: assert | Test if item in systemd_user is set correctly
+- name: assert | Test item in systemd_user
   ansible.builtin.assert:
     that:
       - item.option is defined

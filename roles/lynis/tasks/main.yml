@@ -2,7 +2,8 @@
 # tasks file for lynis
 
 - name: Import assert.yml
-  ansible.builtin.import_tasks: assert.yml
+  ansible.builtin.import_tasks:
+    file: assert.yml
   run_once: yes
   delegate_to: localhost
 
@@ -18,7 +19,7 @@
 
 - name: Audit system
   ansible.builtin.shell:
-    cmd: "set -o pipefail ; {{ lynis_destination }}/lynis audit system | tee -a {{ lynis_output }}"
+    cmd: "set -o pipefail && {{ lynis_destination }}/lynis audit system | tee -a {{ lynis_output }}"
     creates: "{{ lynis_output }}"
     chdir: "{{ lynis_destination }}"
     executable: /bin/bash

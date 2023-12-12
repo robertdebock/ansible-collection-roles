@@ -1,6 +1,6 @@
 ---
 
-- name: assert | Test if common_hostname is set correctly
+- name: assert | Test common_hostname
   ansible.builtin.assert:
     that:
       - common_hostname is defined
@@ -8,7 +8,7 @@
       - common_hostname is not none
     quiet: yes
 
-- name: assert | Test if common_nameservers is set correctly
+- name: assert | Test common_nameservers
   ansible.builtin.assert:
     that:
       - common_nameservers is iterable
@@ -16,14 +16,14 @@
   when:
     - common_nameservers is defined
 
-- name: assert | Test if common_hosts is set correctly
+- name: assert | Test common_hosts
   ansible.builtin.assert:
     that:
       - common_hosts is defined
       - common_hosts is iterable
     quiet: yes
 
-- name: assert | Test if common_reboot is set correctly
+- name: assert | Test common_reboot
   ansible.builtin.assert:
     that:
       - common_reboot is defined

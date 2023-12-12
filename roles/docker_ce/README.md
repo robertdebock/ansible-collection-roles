@@ -1,10 +1,10 @@
-# [docker_ce](#docker_ce)
+# [Ansible role docker_ce](#docker_ce)
 
 Install and configure Docker CE on your system.
 
-|GitHub|GitLab|Quality|Downloads|Version|
-|------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-docker_ce/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-docker_ce/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-docker_ce/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-docker_ce)|[![quality](https://img.shields.io/ansible/quality/37728)](https://galaxy.ansible.com/robertdebock/docker_ce)|[![downloads](https://img.shields.io/ansible/role/d/37728)](https://galaxy.ansible.com/robertdebock/docker_ce)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-docker_ce.svg)](https://github.com/robertdebock/ansible-role-docker_ce/releases/)|
+|GitHub|GitLab|Downloads|Version|
+|------|------|---------|-------|
+|[![github](https://github.com/robertdebock/ansible-role-docker_ce/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-docker_ce/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-docker_ce/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-docker_ce)|[![downloads](https://img.shields.io/ansible/role/d/24480)](https://galaxy.ansible.com/robertdebock/docker_ce)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-docker_ce.svg)](https://github.com/robertdebock/ansible-role-docker_ce/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -97,10 +97,10 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|[Debian](https://hub.docker.com/repository/docker/robertdebock/debian/general)|bullseye|
-|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|8, 9|
-|[Fedora](https://hub.docker.com/repository/docker/robertdebock/fedora/general)|all|
-|[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|all|
+|[Debian](https://hub.docker.com/r/robertdebock/debian)|bullseye|
+|[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|8, 9|
+|[Fedora](https://hub.docker.com/r/robertdebock/fedora/)|all|
+|[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|all|
 
 The minimum version of Ansible required is 2.12, tests have been done to:
 
@@ -108,7 +108,7 @@ The minimum version of Ansible required is 2.12, tests have been done to:
 - The current version.
 - The development version.
 
-If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-docker_ce/issues)
+If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-docker_ce/issues).
 
 ## [License](#license)
 

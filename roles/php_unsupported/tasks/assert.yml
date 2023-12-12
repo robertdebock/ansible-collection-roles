@@ -1,6 +1,6 @@
 ---
 
-- name: assert | Test if php_version is set correctly
+- name: assert | Test php_version
   ansible.builtin.assert:
     that:
       - php_version is defined
@@ -8,7 +8,7 @@
       - php_version in [ "5.6", "7.0", "7.1", "7.2", "7.3", "7.4", "8.0", "8.1", "8.2" ]
     quiet: yes
 
-- name: assert | Test if php_packages is set correctly
+- name: assert | Test php_packages
   ansible.builtin.assert:
     that:
       - php_packages is defined

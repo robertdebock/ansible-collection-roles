@@ -1,20 +1,20 @@
 ---
 
-- name: assert | Test if clamav_can_scan_system is set correctly
+- name: assert | Test clamav_can_scan_system
   ansible.builtin.assert:
     that:
       - clamav_can_scan_system is defined
       - clamav_can_scan_system is boolean
     quiet: yes
 
-- name: assert | Test if clamav_configuration is set correctly
+- name: assert | Test clamav_configuration
   ansible.builtin.assert:
     that:
       - clamav_configuration is defined
       - clamav_configuration is iterable
     quiet: yes
 
-- name: assert | Test if item in clamav_configuration is set correctly
+- name: assert | Test item in clamav_configuration
   ansible.builtin.assert:
     that:
       - item.line is defined
@@ -27,7 +27,7 @@
   when:
     - clamav_configuration is defined
 
-- name: assert | Test if item.state in clamav_configuration is set correctly
+- name: assert | Test item.state in clamav_configuration
   ansible.builtin.assert:
     that:
       - item.state is string
@@ -39,3 +39,11 @@
   when:
     - clamav_configuration is defined
     - item.state is defined
+
+- name: assert | Test freshclam_private_mirrors
+  ansible.builtin.assert:
+    that:
+      - freshclam_private_mirrors is iterable
+    quiet: yes
+  when:
+    - freshclam_private_mirrors is defined

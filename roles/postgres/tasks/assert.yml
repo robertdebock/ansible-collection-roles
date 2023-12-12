@@ -1,6 +1,6 @@
 ---
 
-- name: assert | Test if postgres_port is set correctly
+- name: assert | Test postgres_port
   ansible.builtin.assert:
     that:
       - postgres_port is defined
@@ -9,7 +9,7 @@
       - postgres_port < 65536
     quiet: yes
 
-- name: assert | Test if postgres_listen_addresses is set correctly
+- name: assert | Test postgres_listen_addresses
   ansible.builtin.assert:
     that:
       - postgres_listen_addresses is defined
@@ -17,7 +17,7 @@
       - postgres_listen_addresses is not none
     quiet: yes
 
-- name: assert | Test if postgres_max_wal_size is set correctly
+- name: assert | Test postgres_max_wal_size
   ansible.builtin.assert:
     that:
       - postgres_max_wal_size is defined
@@ -25,7 +25,7 @@
       - postgres_max_wal_size is not none
     quiet: yes
 
-- name: assert | Test if postgres_min_wal_size is set correctly
+- name: assert | Test postgres_min_wal_size
   ansible.builtin.assert:
     that:
       - postgres_min_wal_size is defined
@@ -33,7 +33,7 @@
       - postgres_min_wal_size is not none
     quiet: yes
 
-- name: assert | Test if postgres_log_timezone is set correctly
+- name: assert | Test postgres_log_timezone
   ansible.builtin.assert:
     that:
       - postgres_log_timezone is defined
@@ -44,7 +44,7 @@
   vars:
     postgres_acceptable_timezones: ["ACSST", "ACST", "ACT", "ADT", "AESST", "AEST", "AFT", "AKDT", "AKST", "ALMST", "ALMT", "AMST", "AMT", "ANAST", "ANAT", "ARST", "ART", "AST", "AWSST", "AWST", "AZOST", "AZOT", "AZST", "AZT", "BDST", "BDT", "BNT", "BORT", "BOT", "BRA", "BRST", "BRT", "BST", "BTT", "CADT", "CAST", "CCT", "CDT", "CEST", "CET", "CETDST", "CHADT", "CHAST", "CHUT", "CKT", "CLST", "CLT", "COT", "CST", "CXT", "DAVT", "DDUT", "EASST", "EAST", "EAT", "EDT", "EEST", "EET", "EETDST", "EGST", "EGT", "EST", "FET", "FJST", "FJT", "FKST", "FKT", "FNST", "FNT", "GALT", "GAMT", "GEST", "GET", "GFT", "GILT", "GMT", "GYT", "HKT", "HST", "ICT", "IDT", "IOT", "IRKST", "IRKT", "IRT", "IST", "JAYT", "JST", "KDT", "KGST", "KGT", "KOST", "KRAST", "KRAT", "KST", "LHDT", "LHST", "LIGT", "LINT", "LKT", "MAGST", "MAGT", "MART", "MAWT", "MDT", "MEST", "MET", "METDST", "MEZ", "MHT", "MMT", "MPT", "MSD", "MSK", "MST", "MUST", "MUT", "MVT", "MYT", "NDT", "NFT", "NOVST", "NOVT", "NPT", "NST", "NUT", "NZDT", "NZST", "NZT", "OMSST", "OMST", "PDT", "PET", "PETST", "PETT", "PGT", "PHOT", "PHT", "PKST", "PKT", "PMDT", "PMST", "PONT", "PST", "PWT", "PYST", "PYT", "RET", "SADT", "SAST", "SCT", "SGT", "TAHT", "TFT", "TJT", "TKT", "TMT", "TOT", "TRUT", "TVT", "UCT", "ULAST", "ULAT", "UT", "UTC", "UYST", "UYT", "UZST", "UZT", "VET", "VLAST", "VLAT", "VOLT", "VUT", "WADT", "WAKT", "WAST", "WAT", "WDT", "WET", "WETDST", "WFT", "WGST", "WGT", "YAKST", "YAKT", "YAPT", "YEKST", "YEKT", "Z", "ZULU"]
 
-- name: assert | Test if postgres_datestyle is set correctly
+- name: assert | Test postgres_datestyle
   ansible.builtin.assert:
     that:
       - postgres_datestyle is defined
@@ -52,7 +52,7 @@
       - postgres_datestyle is not none
     quiet: yes
 
-- name: assert | Test if postgres_timezone is set correctly
+- name: assert | Test postgres_timezone
   ansible.builtin.assert:
     that:
       - postgres_timezone is defined
@@ -62,21 +62,21 @@
   vars:
     postgres_acceptable_timezones: ["ACSST", "ACST", "ACT", "ADT", "AESST", "AEST", "AFT", "AKDT", "AKST", "ALMST", "ALMT", "AMST", "AMT", "ANAST", "ANAT", "ARST", "ART", "AST", "AWSST", "AWST", "AZOST", "AZOT", "AZST", "AZT", "BDST", "BDT", "BNT", "BORT", "BOT", "BRA", "BRST", "BRT", "BST", "BTT", "CADT", "CAST", "CCT", "CDT", "CEST", "CET", "CETDST", "CHADT", "CHAST", "CHUT", "CKT", "CLST", "CLT", "COT", "CST", "CXT", "DAVT", "DDUT", "EASST", "EAST", "EAT", "EDT", "EEST", "EET", "EETDST", "EGST", "EGT", "EST", "FET", "FJST", "FJT", "FKST", "FKT", "FNST", "FNT", "GALT", "GAMT", "GEST", "GET", "GFT", "GILT", "GMT", "GYT", "HKT", "HST", "ICT", "IDT", "IOT", "IRKST", "IRKT", "IRT", "IST", "JAYT", "JST", "KDT", "KGST", "KGT", "KOST", "KRAST", "KRAT", "KST", "LHDT", "LHST", "LIGT", "LINT", "LKT", "MAGST", "MAGT", "MART", "MAWT", "MDT", "MEST", "MET", "METDST", "MEZ", "MHT", "MMT", "MPT", "MSD", "MSK", "MST", "MUST", "MUT", "MVT", "MYT", "NDT", "NFT", "NOVST", "NOVT", "NPT", "NST", "NUT", "NZDT", "NZST", "NZT", "OMSST", "OMST", "PDT", "PET", "PETST", "PETT", "PGT", "PHOT", "PHT", "PKST", "PKT", "PMDT", "PMST", "PONT", "PST", "PWT", "PYST", "PYT", "RET", "SADT", "SAST", "SCT", "SGT", "TAHT", "TFT", "TJT", "TKT", "TMT", "TOT", "TRUT", "TVT", "UCT", "ULAST", "ULAT", "UT", "UTC", "UYST", "UYT", "UZST", "UZT", "VET", "VLAST", "VLAT", "VOLT", "VUT", "WADT", "WAKT", "WAST", "WAT", "WDT", "WET", "WETDST", "WFT", "WGST", "WGT", "YAKST", "YAKT", "YAPT", "YEKST", "YEKT", "Z", "ZULU"]
 
-- name: assert | Test if postgres_default_text_search_config is set correctly
+- name: assert | Test postgres_default_text_search_config
   ansible.builtin.assert:
     that:
       - postgres_default_text_search_config is defined
       - postgres_default_text_search_config is string
     quiet: yes
 
-- name: assert | Test if postgres_hba_entries is set correctly
+- name: assert | Test postgres_hba_entries
   ansible.builtin.assert:
     that:
       - postgres_hba_entries is defined
       - postgres_hba_entries is iterable
     quiet: yes
 
-- name: assert | Test if postgres_databases is set correctly
+- name: assert | Test postgres_databases
   ansible.builtin.assert:
     that:
       - postgres_databases is iterable
@@ -84,7 +84,7 @@
   when:
     - postgres_databases is defined
 
-- name: assert | Test if item.conn_limit in postgres_databases is set correctly
+- name: assert | Test item.conn_limit in postgres_databases
   ansible.builtin.assert:
     that:
       - item.conn_limit is number
@@ -97,7 +97,7 @@
     - postgres_databases is defined
     - item.conn_limit is defined
 
-- name: assert | Test if item.trust_input in postgres_databases is set correctly
+- name: assert | Test item.trust_input in postgres_databases
   ansible.builtin.assert:
     that:
       - item.trust_input is boolean
@@ -109,7 +109,7 @@
     - postgres_databases is defined
     - item.trust_input is defined
 
-- name: assert | Test if item.state in postgres_databases is set correctly
+- name: assert | Test item.state in postgres_databases
   ansible.builtin.assert:
     that:
       - item.state is string

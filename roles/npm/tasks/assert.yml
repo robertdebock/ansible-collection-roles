@@ -1,6 +1,6 @@
 ---
 
-- name: assert | Test if npm_registry is set correctly
+- name: assert | Test npm_registry
   ansible.builtin.assert:
     that:
       - npm_registry is defined

@@ -21,7 +21,6 @@ _bareos_repository_url:
     RedHat: "{{ bareos_repository_base_url }}/{{ bareos_repository_release }}/{{ bareos_repository_version }}/EL_{{ ansible_distribution_major_version }}"
     Suse: "{{ bareos_repository_base_url }}/{{ bareos_repository_release }}/{{ bareos_repository_version }}/SUSE_{{ ansible_distribution_major_version }}"
     Ubuntu: "{{ bareos_repository_base_url }}/{{ bareos_repository_release }}/{{ bareos_repository_version }}/xUbuntu_{{ ansible_distribution_version }}"
-
 bareos_repository_url: "{{ _bareos_repository_url[bareos_repository_type][ansible_distribution] | default(_bareos_repository_url[bareos_repository_type][ansible_os_family] | default(_bareos_repository_url[bareos_repository_type]['default'])) }}"
 
 # Debian and RedHat use a different structure.

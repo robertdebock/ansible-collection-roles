@@ -1,6 +1,6 @@
 ---
 
-- name: assert | Test if java_vendor is set correctly
+- name: assert | Test java_vendor
   ansible.builtin.assert:
     that:
       - java_vendor is defined
@@ -8,7 +8,7 @@
       - java_vendor in [ "openjdk", "oracle" ]
     quiet: yes
 
-- name: assert | Test if java_type is set correctly
+- name: assert | Test java_type
   ansible.builtin.assert:
     that:
       - java_type is defined
@@ -16,24 +16,24 @@
       - java_type in [ "jre", "jdk" ]
     quiet: yes
 
-- name: assert | Test if java_version is set correctly
+- name: assert | Test java_version
   ansible.builtin.assert:
     that:
-      - java_version is number
-      - java_version | int in [ 6, 7, 8, 9, 10, 11, 12, 13, 17, 19 ]
+      - java_version | int is number
+      - java_version | int in [ 6, 7, 8, 9, 10, 11, 12, 13, 17, 19, 20, 21 ]
     quiet: yes
   when:
     - java_version is defined
 
-- name: assert | Test if java_format is set correctly
+- name: assert | Test java_format
   ansible.builtin.assert:
     that:
       - java_format is defined
       - java_format is string
-      - java_format in [ "rpm", "targz" ]
+      - java_format in [ "deb", "rpm", "targz" ]
     quiet: yes
 
-- name: assert | Test if java_rpm_source is set correctly
+- name: assert | Test java_rpm_source
   ansible.builtin.assert:
     that:
       - java_rpm_source is defined
@@ -44,7 +44,7 @@
     - java_vendor == "oracle"
     - java_format == "rpm"
 
-- name: assert | Test if java_jce is set correctly
+- name: assert | Test java_jce
   ansible.builtin.assert:
     that:
       - java_jce is defined
@@ -54,7 +54,7 @@
     - java_vendor == "oracle"
     - java_version == 8
 
-- name: assert | Test if java_install_directory is set correctly
+- name: assert | Test java_install_directory
   ansible.builtin.assert:
     that:
       - java_install_directory is defined

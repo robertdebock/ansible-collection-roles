@@ -1,0 +1,13 @@
+---
+
+argument_specs:
+  main:
+    short_description: "Add or remove options from existing mountpoints."
+    description: >
+      Add or remove options from existing mountpoints.
+    author: Robert de Bock
+    options:
+      mount_options:
+        type: "list"
+        default: []
+        description: "A list of mountpoints and their options to add or remove."

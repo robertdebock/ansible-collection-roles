@@ -1,10 +1,10 @@
-# [glusterfs](#glusterfs)
+# [Ansible role glusterfs](#glusterfs)
 
 Install and configure glusterfs on your system.
 
-|GitHub|GitLab|Quality|Downloads|Version|
-|------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-glusterfs/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-glusterfs/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-glusterfs/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-glusterfs)|[![quality](https://img.shields.io/ansible/quality/29310)](https://galaxy.ansible.com/robertdebock/glusterfs)|[![downloads](https://img.shields.io/ansible/role/d/29310)](https://galaxy.ansible.com/robertdebock/glusterfs)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-glusterfs.svg)](https://github.com/robertdebock/ansible-role-glusterfs/releases/)|
+|GitHub|GitLab|Downloads|Version|
+|------|------|---------|-------|
+|[![github](https://github.com/robertdebock/ansible-role-glusterfs/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-glusterfs/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-glusterfs/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-glusterfs)|[![downloads](https://img.shields.io/ansible/role/d/24504)](https://galaxy.ansible.com/robertdebock/glusterfs)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-glusterfs.svg)](https://github.com/robertdebock/ansible-role-glusterfs/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -88,9 +88,9 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|[Debian](https://hub.docker.com/repository/docker/robertdebock/debian/general)|bullseye|
-|[Fedora](https://hub.docker.com/repository/docker/robertdebock/fedora/general)|all|
-|[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|all|
+|[Debian](https://hub.docker.com/r/robertdebock/debian)|bullseye|
+|[Fedora](https://hub.docker.com/r/robertdebock/fedora/)|all|
+|[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|all|
 
 The minimum version of Ansible required is 2.12, tests have been done to:
 
@@ -98,7 +98,7 @@ The minimum version of Ansible required is 2.12, tests have been done to:
 - The current version.
 - The development version.
 
-If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-glusterfs/issues)
+If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-glusterfs/issues).
 
 ## [License](#license)
 

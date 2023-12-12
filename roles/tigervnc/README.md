@@ -1,10 +1,10 @@
-# [tigervnc](#tigervnc)
+# [Ansible role tigervnc](#tigervnc)
 
 Install and configure tigervnc on your system.
 
-|GitHub|GitLab|Quality|Downloads|Version|
-|------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-tigervnc/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-tigervnc/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-tigervnc/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-tigervnc)|[![quality](https://img.shields.io/ansible/quality/46981)](https://galaxy.ansible.com/robertdebock/tigervnc)|[![downloads](https://img.shields.io/ansible/role/d/46981)](https://galaxy.ansible.com/robertdebock/tigervnc)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-tigervnc.svg)](https://github.com/robertdebock/ansible-role-tigervnc/releases/)|
+|GitHub|GitLab|Downloads|Version|
+|------|------|---------|-------|
+|[![github](https://github.com/robertdebock/ansible-role-tigervnc/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-tigervnc/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-tigervnc/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-tigervnc)|[![downloads](https://img.shields.io/ansible/role/d/24606)](https://galaxy.ansible.com/robertdebock/tigervnc)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-tigervnc.svg)](https://github.com/robertdebock/ansible-role-tigervnc/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -35,9 +35,9 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
     - role: robertdebock.roles.core_dependencies
     - role: robertdebock.roles.gnome
     - role: robertdebock.roles.users
-      users_group_list:
+      users_groups:
         - name: vncgroup
-      users_user_list:
+      users:
         - name: vncuser
           sudo_options: "ALL=(ALL) NOPASSWD: ALL"
           group: vncgroup
@@ -98,8 +98,8 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|8, 9|
-|[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|bionic, focal|
+|[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|8, 9|
+|[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|bionic, focal|
 
 The minimum version of Ansible required is 2.12, tests have been done to:
 
@@ -107,7 +107,7 @@ The minimum version of Ansible required is 2.12, tests have been done to:
 - The current version.
 - The development version.
 
-If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-tigervnc/issues)
+If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-tigervnc/issues).
 
 ## [License](#license)
 

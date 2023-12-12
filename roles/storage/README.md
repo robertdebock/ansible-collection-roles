@@ -1,10 +1,10 @@
-# [storage](#storage)
+# [Ansible role storage](#storage)
 
 Create partitions, volume groups, volumes, filesystems and mounts
 
-|GitHub|GitLab|Quality|Downloads|Version|
-|------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-storage/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-storage/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-storage/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-storage)|[![quality](https://img.shields.io/ansible/quality/38205)](https://galaxy.ansible.com/robertdebock/storage)|[![downloads](https://img.shields.io/ansible/role/d/38205)](https://galaxy.ansible.com/robertdebock/storage)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-storage.svg)](https://github.com/robertdebock/ansible-role-storage/releases/)|
+|GitHub|GitLab|Downloads|Version|
+|------|------|---------|-------|
+|[![github](https://github.com/robertdebock/ansible-role-storage/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-storage/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-storage/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-storage)|[![downloads](https://img.shields.io/ansible/role/d/24594)](https://galaxy.ansible.com/robertdebock/storage)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-storage.svg)](https://github.com/robertdebock/ansible-role-storage/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -17,8 +17,47 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
   become: yes
   gather_facts: yes
 
+  pre_tasks:
+    # For testing in containers, a loopback device is created in `prepare.yml`.
+    # The device created in `prepare.yml` is picked up here.
+    # Normally you would point to /dev/sd*.
+    - name: Read loop device from disk
+      ansible.builtin.slurp:
+        src: /loopback-devicename.txt
+      register: loopback_devicename
+
   roles:
     - role: robertdebock.roles.storage
+      # Partitioning a loopback device is not supported by parted.
+      # storage_partitions:
+      #   - name: "{{ loopback_devicename.content | b64decode }}"
+      #     number: 1
+      #     part_end: 100%
+      #     label: gpt
+      storage_volumegroups:
+        - name: data
+          devices:
+            - "{{ loopback_devicename.content | b64decode }}"
+          size: 4
+      storage_volumes:
+        - name: test1
+          vg: data
+          size: 1G
+          opts: --zero n
+      storage_filesystems:
+        - name: /dev/data/test1
+          fstype: xfs
+      # Mounting is not idempotent for:
+      # - debian:bullseye
+      # - ubuntu:focal
+      # - ubuntu:bionic
+      # storage_mounts:
+      #   - name: /mnt/test
+      #     src: /dev/data/test1
+      #     fstype: xfs
+      #     owner: root
+      #     group: root
+      #     mode: "0755"
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-storage/blob/master/molecule/default/prepare.yml):
@@ -29,10 +68,79 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
   hosts: all
   become: yes
   gather_facts: no
-  serial: 30%
 
   roles:
     - role: robertdebock.roles.bootstrap
+
+  tasks:
+    # These are "cleanup" tasks, to make sure the test is run in a non-biased environment.
+    - name: Unmount /mnt/test
+      ansible.posix.mount:
+        path: /mnt/test
+        state: absent
+
+    - name: Install lvm2
+      ansible.builtin.package:
+        name: lvm2
+
+    - name: Remove lv
+      community.general.lvol:
+        vg: data
+        lv: test1
+        state: absent
+        force: yes
+
+    - name: Remove all loop devices
+      ansible.builtin.command:
+        cmd: losetup -D
+      changed_when: yes
+      when:
+        - ansible_distribution != "Alpine"
+
+    - name: Remove loop_device on Alpine
+      when:
+        - ansible_distribution == "Alpine"
+      block:
+        - name: Find loop devices
+          ansible.builtin.command:
+            cmd: losetup -a
+          register: loop_devices
+          changed_when: no
+
+        - name: Remove loop device
+          ansible.builtin.command:
+            cmd: "losetup -d {{ item | split(':') | first }}"
+          changed_when: yes
+          loop: "{{ loop_devices.stdout_lines }}"
+
+    # Since we're in a container, let's create a file.
+    # Normally you would not require this, as `/dev/sd*` (or so) would be used.
+    - name: Create a 4GB file
+      community.general.filesize:
+        path: /blockdevice.img
+        size: 4G
+        owner: root
+        group: root
+        mode: "0644"
+
+    - name: Find first unused loop device
+      ansible.builtin.command:
+        cmd: losetup -f
+      register: loop_device
+      changed_when: no
+
+    - name: Store loop device on disk
+      ansible.builtin.copy:
+        content: "{{ loop_device.stdout }}"
+        dest: /loopback-devicename.txt
+        owner: root
+        group: root
+        mode: "0644"
+
+    - name: Create loop device
+      ansible.builtin.command:
+        cmd: losetup {{ loop_device.stdout }} /blockdevice.img
+      changed_when: yes
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.
@@ -51,6 +159,7 @@ storage_default_fstype: ext4
 #   - name: /dev/sdb
 #     number: 1
 #     part_end: 4GiB
+#     label: gpt
 #   - name: /dev/sdb
 #     number: 2
 #     flags:
@@ -58,7 +167,6 @@ storage_default_fstype: ext4
 #     part_start: 4GiB
 #     part_end: 8GiB
 
-# The `size` is the physical extend size.
 # storage_volumegroups:
 #   - name: group1
 #     devices:
@@ -69,7 +177,6 @@ storage_default_fstype: ext4
 #       - /dev/sdb2
 #     size: 128M
 
-# Sizes in megabytes.
 # storage_volumes:
 #   - name: var1
 #     vg: group1
@@ -116,13 +223,13 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|[Alpine](https://hub.docker.com/repository/docker/robertdebock/alpine/general)|all|
-|[Amazon](https://hub.docker.com/repository/docker/robertdebock/amazonlinux/general)|Candidate|
-|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|8, 9|
-|[Debian](https://hub.docker.com/repository/docker/robertdebock/debian/general)|all|
-|[Fedora](https://hub.docker.com/repository/docker/robertdebock/fedora/general)|all|
-|[opensuse](https://hub.docker.com/repository/docker/robertdebock/opensuse/general)|all|
-|[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|all|
+|[Alpine](https://hub.docker.com/r/robertdebock/alpine)|all|
+|[Amazon](https://hub.docker.com/r/robertdebock/amazonlinux)|Candidate|
+|[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|8, 9|
+|[Debian](https://hub.docker.com/r/robertdebock/debian)|all|
+|[Fedora](https://hub.docker.com/r/robertdebock/fedora/)|all|
+|[opensuse](https://hub.docker.com/r/robertdebock/opensuse)|all|
+|[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|all|
 
 The minimum version of Ansible required is 2.12, tests have been done to:
 
@@ -130,7 +237,7 @@ The minimum version of Ansible required is 2.12, tests have been done to:
 - The current version.
 - The development version.
 
-If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-storage/issues)
+If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-storage/issues).
 
 ## [License](#license)
 

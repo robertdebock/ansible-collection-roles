@@ -5,26 +5,29 @@
 _bareos_fd_encryption_packages:
   default:
     - python3-cryptography
-  RedHat:
-    "7":
-      - python2-cryptography
-bareos_fd_encryption_packages: "{{ _bareos_fd_encryption_packages[ansible_os_family][ansible_distribution_major_version] | default(_bareos_fd_encryption_packages['default']) }}"
+  Archlinux:
+    - python-cryptography
+  RedHat-7:
+    - python2-cryptography
+bareos_fd_encryption_packages: "{{ _bareos_fd_encryption_packages[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_bareos_fd_encryption_packages[ansible_os_family]) | default(_bareos_fd_encryption_packages['default']) }}"
 
 # A map to define the service name to manage.
 _bareos_fd_service:
-  default: "bareos-filedaemon"
-  Archlinux: "bareos-fd"
+  default: bareos-filedaemon
+  Archlinux: bareos-fd
 bareos_fd_service: "{{ _bareos_fd_service[ansible_os_family] | default(_bareos_fd_service['default']) }}"
 
 # A map to define the packages to install for debugging.
 _bareos_fd_debug_packages:
   default:
-    - "bareos-filedaemon-debuginfo"
+    - bareos-filedaemon-debuginfo
     - gdb
+  Archlinux:
+    - bareos-devel
   Debian:
-    - "bareos-dbg"
+    - bareos-dbg
     - gdb
   RedHat-7:
-    - "bareos-debuginfo"
+    - bareos-debuginfo
     - gdb
 bareos_fd_debug_packages: "{{ _bareos_fd_debug_packages[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_bareos_fd_debug_packages[ansible_os_family]) | default(_bareos_fd_debug_packages['default']) }}"

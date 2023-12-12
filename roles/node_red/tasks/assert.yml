@@ -1,6 +1,6 @@
 ---
 
-- name: assert | Test if node_red_working_directory is set correctly
+- name: assert | Test node_red_working_directory
   ansible.builtin.assert:
     that:
       - node_red_working_directory is defined
@@ -8,7 +8,7 @@
       - node_red_working_directory is not none
     quiet: yes
 
-- name: assert | Test if node_red_user_name is set correctly
+- name: assert | Test node_red_user_name
   ansible.builtin.assert:
     that:
       - node_red_user_name is defined
@@ -16,7 +16,7 @@
       - node_red_user_name is not none
     quiet: yes
 
-- name: assert | Test if node_red_group_name is set correctly
+- name: assert | Test node_red_group_name
   ansible.builtin.assert:
     that:
       - node_red_group_name is defined

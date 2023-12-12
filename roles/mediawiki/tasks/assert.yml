@@ -1,27 +1,27 @@
 ---
 
-- name: assert | Test if mediawiki_major is set correctly
+- name: assert | Test mediawiki_major
   ansible.builtin.assert:
     that:
       - mediawiki_major is defined
       - mediawiki_major is number
     quiet: yes
 
-- name: assert | Test if mediawiki_minor is set correctly
+- name: assert | Test mediawiki_minor
   ansible.builtin.assert:
     that:
       - mediawiki_minor is defined
       - mediawiki_minor is number
     quiet: yes
 
-- name: assert | Test if mediawiki_release is set correctly
+- name: assert | Test mediawiki_release
   ansible.builtin.assert:
     that:
       - mediawiki_release is defined
       - mediawiki_release is number
     quiet: yes
 
-- name: assert | Test if mediawiki_version is set correctly
+- name: assert | Test mediawiki_version
   ansible.builtin.assert:
     that:
       - mediawiki_version is defined
@@ -29,7 +29,7 @@
       - mediawiki_version is not none
     quiet: yes
 
-- name: assert | Test if mediawiki_destination is set correctly
+- name: assert | Test mediawiki_destination
   ansible.builtin.assert:
     that:
       - mediawiki_destination is defined

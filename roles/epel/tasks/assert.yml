@@ -1,6 +1,6 @@
 ---
 
-- name: assert | Ensure that `epel_next` is set correctly.
+- name: assert | Ensure that `epel_next`.
   ansible.builtin.assert:
     quiet: yes
     that:

@@ -1,10 +1,10 @@
-# [gitlab](#gitlab)
+# [Ansible role gitlab](#gitlab)
 
 Install and configure GitLab on your system.
 
-|GitHub|GitLab|Quality|Downloads|Version|
-|------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-gitlab/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-gitlab/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-gitlab/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-gitlab)|[![quality](https://img.shields.io/ansible/quality/57338)](https://galaxy.ansible.com/robertdebock/gitlab)|[![downloads](https://img.shields.io/ansible/role/d/57338)](https://galaxy.ansible.com/robertdebock/gitlab)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-gitlab.svg)](https://github.com/robertdebock/ansible-role-gitlab/releases/)|
+|GitHub|GitLab|Downloads|Version|
+|------|------|---------|-------|
+|[![github](https://github.com/robertdebock/ansible-role-gitlab/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-gitlab/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-gitlab/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-gitlab)|[![downloads](https://img.shields.io/ansible/role/d/24502)](https://galaxy.ansible.com/robertdebock/gitlab)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-gitlab.svg)](https://github.com/robertdebock/ansible-role-gitlab/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -210,7 +210,7 @@ gitlab_rails_smtp_enable_starttls_auto: yes
 gitlab_rails_smtp_tls: no
 gitlab_rails_smtp_pool: no
 gitlab_rails_smtp_openssl_verify_mode: none
-gitlab_rails_smtp_ca_path: etc/ssl/certs
+gitlab_rails_smtp_ca_path: /etc/ssl/certs
 gitlab_rails_smtp_ca_file: /etc/ssl/certs/ca-certificates.crt
 
 # E-mail settings.
@@ -368,7 +368,7 @@ gitlab_rails_db_statements_limit: 1000
 
 # SSL settings
 # # If you do not want to use SSL, use this structure.
-gitlab_letsencrypt: yes
+# gitlab_letsencrypt: no
 # gitlab_external_url: "http://gitlab.example.com" # (No `https` in the value.)
 # # If you bring your own certificates, use this structure.
 # gitlab_letsencrypt: no
@@ -379,6 +379,8 @@ gitlab_letsencrypt: yes
 # gitlab_letsencrypt: yes
 # gitlab_letsencrypt_contact_emails:
 #   - robert@meinit.nl
+# gitlab_acme_staging_endpoint: https://ca.internal/acme/acme/directory
+# gitlab_acme_production_endpoint: https://ca.internal/acme/acme/directory
 # gitlab_letsencrypt_group: root
 # gitlab_letsencrypt_key_size: 2048
 # gitlab_letsencrypt_owner: root
@@ -387,7 +389,7 @@ gitlab_letsencrypt: yes
 # gitlab_letsencrypt_auto_renew_hour: 0
 # gitlab_letsencrypt_auto_renew_minute: nil
 # gitlab_letsencrypt_auto_renew_day_of_month: nil
-# gitlab_letsencrypy_auto_renew_log_directory: /var/log/gitlab/lets-encrypt
+# gitlab_letsencrypt_auto_renew_log_directory: /var/log/gitlab/lets-encrypt
 
 # In case you need to trust a (CA) certificate to access remote resources,
 # like an LDAP server, download the (CA) certificate, place it in the `files`
@@ -422,8 +424,8 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|all|
-|[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|focal|
+|[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|all|
+|[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|focal|
 
 The minimum version of Ansible required is 2.12, tests have been done to:
 
@@ -431,7 +433,7 @@ The minimum version of Ansible required is 2.12, tests have been done to:
 - The current version.
 - The development version.
 
-If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-gitlab/issues)
+If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-gitlab/issues).
 
 ## [License](#license)
 

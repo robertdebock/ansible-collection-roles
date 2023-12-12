@@ -1,10 +1,10 @@
-# [sosreport](#sosreport)
+# [Ansible role sosreport](#sosreport)
 
 Install, run and collect sosreports from your systems.
 
-|GitHub|GitLab|Quality|Downloads|Version|
-|------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-sosreport/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-sosreport/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-sosreport/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-sosreport)|[![quality](https://img.shields.io/ansible/quality/38477)](https://galaxy.ansible.com/robertdebock/sosreport)|[![downloads](https://img.shields.io/ansible/role/d/38477)](https://galaxy.ansible.com/robertdebock/sosreport)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-sosreport.svg)](https://github.com/robertdebock/ansible-role-sosreport/releases/)|
+|GitHub|GitLab|Downloads|Version|
+|------|------|---------|-------|
+|[![github](https://github.com/robertdebock/ansible-role-sosreport/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-sosreport/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-sosreport/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-sosreport)|[![downloads](https://img.shields.io/ansible/role/d/24591)](https://galaxy.ansible.com/robertdebock/sosreport)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-sosreport.svg)](https://github.com/robertdebock/ansible-role-sosreport/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -77,8 +77,8 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|8, 9|
-|[Fedora](https://hub.docker.com/repository/docker/robertdebock/fedora/general)|all|
+|[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|8, 9|
+|[Fedora](https://hub.docker.com/r/robertdebock/fedora/)|all|
 
 The minimum version of Ansible required is 2.12, tests have been done to:
 
@@ -86,7 +86,7 @@ The minimum version of Ansible required is 2.12, tests have been done to:
 - The current version.
 - The development version.
 
-If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-sosreport/issues)
+If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-sosreport/issues).
 
 ## [License](#license)
 

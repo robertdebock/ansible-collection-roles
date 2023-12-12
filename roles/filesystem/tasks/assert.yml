@@ -2,7 +2,7 @@
 
 - name: assert | Warn if filesytem_default_filesystem is set incorrectly
   block:
-    - name: assert | Test if filesytem_default_filesystem is set correctly
+    - name: assert | Test filesytem_default_filesystem
       ansible.builtin.assert:
         that:
           - filesytem_default_filesystem is defined
@@ -14,14 +14,14 @@
       ansible.builtin.debug:
         msg: "The filesystem you are using can be unknown, proceeding."
 
-- name: assert | Test if filesystem_list is set correctly
+- name: assert | Test filesystem_list
   ansible.builtin.assert:
     that:
       - filesystem_list is defined
       - filesystem_list is iterable
     quiet: yes
 
-- name: assert | Test if item.dev in filesystem_list is set correctly
+- name: assert | Test item.dev in filesystem_list
   ansible.builtin.assert:
     that:
       - item.dev is defined
@@ -32,7 +32,7 @@
   loop_control:
     label: "{{ item.dev }}"
 
-- name: assert | Test if item.force in filesystem_list is set correctly
+- name: assert | Test item.force in filesystem_list
   ansible.builtin.assert:
     that:
       - item.force is boolean
@@ -43,7 +43,7 @@
   when:
     - item.force is defined
 
-- name: assert | Test if item.fstype in filesystem_list is set correctly
+- name: assert | Test item.fstype in filesystem_list
   ansible.builtin.assert:
     that:
       - item.fstype is string
@@ -55,7 +55,7 @@
   when:
     - item.fstype is defined
 
-- name: assert | Test if item.state in filesystem_list is set correctly
+- name: assert | Test item.state in filesystem_list
   ansible.builtin.assert:
     that:
       - item.state is string
@@ -67,7 +67,7 @@
   when:
     - item.state is defined
 
-- name: assert | Test if item.opts in filesystem_list is set correctly
+- name: assert | Test item.opts in filesystem_list
   ansible.builtin.assert:
     that:
       - item.opts is string
@@ -79,7 +79,7 @@
   when:
     - item.opts is defined
 
-- name: assert | Test if item.resizefs in filesystem_list is set correctly
+- name: assert | Test item.resizefs in filesystem_list
   ansible.builtin.assert:
     that:
       - item.resizefs is boolean
@@ -90,7 +90,7 @@
   when:
     - item.resizefs is defined
 
-- name: assert | Test if item.resizefs and item.fstype in filesystem_list is set correctly
+- name: assert | Test item.resizefs and item.fstype in filesystem_list
   ansible.builtin.assert:
     that:
       - item.fstype in [ "ext2", "ext3", "ext4", "ext4dev", "f2fs", "lvm", "swap", "vfat", "xfs" ]

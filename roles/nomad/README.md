@@ -1,10 +1,10 @@
-# [nomad](#nomad)
+# [Ansible role nomad](#nomad)
 
 Install and configure Nomad.
 
-|GitHub|GitLab|Quality|Downloads|Version|
-|------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-nomad/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-nomad/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-nomad/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-nomad)|[![quality](https://img.shields.io/ansible/quality/51615)](https://galaxy.ansible.com/robertdebock/nomad)|[![downloads](https://img.shields.io/ansible/role/d/51615)](https://galaxy.ansible.com/robertdebock/nomad)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-nomad.svg)](https://github.com/robertdebock/ansible-role-nomad/releases/)|
+|GitHub|GitLab|Downloads|Version|
+|------|------|---------|-------|
+|[![github](https://github.com/robertdebock/ansible-role-nomad/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-nomad/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-nomad/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-nomad)|[![downloads](https://img.shields.io/ansible/role/d/24552)](https://galaxy.ansible.com/robertdebock/nomad)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-nomad.svg)](https://github.com/robertdebock/ansible-role-nomad/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -101,10 +101,10 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|8, 9|
-|[Debian](https://hub.docker.com/repository/docker/robertdebock/debian/general)|bullseye|
-|[Fedora](https://hub.docker.com/repository/docker/robertdebock/fedora/general)|37, 38|
-|[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|all|
+|[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|8, 9|
+|[Debian](https://hub.docker.com/r/robertdebock/debian)|bullseye|
+|[Fedora](https://hub.docker.com/r/robertdebock/fedora/)|37, 38|
+|[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|all|
 
 The minimum version of Ansible required is 2.12, tests have been done to:
 
@@ -112,7 +112,7 @@ The minimum version of Ansible required is 2.12, tests have been done to:
 - The current version.
 - The development version.
 
-If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-nomad/issues)
+If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-nomad/issues).
 
 ## [License](#license)
 

@@ -1,6 +1,6 @@
 ---
 
-- name: assert | Test if jitsi_release is set correctly
+- name: assert | Test jitsi_release
   ansible.builtin.assert:
     that:
       - jitsi_release is defined
@@ -8,14 +8,14 @@
       - jitsi_release in [ "stable", "testing", "nightly" ]
     quiet: yes
 
-- name: assert | Test if jitsi_settings is set correctly
+- name: assert | Test jitsi_settings
   ansible.builtin.assert:
     that:
       - jitsi_settings is defined
       - jitsi_settings is iterable
     quiet: yes
 
-- name: assert | Test if item in jitsi_settings is set correctly
+- name: assert | Test item in jitsi_settings
   ansible.builtin.assert:
     that:
       - item.name is defined

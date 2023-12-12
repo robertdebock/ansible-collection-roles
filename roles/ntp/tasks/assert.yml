@@ -1,27 +1,27 @@
 ---
 
-- name: assert | Test if ntp_state is set correctly
+- name: assert | Test ntp_state
   ansible.builtin.assert:
     that:
       - ntp_state is defined
       - ntp_state in [ "started", "stopped" ]
     quiet: yes
 
-- name: assert | Test if ntp_enabled is set correctly
+- name: assert | Test ntp_enabled
   ansible.builtin.assert:
     that:
       - ntp_enabled is defined
       - ntp_enabled is boolean
     quiet: yes
 
-- name: assert | Test if ntp_interfaces is set correctly
+- name: assert | Test ntp_interfaces
   ansible.builtin.assert:
     that:
       - ntp_interfaces is defined
       - ntp_interfaces is iterable
     quiet: yes
 
-- name: assert | Test if item in ntp_interfaces is set correctly
+- name: assert | Test item in ntp_interfaces
   ansible.builtin.assert:
     that:
       - item.address is defined
@@ -32,14 +32,14 @@
   loop_control:
     label: "{{ item.address }}"
 
-- name: assert | Test if ntp_pool is set correctly
+- name: assert | Test ntp_pool
   ansible.builtin.assert:
     that:
       - ntp_pool is defined
       - ntp_pool is iterable
     quiet: yes
 
-- name: assert | Test if item in ntp_pool is set correctly
+- name: assert | Test item in ntp_pool
   ansible.builtin.assert:
     that:
       - item.name is defined
@@ -50,7 +50,7 @@
   loop_control:
     label: "{{ item.name }}"
 
-- name: assert | Test if ntp_server is set correctly
+- name: assert | Test ntp_server
   ansible.builtin.assert:
     that:
       - ntp_server is iterable
@@ -58,7 +58,7 @@
   when:
     - ntp_server is defined
 
-- name: assert | Test if item in ntp_server is set correctly
+- name: assert | Test item in ntp_server
   ansible.builtin.assert:
     that:
       - item.name is defined
@@ -68,7 +68,7 @@
   when:
     - ntp_server is defined
 
-- name: assert | Test if ntp_timezone is set correctly
+- name: assert | Test ntp_timezone
   ansible.builtin.assert:
     that:
       - ntp_timezone is defined

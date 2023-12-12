@@ -2,7 +2,8 @@
 # tasks file for php
 
 - name: Import assert.yml
-  ansible.builtin.import_tasks: assert.yml
+  ansible.builtin.import_tasks:
+    file: assert.yml
   run_once: yes
   delegate_to: localhost
 
@@ -12,7 +13,7 @@
 
 - name: Find used php.ini
   ansible.builtin.shell:
-    cmd: set -o pipefail & {{ php_ini_command }}
+    cmd: "set -o pipefail && {{ php_ini_command }}"
   register: php_found_ini_location
   changed_when: no
   when:

@@ -2,7 +2,8 @@
 # tasks file for zabbix_server
 
 - name: Import assert.yml
-  ansible.builtin.import_tasks: assert.yml
+  ansible.builtin.import_tasks:
+    file: assert.yml
   run_once: yes
   delegate_to: localhost
 
@@ -20,8 +21,8 @@
 
 - name: Unarchive zabbix schema
   ansible.builtin.command:
-    cmd: gunzip {{ zabbix_server_docdir }}/zabbix-sql-scripts/mysql/create.sql.gz
-    creates: "{{ zabbix_server_docdir }}/zabbix-sql-scripts/mysql/create.sql"
+    cmd: gunzip {{ zabbix_server_docdir }}/zabbix-sql-scripts/mysql/server.sql.gz
+    creates: "{{ zabbix_server_docdir }}/zabbix-sql-scripts/mysql/server.sql"
   notify:
     - Import zabbix schema
     - Restart zabbix_server

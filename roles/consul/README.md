@@ -1,10 +1,10 @@
-# [consul](#consul)
+# [Ansible role consul](#consul)
 
 Install and configure consul on your system.
 
-|GitHub|GitLab|Quality|Downloads|Version|
-|------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-consul/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-consul/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-consul/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-consul)|[![quality](https://img.shields.io/ansible/quality/54812)](https://galaxy.ansible.com/robertdebock/consul)|[![downloads](https://img.shields.io/ansible/role/d/54812)](https://galaxy.ansible.com/robertdebock/consul)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-consul.svg)](https://github.com/robertdebock/ansible-role-consul/releases/)|
+|GitHub|GitLab|Downloads|Version|
+|------|------|---------|-------|
+|[![github](https://github.com/robertdebock/ansible-role-consul/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-consul/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-consul/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-consul)|[![downloads](https://img.shields.io/ansible/role/d/24465)](https://galaxy.ansible.com/robertdebock/consul)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-consul.svg)](https://github.com/robertdebock/ansible-role-consul/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -127,11 +127,11 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|[Amazon](https://hub.docker.com/repository/docker/robertdebock/amazonlinux/general)|Candidate|
-|[Debian](https://hub.docker.com/repository/docker/robertdebock/debian/general)|bullseye|
-|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|all|
-|[Fedora](https://hub.docker.com/repository/docker/robertdebock/fedora/general)|37, 38|
-|[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|all|
+|[Amazon](https://hub.docker.com/r/robertdebock/amazonlinux)|Candidate|
+|[Debian](https://hub.docker.com/r/robertdebock/debian)|bullseye|
+|[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|all|
+|[Fedora](https://hub.docker.com/r/robertdebock/fedora/)|37, 38|
+|[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|all|
 
 The minimum version of Ansible required is 2.12, tests have been done to:
 
@@ -139,7 +139,7 @@ The minimum version of Ansible required is 2.12, tests have been done to:
 - The current version.
 - The development version.
 
-If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-consul/issues)
+If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-consul/issues).
 
 ## [License](#license)
 

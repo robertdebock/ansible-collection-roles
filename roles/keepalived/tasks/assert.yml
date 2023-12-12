@@ -1,13 +1,13 @@
 ---
 
-- name: assert | Test if keepalived_vrrp_instances is set correctly
+- name: assert | Test keepalived_vrrp_instances
   ansible.builtin.assert:
     that:
       - keepalived_vrrp_instances is defined
       - keepalived_vrrp_instances is iterable
     quiet: yes
 
-- name: assert | Test if item in keepalived_vrrp_instances is set correctly
+- name: assert | Test item in keepalived_vrrp_instances
   ansible.builtin.assert:
     that:
       - item.name is defined

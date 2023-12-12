@@ -1,10 +1,10 @@
-# [vault_snapshot](#vault_snapshot)
+# [Ansible role vault_snapshot](#vault_snapshot)
 
 Configure vault_snapshot on Vault.
 
-|GitHub|GitLab|Quality|Downloads|Version|
-|------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-vault_snapshot/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-vault_snapshot/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-vault_snapshot/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-vault_snapshot)|[![quality](https://img.shields.io/ansible/quality/61570)](https://galaxy.ansible.com/robertdebock/vault_snapshot)|[![downloads](https://img.shields.io/ansible/role/d/61570)](https://galaxy.ansible.com/robertdebock/vault_snapshot)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-vault_snapshot.svg)](https://github.com/robertdebock/ansible-role-vault_snapshot/releases/)|
+|GitHub|GitLab|Downloads|Version|
+|------|------|---------|-------|
+|[![github](https://github.com/robertdebock/ansible-role-vault_snapshot/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-vault_snapshot/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-vault_snapshot/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-vault_snapshot)|[![downloads](https://img.shields.io/ansible/role/d/24627)](https://galaxy.ansible.com/robertdebock/vault_snapshot)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-vault_snapshot.svg)](https://github.com/robertdebock/ansible-role-vault_snapshot/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -132,6 +132,9 @@ vault_snapshot_token: "simple"
 
 # A list of snapshots to configure. Please have look in `molecule/default/converge.yml` for a complete example.
 vault_snapshot_schedules: []
+
+# Should SSL certificate verification be disabled?
+vault_snapshot_ssl_verify: yes
 ```
 
 ## [Requirements](#requirements)
@@ -163,11 +166,11 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|[Amazon](https://hub.docker.com/repository/docker/robertdebock/amazonlinux/general)|Candidate|
-|[Debian](https://hub.docker.com/repository/docker/robertdebock/debian/general)|all|
-|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|all|
-|[Fedora](https://hub.docker.com/repository/docker/robertdebock/fedora/general)|37, 38|
-|[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|all|
+|[Amazon](https://hub.docker.com/r/robertdebock/amazonlinux)|Candidate|
+|[Debian](https://hub.docker.com/r/robertdebock/debian)|all|
+|[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|all|
+|[Fedora](https://hub.docker.com/r/robertdebock/fedora/)|37, 38|
+|[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|all|
 
 The minimum version of Ansible required is 2.12, tests have been done to:
 
@@ -175,7 +178,7 @@ The minimum version of Ansible required is 2.12, tests have been done to:
 - The current version.
 - The development version.
 
-If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-vault_snapshot/issues)
+If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-vault_snapshot/issues).
 
 ## [License](#license)
 

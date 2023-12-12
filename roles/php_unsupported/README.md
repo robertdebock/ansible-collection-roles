@@ -1,10 +1,10 @@
-# [php_unsupported](#php_unsupported)
+# [Ansible role php_unsupported](#php_unsupported)
 
 Install an unsupported version of php on your system.
 
-|GitHub|GitLab|Quality|Downloads|Version|
-|------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-php_unsupported/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-php_unsupported/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-php_unsupported/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-php_unsupported)|[![quality](https://img.shields.io/ansible/quality/62900)](https://galaxy.ansible.com/robertdebock/php_unsupported)|[![downloads](https://img.shields.io/ansible/role/d/62900)](https://galaxy.ansible.com/robertdebock/php_unsupported)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-php_unsupported.svg)](https://github.com/robertdebock/ansible-role-php_unsupported/releases/)|
+|GitHub|GitLab|Downloads|Version|
+|------|------|---------|-------|
+|[![github](https://github.com/robertdebock/ansible-role-php_unsupported/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-php_unsupported/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-php_unsupported/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-php_unsupported)|[![downloads](https://img.shields.io/ansible/role/d/32283)](https://galaxy.ansible.com/robertdebock/php_unsupported)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-php_unsupported.svg)](https://github.com/robertdebock/ansible-role-php_unsupported/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -93,7 +93,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|jammy, focal|
+|[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|jammy, focal|
 
 The minimum version of Ansible required is 2.12, tests have been done to:
 
@@ -101,7 +101,7 @@ The minimum version of Ansible required is 2.12, tests have been done to:
 - The current version.
 - The development version.
 
-If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-php_unsupported/issues)
+If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-php_unsupported/issues).
 
 ## [License](#license)
 

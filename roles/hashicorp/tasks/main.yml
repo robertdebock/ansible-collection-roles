@@ -2,7 +2,8 @@
 # tasks file for hashicorp
 
 - name: Import assert.yml
-  ansible.builtin.import_tasks: assert.yml
+  ansible.builtin.import_tasks:
+    file: assert.yml
   run_once: yes
   delegate_to: localhost
 
@@ -22,6 +23,10 @@
       when:
         - ansible_os_family == "Debian"
       block:
+        - name: Install required package gpg
+          ansible.builtin.package:
+            name: gpg
+
         - name: Install apt key for Debian
           ansible.builtin.apt_key:
             url: "https://apt.releases.hashicorp.com/gpg"

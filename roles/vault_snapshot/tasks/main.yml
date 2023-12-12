@@ -1,8 +1,9 @@
 ---
 # tasks file for vault_snapshot
 
-- name: Include assert.yml
-  ansible.builtin.import_tasks: assert.yml
+- name: Import assert.yml
+  ansible.builtin.import_tasks:
+    file: assert.yml
   run_once: yes
   delegate_to: localhost
 
@@ -15,6 +16,7 @@
     status_code:
       - 404  # If no snapshots are configured, a `404`` is returned.
       - 200
+    validate_certs: "{{ vault_snapshot_ssl_verify }}"
   register: vault_snapshot_list
   run_once: yes
   changed_when: no
@@ -39,6 +41,7 @@
       azure_container_name: "{{ item.azure_container_name | default(omit) }}"
       azure_account_name: "{{ item.azure_account_name | default(omit) }}"
       azure_account_key: "{{ item.azure_account_key | default(omit) }}"
+    validate_certs: "{{ vault_snapshot_ssl_verify }}"
     body_format: json
     status_code: 204
   loop: "{{ vault_snapshot_schedules }}"

@@ -1,13 +1,13 @@
 ---
 
-- name: assert | Test if haproxy_stats is set correctly
+- name: assert | Test haproxy_stats
   ansible.builtin.assert:
     that:
       - haproxy_stats is defined
       - haproxy_stats is boolean
     quiet: yes
 
-- name: assert | Test if haproxy_stats_port is set correctly
+- name: assert | Test haproxy_stats_port
   ansible.builtin.assert:
     that:
       - haproxy_stats_port is defined
@@ -16,7 +16,7 @@
       - haproxy_stats_port < 65536
     quiet: yes
 
-- name: assert | Test if haproxy_stats_bind_addr is set correctly
+- name: assert | Test haproxy_stats_bind_addr
   ansible.builtin.assert:
     that:
       - haproxy_stats_bind_addr is defined
@@ -24,7 +24,7 @@
       - haproxy_stats_bind_addr is not none
     quiet: yes
 
-- name: assert | Test if haproxy_retries is set correctly
+- name: assert | Test haproxy_retries
   ansible.builtin.assert:
     that:
       - haproxy_retries is defined
@@ -32,7 +32,7 @@
       - haproxy_retries >= 0
     quiet: yes
 
-- name: assert | Test if timeouts are set correctly
+- name: assert | Test timeouts are set correctly
   ansible.builtin.assert:
     that:
       - item is defined
@@ -47,7 +47,7 @@
     - "{{ haproxy_timeout_http_keep_alive }}"
     - "{{ haproxy_timeout_check }}"
 
-- name: assert | Test if haproxy_maxconn is set correctly
+- name: assert | Test haproxy_maxconn
   ansible.builtin.assert:
     that:
       - haproxy_maxconn is defined
@@ -55,14 +55,14 @@
       - haproxy_maxconn > 0
     quiet: yes
 
-- name: assert | Test if haproxy_frontends is set correctly
+- name: assert | Test haproxy_frontends
   ansible.builtin.assert:
     that:
       - haproxy_frontends is defined
       - haproxy_frontends is iterable
     quiet: yes
 
-- name: assert | Test if item in haproxy_frontends is set correctly
+- name: assert | Test item in haproxy_frontends
   ansible.builtin.assert:
     that:
       - item.name is defined
@@ -83,7 +83,7 @@
   loop_control:
     label: "{{ item.name }}"
 
-- name: assert | Test if item in haproxy_frontends with ssl is set correctly
+- name: assert | Test item in haproxy_frontends with ssl
   ansible.builtin.assert:
     that:
       - item.ssl is boolean
@@ -96,7 +96,7 @@
   when:
     - item.ssl is defined
 
-- name: assert | Test if optional item haproxy_frontends is set correctly
+- name: assert | Test optional item haproxy_frontends
   ansible.builtin.assert:
     that:
       - item.mode is string
@@ -108,14 +108,14 @@
   when:
     - item.mode is defined
 
-- name: assert | Test if haproxy_backends is set correctly
+- name: assert | Test haproxy_backends
   ansible.builtin.assert:
     that:
       - haproxy_backends is defined
       - haproxy_backends is iterable
     quiet: yes
 
-- name: assert | Test if haproxy_backend_default_balance is set correctly
+- name: assert | Test haproxy_backend_default_balance
   ansible.builtin.assert:
     that:
       - haproxy_backend_default_balance is defined
@@ -123,7 +123,7 @@
       - haproxy_backend_default_balance in [ "roundrobin", "static-rr", "leastconn", "first", "source", "uri", "url_param", "hdr", "rdp-cookie" ]
     quiet: yes
 
-- name: assert | Test if item in haproxy_backends is set correctly
+- name: assert | Test item in haproxy_backends
   ansible.builtin.assert:
     that:
       - item.name is defined
@@ -145,7 +145,7 @@
   loop_control:
     label: "{{ item.name }}"
 
-- name: assert | Test if optional item haproxy_backends is set correctly
+- name: assert | Test optional item haproxy_backends
   ansible.builtin.assert:
     that:
       - item.mode is string
@@ -157,10 +157,11 @@
   when:
     - item.mode is defined
 
-- name: assert | Test if httpcheck item in haproxy_backends is set correctly
+- name: assert | Test httpcheck item in haproxy_backends
   ansible.builtin.assert:
     that:
       - item.httpcheck is boolean
+        or item.httpcheck is string
     quiet: yes
   loop: "{{ haproxy_backends }}"
   loop_control:
@@ -168,7 +169,7 @@
   when:
     - item.httpcheck is defined
 
-- name: assert | Test if httpcheck_method item in haproxy_backends is set correctly
+- name: assert | Test httpcheck_method item in haproxy_backends
   ansible.builtin.assert:
     that:
       - item.httpcheck_method is string
@@ -181,7 +182,7 @@
   when:
     - item.httpcheck_method is defined
 
-- name: assert | Test if http_check item in haproxy_backends is set correctly
+- name: assert | Test http_check item in haproxy_backends
   ansible.builtin.assert:
     that:
       - item.http_check is mapping
@@ -192,7 +193,7 @@
   when:
     - item.http_check is defined
 
-- name: assert | Test if http_check.send item in haproxy_backends is set correctly
+- name: assert | Test http_check.send item in haproxy_backends
   ansible.builtin.assert:
     that:
       - item.http_check.send is mapping
@@ -207,7 +208,7 @@
   when:
     - item.http_check.send is defined
 
-- name: assert | Test if http_check.expect item in haproxy_backends is set correctly
+- name: assert | Test http_check.expect item in haproxy_backends
   ansible.builtin.assert:
     that:
       - item.http_check.expect is string
@@ -219,14 +220,14 @@
   when:
     - item.http_check.expect is defined
 
-- name: assert | Test if haproxy_listens is set correctly
+- name: assert | Test haproxy_listens
   ansible.builtin.assert:
     that:
       - haproxy_listens is defined
       - haproxy_listens is iterable
     quiet: yes
 
-- name: assert | Test if item in haproxy_listens is set correctly
+- name: assert | Test item in haproxy_listens
   ansible.builtin.assert:
     that:
       - item.name is defined
@@ -254,7 +255,7 @@
   loop_control:
     label: "{{ item.name }}"
 
-- name: assert | Test if item in haproxy_listens with ssl is set correctly
+- name: assert | Test item in haproxy_listens with ssl
   ansible.builtin.assert:
     that:
       - item.ssl is boolean
@@ -267,7 +268,7 @@
   when:
     - item.ssl is defined
 
-- name: assert | Test if optional item haproxy_listens is set correctly
+- name: assert | Test optional item haproxy_listens
   ansible.builtin.assert:
     that:
       - item.mode is string
@@ -279,7 +280,7 @@
   when:
     - item.mode is defined
 
-- name: assert | Test if haproxy_listen_default_balance is set correctly
+- name: assert | Test haproxy_listen_default_balance
   ansible.builtin.assert:
     that:
       - haproxy_listen_default_balance is defined
@@ -287,7 +288,7 @@
       - haproxy_listen_default_balance in [ "roundrobin", "static-rr", "leastconn", "first", "source", "uri", "url_param", "hdr", "rdp-cookie" ]
     quiet: yes
 
-- name: assert | Test if httpcheck item in haproxy_listens is set correctly
+- name: assert | Test httpcheck item in haproxy_listens
   ansible.builtin.assert:
     that:
       - item.httpcheck is boolean

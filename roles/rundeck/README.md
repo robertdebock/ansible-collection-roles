@@ -1,10 +1,10 @@
-# [rundeck](#rundeck)
+# [Ansible role rundeck](#rundeck)
 
 Install and configure rundeck on your system.
 
-|GitHub|GitLab|Quality|Downloads|Version|
-|------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-rundeck/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-rundeck/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-rundeck/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-rundeck)|[![quality](https://img.shields.io/ansible/quality/22886)](https://galaxy.ansible.com/robertdebock/rundeck)|[![downloads](https://img.shields.io/ansible/role/d/22886)](https://galaxy.ansible.com/robertdebock/rundeck)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-rundeck.svg)](https://github.com/robertdebock/ansible-role-rundeck/releases/)|
+|GitHub|GitLab|Downloads|Version|
+|------|------|---------|-------|
+|[![github](https://github.com/robertdebock/ansible-role-rundeck/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-rundeck/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-rundeck/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-rundeck)|[![downloads](https://img.shields.io/ansible/role/d/24584)](https://galaxy.ansible.com/robertdebock/rundeck)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-rundeck.svg)](https://github.com/robertdebock/ansible-role-rundeck/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -30,6 +30,13 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
   become: yes
   gather_facts: no
 
+  vars:
+    _java_version:
+      default: 11
+      Debian-12: 17
+      Ubuntu-22: 17
+    java_version: "{{ _java_version[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_java_version['default']) }}"
+
   roles:
     - role: robertdebock.roles.bootstrap
     - role: robertdebock.roles.java
@@ -47,8 +54,8 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 # defaults file for rundeck
 
 # Rundeck version to install
-rundeck_version: "4.15.0"
-rundeck_release_date: 20230725
+rundeck_version: "4.17.3"
+rundeck_release_date: 20231113
 
 # Where to install rundeck.
 rundeck_rdeckbase: /opt/rundeck
@@ -157,11 +164,11 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|8, 9|
-|[Debian](https://hub.docker.com/repository/docker/robertdebock/debian/general)|all|
-|[Fedora](https://hub.docker.com/repository/docker/robertdebock/fedora/general)|all|
-|[opensuse](https://hub.docker.com/repository/docker/robertdebock/opensuse/general)|all|
-|[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|all|
+|[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|8, 9|
+|[Debian](https://hub.docker.com/r/robertdebock/debian)|all|
+|[Fedora](https://hub.docker.com/r/robertdebock/fedora/)|all|
+|[opensuse](https://hub.docker.com/r/robertdebock/opensuse)|all|
+|[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|all|
 
 The minimum version of Ansible required is 2.12, tests have been done to:
 
@@ -169,7 +176,7 @@ The minimum version of Ansible required is 2.12, tests have been done to:
 - The current version.
 - The development version.
 
-If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-rundeck/issues)
+If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-rundeck/issues).
 
 ## [License](#license)
 

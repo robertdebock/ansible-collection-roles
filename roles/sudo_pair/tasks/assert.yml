@@ -1,6 +1,6 @@
 ---
 
-- name: assert | Test if sudo_pair_version is set correctly
+- name: assert | Test sudo_pair_version
   ansible.builtin.assert:
     that:
       - sudo_pair_version is defined
@@ -8,7 +8,7 @@
       - sudo_pair_version is not none
     quiet: yes
 
-- name: assert | Test if sudo_pair_gids_exempted is set correctly
+- name: assert | Test sudo_pair_gids_exempted
   ansible.builtin.assert:
     that:
       - sudo_pair_gids_exempted is iterable
@@ -16,7 +16,7 @@
   when:
     - sudo_pair_gids_exempted is defined
 
-- name: assert | Test if item in sudo_pair_gids_exempted is set correctly
+- name: assert | Test item in sudo_pair_gids_exempted
   ansible.builtin.assert:
     that:
       - item is defined
@@ -27,7 +27,7 @@
   when:
     - sudo_pair_gids_exempted is defined
 
-- name: assert | Test if sudo_pair_gids_enforced is set correctly
+- name: assert | Test sudo_pair_gids_enforced
   ansible.builtin.assert:
     that:
       - sudo_pair_gids_enforced is iterable
@@ -35,7 +35,7 @@
   when:
     - sudo_pair_gids_enforced is defined
 
-- name: assert | Test if item in sudo_pair_gids_enforced is set correctly
+- name: assert | Test item in sudo_pair_gids_enforced
   ansible.builtin.assert:
     that:
       - item is defined

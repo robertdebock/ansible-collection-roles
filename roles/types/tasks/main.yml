@@ -2,7 +2,8 @@
 # tasks file for types
 
 - name: Import assert.yml
-  ansible.builtin.import_tasks: assert.yml
+  ansible.builtin.import_tasks:
+    file: assert.yml
   run_once: yes
   delegate_to: localhost
 
@@ -63,3 +64,14 @@
     that:
       - types_map is mapping
     quiet: yes
+
+- name: Show list of lists
+  ansible.builtin.debug:
+    msg: "{{ types_lists }} is type {{ types_lists | type_debug }}"
+
+- name: Test list of lists
+  ansible.builtin.assert:
+    that:
+      - item is list
+    quiet: yes
+  loop: "{{ types_lists }}"

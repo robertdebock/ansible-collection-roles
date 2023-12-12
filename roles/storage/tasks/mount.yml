@@ -15,7 +15,25 @@
     mode: "{{ mount.mode | default(omit) }}"
     state: directory
 
-- name: mount | Mount filesystems
+- name: mount | Add mount to fstab filesystem
+  ansible.posix.mount:
+    path: "{{ mount.name }}"
+    src: "{{ mount.src }}"
+    fstype: "{{ mount.fstype | default(storage_default_fstype) }}"
+    opts: "{{ mount.opts | default(omit) }}"
+    boot: "{{ mount.boot | default(omit) }}"
+    dump: "{{ mount.dump | default(omit) }}"
+    passno: "{{ mount.passno | default(omit) }}"
+    state: present
+
+- name: mount | Reload systemd
+  ansible.builtin.command:
+    cmd: systemctl daemon-reload  # noqa: command-instead-of-module
+  changed_when: no
+  when:
+    - ansible_service_mgr == "systemd"
+
+- name: mount | Mount filessytem
   ansible.posix.mount:
     path: "{{ mount.name }}"
     src: "{{ mount.src }}"
@@ -26,5 +44,4 @@
     passno: "{{ mount.passno | default(omit) }}"
     state: mounted
   notify:
-    - Reload systemd
     - Refresh facts

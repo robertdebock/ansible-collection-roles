@@ -12,3 +12,24 @@ mysql_innodb_buffer_pool_size: 1G
 
 # The io capacity.
 mysql_innodb_io_capacity: 4000
+
+# You can set the mysql(d) options here.
+# As this is a list, it's difficult to merge with another list.
+# This means you'd have to redefine the entire list and append
+# your options to it.
+mysql_configuration_options:
+  - option: bind-address
+    section: mysqld
+    value: "{{ mysql_bind_address }}"
+  - option: socket
+    section: mysqld
+    value: "{{ mysql_socket }}"
+  - section: mysqld
+    option: innodb_buffer_pool_size
+    value: "{{ mysql_innodb_buffer_pool_size }}"
+  - section: mysqld
+    option: innodb_io_capacity
+    value: "{{ mysql_innodb_io_capacity }}"
+  - section: mysqld
+    option: log-bin-trust-function-creators
+    value: "1"

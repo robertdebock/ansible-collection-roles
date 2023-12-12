@@ -1,6 +1,6 @@
 ---
 
-- name: assert | Test if maintenance_journalctl_vacuum is set correctly
+- name: assert | Test maintenance_journalctl_vacuum
   ansible.builtin.assert:
     that:
       - maintenance_journalctl_vacuum is defined
@@ -8,7 +8,7 @@
       - maintenance_journalctl_vacuum is not none
     quiet: yes
 
-- name: assert | Test if item in maintenance_files_to_empty is set correctly
+- name: assert | Test item in maintenance_files_to_empty
   ansible.builtin.assert:
     that:
       - item is defined

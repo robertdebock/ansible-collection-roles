@@ -1,6 +1,6 @@
 ---
 
-- name: assert | Test if eclipse_release is set correctly
+- name: assert | Test eclipse_release
   ansible.builtin.assert:
     that:
       - eclipse_release is defined
@@ -8,7 +8,7 @@
       - eclipse_release is not none
     quiet: yes
 
-- name: assert | Test if eclipse_release_version is set correctly
+- name: assert | Test eclipse_release_version
   ansible.builtin.assert:
     that:
       - eclipse_release_version is defined
@@ -16,7 +16,7 @@
       - eclipse_release_version in [ "R", "RC1", "M3", "M2", "M1" ]
     quiet: yes
 
-- name: assert | Test if eclipse_release_type is set correctly
+- name: assert | Test eclipse_release_type
   ansible.builtin.assert:
     that:
       - eclipse_release_type is defined
@@ -40,7 +40,7 @@
       - scout
       - testing
 
-- name: assert | Test if eclipse_plugins is set correctly
+- name: assert | Test eclipse_plugins
   ansible.builtin.assert:
     that:
       - eclipse_plugins is iterable
@@ -48,7 +48,7 @@
   when:
     - eclipse_plugins is defined
 
-- name: assert | Test if item in eclipse_plugins is set correctly
+- name: assert | Test item in eclipse_plugins
   ansible.builtin.assert:
     that:
       - item.name is defined
@@ -64,14 +64,14 @@
   when:
     - eclipse_plugins is defined
 
-- name: assert | Test if eclipse_link_paths is set correctly
+- name: assert | Test eclipse_link_paths
   ansible.builtin.assert:
     that:
       - eclipse_link_paths is defined
       - eclipse_link_paths is iterable
     quiet: yes
 
-- name: assert | Test if item in eclipse_link_paths is set correctly
+- name: assert | Test item in eclipse_link_paths
   ansible.builtin.assert:
     that:
       - item is defined
@@ -82,21 +82,21 @@
   when:
     - eclipse_link_paths | length > 0
 
-- name: assert | Test if eclipse_tmp_path is set correctly
+- name: assert | Test eclipse_tmp_path
   ansible.builtin.assert:
     that:
       - eclipse_tmp_path is defined
       - eclipse_tmp_path is iterable
     quiet: yes
 
-- name: assert | Test if eclipse_install_lombok is set correctly
+- name: assert | Test eclipse_install_lombok
   ansible.builtin.assert:
     that:
       - eclipse_install_lombok is defined
       - eclipse_install_lombok is boolean
     quiet: yes
 
-- name: assert | Test if eclipse_lombok_version is set correctly
+- name: assert | Test eclipse_lombok_version
   ansible.builtin.assert:
     that:
       - eclipse_lombok_version is defined
@@ -106,7 +106,7 @@
   when:
     - eclipse_install_lombok
 
-- name: assert | Test if eclipse_install_maven is set correctly
+- name: assert | Test eclipse_install_maven
   ansible.builtin.assert:
     that:
       - eclipse_install_maven is defined

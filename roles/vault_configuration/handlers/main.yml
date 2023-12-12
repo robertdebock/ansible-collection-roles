@@ -1,6 +1,15 @@
 ---
 # handlers file for vault_configuration
 
+- name: Reload systemd
+  ansible.builtin.systemd:
+    daemon_reload: yes
+
+- name: Reload Vault
+  ansible.builtin.service:
+    name: vault
+    state: reloaded
+
 - name: Restart Vault
   ansible.builtin.service:
     name: vault

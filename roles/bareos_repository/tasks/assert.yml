@@ -1,13 +1,13 @@
 ---
 
-- name: assert | Test if bareos_repository_type is set correctly
+- name: assert | Test bareos_repository_type
   ansible.builtin.assert:
     that:
       - bareos_repository_type is defined
       - bareos_repository_type in [ "community", "subscription" ]
     quiet: yes
 
-- name: assert | Test if bareos_repository_username is set correctly
+- name: assert | Test bareos_repository_username
   ansible.builtin.assert:
     that:
       - bareos_repository_username is defined
@@ -17,7 +17,7 @@
   when:
     - bareos_repository_type == "subscription"
 
-- name: assert | Test if bareos_repository_password is set correctly
+- name: assert | Test bareos_repository_password
   ansible.builtin.assert:
     that:
       - bareos_repository_password is defined
@@ -27,15 +27,14 @@
   when:
     - bareos_repository_type == "subscription"
 
-- name: assert | Test if bareos_repository_release is set correctly
+- name: assert | Test bareos_repository_release
   ansible.builtin.assert:
     that:
       - bareos_repository_release is defined
       - bareos_repository_release in [ "current", "next", "release" ]
     quiet: yes
 
-# bareos_repository_version
-- name: assert | Test if bareos_repository_version is set correctly
+- name: assert | Test bareos_repository_version
   ansible.builtin.assert:
     that:
       - bareos_repository_version is defined
@@ -45,7 +44,7 @@
   when:
     - bareos_repository_type == "subscription"
 
-- name: assert | Test if bareos_repository_enable_tracebacks is set correctly
+- name: assert | Test bareos_repository_enable_tracebacks
   ansible.builtin.assert:
     that:
       - bareos_repository_enable_tracebacks is defined

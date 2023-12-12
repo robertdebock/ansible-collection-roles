@@ -12,7 +12,7 @@ LogLevel warn
 
 # PreserveJobHistory specifies whether metadata is preserved after a job is
 # printed.
-PreserveJobHistory {{ cups_preserve_job_history }}
+PreserveJobHistory {{ cups_preserve_job_history | ternary('Yes', 'No') }}
 
 # Only listen for connections from the local machine.
 ServerAlias {{ cups_serveralias }}
@@ -20,14 +20,14 @@ Listen {{ cups_listen }}
 Listen /run/cups/cups.sock
 
 # Show shared printers on the local network.
-Browsing {{ cups_browsing }}
+Browsing {{ cups_browsing | ternary('On', 'Off') }}
 BrowseLocalProtocols dnssd
 
 # Default authentication type, when authentication is required...
 DefaultAuthType Basic
 
 # Web interface setting...
-WebInterface {{ cups_web_interface }}
+WebInterface {{ cups_web_interface | ternary('Yes', 'No') }}
 
 # Restrict access to the server...
 {% for location in cups_locations %}

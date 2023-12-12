@@ -1,6 +1,6 @@
 ---
 
-- name: assert | Test if dsvpn_version is set correctly
+- name: assert | Test dsvpn_version
   ansible.builtin.assert:
     that:
       - dsvpn_version is defined
@@ -8,7 +8,7 @@
       - dsvpn_version is not none
     quiet: yes
 
-- name: assert | Test if dsvpn_temporary_directory is set correctly
+- name: assert | Test dsvpn_temporary_directory
   ansible.builtin.assert:
     that:
       - dsvpn_temporary_directory is defined
@@ -16,7 +16,7 @@
       - dsvpn_temporary_directory is not none
     quiet: yes
 
-- name: assert | Test if dsvpn_install_directory is set correctly
+- name: assert | Test dsvpn_install_directory
   ansible.builtin.assert:
     that:
       - dsvpn_install_directory is defined
@@ -24,7 +24,7 @@
       - dsvpn_install_directory is not none
     quiet: yes
 
-- name: assert | Test if dsvpn_key_directory is set correctly
+- name: assert | Test dsvpn_key_directory
   ansible.builtin.assert:
     that:
       - dsvpn_key_directory is defined
@@ -32,7 +32,7 @@
       - dsvpn_key_directory is not none
     quiet: yes
 
-- name: assert | Test if dsvpn_role is set correctly
+- name: assert | Test dsvpn_role
   ansible.builtin.assert:
     that:
       - dsvpn_role is defined
@@ -40,7 +40,7 @@
       - dsvpn_role in [ "client", "server" ]
     quiet: yes
 
-- name: assert | Test if dsvpn_server is set correctly
+- name: assert | Test dsvpn_server
   ansible.builtin.assert:
     that:
       - dsvpn_server is defined

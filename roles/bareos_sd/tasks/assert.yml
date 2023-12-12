@@ -1,20 +1,20 @@
 ---
 
-- name: assert | Test if bareos_sd_backup_configurations is set correctly
+- name: assert | Test bareos_sd_backup_configurations
   ansible.builtin.assert:
     that:
       - bareos_sd_backup_configurations is defined
       - bareos_sd_backup_configurations is boolean
     quiet: yes
 
-- name: assert | Test if bareos_sd_install_debug_packages is set correctly
+- name: assert | Test bareos_sd_install_debug_packages
   ansible.builtin.assert:
     that:
       - bareos_sd_install_debug_packages is defined
       - bareos_sd_install_debug_packages is boolean
     quiet: yes
 
-- name: assert | Test if bareos_sd_hostname is set correctly
+- name: assert | Test bareos_sd_hostname
   ansible.builtin.assert:
     that:
       - bareos_sd_hostname is defined
@@ -22,7 +22,7 @@
       - bareos_sd_hostname is not none
     quiet: yes
 
-- name: assert | Test if bareos_sd_message is set correctly
+- name: assert | Test bareos_sd_message
   ansible.builtin.assert:
     that:
       - bareos_sd_message is defined
@@ -30,56 +30,56 @@
       - bareos_sd_message is not none
     quiet: yes
 
-- name: assert | Test if bareos_sd_max_concurrent_jobs is set correctly
+- name: assert | Test bareos_sd_max_concurrent_jobs
   ansible.builtin.assert:
     that:
       - bareos_sd_max_concurrent_jobs is defined
       - bareos_sd_max_concurrent_jobs is number
     quiet: yes
 
-- name: assert | Test if bareos_sd_tls_enable is set correctly
+- name: assert | Test bareos_sd_tls_enable
   ansible.builtin.assert:
     that:
       - bareos_sd_tls_enable is defined
       - bareos_sd_tls_enable is boolean
     quiet: yes
 
-- name: assert | Test if bareos_sd_tls_verify_peer is set correctly
+- name: assert | Test bareos_sd_tls_verify_peer
   ansible.builtin.assert:
     that:
       - bareos_sd_tls_verify_peer is defined
       - bareos_sd_tls_verify_peer is boolean
     quiet: yes
 
-- name: assert | Test if bareos_sd_directors is set correctly
+- name: assert | Test bareos_sd_directors
   ansible.builtin.assert:
     that:
       - bareos_sd_directors is defined
       - bareos_sd_directors is iterable
     quiet: yes
 
-- name: assert | Test if bareos_sd_devices is set correctly
+- name: assert | Test bareos_sd_devices
   ansible.builtin.assert:
     that:
       - bareos_sd_devices is defined
       - bareos_sd_devices is iterable
     quiet: yes
 
-- name: assert | Test if bareos_sd_directors is set correctly
+- name: assert | Test bareos_sd_directors
   ansible.builtin.assert:
     that:
       - bareos_sd_directors is defined
       - bareos_sd_directors is iterable
     quiet: yes
 
-- name: assert | Test if bareos_sd_messages is set correctly
+- name: assert | Test bareos_sd_messages
   ansible.builtin.assert:
     that:
       - bareos_sd_messages is defined
       - bareos_sd_messages is iterable
     quiet: yes
 
-- name: assert | Test if bareos_sd_s3_profiles is set correctly
+- name: assert | Test bareos_sd_s3_profiles
   ansible.builtin.assert:
     that:
       - bareos_sd_s3_profiles is defined

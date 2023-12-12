@@ -10,5 +10,6 @@
 - name: volumegroup | Create volume groups
   community.general.lvg:
     vg: "{{ volumegroup.name }}"
-    pvs: "{{ volumegroup.devices | join(', ') }}"
+    pvs: "{{ volumegroup.devices | join(',') }}"
     pesize: "{{ volumegroup.size | default(omit) }}"
+    vg_options: --zero y

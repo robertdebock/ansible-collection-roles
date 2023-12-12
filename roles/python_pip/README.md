@@ -1,10 +1,10 @@
-# [python_pip](#python_pip)
+# [Ansible role python_pip](#python_pip)
 
 Install pythons pip on your system.
 
-|GitHub|GitLab|Quality|Downloads|Version|
-|------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-python_pip/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-python_pip/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-python_pip/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-python_pip)|[![quality](https://img.shields.io/ansible/quality/42440)](https://galaxy.ansible.com/robertdebock/python_pip)|[![downloads](https://img.shields.io/ansible/role/d/42440)](https://galaxy.ansible.com/robertdebock/python_pip)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-python_pip.svg)](https://github.com/robertdebock/ansible-role-python_pip/releases/)|
+|GitHub|GitLab|Downloads|Version|
+|------|------|---------|-------|
+|[![github](https://github.com/robertdebock/ansible-role-python_pip/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-python_pip/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-python_pip/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-python_pip)|[![downloads](https://img.shields.io/ansible/role/d/24571)](https://galaxy.ansible.com/robertdebock/python_pip)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-python_pip.svg)](https://github.com/robertdebock/ansible-role-python_pip/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -90,12 +90,12 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|[Alpine](https://hub.docker.com/repository/docker/robertdebock/alpine/general)|all|
-|[Debian](https://hub.docker.com/repository/docker/robertdebock/debian/general)|all|
-|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|all|
-|[Fedora](https://hub.docker.com/repository/docker/robertdebock/fedora/general)|all|
-|[opensuse](https://hub.docker.com/repository/docker/robertdebock/opensuse/general)|all|
-|[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|all|
+|[Alpine](https://hub.docker.com/r/robertdebock/alpine)|all|
+|[Debian](https://hub.docker.com/r/robertdebock/debian)|all|
+|[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|all|
+|[Fedora](https://hub.docker.com/r/robertdebock/fedora/)|all|
+|[opensuse](https://hub.docker.com/r/robertdebock/opensuse)|all|
+|[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|all|
 
 The minimum version of Ansible required is 2.12, tests have been done to:
 
@@ -103,7 +103,7 @@ The minimum version of Ansible required is 2.12, tests have been done to:
 - The current version.
 - The development version.
 
-If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-python_pip/issues)
+If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-python_pip/issues).
 
 ## [License](#license)
 

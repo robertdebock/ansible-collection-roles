@@ -10,6 +10,8 @@
   ansible.builtin.pip:
     name: "{{ docker_pip_packages }}"
     state: present
+  when:
+    - docker_pip_packages | length > 0
 
 - name: Create privileged docker user group
   ansible.builtin.group:

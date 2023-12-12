@@ -1,6 +1,6 @@
 ---
 
-- name: assert | Test if anaconda_python_version is set correctly
+- name: assert | Test anaconda_python_version
   ansible.builtin.assert:
     that:
       - anaconda_python_version is defined
@@ -8,7 +8,7 @@
       - anaconda_python_version in [ 2, 3 ]
     quiet: yes
 
-- name: assert | Test if anaconda_version is set correctly
+- name: assert | Test anaconda_version
   ansible.builtin.assert:
     that:
       - anaconda_version is defined
@@ -16,7 +16,7 @@
       - anaconda_version is not none
     quiet: yes
 
-- name: assert | Test if anaconda_ip is set correctly
+- name: assert | Test anaconda_ip
   ansible.builtin.assert:
     that:
       - anaconda_ip is defined
@@ -24,7 +24,7 @@
       - anaconda_ip is not none
     quiet: yes
 
-- name: assert | Test if anaconda_port is set correctly
+- name: assert | Test anaconda_port
   ansible.builtin.assert:
     that:
       - anaconda_port is defined
@@ -33,7 +33,7 @@
       - anaconda_port < 65536
     quiet: yes
 
-- name: assert | Test if anaconda_download_dest is set correctly
+- name: assert | Test anaconda_download_dest
   ansible.builtin.assert:
     that:
       - anaconda_download_dest is defined
@@ -41,7 +41,7 @@
       - anaconda_download_dest is not none
     quiet: yes
 
-- name: assert | Test if anaconda_prefix is set correctly
+- name: assert | Test anaconda_prefix
   ansible.builtin.assert:
     that:
       - anaconda_prefix is defined

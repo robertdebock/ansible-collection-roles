@@ -2,7 +2,8 @@
 # tasks file for bootstrap
 
 - name: Import assert.yml
-  ansible.builtin.import_tasks: assert.yml
+  ansible.builtin.import_tasks:
+    file: assert.yml
   run_once: yes
   delegate_to: localhost
 
@@ -54,5 +55,6 @@
   ansible.builtin.package:
     name: "{{ item }}"
     state: present
+    update_cache: true
   loop: "{{ bootstrap_facts_packages.split() }}"
   become: "{{ bootstrap_become }}"

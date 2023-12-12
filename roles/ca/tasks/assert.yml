@@ -1,6 +1,6 @@
 ---
 
-- name: assert | Test if ca_passphrase is set correctly
+- name: assert | Test ca_passphrase
   ansible.builtin.assert:
     that:
       - ca_passphrase is defined
@@ -8,7 +8,7 @@
       - ca_passphrase is not none
     quiet: yes
 
-- name: assert | Test if ca_common_name is set correctly
+- name: assert | Test ca_common_name
   ansible.builtin.assert:
     that:
       - ca_common_name is defined
@@ -16,7 +16,7 @@
       - ca_common_name is not none
     quiet: yes
 
-- name: assert | Test if ca_country_name is set correctly
+- name: assert | Test ca_country_name
   ansible.builtin.assert:
     that:
       - ca_country_name is defined
@@ -24,7 +24,7 @@
       - ca_country_name | length <= 2
     quiet: yes
 
-- name: assert | Test if ca_email_address is set correctly
+- name: assert | Test ca_email_address
   ansible.builtin.assert:
     that:
       - ca_email_address is defined
@@ -32,7 +32,7 @@
       - ca_email_address is not none
     quiet: yes
 
-- name: assert | Test if ca_organization_name is set correctly
+- name: assert | Test ca_organization_name
   ansible.builtin.assert:
     that:
       - ca_organization_name is defined
@@ -40,7 +40,7 @@
       - ca_organization_name is not none
     quiet: yes
 
-- name: assert | Test if ca_organizational_unit_name is set correctly
+- name: assert | Test ca_organizational_unit_name
   ansible.builtin.assert:
     that:
       - ca_organizational_unit_name is defined
@@ -48,7 +48,7 @@
       - ca_organizational_unit_name is not none
     quiet: yes
 
-- name: assert | Test if ca_state_or_province_name is set correctly
+- name: assert | Test ca_state_or_province_name
   ansible.builtin.assert:
     that:
       - ca_state_or_province_name is defined
@@ -56,7 +56,7 @@
       - ca_state_or_province_name is not none
     quiet: yes
 
-- name: assert | Test if ca_requests is set correctly
+- name: assert | Test ca_requests
   ansible.builtin.assert:
     that:
       - ca_requests is iterable
@@ -64,7 +64,7 @@
   when:
     - ca_requests is defined
 
-- name: assert | Test if item of ca_requests is set correctly
+- name: assert | Test item of ca_requests
   ansible.builtin.assert:
     that:
       - item is string or
@@ -76,7 +76,7 @@
     - ca_requests is defined
     - item.name is defined
 
-- name: assert | Test if ca_publication_location is set correctly
+- name: assert | Test ca_publication_location
   ansible.builtin.assert:
     that:
       - ca_publication_location is defined
@@ -84,7 +84,7 @@
       - ca_publication_location is not none
     quiet: yes
 
-- name: assert | Test if ca_openssl_path is set correctly
+- name: assert | Test ca_openssl_path
   ansible.builtin.assert:
     that:
       - ca_openssl_path is defined
@@ -92,7 +92,7 @@
       - ca_openssl_path is not none
     quiet: yes
 
-- name: assert | Test if ca_private_path is set correctly
+- name: assert | Test ca_private_path
   ansible.builtin.assert:
     that:
       - ca_private_path is defined
@@ -100,7 +100,7 @@
       - ca_private_path is not none
     quiet: yes
 
-- name: assert | Test if ca_certs_path is set correctly
+- name: assert | Test ca_certs_path
   ansible.builtin.assert:
     that:
       - ca_certs_path is defined
@@ -108,7 +108,7 @@
       - ca_certs_path is not none
     quiet: yes
 
-- name: assert | Test if ca_privatekey_path is set correctly
+- name: assert | Test ca_privatekey_path
   ansible.builtin.assert:
     that:
       - ca_privatekey_path is defined
@@ -116,7 +116,7 @@
       - ca_privatekey_path is not none
     quiet: yes
 
-- name: assert | Test if ca_csr_path is set correctly
+- name: assert | Test ca_csr_path
   ansible.builtin.assert:
     that:
       - ca_csr_path is defined
@@ -124,7 +124,7 @@
       - ca_csr_path is not none
     quiet: yes
 
-- name: assert | Test if ca_certificate_path is set correctly
+- name: assert | Test ca_certificate_path
   ansible.builtin.assert:
     that:
       - ca_certificate_path is defined

@@ -1,0 +1,54 @@
+---
+# tasks file for mount_options
+
+- name: Import assert.yml
+  ansible.builtin.import_tasks:
+    file: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+- name: Add mount options
+  ansible.posix.mount:
+    fstype: "{{ ansible_mounts | selectattr('mount', 'match', item.path) | map(attribute='fstype') | join('') }}"
+    path: "{{ item.path }}"
+    src: "{{ ansible_mounts | selectattr('mount', 'match', item.path) | map(attribute='device') | join('') }}"
+    state: present
+    opts: "{{ (ansible_mounts | selectattr('mount', 'match', item.path) | map(attribute='options') | first | split(',') + item.add_options) | unique | sort | join(',') }}"
+  loop: "{{ mount_options }}"
+  loop_control:
+    label: "{{ item.path }} adding {{ item.add_options | default('nothing.') }}"
+  when:
+    - item.add_options is defined
+  notify:
+    - Remount filesystems
+
+- name: Flush handlers
+  ansible.builtin.meta: flush_handlers
+
+- name: Refresh mount facts
+  ansible.builtin.setup:
+    gather_subset:
+      - mounts
+
+- name: Remove mount options
+  ansible.posix.mount:
+    fstype: "{{ ansible_mounts | selectattr('mount', 'match', item.path) | map(attribute='fstype') | join('') }}"
+    path: "{{ item.path }}"
+    src: "{{ ansible_mounts | selectattr('mount', 'match', item.path) | map(attribute='device') | join('') }}"
+    state: present
+    opts: "{{ (ansible_mounts | selectattr('mount', 'match', item.path) | map(attribute='options') | first | split(',')) | difference(item.remove_options) | sort | join(',') }}"
+  loop: "{{ mount_options }}"
+  loop_control:
+    label: "{{ item.path }} removing {{ item.remove_options | default('nothing.') }}"
+  when:
+    - item.remove_options is defined
+  notify:
+    - Remount filesystems
+
+- name: Flush handlers
+  ansible.builtin.meta: flush_handlers
+
+- name: Refresh mount facts after removing options
+  ansible.builtin.setup:
+    gather_subset:
+      - mounts

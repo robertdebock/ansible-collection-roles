@@ -1,10 +1,10 @@
-# [rpmfusion](#rpmfusion)
+# [Ansible role rpmfusion](#rpmfusion)
 
 Install rpmfusion repositories on your system.
 
-|GitHub|GitLab|Quality|Downloads|Version|
-|------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-rpmfusion/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-rpmfusion/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-rpmfusion/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-rpmfusion)|[![quality](https://img.shields.io/ansible/quality/42907)](https://galaxy.ansible.com/robertdebock/rpmfusion)|[![downloads](https://img.shields.io/ansible/role/d/42907)](https://galaxy.ansible.com/robertdebock/rpmfusion)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-rpmfusion.svg)](https://github.com/robertdebock/ansible-role-rpmfusion/releases/)|
+|GitHub|GitLab|Downloads|Version|
+|------|------|---------|-------|
+|[![github](https://github.com/robertdebock/ansible-role-rpmfusion/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-rpmfusion/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-rpmfusion/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-rpmfusion)|[![downloads](https://img.shields.io/ansible/role/d/24581)](https://galaxy.ansible.com/robertdebock/rpmfusion)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-rpmfusion.svg)](https://github.com/robertdebock/ansible-role-rpmfusion/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -78,9 +78,9 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|[Amazon](https://hub.docker.com/repository/docker/robertdebock/amazonlinux/general)|Candidate|
-|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|8, 9|
-|[Fedora](https://hub.docker.com/repository/docker/robertdebock/fedora/general)|all|
+|[Amazon](https://hub.docker.com/r/robertdebock/amazonlinux)|Candidate|
+|[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|8, 9|
+|[Fedora](https://hub.docker.com/r/robertdebock/fedora/)|all|
 
 The minimum version of Ansible required is 2.12, tests have been done to:
 
@@ -88,7 +88,7 @@ The minimum version of Ansible required is 2.12, tests have been done to:
 - The current version.
 - The development version.
 
-If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-rpmfusion/issues)
+If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-rpmfusion/issues).
 
 ## [License](#license)
 

@@ -6,7 +6,6 @@ _mysql_name:
   RedHat-8: mysql
   RedHat-9: mysql
   Amazon-2018: mysql
-
 mysql_name: "{{ _mysql_name[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_mysql_name['default'] ) }}"
 
 _mysql_packages:
@@ -39,13 +38,11 @@ _mysql_packages:
   RedHat:
     - "{{ mysql_name }}-server"
     - python3-PyMySQL
-
 mysql_packages: "{{ _mysql_packages[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_mysql_packages[ansible_os_family] | default(_mysql_packages['default'] )) }}"
 
 _mysql_initialize_command:
   Alpine: /etc/init.d/mariadb setup
   Archlinux: mysql_install_db --basedir=/usr --datadir=/var/lib/mysql
-
 mysql_initialize_command: "{{ _mysql_initialize_command[ansible_os_family] }}"
 
 _mysql_service:
@@ -53,32 +50,15 @@ _mysql_service:
   RedHat:
     "8": "{{ mysql_name }}d"
     "9": "{{ mysql_name }}d"
-
 mysql_service: "{{ _mysql_service[ansible_os_family][ansible_distribution_major_version] | default(_mysql_service['default']) }}"
 
 _mysql_socket:
   default: /var/run/mysql/mysql.sock
   Debian: /var/run/mysqld/mysqld.sock
   RedHat: /var/lib/mysql/mysql.sock
-
 mysql_socket: "{{ _mysql_socket[ansible_os_family] | default(_mysql_socket['default']) }}"
-
-mysql_configuration_options:
-  - option: bind-address
-    section: mysqld
-    value: "{{ mysql_bind_address }}"
-  - option: socket
-    section: mysqld
-    value: "{{ mysql_socket }}"
-  - section: mysqld
-    option: innodb_buffer_pool_size
-    value: "{{ mysql_innodb_buffer_pool_size }}"
-  - section: mysqld
-    option: innodb_io_capacity
-    value: "{{ mysql_innodb_io_capacity }}"
 
 _mysql_configuration_destination:
   default: /etc/mysql/mariadb.conf.d
   RedHat: /etc/my.cnf.d
-
 mysql_configuration_destination: "{{ _mysql_configuration_destination[ansible_os_family] | default(_mysql_configuration_destination['default']) }}"

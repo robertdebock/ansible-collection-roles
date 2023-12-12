@@ -3,4 +3,6 @@
 - name: package | Install vault
   ansible.builtin.package:
     name: "{{ vault_package }}"
-    state: present
+  notify:
+    - Daemon reload
+    - Restart vault

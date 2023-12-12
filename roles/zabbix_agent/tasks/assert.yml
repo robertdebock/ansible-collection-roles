@@ -1,6 +1,6 @@
 ---
 
-- name: assert | Test if zabbix_agent_server_address is set correctly
+- name: assert | Test zabbix_agent_server_address
   ansible.builtin.assert:
     that:
       - zabbix_agent_server_address is defined
@@ -8,7 +8,7 @@
       - zabbix_agent_server_address is not none
     quiet: yes
 
-- name: assert | Test if zabbix_agent_listen_port is set correctly
+- name: assert | Test zabbix_agent_listen_port
   ansible.builtin.assert:
     that:
       - zabbix_agent_listen_port is defined
@@ -17,7 +17,7 @@
       - zabbix_agent_listen_port < 65536
     quiet: yes
 
-- name: assert | Test if zabbix_agent_server_active_address is set correctly
+- name: assert | Test zabbix_agent_server_active_address
   ansible.builtin.assert:
     that:
       - zabbix_agent_server_active_address is defined
@@ -25,7 +25,7 @@
       - zabbix_agent_server_active_address is not none
     quiet: yes
 
-- name: assert | Test if zabbix_agent_hostname is set correctly
+- name: assert | Test zabbix_agent_hostname
   ansible.builtin.assert:
     that:
       - zabbix_agent_hostname is defined
@@ -33,7 +33,7 @@
       - zabbix_agent_hostname is not none
     quiet: yes
 
-- name: assert | Test if zabbix_agent_hostmetadata is set correctly
+- name: assert | Test zabbix_agent_hostmetadata
   ansible.builtin.assert:
     that:
       - zabbix_agent_hostmetadata is defined
@@ -41,7 +41,7 @@
       - zabbix_agent_hostmetadata is not none
     quiet: yes
 
-- name: assert | Test if zabbix_agent_timeout is set correctly
+- name: assert | Test zabbix_agent_timeout
   ansible.builtin.assert:
     that:
       - zabbix_agent_timeout is defined
@@ -49,7 +49,7 @@
       - zabbix_agent_timeout >= 0
     quiet: yes
 
-- name: assert | Test if zabbix_agent_logremotecommands is set correctly
+- name: assert | Test zabbix_agent_logremotecommands
   ansible.builtin.assert:
     that:
       - zabbix_agent_logremotecommands is defined

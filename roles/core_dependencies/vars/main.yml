@@ -14,7 +14,7 @@ core_dependencies_shared_packages:
   - tar
   - unzip
 
-_core_dependencies_packages:
+_core_dependencies_specific_packages:
   Archlinux:
     - iproute2
     - shadow
@@ -65,11 +65,6 @@ _core_dependencies_packages:
     - subversion
     - xz
 
-core_dependencies_packages: "{{ _core_dependencies_packages[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_core_dependencies_packages[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_core_dependencies_packages[ansible_os_family] )) }}"
+core_dependencies_specific_packages: "{{ _core_dependencies_specific_packages[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_core_dependencies_specific_packages[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_core_dependencies_specific_packages[ansible_os_family] )) }}"
 
-core_dependencies: "{{ core_dependencies_shared_packages + core_dependencies_packages }}"
-
-core_dependencies_pip_packages:
-  - boto
-  - boto3
-  - boto
+core_dependencies_packages: "{{ core_dependencies_shared_packages + core_dependencies_specific_packages }}"

@@ -1,13 +1,13 @@
 ---
 
-- name: assert | Test if consul_install_package is set correctly
+- name: assert | Test consul_install_package
   ansible.builtin.assert:
     that:
       - consul_install_package is defined
       - consul_install_package is boolean
     quiet: yes
 
-- name: assert | Test if consul_datacenter is set correctly
+- name: assert | Test consul_datacenter
   ansible.builtin.assert:
     that:
       - consul_datacenter is defined
@@ -15,7 +15,7 @@
       - consul_datacenter is not none
     quiet: yes
 
-- name: assert | Test if consul_data_dir is set correctly
+- name: assert | Test consul_data_dir
   ansible.builtin.assert:
     that:
       - consul_data_dir is defined
@@ -23,7 +23,7 @@
       - consul_data_dir is not none
     quiet: yes
 
-- name: assert | Test if consul_client_addr is set correctly
+- name: assert | Test consul_client_addr
   ansible.builtin.assert:
     that:
       - consul_client_addr is defined
@@ -31,21 +31,21 @@
       - consul_client_addr is not none
     quiet: yes
 
-- name: assert | Test if consul_ui is set correctly
+- name: assert | Test consul_ui
   ansible.builtin.assert:
     that:
       - consul_ui is defined
       - consul_ui is boolean
     quiet: yes
 
-- name: assert | Test if consul_server is set correctly
+- name: assert | Test consul_server
   ansible.builtin.assert:
     that:
       - consul_server is defined
       - consul_server is boolean
     quiet: yes
 
-- name: assert | Test if consul_bootstrap_expect is set correctly
+- name: assert | Test consul_bootstrap_expect
   ansible.builtin.assert:
     that:
       - consul_bootstrap_expect | int in [ 1, 3, 5 ]
@@ -53,7 +53,7 @@
   when:
     - consul_bootstrap_expect is defined
 
-- name: assert | Test if consul_encrypt is set correctly
+- name: assert | Test consul_encrypt
   ansible.builtin.assert:
     that:
       - consul_encrypt is string
@@ -63,7 +63,7 @@
   when:
     - consul_encrypt is defined
 
-- name: assert | Test if consul_retry_join is set correctly
+- name: assert | Test consul_retry_join
   ansible.builtin.assert:
     that:
       - consul_retry_join is iterable
@@ -71,7 +71,7 @@
   when:
     - consul_retry_join is defined
 
-- name: assert | Test if consul_bind_addr is set correctly
+- name: assert | Test consul_bind_addr
   ansible.builtin.assert:
     that:
       - consul_bind_addr is string
@@ -80,7 +80,7 @@
   when:
     - consul_bind_addr is defined
 
-- name: assert | Test if consul_advertise_addr is set correctly
+- name: assert | Test consul_advertise_addr
   ansible.builtin.assert:
     that:
       - consul_advertise_addr is string
@@ -89,7 +89,7 @@
   when:
     - consul_advertise_addr is defined
 
-- name: assert | Test if consul_services is set correctly
+- name: assert | Test consul_services
   ansible.builtin.assert:
     that:
       - consul_services is iterable
@@ -97,7 +97,7 @@
   when:
     - consul_services is defined
 
-- name: assert | Test if item in consul_services is set correctly
+- name: assert | Test item in consul_services
   ansible.builtin.assert:
     that:
       - item.name is defined
@@ -114,9 +114,9 @@
   loop_control:
     label: "{{ item.name }}"
 
-- name: assert | Test if consule_service_started_and_enabled is set correctly
+- name: assert | Test consule_service_started_and_enabled
   ansible.builtin.assert:
     that:
-      - consule_service_started_and_enabled defined
-      - consule_service_started_and_enabled boolean
+      - consule_service_started_and_enabled is defined
+      - consule_service_started_and_enabled is boolean
     quiet: yes

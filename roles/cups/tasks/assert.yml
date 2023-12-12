@@ -1,6 +1,6 @@
 ---
 
-- name: assert | Test if cups_listen is set correctly
+- name: assert | Test cups_listen
   ansible.builtin.assert:
     that:
       - cups_listen is defined
@@ -8,22 +8,21 @@
       - cups_listen is not none
     quiet: yes
 
-- name: assert | Test if cups_browsing is set correctly
+- name: assert | Test cups_browsing
   ansible.builtin.assert:
     that:
       - cups_browsing is defined
-      - cups_browsing is string
-      - cups_browsing in [ "Off", "On" ]
+      - cups_browsing is boolean
     quiet: yes
 
-- name: assert | Test if cups_locations is set correctly
+- name: assert | Test cups_locations
   ansible.builtin.assert:
     that:
       - cups_locations is defined
       - cups_locations is iterable
     quiet: yes
 
-- name: assert | Test if item in cups_locations is set correctly
+- name: assert | Test item in cups_locations
   ansible.builtin.assert:
     that:
       - item.name is defined
@@ -37,7 +36,7 @@
   loop_control:
     label: "{{ item.name }}"
 
-- name: assert | Test if item.authtype in cups_locations is set correctly
+- name: assert | Test item.authtype in cups_locations
   ansible.builtin.assert:
     that:
       - item.authtype in [ "Basic", "Default", "Negotiate", "None" ]
@@ -48,7 +47,7 @@
   when:
     - item.authtype is defined
 
-- name: assert | Test if item.allow in cups_locations is set correctly
+- name: assert | Test item.allow in cups_locations
   ansible.builtin.assert:
     that:
       - item.allow is string
@@ -60,18 +59,23 @@
   when:
     - item.allow is defined
 
-- name: assert | Test if cups_preserve_job_history is set correctly
+- name: assert | Test cups_preserve_job_history
   ansible.builtin.assert:
     that:
       - cups_preserve_job_history is defined
-      - cups_preserve_job_history is string
-      - cups_preserve_job_history in [ "No", "Yes" ]
+      - cups_preserve_job_history is boolean
     quiet: yes
 
-- name: assert | Test if cups_web_interface is set correctly
+- name: assert | Test cups_web_interface
   ansible.builtin.assert:
     that:
       - cups_web_interface is defined
-      - cups_web_interface is string
-      - cups_web_interface in [ "No", "Yes" ]
+      - cups_web_interface is boolean
+    quiet: yes
+
+- name: assert | Test cups_printers
+  ansible.builtin.assert:
+    that:
+      - cups_printers is defined
+      - cups_printers is iterable
     quiet: yes

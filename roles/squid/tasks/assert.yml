@@ -1,6 +1,6 @@
 ---
 
-- name: assert | Test if squid_port is set correctly
+- name: assert | Test squid_port
   ansible.builtin.assert:
     that:
       - squid_port is defined
@@ -9,7 +9,7 @@
       - squid_port < 65536
     quiet: yes
 
-- name: assert | Test if squid_cache_dir is set correctly
+- name: assert | Test squid_cache_dir
   ansible.builtin.assert:
     that:
       - squid_cache_dir is defined
@@ -17,7 +17,7 @@
       - squid_cache_dir.split(" ")[0] in [ "ufs", "aufs", "diskd", "rock", "null" ]
     quiet: yes
 
-- name: assert | Test if squid_acls is set correctly
+- name: assert | Test squid_acls
   ansible.builtin.assert:
     that:
       - squid_acls is iterable
@@ -25,7 +25,7 @@
   when:
     - squid_acls is defined
 
-- name: assert | Test if item in squid_acls is set correctly
+- name: assert | Test item in squid_acls
   ansible.builtin.assert:
     that:
       - item.name is defined
@@ -44,7 +44,7 @@
   when:
     - squid_acls is defined
 
-- name: assert | Test if item in squid_http_access is set correctly
+- name: assert | Test item in squid_http_access
   ansible.builtin.assert:
     that:
       - item.state is defined
@@ -59,7 +59,7 @@
   when:
     - squid_http_access is defined
 
-- name: assert | Test if squid_rules is set correctly
+- name: assert | Test squid_rules
   ansible.builtin.assert:
     that:
       - squid_rules is iterable
@@ -67,7 +67,7 @@
   when:
     - squid_rules is defined
 
-- name: assert | Test if item in squid_rules is set correctly
+- name: assert | Test item in squid_rules
   ansible.builtin.assert:
     that:
       - item.acl is defined
@@ -83,7 +83,7 @@
   when:
     - squid_rules is defined
 
-- name: assert | Test if squid_logformat is set correctly
+- name: assert | Test squid_logformat
   ansible.builtin.assert:
     that:
       - squid_logformat is string

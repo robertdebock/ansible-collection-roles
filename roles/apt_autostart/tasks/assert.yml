@@ -1,6 +1,6 @@
 ---
 
-- name: assert | Test if apt_autostart_state is set correctly
+- name: assert | Test apt_autostart_state
   ansible.builtin.assert:
     that:
       - apt_autostart_state is defined

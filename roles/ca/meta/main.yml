@@ -23,7 +23,8 @@ galaxy_info:
         - all
     - name: Ubuntu
       versions:
-        - all
+        - jammy
+        - focal
 
   galaxy_tags:
     - ca

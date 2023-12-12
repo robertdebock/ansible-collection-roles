@@ -1,0 +1,8 @@
+---
+
+- name: assert | Test mount_options
+  ansible.builtin.assert:
+    that:
+      - mount_options is defined
+      - mount_options is iterable
+    quiet: yes

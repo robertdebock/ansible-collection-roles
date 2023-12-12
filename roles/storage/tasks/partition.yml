@@ -1,6 +1,6 @@
 ---
 
-- name: partition | Test storage_partitions
+- name: partition | Test partition
   ansible.builtin.assert:
     that:
       - partition.name is defined
@@ -9,6 +9,27 @@
         partition.part_end is defined
     quiet: yes
 
+- name: partition | Test partition.label
+  ansible.builtin.assert:
+    that:
+      - partition.label is defined
+      - partition.label is iterable
+      - partition.label in [ "aix", "amiga", "bsd", "dvh", "gpt", "loop", "mac", "msdos", "pc98", "sun" ]
+    quiet: yes
+  when:
+    - partition.label is defined
+
+- name: partition | Rescan device
+  block:
+    - name: partition | Rescan device
+      ansible.builtin.lineinfile:
+        path: "{{ partition.name }}"
+        line: "1"
+  rescue:
+    - name: partition | Inform user
+      ansible.builtin.debug:
+        msg: Rescanning causes a freeze, lets continue
+
 - name: partition | Create partitions
   community.general.parted:
     device: "{{ partition.name }}"
@@ -16,4 +37,5 @@
     flags: "{{ partition.flags | default(omit) }}"
     part_start: "{{ partition.part_start | default(omit) }}"
     part_end: "{{ partition.part_end | default(omit) }}"
+    label: "{{ partition.label | default(omit) }}"
     state: present

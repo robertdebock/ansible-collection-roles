@@ -1,6 +1,6 @@
 ---
 
-- name: assert | Test if openssl_key_directory is set correctly
+- name: assert | Test openssl_key_directory
   ansible.builtin.assert:
     that:
       - openssl_key_directory is defined
@@ -8,7 +8,7 @@
       - openssl_key_directory is not none
     quiet: yes
 
-- name: assert | Test if openssl_csr_directory is set correctly
+- name: assert | Test openssl_csr_directory
   ansible.builtin.assert:
     that:
       - openssl_csr_directory is defined
@@ -16,7 +16,7 @@
       - openssl_csr_directory is not none
     quiet: yes
 
-- name: assert | Test if openssl_crt_directory is set correctly
+- name: assert | Test openssl_crt_directory
   ansible.builtin.assert:
     that:
       - openssl_crt_directory is defined
@@ -24,7 +24,7 @@
       - openssl_crt_directory is not none
     quiet: yes
 
-- name: assert | Test if openssl_file_owner is set correctly
+- name: assert | Test openssl_file_owner
   ansible.builtin.assert:
     that:
       - openssl_file_owner is defined
@@ -32,7 +32,7 @@
       - openssl_file_owner is not none
     quiet: yes
 
-- name: assert | Test if openssl_file_group is set correctly
+- name: assert | Test openssl_file_group
   ansible.builtin.assert:
     that:
       - openssl_file_group is defined

@@ -1,20 +1,20 @@
 ---
 
-- name: assert | Test if mongodb_dbpath is set correctly
+- name: assert | Test mongodb_dbpath
   ansible.builtin.assert:
     that:
       - mongodb_dbpath is defined
       - mongodb_dbpath is string
     quiet: yes
 
-- name: assert | Test if mongodb_systemlog_path is set correctly
+- name: assert | Test mongodb_systemlog_path
   ansible.builtin.assert:
     that:
       - mongodb_systemlog_path is defined
       - mongodb_systemlog_path is string
     quiet: yes
 
-- name: assert | Test if mongodb_port is set correctly
+- name: assert | Test mongodb_port
   ansible.builtin.assert:
     that:
       - mongodb_port is defined
@@ -23,7 +23,7 @@
       - mongodb_port < 65536
     quiet: yes
 
-- name: assert | Test if mongodb_bindip is set correctly
+- name: assert | Test mongodb_bindip
   ansible.builtin.assert:
     that:
       - mongodb_bindip is defined

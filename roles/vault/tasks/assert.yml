@@ -1,6 +1,6 @@
 ---
 
-- name: assert | Test if vault_type is set correctly
+- name: assert | Test vault_type
   ansible.builtin.assert:
     that:
       - vault_type is defined
@@ -8,7 +8,7 @@
       - vault_type in [ "oss", "ent", "hsm" ]
     quiet: yes
 
-- name: assert | Test if vault_version is set correctly
+- name: assert | Test vault_version
   ansible.builtin.assert:
     that:
       - vault_version is defined
@@ -16,7 +16,7 @@
       - vault_version is not none
     quiet: yes
 
-- name: assert | Test if vault_package_release is set correctly
+- name: assert | Test vault_package_release
   ansible.builtin.assert:
     that:
       - vault_package_release is defined
@@ -26,7 +26,7 @@
   when:
     - vault_installation_method == "package"
 
-- name: assert | Test if vault_installation_method is set correctly
+- name: assert | Test vault_installation_method
   ansible.builtin.assert:
     that:
       - vault_installation_method is defined
@@ -34,7 +34,7 @@
       - vault_installation_method in [ "package", "binary" ]
     quiet: yes
 
-- name: assert | Test if vault_download_path is set correctly
+- name: assert | Test vault_download_path
   ansible.builtin.assert:
     that:
       - vault_download_path is defined
@@ -44,7 +44,7 @@
   when:
     - vault_installation_method == "binary"
 
-- name: assert | Test if vault_path is set correctly
+- name: assert | Test vault_path
   ansible.builtin.assert:
     that:
       - vault_path is defined
@@ -54,7 +54,7 @@
   when:
     - vault_installation_method == "binary"
 
-- name: assert | Test if vault_user is set correctly
+- name: assert | Test vault_user
   ansible.builtin.assert:
     that:
       - vault_user is defined
@@ -65,7 +65,7 @@
   when:
     - vault_installation_method == "binary"
 
-- name: assert | Test if vault_group is set correctly
+- name: assert | Test vault_group
   ansible.builtin.assert:
     that:
       - vault_group is defined
@@ -76,7 +76,7 @@
   when:
     - vault_installation_method == "binary"
 
-- name: assert | Test if vault_user_shell is set correctly
+- name: assert | Test vault_user_shell
   ansible.builtin.assert:
     that:
       - vault_user_shell is defined
@@ -86,7 +86,7 @@
   when:
     - vault_installation_method == "binary"
 
-- name: assert | Test if vault_data_directories is set correctly
+- name: assert | Test vault_data_directories
   ansible.builtin.assert:
     that:
       - vault_data_directories is defined
@@ -95,7 +95,7 @@
   when:
     - vault_installation_method == "binary"
 
-- name: assert | Test if vault_data_directory is set correctly
+- name: assert | Test vault_data_directory
   ansible.builtin.assert:
     that:
       - vault_data_directory is defined

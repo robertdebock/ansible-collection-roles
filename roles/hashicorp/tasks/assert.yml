@@ -1,13 +1,13 @@
 ---
 
-- name: assert | Test if hashicorp_installation_method is set correctly
+- name: assert | Test hashicorp_installation_method
   ansible.builtin.assert:
     that:
       - hashicorp_installation_method is defined
       - hashicorp_installation_method in [ "package", "manual" ]
     quiet: yes
 
-- name: assert | Test if hashicorp_products is set correctly
+- name: assert | Test hashicorp_products
   ansible.builtin.assert:
     that:
       - hashicorp_products is iterable
@@ -15,7 +15,7 @@
   when:
     - hashicorp_products is defined
 
-- name: assert | Test if item in hashicorp_products is set correctly (package)
+- name: assert | Test item in hashicorp_products (package)
   ansible.builtin.assert:
     that:
       - item.name is string
@@ -28,7 +28,7 @@
     - hashicorp_products is defined
     - hashicorp_installation_method == "package"
 
-- name: assert | Test if item in hashicorp_products is set correctly (package with version)
+- name: assert | Test item in hashicorp_products (package with version)
   ansible.builtin.assert:
     that:
       - item.name is string
@@ -42,7 +42,7 @@
     - hashicorp_installation_method == "package"
     - item.version is defined
 
-- name: assert | Test if item in hashicorp_products is set correctly (manual)
+- name: assert | Test item in hashicorp_products (manual)
   ansible.builtin.assert:
     that:
       - item.name is string
@@ -61,7 +61,7 @@
     - hashicorp_products is defined
     - hashicorp_installation_method == "manual"
 
-- name: assert | Test if hashicorp_destination is set correctly
+- name: assert | Test hashicorp_destination
   ansible.builtin.assert:
     that:
       - hashicorp_destination is defined
@@ -69,7 +69,7 @@
       - hashicorp_destination is not none
     quiet: yes
 
-- name: assert | Test if hashicorp_group is set correctly
+- name: assert | Test hashicorp_group
   ansible.builtin.assert:
     that:
       - hashicorp_group is defined
@@ -77,7 +77,7 @@
       - hashicorp_group is not none
     quiet: yes
 
-- name: assert | Test if hashicorp_owner is set correctly
+- name: assert | Test hashicorp_owner
   ansible.builtin.assert:
     that:
       - hashicorp_owner is defined
@@ -85,7 +85,7 @@
       - hashicorp_owner is not none
     quiet: yes
 
-- name: assert | Test if hashicorp_mode is set correctly
+- name: assert | Test hashicorp_mode
   ansible.builtin.assert:
     that:
       - hashicorp_mode is defined

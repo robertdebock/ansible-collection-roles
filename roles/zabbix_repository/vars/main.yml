@@ -13,10 +13,3 @@ _zabbix_repository_package:
   Ubuntu: "{{ zabbix_url_start }}/{{ ansible_distribution | lower }}/pool/main/z/zabbix-release/zabbix-release_{{ zabbix_repository_version_major }}-{{ zabbix_repository_version_minor }}+{{ ansible_distribution | lower }}{{ ansible_distribution_version }}_all.deb"
 
 zabbix_repository_package: "{{ _zabbix_repository_package[ansible_distribution] | default(_zabbix_repository_package[ansible_os_family]) }}"
-
-_zabbix_rpm_key:
-  default: "https://repo.zabbix.com/RPM-GPG-KEY-ZABBIX-08EFA7DD"
-  RedHat:
-    "8": "https://repo.zabbix.com/RPM-GPG-KEY-ZABBIX-A14FE591"
-
-zabbix_rpm_key: "{{ _zabbix_rpm_key[ansible_os_family][ansible_distribution_major_version] | default(_zabbix_rpm_key['default']) }}"

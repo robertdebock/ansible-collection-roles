@@ -1,6 +1,6 @@
 ---
 
-- name: assert | Test if unbound_version is set correctly
+- name: assert | Test unbound_version
   ansible.builtin.assert:
     that:
       - unbound_version is defined
@@ -8,7 +8,7 @@
       - unbound_version is not none
     quiet: yes
 
-- name: assert | Test if unbound_temporary_directory is set correctly
+- name: assert | Test unbound_temporary_directory
   ansible.builtin.assert:
     that:
       - unbound_temporary_directory is defined
@@ -16,7 +16,7 @@
       - unbound_temporary_directory is not none
     quiet: yes
 
-- name: assert | Test if unbound_interface is set correctly
+- name: assert | Test unbound_interface
   ansible.builtin.assert:
     that:
       - unbound_interface is defined
@@ -24,7 +24,7 @@
       - unbound_interface is not none
     quiet: yes
 
-- name: assert | Test if unbound_port is set correctly
+- name: assert | Test unbound_port
   ansible.builtin.assert:
     that:
       - unbound_port is defined

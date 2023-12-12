@@ -1,10 +1,10 @@
-# [libvirt](#libvirt)
+# [Ansible role libvirt](#libvirt)
 
 Install and configure libvirt on your system.
 
-|GitHub|GitLab|Quality|Downloads|Version|
-|------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-libvirt/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-libvirt/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-libvirt/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-libvirt)|[![quality](https://img.shields.io/ansible/quality/50469)](https://galaxy.ansible.com/robertdebock/libvirt)|[![downloads](https://img.shields.io/ansible/role/d/50469)](https://galaxy.ansible.com/robertdebock/libvirt)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-libvirt.svg)](https://github.com/robertdebock/ansible-role-libvirt/releases/)|
+|GitHub|GitLab|Downloads|Version|
+|------|------|---------|-------|
+|[![github](https://github.com/robertdebock/ansible-role-libvirt/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-libvirt/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-libvirt/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-libvirt)|[![downloads](https://img.shields.io/ansible/role/d/24525)](https://galaxy.ansible.com/robertdebock/libvirt)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-libvirt.svg)](https://github.com/robertdebock/ansible-role-libvirt/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -62,10 +62,10 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|[Debian](https://hub.docker.com/repository/docker/robertdebock/debian/general)|all|
-|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|8, 9|
-|[Fedora](https://hub.docker.com/repository/docker/robertdebock/fedora/general)|all|
-|[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|all|
+|[Debian](https://hub.docker.com/r/robertdebock/debian)|all|
+|[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|8, 9|
+|[Fedora](https://hub.docker.com/r/robertdebock/fedora/)|all|
+|[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|all|
 
 The minimum version of Ansible required is 2.12, tests have been done to:
 
@@ -73,7 +73,7 @@ The minimum version of Ansible required is 2.12, tests have been done to:
 - The current version.
 - The development version.
 
-If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-libvirt/issues)
+If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-libvirt/issues).
 
 ## [License](#license)
 

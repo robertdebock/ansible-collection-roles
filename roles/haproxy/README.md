@@ -1,10 +1,10 @@
-# [haproxy](#haproxy)
+# [Ansible role haproxy](#haproxy)
 
 Install and configure haproxy on your system.
 
-|GitHub|GitLab|Quality|Downloads|Version|
-|------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-haproxy/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-haproxy/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-haproxy/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-haproxy)|[![quality](https://img.shields.io/ansible/quality/28674)](https://galaxy.ansible.com/robertdebock/haproxy)|[![downloads](https://img.shields.io/ansible/role/d/28674)](https://galaxy.ansible.com/robertdebock/haproxy)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-haproxy.svg)](https://github.com/robertdebock/ansible-role-haproxy/releases/)|
+|GitHub|GitLab|Downloads|Version|
+|------|------|---------|-------|
+|[![github](https://github.com/robertdebock/ansible-role-haproxy/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-haproxy/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-haproxy/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-haproxy)|[![downloads](https://img.shields.io/ansible/role/d/24509)](https://galaxy.ansible.com/robertdebock/haproxy)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-haproxy.svg)](https://github.com/robertdebock/ansible-role-haproxy/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -66,6 +66,17 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
               address: "127.0.0.2"
               port: 25
           port: 25
+        - name: vault
+          mode: tcp
+          httpcheck: GET /v1/sys/health HTTP/1.1
+          servers: "{{ groups['all'] }}"
+          http_send_name_header: Host
+          port: 8200
+          options:
+            - check
+            - check-ssl
+            - ssl verify none
+
       haproxy_listen_default_balance: roundrobin
       haproxy_listens:
         - name: listen
@@ -190,11 +201,11 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|8, 9|
-|[Debian](https://hub.docker.com/repository/docker/robertdebock/debian/general)|all|
-|[Fedora](https://hub.docker.com/repository/docker/robertdebock/fedora/general)|all|
-|[opensuse](https://hub.docker.com/repository/docker/robertdebock/opensuse/general)|all|
-|[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|all|
+|[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|8, 9|
+|[Debian](https://hub.docker.com/r/robertdebock/debian)|all|
+|[Fedora](https://hub.docker.com/r/robertdebock/fedora/)|all|
+|[opensuse](https://hub.docker.com/r/robertdebock/opensuse)|all|
+|[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|all|
 
 The minimum version of Ansible required is 2.12, tests have been done to:
 
@@ -202,7 +213,7 @@ The minimum version of Ansible required is 2.12, tests have been done to:
 - The current version.
 - The development version.
 
-If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-haproxy/issues)
+If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-haproxy/issues).
 
 ## [License](#license)
 

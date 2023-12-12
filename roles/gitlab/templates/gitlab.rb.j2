@@ -81,33 +81,35 @@ roles [{% for role in gitlab_roles %}'{{ role }}'{{ ", " if not loop.last }}{% e
 ###! Docs: https://docs.gitlab.com/omnibus/settings/smtp.html
 ###! **Use smtp instead of sendmail/postfix.**
 
-# gitlab_rails['smtp_enable'] = true
-# gitlab_rails['smtp_address'] = "smtp.server"
-# gitlab_rails['smtp_port'] = 465
-# gitlab_rails['smtp_user_name'] = "smtp user"
-# gitlab_rails['smtp_password'] = "smtp password"
-# gitlab_rails['smtp_domain'] = "example.com"
-# gitlab_rails['smtp_authentication'] = "login"
-# gitlab_rails['smtp_enable_starttls_auto'] = true
-# gitlab_rails['smtp_tls'] = false
-# gitlab_rails['smtp_pool'] = false
+gitlab_rails['smtp_enable'] = {{ gitlab_rails_smtp_enable | ternary('true', 'false') }}
+{% if gitlab_rails_smtp_enable %}
+gitlab_rails['smtp_address'] = "{{ gitlab_rails_smtp_address }}"
+gitlab_rails['smtp_port'] = {{ gitlab_rails_smtp_port | int }}
+gitlab_rails['smtp_user_name'] = "{{ gitlab_rails_smtp_user_name }}"
+gitlab_rails['smtp_password'] = "{{ gitlab_rails_smtp_password }}"
+gitlab_rails['smtp_domain'] = "{{ gitlab_rails_smtp_domain }}"
+gitlab_rails['smtp_authentication'] = "{{ gitlab_rails_smtp_authentication }}"
+gitlab_rails['smtp_enable_starttls_auto'] = {{ gitlab_rails_smtp_enable_starttls_auto | ternary('true', 'false') }}
+gitlab_rails['smtp_tls'] = {{ gitlab_rails_smtp_tls | ternary('true', 'false') }}
+gitlab_rails['smtp_pool'] = {{ gitlab_rails_smtp_pool | ternary('true', 'false') }}
 
 ###! **Can be: 'none', 'peer', 'client_once', 'fail_if_no_peer_cert'**
 ###! Docs: http://api.rubyonrails.org/classes/ActionMailer/Base.html
-# gitlab_rails['smtp_openssl_verify_mode'] = 'none'
+gitlab_rails['smtp_openssl_verify_mode'] = '{{ gitlab_rails_smtp_openssl_verify_mode }}'
 
-# gitlab_rails['smtp_ca_path'] = "/etc/ssl/certs"
-# gitlab_rails['smtp_ca_file'] = "/etc/ssl/certs/ca-certificates.crt"
+gitlab_rails['smtp_ca_path'] = "{{ gitlab_rails_smtp_ca_path }}"
+gitlab_rails['smtp_ca_file'] = "{{ gitlab_rails_smtp_ca_file }}"
+{% endif %}
 
 ### Email Settings
 
-gitlab_rails['gitlab_email_enabled'] = {{ gitlab_rails_gitlab_email_enabled | string | lower }}
+gitlab_rails['gitlab_email_enabled'] = {{ gitlab_rails_gitlab_email_enabled | ternary('true', 'false') }}
 {% if gitlab_rails_gitlab_email_enabled %}
 gitlab_rails['gitlab_email_from'] = '{{ gitlab_rails_gitlab_email_from }}'
 gitlab_rails['gitlab_email_display_name'] = '{{ gitlab_rails_gitlab_email_display_name }}'
 gitlab_rails['gitlab_email_reply_to'] = '{{ gitlab_rails_gitlab_email_reply_to }}'
 gitlab_rails['gitlab_email_subject_suffix'] = '{{ gitlab_rails_gitlab_email_subject_suffix }}'
-gitlab_rails['gitlab_email_smime_enabled'] = {{ gitlab_rails_gitlab_email_smime_enabled | string | lower }}
+gitlab_rails['gitlab_email_smime_enabled'] = {{ gitlab_rails_gitlab_email_smime_enabled | ternary('true', 'false') }}
 {% if gitlab_rails_gitlab_email_smime_enabled %}
 gitlab_rails['gitlab_email_smime_key_file'] = '{{ gitlab_rails_gitlab_email_smime_key_file }}'
 gitlab_rails['gitlab_email_smime_cert_file'] = '{{ gitlab_rails_gitlab_email_smime_cert_file }}'
@@ -135,12 +137,12 @@ gitlab_rails['gitlab_email_smime_ca_certs_file'] = '{{ gitlab_rails_gitlab_email
 gitlab_rails['gitlab_default_theme'] = {{ gitlab_default_theme_number }}
 
 ### Default project feature settings
-gitlab_rails['gitlab_default_projects_features_issues'] = {{ gitlab_default_projects_features_issues | string | lower }}
-gitlab_rails['gitlab_default_projects_features_merge_requests'] = {{ gitlab_default_projects_features_merge_requests | string | lower}}
-gitlab_rails['gitlab_default_projects_features_wiki'] = {{ gitlab_default_projects_features_wiki | string | lower }}
-gitlab_rails['gitlab_default_projects_features_snippets'] = {{ gitlab_default_projects_features_snippets | string | lower }}
-gitlab_rails['gitlab_default_projects_features_builds'] = {{ gitlab_default_projects_features_builds | string | lower }}
-gitlab_rails['gitlab_default_projects_features_container_registry'] = {{ gitlab_default_projects_features_container_registry | string | lower }}
+gitlab_rails['gitlab_default_projects_features_issues'] = {{ gitlab_default_projects_features_issues | ternary('true', 'false') }}
+gitlab_rails['gitlab_default_projects_features_merge_requests'] = {{ gitlab_default_projects_features_merge_requests | ternary('true', 'false') }}
+gitlab_rails['gitlab_default_projects_features_wiki'] = {{ gitlab_default_projects_features_wiki | ternary('true', 'false') }}
+gitlab_rails['gitlab_default_projects_features_snippets'] = {{ gitlab_default_projects_features_snippets | ternary('true', 'false') }}
+gitlab_rails['gitlab_default_projects_features_builds'] = {{ gitlab_default_projects_features_builds | ternary('true', 'false') }}
+gitlab_rails['gitlab_default_projects_features_container_registry'] = {{ gitlab_default_projects_features_container_registry | ternary('true', 'false') }}
 
 ### Automatic issue closing
 ###! See https://docs.gitlab.com/ee/customization/issue_closing.html for more
@@ -460,8 +462,8 @@ gitlab_rails['gitlab_default_projects_features_container_registry'] = {{ gitlab_
 ###! **Be careful not to break the indentation in the ldap_servers block. It is
 ###!   in yaml format and the spaces must be retained. Using tabs will not work.**
 
-gitlab_rails['ldap_enabled'] = {{ gitlab_rails_ldap_enabled | string | lower }}
-gitlab_rails['prevent_ldap_sign_in'] = {{ gitlab_rails_prevent_ldap_sign_in | string | lower }}
+gitlab_rails['ldap_enabled'] = {{ gitlab_rails_ldap_enabled | ternary('true', 'false') }}
+gitlab_rails['prevent_ldap_sign_in'] = {{ gitlab_rails_prevent_ldap_sign_in | ternary('true', 'false') }}
 
 {% if gitlab_rails_ldap_enabled %}
 gitlab_rails['ldap_servers'] = YAML.load <<-'EOS'
@@ -473,19 +475,19 @@ gitlab_rails['ldap_servers'] = YAML.load <<-'EOS'
     uid: '{{ gitlab_rails_ldap_server.uid }}'
     bind_dn: '{{ gitlab_rails_ldap_server.bind_dn }}'
     password: '{{ gitlab_rails_ldap_server.password }}'
-    encryption: '{{ gitlab_rails_ldap_server.encryption | string | lower }}'
-    verify_certificates: {{ gitlab_rails_ldap_server.verify_certificates | string | lower }}
-    smartcard_auth: {{ gitlab_rails_ldap_server.smartcard_auth | string | lower }}
-    active_directory: {{ gitlab_rails_ldap_server.active_directory | string | lower }}
-    allow_username_or_email_login: {{ gitlab_rails_ldap_server.allow_username_or_email_login | string | lower }}
-    lowercase_usernames: {{ gitlab_rails_ldap_server.lowercase_usernames | string | lower }}
-    block_auto_created_users: {{ gitlab_rails_ldap_server.block_auto_created_users | string | lower }}
+    encryption: '{{ gitlab_rails_ldap_server.encryption | ternary('true', 'false') }}'
+    verify_certificates: {{ gitlab_rails_ldap_server.verify_certificates | ternary('true', 'false') }}
+    smartcard_auth: {{ gitlab_rails_ldap_server.smartcard_auth | ternary('true', 'false') }}
+    active_directory: {{ gitlab_rails_ldap_server.active_directory | ternary('true', 'false') }}
+    allow_username_or_email_login: {{ gitlab_rails_ldap_server.allow_username_or_email_login | ternary('true', 'false') }}
+    lowercase_usernames: {{ gitlab_rails_ldap_server.lowercase_usernames | ternary('true', 'false') }}
+    block_auto_created_users: {{ gitlab_rails_ldap_server.block_auto_created_users | ternary('true', 'false') }}
     base: '{{ gitlab_rails_ldap_server.base }}'
     user_filter: '{{ gitlab_rails_ldap_server.user_filter }}'
 {% if gitlab_distribution == "enterprise" %}
     group_base: '{{ gitlab_rails_ldap_server.group_base }}'
     admin_group: '{{ gitlab_rails_ldap_server.admin_group }}'
-    sync_ssh_keys: {{ gitlab_rails_ldap_server.sync_ssh_keys | string | lower }}
+    sync_ssh_keys: {{ gitlab_rails_ldap_server.sync_ssh_keys | ternary('true', 'false') }}
 {% endif %}
 {% endfor %}
 EOS
@@ -541,7 +543,7 @@ EOS
 ###! Docs: https://docs.gitlab.com/omnibus/settings/backups.html
 
 {% if manage_backup_path is defined %}
-gitlab_rails['manage_backup_path'] = {{ gitlab_rails_manage_backup_path | string | lower }}
+gitlab_rails['manage_backup_path'] = {{ gitlab_rails_manage_backup_path | ternary('true', 'false') }}
 {% endif %}
 
 {% if gitlab_rails_backup_path is defined %}
@@ -574,7 +576,7 @@ gitlab_rails['backup_upload_connection'] = {
   'aws_secret_access_key' => '{{ gitlab_rails_backup_upload_connection.aws_secret_access_key }}',
   # # If IAM profile use is enabled, remove aws_access_key_id and aws_secret_access_key
   {% if gitlab_rails_backup_upload_connection.endpoint is defined %}'endpoint' => '{{ gitlab_rails_backup_upload_connection.endpoint }}',{% endif %}
-  'use_iam_profile' => {{ gitlab_rails_backup_upload_connection.use_iam_profile | string | lower }}
+  'use_iam_profile' => {{ gitlab_rails_backup_upload_connection.use_iam_profile | ternary('true', 'false') }}
 }
 {% endif %}
 
@@ -755,7 +757,7 @@ gitlab_rails['db_sslcert'] = "{{ gitlab_rails_db_sslcert }}"
 gitlab_rails['db_sslkey'] = "{{ gitlab_rails_db_sslkey }}"
 {% endif %}
 {% if gitlab_rails_db_prepared_statements is defined %}
-gitlab_rails['db_prepared_statements'] = {{ gitlab_rails_db_prepared_statements | string | lower }}
+gitlab_rails['db_prepared_statements'] = {{ gitlab_rails_db_prepared_statements | ternary('true', 'false') }}
 {% endif %}
 {% if gitlab_rails_db_statements_limit is defined %}
 gitlab_rails['db_statements_limit'] = {{ gitlab_rails_db_statements_limit }}
@@ -2408,18 +2410,24 @@ gitlab_rails['db_application_name'] = "{{ gitlab_rails_db_application_name }}"
 # Let's Encrypt integration
 ################################################################################
 {% if gitlab_letsencrypt %}
-letsencrypt['enable'] = {{ gitlab_letsencrypt | string | lower }}
+letsencrypt['enable'] = {{ gitlab_letsencrypt | ternary('true', 'false') }}
 letsencrypt['contact_emails'] = [ {% for email in gitlab_letsencrypt_contact_emails %}'{{ email }}'{% if not loop.last %}, {% endif %} {% endfor %} ]
 letsencrypt['group'] = '{{ gitlab_letsencrypt_group }}'
 letsencrypt['key_size'] = {{ gitlab_letsencrypt_key_size }}
 letsencrypt['owner'] = '{{ gitlab_letsencrypt_owner }}'
 letsencrypt['wwwroot'] = '{{ gitlab_letsencrypt_wwwroot }}'
 # See http://docs.gitlab.com/omnibus/settings/ssl.html#automatic-renewal for more on these sesttings
-letsencrypt['auto_renew'] = {{ gitlab_letsencrypt_auto_renew | string | lower }}
+letsencrypt['auto_renew'] = {{ gitlab_letsencrypt_auto_renew | ternary('true', 'false') }}
 letsencrypt['auto_renew_hour'] = {{ gitlab_letsencrypt_auto_renew_hour }}
 letsencrypt['auto_renew_minute'] = {{ gitlab_letsencrypt_auto_renew_minute }}
 letsencrypt['auto_renew_day_of_month'] = "{{ gitlab_letsencrypt_auto_renew_day_of_month }}"
-letsencrypt['auto_renew_log_directory'] = '{{ gitlab_letsencrypy_auto_renew_log_directory }}'
+letsencrypt['auto_renew_log_directory'] = '{{ gitlab_letsencrypt_auto_renew_log_directory }}'
+{% if gitlab_acme_staging_endpoint is defined %}
+letsencrypt['acme_staging_endpoint'] = '{{ gitlab_acme_staging_endpoint }}'
+{% endif %}
+{% if gitlab_acme_production_endpoint is defined %}
+letsencrypt['acme_production_endpoint'] = '{{ gitlab_acme_production_endpoint }}'
+{% endif %}
 {% else %}
 letsencrypt['enable'] = nil
 {% endif %}

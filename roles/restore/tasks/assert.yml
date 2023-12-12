@@ -1,6 +1,6 @@
 ---
 
-- name: assert | Test if restore_directory is set correctly
+- name: assert | Test restore_directory
   ansible.builtin.assert:
     that:
       - restore_directory is defined
@@ -8,7 +8,7 @@
       - restore_directory is not none
     quiet: yes
 
-- name: assert | Test if restore_remote_directory is set correctly
+- name: assert | Test restore_remote_directory
   ansible.builtin.assert:
     that:
       - restore_remote_directory is defined
@@ -16,14 +16,14 @@
       - restore_remote_directory is not none
     quiet: yes
 
-- name: assert | Test if restore_objects is set correctly
+- name: assert | Test restore_objects
   ansible.builtin.assert:
     that:
       - restore_objects is defined
       - restore_objects is iterable
     quiet: yes
 
-- name: assert | Test if item in restore_objects is set correctly
+- name: assert | Test item in restore_objects
   ansible.builtin.assert:
     that:
       - item.name is defined

@@ -1,6 +1,6 @@
 ---
 
-- name: assert | Test if bareos_console_directors is set correctly
+- name: assert | Test bareos_console_directors
   ansible.builtin.assert:
     that:
       - bareos_console_directors is iterable
@@ -8,7 +8,7 @@
   when:
     - bareos_console_directors is defined
 
-- name: assert | Test if items in bareos_console_directors are set correctly
+- name: assert | Test items in bareos_console_directors are set correctly
   ansible.builtin.assert:
     that:
       - item.name is defined
@@ -30,7 +30,7 @@
   when:
     - bareos_console_directors is defined
 
-- name: assert | Test if item tls_enable in bareos_console_directors is set correctly
+- name: assert | Test item tls_enable in bareos_console_directors
   ansible.builtin.assert:
     that:
       - item.tls_enable is boolean
@@ -41,7 +41,7 @@
   when:
     - item.tls_enable is defined
 
-- name: assert | Test if item tls_verify_peer in bareos_console_directors is set correctly
+- name: assert | Test item tls_verify_peer in bareos_console_directors
   ansible.builtin.assert:
     that:
       - item.tls_verify_peer is boolean

@@ -1,6 +1,6 @@
 ---
 
-- name: assert | Test if tune2fs_settings is set correctly
+- name: assert | Test tune2fs_settings
   ansible.builtin.assert:
     that:
       - tune2fs_settings is iterable

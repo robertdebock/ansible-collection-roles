@@ -20,7 +20,7 @@
   community.mysql.mysql_db:
     state: import
     name: "{{ zabbix_server_database_name }}"
-    target: "{{ zabbix_server_docdir }}/zabbix-sql-scripts/mysql/create.sql"
+    target: "{{ zabbix_server_docdir }}/zabbix-sql-scripts/mysql/server.sql"
     login_host: "{{ zabbix_server_database_host | default(omit) }}"
     login_user: "{{ zabbix_server_database_user }}"
     login_password: "{{ zabbix_server_database_password }}"

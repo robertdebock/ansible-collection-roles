@@ -1,6 +1,6 @@
 ---
 
-- name: assert | Test if harbor_version is set correctly
+- name: assert | Test harbor_version
   ansible.builtin.assert:
     that:
       - harbor_version is defined
@@ -8,7 +8,7 @@
       - harbor_version is not none
     quiet: yes
 
-- name: assert | Test if harbor_installation_type is set correctly
+- name: assert | Test harbor_installation_type
   ansible.builtin.assert:
     that:
       - harbor_installation_type is defined
@@ -16,7 +16,7 @@
       - harbor_installation_type in [ "online", "offline" ]
     quiet: yes
 
-- name: assert | Test if harbor_hostname is set correctly
+- name: assert | Test harbor_hostname
   ansible.builtin.assert:
     that:
       - harbor_hostname is defined
@@ -24,7 +24,7 @@
       - harbor_installation_type not in [ "localhost", "127.0.0.1", "0.0.0.0" ]
     quiet: yes
 
-- name: assert | Test if harbor_external_url is set correctly
+- name: assert | Test harbor_external_url
   ansible.builtin.assert:
     that:
       - harbor_external_url is defined

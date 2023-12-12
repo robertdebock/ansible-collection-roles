@@ -16,7 +16,7 @@
   when:
     - ansible_pkg_mgr in [ "yum", "dnf" ]
 
-- name: Configure apt repository
+- name: Add the Tailscale repository (apt)
   when:
     - ansible_pkg_mgr in [ "apt" ]
   block:
@@ -25,7 +25,7 @@
         url: "{{ tailscale_apt_key_url }}"
         keyring: /usr/share/keyrings/tailscale-archive-keyring.gpg
 
-    - name: Apt apt repository
+    - name: Add the Tailscale repository (apt)
       ansible.builtin.apt_repository:
         repo: "{{ tailscale_apt_repo }}"
         filename: tailscale
@@ -92,7 +92,7 @@
 
 - name: Run tailscale up
   when:
-    - "'not logged in' in tailscale_status.stdout"
+    - "'Logged out.' in tailscale_status.stdout"
     - tailscale_authkey != ""
   block:
     - name: Run tailscale up with authkey

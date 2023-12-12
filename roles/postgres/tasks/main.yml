@@ -2,7 +2,8 @@
 # tasks file for postgres
 
 - name: Import assert.yml
-  ansible.builtin.import_tasks: assert.yml
+  ansible.builtin.import_tasks:
+    file: assert.yml
   run_once: yes
   delegate_to: localhost
 
@@ -109,7 +110,7 @@
 
 - name: Create postgres database
   community.postgresql.postgresql_db:
-    name: "{{ item.name }}"
+    db: "{{ item.name }}"
     encoding: "{{ item.encoding | default(omit) }}"
     conn_limit: "{{ item.conn_limit | default(omit) }}"
     owner: "{{ item.owner | default(omit) }}"
@@ -126,7 +127,7 @@
 
 - name: Create postgres users
   community.postgresql.postgresql_user:
-    name: "{{ item.name }}"
+    user: "{{ item.name }}"
     db: "{{ item.db | default(omit) }}"
     password: "{{ item.password }}"
     expires: "{{ item.expires | default(omit) }}"

@@ -1,6 +1,6 @@
 ---
 
-- name: assert | Test if mitogen_ansible_file is set correctly
+- name: assert | Test mitogen_ansible_file
   ansible.builtin.assert:
     that:
       - mitogen_ansible_file is defined

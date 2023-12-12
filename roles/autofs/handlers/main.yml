@@ -5,8 +5,12 @@
   ansible.builtin.service:
     name: "{{ autofs_service }}"
     state: restarted
+  when:
+    - autofs_service_state == "started"
 
 - name: Reload autofs
   ansible.builtin.service:
     name: "{{ autofs_service }}"
     state: reloaded
+  when:
+    - autofs_service_state == "started"

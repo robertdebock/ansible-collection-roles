@@ -1,6 +1,6 @@
 ---
 
-- name: assert | Test if metricbeat_version is set correctly
+- name: assert | Test metricbeat_version
   ansible.builtin.assert:
     that:
       - metricbeat_version is defined
@@ -8,7 +8,7 @@
       - metricbeat_version is not none
     quiet: yes
 
-- name: assert | Test if metricbeat_modules is set correctly
+- name: assert | Test metricbeat_modules
   ansible.builtin.assert:
     that:
       - metricbeat_modules is iterable
@@ -16,7 +16,7 @@
   when:
     - metricbeat_modules is defined
 
-- name: assert | Test if item in metricbeat_modules is set correctly
+- name: assert | Test item in metricbeat_modules
   ansible.builtin.assert:
     that:
       - item.name is defined
@@ -28,14 +28,14 @@
   when:
     - metricbeat_modules is defined
 
-- name: assert | Test if metricbeat_elasticsearch_hosts is set correctly
+- name: assert | Test metricbeat_elasticsearch_hosts
   ansible.builtin.assert:
     that:
       - metricbeat_elasticsearch_hosts is defined
       - metricbeat_elasticsearch_hosts is iterable
     quiet: yes
 
-- name: assert | Test if metricbeat_elasticsearch_username is set correctly
+- name: assert | Test metricbeat_elasticsearch_username
   ansible.builtin.assert:
     that:
       - metricbeat_elasticsearch_username is defined
@@ -43,7 +43,7 @@
       - metricbeat_elasticsearch_username is not none
     quiet: yes
 
-- name: assert | Test if metricbeat_elasticsearch_password is set correctly
+- name: assert | Test metricbeat_elasticsearch_password
   ansible.builtin.assert:
     that:
       - metricbeat_elasticsearch_password is defined
@@ -51,7 +51,7 @@
       - metricbeat_elasticsearch_password is not none
     quiet: yes
 
-- name: assert | Test if metricbeat_kibana_host is set correctly
+- name: assert | Test metricbeat_kibana_host
   ansible.builtin.assert:
     that:
       - metricbeat_kibana_host is defined

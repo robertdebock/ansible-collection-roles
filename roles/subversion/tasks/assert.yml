@@ -1,6 +1,6 @@
 ---
 
-- name: assert | Test if subversion_path is set correctly
+- name: assert | Test subversion_path
   ansible.builtin.assert:
     that:
       - subversion_path is defined

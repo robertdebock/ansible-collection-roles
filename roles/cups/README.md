@@ -1,10 +1,10 @@
-# [cups](#cups)
+# [Ansible role cups](#cups)
 
 Install and configure CUPS, the Common Unix Printing System.
 
-|GitHub|GitLab|Quality|Downloads|Version|
-|------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-cups/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-cups/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-cups/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-cups)|[![quality](https://img.shields.io/ansible/quality/51946)](https://galaxy.ansible.com/robertdebock/cups)|[![downloads](https://img.shields.io/ansible/role/d/51946)](https://galaxy.ansible.com/robertdebock/cups)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-cups.svg)](https://github.com/robertdebock/ansible-role-cups/releases/)|
+|GitHub|GitLab|Downloads|Version|
+|------|------|---------|-------|
+|[![github](https://github.com/robertdebock/ansible-role-cups/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-cups/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-cups/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-cups)|[![downloads](https://img.shields.io/ansible/role/d/24469)](https://galaxy.ansible.com/robertdebock/cups)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-cups.svg)](https://github.com/robertdebock/ansible-role-cups/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -19,6 +19,9 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 
   roles:
     - role: robertdebock.roles.cups
+      cups_printers:
+      - name: "MyPrinter"
+        uri: "file:///dev/null"
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-cups/blob/master/molecule/default/prepare.yml):
@@ -48,8 +51,8 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 cups_listen: "localhost:631"
 cups_serveralias: "*"
 
-# Share local printers on the local network.
-cups_browsing: "Off"
+# Share local printers on the local network. (boolean)
+cups_browsing: no
 
 # Allow access to the server...
 cups_locations:
@@ -69,11 +72,14 @@ cups_locations:
     require: user @SYSTEM
     order: allow,deny
 
-# Cups can save a job history. Choose from "No" or "Yes".
-cups_preserve_job_history: "Yes"
+# Cups can save a job history. (boolean)
+cups_preserve_job_history: yes
 
-# Cups can offer a web-interface. Choose from "No" or "Yes".
-cups_web_interface: "Yes"
+# Cups can offer a web-interface. (boolean)
+cups_web_interface: yes
+
+# A list of printers to add. (list)
+cups_printers: []
 ```
 
 ## [Requirements](#requirements)
@@ -101,13 +107,13 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|[Alpine](https://hub.docker.com/repository/docker/robertdebock/alpine/general)|all|
-|[Amazon](https://hub.docker.com/repository/docker/robertdebock/amazonlinux/general)|Candidate|
-|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|8, 9|
-|[Debian](https://hub.docker.com/repository/docker/robertdebock/debian/general)|all|
-|[Fedora](https://hub.docker.com/repository/docker/robertdebock/fedora/general)|all|
-|[opensuse](https://hub.docker.com/repository/docker/robertdebock/opensuse/general)|all|
-|[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|all|
+|[Alpine](https://hub.docker.com/r/robertdebock/alpine)|all|
+|[Amazon](https://hub.docker.com/r/robertdebock/amazonlinux)|Candidate|
+|[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|8, 9|
+|[Debian](https://hub.docker.com/r/robertdebock/debian)|all|
+|[Fedora](https://hub.docker.com/r/robertdebock/fedora/)|all|
+|[opensuse](https://hub.docker.com/r/robertdebock/opensuse)|all|
+|[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|all|
 
 The minimum version of Ansible required is 2.12, tests have been done to:
 
@@ -115,7 +121,7 @@ The minimum version of Ansible required is 2.12, tests have been done to:
 - The current version.
 - The development version.
 
-If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-cups/issues)
+If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-cups/issues).
 
 ## [License](#license)
 

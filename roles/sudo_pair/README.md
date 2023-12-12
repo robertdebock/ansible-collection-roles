@@ -1,10 +1,10 @@
-# [sudo_pair](#sudo_pair)
+# [Ansible role sudo_pair](#sudo_pair)
 
 Install and configure sudo-pair on your system.
 
-|GitHub|GitLab|Quality|Downloads|Version|
-|------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-sudo_pair/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-sudo_pair/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-sudo_pair/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-sudo_pair)|[![quality](https://img.shields.io/ansible/quality/27025)](https://galaxy.ansible.com/robertdebock/sudo_pair)|[![downloads](https://img.shields.io/ansible/role/d/27025)](https://galaxy.ansible.com/robertdebock/sudo_pair)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-sudo_pair.svg)](https://github.com/robertdebock/ansible-role-sudo_pair/releases/)|
+|GitHub|GitLab|Downloads|Version|
+|------|------|---------|-------|
+|[![github](https://github.com/robertdebock/ansible-role-sudo_pair/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-sudo_pair/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-sudo_pair/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-sudo_pair)|[![downloads](https://img.shields.io/ansible/role/d/24597)](https://galaxy.ansible.com/robertdebock/sudo_pair)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-sudo_pair.svg)](https://github.com/robertdebock/ansible-role-sudo_pair/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -94,12 +94,12 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|[Amazon](https://hub.docker.com/repository/docker/robertdebock/amazonlinux/general)|Candidate|
-|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|8, 9|
-|[Debian](https://hub.docker.com/repository/docker/robertdebock/debian/general)|all|
-|[Fedora](https://hub.docker.com/repository/docker/robertdebock/fedora/general)|all|
-|[opensuse](https://hub.docker.com/repository/docker/robertdebock/opensuse/general)|all|
-|[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|bionic, focal|
+|[Amazon](https://hub.docker.com/r/robertdebock/amazonlinux)|Candidate|
+|[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|8, 9|
+|[Debian](https://hub.docker.com/r/robertdebock/debian)|bookworm|
+|[Fedora](https://hub.docker.com/r/robertdebock/fedora/)|all|
+|[opensuse](https://hub.docker.com/r/robertdebock/opensuse)|all|
+|[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|bionic, focal|
 
 The minimum version of Ansible required is 2.12, tests have been done to:
 
@@ -107,7 +107,7 @@ The minimum version of Ansible required is 2.12, tests have been done to:
 - The current version.
 - The development version.
 
-If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-sudo_pair/issues)
+If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-sudo_pair/issues).
 
 ## [License](#license)
 

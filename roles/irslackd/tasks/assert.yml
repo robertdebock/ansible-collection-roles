@@ -1,6 +1,6 @@
 ---
 
-- name: assert | Test if irslackd_port is set correctly
+- name: assert | Test irslackd_port
   ansible.builtin.assert:
     that:
       - irslackd_port is defined
@@ -9,7 +9,7 @@
       - irslackd_port < 65536
     quiet: yes
 
-- name: assert | Test if irslackd_address is set correctly
+- name: assert | Test irslackd_address
   ansible.builtin.assert:
     that:
       - irslackd_address is defined
@@ -17,7 +17,7 @@
       - irslackd_address is not none
     quiet: yes
 
-- name: assert | Test if irslackd_dest is set correctly
+- name: assert | Test irslackd_dest
   ansible.builtin.assert:
     that:
       - irslackd_dest is defined
@@ -25,7 +25,7 @@
       - irslackd_dest is not none
     quiet: yes
 
-- name: assert | Test if irslackd_version is set correctly
+- name: assert | Test irslackd_version
   ansible.builtin.assert:
     that:
       - irslackd_version is defined
@@ -33,7 +33,7 @@
       - irslackd_version is not none
     quiet: yes
 
-- name: assert | Test if irslackd_country is set correctly
+- name: assert | Test irslackd_country
   ansible.builtin.assert:
     that:
       - irslackd_country is defined
@@ -41,7 +41,7 @@
       - irslackd_country is not none
     quiet: yes
 
-- name: assert | Test if irslackd_state is set correctly
+- name: assert | Test irslackd_state
   ansible.builtin.assert:
     that:
       - irslackd_state is defined
@@ -49,7 +49,7 @@
       - irslackd_state is not none
     quiet: yes
 
-- name: assert | Test if irslackd_location is set correctly
+- name: assert | Test irslackd_location
   ansible.builtin.assert:
     that:
       - irslackd_location is defined
@@ -57,7 +57,7 @@
       - irslackd_location is not none
     quiet: yes
 
-- name: assert | Test if irslackd_organization is set correctly
+- name: assert | Test irslackd_organization
   ansible.builtin.assert:
     that:
       - irslackd_organization is defined
@@ -65,7 +65,7 @@
       - irslackd_organization is not none
     quiet: yes
 
-- name: assert | Test if irslackd_organizational_unit is set correctly
+- name: assert | Test irslackd_organizational_unit
   ansible.builtin.assert:
     that:
       - irslackd_organizational_unit is defined
@@ -73,7 +73,7 @@
       - irslackd_organizational_unit is not none
     quiet: yes
 
-- name: assert | Test if irslackd_common_name is set correctly
+- name: assert | Test irslackd_common_name
   ansible.builtin.assert:
     that:
       - irslackd_common_name is defined

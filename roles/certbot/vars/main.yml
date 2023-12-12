@@ -1,7 +1,17 @@
 ---
 # vars file for certbot
-certbot_package:
-  - certbot
+_certbot_package:
+  default:
+    - certbot
+    - cronie
+  Alpine:
+    - certbot
+    - dcron
+  Debian:
+    - certbot
+    - cron
+
+certbot_package: "{{ _certbot_package[ansible_os_family] | default(_certbot_package['default']) }}"
 
 _certbot_packages:
   apache:

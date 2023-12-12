@@ -80,7 +80,7 @@ AcceptEnv {{ item }}
 Subsystem {{ openssh_subsystem }}
 
 {% if openssh_allow_users is defined %}
-AllowUsers {{ openssh_allow_users | join(' ')}}
+AllowUsers {{ openssh_allow_users | join(' ') }}
 {% endif %}
 
 {% if openssh_allow_groups is defined %}

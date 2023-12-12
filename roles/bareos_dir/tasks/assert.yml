@@ -1,13 +1,13 @@
 ---
 
-- name: assert | Test if bareos_dir_backup_configurations is set correctly
+- name: assert | Test bareos_dir_backup_configurations
   ansible.builtin.assert:
     that:
       - bareos_dir_backup_configurations is defined
       - bareos_dir_backup_configurations is boolean
     quiet: yes
 
-- name: assert | Test if bareos_dir_hostname is set correctly
+- name: assert | Test bareos_dir_hostname
   ansible.builtin.assert:
     that:
       - bareos_dir_hostname is defined
@@ -15,7 +15,7 @@
       - bareos_dir_hostname != ""
     quiet: yes
 
-- name: assert | Test if bareos_dir_password is set correctly
+- name: assert | Test bareos_dir_password
   ansible.builtin.assert:
     that:
       - bareos_dir_password is defined
@@ -23,7 +23,7 @@
       - bareos_dir_password != ""
     quiet: yes
 
-- name: assert | Test if bareos_dir_queryfile is set correctly
+- name: assert | Test bareos_dir_queryfile
   ansible.builtin.assert:
     that:
       - bareos_dir_queryfile is defined
@@ -31,14 +31,14 @@
       - bareos_dir_queryfile != ""
     quiet: yes
 
-- name: assert | Test if bareos_dir_max_concurrent_jobs is set correctly
+- name: assert | Test bareos_dir_max_concurrent_jobs
   ansible.builtin.assert:
     that:
       - bareos_dir_max_concurrent_jobs is defined
       - bareos_dir_max_concurrent_jobs is number
     quiet: yes
 
-- name: assert | Test if bareos_dir_message is set correctly
+- name: assert | Test bareos_dir_message
   ansible.builtin.assert:
     that:
       - bareos_dir_message is defined
@@ -46,98 +46,98 @@
       - bareos_dir_message != ""
     quiet: yes
 
-- name: assert | Test if bareos_dir_tls_enable is set correctly
+- name: assert | Test bareos_dir_tls_enable
   ansible.builtin.assert:
     that:
       - bareos_dir_tls_enable is defined
       - bareos_dir_tls_enable is boolean
     quiet: yes
 
-- name: assert | Test if bareos_dir_tls_verify_peer is set correctly
+- name: assert | Test bareos_dir_tls_verify_peer
   ansible.builtin.assert:
     that:
       - bareos_dir_tls_verify_peer is defined
       - bareos_dir_tls_verify_peer is boolean
     quiet: yes
 
-- name: assert | Test if bareos_dir_catalogs is set correctly
+- name: assert | Test bareos_dir_catalogs
   ansible.builtin.assert:
     that:
       - bareos_dir_catalogs is defined
       - bareos_dir_catalogs is iterable
     quiet: yes
 
-- name: assert | Test if bareos_dir_consoles is set correctly
+- name: assert | Test bareos_dir_consoles
   ansible.builtin.assert:
     that:
       - bareos_dir_consoles is defined
       - bareos_dir_consoles is iterable
     quiet: yes
 
-- name: assert | Test if bareos_dir_clients is set correctly
+- name: assert | Test bareos_dir_clients
   ansible.builtin.assert:
     that:
       - bareos_dir_clients is defined
       - bareos_dir_clients is iterable
     quiet: yes
 
-- name: assert | Test if bareos_dir_filesets is set correctly
+- name: assert | Test bareos_dir_filesets
   ansible.builtin.assert:
     that:
       - bareos_dir_filesets is defined
       - bareos_dir_filesets is iterable
     quiet: yes
 
-- name: assert | Test if bareos_dir_jobdefs is set correctly
+- name: assert | Test bareos_dir_jobdefs
   ansible.builtin.assert:
     that:
       - bareos_dir_jobdefs is defined
       - bareos_dir_jobdefs is iterable
     quiet: yes
 
-- name: assert | Test if bareos_dir_jobs is set correctly
+- name: assert | Test bareos_dir_jobs
   ansible.builtin.assert:
     that:
       - bareos_dir_jobs is defined
       - bareos_dir_jobs is iterable
     quiet: yes
 
-- name: assert | Test if bareos_dir_messages is set correctly
+- name: assert | Test bareos_dir_messages
   ansible.builtin.assert:
     that:
       - bareos_dir_messages is defined
       - bareos_dir_messages is iterable
     quiet: yes
 
-- name: assert | Test if bareos_dir_pools is set correctly
+- name: assert | Test bareos_dir_pools
   ansible.builtin.assert:
     that:
       - bareos_dir_pools is defined
       - bareos_dir_pools is iterable
     quiet: yes
 
-- name: assert | Test if bareos_dir_profiles is set correctly
+- name: assert | Test bareos_dir_profiles
   ansible.builtin.assert:
     that:
       - bareos_dir_profiles is defined
       - bareos_dir_profiles is iterable
     quiet: yes
 
-- name: assert | Test if bareos_dir_schedules is set correctly
+- name: assert | Test bareos_dir_schedules
   ansible.builtin.assert:
     that:
       - bareos_dir_schedules is defined
       - bareos_dir_schedules is iterable
     quiet: yes
 
-- name: assert | Test if bareos_dir_storages is set correctly
+- name: assert | Test bareos_dir_storages
   ansible.builtin.assert:
     that:
       - bareos_dir_storages is defined
       - bareos_dir_storages is iterable
     quiet: yes
 
-- name: assert | Test if bareos_dir_install_debug_packages is set correctly
+- name: assert | Test bareos_dir_install_debug_packages
   ansible.builtin.assert:
     that:
       - bareos_dir_install_debug_packages is defined

@@ -1,6 +1,6 @@
 ---
 
-- name: assert | Test if auto_update_update_cmd is set correctly
+- name: assert | Test auto_update_update_cmd
   ansible.builtin.assert:
     that:
       - auto_update_update_cmd is defined
@@ -8,28 +8,28 @@
       - auto_update_update_cmd in [ "default", "security", "security-severity:Critial", "minimal", "minimal-security", "minimal-security-severity:Critical" ]
     quiet: yes
 
-- name: assert | Test if auto_update_message is set correctly
+- name: assert | Test auto_update_message
   ansible.builtin.assert:
     that:
       - auto_update_message is defined
       - auto_update_message is boolean
     quiet: yes
 
-- name: assert | Test if auto_update_download_updates is set correctly
+- name: assert | Test auto_update_download_updates
   ansible.builtin.assert:
     that:
       - auto_update_download_updates is defined
       - auto_update_download_updates is boolean
     quiet: yes
 
-- name: assert | Test if auto_update_apply_updates is set correctly
+- name: assert | Test auto_update_apply_updates
   ansible.builtin.assert:
     that:
       - auto_update_apply_updates is defined
       - auto_update_apply_updates is boolean
     quiet: yes
 
-- name: assert | Test if auto_update_random_sleep is set correctly
+- name: assert | Test auto_update_random_sleep
   ansible.builtin.assert:
     that:
       - auto_update_random_sleep is defined

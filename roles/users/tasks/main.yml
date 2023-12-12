@@ -2,7 +2,8 @@
 # tasks file for users
 
 - name: Import assert.yml
-  ansible.builtin.import_tasks: assert.yml
+  ansible.builtin.import_tasks:
+    file: assert.yml
   run_once: yes
   delegate_to: localhost
 
@@ -10,6 +11,7 @@
   ansible.builtin.package:
     name: "{{ users_requirements }}"
     state: present
+  when: (users_requirements | length) > 0
 
 - name: Loop over users_groups
   ansible.builtin.include_tasks:

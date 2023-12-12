@@ -2,7 +2,8 @@
 # tasks file for httpd
 
 - name: Import assert.yml
-  ansible.builtin.import_tasks: assert.yml
+  ansible.builtin.import_tasks:
+    file: assert.yml
   run_once: yes
   delegate_to: localhost
 
@@ -45,18 +46,31 @@
     - Test httpd configuration validity
     - Restart httpd
 
+- name: Activate httpd module | Debian
+  ansible.builtin.command:
+    cmd: "a2enmod {{ item }}"
+  changed_when: no
+  loop: "{{ httpd_modules_to_activate_with_command }}"
+  when:
+    - ansible_os_family == 'Debian'
+  notify:
+    - Test httpd configuration validity
+
 - name: Import ssl.yml
-  ansible.builtin.import_tasks: ssl.yml
+  ansible.builtin.import_tasks:
+    file: ssl.yml
   when:
     - https_ssl_enable
 
 - name: Import locations.yml
-  ansible.builtin.import_tasks: locations.yml
+  ansible.builtin.import_tasks:
+    file: locations.yml
   when:
     - httpd_locations is defined
 
 - name: Import vhosts.yml
-  ansible.builtin.import_tasks: vhosts.yml
+  ansible.builtin.import_tasks:
+    file: vhosts.yml
   when:
     - httpd_vhosts is defined
 
@@ -72,7 +86,8 @@
     - ansible_os_family in [ "Debian", "Suse" ]
 
 - name: Import directories.yml
-  ansible.builtin.import_tasks: directories.yml
+  ansible.builtin.import_tasks:
+    file: directories.yml
   when:
     - httpd_directories is defined
 

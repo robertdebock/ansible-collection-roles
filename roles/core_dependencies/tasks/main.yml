@@ -8,26 +8,10 @@
 
 - name: Install packages
   ansible.builtin.package:
-    name: "{{ core_dependencies }}"
+    name: "{{ core_dependencies_packages }}"
     update_cache: yes
   notify:
     - Gather facts
-
-- name: Reset connetion
-  ansible.builtin.meta: reset_connection
-
-- name: Try to install pip packages
-  block:
-    - name: Install pip packages
-      ansible.builtin.pip:
-        name: "{{ core_dependencies_pip_packages }}"
-        state: present
-      notify:
-        - Gather facts
-  rescue:
-    - name: Inform user of non-critical failure
-      ansible.builtin.debug:
-        msg: "Could not install pip packages, continuing."
 
 - name: Flush handlers
   ansible.builtin.meta: flush_handlers

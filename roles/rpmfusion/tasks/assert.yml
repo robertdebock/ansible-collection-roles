@@ -1,13 +1,13 @@
 ---
 
-- name: assert | Test if rpmfusion_free is set correctly
+- name: assert | Test rpmfusion_free
   ansible.builtin.assert:
     that:
       - rpmfusion_free is defined
       - rpmfusion_free is boolean
     quiet: yes
 
-- name: assert | Test if rpmfusion_nonfree is set correctly
+- name: assert | Test rpmfusion_nonfree
   ansible.builtin.assert:
     that:
       - rpmfusion_nonfree is defined

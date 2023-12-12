@@ -1,6 +1,6 @@
 ---
 
-- name: assert | Test if fips_policy is set correctly
+- name: assert | Test fips_policy
   ansible.builtin.assert:
     that:
       - fips_policy is defined

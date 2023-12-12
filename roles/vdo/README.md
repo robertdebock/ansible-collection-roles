@@ -1,10 +1,10 @@
-# [vdo](#vdo)
+# [Ansible role vdo](#vdo)
 
 Configure VDO devices.
 
-|GitHub|GitLab|Quality|Downloads|Version|
-|------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-vdo/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-vdo/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-vdo/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-vdo)|[![quality](https://img.shields.io/ansible/quality/49820)](https://galaxy.ansible.com/robertdebock/vdo)|[![downloads](https://img.shields.io/ansible/role/d/49820)](https://galaxy.ansible.com/robertdebock/vdo)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-vdo.svg)](https://github.com/robertdebock/ansible-role-vdo/releases/)|
+|GitHub|GitLab|Downloads|Version|
+|------|------|---------|-------|
+|[![github](https://github.com/robertdebock/ansible-role-vdo/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-vdo/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-vdo/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-vdo)|[![downloads](https://img.shields.io/ansible/role/d/24628)](https://galaxy.ansible.com/robertdebock/vdo)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-vdo.svg)](https://github.com/robertdebock/ansible-role-vdo/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -81,7 +81,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|8, 9|
+|[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|8, 9|
 
 The minimum version of Ansible required is 2.12, tests have been done to:
 
@@ -89,7 +89,7 @@ The minimum version of Ansible required is 2.12, tests have been done to:
 - The current version.
 - The development version.
 
-If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-vdo/issues)
+If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-vdo/issues).
 
 ## [License](#license)
 

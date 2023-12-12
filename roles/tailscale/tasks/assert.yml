@@ -1,13 +1,13 @@
 ---
 
-- name: assert | Test if tailscale_exit_node is set correctly
+- name: assert | Test tailscale_exit_node
   ansible.builtin.assert:
     that:
       - tailscale_exit_node is defined
       - tailscale_exit_node is boolean
     quiet: yes
 
-- name: assert | Test if tailscale_authkey is set correctly
+- name: assert | Test tailscale_authkey
   ansible.builtin.assert:
     that:
       - tailscale_authkey is defined
@@ -15,7 +15,7 @@
       - tailscale_authkey is not none
     quiet: yes
 
-- name: assert | Test if tailscale_advertise_routes is set correctly
+- name: assert | Test tailscale_advertise_routes
   ansible.builtin.assert:
     that:
       - tailscale_advertise_routes is defined

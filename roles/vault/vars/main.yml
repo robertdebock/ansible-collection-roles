@@ -11,6 +11,7 @@ _vault_prerequisites:
     - file
     - libcap2-bin
     - openssl
+    - procps
 vault_prerequisites: "{{ _vault_prerequisites[ansible_os_family] | default(_vault_prerequisites['default']) }}"
 
 # The Vault binary includes an architecture reference, for example "amd64" or "386". This maps relates the ansible_architecture to the name that HashiCorp uses.

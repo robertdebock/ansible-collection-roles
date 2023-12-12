@@ -1,6 +1,12 @@
 ---
 # tasks file for molecule
 
+- name: Import assert.yml
+  ansible.builtin.import_tasks:
+    file: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
 - name: Install requirements
   ansible.builtin.package:
     name: "{{ molecule_requirements }}"
@@ -9,5 +15,15 @@
 
 - name: Install molecule (pip)
   ansible.builtin.pip:
-    name: molecule[ansible-core,docker,lint]
+    name: molecule
+    extra_args: "{{ molecule_extra_args | default(omit) }}"
+
+# - name: Install ansible-core (pip)
+#   ansible.builtin.pip:
+#     name: ansible-core
+#     extra_args: "{{ molecule_extra_args | default(omit) }}"
+
+- name: Install molecule-plugins (pip)
+  ansible.builtin.pip:
+    name: "{{ molecule_plugins }}"
     extra_args: "{{ molecule_extra_args | default(omit) }}"

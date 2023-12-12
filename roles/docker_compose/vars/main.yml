@@ -14,11 +14,16 @@ _docker_compose_installation_type:
   Amazon: binary
   RedHat:
     default: package
+    "8": binary
     "9": binary
-docker_compose_installation_type: "{{ _docker_compose_installation_type[ansible_distribution][ansible_distribution_major_version] | default(_docker_compose_installation_type[ansible_distribution]['default']) | default(_docker_compose_installation_type[ansible_distribution]) | default(_docker_compose_installation_type['default']) }}"
+    "2023": binary  # Amazonlinux 2
+docker_compose_installation_type: "{{ _docker_compose_installation_type[ansible_os_family][ansible_distribution_major_version] | default(_docker_compose_installation_type[ansible_os_family]['default']) | default(_docker_compose_installation_type[ansible_distribution]) | default(_docker_compose_installation_type['default']) }}"
 
 _docker_compose_binary_required_packages:
   default: []
   RedHat:
-    - libxcrypt-compat
-docker_compose_binary_required_packages: "{{ _docker_compose_binary_required_packages[ansible_os_family] | default(_docker_compose_binary_required_packages['default']) }}"
+    default:
+      - libxcrypt-compat
+    "8":
+      - libxcrypt
+docker_compose_binary_required_packages: "{{ _docker_compose_binary_required_packages[ansible_os_family][ansible_distribution_major_version] | default(_docker_compose_binary_required_packages[ansible_os_family]['default']) | default(_docker_compose_binary_required_packages['default']) }}"

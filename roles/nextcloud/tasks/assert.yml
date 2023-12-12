@@ -1,6 +1,6 @@
 ---
 
-- name: assert | Test if nextcloud_version is set correctly
+- name: assert | Test nextcloud_version
   ansible.builtin.assert:
     that:
       - nextcloud_version is defined
@@ -8,7 +8,7 @@
       - nextcloud_version is not none
     quiet: yes
 
-- name: assert | Test if nextcloud_domain_url is set correctly
+- name: assert | Test nextcloud_domain_url
   ansible.builtin.assert:
     that:
       - nextcloud_domain_url is defined
@@ -16,7 +16,7 @@
       - nextcloud_domain_url is not none
     quiet: yes
 
-- name: assert | Test if nextcloud_database_name is set correctly
+- name: assert | Test nextcloud_database_name
   ansible.builtin.assert:
     that:
       - nextcloud_database_name is defined
@@ -24,7 +24,7 @@
       - nextcloud_database_name is not none
     quiet: yes
 
-- name: assert | Test if nextcloud_database_user is set correctly
+- name: assert | Test nextcloud_database_user
   ansible.builtin.assert:
     that:
       - nextcloud_database_user is defined
@@ -32,7 +32,7 @@
       - nextcloud_database_user is not none
     quiet: yes
 
-- name: assert | Test if nextcloud_database_pass is set correctly
+- name: assert | Test nextcloud_database_pass
   ansible.builtin.assert:
     that:
       - nextcloud_database_pass is defined
@@ -40,7 +40,7 @@
       - nextcloud_database_pass is not none
     quiet: yes
 
-- name: assert | Test if nextcloud_database_host is set correctly
+- name: assert | Test nextcloud_database_host
   ansible.builtin.assert:
     that:
       - nextcloud_database_host is defined
@@ -48,7 +48,7 @@
       - nextcloud_database_host is not none
     quiet: yes
 
-- name: assert | Test if nextcloud_admin_user is set correctly
+- name: assert | Test nextcloud_admin_user
   ansible.builtin.assert:
     that:
       - nextcloud_admin_user is defined
@@ -56,7 +56,7 @@
       - nextcloud_admin_user is not none
     quiet: yes
 
-- name: assert | Test if nextcloud_admin_pass is set correctly
+- name: assert | Test nextcloud_admin_pass
   ansible.builtin.assert:
     that:
       - nextcloud_admin_pass is defined
@@ -64,7 +64,7 @@
       - nextcloud_admin_pass is not none
     quiet: yes
 
-- name: assert | Test if nextcloud_apps is set correctly
+- name: assert | Test nextcloud_apps
   ansible.builtin.assert:
     that:
       - nextcloud_apps is iterable
@@ -72,7 +72,7 @@
   when:
     - nextcloud_apps is defined
 
-- name: assert | Test if item in nextcloud_apps is set correctly
+- name: assert | Test item in nextcloud_apps
   ansible.builtin.assert:
     that:
       - item.name is defined
@@ -85,7 +85,7 @@
   when:
     - nextcloud_apps is defined
 
-- name: assert | Test if nextcloud_settings is set correctly
+- name: assert | Test nextcloud_settings
   ansible.builtin.assert:
     that:
       - nextcloud_settings is iterable
@@ -93,7 +93,7 @@
   when:
     - nextcloud_settings is defined
 
-- name: assert | Test if item in nextcloud_settings is set correctly
+- name: assert | Test item in nextcloud_settings
   ansible.builtin.assert:
     that:
       - item.name is defined

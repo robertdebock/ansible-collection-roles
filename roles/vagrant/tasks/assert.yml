@@ -1,6 +1,6 @@
 ---
 
-- name: assert | Test if vagrant_version is set correctly
+- name: assert | Test vagrant_version
   ansible.builtin.assert:
     that:
       - vagrant_version is defined
@@ -8,7 +8,7 @@
       - vagrant_version is not none
     quiet: yes
 
-- name: assert | Test if vagrant_unarchive_dest is set correctly
+- name: assert | Test vagrant_unarchive_dest
   ansible.builtin.assert:
     that:
       - vagrant_unarchive_dest is defined
