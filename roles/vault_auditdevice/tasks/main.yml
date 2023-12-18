@@ -1,0 +1,43 @@
+---
+# tasks file for vault_auditdevice
+
+- name: Import assert.yml
+  ansible.builtin.import_tasks:
+    file: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+- name: List existing audit devices configured
+  ansible.builtin.uri:
+    url: "{{ vault_auditdevice_address }}/v1/sys/audit"
+    method: GET
+    headers:
+      X-Vault-Token: "{{ vault_auditdevice_token }}"
+    validate_certs: "{{ vault_auditdevice_ssl_verify }}"
+  register: vault_auditdevice_list_retreived
+  run_once: yes
+  changed_when: no
+
+- name: Create audit devices
+  ansible.builtin.uri:
+    url: "{{ vault_auditdevice_address }}/v1/sys/audit/{{ item.name | regex_replace('/', '') }}"
+    method: POST
+    headers:
+      X-Vault-Token: "{{ vault_auditdevice_token }}"
+    body:
+      type: "{{ item.type }}"
+      description: "{{ item.description | default(omit) }}"
+      options: "{{ item.options }}"
+      local: "{{ item.local | default(omit) }}"
+    body_format: json
+    status_code:
+      - 204
+    validate_certs: "{{ vault_auditdevice_ssl_verify }}"
+  loop: "{{ vault_auditdevice_list }}"
+  loop_control:
+    label: "{{ item.description }}"
+  when:
+    - item.name not in vault_auditdevice_list_retreived.json
+  changed_when: yes
+  register: vault_auditdevice_list
+  run_once: yes

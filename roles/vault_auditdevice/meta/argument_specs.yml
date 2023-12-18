@@ -1,0 +1,25 @@
+---
+
+argument_specs:
+  main:
+    short_description: "Install and configure vault_auditdevice on your system."
+    description: >
+      Install and configure vault_auditdevice on your system.
+    author: Robert de Bock
+    options:
+      vault_auditdevice_address:
+        type: "str"
+        default: "https://localhost:8200"
+        description: "Set the vault instance address. Similar to `VAULT_ADDR`."
+      vault_auditdevice_token:
+        type: "str"
+        default: "simple"
+        description: "DESCRIPTION"
+      vault_auditdevice_list:
+        type: "list"
+        default: []
+        description: "A list of audit devices to configure. Please have look in `molecule/default/converge.yml` for a complete example."
+      vault_auditdevice_ssl_verify:
+        type: "bool"
+        default: yes
+        description: "Should SSL certificate verification be disabled?"

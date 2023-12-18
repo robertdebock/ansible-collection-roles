@@ -2,8 +2,16 @@
 # vars file for spamassassin
 
 _spamassassin_service:
-  default: spamassassin
-  Alpine: spamd
-  Suse: spamd
-  Debian-12: spamassassin-maintenance
+  default:
+    name: spamassassin
+    state: started
+  Alpine:
+    name: spamd
+    state: stared
+  Suse:
+    name: spamd
+    state: started
+  Debian-12:
+    # A timer would not be idempotent for starting, so omit the state, just enable it.
+    name: spamassassin-maintenance
 spamassassin_service: "{{ _spamassassin_service[ansible_os_family ~ '-' ~ ansible_distribution_major_version] | default(_spamassassin_service[ansible_os_family] | default(_spamassassin_service['default'])) }}"

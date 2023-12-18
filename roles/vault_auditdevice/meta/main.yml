@@ -1,0 +1,34 @@
+---
+galaxy_info:
+  author: robertdebock
+  role_name: vault_auditdevice
+  description: Install and configure vault_auditdevice on your system.
+  license: Apache-2.0
+  company: none
+  min_ansible_version: "2.12"
+
+  platforms:
+    - name: Amazon
+      versions:
+        - Candidate
+    - name: Debian
+      versions:
+        - bullseye
+    - name: EL
+      versions:
+        - "8"
+        - "9"
+    - name: Fedora
+      versions:
+        - "38"
+        - "39"
+    - name: Ubuntu
+      versions:
+        - all
+
+  galaxy_tags:
+    - vaultauditdevice
+    - infrastructure
+    - security
+
+dependencies: []

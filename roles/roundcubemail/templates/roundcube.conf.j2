@@ -41,10 +41,22 @@ Alias /roundcubemail {{ roundcubemail_install_directory }}
 
 # Those directories should not be viewed by Web clients.
 <Directory {{ roundcubemail_install_directory }}/bin/>
-    Order Allow,Deny
-    Deny from all
+    <IfModule !mod_authz_core.c>
+        # Apache 2.4
+        Order Allow,Deny
+        Deny from all
+    </IfModule>
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
 </Directory>
 <Directory {{ roundcubemail_install_directory }}/plugins/enigma/home/>
-    Order Allow,Deny
-    Deny from all
+    <IfModule !mod_authz_core.c>
+        # Apache 2.4
+        Order Allow,Deny
+        Deny from all
+    </IfModule>
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
 </Directory>

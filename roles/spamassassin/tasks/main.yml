@@ -51,6 +51,6 @@
 
 - name: Start and enable spamassassin
   ansible.builtin.service:
-    name: "{{ spamassassin_service }}"
-    state: started
+    name: "{{ spamassassin_service.name }}"
+    state: "{{ spamassassin_service.state | default(omit) }}"
     enabled: yes

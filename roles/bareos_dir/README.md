@@ -40,6 +40,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
           address: 127.0.0.1
           password: "MySecretPassword"
           maximum_concurrent_jobs: 3
+          heartbeat_interval: 60
         - name: "disabled-client"
           enabled: no
       bareos_dir_filesets:

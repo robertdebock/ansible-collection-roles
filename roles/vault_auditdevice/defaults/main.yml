@@ -1,0 +1,14 @@
+---
+# defaults file for vault_auditdevice
+
+# Set the vault instance address. Similar to `VAULT_ADDR`.
+vault_auditdevice_address: "https://localhost:8200"
+
+# Set a token to connect to Vault. Similar to `VAULT_TOKEN`.
+vault_auditdevice_token: "simple"
+
+# A list of audit devices to configure. Please have look in `molecule/default/converge.yml` for a complete example.
+vault_auditdevice_list: []
+
+# Should SSL certificate verification be disabled?
+vault_auditdevice_ssl_verify: yes

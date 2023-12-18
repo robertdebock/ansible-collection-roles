@@ -7,11 +7,20 @@
   run_once: yes
   delegate_to: localhost
 
-- name: Install zabbix-agent software
+- name: Install zabbix-agent software (Not Debian)
   ansible.builtin.package:
     name: zabbix-agent
     disable_gpg_check: yes
     state: present
+  when:
+    - ansible_os_family != "Debian"
+
+- name: Install zabbix-agent software (Debian)
+  ansible.builtin.package:
+    name: zabbix-agent
+    state: present
+  when:
+    - ansible_os_family == "Debian"
 
 - name: Configuring zabbix agent
   ansible.builtin.template:
