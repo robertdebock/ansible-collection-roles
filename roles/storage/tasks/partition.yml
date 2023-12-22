@@ -19,17 +19,6 @@
   when:
     - partition.label is defined
 
-- name: partition | Rescan device
-  block:
-    - name: partition | Rescan device
-      ansible.builtin.lineinfile:
-        path: "{{ partition.name }}"
-        line: "1"
-  rescue:
-    - name: partition | Inform user
-      ansible.builtin.debug:
-        msg: Rescanning causes a freeze, lets continue
-
 - name: partition | Create partitions
   community.general.parted:
     device: "{{ partition.name }}"

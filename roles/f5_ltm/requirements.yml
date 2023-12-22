@@ -1,5 +1,0 @@
----
-roles:
-  - name: robertdebock.bootstrap
-collections:
-  - name: f5networks.f5_modules

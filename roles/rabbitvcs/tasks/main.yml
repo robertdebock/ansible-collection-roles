@@ -1,7 +1,0 @@
----
-# tasks file for rabbitvcs
-
-- name: Install rabbitvcs
-  ansible.builtin.package:
-    name: "{{ rabbitvcs_packages }}"
-    state: present

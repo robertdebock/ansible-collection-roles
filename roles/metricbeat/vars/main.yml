@@ -1,8 +1,0 @@
----
-# vars file for metricbeat
-
-_metricbeat_package:
-  default: "metricbeat-{{ metricbeat_version }}"
-  Debian: "metricbeat={{ metricbeat_version }}"
-
-metricbeat_package: "{{ _metricbeat_package[ansible_os_family] | default(_metricbeat_package['default']) }}"

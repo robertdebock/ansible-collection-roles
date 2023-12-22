@@ -21,8 +21,8 @@
 
 - name: Unarchive zabbix schema
   ansible.builtin.command:
-    cmd: gunzip {{ zabbix_server_docdir }}/zabbix-sql-scripts/mysql/server.sql.gz
-    creates: "{{ zabbix_server_docdir }}/zabbix-sql-scripts/mysql/server.sql"
+    cmd: gunzip /usr/share/zabbix-sql-scripts/mysql/server.sql.gz
+    creates: /usr/share/zabbix-sql-scripts/mysql/server.sql
   notify:
     - Import zabbix schema
     - Restart zabbix_server

@@ -8,5 +8,4 @@ collections:
   - name: community.postgresql
   - name: community.zabbix
   - name: containers.podman
-  - name: f5networks.f5_modules
   - name: gluster.gluster

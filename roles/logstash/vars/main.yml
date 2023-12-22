@@ -1,8 +1,0 @@
----
-# vars file for logstash
-
-_logstash_package:
-  elastic: logstash
-  oss: logstash-oss
-
-logstash_package: "{{ _logstash_package[logstash_type] }}"

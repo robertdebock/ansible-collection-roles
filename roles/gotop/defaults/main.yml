@@ -1,8 +1,0 @@
----
-# defaults file for gotop
-
-# The version of gotop to install.
-gotop_version: "4.1.2"
-
-# Where to install gotop.
-gotop_installation_path: /usr/local/bin

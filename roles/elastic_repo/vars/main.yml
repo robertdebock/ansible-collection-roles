@@ -1,6 +1,0 @@
----
-# vars file for elastic_repo
-
-# The gpg url is mentioned a few times in `tasks/main.yml`, so better
-# use a variable for it.
-elastic_repo_gpg_url: "https://artifacts.elastic.co/GPG-KEY-elasticsearch"

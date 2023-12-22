@@ -307,12 +307,11 @@ vault_configuration_storage_raft:
 #   disabled: no
 
 # OCI KMS can be used to unseal Vault.
-# NOT IMPLEMENTED.
 # vault_configuration_seal_ocikms:
-#   key_id:
-#   crypto_endpoint:
-#   management_endpoint:
-#   auth_type_api_key:
+#   key_id: "ocid1.key.oc1.iad.afnxza26aag4s.abzwkljsbapzb2nrha5nt3s7s7p42ctcrcj72vn3kq5qx"
+#   crypto_endpoint: "https://afnxza26aag4s-crypto.kms.us-ashburn-1.oraclecloud.com"
+#   management_endpoint:  "https://afnxza26aag4s-management.kms.us-ashburn-1.oraclecloud.com"
+#   auth_type_api_key: false
 #   disabled: no
 
 # An HSM supporting PKCS11 can be used to unseal Vault.

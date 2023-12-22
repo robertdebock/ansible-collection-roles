@@ -1,9 +1,0 @@
----
-
-- name: assert | Test logstash_type
-  ansible.builtin.assert:
-    that:
-      - logstash_type is defined
-      - logstash_type is string
-      - logstash_type in [ "enterprise", "oss" ]
-    quiet: yes

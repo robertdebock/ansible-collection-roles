@@ -1,9 +1,0 @@
----
-
-- name: assert | Test packer_version
-  ansible.builtin.assert:
-    that:
-      - packer_version is defined
-      - packer_version is string
-      - packer_version is not none
-    quiet: yes

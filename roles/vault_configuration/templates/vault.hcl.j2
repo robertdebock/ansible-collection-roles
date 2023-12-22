@@ -310,3 +310,23 @@ seal "pkcs11" {
 {% endif %}
 }
 {% endif %}
+
+{% if vault_configuration_seal_ocikms is defined %}
+seal "ocikms" {
+{% if vault_configuration_seal_ocikms.key_id is defined and vault_configuration_seal_ocikms.key_id != "" %}
+  key_id = "{{ vault_configuration_seal_ocikms.key_id }}"
+{% endif %}
+{% if vault_configuration_seal_ocikms.crypto_endpoint is defined and vault_configuration_seal_ocikms.crypto_endpoint != "" %}
+  crypto_endpoint = "{{ vault_configuration_seal_ocikms.crypto_endpoint }}"
+{% endif %}
+{% if vault_configuration_seal_ocikms.management_endpoint is defined and vault_configuration_seal_ocikms.management_endpoint != "" %}
+  management_endpoint = "{{ vault_configuration_seal_ocikms.management_endpoint }}"
+{% endif %}
+{% if vault_configuration_seal_ocikms.auth_type_api_key is defined and vault_configuration_seal_ocikms.auth_type_api_key %}
+  auth_type_api_key = true
+{% endif %}
+{% if vault_configuration_seal_ocikms.disabled is defined and vault_configuration_seal_ocikms.disabled %}
+  disabled = true
+{% endif %}
+}
+{% endif %}

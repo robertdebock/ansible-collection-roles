@@ -1,9 +1,0 @@
----
-roles:
-  - name: robertdebock.bootstrap
-  - name: robertdebock.buildtools
-  - name: robertdebock.cargo
-  - name: robertdebock.core_dependencies
-  - name: robertdebock.epel
-  - name: robertdebock.git
-collections:

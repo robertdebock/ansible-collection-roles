@@ -1,5 +1,0 @@
----
-roles:
-  - name: robertdebock.bootstrap
-  - name: robertdebock.ca_certificates
-collections:

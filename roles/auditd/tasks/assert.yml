@@ -134,9 +134,6 @@
   ansible.builtin.assert:
     that:
       - auditd_space_left is defined
-      - auditd_space_left is number
-      - auditd_space_left >= 0
-      - auditd_space_left <= 100
     quiet: yes
 
 - name: assert | Test auditd_space_left_action

@@ -1,8 +1,0 @@
----
-# tasks file for update_package_cache
-
-- name: Update package cache
-  ansible.builtin.package:
-    update_cache: true
-  when:
-    - ansible_os_family not in [ "Alpine", "Suse" ]

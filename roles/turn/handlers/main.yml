@@ -1,8 +1,0 @@
----
-
-# handlers file for turn
-
-- name: Restart turn
-  ansible.builtin.service:
-    name: "{{ turn_service }}"
-    state: restarted

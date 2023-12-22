@@ -1167,3 +1167,59 @@
   when:
     - vault_configuration_seal_pkcs11 is defined
     - vault_configuration_seal_pkcs11.disabled is defined
+
+- name: assert | Test vault_configuration_seal_ocikms
+  ansible.builtin.assert:
+    that:
+      - vault_configuration_seal_ocikms is mapping
+    quiet: yes
+  when:
+    - vault_configuration_seal_ocikms is defined
+
+- name: assert | Test vault_configuration_seal_ocikms.key_id
+  ansible.builtin.assert:
+    that:
+      - vault_configuration_seal_ocikms.key_id is string
+      - vault_configuration_seal_ocikms.key_id is not none
+    quiet: yes
+  when:
+    - vault_configuration_seal_ocikms is defined
+    - vault_configuration_seal_ocikms.key_id is defined
+
+- name: assert | Test vault_configuration_seal_ocikms.crypto_endpoint
+  ansible.builtin.assert:
+    that:
+      - vault_configuration_seal_ocikms.crypto_endpoint is string
+      - vault_configuration_seal_ocikms.crypto_endpoint is not none
+    quiet: yes
+  when:
+    - vault_configuration_seal_ocikms is defined
+    - vault_configuration_seal_ocikms.crypto_endpoint is defined
+
+- name: assert | Test vault_configuration_seal_ocikms.management_endpoint
+  ansible.builtin.assert:
+    that:
+      - vault_configuration_seal_ocikms.management_endpoint is string
+      - vault_configuration_seal_ocikms.management_endpoint is not none
+    quiet: yes
+  when:
+    - vault_configuration_seal_ocikms is defined
+    - vault_configuration_seal_ocikms.management_endpoint is defined
+
+- name: assert | Test vault_configuration_seal_ocikms.auth_type_api_key
+  ansible.builtin.assert:
+    that:
+      - vault_configuration_seal_ocikms.auth_type_api_key is boolean
+    quiet: yes
+  when:
+    - vault_configuration_seal_ocikms is defined
+    - vault_configuration_seal_ocikms.auth_type_api_key is defined
+
+- name: assert | Test vault_configuration_seal_ocikms.disabled
+  ansible.builtin.assert:
+    that:
+      - vault_configuration_seal_ocikms.disabled is boolean
+    quiet: yes
+  when:
+    - vault_configuration_seal_ocikms is defined
+    - vault_configuration_seal_ocikms.disabled is defined

@@ -20,6 +20,7 @@ auditd_disp_qos: lossy
 auditd_dispatcher: /sbin/audispd
 auditd_name_format: none
 auditd_max_log_file_action: rotate
+# This can be a number ('25') or a percentage. ('25%')
 auditd_space_left: 75
 auditd_space_left_action: syslog
 auditd_verify_email: "yes"
