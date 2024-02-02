@@ -1,0 +1,97 @@
+---
+# tasks file for tfe
+
+- name: Import assert.yml
+  ansible.builtin.import_tasks:
+    file: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+- name: Log into DockerHub
+  community.docker.docker_login:
+    registry: images.releases.hashicorp.com
+    username: terraform
+    password: "{{ tfe_license }}"
+  when:
+    - tfe_license is defined
+    - tfe_license != ""
+
+- name: Create /etc/terraform-enterprise/certs
+  ansible.builtin.file:
+    path: /etc/terraform-enterprise/certs
+    state: directory
+    owner: root
+    group: root
+    mode: '0775'
+
+- name: Place TLS material
+  ansible.builtin.copy:
+    src: "{{ item.name }}"
+    dest: /etc/terraform-enterprise/certs/{{ item.name }}
+    owner: root
+    group: root
+    mode: "{{ item.mode }}"
+  loop:
+    - name: "{{ tfe_tls_bundle }}"
+      mode: '0664'
+    - name: "{{ tfe_tls_certificate }}"
+      mode: '0664'
+    - name: "{{ tfe_tls_key }}"
+      mode: '0660'
+  loop_control:
+    label: "{{ item.name }}"
+  notify:
+    - Restart terraform-enterprise
+
+- name: Create /etc/terraform-enterprise
+  ansible.builtin.file:
+    path: /etc/terraform-enterprise
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Place docker-compose.yml
+  ansible.builtin.copy:
+    src: docker-compose.yml
+    dest: /etc/terraform-enterprise/docker-compose.yml
+    owner: root
+    group: root
+    mode: '0644'
+  notify:
+    - Restart terraform-enterprise
+
+- name: Place .env
+  ansible.builtin.template:
+    src: docker-compose.env.j2
+    dest: /etc/terraform-enterprise/.env
+    owner: root
+    group: root
+    mode: '0400'
+  when:
+    - tfe_license is defined
+    - tfe_license != ""
+  notify:
+    - Restart terraform-enterprise
+
+- name: Place terraform-enterprise systemd unit
+  ansible.builtin.copy:
+    src: terraform-enterprise.service
+    dest: /etc/systemd/system/terraform-enterprise.service
+    owner: root
+    group: root
+    mode: '0644'
+  notify:
+    - Reload systemd
+
+- name: Flush handlers
+  ansible.builtin.meta: flush_handlers
+
+- name: Start and enable terraform-enterprise
+  ansible.builtin.service:
+    name: terraform-enterprise
+    state: started
+    enabled: true
+  when:
+    - tfe_license is defined
+    - tfe_license != ""

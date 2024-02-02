@@ -4,7 +4,7 @@ Setup the [Bareos](https://www.bareos.com/) repositories.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-bareos_repository/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-bareos_repository/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-bareos_repository/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-bareos_repository)|[![downloads](https://img.shields.io/ansible/role/d/32425)](https://galaxy.ansible.com/robertdebock/bareos_repository)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-bareos_repository.svg)](https://github.com/robertdebock/ansible-role-bareos_repository/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-bareos_repository/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-bareos_repository/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-bareos_repository/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-bareos_repository)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/bareos_repository)](https://galaxy.ansible.com/robertdebock/bareos_repository)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-bareos_repository.svg)](https://github.com/robertdebock/ansible-role-bareos_repository/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -60,7 +60,7 @@ bareos_repository_release: current
 
 # The version of Bareos to install.
 # Only affects `bareos_repository_type: subscription`.
-bareos_repository_version: 22
+bareos_repository_version: 23
 
 # You can enable tracebacks for troubleshooting purposes.
 bareos_repository_enable_tracebacks: no
@@ -93,7 +93,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |---------|----|
 |[Debian](https://hub.docker.com/r/robertdebock/debian)|bookworm, bullseye, buster|
 |[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|7, 8, 9|
-|[Fedora](https://hub.docker.com/r/robertdebock/fedora/)|37, 38|
+|[Fedora](https://hub.docker.com/r/robertdebock/fedora/)|38, 39|
 |[opensuse](https://hub.docker.com/r/robertdebock/opensuse)|all|
 |[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|jammy, focal|
 

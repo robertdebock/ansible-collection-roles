@@ -4,7 +4,7 @@ Install and configure selinux and its required libraries on your system.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-selinux/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-selinux/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-selinux/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-selinux)|[![downloads](https://img.shields.io/ansible/role/d/24586)](https://galaxy.ansible.com/robertdebock/selinux)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-selinux.svg)](https://github.com/robertdebock/ansible-role-selinux/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-selinux/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-selinux/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-selinux/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-selinux)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/selinux)](https://galaxy.ansible.com/robertdebock/selinux)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-selinux.svg)](https://github.com/robertdebock/ansible-role-selinux/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

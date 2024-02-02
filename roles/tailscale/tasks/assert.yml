@@ -21,3 +21,10 @@
       - tailscale_advertise_routes is defined
       - tailscale_advertise_routes is iterable
     quiet: yes
+
+- name: assert | Test tailscale_hostname
+  ansible.builtin.assert:
+    that:
+      - tailscale_hostname is defined
+      - tailscale_hostname is string
+    quiet: yes

@@ -4,7 +4,7 @@ Install and configure Podman on your system.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-podman/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-podman/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-podman/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-podman)|[![downloads](https://img.shields.io/ansible/role/d/24566)](https://galaxy.ansible.com/robertdebock/podman)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-podman.svg)](https://github.com/robertdebock/ansible-role-podman/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-podman/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-podman/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-podman/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-podman)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/podman)](https://galaxy.ansible.com/robertdebock/podman)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-podman.svg)](https://github.com/robertdebock/ansible-role-podman/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

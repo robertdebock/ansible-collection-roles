@@ -11,3 +11,6 @@ tailscale_advertise_routes: []
 # Nodes can authenticate with the tailscale service using an authkey.
 # These keys can be created here: https://login.tailscale.com/admin/settings/keys
 tailscale_authkey: ""
+
+# You can specify a hostname.
+tailscale_hostname: "{{ ansible_hostname }}

@@ -4,7 +4,7 @@ Install and configure umask on your system.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-umask/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-umask/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-umask/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-umask)|[![downloads](https://img.shields.io/ansible/role/d/24614)](https://galaxy.ansible.com/robertdebock/umask)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-umask.svg)](https://github.com/robertdebock/ansible-role-umask/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-umask/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-umask/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-umask/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-umask)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/umask)](https://galaxy.ansible.com/robertdebock/umask)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-umask.svg)](https://github.com/robertdebock/ansible-role-umask/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

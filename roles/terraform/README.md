@@ -4,7 +4,7 @@ Install and configure terraform on your system.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-terraform/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-terraform/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-terraform/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-terraform)|[![downloads](https://img.shields.io/ansible/role/d/24603)](https://galaxy.ansible.com/robertdebock/terraform)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-terraform.svg)](https://github.com/robertdebock/ansible-role-terraform/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-terraform/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-terraform/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-terraform/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-terraform)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/terraform)](https://galaxy.ansible.com/robertdebock/terraform)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-terraform.svg)](https://github.com/robertdebock/ansible-role-terraform/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

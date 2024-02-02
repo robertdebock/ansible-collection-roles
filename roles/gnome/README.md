@@ -4,7 +4,7 @@ Install Gnome on your system.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-gnome/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-gnome/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-gnome/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-gnome)|[![downloads](https://img.shields.io/ansible/role/d/24505)](https://galaxy.ansible.com/robertdebock/gnome)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-gnome.svg)](https://github.com/robertdebock/ansible-role-gnome/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-gnome/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-gnome/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-gnome/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-gnome)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/gnome)](https://galaxy.ansible.com/robertdebock/gnome)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-gnome.svg)](https://github.com/robertdebock/ansible-role-gnome/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

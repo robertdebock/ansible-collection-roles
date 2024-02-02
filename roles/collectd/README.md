@@ -4,7 +4,7 @@ Install and configure collectd on your system.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-collectd/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-collectd/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-collectd/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-collectd)|[![downloads](https://img.shields.io/ansible/role/d/24463)](https://galaxy.ansible.com/robertdebock/collectd)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-collectd.svg)](https://github.com/robertdebock/ansible-role-collectd/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-collectd/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-collectd/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-collectd/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-collectd)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/collectd)](https://galaxy.ansible.com/robertdebock/collectd)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-collectd.svg)](https://github.com/robertdebock/ansible-role-collectd/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

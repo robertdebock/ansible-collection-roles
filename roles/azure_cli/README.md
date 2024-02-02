@@ -4,7 +4,7 @@ Install and configure azure_cli on your system.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-azure_cli/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-azure_cli/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-azure_cli/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-azure_cli)|[![downloads](https://img.shields.io/ansible/role/d/24448)](https://galaxy.ansible.com/robertdebock/azure_cli)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-azure_cli.svg)](https://github.com/robertdebock/ansible-role-azure_cli/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-azure_cli/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-azure_cli/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-azure_cli/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-azure_cli)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/azure_cli)](https://galaxy.ansible.com/robertdebock/azure_cli)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-azure_cli.svg)](https://github.com/robertdebock/ansible-role-azure_cli/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

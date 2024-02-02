@@ -4,7 +4,7 @@ Install and configure haveged on your system.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-haveged/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-haveged/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-haveged/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-haveged)|[![downloads](https://img.shields.io/ansible/role/d/24512)](https://galaxy.ansible.com/robertdebock/haveged)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-haveged.svg)](https://github.com/robertdebock/ansible-role-haveged/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-haveged/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-haveged/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-haveged/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-haveged)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/haveged)](https://galaxy.ansible.com/robertdebock/haveged)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-haveged.svg)](https://github.com/robertdebock/ansible-role-haveged/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

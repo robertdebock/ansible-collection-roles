@@ -4,7 +4,7 @@ Install and configure mediawiki on your system.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-mediawiki/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-mediawiki/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-mediawiki/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-mediawiki)|[![downloads](https://img.shields.io/ansible/role/d/24535)](https://galaxy.ansible.com/robertdebock/mediawiki)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-mediawiki.svg)](https://github.com/robertdebock/ansible-role-mediawiki/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-mediawiki/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-mediawiki/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-mediawiki/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-mediawiki)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/mediawiki)](https://galaxy.ansible.com/robertdebock/mediawiki)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-mediawiki.svg)](https://github.com/robertdebock/ansible-role-mediawiki/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

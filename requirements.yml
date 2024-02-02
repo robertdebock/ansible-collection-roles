@@ -3,6 +3,7 @@ collections:
   - name: ansible.posix
   - name: awx.awx
   - name: community.crypto
+  - name: community.docker
   - name: community.general
   - name: community.mysql
   - name: community.postgresql

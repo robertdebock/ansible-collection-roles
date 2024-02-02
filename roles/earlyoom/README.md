@@ -4,7 +4,7 @@ Install and configure Early Out Of Memory Killer on your system.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-earlyoom/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-earlyoom/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-earlyoom/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-earlyoom)|[![downloads](https://img.shields.io/ansible/role/d/24485)](https://galaxy.ansible.com/robertdebock/earlyoom)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-earlyoom.svg)](https://github.com/robertdebock/ansible-role-earlyoom/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-earlyoom/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-earlyoom/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-earlyoom/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-earlyoom)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/earlyoom)](https://galaxy.ansible.com/robertdebock/earlyoom)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-earlyoom.svg)](https://github.com/robertdebock/ansible-role-earlyoom/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

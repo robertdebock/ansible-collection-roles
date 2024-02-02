@@ -4,7 +4,7 @@ Install and configure revealmd on your system.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-revealmd/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-revealmd/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-revealmd/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-revealmd)|[![downloads](https://img.shields.io/ansible/role/d/24579)](https://galaxy.ansible.com/robertdebock/revealmd)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-revealmd.svg)](https://github.com/robertdebock/ansible-role-revealmd/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-revealmd/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-revealmd/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-revealmd/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-revealmd)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/revealmd)](https://galaxy.ansible.com/robertdebock/revealmd)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-revealmd.svg)](https://github.com/robertdebock/ansible-role-revealmd/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

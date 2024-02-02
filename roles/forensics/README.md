@@ -4,7 +4,7 @@ Install and configure forensics on your system.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-forensics/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-forensics/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-forensics/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-forensics)|[![downloads](https://img.shields.io/ansible/role/d/24498)](https://galaxy.ansible.com/robertdebock/forensics)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-forensics.svg)](https://github.com/robertdebock/ansible-role-forensics/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-forensics/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-forensics/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-forensics/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-forensics)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/forensics)](https://galaxy.ansible.com/robertdebock/forensics)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-forensics.svg)](https://github.com/robertdebock/ansible-role-forensics/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

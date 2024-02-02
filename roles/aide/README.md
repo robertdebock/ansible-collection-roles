@@ -4,7 +4,7 @@ Install and configure aide on your system.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-aide/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-aide/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-aide/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-aide)|[![downloads](https://img.shields.io/ansible/role/d/24432)](https://galaxy.ansible.com/robertdebock/aide)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-aide.svg)](https://github.com/robertdebock/ansible-role-aide/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-aide/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-aide/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-aide/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-aide)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/aide)](https://galaxy.ansible.com/robertdebock/aide)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-aide.svg)](https://github.com/robertdebock/ansible-role-aide/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

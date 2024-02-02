@@ -4,7 +4,7 @@ Apply and/or check recommendations from the CIS benchmarks.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-cis/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-cis/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-cis/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-cis)|[![downloads](https://img.shields.io/ansible/role/d/24457)](https://galaxy.ansible.com/robertdebock/cis)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-cis.svg)](https://github.com/robertdebock/ansible-role-cis/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-cis/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-cis/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-cis/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-cis)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/cis)](https://galaxy.ansible.com/robertdebock/cis)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-cis.svg)](https://github.com/robertdebock/ansible-role-cis/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

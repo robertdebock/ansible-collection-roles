@@ -4,7 +4,7 @@ Install and configure certbot on your system.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-certbot/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-certbot/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-certbot/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-certbot)|[![downloads](https://img.shields.io/ansible/role/d/24456)](https://galaxy.ansible.com/robertdebock/certbot)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-certbot.svg)](https://github.com/robertdebock/ansible-role-certbot/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-certbot/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-certbot/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-certbot/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-certbot)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/certbot)](https://galaxy.ansible.com/robertdebock/certbot)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-certbot.svg)](https://github.com/robertdebock/ansible-role-certbot/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

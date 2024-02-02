@@ -4,7 +4,7 @@ Create partitions, volume groups, volumes, filesystems and mounts
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-storage/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-storage/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-storage/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-storage)|[![downloads](https://img.shields.io/ansible/role/d/24594)](https://galaxy.ansible.com/robertdebock/storage)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-storage.svg)](https://github.com/robertdebock/ansible-role-storage/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-storage/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-storage/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-storage/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-storage)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/storage)](https://galaxy.ansible.com/robertdebock/storage)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-storage.svg)](https://github.com/robertdebock/ansible-role-storage/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

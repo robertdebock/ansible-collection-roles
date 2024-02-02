@@ -4,7 +4,7 @@ Configure Logical Volumes Management (lvm), group and volumes.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-lvm/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-lvm/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-lvm/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-lvm)|[![downloads](https://img.shields.io/ansible/role/d/24531)](https://galaxy.ansible.com/robertdebock/lvm)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-lvm.svg)](https://github.com/robertdebock/ansible-role-lvm/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-lvm/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-lvm/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-lvm/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-lvm)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/lvm)](https://galaxy.ansible.com/robertdebock/lvm)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-lvm.svg)](https://github.com/robertdebock/ansible-role-lvm/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

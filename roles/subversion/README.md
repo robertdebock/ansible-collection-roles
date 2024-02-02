@@ -4,7 +4,7 @@ Install subversion and create repositories on your system.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-subversion/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-subversion/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-subversion/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-subversion)|[![downloads](https://img.shields.io/ansible/role/d/24596)](https://galaxy.ansible.com/robertdebock/subversion)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-subversion.svg)](https://github.com/robertdebock/ansible-role-subversion/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-subversion/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-subversion/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-subversion/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-subversion)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/subversion)](https://galaxy.ansible.com/robertdebock/subversion)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-subversion.svg)](https://github.com/robertdebock/ansible-role-subversion/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

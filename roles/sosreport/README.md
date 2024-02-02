@@ -4,7 +4,7 @@ Install, run and collect sosreports from your systems.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-sosreport/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-sosreport/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-sosreport/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-sosreport)|[![downloads](https://img.shields.io/ansible/role/d/24591)](https://galaxy.ansible.com/robertdebock/sosreport)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-sosreport.svg)](https://github.com/robertdebock/ansible-role-sosreport/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-sosreport/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-sosreport/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-sosreport/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-sosreport)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/sosreport)](https://galaxy.ansible.com/robertdebock/sosreport)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-sosreport.svg)](https://github.com/robertdebock/ansible-role-sosreport/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

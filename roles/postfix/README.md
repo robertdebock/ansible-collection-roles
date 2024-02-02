@@ -4,7 +4,7 @@ Install and configure postfix on your system.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-postfix/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-postfix/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-postfix/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-postfix)|[![downloads](https://img.shields.io/ansible/role/d/24567)](https://galaxy.ansible.com/robertdebock/postfix)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-postfix.svg)](https://github.com/robertdebock/ansible-role-postfix/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-postfix/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-postfix/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-postfix/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-postfix)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/postfix)](https://galaxy.ansible.com/robertdebock/postfix)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-postfix.svg)](https://github.com/robertdebock/ansible-role-postfix/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -33,7 +33,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
       postfix_relayhost: "[smtp.ziggo.nl]:587"
       postfix_smtp_use_tls: yes
       postfix_smtp_sasl_auth_enable: yes
-      postfix_smtp_sasl_password_map: "hash:/etc/postfix/relay_pass"
+      postfix_smtp_sasl_password_map: "/etc/postfix/relay_pass"
       postfix_smtp_sasl_security_options: ""
       postfix_smtp_tls_wrappermode: no
       postfix_smtp_tls_security_level: may

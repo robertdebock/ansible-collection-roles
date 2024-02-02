@@ -42,6 +42,6 @@ _tailscale_sysctl_packages:
 tailscale_sysclt_packages: "{{ _tailscale_sysctl_packages[ansible_os_family] | default(_tailscale_sysctl_packages['default']) }}"
 
 _tailscale_up_command:
-  yes: tailscale up --authkey "{{ tailscale_authkey }}" --advertise-exit-node
-  no: tailscale up --authkey "{{ tailscale_authkey }}"
+  yes: tailscale up --authkey "{{ tailscale_authkey }}" --hostname={{ tailscale_hostname }} --advertise-exit-node
+  no: tailscale up --authkey "{{ tailscale_authkey }} --hostname={{ tailscale_hostname }}"
 tailscale_up_command: "{{ _tailscale_up_command[tailscale_exit_node] }}"

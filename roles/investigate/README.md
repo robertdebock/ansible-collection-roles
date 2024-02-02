@@ -4,7 +4,7 @@ Install and configure investigation tools on your system.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-investigate/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-investigate/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-investigate/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-investigate)|[![downloads](https://img.shields.io/ansible/role/d/24516)](https://galaxy.ansible.com/robertdebock/investigate)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-investigate.svg)](https://github.com/robertdebock/ansible-role-investigate/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-investigate/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-investigate/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-investigate/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-investigate)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/investigate)](https://galaxy.ansible.com/robertdebock/investigate)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-investigate.svg)](https://github.com/robertdebock/ansible-role-investigate/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

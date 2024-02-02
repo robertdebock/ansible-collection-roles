@@ -4,7 +4,7 @@ Manage firewall ports on all (known) Linux operating systems.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-firewall/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-firewall/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-firewall/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-firewall)|[![downloads](https://img.shields.io/ansible/role/d/24497)](https://galaxy.ansible.com/robertdebock/firewall)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-firewall.svg)](https://github.com/robertdebock/ansible-role-firewall/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-firewall/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-firewall/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-firewall/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-firewall)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/firewall)](https://galaxy.ansible.com/robertdebock/firewall)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-firewall.svg)](https://github.com/robertdebock/ansible-role-firewall/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

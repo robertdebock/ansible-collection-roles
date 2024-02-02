@@ -4,7 +4,7 @@ Install and configure git on your system.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-git/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-git/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-git/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-git)|[![downloads](https://img.shields.io/ansible/role/d/24500)](https://galaxy.ansible.com/robertdebock/git)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-git.svg)](https://github.com/robertdebock/ansible-role-git/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-git/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-git/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-git/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-git)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/git)](https://galaxy.ansible.com/robertdebock/git)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-git.svg)](https://github.com/robertdebock/ansible-role-git/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

@@ -4,7 +4,7 @@ Upgrade a package only if it is installed otherwise do nothing.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-upgrade/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-upgrade/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-upgrade/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-upgrade)|[![downloads](https://img.shields.io/ansible/role/d/24620)](https://galaxy.ansible.com/robertdebock/upgrade)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-upgrade.svg)](https://github.com/robertdebock/ansible-role-upgrade/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-upgrade/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-upgrade/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-upgrade/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-upgrade)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/upgrade)](https://galaxy.ansible.com/robertdebock/upgrade)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-upgrade.svg)](https://github.com/robertdebock/ansible-role-upgrade/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

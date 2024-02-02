@@ -4,7 +4,7 @@ Configure ulimit on your system.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-ulimit/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-ulimit/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-ulimit/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-ulimit)|[![downloads](https://img.shields.io/ansible/role/d/24613)](https://galaxy.ansible.com/robertdebock/ulimit)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-ulimit.svg)](https://github.com/robertdebock/ansible-role-ulimit/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-ulimit/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-ulimit/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-ulimit/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-ulimit)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/ulimit)](https://galaxy.ansible.com/robertdebock/ulimit)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-ulimit.svg)](https://github.com/robertdebock/ansible-role-ulimit/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

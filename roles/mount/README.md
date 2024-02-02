@@ -4,7 +4,7 @@ Configure mounts
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-mount/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-mount/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-mount/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-mount)|[![downloads](https://img.shields.io/ansible/role/d/24544)](https://galaxy.ansible.com/robertdebock/mount)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-mount.svg)](https://github.com/robertdebock/ansible-role-mount/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-mount/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-mount/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-mount/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-mount)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/mount)](https://galaxy.ansible.com/robertdebock/mount)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-mount.svg)](https://github.com/robertdebock/ansible-role-mount/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

@@ -16,7 +16,6 @@ _investigate_packages:
     - telnet
     - bash
     - bash-completion
-    - curl-minimal
     - screen
   Debian:
     - net-tools
@@ -43,4 +42,4 @@ _investigate_packages:
     - curl
     - screen
 
-investigate_packages: "{{ _investigate_packages[ansible_os_family] }}"
+investigate_packages: "{{ _investigate_packages[ansible_distribution] | default(_investigate_packages[ansible_os_family]) }}"

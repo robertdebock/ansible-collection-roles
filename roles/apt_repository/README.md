@@ -4,7 +4,7 @@ Manage apt repositor(y|ies).
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-apt_repository/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-apt_repository/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-apt_repository/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-apt_repository)|[![downloads](https://img.shields.io/ansible/role/d/24438)](https://galaxy.ansible.com/robertdebock/apt_repository)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-apt_repository.svg)](https://github.com/robertdebock/ansible-role-apt_repository/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-apt_repository/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-apt_repository/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-apt_repository/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-apt_repository)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/apt_repository)](https://galaxy.ansible.com/robertdebock/apt_repository)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-apt_repository.svg)](https://github.com/robertdebock/ansible-role-apt_repository/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

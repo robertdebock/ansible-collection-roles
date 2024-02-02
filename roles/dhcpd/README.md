@@ -4,7 +4,7 @@ Install and configure dhcpd on your system.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-dhcpd/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-dhcpd/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-dhcpd/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-dhcpd)|[![downloads](https://img.shields.io/ansible/role/d/24474)](https://galaxy.ansible.com/robertdebock/dhcpd)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-dhcpd.svg)](https://github.com/robertdebock/ansible-role-dhcpd/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-dhcpd/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-dhcpd/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-dhcpd/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-dhcpd)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/dhcpd)](https://galaxy.ansible.com/robertdebock/dhcpd)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-dhcpd.svg)](https://github.com/robertdebock/ansible-role-dhcpd/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

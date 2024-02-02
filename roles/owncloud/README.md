@@ -4,7 +4,7 @@ Install and configure owncloud on your system.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-owncloud/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-owncloud/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-owncloud/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-owncloud)|[![downloads](https://img.shields.io/ansible/role/d/24561)](https://galaxy.ansible.com/robertdebock/owncloud)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-owncloud.svg)](https://github.com/robertdebock/ansible-role-owncloud/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-owncloud/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-owncloud/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-owncloud/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-owncloud)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/owncloud)](https://galaxy.ansible.com/robertdebock/owncloud)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-owncloud.svg)](https://github.com/robertdebock/ansible-role-owncloud/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

@@ -4,7 +4,7 @@ Set default target and configure systemd.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-systemd/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-systemd/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-systemd/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-systemd)|[![downloads](https://img.shields.io/ansible/role/d/24601)](https://galaxy.ansible.com/robertdebock/systemd)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-systemd.svg)](https://github.com/robertdebock/ansible-role-systemd/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-systemd/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-systemd/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-systemd/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-systemd)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/systemd)](https://galaxy.ansible.com/robertdebock/systemd)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-systemd.svg)](https://github.com/robertdebock/ansible-role-systemd/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

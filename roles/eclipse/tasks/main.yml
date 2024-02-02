@@ -25,7 +25,6 @@
 - name: Create the installation directory
   ansible.builtin.file:
     path: "{{ eclipse_install_path }}"
-    # recurse: yes
     state: directory
     mode: "0755"
 

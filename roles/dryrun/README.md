@@ -4,7 +4,7 @@ Try a few things with Ansible.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-dryrun/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-dryrun/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-dryrun/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-dryrun)|[![downloads](https://img.shields.io/ansible/role/d/24483)](https://galaxy.ansible.com/robertdebock/dryrun)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-dryrun.svg)](https://github.com/robertdebock/ansible-role-dryrun/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-dryrun/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-dryrun/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-dryrun/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-dryrun)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/dryrun)](https://galaxy.ansible.com/robertdebock/dryrun)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-dryrun.svg)](https://github.com/robertdebock/ansible-role-dryrun/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

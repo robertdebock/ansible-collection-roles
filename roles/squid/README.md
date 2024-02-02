@@ -4,7 +4,7 @@ Install and configure squid on your system
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-squid/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-squid/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-squid/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-squid)|[![downloads](https://img.shields.io/ansible/role/d/24593)](https://galaxy.ansible.com/robertdebock/squid)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-squid.svg)](https://github.com/robertdebock/ansible-role-squid/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-squid/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-squid/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-squid/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-squid)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/squid)](https://galaxy.ansible.com/robertdebock/squid)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-squid.svg)](https://github.com/robertdebock/ansible-role-squid/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

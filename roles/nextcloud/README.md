@@ -4,7 +4,7 @@ Install and configure Nextcloud on your system.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-nextcloud/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-nextcloud/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-nextcloud/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-nextcloud)|[![downloads](https://img.shields.io/ansible/role/d/24548)](https://galaxy.ansible.com/robertdebock/nextcloud)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-nextcloud.svg)](https://github.com/robertdebock/ansible-role-nextcloud/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-nextcloud/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-nextcloud/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-nextcloud/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-nextcloud)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/nextcloud)](https://galaxy.ansible.com/robertdebock/nextcloud)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-nextcloud.svg)](https://github.com/robertdebock/ansible-role-nextcloud/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

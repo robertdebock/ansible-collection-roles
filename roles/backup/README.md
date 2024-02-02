@@ -4,7 +4,7 @@ The purpose of this role is to make backups of your system.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-backup/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-backup/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-backup/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-backup)|[![downloads](https://img.shields.io/ansible/role/d/24449)](https://galaxy.ansible.com/robertdebock/backup)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-backup.svg)](https://github.com/robertdebock/ansible-role-backup/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-backup/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-backup/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-backup/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-backup)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/backup)](https://galaxy.ansible.com/robertdebock/backup)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-backup.svg)](https://github.com/robertdebock/ansible-role-backup/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

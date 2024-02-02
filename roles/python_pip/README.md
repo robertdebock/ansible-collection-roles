@@ -4,7 +4,7 @@ Install pythons pip on your system.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-python_pip/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-python_pip/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-python_pip/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-python_pip)|[![downloads](https://img.shields.io/ansible/role/d/24571)](https://galaxy.ansible.com/robertdebock/python_pip)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-python_pip.svg)](https://github.com/robertdebock/ansible-role-python_pip/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-python_pip/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-python_pip/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-python_pip/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-python_pip)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/python_pip)](https://galaxy.ansible.com/robertdebock/python_pip)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-python_pip.svg)](https://github.com/robertdebock/ansible-role-python_pip/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

@@ -4,7 +4,7 @@ Install cargo on your system.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-cargo/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-cargo/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-cargo/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-cargo)|[![downloads](https://img.shields.io/ansible/role/d/24455)](https://galaxy.ansible.com/robertdebock/cargo)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-cargo.svg)](https://github.com/robertdebock/ansible-role-cargo/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-cargo/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-cargo/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-cargo/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-cargo)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/cargo)](https://galaxy.ansible.com/robertdebock/cargo)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-cargo.svg)](https://github.com/robertdebock/ansible-role-cargo/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

@@ -4,7 +4,7 @@ Install and configure harbor on your system.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-harbor/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-harbor/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-harbor/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-harbor)|[![downloads](https://img.shields.io/ansible/role/d/24510)](https://galaxy.ansible.com/robertdebock/harbor)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-harbor.svg)](https://github.com/robertdebock/ansible-role-harbor/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-harbor/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-harbor/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-harbor/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-harbor)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/harbor)](https://galaxy.ansible.com/robertdebock/harbor)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-harbor.svg)](https://github.com/robertdebock/ansible-role-harbor/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

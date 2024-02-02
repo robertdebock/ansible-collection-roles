@@ -4,7 +4,7 @@ Install epel on your system.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-epel/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-epel/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-epel/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-epel)|[![downloads](https://img.shields.io/ansible/role/d/24491)](https://galaxy.ansible.com/robertdebock/epel)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-epel.svg)](https://github.com/robertdebock/ansible-role-epel/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-epel/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-epel/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-epel/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-epel)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/epel)](https://galaxy.ansible.com/robertdebock/epel)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-epel.svg)](https://github.com/robertdebock/ansible-role-epel/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

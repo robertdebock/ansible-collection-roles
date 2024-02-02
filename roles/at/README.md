@@ -4,7 +4,7 @@ Install and configure at on your system.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-at/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-at/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-at/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-at)|[![downloads](https://img.shields.io/ansible/role/d/24441)](https://galaxy.ansible.com/robertdebock/at)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-at.svg)](https://github.com/robertdebock/ansible-role-at/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-at/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-at/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-at/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-at)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/at)](https://galaxy.ansible.com/robertdebock/at)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-at.svg)](https://github.com/robertdebock/ansible-role-at/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

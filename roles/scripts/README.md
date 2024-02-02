@@ -4,7 +4,7 @@ Place scripts on your system.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-scripts/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-scripts/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-scripts/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-scripts)|[![downloads](https://img.shields.io/ansible/role/d/32192)](https://galaxy.ansible.com/robertdebock/scripts)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-scripts.svg)](https://github.com/robertdebock/ansible-role-scripts/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-scripts/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-scripts/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-scripts/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-scripts)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/scripts)](https://galaxy.ansible.com/robertdebock/scripts)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-scripts.svg)](https://github.com/robertdebock/ansible-role-scripts/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

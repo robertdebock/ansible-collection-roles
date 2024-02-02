@@ -4,7 +4,7 @@ Install powertop on your system and optimize at boot.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-powertop/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-powertop/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-powertop/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-powertop)|[![downloads](https://img.shields.io/ansible/role/d/24570)](https://galaxy.ansible.com/robertdebock/powertop)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-powertop.svg)](https://github.com/robertdebock/ansible-role-powertop/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-powertop/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-powertop/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-powertop/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-powertop)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/powertop)](https://galaxy.ansible.com/robertdebock/powertop)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-powertop.svg)](https://github.com/robertdebock/ansible-role-powertop/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

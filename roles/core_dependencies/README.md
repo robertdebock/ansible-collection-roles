@@ -4,7 +4,7 @@ Install dependecies to support the Ansible core modules.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-core_dependencies/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-core_dependencies/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-core_dependencies/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-core_dependencies)|[![downloads](https://img.shields.io/ansible/role/d/24467)](https://galaxy.ansible.com/robertdebock/core_dependencies)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-core_dependencies.svg)](https://github.com/robertdebock/ansible-role-core_dependencies/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-core_dependencies/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-core_dependencies/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-core_dependencies/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-core_dependencies)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/core_dependencies)](https://galaxy.ansible.com/robertdebock/core_dependencies)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-core_dependencies.svg)](https://github.com/robertdebock/ansible-role-core_dependencies/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

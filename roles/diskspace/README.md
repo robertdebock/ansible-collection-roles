@@ -4,7 +4,7 @@ Check diskspace (or inodes) available, fail if too low.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-diskspace/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-diskspace/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-diskspace/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-diskspace)|[![downloads](https://img.shields.io/ansible/role/d/24476)](https://galaxy.ansible.com/robertdebock/diskspace)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-diskspace.svg)](https://github.com/robertdebock/ansible-role-diskspace/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-diskspace/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-diskspace/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-diskspace/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-diskspace)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/diskspace)](https://galaxy.ansible.com/robertdebock/diskspace)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-diskspace.svg)](https://github.com/robertdebock/ansible-role-diskspace/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

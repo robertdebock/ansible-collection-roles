@@ -4,7 +4,7 @@ Build and install a kernel
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-kernel/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-kernel/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-kernel/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-kernel)|[![downloads](https://img.shields.io/ansible/role/d/24522)](https://galaxy.ansible.com/robertdebock/kernel)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-kernel.svg)](https://github.com/robertdebock/ansible-role-kernel/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-kernel/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-kernel/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-kernel/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-kernel)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/kernel)](https://galaxy.ansible.com/robertdebock/kernel)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-kernel.svg)](https://github.com/robertdebock/ansible-role-kernel/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

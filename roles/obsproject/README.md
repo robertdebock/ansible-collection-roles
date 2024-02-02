@@ -4,7 +4,7 @@ Install obsproject on your system.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-obsproject/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-obsproject/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-obsproject/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-obsproject)|[![downloads](https://img.shields.io/ansible/role/d/24555)](https://galaxy.ansible.com/robertdebock/obsproject)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-obsproject.svg)](https://github.com/robertdebock/ansible-role-obsproject/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-obsproject/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-obsproject/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-obsproject/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-obsproject)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/obsproject)](https://galaxy.ansible.com/robertdebock/obsproject)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-obsproject.svg)](https://github.com/robertdebock/ansible-role-obsproject/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

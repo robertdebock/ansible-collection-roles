@@ -4,7 +4,7 @@ Maintain your system by cleaning up.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-maintenance/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-maintenance/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-maintenance/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-maintenance)|[![downloads](https://img.shields.io/ansible/role/d/24533)](https://galaxy.ansible.com/robertdebock/maintenance)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-maintenance.svg)](https://github.com/robertdebock/ansible-role-maintenance/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-maintenance/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-maintenance/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-maintenance/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-maintenance)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/maintenance)](https://galaxy.ansible.com/robertdebock/maintenance)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-maintenance.svg)](https://github.com/robertdebock/ansible-role-maintenance/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

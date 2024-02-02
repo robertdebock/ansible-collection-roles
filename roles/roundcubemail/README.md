@@ -4,7 +4,7 @@ Install and configure roundcubemail on your system.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-roundcubemail/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-roundcubemail/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-roundcubemail/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-roundcubemail)|[![downloads](https://img.shields.io/ansible/role/d/24580)](https://galaxy.ansible.com/robertdebock/roundcubemail)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-roundcubemail.svg)](https://github.com/robertdebock/ansible-role-roundcubemail/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-roundcubemail/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-roundcubemail/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-roundcubemail/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-roundcubemail)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/roundcubemail)](https://galaxy.ansible.com/robertdebock/roundcubemail)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-roundcubemail.svg)](https://github.com/robertdebock/ansible-role-roundcubemail/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

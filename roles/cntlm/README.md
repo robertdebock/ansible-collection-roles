@@ -4,7 +4,7 @@ Install and configure cntlm on your system.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-cntlm/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-cntlm/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-cntlm/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-cntlm)|[![downloads](https://img.shields.io/ansible/role/d/24460)](https://galaxy.ansible.com/robertdebock/cntlm)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-cntlm.svg)](https://github.com/robertdebock/ansible-role-cntlm/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-cntlm/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-cntlm/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-cntlm/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-cntlm)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/cntlm)](https://galaxy.ansible.com/robertdebock/cntlm)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-cntlm.svg)](https://github.com/robertdebock/ansible-role-cntlm/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

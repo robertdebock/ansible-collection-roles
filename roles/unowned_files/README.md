@@ -4,7 +4,7 @@ Install and configure unowned_files on your system.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-unowned_files/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-unowned_files/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-unowned_files/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-unowned_files)|[![downloads](https://img.shields.io/ansible/role/d/24616)](https://galaxy.ansible.com/robertdebock/unowned_files)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-unowned_files.svg)](https://github.com/robertdebock/ansible-role-unowned_files/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-unowned_files/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-unowned_files/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-unowned_files/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-unowned_files)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/unowned_files)](https://galaxy.ansible.com/robertdebock/unowned_files)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-unowned_files.svg)](https://github.com/robertdebock/ansible-role-unowned_files/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

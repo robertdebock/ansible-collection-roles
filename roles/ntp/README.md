@@ -4,7 +4,7 @@ Install and configure ntp on your system.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-ntp/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-ntp/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-ntp/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-ntp)|[![downloads](https://img.shields.io/ansible/role/d/24554)](https://galaxy.ansible.com/robertdebock/ntp)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-ntp.svg)](https://github.com/robertdebock/ansible-role-ntp/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-ntp/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-ntp/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-ntp/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-ntp)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/ntp)](https://galaxy.ansible.com/robertdebock/ntp)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-ntp.svg)](https://github.com/robertdebock/ansible-role-ntp/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

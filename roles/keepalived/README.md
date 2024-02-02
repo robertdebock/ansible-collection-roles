@@ -4,7 +4,7 @@ Install and configure keepalived
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-keepalived/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-keepalived/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-keepalived/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-keepalived)|[![downloads](https://img.shields.io/ansible/role/d/24521)](https://galaxy.ansible.com/robertdebock/keepalived)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-keepalived.svg)](https://github.com/robertdebock/ansible-role-keepalived/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-keepalived/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-keepalived/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-keepalived/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-keepalived)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/keepalived)](https://galaxy.ansible.com/robertdebock/keepalived)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-keepalived.svg)](https://github.com/robertdebock/ansible-role-keepalived/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

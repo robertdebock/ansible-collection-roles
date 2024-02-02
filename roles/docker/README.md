@@ -4,7 +4,7 @@ Install and configure Docker (non-CE) on your system.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-docker/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-docker/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-docker/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-docker)|[![downloads](https://img.shields.io/ansible/role/d/24479)](https://galaxy.ansible.com/robertdebock/docker)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-docker.svg)](https://github.com/robertdebock/ansible-role-docker/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-docker/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-docker/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-docker/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-docker)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/docker)](https://galaxy.ansible.com/robertdebock/docker)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-docker.svg)](https://github.com/robertdebock/ansible-role-docker/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

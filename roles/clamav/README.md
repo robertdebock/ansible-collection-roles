@@ -4,7 +4,7 @@ Install and configure clamav on your system.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-clamav/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-clamav/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-clamav/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-clamav)|[![downloads](https://img.shields.io/ansible/role/d/24458)](https://galaxy.ansible.com/robertdebock/clamav)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-clamav.svg)](https://github.com/robertdebock/ansible-role-clamav/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-clamav/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-clamav/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-clamav/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-clamav)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/clamav)](https://galaxy.ansible.com/robertdebock/clamav)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-clamav.svg)](https://github.com/robertdebock/ansible-role-clamav/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -19,6 +19,8 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 
   roles:
     - role: robertdebock.roles.clamav
+      freshclam_private_mirrors:
+        - https://www.danami.com/hotfix/clamav
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-clamav/blob/master/molecule/default/prepare.yml):

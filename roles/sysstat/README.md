@@ -4,7 +4,7 @@ Install, start and enable sysstat on your system.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-sysstat/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-sysstat/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-sysstat/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-sysstat)|[![downloads](https://img.shields.io/ansible/role/d/24600)](https://galaxy.ansible.com/robertdebock/sysstat)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-sysstat.svg)](https://github.com/robertdebock/ansible-role-sysstat/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-sysstat/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-sysstat/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-sysstat/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-sysstat)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/sysstat)](https://galaxy.ansible.com/robertdebock/sysstat)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-sysstat.svg)](https://github.com/robertdebock/ansible-role-sysstat/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

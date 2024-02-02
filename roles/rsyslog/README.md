@@ -4,7 +4,7 @@ Install and configure rsyslog on your system.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-rsyslog/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-rsyslog/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-rsyslog/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-rsyslog)|[![downloads](https://img.shields.io/ansible/role/d/24582)](https://galaxy.ansible.com/robertdebock/rsyslog)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-rsyslog.svg)](https://github.com/robertdebock/ansible-role-rsyslog/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-rsyslog/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-rsyslog/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-rsyslog/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-rsyslog)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/rsyslog)](https://galaxy.ansible.com/robertdebock/rsyslog)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-rsyslog.svg)](https://github.com/robertdebock/ansible-role-rsyslog/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

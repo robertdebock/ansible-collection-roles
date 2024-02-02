@@ -7,18 +7,6 @@
   run_once: yes
   delegate_to: localhost
 
-- name: Show ansible_os_family
-  ansible.builtin.debug:
-    msg: "ansible_os_family: {{ ansible_os_family }}"
-
-- name: Show ansible_distribution_major_version
-  ansible.builtin.debug:
-    msg: "ansible_distribution_major_version: {{ ansible_distribution_major_version }}"
-
-- name: Show docker_compose_installation_type
-  ansible.builtin.debug:
-    msg: "docker_compose_installation_type: {{ docker_compose_installation_type }}"
-
 - name: Install docker-compose package
   ansible.builtin.package:
     name: docker-compose

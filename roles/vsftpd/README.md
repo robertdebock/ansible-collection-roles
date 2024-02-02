@@ -4,7 +4,7 @@ Install and configure vsftpd on your system.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-vsftpd/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-vsftpd/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-vsftpd/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-vsftpd)|[![downloads](https://img.shields.io/ansible/role/d/32303)](https://galaxy.ansible.com/robertdebock/vsftpd)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-vsftpd.svg)](https://github.com/robertdebock/ansible-role-vsftpd/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-vsftpd/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-vsftpd/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-vsftpd/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-vsftpd)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/vsftpd)](https://galaxy.ansible.com/robertdebock/vsftpd)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-vsftpd.svg)](https://github.com/robertdebock/ansible-role-vsftpd/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

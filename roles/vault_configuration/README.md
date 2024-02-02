@@ -4,7 +4,7 @@ Configure HashiCorp Vault on your system.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-vault_configuration/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-vault_configuration/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-vault_configuration/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-vault_configuration)|[![downloads](https://img.shields.io/ansible/role/d/24624)](https://galaxy.ansible.com/robertdebock/vault_configuration)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-vault_configuration.svg)](https://github.com/robertdebock/ansible-role-vault_configuration/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-vault_configuration/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-vault_configuration/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-vault_configuration/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-vault_configuration)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/vault_configuration)](https://galaxy.ansible.com/robertdebock/vault_configuration)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-vault_configuration.svg)](https://github.com/robertdebock/ansible-role-vault_configuration/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

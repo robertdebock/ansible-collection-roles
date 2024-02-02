@@ -39,7 +39,7 @@
     that:
       - bareos_repository_version is defined
       - bareos_repository_version is number
-      - bareos_repository_version in [ 20, 21, 22 ]
+      - bareos_repository_version in [ 20, 21, 22, 23 ]
     quiet: yes
   when:
     - bareos_repository_type == "subscription"

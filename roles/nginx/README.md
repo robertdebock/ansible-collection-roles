@@ -4,7 +4,7 @@ Install and configure nginx on your system.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-nginx/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-nginx/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-nginx/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-nginx)|[![downloads](https://img.shields.io/ansible/role/d/24550)](https://galaxy.ansible.com/robertdebock/nginx)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-nginx.svg)](https://github.com/robertdebock/ansible-role-nginx/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-nginx/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-nginx/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-nginx/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-nginx)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/nginx)](https://galaxy.ansible.com/robertdebock/nginx)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-nginx.svg)](https://github.com/robertdebock/ansible-role-nginx/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

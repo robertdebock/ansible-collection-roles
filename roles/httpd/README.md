@@ -4,7 +4,7 @@ Install and configure httpd on your system.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-httpd/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-httpd/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-httpd/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-httpd)|[![downloads](https://img.shields.io/ansible/role/d/24514)](https://galaxy.ansible.com/robertdebock/httpd)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-httpd.svg)](https://github.com/robertdebock/ansible-role-httpd/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-httpd/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-httpd/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-httpd/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-httpd)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/httpd)](https://galaxy.ansible.com/robertdebock/httpd)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-httpd.svg)](https://github.com/robertdebock/ansible-role-httpd/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

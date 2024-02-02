@@ -723,7 +723,7 @@ gitlab_rails['db_encoding'] = "{{ gitlab_rails_db_encoding }}"
 {% if gitlab_rails_db_collation is defined %}
 gitlab_rails['db_collation'] = {{ gitlab_rails_db_collation }}
 {% endif %}
-{% if XXX is defined %}
+{% if gitlab_rails_db_database is defined %}
 gitlab_rails['db_database'] = "{{ gitlab_rails_db_database }}"
 {% endif %}
 {% if gitlab_rails_db_username is defined %}
@@ -2409,19 +2409,39 @@ gitlab_rails['db_application_name'] = "{{ gitlab_rails_db_application_name }}"
 ################################################################################
 # Let's Encrypt integration
 ################################################################################
-{% if gitlab_letsencrypt %}
+{% if gitlab_letsencrypt is defined %}
 letsencrypt['enable'] = {{ gitlab_letsencrypt | ternary('true', 'false') }}
+{% if gitlab_letsencrypt_contact_emails is defined %}
 letsencrypt['contact_emails'] = [ {% for email in gitlab_letsencrypt_contact_emails %}'{{ email }}'{% if not loop.last %}, {% endif %} {% endfor %} ]
+{% endif %}
+{% if gitlab_letsencrypt_ca_certificates is defined %}
 letsencrypt['group'] = '{{ gitlab_letsencrypt_group }}'
+{% endif %}
+{% if gitlab_letsencrypt_key_size is defined %}
 letsencrypt['key_size'] = {{ gitlab_letsencrypt_key_size }}
+{% endif %}
+{% if gitlab_letsencrypt_owner is defined %}
 letsencrypt['owner'] = '{{ gitlab_letsencrypt_owner }}'
+{% endif %}
+{% if gitlab_letsencrypt_directory_wwwroot is defined %}
 letsencrypt['wwwroot'] = '{{ gitlab_letsencrypt_wwwroot }}'
+{% endif %}
 # See http://docs.gitlab.com/omnibus/settings/ssl.html#automatic-renewal for more on these sesttings
+{% if gitlab_letsencrypt_auto_renew is defined %}
 letsencrypt['auto_renew'] = {{ gitlab_letsencrypt_auto_renew | ternary('true', 'false') }}
+{% endif %}
+{% if gitlab_letsencrypt_auto_renew_hour is defined %}
 letsencrypt['auto_renew_hour'] = {{ gitlab_letsencrypt_auto_renew_hour }}
+{% endif %}
+{% if gitlab_letsencrypt_auto_renew_minute is defined %}
 letsencrypt['auto_renew_minute'] = {{ gitlab_letsencrypt_auto_renew_minute }}
+{% endif %}
+{% if gitlab_letsencrypt_auto_renew_day_of_month is defined %}
 letsencrypt['auto_renew_day_of_month'] = "{{ gitlab_letsencrypt_auto_renew_day_of_month }}"
+{% endif %}
+{% if auto_renew_log_directory is defined %}
 letsencrypt['auto_renew_log_directory'] = '{{ gitlab_letsencrypt_auto_renew_log_directory }}'
+{% endif %}
 {% if gitlab_acme_staging_endpoint is defined %}
 letsencrypt['acme_staging_endpoint'] = '{{ gitlab_acme_staging_endpoint }}'
 {% endif %}

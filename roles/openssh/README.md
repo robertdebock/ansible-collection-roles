@@ -4,7 +4,7 @@ Install and configure openssh on your system.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-openssh/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-openssh/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-openssh/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-openssh)|[![downloads](https://img.shields.io/ansible/role/d/24557)](https://galaxy.ansible.com/robertdebock/openssh)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-openssh.svg)](https://github.com/robertdebock/ansible-role-openssh/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-openssh/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-openssh/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-openssh/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-openssh)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/openssh)](https://galaxy.ansible.com/robertdebock/openssh)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-openssh.svg)](https://github.com/robertdebock/ansible-role-openssh/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

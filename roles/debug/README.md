@@ -4,7 +4,7 @@ Show variable per host.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-debug/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-debug/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-debug/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-debug)|[![downloads](https://img.shields.io/ansible/role/d/24472)](https://galaxy.ansible.com/robertdebock/debug)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-debug.svg)](https://github.com/robertdebock/ansible-role-debug/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-debug/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-debug/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-debug/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-debug)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/debug)](https://galaxy.ansible.com/robertdebock/debug)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-debug.svg)](https://github.com/robertdebock/ansible-role-debug/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

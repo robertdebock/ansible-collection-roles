@@ -25,6 +25,7 @@ _docker_ce_dist:
   default: "{{ ansible_distribution | lower }}"
   Rocky: centos
   RedHat: rhel
+  OracleLinux: centos
 
 docker_ce_dist: "{{ _docker_ce_dist[ansible_distribution] | default(_docker_ce_dist['default']) }}"
 

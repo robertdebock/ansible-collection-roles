@@ -4,7 +4,7 @@ Install the Enpass password manager on your system.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-enpass/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-enpass/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-enpass/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-enpass)|[![downloads](https://img.shields.io/ansible/role/d/24489)](https://galaxy.ansible.com/robertdebock/enpass)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-enpass.svg)](https://github.com/robertdebock/ansible-role-enpass/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-enpass/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-enpass/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-enpass/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-enpass)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/enpass)](https://galaxy.ansible.com/robertdebock/enpass)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-enpass.svg)](https://github.com/robertdebock/ansible-role-enpass/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

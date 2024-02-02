@@ -33,7 +33,7 @@ argument_specs:
           - release
       bareos_repository_version:
         type: "int"
-        default: 22
+        default: 23
         description: "The version of Bareos to install. Only affects `bareos_repository_type: subscription`."
       bareos_repository_enable_tracebacks:
         type: "bool"

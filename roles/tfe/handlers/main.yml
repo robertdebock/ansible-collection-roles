@@ -1,0 +1,15 @@
+---
+# handlers file for tfe
+
+- name: Reload systemd  # noqa: command-instead-of-module
+  ansible.builtin.command:
+    cmd: systemctl daemon-reload
+  changed_when: yes
+
+- name: Restart terraform-enterprise
+  ansible.builtin.service:
+    name: terraform-enterprise
+    state: restarted
+  when:
+    - tfe_license is defined
+    - tfe_license != ""

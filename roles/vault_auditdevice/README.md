@@ -4,7 +4,7 @@ Install and configure vault_auditdevice on your system.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-vault_auditdevice/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-vault_auditdevice/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-vault_auditdevice/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-vault_auditdevice)|[![downloads](https://img.shields.io/ansible/role/d/)](https://galaxy.ansible.com/robertdebock/vault_auditdevice)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-vault_auditdevice.svg)](https://github.com/robertdebock/ansible-role-vault_auditdevice/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-vault_auditdevice/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-vault_auditdevice/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-vault_auditdevice/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-vault_auditdevice)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/vault_auditdevice)](https://galaxy.ansible.com/robertdebock/vault_auditdevice)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-vault_auditdevice.svg)](https://github.com/robertdebock/ansible-role-vault_auditdevice/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

@@ -4,7 +4,7 @@ Install and configure xrdp on your system.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-xrdp/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-xrdp/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-xrdp/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-xrdp)|[![downloads](https://img.shields.io/ansible/role/d/24631)](https://galaxy.ansible.com/robertdebock/xrdp)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-xrdp.svg)](https://github.com/robertdebock/ansible-role-xrdp/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-xrdp/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-xrdp/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-xrdp/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-xrdp)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/xrdp)](https://galaxy.ansible.com/robertdebock/xrdp)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-xrdp.svg)](https://github.com/robertdebock/ansible-role-xrdp/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

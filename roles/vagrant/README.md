@@ -4,7 +4,7 @@ Install vagrant on your system.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-vagrant/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-vagrant/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-vagrant/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-vagrant)|[![downloads](https://img.shields.io/ansible/role/d/24622)](https://galaxy.ansible.com/robertdebock/vagrant)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-vagrant.svg)](https://github.com/robertdebock/ansible-role-vagrant/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-vagrant/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-vagrant/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-vagrant/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-vagrant)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/vagrant)](https://galaxy.ansible.com/robertdebock/vagrant)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-vagrant.svg)](https://github.com/robertdebock/ansible-role-vagrant/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

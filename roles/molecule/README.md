@@ -4,7 +4,7 @@ Install Molecule on your system.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-molecule/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-molecule/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-molecule/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-molecule)|[![downloads](https://img.shields.io/ansible/role/d/24542)](https://galaxy.ansible.com/robertdebock/molecule)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-molecule.svg)](https://github.com/robertdebock/ansible-role-molecule/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-molecule/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-molecule/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-molecule/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-molecule)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/molecule)](https://galaxy.ansible.com/robertdebock/molecule)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-molecule.svg)](https://github.com/robertdebock/ansible-role-molecule/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

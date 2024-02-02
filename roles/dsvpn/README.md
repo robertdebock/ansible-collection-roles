@@ -4,7 +4,7 @@ Install and configure DSVPN on your system.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-dsvpn/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-dsvpn/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-dsvpn/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-dsvpn)|[![downloads](https://img.shields.io/ansible/role/d/24484)](https://galaxy.ansible.com/robertdebock/dsvpn)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-dsvpn.svg)](https://github.com/robertdebock/ansible-role-dsvpn/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-dsvpn/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-dsvpn/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-dsvpn/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-dsvpn)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/dsvpn)](https://galaxy.ansible.com/robertdebock/dsvpn)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-dsvpn.svg)](https://github.com/robertdebock/ansible-role-dsvpn/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

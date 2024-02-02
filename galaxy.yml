@@ -1,7 +1,7 @@
 ---
 namespace: robertdebock
 name: roles
-version: 1.5.9
+version: 1.6.0
 readme: README.md
 authors:
   - Robert de Bock <robert@meinit.nl>
@@ -20,6 +20,7 @@ dependencies:
   community.zabbix: "*"
   f5networks.f5_modules: "*"
   gluster.gluster: "*"
+  community.docker: "*"
 repository: https://github.com/robertdebock/ansible-collection-roles
 documentation: https://robertdebock.nl/
 homepage: https://robertdebock.nl/

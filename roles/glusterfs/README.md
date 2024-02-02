@@ -4,7 +4,7 @@ Install and configure glusterfs on your system.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-glusterfs/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-glusterfs/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-glusterfs/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-glusterfs)|[![downloads](https://img.shields.io/ansible/role/d/24504)](https://galaxy.ansible.com/robertdebock/glusterfs)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-glusterfs.svg)](https://github.com/robertdebock/ansible-role-glusterfs/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-glusterfs/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-glusterfs/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-glusterfs/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-glusterfs)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/glusterfs)](https://galaxy.ansible.com/robertdebock/glusterfs)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-glusterfs.svg)](https://github.com/robertdebock/ansible-role-glusterfs/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

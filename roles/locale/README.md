@@ -4,7 +4,7 @@ Configure locale on your system.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-locale/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-locale/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-locale/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-locale)|[![downloads](https://img.shields.io/ansible/role/d/24526)](https://galaxy.ansible.com/robertdebock/locale)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-locale.svg)](https://github.com/robertdebock/ansible-role-locale/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-locale/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-locale/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-locale/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-locale)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/locale)](https://galaxy.ansible.com/robertdebock/locale)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-locale.svg)](https://github.com/robertdebock/ansible-role-locale/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

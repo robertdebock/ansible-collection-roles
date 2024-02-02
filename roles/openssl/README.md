@@ -4,7 +4,7 @@ Make openssl certificates.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-openssl/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-openssl/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-openssl/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-openssl)|[![downloads](https://img.shields.io/ansible/role/d/24558)](https://galaxy.ansible.com/robertdebock/openssl)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-openssl.svg)](https://github.com/robertdebock/ansible-role-openssl/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-openssl/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-openssl/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-openssl/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-openssl)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/openssl)](https://galaxy.ansible.com/robertdebock/openssl)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-openssl.svg)](https://github.com/robertdebock/ansible-role-openssl/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

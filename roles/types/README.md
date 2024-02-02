@@ -4,7 +4,7 @@ Try variables for their type.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-types/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-types/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-types/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-types)|[![downloads](https://img.shields.io/ansible/role/d/24612)](https://galaxy.ansible.com/robertdebock/types)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-types.svg)](https://github.com/robertdebock/ansible-role-types/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-types/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-types/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-types/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-types)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/types)](https://galaxy.ansible.com/robertdebock/types)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-types.svg)](https://github.com/robertdebock/ansible-role-types/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

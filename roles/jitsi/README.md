@@ -4,7 +4,7 @@ Install and configure jitsi on your system.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-jitsi/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-jitsi/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-jitsi/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-jitsi)|[![downloads](https://img.shields.io/ansible/role/d/24520)](https://galaxy.ansible.com/robertdebock/jitsi)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-jitsi.svg)](https://github.com/robertdebock/ansible-role-jitsi/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-jitsi/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-jitsi/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-jitsi/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-jitsi)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/jitsi)](https://galaxy.ansible.com/robertdebock/jitsi)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-jitsi.svg)](https://github.com/robertdebock/ansible-role-jitsi/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

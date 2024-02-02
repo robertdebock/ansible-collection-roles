@@ -4,7 +4,7 @@ Change package manager configuration to install docs and manpages.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-container_docs/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-container_docs/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-container_docs/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-container_docs)|[![downloads](https://img.shields.io/ansible/role/d/24466)](https://galaxy.ansible.com/robertdebock/container_docs)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-container_docs.svg)](https://github.com/robertdebock/ansible-role-container_docs/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-container_docs/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-container_docs/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-container_docs/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-container_docs)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/container_docs)](https://galaxy.ansible.com/robertdebock/container_docs)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-container_docs.svg)](https://github.com/robertdebock/ansible-role-container_docs/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

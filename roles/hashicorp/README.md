@@ -4,7 +4,7 @@ Install HashiCorp products using packages.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-hashicorp/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-hashicorp/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-hashicorp/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-hashicorp)|[![downloads](https://img.shields.io/ansible/role/d/24511)](https://galaxy.ansible.com/robertdebock/hashicorp)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-hashicorp.svg)](https://github.com/robertdebock/ansible-role-hashicorp/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-hashicorp/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-hashicorp/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-hashicorp/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-hashicorp)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/hashicorp)](https://galaxy.ansible.com/robertdebock/hashicorp)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-hashicorp.svg)](https://github.com/robertdebock/ansible-role-hashicorp/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

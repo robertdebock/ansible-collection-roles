@@ -4,7 +4,7 @@ Install and configure tailscale on your system.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-tailscale/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-tailscale/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-tailscale/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-tailscale)|[![downloads](https://img.shields.io/ansible/role/d/24602)](https://galaxy.ansible.com/robertdebock/tailscale)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-tailscale.svg)](https://github.com/robertdebock/ansible-role-tailscale/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-tailscale/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-tailscale/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-tailscale/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-tailscale)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/tailscale)](https://galaxy.ansible.com/robertdebock/tailscale)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-tailscale.svg)](https://github.com/robertdebock/ansible-role-tailscale/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -30,6 +30,9 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
       # tailscale_advertise_routes:
       #   - 10.0.0.0/24
       #   - 10.0.1.0/24
+      #
+      # You can give hosts a specific name:
+      # tailscale_hostname: some_hostname
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-tailscale/blob/master/molecule/default/prepare.yml):
@@ -65,6 +68,9 @@ tailscale_advertise_routes: []
 # Nodes can authenticate with the tailscale service using an authkey.
 # These keys can be created here: https://login.tailscale.com/admin/settings/keys
 tailscale_authkey: ""
+
+# You can specify a hostname.
+tailscale_hostname: "{{ ansible_hostname }}
 ```
 
 ## [Requirements](#requirements)

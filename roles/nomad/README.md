@@ -4,7 +4,7 @@ Install and configure Nomad.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-nomad/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-nomad/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-nomad/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-nomad)|[![downloads](https://img.shields.io/ansible/role/d/24552)](https://galaxy.ansible.com/robertdebock/nomad)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-nomad.svg)](https://github.com/robertdebock/ansible-role-nomad/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-nomad/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-nomad/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-nomad/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-nomad)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/nomad)](https://galaxy.ansible.com/robertdebock/nomad)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-nomad.svg)](https://github.com/robertdebock/ansible-role-nomad/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

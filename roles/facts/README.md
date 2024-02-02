@@ -4,7 +4,7 @@ Place custom facts for Ansible on a system.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-facts/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-facts/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-facts/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-facts)|[![downloads](https://img.shields.io/ansible/role/d/24494)](https://galaxy.ansible.com/robertdebock/facts)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-facts.svg)](https://github.com/robertdebock/ansible-role-facts/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-facts/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-facts/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-facts/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-facts)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/facts)](https://galaxy.ansible.com/robertdebock/facts)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-facts.svg)](https://github.com/robertdebock/ansible-role-facts/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

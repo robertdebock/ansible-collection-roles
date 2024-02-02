@@ -4,7 +4,7 @@ Install and configure consul on your system.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-consul/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-consul/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-consul/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-consul)|[![downloads](https://img.shields.io/ansible/role/d/24465)](https://galaxy.ansible.com/robertdebock/consul)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-consul.svg)](https://github.com/robertdebock/ansible-role-consul/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-consul/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-consul/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-consul/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-consul)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/consul)](https://galaxy.ansible.com/robertdebock/consul)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-consul.svg)](https://github.com/robertdebock/ansible-role-consul/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

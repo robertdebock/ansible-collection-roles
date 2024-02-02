@@ -4,7 +4,7 @@ Create encrypted devices using luks and open them at boot.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-luks/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-luks/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-luks/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-luks)|[![downloads](https://img.shields.io/ansible/role/d/24530)](https://galaxy.ansible.com/robertdebock/luks)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-luks.svg)](https://github.com/robertdebock/ansible-role-luks/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-luks/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-luks/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-luks/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-luks)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/luks)](https://galaxy.ansible.com/robertdebock/luks)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-luks.svg)](https://github.com/robertdebock/ansible-role-luks/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

@@ -4,7 +4,7 @@ Configure vault_snapshot on Vault.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-vault_snapshot/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-vault_snapshot/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-vault_snapshot/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-vault_snapshot)|[![downloads](https://img.shields.io/ansible/role/d/24627)](https://galaxy.ansible.com/robertdebock/vault_snapshot)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-vault_snapshot.svg)](https://github.com/robertdebock/ansible-role-vault_snapshot/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-vault_snapshot/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-vault_snapshot/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-vault_snapshot/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-vault_snapshot)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/vault_snapshot)](https://galaxy.ansible.com/robertdebock/vault_snapshot)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-vault_snapshot.svg)](https://github.com/robertdebock/ansible-role-vault_snapshot/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

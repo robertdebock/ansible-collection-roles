@@ -4,7 +4,7 @@ Install and configure automatic package updates on your system.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-auto_update/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-auto_update/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-auto_update/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-auto_update)|[![downloads](https://img.shields.io/ansible/role/d/24445)](https://galaxy.ansible.com/robertdebock/auto_update)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-auto_update.svg)](https://github.com/robertdebock/ansible-role-auto_update/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-auto_update/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-auto_update/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-auto_update/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-auto_update)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/auto_update)](https://galaxy.ansible.com/robertdebock/auto_update)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-auto_update.svg)](https://github.com/robertdebock/ansible-role-auto_update/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

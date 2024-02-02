@@ -4,7 +4,7 @@ Install and configure zabbix-proxy on your system.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-zabbix_proxy/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-zabbix_proxy/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-zabbix_proxy/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-zabbix_proxy)|[![downloads](https://img.shields.io/ansible/role/d/24634)](https://galaxy.ansible.com/robertdebock/zabbix_proxy)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-zabbix_proxy.svg)](https://github.com/robertdebock/ansible-role-zabbix_proxy/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-zabbix_proxy/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-zabbix_proxy/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-zabbix_proxy/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-zabbix_proxy)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/zabbix_proxy)](https://galaxy.ansible.com/robertdebock/zabbix_proxy)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-zabbix_proxy.svg)](https://github.com/robertdebock/ansible-role-zabbix_proxy/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

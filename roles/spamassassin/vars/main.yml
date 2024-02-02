@@ -7,7 +7,7 @@ _spamassassin_service:
     state: started
   Alpine:
     name: spamd
-    state: stared
+    state: started
   Suse:
     name: spamd
     state: started

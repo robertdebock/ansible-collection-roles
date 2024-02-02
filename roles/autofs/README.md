@@ -4,7 +4,7 @@ Install and configure autofs on your system.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-autofs/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-autofs/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-autofs/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-autofs)|[![downloads](https://img.shields.io/ansible/role/d/24444)](https://galaxy.ansible.com/robertdebock/autofs)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-autofs.svg)](https://github.com/robertdebock/ansible-role-autofs/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-autofs/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-autofs/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-autofs/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-autofs)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/autofs)](https://galaxy.ansible.com/robertdebock/autofs)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-autofs.svg)](https://github.com/robertdebock/ansible-role-autofs/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

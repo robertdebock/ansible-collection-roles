@@ -4,7 +4,7 @@ Set system-wide variables.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-environment/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-environment/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-environment/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-environment)|[![downloads](https://img.shields.io/ansible/role/d/24490)](https://galaxy.ansible.com/robertdebock/environment)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-environment.svg)](https://github.com/robertdebock/ansible-role-environment/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-environment/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-environment/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-environment/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-environment)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/environment)](https://galaxy.ansible.com/robertdebock/environment)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-environment.svg)](https://github.com/robertdebock/ansible-role-environment/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

@@ -1,0 +1,77 @@
+---
+
+argument_specs:
+  main:
+    short_description: "Install and configure tfe on your system."
+    description: >
+      Install and configure tfe on your system.
+    author: Robert de Bock
+    options:
+      tfe_image:
+        type: "str"
+        default: "images.releases.hashicorp.com/hashicorp/terraform-enterprise:v202309-1"
+        description: "Select the image to use for Terraform Enterprise. This includes the version."
+      tfe_license:
+        type: "str"
+        default: "XYZ123"
+        description: "Paste the license of Terraform Enterprise here. It's a long string."
+      tfe_hostname:
+        type: "str"
+        default: "tfe.example.com"
+        description: "Configure a hostname, used to redirect HTTP(S) requests."
+      tfe_encryption_password:
+        type: "str"
+        default: "S0meP@ssword"
+        description: "An encryption password for the TFE application."
+      tfe_iact_subnets:
+        type: "list"
+        default: ["10.0.0.0/8", "192.168.0.0/24"]
+        description: "A list of CIDR notated subnets that are allowed to create an 'Initial Admin Token'."
+      tfe_tls_certificate:
+        type: "str"
+        default: "cert.pem"
+        description: "A TLS certificate."
+      tfe_tls_key:
+        type: "str"
+        default: "key.pem"
+        description: "A TLS key."
+      tfe_tls_bundle:
+        type: "str"
+        default: "bundle.pem"
+        description: "A TLS bundle."
+      tfe_database_host:
+        type: "str"
+        default: "tfe.RaNdOm.eu-west-1.rds.amazonaws.com"
+        description: "A database hostname."
+      tfe_database_user:
+        type: "str"
+        default: "tfe"
+        description: "A database username."
+      tfe_database_password:
+        type: "str"
+        default: "my_pass_c0mpl.x"
+        description: "A database password."
+      tfe_database_name:
+        type: "str"
+        default: "tfe"
+        description: "A database name."
+      tfe_object_storage_s3_bucket:
+        type: "str"
+        default: "SomeBucketName"
+        description: "An S3 bucket name."
+      tfe_object_storage_s3_access_key_id:
+        type: "str"
+        default: "xyz"
+        description: "An S3 access key."
+      tfe_object_storage_s3_secret_access_key:
+        type: "str"
+        default: "xyz"
+        description: "An S3 secret key."
+      tfe_object_storage_s3_region:
+        type: "str"
+        default: "eu-west-1"
+        description: "An S3 region."
+      tfe_redis_host:
+        type: "str"
+        default: "tfe.RaNdOm.0001.euw1.cache.amazonaws.com"
+        description: "A Redis hostname."

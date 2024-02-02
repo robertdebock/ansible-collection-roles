@@ -4,7 +4,7 @@ Install and configure jenkins on your system.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-jenkins/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-jenkins/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-jenkins/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-jenkins)|[![downloads](https://img.shields.io/ansible/role/d/24519)](https://galaxy.ansible.com/robertdebock/jenkins)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-jenkins.svg)](https://github.com/robertdebock/ansible-role-jenkins/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-jenkins/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-jenkins/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-jenkins/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-jenkins)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/jenkins)](https://galaxy.ansible.com/robertdebock/jenkins)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-jenkins.svg)](https://github.com/robertdebock/ansible-role-jenkins/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

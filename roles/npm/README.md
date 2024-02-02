@@ -4,7 +4,7 @@ Install npm on your system.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-npm/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-npm/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-npm/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-npm)|[![downloads](https://img.shields.io/ansible/role/d/24553)](https://galaxy.ansible.com/robertdebock/npm)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-npm.svg)](https://github.com/robertdebock/ansible-role-npm/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-npm/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-npm/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-npm/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-npm)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/npm)](https://galaxy.ansible.com/robertdebock/npm)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-npm.svg)](https://github.com/robertdebock/ansible-role-npm/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

@@ -4,7 +4,7 @@ Install and configure Collabora Online CODE on your system.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-collabora_online/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-collabora_online/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-collabora_online/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-collabora_online)|[![downloads](https://img.shields.io/ansible/role/d/24462)](https://galaxy.ansible.com/robertdebock/collabora_online)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-collabora_online.svg)](https://github.com/robertdebock/ansible-role-collabora_online/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-collabora_online/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-collabora_online/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-collabora_online/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-collabora_online)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/collabora_online)](https://galaxy.ansible.com/robertdebock/collabora_online)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-collabora_online.svg)](https://github.com/robertdebock/ansible-role-collabora_online/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

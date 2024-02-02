@@ -1,0 +1,42 @@
+---
+galaxy_info:
+  author: robertdebock
+  role_name: tfe
+  description: Install and configure tfe on your system.
+  license: Apache-2.0
+  company: none
+  min_ansible_version: "2.12"
+
+  platforms:
+    - name: Debian
+      versions:
+        - bullseye
+    - name: EL
+      versions:
+        - "8"
+        - "9"
+    - name: Fedora
+      versions:
+        - "38"
+        - "39"
+    - name: Ubuntu
+      versions:
+        - all
+
+  galaxy_tags:
+    - tfe
+    - application
+    - cloud
+    - database
+    - development
+    - infrastructure
+    - linux
+    - monitoring
+    - networking
+    - storage
+    - security
+    - system
+    - tools
+    - windows
+
+dependencies: []

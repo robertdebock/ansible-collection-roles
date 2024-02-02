@@ -4,7 +4,7 @@ Install and configure redis on your system.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-redis/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-redis/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-redis/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-redis)|[![downloads](https://img.shields.io/ansible/role/d/24575)](https://galaxy.ansible.com/robertdebock/redis)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-redis.svg)](https://github.com/robertdebock/ansible-role-redis/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-redis/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-redis/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-redis/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-redis)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/redis)](https://galaxy.ansible.com/robertdebock/redis)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-redis.svg)](https://github.com/robertdebock/ansible-role-redis/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

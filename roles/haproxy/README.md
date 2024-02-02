@@ -4,7 +4,7 @@ Install and configure haproxy on your system.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-haproxy/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-haproxy/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-haproxy/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-haproxy)|[![downloads](https://img.shields.io/ansible/role/d/24509)](https://galaxy.ansible.com/robertdebock/haproxy)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-haproxy.svg)](https://github.com/robertdebock/ansible-role-haproxy/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-haproxy/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-haproxy/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-haproxy/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-haproxy)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/haproxy)](https://galaxy.ansible.com/robertdebock/haproxy)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-haproxy.svg)](https://github.com/robertdebock/ansible-role-haproxy/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

@@ -40,7 +40,7 @@ gitlab_cleanup_ruby: yes
 # migrations to finish. This value is in minutes.
 gitlab_database_migrations_retries: 300
 
-# You can install all roles but not specifying any role, or select a few roles.
+# You can install all roles by not specifying any role, or select a few roles.
 # gitlab_roles:
 #   - redis_sentinel_role
 #   - redis_master_role

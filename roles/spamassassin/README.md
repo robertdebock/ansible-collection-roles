@@ -4,7 +4,7 @@ Install and configure spamassassin on your system.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-spamassassin/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-spamassassin/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-spamassassin/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-spamassassin)|[![downloads](https://img.shields.io/ansible/role/d/24592)](https://galaxy.ansible.com/robertdebock/spamassassin)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-spamassassin.svg)](https://github.com/robertdebock/ansible-role-spamassassin/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-spamassassin/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-spamassassin/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-spamassassin/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-spamassassin)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/spamassassin)](https://galaxy.ansible.com/robertdebock/spamassassin)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-spamassassin.svg)](https://github.com/robertdebock/ansible-role-spamassassin/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

@@ -4,7 +4,7 @@ Try all kinds of functions.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-functions/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-functions/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-functions/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-functions)|[![downloads](https://img.shields.io/ansible/role/d/24499)](https://galaxy.ansible.com/robertdebock/functions)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-functions.svg)](https://github.com/robertdebock/ansible-role-functions/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-functions/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-functions/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-functions/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-functions)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/functions)](https://galaxy.ansible.com/robertdebock/functions)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-functions.svg)](https://github.com/robertdebock/ansible-role-functions/releases/)|
 
 ## [Example Playbook](#example-playbook)
 

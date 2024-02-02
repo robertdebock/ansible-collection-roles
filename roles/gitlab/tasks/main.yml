@@ -38,6 +38,7 @@
     - name: Install rpm repository key
       ansible.builtin.rpm_key:
         key: "https://packages.gitlab.com/gitlab/gitlab-{{ gitlab_distribution_abbreviation }}/gpgkey/gitlab-gitlab-{{ gitlab_distribution_abbreviation }}-3D645A26AB9FBD22.pub.gpg"
+        validate_certs: "{{ gitlab_validate_certs }}"
 
     - name: Install yum/dnf repository
       ansible.builtin.yum_repository:

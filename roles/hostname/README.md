@@ -4,7 +4,7 @@ Install dependencies and configure the hostname on your system.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-hostname/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-hostname/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-hostname/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-hostname)|[![downloads](https://img.shields.io/ansible/role/d/24513)](https://galaxy.ansible.com/robertdebock/hostname)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-hostname.svg)](https://github.com/robertdebock/ansible-role-hostname/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-hostname/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-hostname/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-hostname/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-hostname)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/hostname)](https://galaxy.ansible.com/robertdebock/hostname)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-hostname.svg)](https://github.com/robertdebock/ansible-role-hostname/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
