@@ -1,0 +1,50 @@
+---
+
+- name: assert | Test terraform_agent_version
+  ansible.builtin.assert:
+    that:
+      - terraform_agent_version is defined
+      - terraform_agent_version is string
+      - terraform_agent_version is not none
+    quiet: yes
+
+- name: assert | Test terraform_agent_installation_path
+  ansible.builtin.assert:
+    that:
+      - terraform_agent_installation_path is defined
+      - terraform_agent_installation_path is string
+      - terraform_agent_installation_path is not none
+    quiet: yes
+
+- name: assert | Test terraform_agent_terraform_enterprise_address
+  ansible.builtin.assert:
+    that:
+      - terraform_agent_terraform_enterprise_address is defined
+      - terraform_agent_terraform_enterprise_address is string
+      - terraform_agent_terraform_enterprise_address is not none
+    quiet: yes
+
+- name: assert | Test terraform_agent_token
+  ansible.builtin.assert:
+    that:
+      - terraform_agent_token is defined
+      - terraform_agent_token is string
+      - terraform_agent_token is not none
+    quiet: yes
+
+- name: assert | Test terraform_agent_name
+  ansible.builtin.assert:
+    that:
+      - terraform_agent_name is defined
+      - terraform_agent_name is string
+      - terraform_agent_name is not none
+    quiet: yes
+
+- name: assert | Test terraform_agent_log_level
+  ansible.builtin.assert:
+    that:
+      - terraform_agent_log_level is defined
+      - terraform_agent_log_level is string
+      - terraform_agent_log_level is not none
+      - terraform_agent_log_level in ["TRACE", "DEBUG", "INFO", "WARN", "ERROR"]
+    quiet: yes

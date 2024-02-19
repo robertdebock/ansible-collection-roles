@@ -27,16 +27,19 @@
 - name: Place TLS material
   ansible.builtin.copy:
     src: "{{ item.name }}"
-    dest: /etc/terraform-enterprise/certs/{{ item.name }}
+    dest: "{{ item.dest }}"
     owner: root
     group: root
     mode: "{{ item.mode }}"
   loop:
     - name: "{{ tfe_tls_bundle }}"
+      dest: /etc/terraform-enterprise/certs/bundle.pem
       mode: '0664'
     - name: "{{ tfe_tls_certificate }}"
+      dest: /etc/terraform-enterprise/certs/cert.pem
       mode: '0664'
     - name: "{{ tfe_tls_key }}"
+      dest: /etc/terraform-enterprise/certs/key.pem
       mode: '0660'
   loop_control:
     label: "{{ item.name }}"
@@ -52,8 +55,8 @@
     mode: '0755'
 
 - name: Place docker-compose.yml
-  ansible.builtin.copy:
-    src: docker-compose.yml
+  ansible.builtin.template:
+    src: docker-compose.yml.j2
     dest: /etc/terraform-enterprise/docker-compose.yml
     owner: root
     group: root

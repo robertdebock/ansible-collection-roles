@@ -166,13 +166,6 @@
   when:
     - storage_filesystems is defined
 
-- name: assert | Test storage_default_fstype
-  ansible.builtin.assert:
-    that:
-      - storage_default_fstype is defined
-      - storage_default_fstype is string
-      - storage_default_fstype in [ "btrfs", "cramfs", "ext2", "ext3", "ext4", "fat", "msdos", "ntfs", "vfat", "xfs" ]
-
 - name: assert | Test storage_filesystems.fstype
   ansible.builtin.assert:
     that:

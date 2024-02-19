@@ -1,0 +1,43 @@
+---
+galaxy_info:
+  author: robertdebock
+  role_name: terraform_agent
+  description: Install and configure Terraform Agent (for TFC or TFE) on your system.
+  license: Apache-2.0
+  company: none
+  min_ansible_version: "2.12"
+
+  platforms:
+    - name: Amazon
+      versions:
+        - Candidate
+    - name: Debian
+      versions:
+        - all
+    - name: EL
+      versions:
+        - all
+    - name: Fedora
+      versions:
+        - all
+    - name: opensuse
+      versions:
+        - all
+    - name: Ubuntu
+      versions:
+        - all
+
+  galaxy_tags:
+    - terraformagent
+    - terraformenterprise
+    - terraformcloud
+    - terraform
+    - tfe
+    - tfc
+    - application
+    - cloud
+    - infrastructure
+    - linux
+    - tools
+
+dependencies: []

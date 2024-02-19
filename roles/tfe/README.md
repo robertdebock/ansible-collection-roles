@@ -56,12 +56,14 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 # defaults file for tfe
 
 # Select the image to use for Terraform Enterprise. This includes the version.
-# The latest tfe version can be found [here](https://developer.hashicorp.com/terraform/enterprise/releases/2023/v202303-1).
+# The latest tfe version can be found here:
+# https://developer.hashicorp.com/terraform/enterprise/releases/2023/v202303-1
 tfe_image: "images.releases.hashicorp.com/hashicorp/terraform-enterprise:v202309-1"
 
 # Paste the license of Terraform Enterprise here. It's a long string.
-# If the license is not set or empty, may tasks will be skipped, resulting in a non-working
-# Terraform Enterprise instance. Not setting a license can help with testing.
+# If the license is not set or empty, many tasks will be skipped, resulting in
+# a non-working Terraform Enterprise instance. Not setting a license can help
+# with testing.
 tfe_license: ""
 
 # Configure a hostname, used to redirect HTTP(S) requests.
@@ -70,7 +72,8 @@ tfe_hostname: "tfe.example.com"
 # An encryption password for the TFE application.
 tfe_encryption_password: "S0meP@ssword"
 
-# A list of CIDR notated subnets that are allowed to create an "Initial Admin Token".
+# A list of CIDR notated subnets that are allowed to create an "Initial Admin
+# Token".
 tfe_iact_subnets: []
 #   - "10.0.0.0/8"
 #   - "192.168.0.0/24"
@@ -81,32 +84,45 @@ tfe_iact_subnets: []
 #
 # You can create a self-signed certificate with the following command:
 #
-# openssl req -x509 -nodes -newkey rsa:4096 -keyout key.pem -out cert.pem -sha256 -days 365
+# openssl req -x509 -nodes -newkey rsa:4096 -keyout key.pem -out cert.pem \
+# -sha256 -days 365
 # cp cert.pem bundle.pem
 tfe_tls_certificate: "cert.pem"
 tfe_tls_key: "key.pem"
 tfe_tls_bundle: "bundle.pem"
 
+# You can set the operational mode to either: "disk", "external" or "active-active".
+tfe_operational_mode: "active-active"
+
 # Details on the database host. This host should already exist, this role
 # does not create a database.
+# These variables are required when `tfe_operational_mode` is set to `active-active` or `external`.
 tfe_database_host: "tfe.RaNdOm.eu-west-1.rds.amazonaws.com"
 tfe_database_user: "tfe"
 tfe_database_password: "my_pass_c0mpl.x"
 tfe_database_name: "tfe"
+tfe_database_parameters: "sslmode=disable"
 
 # Detail on the object storage. This role does not create the bucket.
+# These variables are required when `tfe_operational_mode` is set to `active-active` or `external`.
+tfe_object_storage_s3_endpoint: ""
+tfe_object_storage_s3_use_instance_profile: no
 tfe_object_storage_s3_bucket: "SomeBucketName"
-tfe_object_storage_s3_access_key_id: "xyz"
-tfe_object_storage_s3_secret_access_key: "xyz"
+tfe_object_storage_s3_access_key_id: ""
+tfe_object_storage_s3_secret_access_key: ""
 tfe_object_storage_s3_region: "eu-west-1"
 
 # Details on the Redis host. This host should already exist, this role
 # does not create a Redis instance.
+# These variables are required when `tfe_operational_mode` is set to `active-active`.
 tfe_redis_host: "tfe.RaNdOm.0001.euw1.cache.amazonaws.com"
 tfe_redis_user: "tfe"
 tfe_redis_password: "my_pass_c0mpl.x"
 tfe_redis_use_tls: no
 tfe_redis_use_auth: no
+
+# The internal Vault requires an internal address of the node.
+tfe_vault_cluster_address: "https://{{ ansible_default_ipv4.address }}:8201"
 ```
 
 ## [Requirements](#requirements)

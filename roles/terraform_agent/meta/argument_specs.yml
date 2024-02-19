@@ -1,0 +1,17 @@
+---
+
+argument_specs:
+  main:
+    short_description: "Install and configure terraform_agent on your system."
+    description: >
+      Install and configure terraform_agent on your system.
+    author: Robert de Bock
+    options:
+      terraform_agent_version:
+        type: "str"
+        default: "1.15.4"
+        description: "The version of the terraform_agent to install."
+      terraform_agent_installation_path:
+        type: "str"
+        default: "/opt/tfc_agent"
+        description: "Where to install the terraform_agent."

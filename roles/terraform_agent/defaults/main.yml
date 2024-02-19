@@ -1,0 +1,21 @@
+---
+# defaults file for terraform_agent
+
+# The version of the terraform_agent to install.
+terraform_agent_version: "1.14.4"
+
+# Where to install the terraform_agent.
+terraform_agent_installation_path: /opt/tfc_agent
+
+# The URL here Terraform Enterprise or Terraform Cloud is hosted.
+terraform_agent_terraform_enterprise_address: "https://app.terraform.io"
+
+# The Agent Token generated on Terraform Enterprise or Terraform Cloud.
+# When no token (`""``) is defined, the agent will not be started.
+terraform_agent_token: ""
+
+# The name of the Agent as it will be registered as in Terraform Enterprise or Terraform Cloud.
+terraform_agent_name: "my_agent"
+
+# The log level of the agent. Either "TRACE", "DEBUG", "INFO", "WARN", or "ERROR".
+terraform_agent_log_level: "INFO"
