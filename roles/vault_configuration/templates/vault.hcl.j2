@@ -106,9 +106,11 @@ listener "{{ listener.type }}" {
 {% if listener.x_forwarded_for_reject_not_present is defined and not listener.x_forwarded_for_reject_not_present %}
   x_forwarded_for_reject_not_present = false
 {% endif %}
-{% if listener.telemetry is defined and listener.telemetry.unauthenticated_metrics_access is defined and listener.telemetry.unauthenticated_metrics_access %}
+{% if listener.telemetry is defined %}
   telemetry {
-    unauthenticated_metrics_access = true
+{% if listener.telemetry.unauthenticated_metrics_access is defined %}
+    unauthenticated_metrics_access = {{ listener.telemetry.unauthenticated_metrics_access | ternary("true", "false") }}
+{% endif %}
   }
 {% endif %}
 {% if listener.profiling is defined and (listener.profiling.unauthenticated_pprof_access is defined and listener.profiling.unauthenticated_pprof_access) or (listener.profiling.unauthenticated_in_flight_request_access is defined and listener.profiling.unauthenticated_in_flight_request_access) %}

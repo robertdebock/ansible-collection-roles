@@ -1,0 +1,28 @@
+---
+
+argument_specs:
+  main:
+    short_description: "Install and configure oracle_instant_client on your system."
+    description: >
+      Install and configure oracle_instant_client on your system.
+    author: Robert de Bock
+    options:
+      oracle_instant_client_type:
+        type: "str"
+        default: "all"
+        description: "What type of package to install, either 'basic', 'devel', or 'all'."
+        choices:
+          - "basic"
+          - "devel"
+          - "all"
+      oracle_instant_client_version:
+        type: "str"
+        default: "21.13.0.0.0"
+        description: "The version of the client to install. Versions can be found here: https://www.oracle.com/database/technologies/instant-client/linux-x86-64-downloads.html"
+      oracle_instant_client_installation_type:
+        type: "str"
+        default: "package"
+        description: "Set the installation package type, either: 'package' or 'zip'."
+        choices:
+          - "package"
+          - "zip"

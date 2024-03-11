@@ -19,6 +19,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 
   roles:
     - role: robertdebock.roles.vault
+      vault_hardening_disable_swap: no
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-vault/blob/master/molecule/default/prepare.yml):
@@ -53,7 +54,7 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 vault_type: oss
 
 # Set the version of the package to install.
-vault_version: "1.15.2"
+vault_version: "1.15.6"
 
 # For package installations, a "release" is required. The package would for example be called `vault-1.12.2-1`.
 vault_package_release: "1"
@@ -78,6 +79,18 @@ vault_user_shell: /bin/false
 
 # Where to store data. That's Raft data and TLS material.
 vault_data_directory: /opt/vault
+
+# Hardening advices to disable swap.
+vault_hardening_disable_swap: yes
+
+# Hardening advices to disable core dumps.
+vault_hardening_disable_core_dumps: yes
+
+# Hardening advices to disable shell command history.
+vault_hardening_disable_shell_command_history: yes
+
+# Hardening advices to configure SELinux / AppArmor.
+vault_hardening_configure_selinux_apparmor: yes
 ```
 
 ## [Requirements](#requirements)
@@ -110,7 +123,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |[Amazon](https://hub.docker.com/r/robertdebock/amazonlinux)|Candidate|
 |[Debian](https://hub.docker.com/r/robertdebock/debian)|all|
 |[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|all|
-|[Fedora](https://hub.docker.com/r/robertdebock/fedora/)|37, 38|
+|[Fedora](https://hub.docker.com/r/robertdebock/fedora)|38, 39|
 |[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|all|
 
 The minimum version of Ansible required is 2.12, tests have been done to:

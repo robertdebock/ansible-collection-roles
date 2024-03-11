@@ -1,0 +1,7 @@
+---
+# handlers file for oracle_instant_client
+
+- name: Run ldconfig
+  ansible.builtin.command:
+    cmd: /sbin/ldconfig
+  changed_when: yes

@@ -85,16 +85,5 @@
     state: directory
     mode: "0755"
 
-- name: Enable zabbix-frontend
-  community.general.ini_file:
-    path: /etc/yum.repos.d/zabbix.repo
-    section: zabbix-frontend
-    option: enabled
-    value: "1"
-    mode: "0644"
-  when:
-    - ansible_os_family in [ "RedHat", "Rocky" ]
-    - ansible_distribution_major_version == "7"
-
 - name: Flush handlers
   ansible.builtin.meta: flush_handlers

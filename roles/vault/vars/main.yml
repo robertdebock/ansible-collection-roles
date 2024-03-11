@@ -8,6 +8,7 @@ _vault_prerequisites:
     - libcap
     - openssl
   Debian:
+    - apparmor-utils
     - file
     - libcap2-bin
     - openssl

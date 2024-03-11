@@ -1,0 +1,17 @@
+---
+
+argument_specs:
+  main:
+    short_description: "Installs vault_oracle_plugin on your system."
+    description: >
+      Installs vault_oracle_plugin on your system.
+    author: Robert de Bock
+    options:
+      vault_plugin_oracle_directory:
+        type: "str"
+        default: "/opt/vault/plugins"
+        description: "The path where to install this plugin."
+      vault_plugin_oracle_version:
+        type: "str"
+        default: "0.9.0"
+        description: "The version of the plugin to install. See https://releases.hashicorp.com/vault-plugin-database-oracle/ ."

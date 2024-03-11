@@ -1,0 +1,8 @@
+---
+# defaults file for gitea
+
+# Specify the version of gitea to install, see https://dl.gitea.com/gitea/ for available versions.
+gitea_version: "1.21.7"
+
+# Specify the path where gitea should be installed.
+gitea_installation_path: "/usr/local/bin"

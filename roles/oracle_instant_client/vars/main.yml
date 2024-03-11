@@ -1,0 +1,140 @@
+---
+# vars file for oracle_instant_client
+
+# Some paths and files have a component of the version. This makes it easier to switch versions.
+oracle_instant_client_major_version: "{{ oracle_instant_client_version.split('.')[0] }}"
+oracle_instant_client_minor_version: "{{ oracle_instant_client_version.split('.')[1] }}"
+oracle_instance_client_smashed_version: "{{ oracle_instant_client_version | regex_replace('\\.', '') }}"
+
+# Some distributions allow a package installation, other require a zip archive to be extracted.
+_oracle_instant_client_selected_type:
+  "default": "zip"
+  "RedHat": "package"
+oracle_instant_client_selected_type: "{{ _oracle_instant_client_selected_type[ansible_os_family] | default(_oracle_instant_client_selected_type['default']) }}"
+
+# The package name differs a bit per distribution. Be aware that not all versions offer an RPM.
+_oracle_instant_client_package:
+  "19":
+    all: "https://download.oracle.com/otn_software/linux/instantclient/{{ oracle_instance_client_smashed_version }}/oracle-instantclient{{ oracle_instant_client_major_version }}.{{ oracle_instant_client_minor_version }}-basic-{{ oracle_instant_client_version }}-1.x86_64.rpm"
+  "21":
+    "7": "https://download.oracle.com/otn_software/linux/instantclient/{{ oracle_instance_client_smashed_version }}/oracle-instantclient-basic-{{ oracle_instant_client_version }}-1.x86_64.rpm"
+    "8": "https://download.oracle.com/otn_software/linux/instantclient/{{ oracle_instance_client_smashed_version }}/oracle-instantclient-basic-{{ oracle_instant_client_version }}-1.x86_64.rpm"
+    "9": "https://download.oracle.com/otn_software/linux/instantclient/{{ oracle_instance_client_smashed_version }}/oracle-instantclient{{ oracle_instant_client_major_version }}.{{ oracle_instant_client_minor_version }}-basic-{{ oracle_instant_client_version }}-1.x86_64.rpm"
+oracle_instant_client_package: "{{ _oracle_instant_client_package[oracle_instant_client_major_version][ansible_distribution_major_version] | default(_oracle_instant_client_package[oracle_instant_client_major_version]['all']) }}"
+
+_oracle_instant_client_devel_package:
+  "19":
+    all: "https://download.oracle.com/otn_software/linux/instantclient/{{ oracle_instance_client_smashed_version }}/oracle-instantclient{{ oracle_instant_client_major_version }}.{{ oracle_instant_client_minor_version }}-devel-{{ oracle_instant_client_version }}-1.x86_64.rpm"
+  "21":
+    "7": "https://download.oracle.com/otn_software/linux/instantclient/{{ oracle_instance_client_smashed_version }}/oracle-instantclient-devel-{{ oracle_instant_client_version }}-1.x86_64.rpm"
+    "8": "https://download.oracle.com/otn_software/linux/instantclient/{{ oracle_instance_client_smashed_version }}/oracle-instantclient-devel-{{ oracle_instant_client_version }}-1.el8.x86_64.rpm"
+    "9": "https://download.oracle.com/otn_software/linux/instantclient/{{ oracle_instance_client_smashed_version }}/oracle-instantclient{{ oracle_instant_client_major_version }}.{{ oracle_instant_client_minor_version }}-devel-{{ oracle_instant_client_version }}-1.x86_64.rpm"
+oracle_instant_client_devel_package: "{{ _oracle_instant_client_devel_package[oracle_instant_client_major_version][ansible_distribution_major_version] | default(_oracle_instant_client_devel_package[oracle_instant_client_major_version]['all']) }}"
+
+# The archive location is the same for all distributions.
+oracle_instant_client_archive: "https://download.oracle.com/otn_software/linux/instantclient/{{ oracle_instance_client_smashed_version }}/instantclient-basic-linux.x64-{{ oracle_instant_client_version }}dbru.zip"
+oracle_instant_client_devel_archive: "https://download.oracle.com/otn_software/linux/instantclient/{{ oracle_instance_client_smashed_version }}/instantclient-sdk-linux.x64-{{ oracle_instant_client_version }}dbru.zip"
+
+# Some extra packages are required.
+_oracle_instant_client_required_packages:
+  Debian:
+    - libaio1
+    - libaio-dev
+  RedHat:
+    - libaio
+oracle_instant_client_required_packages: "{{ _oracle_instant_client_required_packages[ansible_os_family] }}"
+
+# A list of directories to create when using the "zip" installation type.
+oracle_instant_client_zip_directories:
+  - /usr/lib/oracle/{{ oracle_instant_client_major_version }}/client64/bin
+  - /usr/lib/oracle/{{ oracle_instant_client_major_version }}/client64/lib
+  - /usr/include/oracle/{{ oracle_instant_client_major_version }}/client64
+
+# A list of binaries to copy when using the "zip" installation type.
+oracle_instant_client_zip_binaries:
+  - adrci
+  - genezi
+
+# A list of libraries to copy when using the "zip" installation type.
+_oracle_instant_client_zip_libraries:
+  "19":
+    - libclntsh.so.{{ oracle_instant_client_major_version }}.1
+    - libclntshcore.so.{{ oracle_instant_client_major_version }}.1
+    - libnnz{{ oracle_instant_client_major_version }}.so
+    - libocci.so.{{ oracle_instant_client_major_version }}.1
+    - libociei.so
+    - libocijdbc{{ oracle_instant_client_major_version }}.so
+    - ojdbc8.jar
+    - xstreams.jar
+  "21":
+    - libclntsh.so.{{ oracle_instant_client_major_version }}.1
+    - libclntshcore.so.{{ oracle_instant_client_major_version }}.1
+    - libnnz{{ oracle_instant_client_major_version }}.so
+    - libocci.so.{{ oracle_instant_client_major_version }}.1
+    - libocci_gcc53.so.{{ oracle_instant_client_major_version }}.1
+    - libociei.so
+    - libocijdbc{{ oracle_instant_client_major_version }}.so
+    - liboramysql.so
+    - ojdbc8.jar
+    - xstreams.jar
+oracle_instant_client_zip_libraries: "{{ _oracle_instant_client_zip_libraries[oracle_instant_client_major_version] }}"
+
+# A list of links to create when using the "zip" installation type.
+_oracle_instant_client_zip_links:
+  "19":
+    - src: libclntsh.so.{{ oracle_instant_client_major_version }}.1
+      dest: /usr/lib/oracle/{{ oracle_instant_client_major_version }}/client64/lib/libclntsh.so
+    - src: libclntsh.so.{{ oracle_instant_client_major_version }}.1
+      dest: /usr/lib/oracle/{{ oracle_instant_client_major_version }}/client64/lib/libclntsh.so.10.1
+    - src: libclntsh.so.{{ oracle_instant_client_major_version }}.1
+      dest: /usr/lib/oracle/{{ oracle_instant_client_major_version }}/client64/lib/libclntsh.so.11.1
+    - src: libclntsh.so.{{ oracle_instant_client_major_version }}.1
+      dest: /usr/lib/oracle/{{ oracle_instant_client_major_version }}/client64/lib/libclntsh.so.12.1
+    - src: libclntsh.so.{{ oracle_instant_client_major_version }}.1
+      dest: /usr/lib/oracle/{{ oracle_instant_client_major_version }}/client64/lib/libclntsh.so.18.1
+    - src: libclntshcore.so.{{ oracle_instant_client_major_version }}.1
+      dest: /usr/lib/oracle/{{ oracle_instant_client_major_version }}/client64/lib/libclntshcore.so
+    - src: libocci.so.{{ oracle_instant_client_major_version }}.1
+      dest: /usr/lib/oracle/{{ oracle_instant_client_major_version }}/client64/lib/libocci.so
+    - src: libocci.so.{{ oracle_instant_client_major_version }}.1
+      dest: /usr/lib/oracle/{{ oracle_instant_client_major_version }}/client64/lib/libocci.so.10.1
+    - src: libocci.so.{{ oracle_instant_client_major_version }}.1
+      dest: /usr/lib/oracle/{{ oracle_instant_client_major_version }}/client64/lib/libocci.so.11.1
+    - src: libocci.so.{{ oracle_instant_client_major_version }}.1
+      dest: /usr/lib/oracle/{{ oracle_instant_client_major_version }}/client64/lib/libocci.so.12.1
+    - src: libocci.so.{{ oracle_instant_client_major_version }}.1
+      dest: /usr/lib/oracle/{{ oracle_instant_client_major_version }}/client64/lib/libocci.so.18.1
+  "21":
+    - src: libclntsh.so.{{ oracle_instant_client_major_version }}.1
+      dest: /usr/lib/oracle/{{ oracle_instant_client_major_version }}/client64/lib/libclntsh.so
+    - src: libclntsh.so.{{ oracle_instant_client_major_version }}.1
+      dest: /usr/lib/oracle/{{ oracle_instant_client_major_version }}/client64/lib/libclntsh.so.10.1
+    - src: libclntsh.so.{{ oracle_instant_client_major_version }}.1
+      dest: /usr/lib/oracle/{{ oracle_instant_client_major_version }}/client64/lib/libclntsh.so.11.1
+    - src: libclntsh.so.{{ oracle_instant_client_major_version }}.1
+      dest: /usr/lib/oracle/{{ oracle_instant_client_major_version }}/client64/lib/libclntsh.so.12.1
+    - src: libclntsh.so.{{ oracle_instant_client_major_version }}.1
+      dest: /usr/lib/oracle/{{ oracle_instant_client_major_version }}/client64/lib/libclntsh.so.18.1
+    - src: libclntsh.so.{{ oracle_instant_client_major_version }}.1
+      dest: /usr/lib/oracle/{{ oracle_instant_client_major_version }}/client64/lib/libclntsh.so.19.1
+    - src: libclntsh.so.{{ oracle_instant_client_major_version }}.1
+      dest: /usr/lib/oracle/{{ oracle_instant_client_major_version }}/client64/lib/libclntsh.so.20.1
+    - src: libclntshcore.so.{{ oracle_instant_client_major_version }}.1
+      dest: /usr/lib/oracle/{{ oracle_instant_client_major_version }}/client64/lib/libclntshcore.so
+    - src: libocci.so.{{ oracle_instant_client_major_version }}.1
+      dest: /usr/lib/oracle/{{ oracle_instant_client_major_version }}/client64/lib/libocci.so
+    - src: libocci.so.{{ oracle_instant_client_major_version }}.1
+      dest: /usr/lib/oracle/{{ oracle_instant_client_major_version }}/client64/lib/libocci.so.10.1
+    - src: libocci.so.{{ oracle_instant_client_major_version }}.1
+      dest: /usr/lib/oracle/{{ oracle_instant_client_major_version }}/client64/lib/libocci.so.11.1
+    - src: libocci.so.{{ oracle_instant_client_major_version }}.1
+      dest: /usr/lib/oracle/{{ oracle_instant_client_major_version }}/client64/lib/libocci.so.12.1
+    - src: libocci.so.{{ oracle_instant_client_major_version }}.1
+      dest: /usr/lib/oracle/{{ oracle_instant_client_major_version }}/client64/lib/libocci.so.18.1
+    - src: libocci.so.{{ oracle_instant_client_major_version }}.1
+      dest: /usr/lib/oracle/{{ oracle_instant_client_major_version }}/client64/lib/libocci.so.19.1
+    - src: libocci.so.{{ oracle_instant_client_major_version }}.1
+      dest: /usr/lib/oracle/{{ oracle_instant_client_major_version }}/client64/lib/libocci.so.20.1
+    - src: libocci_gcc53.so.{{ oracle_instant_client_major_version }}.1
+      dest: /usr/lib/oracle/{{ oracle_instant_client_major_version }}/client64/lib/libocci_gcc53.so
+oracle_instant_client_zip_links: "{{ _oracle_instant_client_zip_links[oracle_instant_client_major_version] }}"

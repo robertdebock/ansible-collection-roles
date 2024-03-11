@@ -1,0 +1,17 @@
+---
+
+- name: assert | Test vault_plugin_oracle_directory
+  ansible.builtin.assert:
+    that:
+      - vault_plugin_oracle_directory is defined
+      - vault_plugin_oracle_directory is string
+      - vault_plugin_oracle_directory is not none
+    quiet: yes
+
+- name: assert | Test vault_plugin_oracle_version
+  ansible.builtin.assert:
+    that:
+      - vault_plugin_oracle_version is defined
+      - vault_plugin_oracle_version is string
+      - vault_plugin_oracle_version is not none
+    quiet: yes

@@ -1,0 +1,18 @@
+[Unit]
+Description=Service to automatically start TFC/E Agent
+After=network.target
+
+[Install]
+WantedBy=multi-user.target
+
+[Service]
+EnvironmentFile={{ terraform_agent_installation_path }}/tfc-agent.env
+Type=simple
+ExecStart={{ terraform_agent_installation_path }}/tfc-agent
+KillSignal=SIGINT
+WorkingDirectory={{ terraform_agent_installation_path }}
+Restart=always
+RestartSec=5
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=%n

@@ -1,0 +1,7 @@
+---
+# handlers file for vault_oracle_plugin
+
+- name: Set capabilities
+  community.general.capabilities:
+    path: "{{ vault_plugin_oracle_directory }}/vault-plugin-database-oracle"
+    capability: "cap_sys_chroot+ep"

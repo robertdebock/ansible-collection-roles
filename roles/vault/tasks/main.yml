@@ -15,6 +15,10 @@
   ansible.builtin.include_tasks:
     file: "{{ vault_installation_method }}.yml"
 
+- name: Include hardening tasks
+  ansible.builtin.include_tasks:
+    file: hardening.yml
+
 - name: Start and enable vault
   ansible.builtin.service:
     name: vault

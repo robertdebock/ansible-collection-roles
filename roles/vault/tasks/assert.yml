@@ -104,3 +104,31 @@
     quiet: yes
   when:
     - vault_installation_method == "binary"
+
+- name: assert | Test vault_hardening_disable_swap
+  ansible.builtin.assert:
+    that:
+      - vault_hardening_disable_swap is defined
+      - vault_hardening_disable_swap is boolean
+    quiet: yes
+
+- name: assert | Test vault_hardening_disable_core_dumps
+  ansible.builtin.assert:
+    that:
+      - vault_hardening_disable_core_dumps is defined
+      - vault_hardening_disable_core_dumps is boolean
+    quiet: yes
+
+- name: assert | Test vault_hardening_disable_shell_command_history
+  ansible.builtin.assert:
+    that:
+      - vault_hardening_disable_shell_command_history is defined
+      - vault_hardening_disable_shell_command_history is boolean
+    quiet: yes
+
+- name: assert | Test vault_hardening_configure_selinux_apparmor
+  ansible.builtin.assert:
+    that:
+      - vault_hardening_configure_selinux_apparmor is defined
+      - vault_hardening_configure_selinux_apparmor is boolean
+    quiet: yes

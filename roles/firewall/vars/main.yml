@@ -43,8 +43,10 @@ _firewall_service:
   Alpine: iptables
   CentOS-7: firewalld
   CentOS-8: firewalld
+  CentOS-9: firewalld
   RedHat-7: firewalld
   RedHat-8: firewalld
+  RedHat-9: firewalld
   Fedora: firewalld
   OracleLinux: firewalld
   openSUSE Leap: firewalld

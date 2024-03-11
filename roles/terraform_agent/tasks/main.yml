@@ -26,7 +26,7 @@
     dest: "{{ terraform_agent_installation_path }}"
     remote_src: yes
 
-- name: Place environment variable
+- name: Place environment variable file
   ansible.builtin.template:
     src: "tfc-agent.env.j2"
     dest: "{{ terraform_agent_installation_path }}/tfc-agent.env"

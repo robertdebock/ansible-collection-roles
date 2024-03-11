@@ -1,0 +1,45 @@
+---
+# tasks file for vault_oracle_plugin
+
+- name: Import assert.yml
+  ansible.builtin.import_tasks:
+    file: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+- name: Install requirements
+  ansible.builtin.package:
+    name: "{{ item }}"
+  loop: "{{ vault_plugin_oracle_requirements }}"
+
+- name: Create plugin directory
+  ansible.builtin.file:
+    path: "{{ vault_plugin_oracle_directory }}"
+    state: directory
+    mode: "0755"
+
+- name: Install vault-plugin-database-oracle
+  ansible.builtin.unarchive:
+    src: "https://releases.hashicorp.com/vault-plugin-database-oracle/{{ vault_plugin_oracle_version }}/vault-plugin-database-oracle_{{ vault_plugin_oracle_version }}_linux_amd64.zip"
+    dest: "{{ vault_plugin_oracle_directory }}"
+    remote_src: yes
+    creates: "{{ vault_plugin_oracle_directory }}/vault-plugin-database-oracle"
+  notify:
+    - Set capabilities
+
+- name: Get sha256sum of vault-plugin-database-oracle
+  ansible.builtin.stat:
+    path: "{{ vault_plugin_oracle_directory }}/vault-plugin-database-oracle"
+    checksum_algorithm: sha256
+    get_checksum: yes
+  register: vault_plugin_oracle_sha256sum
+
+- name: Show instructions
+  ansible.builtin.debug:
+    msg:
+      - '# Please add the global configuration parameter to vault.hcl.'
+      - 'echo "plugin_directory = "{{ vault_plugin_oracle_directory }}" >> /opt/vault/vault.hcl'
+      - "# Please enable the database secrets engine."
+      - vault secrets enable database
+      - "# Please register the plugin."
+      - vault plugin register -sha256='{{ vault_plugin_oracle_sha256sum.stat.checksum }} -version=v{{ vault_plugin_oracle_version }} database vault-plugin-database-oracle

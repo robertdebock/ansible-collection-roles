@@ -1,0 +1,8 @@
+---
+# defaults file for vault_oracle_plugin
+
+# The path where to install this plugin.
+vault_plugin_oracle_directory: /opt/vault/plugins
+
+# The version of the plugin to install. See https://releases.hashicorp.com/vault-plugin-database-oracle/ .
+vault_plugin_oracle_version: 0.9.0

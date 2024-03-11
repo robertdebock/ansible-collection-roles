@@ -1,0 +1,37 @@
+---
+# vars file for gitea
+
+gitea_requirements:
+  - git
+
+gitea_directories:
+  - path: /var/lib/gitea/custom
+  - path: /var/lib/gitea/data
+  - path: /var/lib/gitea/log
+  - path: /etc/gitea
+    owner: root
+    group: git
+    mode: "0770"
+
+gitea_locked_directories:
+  - path: /etc/gitea
+    mode: "0750"
+  - path: /etc/gitea/app.ini
+    mode: "0640"
+
+_gitea_os:
+  Linux: "linux"
+  Darwin: "darwin"
+  FreeBSD: "freebsd"
+  Windows: "windows"
+gitea_os: "{{ _gitea_os[ansible_system] }}"
+
+_gitea_architecture:
+  x86_64: "amd64"
+  i386: "386"
+  armv6l: "arm-6"
+  armv7l: "arm-7"
+  aarch64: "arm64"
+gitea_architecture: "{{ _gitea_architecture[ansible_architecture] }}"
+
+gitea_url: "https://dl.gitea.io/gitea/{{ gitea_version }}/gitea-{{ gitea_version }}-{{ gitea_os }}-{{ gitea_architecture }}"

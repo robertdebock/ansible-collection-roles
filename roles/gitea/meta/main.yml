@@ -1,8 +1,8 @@
 ---
 galaxy_info:
   author: robertdebock
-  role_name: vault
-  description: Install Hashicorp Vault, either a package or a binary.
+  role_name: gitea
+  description: Install gitea on your system.
   license: Apache-2.0
   company: none
   min_ansible_version: "2.12"
@@ -18,16 +18,19 @@ galaxy_info:
       versions:
         - all
     - name: Fedora
-      versions:  # Will never work on "all", as rawhide is not supported by HC.
-        - "38"
-        - "39"
+      versions:
+        - all
+    - name: opensuse
+      versions:
+        - all
     - name: Ubuntu
       versions:
         - all
 
   galaxy_tags:
-    - vault
-    - hashicorp
-    - security
+    - gitea
+    - application
+    - development
+    - tools
 
 dependencies: []

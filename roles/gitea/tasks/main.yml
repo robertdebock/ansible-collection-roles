@@ -1,0 +1,74 @@
+---
+# tasks file for gitea
+
+- name: Import assert.yml
+  ansible.builtin.import_tasks:
+    file: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+- name: Install requirements
+  ansible.builtin.package:
+    name: "{{ gitea_requirements }}"
+
+- name: Download gitea
+  ansible.builtin.get_url:
+    url: "{{ gitea_url }}"
+    dest: "{{ gitea_installation_path }}/gitea"
+    mode: "0755"
+
+- name: Create git group
+  ansible.builtin.group:
+    name: git
+    system: yes
+
+- name: Create git user
+  ansible.builtin.user:
+    name: git
+    shell: /bin/bash
+    comment: Git Version Control
+    group: git
+    home: /home/git
+    system: yes
+    createhome: yes
+
+- name: Check if /etc/gitea/app.ini exists
+  ansible.builtin.stat:
+    path: /etc/gitea/app.ini
+  register: gitea_app_ini
+
+- name: Create gitea directories
+  ansible.builtin.file:
+    path: "{{ item.path }}"
+    state: directory
+    owner: "{{ item.owner | default('git') }}"
+    group: "{{ item.group | default('git') }}"
+    mode: "{{ item.mode | default('0750') }}"
+  loop: "{{ gitea_directories }}"
+  loop_control:
+    label: "{{ item.path }}"
+  when: not gitea_app_ini.stat.exists
+
+- name: Place gitea service
+  ansible.builtin.copy:
+    src: gitea.service
+    dest: /etc/systemd/system/gitea.service
+    owner: root
+    group: root
+    mode: "0644"
+
+- name: Start and enable gitea
+  ansible.builtin.service:
+    name: gitea
+    state: started
+    enabled: yes
+
+- name: Lock down configuration
+  ansible.builtin.file:
+    path: "{{ item.path }}"
+    mode: "{{ item.mode }}"
+  loop: "{{ gitea_locked_directories }}"
+  loop_control:
+    label: "{{ item.path }}"
+  when:
+    - gitea_app_ini.stat.exists

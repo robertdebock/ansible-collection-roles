@@ -1,0 +1,17 @@
+---
+
+argument_specs:
+  main:
+    short_description: "Install and configure gitea on your system."
+    description: >
+      Install and configure gitea on your system.
+    author: Robert de Bock
+    options:
+      gitea_version:
+        type: "str"
+        default: "1.21.7"
+        description: "Specify the version of gitea to install, see https://dl.gitea.com/gitea/ for available versions."
+      gitea_installation_path:
+        type: "str"
+        default: "/usr/local/bin"
+        description: "Specify the path where gitea should be installed."

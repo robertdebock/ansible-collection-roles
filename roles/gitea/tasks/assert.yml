@@ -1,0 +1,17 @@
+---
+
+- name: assert | Test gitea_version
+  ansible.builtin.assert:
+    that:
+      - gitea_version is defined
+      - gitea_version is string
+      - gitea_version is not none
+    quiet: yes
+
+- name: assert | Test gitea_installation_path
+  ansible.builtin.assert:
+    that:
+      - gitea_installation_path is defined
+      - gitea_installation_path is string
+      - gitea_installation_path is not none
+    quiet: yes
