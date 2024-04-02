@@ -14,8 +14,8 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 ---
 - name: Converge
   hosts: all
-  become: yes
-  gather_facts: yes
+  become: true
+  gather_facts: true
 
   roles:
     - role: robertdebock.roles.jitsi
@@ -27,8 +27,8 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
 ---
 - name: Prepare
   hosts: all
-  become: yes
-  gather_facts: no
+  become: true
+  gather_facts: false
 
   roles:
     - role: robertdebock.roles.bootstrap
@@ -57,7 +57,7 @@ jitsi_settings:
     type: string
   - name: jitsi-meet
     question: jitsi-meet/jvb-serve
-    value: yes|bool
+    value: true
     type: boolean
   - name: jitsi-meet-prosody
     question: jitsi-meet-prosody/jvb-hostname

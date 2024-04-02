@@ -22,4 +22,4 @@ zabbix_web_server_name: zabbix
 # Details to connect to the Zabbix API.
 zabbix_web_username: Admin
 zabbix_web_password: zabbix
-zabbix_web_validate_certs: no
+zabbix_web_validate_certs: false

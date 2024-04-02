@@ -6,7 +6,7 @@
       - dnsmasq_port is number
       - dnsmasq_port >= 0
       - dnsmasq_port <= 65536
-    quiet: yes
+    quiet: true
   when:
     - dnsmasq_port is defined
 
@@ -15,14 +15,14 @@
     that:
       - dnsmasq_domain_needed is defined
       - dnsmasq_domain_needed is boolean
-    quiet: yes
+    quiet: true
 
 - name: assert | Test dnsmasq_bogus_priv
   ansible.builtin.assert:
     that:
       - dnsmasq_bogus_priv is defined
       - dnsmasq_bogus_priv is boolean
-    quiet: yes
+    quiet: true
 
 - name: assert | Test dnsmasq_conf_file
   ansible.builtin.assert:
@@ -30,55 +30,55 @@
       - dnsmasq_conf_file is defined
       - dnsmasq_conf_file is string
       - dnsmasq_conf_file is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test dnsmasq_dnssec
   ansible.builtin.assert:
     that:
       - dnsmasq_dnssec is defined
       - dnsmasq_dnssec is boolean
-    quiet: yes
+    quiet: true
 
 - name: assert | Test dnsmasq_dnssec_check_unsigned
   ansible.builtin.assert:
     that:
       - dnsmasq_dnssec_check_unsigned is defined
       - dnsmasq_dnssec_check_unsigned is boolean
-    quiet: yes
+    quiet: true
 
 - name: assert | Test dnsmasq_filterwin2k
   ansible.builtin.assert:
     that:
       - dnsmasq_filterwin2k is defined
       - dnsmasq_filterwin2k is boolean
-    quiet: yes
+    quiet: true
 
 - name: assert | Test dnsmasq_strict_order
   ansible.builtin.assert:
     that:
       - dnsmasq_strict_order is defined
       - dnsmasq_strict_order is boolean
-    quiet: yes
+    quiet: true
 
 - name: assert | Test dnsmasq_no_resolv
   ansible.builtin.assert:
     that:
       - dnsmasq_no_resolv is defined
       - dnsmasq_no_resolv is boolean
-    quiet: yes
+    quiet: true
 
 - name: assert | Test dnsmasq_no_poll
   ansible.builtin.assert:
     that:
       - dnsmasq_no_poll is defined
       - dnsmasq_no_poll is boolean
-    quiet: yes
+    quiet: true
 
 - name: assert | Test dnsmasq_servers
   ansible.builtin.assert:
     that:
       - dnsmasq_servers is iterable
-    quiet: yes
+    quiet: true
   when:
     - dnsmasq_servers is defined
 
@@ -88,7 +88,7 @@
       - item.nameserver is defined
       - item.nameserver is string
       - item.nameserver is not none
-    quiet: yes
+    quiet: true
   loop: "{{ dnsmasq_servers }}"
   when:
     - dnsmasq_servers is defined
@@ -98,7 +98,7 @@
     that:
       - item.domain is string
       - item.domain is not none
-    quiet: yes
+    quiet: true
   loop: "{{ dnsmasq_servers }}"
   when:
     - dnsmasq_servers is defined
@@ -110,7 +110,7 @@
       - item.port is number
       - item.port >= 0
       - item.port <= 65536
-    quiet: yes
+    quiet: true
   loop: "{{ dnsmasq_servers }}"
   when:
     - dnsmasq_servers is defined
@@ -120,7 +120,7 @@
   ansible.builtin.assert:
     that:
       - dnsmasq_locals is iterable
-    quiet: yes
+    quiet: true
   when:
     - dnsmasq_locals is defined
 
@@ -130,7 +130,7 @@
       - item.domain is defined
       - item.domain is string
       - item.domain is not none
-    quiet: yes
+    quiet: true
   when:
     - dnsmasq_locals is defined
 
@@ -138,7 +138,7 @@
   ansible.builtin.assert:
     that:
       - dnsmasq_addresses is iterable
-    quiet: yes
+    quiet: true
   when:
     - dnsmasq_addresses is defined
 
@@ -151,7 +151,7 @@
       - item.address is defined
       - item.address is string
       - item.address is not none
-    quiet: yes
+    quiet: true
   loop: "{{ dnsmasq_addresses }}"
   when:
     - dnsmasq_addresses is defined
@@ -160,7 +160,7 @@
   ansible.builtin.assert:
     that:
       - dnsmasq_ipsets is iterable
-    quiet: yes
+    quiet: true
   when:
     - dnsmasq_ipsets is defined
 
@@ -175,7 +175,7 @@
       - item.option is defined
       - item.option is string
       - item.option is not none
-    quiet: yes
+    quiet: true
   loop: "{{ dnsmasq_ipsets }}"
   when:
     - dnsmasq_ipsets is defined
@@ -184,7 +184,7 @@
   ansible.builtin.assert:
     that:
       - dnsmasq_interfaces is iterable
-    quiet: yes
+    quiet: true
   when:
     - dnsmasq_interfaces is defined
 
@@ -194,7 +194,7 @@
       - item.name is defined
       - item.name is string
       - item.name is not none
-    quiet: yes
+    quiet: true
   loop: "{{ dnsmasq_interfaces }}"
   when:
     - dnsmasq_interfaces is defined
@@ -203,7 +203,7 @@
   ansible.builtin.assert:
     that:
       - dnsmasq_listen_addresses is iterable
-    quiet: yes
+    quiet: true
   when:
     - dnsmasq_listen_addresses is defined
     - dnsmasq_listen_addresses is string
@@ -214,7 +214,7 @@
       - item.name is defined
       - item.name is string
       - item.name is not none
-    quiet: yes
+    quiet: true
   loop: "{{ dnsmasq_listen_addresses }}"
   when:
     - dnsmasq_listen_addresses is defined
@@ -225,41 +225,41 @@
       - dnsmasq_no_dhcp_interface is defined
       - dnsmasq_no_dhcp_interface is string
       - dnsmasq_no_dhcp_interface is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test dnsmasq_local_service
   ansible.builtin.assert:
     that:
       - dnsmasq_local_service is defined
       - dnsmasq_local_service is boolean
-    quiet: yes
+    quiet: true
 
 - name: assert | Test dnsmasq_bind_interfaces
   ansible.builtin.assert:
     that:
       - dnsmasq_bind_interfaces is defined
       - dnsmasq_bind_interfaces is boolean
-    quiet: yes
+    quiet: true
 
 - name: assert | Test dnsmasq_no_hosts
   ansible.builtin.assert:
     that:
       - dnsmasq_no_hosts is defined
       - dnsmasq_no_hosts is boolean
-    quiet: yes
+    quiet: true
 
 - name: assert | Test dnsmasq_expand_hosts
   ansible.builtin.assert:
     that:
       - dnsmasq_expand_hosts is defined
       - dnsmasq_expand_hosts is boolean
-    quiet: yes
+    quiet: true
 
 - name: assert | Test dnsmasq_domains
   ansible.builtin.assert:
     that:
       - dnsmasq_domains is iterable
-    quiet: yes
+    quiet: true
   when:
     - dnsmasq_domains is defined
 
@@ -269,7 +269,7 @@
       - item.name is defined
       - item.name is string
       - item.name is not none
-    quiet: yes
+    quiet: true
   loop: "{{ dnsmasq_domains }}"
   when:
     - dnsmasq_domains is defined
@@ -278,7 +278,7 @@
   ansible.builtin.assert:
     that:
       - dnsmasq_dhcp_ranges is iterable
-    quiet: yes
+    quiet: true
   when:
     - dnsmasq_dhcp_ranges is defined
 
@@ -288,7 +288,7 @@
       - item.from is defined
       - item.from is string
       - item.from is not none
-    quiet: yes
+    quiet: true
   when:
     - dnsmasq_dhcp_ranges is defined
   loop: "{{ dnsmasq_dhcp_ranges }}"
@@ -297,7 +297,7 @@
   ansible.builtin.assert:
     that:
       - item.sets is iterabel
-    quiet: yes
+    quiet: true
   when:
     - dnsmasq_dhcp_ranges is defined
     - item.sets is defined
@@ -307,7 +307,7 @@
   ansible.builtin.assert:
     that:
       - item.tags is iterable
-    quiet: yes
+    quiet: true
   when:
     - dnsmasq_dhcp_ranges is defined
     - item.tags is defined
@@ -317,7 +317,7 @@
   ansible.builtin.assert:
     that:
       - item.options is iterable
-    quiet: yes
+    quiet: true
   when:
     - dnsmasq_dhcp_ranges is defined
     - item.options is defined
@@ -328,13 +328,13 @@
     that:
       - dnsmasq_enable_ra is defined
       - dnsmasq_enable_ra is boolean
-    quiet: yes
+    quiet: true
 
 - name: assert | Test dnsmasq_hosts
   ansible.builtin.assert:
     that:
       - dnsmasq_hosts is iterable
-    quiet: yes
+    quiet: true
   when:
     - dnsmasq_hosts is defined
 
@@ -346,7 +346,7 @@
       - item.name is not none
       - item.value is defined
       - item.value is not none
-    quiet: yes
+    quiet: true
   loop: "{{ dnsmasq_hosts }}"
   when:
     - dnsmasq_hosts is defined
@@ -356,13 +356,13 @@
     that:
       - dnsmasq_read_ethers is defined
       - dnsmasq_read_ethers is boolean
-    quiet: yes
+    quiet: true
 
 - name: assert | Test dnsmasq_dhcp_options
   ansible.builtin.assert:
     that:
       - dnsmasq_dhcp_options is iterable
-    quiet: yes
+    quiet: true
   when:
     - dnsmasq_dhcp_options is defined
 
@@ -374,7 +374,7 @@
       - item.name is not none
       - item.value is defined
       - item.value is not none
-    quiet: yes
+    quiet: true
   loop: "{{ dnsmasq_dhcp_options }}"
   when:
     - dnsmasq_dhcp_options is defined
@@ -383,7 +383,7 @@
   ansible.builtin.assert:
     that:
       - dnsmasq_dhcp_option_force is iterable
-    quiet: yes
+    quiet: true
   when:
     - dnsmasq_dhcp_option_force is defined
 
@@ -395,7 +395,7 @@
       - item.name is not none
       - item.value is defined
       - item.value is not none
-    quiet: yes
+    quiet: true
   loop: "{{ dnsmasq_dhcp_option_force }}"
   when:
     - dnsmasq_dhcp_option_force is defined
@@ -405,35 +405,35 @@
     that:
       - dnsmasq_enable_tftp is defined
       - dnsmasq_enable_tftp is boolean
-    quiet: yes
+    quiet: true
 
 - name: assert | Test dnsmasq_tftp_no_fail
   ansible.builtin.assert:
     that:
       - dnsmasq_tftp_no_fail is defined
       - dnsmasq_tftp_no_fail is boolean
-    quiet: yes
+    quiet: true
 
 - name: assert | Test dnsmasq_tftp_secure
   ansible.builtin.assert:
     that:
       - dnsmasq_tftp_secure is defined
       - dnsmasq_tftp_secure is boolean
-    quiet: yes
+    quiet: true
 
 - name: assert | Test dnsmasq_tftp_no_blocksize
   ansible.builtin.assert:
     that:
       - dnsmasq_tftp_no_blocksize is defined
       - dnsmasq_tftp_no_blocksize is boolean
-    quiet: yes
+    quiet: true
 
 - name: assert | Test dnsmasq_dhcp_lease_max
   ansible.builtin.assert:
     that:
       - dnsmasq_dhcp_lease_max is number
       - dnsmasq_dhcp_lease_max >= 0
-    quiet: yes
+    quiet: true
   when:
     - dnsmasq_dhcp_lease_max is defined
 
@@ -442,14 +442,14 @@
     that:
       - dnsmasq_dhcp_authoritative is defined
       - dnsmasq_dhcp_authoritative is boolean
-    quiet: yes
+    quiet: true
 
 - name: assert | Test dnsmasq_dhcp_rapid_commit
   ansible.builtin.assert:
     that:
       - dnsmasq_dhcp_rapid_commit is defined
       - dnsmasq_dhcp_rapid_commit is boolean
-    quiet: yes
+    quiet: true
 
 - name: assert | Test dnsmasq_dhcp_script
   ansible.builtin.assert:
@@ -457,14 +457,14 @@
       - dnsmasq_dhcp_script is defined
       - dnsmasq_dhcp_script is string
       - dnsmasq_dhcp_script is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test dnsmasq_cache_size
   ansible.builtin.assert:
     that:
       - dnsmasq_cache_size is number
       - dnsmasq_cache_size >= 0
-    quiet: yes
+    quiet: true
   when:
     - dnsmasq_cache_size is defined
 
@@ -473,14 +473,14 @@
     that:
       - dnsmasq_no_negcache is defined
       - dnsmasq_no_negcache is boolean
-    quiet: yes
+    quiet: true
 
 - name: assert | Test dnsmasq_local_ttl
   ansible.builtin.assert:
     that:
       - dnsmasq_local_ttl is number
       - dnsmasq_local_ttl >= 0
-    quiet: yes
+    quiet: true
   when:
     - dnsmasq_local_ttl is defined
 
@@ -488,7 +488,7 @@
   ansible.builtin.assert:
     that:
       - dnsmasq_aliases is iterable
-    quiet: yes
+    quiet: true
   when:
     - dnsmasq_aliases is defined
 
@@ -501,7 +501,7 @@
       - item.until is defined
       - item.until is string
       - item.until is not none
-    quiet: yes
+    quiet: true
   loop: "{{ dnsmasq_aliases }}"
   when:
     - dnsmasq_aliases is defined
@@ -510,7 +510,7 @@
   ansible.builtin.assert:
     that:
       - dnsmasq_mx_hosts is iterable
-    quiet: yes
+    quiet: true
   when:
     - dnsmasq_mx_hosts is defined
 
@@ -520,7 +520,7 @@
       - item.domain is defined
       - item.domain is string
       - item.domain is not none
-    quiet: yes
+    quiet: true
   loop: "{{ dnsmasq_mx_hosts }}"
   when:
     - dnsmasq_mx_hosts is defined
@@ -530,20 +530,20 @@
     that:
       - dnsmasq_localmx is defined
       - dnsmasq_localmx is boolean
-    quiet: yes
+    quiet: true
 
 - name: assert | Test dnsmasq_selfmx
   ansible.builtin.assert:
     that:
       - dnsmasq_selfmx is defined
       - dnsmasq_selfmx is boolean
-    quiet: yes
+    quiet: true
 
 - name: assert | Test dnsmasq_src_hosts
   ansible.builtin.assert:
     that:
       - dnsmasq_src_hosts is iterable
-    quiet: yes
+    quiet: true
   when:
     - dnsmasq_src_hosts is defined
 
@@ -558,7 +558,7 @@
       - item.destination is not none
       - item.port is defined
       - item.port is number
-    quiet: yes
+    quiet: true
   loop: "{{ dnsmasq_src_hosts }}"
   when:
     - dnsmasq_src_hosts is defined
@@ -568,7 +568,7 @@
     that:
       - item.priority is number
       - item.priority >= 0
-    quiet: yes
+    quiet: true
   when:
     - dnsmasq_src_hosts is defined
     - item.priority is defined
@@ -578,11 +578,11 @@
     that:
       - dnsmasq_log_queries is defined
       - dnsmasq_log_queries is boolean
-    quiet: yes
+    quiet: true
 
 - name: assert | Test dnsmasq_log_dhcp
   ansible.builtin.assert:
     that:
       - dnsmasq_log_dhcp is defined
       - dnsmasq_log_dhcp is boolean
-    quiet: yes
+    quiet: true

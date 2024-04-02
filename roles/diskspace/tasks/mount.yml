@@ -20,7 +20,7 @@
     that:
       - item.size_available | int >= kilobytes_available | int
     fail_msg: "{{ item.mount }} has {{ item.size_available }} KB, minimum required {{ kilobytes_available }}."
-    quiet: yes
+    quiet: true
   loop: "{{ ansible_mounts }}"
   loop_control:
     label: "{{ item.mount }}"
@@ -34,7 +34,7 @@
     that:
       - item.inode_available | int >= mount.inodes_available | int
     fail_msg: "{{ item.mount }} has {{ item.inode_available }} inodes, minimum required {{ mount.inodes_available }}"
-    quiet: yes
+    quiet: true
   loop: "{{ ansible_mounts }}"
   loop_control:
     label: "{{ item.mount }}"

@@ -14,17 +14,17 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 ---
 - name: Converge
   hosts: all
-  become: yes
-  gather_facts: yes
+  become: true
+  gather_facts: true
 
   roles:
     - role: robertdebock.roles.selinux
-      selinux_reboot: no
+      selinux_reboot: false
       selinux_booleans:
         - name: http_can_network_connect
         - name: abrt_anon_write
-          state: no
-          persistent: no
+          state: false
+          persistent: false
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-selinux/blob/master/molecule/default/prepare.yml):
@@ -33,8 +33,8 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
 ---
 - name: Prepare
   hosts: all
-  become: yes
-  gather_facts: no
+  become: true
+  gather_facts: false
 
   roles:
     - role: robertdebock.roles.bootstrap
@@ -58,14 +58,14 @@ selinux_state: enforcing
 selinux_policy: "{{ _selinux_policy[ansible_os_family] | default(_selinux_policy['default']) }}"
 
 # Should the machine be rebooted after changes?
-selinux_reboot: yes
+selinux_reboot: true
 
 # You can enable (or disable) booleans by specifying them in this list.
 # selinux_booleans:
 #   - name: http_can_network_connect
 #   - name: abrt_anon_write
-#     state: no
-#     persistent: no
+#     state: false
+#     persistent: false
 ```
 
 ## [Requirements](#requirements)
@@ -97,7 +97,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |[Amazon](https://hub.docker.com/r/robertdebock/amazonlinux)|Candidate|
 |[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|all|
 |[Debian](https://hub.docker.com/r/robertdebock/debian)|all|
-|[Fedora](https://hub.docker.com/r/robertdebock/fedora/)|all|
+|[Fedora](https://hub.docker.com/r/robertdebock/fedora)|all|
 |[opensuse](https://hub.docker.com/r/robertdebock/opensuse)|all|
 |[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|all|
 

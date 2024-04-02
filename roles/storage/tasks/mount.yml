@@ -5,7 +5,7 @@
     that:
       - mount.name is defined
       - mount.src is defined
-    quiet: yes
+    quiet: true
 
 - name: mount | Create mountpoint
   ansible.builtin.file:
@@ -29,7 +29,7 @@
 - name: mount | Reload systemd
   ansible.builtin.command:
     cmd: systemctl daemon-reload  # noqa: command-instead-of-module
-  changed_when: no
+  changed_when: false
   when:
     - ansible_service_mgr == "systemd"
 

@@ -14,8 +14,8 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 ---
 - name: Converge
   hosts: all
-  become: yes
-  gather_facts: yes
+  become: true
+  gather_facts: true
 
   roles:
     - role: robertdebock.roles.dnsmasq
@@ -27,8 +27,8 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
 ---
 - name: Prepare
   hosts: all
-  become: yes
-  gather_facts: no
+  become: true
+  gather_facts: false
 
   roles:
     - role: robertdebock.roles.bootstrap
@@ -46,16 +46,16 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 
 # dnsmasq_port: 5353
 
-dnsmasq_domain_needed: no
-dnsmasq_bogus_priv: no
+dnsmasq_domain_needed: false
+dnsmasq_bogus_priv: false
 dnsmasq_conf_file: "{{ dnsmasq_documentation_path }}/trust-anchors.conf"
-dnsmasq_dnssec: no
-dnsmasq_dnssec_check_unsigned: no
-dnsmasq_filterwin2k: no
+dnsmasq_dnssec: false
+dnsmasq_dnssec_check_unsigned: false
+dnsmasq_filterwin2k: false
 # dnsmasq_resolv_file: /etc/resolv.conf
-dnsmasq_strict_order: no
-dnsmasq_no_resolv: no
-dnsmasq_no_poll: no
+dnsmasq_strict_order: false
+dnsmasq_no_resolv: false
+dnsmasq_no_poll: false
 # dnsmasq_servers:
 #   - domain: localnet
 #     nameserver: "192.168.0.1"
@@ -89,11 +89,11 @@ dnsmasq_group: "{{ dnsmasq_set_group }}"
 # dnsmasq_listen_addresses:
 #   - name: "127.0.0.1"
 dnsmasq_no_dhcp_interface: ""
-dnsmasq_local_service: no
-dnsmasq_bind_interfaces: no
-dnsmasq_no_hosts: no
+dnsmasq_local_service: false
+dnsmasq_bind_interfaces: false
+dnsmasq_no_hosts: false
 # dnsmasq_addn_hosts: /etc/banner_add_hosts
-dnsmasq_expand_hosts: no
+dnsmasq_expand_hosts: false
 # dnsmasq_domains:
 #   - name: thekelleys.org.uk
 #   - name: wireless.thekelleys.org.uk
@@ -121,7 +121,7 @@ dnsmasq_expand_hosts: no
 #   - from: "192.168.0.0"
 #     options:
 #       - name: static
-#     static: yes
+#     static: true
 #   - from: "1234::2"
 #     until: "1234::500"
 #     prefix: 64
@@ -147,7 +147,7 @@ dnsmasq_expand_hosts: no
 #     options:
 #       - name: ra-stateless
 #       - name: ra-names
-dnsmasq_enable_ra: no
+dnsmasq_enable_ra: false
 # dnsmasq_hosts:
 #   - name: "11:22:33:44:55:66"
 #     value: "192.168.0.60"
@@ -167,7 +167,7 @@ dnsmasq_enable_ra: no
 # dnsmasq_dhcp_vendorclass: "set:red,Linux"
 # dnsmasq_dhcp_userclass: "set:red,accounts"
 dnsmasq_dhcp_mac: "set:red,00:60:8C:*:*:*"
-dnsmasq_read_ethers: no
+dnsmasq_read_ethers: false
 # dnsmasq_dhcp_options:
 #   - name: 3
 #     value: "1.2.3.4"
@@ -232,18 +232,18 @@ dnsmasq_read_ethers: no
 #     value: 30i
 # dnsmasq_dhcp_boot: pxelinux.0
 # dnsmasq_dhcp_boot: "pxelinux.0,server.name,192.168.1.100"
-dnsmasq_enable_tftp: no
+dnsmasq_enable_tftp: false
 # dnsmasq_tftp_root: /var/ftpd
-dnsmasq_tftp_no_fail: no
-dnsmasq_tftp_secure: no
-dnsmasq_tftp_no_blocksize: no
+dnsmasq_tftp_no_fail: false
+dnsmasq_tftp_secure: false
+dnsmasq_tftp_no_blocksize: false
 # dnsmasq_dhcp_lease_max: 150
 # dnsmasq_dhcp_leasefile: /var/lib/dnsmasq/dnsmasq.leases
-dnsmasq_dhcp_authoritative: no
-dnsmasq_dhcp_rapid_commit: no
+dnsmasq_dhcp_authoritative: false
+dnsmasq_dhcp_rapid_commit: false
 dnsmasq_dhcp_script: /bin/echo
 # dnsmasq_cache_size: 150
-dnsmasq_no_negcache: no
+dnsmasq_no_negcache: false
 # dnsmasq_local_ttl: 3600
 # dnsmasq_bogus_nxdomain: "64.94.110.11"
 # dnsmasq_aliases:
@@ -260,8 +260,8 @@ dnsmasq_no_negcache: no
 #     host: servermacine.com
 #     priority: 50
 #   - domain: servermachine.com
-dnsmasq_localmx: no
-dnsmasq_selfmx: no
+dnsmasq_localmx: false
+dnsmasq_selfmx: false
 # dnsmasq_src_hosts:
 #   - record: _ldap._tcp.example.com
 #     destination: ldapserver.example.com
@@ -275,8 +275,8 @@ dnsmasq_selfmx: no
 #     port: 389
 #     priority: 2
 #   - record: _ldap._tcp.example.com
-dnsmasq_log_queries: no
-dnsmasq_log_dhcp: no
+dnsmasq_log_queries: false
+dnsmasq_log_dhcp: false
 # dnsmasq_conf_dir: /etc/dnsmasq.d
 # dnsmasq_dhcp_name_match: "set:wpad-ignore,wpad"
 # dnsmasq_ignore_names: "tag:wpad-ignore"
@@ -310,7 +310,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |[Alpine](https://hub.docker.com/r/robertdebock/alpine)|all|
 |[Debian](https://hub.docker.com/r/robertdebock/debian)|all|
 |[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|8, 9|
-|[Fedora](https://hub.docker.com/r/robertdebock/fedora/)|all|
+|[Fedora](https://hub.docker.com/r/robertdebock/fedora)|all|
 |[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|all|
 
 The minimum version of Ansible required is 2.12, tests have been done to:

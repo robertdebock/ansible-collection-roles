@@ -93,7 +93,7 @@ _gitlab_default_theme_number:
 gitlab_default_theme_number: "{{ _gitlab_default_theme_number[gitlab_default_theme] }}"
 
 _gitlab_validate_certs:
-  default: yes
-  RedHat-7: no
+  default: true
+  RedHat-7: false
 
 gitlab_validate_certs: "{{ _gitlab_validate_certs[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_gitlab_validate_certs['default']) }}"

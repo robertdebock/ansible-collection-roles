@@ -4,10 +4,10 @@
 # The Storage Daemon has these configuration parameters.
 
 # Backup the configuration files.
-bareos_sd_backup_configurations: no
+bareos_sd_backup_configurations: false
 
 # Install debug packages. This requires the debug repositories to be enabled.
-bareos_sd_install_debug_packages: no
+bareos_sd_install_debug_packages: false
 
 # The hostname of the Storage Daemon.
 bareos_sd_hostname: "{{ inventory_hostname }}"
@@ -19,10 +19,10 @@ bareos_sd_message: "Standard"
 bareos_sd_max_concurrent_jobs: 20
 
 # Enable TLS.
-bareos_sd_tls_enable: yes
+bareos_sd_tls_enable: true
 
 # Verify the peer.
-bareos_sd_tls_verify_peer: no
+bareos_sd_tls_verify_peer: false
 
 # A list of devices to configure.
 bareos_sd_devices: []

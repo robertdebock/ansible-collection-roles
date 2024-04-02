@@ -4,7 +4,7 @@
   ansible.builtin.assert:
     that:
       - nfsserver_exports is iterable
-    quiet: yes
+    quiet: true
   when:
     - nfsserver_exports is defined
 
@@ -25,7 +25,7 @@
       - item.mode is defined
       - item.mode is string
       - item.mode is not none
-    quiet: yes
+    quiet: true
   loop: "{{ nfsserver_exports }}"
   loop_control:
     label: "{{ item.share }}"

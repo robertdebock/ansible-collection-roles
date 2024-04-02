@@ -6,11 +6,11 @@
       - umask is defined
       - umask is string
       - umask is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test umask_users
   ansible.builtin.assert:
     that:
       - umask_users is defined
       - umask_users is iterable
-    quiet: yes
+    quiet: true

@@ -5,7 +5,7 @@
     that:
       - service_list is defined
       - service_list is iterable
-    quiet: yes
+    quiet: true
 
 - name: assert | Test item in service_list
   ansible.builtin.assert:
@@ -19,7 +19,7 @@
       - item.start_command is defined
       - item.start_command is string
       - item.start_command is not none
-    quiet: yes
+    quiet: true
   loop: "{{ service_list }}"
   loop_control:
     label: "{{ item.name }}"
@@ -29,7 +29,7 @@
     that:
       - item.type is string
       - item.type in [ "forking", "oneshot", "simple" ]
-    quiet: yes
+    quiet: true
   loop: "{{ service_list }}"
   loop_control:
     label: "{{ item.name }}"
@@ -40,7 +40,7 @@
   ansible.builtin.assert:
     that:
       - item.environment_variables is iterable
-    quiet: yes
+    quiet: true
   loop: "{{ service_list }}"
   loop_control:
     label: "{{ item.name }}"
@@ -52,7 +52,7 @@
     that:
       - item.restart_mode is string
       - item.restart_mode in [ "no", "on-success", "on-failure", "on-abnormal", "on-watchdog", "on-abort", "always" ]
-    quiet: yes
+    quiet: true
   loop: "{{ service_list }}"
   loop_control:
     label: "{{ item.name }}"
@@ -64,7 +64,7 @@
     that:
       - item.seconds is number
       - item.seconds >= 0
-    quiet: yes
+    quiet: true
   loop: "{{ service_list }}"
   loop_control:
     label: "{{ item.name }}"
@@ -76,7 +76,7 @@
     that:
       - item.state is string
       - item.state in [ "reloaded", "restarted", "started", "stopped" ]
-    quiet: yes
+    quiet: true
   loop: "{{ service_list }}"
   loop_control:
     label: "{{ item.name }}"
@@ -87,7 +87,7 @@
   ansible.builtin.assert:
     that:
       - item.enabled is boolean
-    quiet: yes
+    quiet: true
   loop: "{{ service_list }}"
   loop_control:
     label: "{{ item.name }}"

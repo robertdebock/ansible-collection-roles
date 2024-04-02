@@ -3,7 +3,7 @@
 
 # Some operating systems can determine if a reboot is required. This
 # parameter can be set to always reboot.
-reboot_always: no
+reboot_always: false
 
 # How long to wait before sending a reboot.
 reboot_delay: 4

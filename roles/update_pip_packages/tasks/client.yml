@@ -3,7 +3,7 @@
 - name: client | Check for broken requirements before changes
   ansible.builtin.command:
     cmd: "{{ client }} check"
-  changed_when: no
+  changed_when: false
 
 - name: client | Get all installed packages for {{ client }}
   community.general.pip_package_info:
@@ -23,4 +23,4 @@
 - name: client | Check for broken requirements after changes
   ansible.builtin.command:
     cmd: "{{ client }} check"
-  changed_when: no
+  changed_when: false

@@ -7,7 +7,7 @@
       - memcached_port is number
       - memcached_port > 0
       - memcached_port < 65536
-    quiet: yes
+    quiet: true
 
 - name: assert | Test memcached_listenon
   ansible.builtin.assert:
@@ -15,7 +15,7 @@
       - memcached_listenon is defined
       - memcached_listenon is string
       - memcached_listenon is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test memcached_maxconn
   ansible.builtin.assert:
@@ -23,7 +23,7 @@
       - memcached_maxconn is defined
       - memcached_maxconn is number
       - memcached_maxconn >= 1
-    quiet: yes
+    quiet: true
 
 - name: assert | Test memcached_cachesize
   ansible.builtin.assert:
@@ -31,4 +31,4 @@
       - memcached_cachesize is defined
       - memcached_cachesize is number
       - memcached_cachesize >= 1
-    quiet: yes
+    quiet: true

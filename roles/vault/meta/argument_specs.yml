@@ -56,17 +56,21 @@ argument_specs:
         description: "Where to store data. That's Raft data and TLS material."
       vault_hardening_disable_swap:
         type: "bool"
-        default: yes
+        default: true
         description: "Hardening advices to disable swap."
       vault_hardening_disable_core_dumps:
         type: "bool"
-        default: yes
+        default: true
         description: "Hardening advices to disable core dumps."
       vault_hardening_disable_shell_command_history:
         type: "bool"
-        default: yes
+        default: true
         description: "Hardening advices to disable shell command history."
       vault_hardening_configure_selinux_apparmor:
         type: "bool"
-        default: yes
+        default: true
         description: "Hardening advices to configure SELinux / AppArmor."
+      vault_environment_settings:
+        type: "list"
+        default: []
+        description: "You can place variables that Vault listens to in this list."

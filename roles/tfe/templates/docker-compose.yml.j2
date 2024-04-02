@@ -1,7 +1,7 @@
 {{ ansible_managed | comment }}
 
 ---
-version: "3"
+name: terraform-enterprise
 services:
   tfe:
     image: "${TFE_IMAGE}"
@@ -37,8 +37,8 @@ services:
       TFE_REDIS_PASSWORD: "${TFE_REDIS_PASSWORD}"
       TFE_REDIS_USE_TLS: "${TFE_REDIS_USE_TLS}"
       TFE_REDIS_USE_AUTH: "${TFE_REDIS_USE_AUTH}"
-{% endif %}
       TFE_VAULT_CLUSTER_ADDRESS: "${TFE_VAULT_CLUSTER_ADDRESS}"
+{% endif %}
     cap_add:
       - IPC_LOCK
     read_only: true
@@ -49,7 +49,9 @@ services:
     ports:
       - "80:80"
       - "443:443"
+{% if tfe_operational_mode == "active-active" %}
       - "8201:8201"
+{% endif %}
     volumes:
       - type: bind
         source: /var/run/docker.sock
@@ -57,6 +59,11 @@ services:
       - type: bind
         source: ./certs
         target: /etc/ssl/private/terraform-enterprise
+{% if tfe_operational_mode == "disk" %}
+      - type: bind
+        source: /var/lib/terraform-enterprise
+        target: /var/lib/terraform-enterprise
+{% endif %}
       - type: volume
         source: terraform-enterprise-cache
         target: /var/cache/tfe-task-worker/terraform

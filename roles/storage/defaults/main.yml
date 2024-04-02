@@ -41,6 +41,6 @@ storage_default_fstype: ext4
 #     group: root
 #     mode: "0755"
 #     opts: defaults
-#     boot: yes
+#     boot: true
 #     dump: 0
 #     passno: 2

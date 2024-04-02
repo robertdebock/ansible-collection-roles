@@ -6,7 +6,7 @@
       - rundeck_version is defined
       - rundeck_version is string
       - rundeck_version is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test rundeck_release_date
   ansible.builtin.assert:
@@ -15,7 +15,7 @@
       - (rundeck_release_date is number and rundeck_release_date > 0) or
         rundeck_release_date is string
       - rundeck_release_date is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test rundeck_rdeckbase
   ansible.builtin.assert:
@@ -23,7 +23,7 @@
       - rundeck_rdeckbase is defined
       - rundeck_rdeckbase is string
       - rundeck_rdeckbase is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test rundeck_xmx
   ansible.builtin.assert:
@@ -31,7 +31,7 @@
       - rundeck_xmx is defined
       - rundeck_xmx is number
       - rundeck_xmx > rundeck_xms | int
-    quiet: yes
+    quiet: true
 
 - name: assert | Test rundeck_xms
   ansible.builtin.assert:
@@ -39,7 +39,7 @@
       - rundeck_xms is defined
       - rundeck_xms is number
       - rundeck_xms < rundeck_xmx | int
-    quiet: yes
+    quiet: true
 
 - name: assert | Test rundeck_maxmetaspacesize
   ansible.builtin.assert:
@@ -48,7 +48,7 @@
       - rundeck_maxmetaspacesize is number
       - rundeck_maxmetaspacesize < rundeck_xms | int
       - rundeck_maxmetaspacesize < rundeck_xmx | int
-    quiet: yes
+    quiet: true
 
 - name: assert | Test rundeck_port
   ansible.builtin.assert:
@@ -57,7 +57,7 @@
       - rundeck_port is number
       - rundeck_port > 0
       - rundeck_port < 65536
-    quiet: yes
+    quiet: true
 
 - name: assert | Test rundeck_address
   ansible.builtin.assert:
@@ -65,7 +65,7 @@
       - rundeck_address is defined
       - rundeck_address is string
       - rundeck_address is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test rundeck_url
   ansible.builtin.assert:
@@ -73,14 +73,14 @@
       - rundeck_url is defined
       - rundeck_url is string
       - rundeck_url is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test rundeck_config
   ansible.builtin.assert:
     that:
       - rundeck_config is defined
       - rundeck_config is iterable
-    quiet: yes
+    quiet: true
 
 - name: assert | Test item in rundeck_config
   ansible.builtin.assert:
@@ -89,7 +89,7 @@
       - item.parameter is string
       - item.parameter is not none
       - item.value is defined
-    quiet: yes
+    quiet: true
   loop: "{{ rundeck_config }}"
   loop_control:
     label: "{{ item.parameter }}"
@@ -99,18 +99,18 @@
     that:
       - rundeck_framework is defined
       - rundeck_framework is iterable
-    quiet: yes
+    quiet: true
 
 - name: assert | Test rundeck_users
   ansible.builtin.assert:
     that:
       - rundeck_users is defined
       - rundeck_users is iterable
-    quiet: yes
+    quiet: true
 
 - name: assert | Test rundeck_plugins
   ansible.builtin.assert:
     that:
       - rundeck_plugins is defined
       - rundeck_plugins is iterable
-    quiet: yes
+    quiet: true

@@ -14,8 +14,8 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 ---
 - name: Converge
   hosts: all
-  become: yes
-  gather_facts: yes
+  become: true
+  gather_facts: true
 
   roles:
     - role: robertdebock.roles.users
@@ -29,12 +29,12 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
           state: absent
           # A system group is also possible.
         - name: systemgroup
-          system: yes
+          system: true
 
       # You can create users.
       users:
         - name: root
-          cron_allow: yes
+          cron_allow: true
           # You can remove authorized keys.
           unauthorized_keys:
             - "ssh-rsa XYZYX54321"
@@ -49,7 +49,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
           #   - wheel
           groups:
             - users
-          cron_allow: yes
+          cron_allow: true
           sudo_options: "ALL=(ALL) NOPASSWD: ALL"
           # Adding an authorized key.
           authorized_keys:
@@ -71,7 +71,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
           #   - wheel
           groups:
             - users
-          cron_allow: yes
+          cron_allow: true
           # Allow sudo, but require a password.
           sudo_options: "ALL=(ALL) ALL"
           # Adding an authorized key.
@@ -86,11 +86,11 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
         - name: notuser
           state: absent
         - name: keyuser
-          manage_ssh_key: yes
+          manage_ssh_key: true
         - name: privkeyuser
           # This user will have ssh-keys generated.
-          manage_ssh_key: yes
-          copy_private_key: yes
+          manage_ssh_key: true
+          copy_private_key: true
         - name: multiplekeys
           authorized_keys:
             - "ssh-rsa ABC1234"
@@ -104,7 +104,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
             # You can also download a public key from a URL.
             - "https://raw.githubusercontent.com/shaanr/smdb/master/file.pub"
         - name: systemuser
-          system: yes
+          system: true
         - name: multisudo
           # An account that can run just a few commands without a password.
           sudo_options:
@@ -162,8 +162,8 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
 ---
 - name: Prepare
   hosts: all
-  become: yes
-  gather_facts: no
+  become: true
+  gather_facts: false
 
   roles:
     - role: robertdebock.roles.bootstrap
@@ -194,10 +194,10 @@ users_ssh_key_directory: ssh_keys
 users_shell: /bin/bash
 
 # manage cron permissions via /etc/cron.allow
-users_cron_allow: yes
+users_cron_allow: true
 
 # should homedirectories be created?
-users_create_home: yes
+users_create_home: true
 ```
 
 ## [Requirements](#requirements)
@@ -230,7 +230,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |[Amazon](https://hub.docker.com/r/robertdebock/amazonlinux)|Candidate|
 |[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|8, 9|
 |[Debian](https://hub.docker.com/r/robertdebock/debian)|all|
-|[Fedora](https://hub.docker.com/r/robertdebock/fedora/)|all|
+|[Fedora](https://hub.docker.com/r/robertdebock/fedora)|all|
 |[opensuse](https://hub.docker.com/r/robertdebock/opensuse)|all|
 |[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|all|
 

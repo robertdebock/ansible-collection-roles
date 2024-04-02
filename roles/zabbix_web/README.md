@@ -14,8 +14,8 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 ---
 - name: Converge
   hosts: all
-  become: yes
-  gather_facts: yes
+  become: true
+  gather_facts: true
 
   roles:
     - role: robertdebock.roles.zabbix_web
@@ -45,8 +45,8 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
 ---
 - name: Prepare
   hosts: all
-  become: yes
-  gather_facts: no
+  become: true
+  gather_facts: false
 
   roles:
     - role: robertdebock.roles.bootstrap
@@ -107,7 +107,7 @@ zabbix_web_server_name: zabbix
 # Details to connect to the Zabbix API.
 zabbix_web_username: Admin
 zabbix_web_password: zabbix
-zabbix_web_validate_certs: no
+zabbix_web_validate_certs: false
 ```
 
 ## [Requirements](#requirements)

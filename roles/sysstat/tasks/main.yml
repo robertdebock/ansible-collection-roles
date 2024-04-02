@@ -21,6 +21,6 @@
   ansible.builtin.service:
     name: "{{ sysstat_service }}"
     state: started
-    enabled: yes
+    enabled: true
   when:
     - sysstat_service | length

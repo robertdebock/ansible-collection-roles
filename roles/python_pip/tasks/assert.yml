@@ -5,7 +5,7 @@
     that:
       - python_pip_modules is defined
       - python_pip_modules is iterable
-    quiet: yes
+    quiet: true
 
 - name: assert | Test item.name in python_pip_modules
   ansible.builtin.assert:
@@ -13,7 +13,7 @@
       - item.name is defined
       - item.name is string
       - item.name is not none
-    quiet: yes
+    quiet: true
   loop: "{{ python_pip_modules }}"
   loop_control:
     label: "{{ item.name }}"
@@ -22,7 +22,7 @@
   ansible.builtin.assert:
     that:
       - item.state in [ "absent", "latest", "present" ]
-    quiet: yes
+    quiet: true
   loop: "{{ python_pip_modules }}"
   loop_control:
     label: "{{ item.name }}"
@@ -34,7 +34,7 @@
     that:
       - item.version is string
       - item.version is not none
-    quiet: yes
+    quiet: true
   loop: "{{ python_pip_modules }}"
   loop_control:
     label: "{{ item.name }}"
@@ -46,4 +46,4 @@
     that:
       - python_pip_update is defined
       - python_pip_update is boolean
-    quiet: yes
+    quiet: true

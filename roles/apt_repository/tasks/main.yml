@@ -4,14 +4,14 @@
 - name: Import assert.yml
   ansible.builtin.import_tasks:
     file: assert.yml
-  run_once: yes
+  run_once: true
   delegate_to: localhost
 
 - name: Manage repository
   ansible.builtin.apt_repository:
     repo: "{{ item.repo }}"
     state: "{{ item.state | default('present') }}"
-    validate_certs: "{{ item.validate_certs | default('yes') }}"
+    validate_certs: "{{ item.validate_certs | default('true') }}"
   loop: "{{ apt_repositories }}"
   loop_control:
     label: "{{ item.repo }}"

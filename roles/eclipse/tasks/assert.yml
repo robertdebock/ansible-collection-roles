@@ -6,7 +6,7 @@
       - eclipse_release is defined
       - eclipse_release is string
       - eclipse_release is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test eclipse_release_version
   ansible.builtin.assert:
@@ -14,7 +14,7 @@
       - eclipse_release_version is defined
       - eclipse_release_version is string
       - eclipse_release_version in [ "R", "RC1", "M3", "M2", "M1" ]
-    quiet: yes
+    quiet: true
 
 - name: assert | Test eclipse_release_type
   ansible.builtin.assert:
@@ -22,7 +22,7 @@
       - eclipse_release_type is defined
       - eclipse_release_type is string
       - eclipse_release_type in eclipse_acceptable_release_types
-    quiet: yes
+    quiet: true
   vars:
     eclipse_acceptable_release_types:
       - jee
@@ -44,7 +44,7 @@
   ansible.builtin.assert:
     that:
       - eclipse_plugins is iterable
-    quiet: yes
+    quiet: true
   when:
     - eclipse_plugins is defined
 
@@ -57,7 +57,7 @@
       - item.repository is defined
       - item.repository is string
       - item.repository is not none
-    quiet: yes
+    quiet: true
   loop: "{{ eclipse_plugins }}"
   loop_control:
     label: "{{ item.name }}"
@@ -69,7 +69,7 @@
     that:
       - eclipse_link_paths is defined
       - eclipse_link_paths is iterable
-    quiet: yes
+    quiet: true
 
 - name: assert | Test item in eclipse_link_paths
   ansible.builtin.assert:
@@ -77,7 +77,7 @@
       - item is defined
       - item is string
       - item is not none
-    quiet: yes
+    quiet: true
   loop: "{{ eclipse_link_paths }}"
   when:
     - eclipse_link_paths | length > 0
@@ -87,14 +87,14 @@
     that:
       - eclipse_tmp_path is defined
       - eclipse_tmp_path is iterable
-    quiet: yes
+    quiet: true
 
 - name: assert | Test eclipse_install_lombok
   ansible.builtin.assert:
     that:
       - eclipse_install_lombok is defined
       - eclipse_install_lombok is boolean
-    quiet: yes
+    quiet: true
 
 - name: assert | Test eclipse_lombok_version
   ansible.builtin.assert:
@@ -102,7 +102,7 @@
       - eclipse_lombok_version is defined
       - eclipse_lombok_version is string
       - eclipse_lombok_version is not none
-    quiet: yes
+    quiet: true
   when:
     - eclipse_install_lombok
 
@@ -111,4 +111,4 @@
     that:
       - eclipse_install_maven is defined
       - eclipse_install_maven is boolean
-    quiet: yes
+    quiet: true

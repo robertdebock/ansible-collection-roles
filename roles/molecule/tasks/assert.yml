@@ -5,11 +5,11 @@
     that:
       - molecule_extra_args is defined
       - molecule_extra_args is string
-    quiet: yes
+    quiet: true
 
 - name: assert | Test molecule_plugins
   ansible.builtin.assert:
     that:
       - molecule_plugins is defined
       - molecule_plugins is iterable
-    quiet: yes
+    quiet: true

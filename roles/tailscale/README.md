@@ -14,8 +14,8 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 ---
 - name: Converge
   hosts: all
-  become: yes
-  gather_facts: yes
+  become: true
+  gather_facts: true
 
   roles:
     - role: robertdebock.roles.tailscale
@@ -24,7 +24,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
       # tailscale_authkey: "tskey-auth-KEY_IDENTITY-KEY_SERET_KEY_SERET_KEY_SERET_KE"
       #
       # You can request the node to publish itself as an exit node.
-      # tailscale_exit_node: yes
+      # tailscale_exit_node: true
       #
       # You can advertise certain routes to the Tailscale network.
       # tailscale_advertise_routes:
@@ -41,8 +41,8 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
 ---
 - name: Prepare
   hosts: all
-  become: yes
-  gather_facts: no
+  become: true
+  gather_facts: false
 
   roles:
     - role: robertdebock.roles.bootstrap
@@ -60,7 +60,7 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 
 # You can configure your tailscale node to act as an exit node.
 # Enabling this, sets the required sysctl settings and adds a firewalld rule.
-tailscale_exit_node: no
+tailscale_exit_node: false
 
 # To route traffice for certain subnets through tailscale, add them here.
 tailscale_advertise_routes: []
@@ -70,7 +70,7 @@ tailscale_advertise_routes: []
 tailscale_authkey: ""
 
 # You can specify a hostname.
-tailscale_hostname: "{{ ansible_hostname }}
+tailscale_hostname: "{{ ansible_hostname }}"
 ```
 
 ## [Requirements](#requirements)
@@ -101,7 +101,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |[Amazon](https://hub.docker.com/r/robertdebock/amazonlinux)|Candidate|
 |[Debian](https://hub.docker.com/r/robertdebock/debian)|all|
 |[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|all|
-|[Fedora](https://hub.docker.com/r/robertdebock/fedora/)|all|
+|[Fedora](https://hub.docker.com/r/robertdebock/fedora)|all|
 |[opensuse](https://hub.docker.com/r/robertdebock/opensuse)|all|
 |[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|all|
 

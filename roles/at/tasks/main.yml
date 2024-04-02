@@ -10,4 +10,4 @@
   ansible.builtin.service:
     name: atd
     state: started
-    enabled: yes
+    enabled: true

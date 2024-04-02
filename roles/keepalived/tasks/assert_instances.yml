@@ -6,7 +6,7 @@
       - instance.authentication is defined
       - instance.authentication | length > 0
       - instance.authentication is iterable
-    quiet: yes
+    quiet: true
 
 - name: assert_instances | Test item in instance.authentication
   ansible.builtin.assert:
@@ -17,7 +17,7 @@
       - instance.authentication.auth_pass is defined
       - instance.authentication.auth_pass | length > 0
       - instance.authentication.auth_pass | length <= 20
-    quiet: yes
+    quiet: true
 
 - name: assert_instances | Test item in instance.virtual_ipaddresses
   ansible.builtin.assert:
@@ -30,7 +30,7 @@
       - item.cidr is number
       - item.cidr | int >= 0
       - item.cidr | int <= 32
-    quiet: yes
+    quiet: true
   loop: "{{ instance.virtual_ipaddresses }}"
   loop_control:
     label: "{{ item.name }}"
@@ -45,7 +45,7 @@
       - item.secondary_private_ip is string
       - item.secondary_private_ip | length >= 8
       - item.secondary_private_ip | length <= 16
-    quiet: yes
+    quiet: true
   when:
     - item.unicast_src_ip is defined
 
@@ -54,6 +54,6 @@
     that:
       - item.check_status_command is string
       - item.priority <= 252
-    quiet: yes
+    quiet: true
   when:
     - item.check_status_command is defined

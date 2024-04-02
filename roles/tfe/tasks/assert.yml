@@ -6,14 +6,14 @@
       - tfe_image is defined
       - tfe_image is string
       - tfe_image is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test tfe_license
   ansible.builtin.assert:
     that:
       - tfe_license is string
       - tfe_license is not none
-    quiet: yes
+    quiet: true
   when:
     - tfe_license is defined
 
@@ -23,7 +23,7 @@
       - tfe_hostname is defined
       - tfe_hostname is string
       - tfe_hostname is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test tfe_encryption_password
   ansible.builtin.assert:
@@ -31,14 +31,14 @@
       - tfe_encryption_password is defined
       - tfe_encryption_password is string
       - tfe_encryption_password is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test tfe_iact_subnets
   ansible.builtin.assert:
     that:
       - tfe_iact_subnets is defined
       - tfe_iact_subnets is iterable
-    quiet: yes
+    quiet: true
 
 - name: assert | Test tfe_tls_certificate
   ansible.builtin.assert:
@@ -46,7 +46,7 @@
       - tfe_tls_certificate is defined
       - tfe_tls_certificate is string
       - tfe_tls_certificate is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test tfe_tls_key
   ansible.builtin.assert:
@@ -54,7 +54,7 @@
       - tfe_tls_key is defined
       - tfe_tls_key is string
       - tfe_tls_key is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test tfe_tls_bundle
   ansible.builtin.assert:
@@ -62,7 +62,7 @@
       - tfe_tls_bundle is defined
       - tfe_tls_bundle is string
       - tfe_tls_bundle is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test tfe_operational_mode
   ansible.builtin.assert:
@@ -71,7 +71,7 @@
       - tfe_operational_mode is string
       - tfe_operational_mode is not none
       - tfe_operational_mode in ["disk", "external", "active-active"]
-    quiet: yes
+    quiet: true
 
 - name: assert | Tests for active-active or external
   when:
@@ -83,7 +83,7 @@
           - tfe_database_host is defined
           - tfe_database_host is string
           - tfe_database_host is not none
-        quiet: yes
+        quiet: true
 
     - name: assert | Test tfe_database_user
       ansible.builtin.assert:
@@ -91,7 +91,7 @@
           - tfe_database_user is defined
           - tfe_database_user is string
           - tfe_database_user is not none
-        quiet: yes
+        quiet: true
 
     - name: assert | Test tfe_database_password
       ansible.builtin.assert:
@@ -99,7 +99,7 @@
           - tfe_database_password is defined
           - tfe_database_password is string
           - tfe_database_password is not none
-        quiet: yes
+        quiet: true
 
     - name: assert | Test tfe_database_name
       ansible.builtin.assert:
@@ -107,7 +107,7 @@
           - tfe_database_name is defined
           - tfe_database_name is string
           - tfe_database_name is not none
-        quiet: yes
+        quiet: true
 
     - name: assert | Test tfe_database_parameters
       ansible.builtin.assert:
@@ -115,7 +115,7 @@
           - tfe_database_parameters is defined
           - tfe_database_parameters is string
           - tfe_database_parameters is not none
-        quiet: yes
+        quiet: true
 
     - name: assert | Test tfe_object_storage_s3_endpoint
       ansible.builtin.assert:
@@ -123,7 +123,7 @@
           - tfe_object_storage_s3_endpoint is defined
           - tfe_object_storage_s3_endpoint is string
           - tfe_object_storage_s3_endpoint is not none
-        quiet: yes
+        quiet: true
 
     - name: assert | Test tfe_object_storage_s3_use_instance_profile
       ansible.builtin.assert:
@@ -131,7 +131,7 @@
           - tfe_object_storage_s3_use_instance_profile is defined
           - tfe_object_storage_s3_use_instance_profile is boolean
           - tfe_object_storage_s3_use_instance_profile is not none
-        quiet: yes
+        quiet: true
 
     - name: assert | Test tfe_object_storage_s3_bucket
       ansible.builtin.assert:
@@ -139,7 +139,7 @@
           - tfe_object_storage_s3_bucket is defined
           - tfe_object_storage_s3_bucket is string
           - tfe_object_storage_s3_bucket is not none
-        quiet: yes
+        quiet: true
 
     - name: assert | Test tfe_object_storage_s3_access_key_id
       ansible.builtin.assert:
@@ -147,7 +147,7 @@
           - tfe_object_storage_s3_access_key_id is defined
           - tfe_object_storage_s3_access_key_id is string
           - tfe_object_storage_s3_access_key_id is not none
-        quiet: yes
+        quiet: true
 
     - name: assert | Test tfe_object_storage_s3_secret_access_key
       ansible.builtin.assert:
@@ -155,7 +155,7 @@
           - tfe_object_storage_s3_secret_access_key is defined
           - tfe_object_storage_s3_secret_access_key is string
           - tfe_object_storage_s3_secret_access_key is not none
-        quiet: yes
+        quiet: true
 
     - name: assert | Test tfe_object_storage_s3_region
       ansible.builtin.assert:
@@ -163,7 +163,7 @@
           - tfe_object_storage_s3_region is defined
           - tfe_object_storage_s3_region is string
           - tfe_object_storage_s3_region is not none
-        quiet: yes
+        quiet: true
 
 - name: assert | Tests for active-active
   when:
@@ -175,7 +175,7 @@
           - tfe_redis_host is defined
           - tfe_redis_host is string
           - tfe_redis_host is not none
-        quiet: yes
+        quiet: true
 
     - name: assert | Test tfe_redis_user
       ansible.builtin.assert:
@@ -183,7 +183,7 @@
           - tfe_redis_user is defined
           - tfe_redis_user is string
           - tfe_redis_user is not none
-        quiet: yes
+        quiet: true
 
     - name: assert | Test tfe_redis_password
       ansible.builtin.assert:
@@ -191,7 +191,7 @@
           - tfe_redis_password is defined
           - tfe_redis_password is string
           - tfe_redis_password is not none
-        quiet: yes
+        quiet: true
 
     - name: assert | Test tfe_redis_use_tls
       ansible.builtin.assert:
@@ -199,7 +199,7 @@
           - tfe_redis_use_tls is defined
           - tfe_redis_use_tls is boolean
           - tfe_redis_use_tls is not none
-        quiet: yes
+        quiet: true
 
     - name: assert | Test tfe_redis_use_auth
       ansible.builtin.assert:
@@ -207,4 +207,12 @@
           - tfe_redis_use_auth is defined
           - tfe_redis_use_auth is boolean
           - tfe_redis_use_auth is not none
-        quiet: yes
+        quiet: true
+
+    - name: assert | Test tfe_vault_cluster_address
+      ansible.builtin.assert:
+        that:
+          - tfe_vault_cluster_address is defined
+          - tfe_vault_cluster_address is string
+          - tfe_vault_cluster_address is not none
+        quiet: true

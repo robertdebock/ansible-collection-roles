@@ -7,4 +7,4 @@
       - nginx_port is number
       - nginx_port > 0
       - nginx_port < 65536
-    quiet: yes
+    quiet: true

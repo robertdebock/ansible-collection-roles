@@ -11,4 +11,4 @@ vault_auditdevice_token: "simple"
 vault_auditdevice_list: []
 
 # Should SSL certificate verification be disabled?
-vault_auditdevice_ssl_verify: yes
+vault_auditdevice_ssl_verify: true

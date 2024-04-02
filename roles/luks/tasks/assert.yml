@@ -6,13 +6,13 @@
       - luks_default_state is defined
       - luks_default_state is string
       - luks_default_state in [ "absent", "closed", "opened", "present" ]
-    quiet: yes
+    quiet: true
 
 - name: assert | Test luks_devices
   ansible.builtin.assert:
     that:
       - luks_devices is iterable
-    quiet: yes
+    quiet: true
   when:
     - luks_devices is defined
 
@@ -22,7 +22,7 @@
       - item.name is defined
       - item.name is string
       - item.name is not none
-    quiet: yes
+    quiet: true
   loop: "{{ luks_devices }}"
   loop_control:
     label: "{{ item.name }}"
@@ -35,7 +35,7 @@
       - item.device is defined
       - item.device is string
       - item.device is not none
-    quiet: yes
+    quiet: true
   loop: "{{ luks_devices }}"
   loop_control:
     label: "{{ item.device }}"
@@ -46,7 +46,7 @@
   ansible.builtin.assert:
     that:
       - item.state in [ "absent", "present" ]
-    quiet: yes
+    quiet: true
   loop: "{{ luks_devices }}"
   loop_control:
     label: "{{ item.name }}"
@@ -59,7 +59,7 @@
     that:
       - item.passphrase is string
       - item.passphrase is not none
-    quiet: yes
+    quiet: true
   loop: "{{ luks_devices }}"
   loop_control:
     label: "{{ item.name }}"
@@ -72,7 +72,7 @@
     that:
       - item.keyfile is string
       - item.keyfile is not none
-    quiet: yes
+    quiet: true
   loop: "{{ luks_devices }}"
   loop_control:
     label: "{{ item.name }}"
@@ -84,7 +84,7 @@
   ansible.builtin.assert:
     that:
       - item.passphrase is not defined
-    quiet: yes
+    quiet: true
   loop: "{{ luks_devices }}"
   loop_control:
     label: "{{ item.name }}"
@@ -96,7 +96,7 @@
   ansible.builtin.assert:
     that:
       - item.keyfile is not defined
-    quiet: yes
+    quiet: true
   loop: "{{ luks_devices }}"
   loop_control:
     label: "{{ item.name }}"
@@ -109,7 +109,7 @@
     that:
       - item.keyfile is defined or
         item.passphrase is defined
-    quiet: yes
+    quiet: true
   loop: "{{ luks_devices }}"
   loop_control:
     label: "{{ item.name }}"

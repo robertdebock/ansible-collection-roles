@@ -9,9 +9,9 @@ argument_specs:
     options:
       podman_storage:
         type: "list"
-        required: no
+        required: false
         description: "All configurations of the storage configuration."
       podman_user:
         type: "str"
-        required: no
+        required: false
         description: "The user to run podman under."

@@ -44,7 +44,7 @@
   ansible.builtin.user:
     name: "{{ user }}"
     groups: docker
-    append: yes
+    append: true
   loop: "{{ docker_ce_privileged_users }}"
   loop_control:
     loop_var: user
@@ -55,6 +55,6 @@
   ansible.builtin.service:
     name: "{{ docker_ce_service }}"
     state: started
-    enabled: yes
+    enabled: true
   when:
     - ansible_connection not in [ "container", "docker", "community.docker.docker" ]

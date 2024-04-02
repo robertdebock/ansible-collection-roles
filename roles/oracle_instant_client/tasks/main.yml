@@ -4,7 +4,7 @@
 - name: Import assert.yml
   ansible.builtin.import_tasks:
     file: assert.yml
-  run_once: yes
+  run_once: true
   delegate_to: localhost
 
 - name: Install package
@@ -20,14 +20,14 @@
     - name: Install basic package
       ansible.builtin.package:
         name: "{{ oracle_instant_client_package }}"
-        disable_gpg_check: yes
+        disable_gpg_check: true
       when:
         - oracle_instant_client_type in [ "basic", "all" ]
 
     - name: Install devel package
       ansible.builtin.package:
         name: "{{ oracle_instant_client_devel_package }}"
-        disable_gpg_check: yes
+        disable_gpg_check: true
       when:
         - oracle_instant_client_type in [ "devel", "all" ]
 
@@ -50,7 +50,7 @@
       ansible.builtin.unarchive:
         src: "{{ oracle_instant_client_devel_archive }}"
         dest: /usr/lib/oracle/
-        remote_src: yes
+        remote_src: true
       when:
         - oracle_instant_client_type in [ "devel", "all" ]
 
@@ -58,7 +58,7 @@
       ansible.builtin.unarchive:
         src: "{{ oracle_instant_client_archive }}"
         dest: /usr/lib/oracle/
-        remote_src: yes
+        remote_src: true
       when:
         - oracle_instant_client_type in [ "basic", "all" ]
 
@@ -67,7 +67,7 @@
         src: /usr/lib/oracle/instantclient_{{ oracle_instant_client_major_version }}_{{ oracle_instant_client_minor_version }}/{{ item }}
         dest: /usr/lib/oracle/{{ oracle_instant_client_major_version }}/client64/bin/
         mode: "0755"
-        remote_src: yes
+        remote_src: true
       loop: "{{ oracle_instant_client_zip_binaries }}"
       when:
         - oracle_instant_client_type in [ "basic", "all" ]
@@ -77,7 +77,7 @@
         src: /usr/lib/oracle/instantclient_{{ oracle_instant_client_major_version }}_{{ oracle_instant_client_minor_version }}/{{ item }}
         dest: /usr/lib/oracle/{{ oracle_instant_client_major_version }}/client64/lib/{{ item }}
         mode: "0755"
-        remote_src: yes
+        remote_src: true
       loop: "{{ oracle_instant_client_zip_libraries }}"
       when:
         - oracle_instant_client_type in [ "basic", "all" ]
@@ -116,7 +116,7 @@
         src: "{{ item.path }}"
         dest: /usr/include/oracle/{{ oracle_instant_client_major_version }}/client64/{{ item.path | basename }}
         mode: "0644"
-        remote_src: yes
+        remote_src: true
       loop: "{{ oracle_instant_client_sdk_files.files }}"
       loop_control:
         label: "{{ item.path | basename }}"

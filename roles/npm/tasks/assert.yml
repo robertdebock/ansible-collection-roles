@@ -6,4 +6,4 @@
       - npm_registry is defined
       - npm_registry is string
       - npm_registry is not none
-    quiet: yes
+    quiet: true

@@ -5,7 +5,7 @@
     that:
       - volumegroup.name is defined
       - volumegroup.devices is defined
-    quiet: yes
+    quiet: true
 
 - name: volumegroup | Create volume groups
   community.general.lvg:

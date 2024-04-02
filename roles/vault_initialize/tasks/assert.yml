@@ -6,11 +6,11 @@
       - vault_initialize_addr is defined
       - vault_initialize_addr is string
       - vault_initialize_addr is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test vault_initialize_show_information
   ansible.builtin.assert:
     that:
       - vault_initialize_show_information is defined
       - vault_initialize_show_information is boolean
-    quiet: yes
+    quiet: true

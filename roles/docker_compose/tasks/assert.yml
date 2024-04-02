@@ -6,7 +6,7 @@
       - docker_compose_version is defined
       - docker_compose_version is string
       - docker_compose_version is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test docker_compose_url
   ansible.builtin.assert:
@@ -14,4 +14,4 @@
       - docker_compose_url is defined
       - docker_compose_url is string
       - docker_compose_url is not none
-    quiet: yes
+    quiet: true

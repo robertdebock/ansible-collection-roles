@@ -6,7 +6,7 @@
       - logwatch_mailto is defined
       - logwatch_mailto is string
       - logwatch_mailto is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test logwatch_mailfrom
   ansible.builtin.assert:
@@ -14,7 +14,7 @@
       - logwatch_mailfrom is defined
       - logwatch_mailfrom is string
       - logwatch_mailfrom is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test logwatch_range
   ansible.builtin.assert:
@@ -22,7 +22,7 @@
       - logwatch_range is defined
       - logwatch_range is string
       - logwatch_range in [ "all", "today", "yesterday" ]
-    quiet: yes
+    quiet: true
 
 - name: assert | Test logwatch_detail
   ansible.builtin.assert:
@@ -30,7 +30,7 @@
       - logwatch_detail is defined
       - logwatch_detail is string
       - logwatch_detail in [ "Low", "Med", "High" ]
-    quiet: yes
+    quiet: true
   when:
     - not logwatch_detail is number
 
@@ -40,7 +40,7 @@
       - logwatch_detail is defined
       - logwatch_detail >= 0
       - logwatch_detail <= 10
-    quiet: yes
+    quiet: true
   when:
     - logwatch_detail is number
 
@@ -50,4 +50,4 @@
       - logwatch_service is defined
       - logwatch_service is string
       - logwatch_service is not none
-    quiet: yes
+    quiet: true

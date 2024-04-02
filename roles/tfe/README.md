@@ -14,8 +14,8 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 ---
 - name: Converge
   hosts: all
-  become: yes
-  gather_facts: yes
+  become: true
+  gather_facts: true
 
   roles:
     - role: robertdebock.roles.tfe
@@ -27,8 +27,8 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
 ---
 - name: Prepare
   hosts: all
-  become: yes
-  gather_facts: no
+  become: true
+  gather_facts: false
 
   roles:
     - role: robertdebock.roles.bootstrap
@@ -42,7 +42,7 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
       ansible.builtin.service:
         name: docker
         state: started
-        enabled: yes
+        enabled: true
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.
@@ -106,7 +106,7 @@ tfe_database_parameters: "sslmode=disable"
 # Detail on the object storage. This role does not create the bucket.
 # These variables are required when `tfe_operational_mode` is set to `active-active` or `external`.
 tfe_object_storage_s3_endpoint: ""
-tfe_object_storage_s3_use_instance_profile: no
+tfe_object_storage_s3_use_instance_profile: false
 tfe_object_storage_s3_bucket: "SomeBucketName"
 tfe_object_storage_s3_access_key_id: ""
 tfe_object_storage_s3_secret_access_key: ""
@@ -118,8 +118,8 @@ tfe_object_storage_s3_region: "eu-west-1"
 tfe_redis_host: "tfe.RaNdOm.0001.euw1.cache.amazonaws.com"
 tfe_redis_user: "tfe"
 tfe_redis_password: "my_pass_c0mpl.x"
-tfe_redis_use_tls: no
-tfe_redis_use_auth: no
+tfe_redis_use_tls: false
+tfe_redis_use_auth: false
 
 # The internal Vault requires an internal address of the node.
 tfe_vault_cluster_address: "https://{{ ansible_default_ipv4.address }}:8201"
@@ -155,7 +155,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |---------|----|
 |[Debian](https://hub.docker.com/r/robertdebock/debian)|bullseye|
 |[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|8, 9|
-|[Fedora](https://hub.docker.com/r/robertdebock/fedora/)|38, 39|
+|[Fedora](https://hub.docker.com/r/robertdebock/fedora)|38, 39|
 |[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|all|
 
 The minimum version of Ansible required is 2.12, tests have been done to:

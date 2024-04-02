@@ -14,8 +14,8 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 ---
 - name: Converge
   hosts: all
-  become: yes
-  gather_facts: no
+  become: true
+  gather_facts: false
 
   roles:
     - role: robertdebock.roles.consul
@@ -35,8 +35,8 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
 ---
 - name: Prepare
   hosts: all
-  become: yes
-  gather_facts: no
+  become: true
+  gather_facts: false
 
   roles:
     - role: robertdebock.roles.bootstrap
@@ -55,8 +55,8 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 # defaults file for consul
 
 # You can install consul using a package in this role. If you have installed
-# consul manually, set this to `no`.
-consul_install_package: yes
+# consul manually, set this to `false`.
+consul_install_package: true
 
 # This flag controls the datacenter in which the agent is running.
 consul_datacenter: my-dc-1
@@ -68,10 +68,10 @@ consul_data_dir: /opt/consul
 consul_client_addr: "0.0.0.0"
 
 # Enables the built-in web UI server and the required HTTP routes.
-consul_ui: yes
+consul_ui: true
 
 # This flag is used to control if an agent is in server or client mode.
-consul_server: yes
+consul_server: true
 
 # This flag provides the number of expected servers in the datacenter.
 # consul_bootstrap_expect: 3
@@ -97,7 +97,7 @@ consul_server: yes
 #     port: 80
 
 # In same cases you may not want to start Consul as a service, because you are "bootstrapping" for example.
-consule_service_started_and_enabled: yes
+consule_service_started_and_enabled: true
 ```
 
 ## [Requirements](#requirements)
@@ -130,7 +130,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |[Amazon](https://hub.docker.com/r/robertdebock/amazonlinux)|Candidate|
 |[Debian](https://hub.docker.com/r/robertdebock/debian)|bullseye|
 |[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|all|
-|[Fedora](https://hub.docker.com/r/robertdebock/fedora/)|37, 38|
+|[Fedora](https://hub.docker.com/r/robertdebock/fedora)|37, 38|
 |[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|all|
 
 The minimum version of Ansible required is 2.12, tests have been done to:

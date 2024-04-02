@@ -4,7 +4,7 @@
 - name: Test httpd configuration validity
   ansible.builtin.command:
     cmd: "{{ httpd_binary }} -t"
-  changed_when: no
+  changed_when: false
   when:
     - ansible_os_family != "Suse"
 

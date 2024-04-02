@@ -4,4 +4,4 @@
 - name: Run ldconfig
   ansible.builtin.command:
     cmd: /sbin/ldconfig
-  changed_when: yes
+  changed_when: true

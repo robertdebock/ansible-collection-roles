@@ -16,6 +16,7 @@
   ansible.builtin.command: "bareos-dir --test-config"
   changed_when: false
   become_user: bareos
+  become: true
 
 - name: Reload bareos-dir
   ansible.builtin.service:

@@ -4,7 +4,7 @@
 - name: Import assert.yml
   ansible.builtin.import_tasks:
     file: assert.yml
-  run_once: yes
+  run_once: true
   delegate_to: localhost
 
 - name: Install required packages
@@ -16,7 +16,7 @@
   ansible.builtin.lineinfile:
     path: /etc/default/grub
     line: GRUB_TIMEOUT={{ grub_timeout }}
-    create: yes
+    create: true
     mode: "0664"
   notify:
     - Update grub
@@ -25,7 +25,7 @@
   ansible.builtin.lineinfile:
     path: /etc/default/grub
     line: GRUB_RECORDFAIL_TIMEOUT={{ grub_recordfail_timeout }}
-    create: yes
+    create: true
     mode: "0664"
   notify:
     - Update grub

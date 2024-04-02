@@ -5,11 +5,11 @@
     that:
       - functions_strings is defined
       - functions_strings is iterable
-    quiet: yes
+    quiet: true
 
 - name: assert | Test functions_integers
   ansible.builtin.assert:
     that:
       - functions_integers is defined
       - functions_integers is iterable
-    quiet: yes
+    quiet: true

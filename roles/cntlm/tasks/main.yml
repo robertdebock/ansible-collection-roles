@@ -4,7 +4,7 @@
 - name: Import assert.yml
   ansible.builtin.import_tasks:
     file: assert.yml
-  run_once: yes
+  run_once: true
   delegate_to: localhost
 
 - name: Install requirements
@@ -16,13 +16,13 @@
   ansible.builtin.set_fact:
     cntlm_allows: "{{ cntlm_allows + [hostvars[inventory_hostname]['ansible_default_ipv4']['address'] + '/32'] }}"
   when:
-    - cntlm_allows_include_local_ipv4 == "yes"
+    - cntlm_allows_include_local_ipv4
 
 - name: Unpack cntlm software
   ansible.builtin.unarchive:
     src: "{{ cntlm_sourceforge_mirror }}/{{ cntlm_archive }}"
     dest: "{{ cntlm_tmp }}"
-    remote_src: yes
+    remote_src: true
     mode: "0755"
   when:
     - ansible_pkg_mgr not in [ "apt", "yum", "dnf" ]
@@ -35,7 +35,7 @@
   ansible.builtin.package:
     name: cntlm
     state: present
-    disable_gpg_check: yes
+    disable_gpg_check: true
   when:
     - ansible_pkg_mgr in [ "yum" ]
 
@@ -43,8 +43,8 @@
   ansible.builtin.dnf:
     name: "{{ cntlm_rpm_repository }}"
     state: present
-    validate_certs: no
-    disable_gpg_check: yes
+    validate_certs: false
+    disable_gpg_check: true
   when:
     - ansible_pkg_mgr in [ "dnf" ]
 
@@ -57,7 +57,7 @@
         url: "{{ cntlm_dpkg_repository }}"
         dest: "{{ cntlm_tmp }}/cntlm_{{ cntlm_version }}_amd64.deb"
         mode: "0640"
-        validate_certs: no
+        validate_certs: false
 
     - name: Install cntlm software (apt)
       ansible.builtin.apt:
@@ -80,7 +80,7 @@
     creates: /etc/cntlm.hash
     executable: /bin/bash
   register: cntlm_generate_hash
-  check_mode: no
+  check_mode: false
   notify:
     - Configure cntlm.conf
   when:
@@ -90,4 +90,4 @@
   ansible.builtin.service:
     name: cntlm
     state: started
-    enabled: yes
+    enabled: true

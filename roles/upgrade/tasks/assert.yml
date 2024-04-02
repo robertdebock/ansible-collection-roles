@@ -4,7 +4,7 @@
   ansible.builtin.assert:
     that:
       - upgrade_packages is iterable
-    quiet: yes
+    quiet: true
   when:
     - upgrade_packages is defined
 
@@ -14,7 +14,7 @@
       - item is defined
       - item is string
       - item is not none
-    quiet: yes
+    quiet: true
   loop: "{{ upgrade_packages }}"
   when:
     - upgrade_packages is defined

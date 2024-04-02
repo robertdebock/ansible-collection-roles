@@ -5,7 +5,7 @@
       - httpd_servername is defined
       - httpd_servername is string
       - httpd_servername is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test httpd_port
   ansible.builtin.assert:
@@ -14,14 +14,14 @@
       - httpd_port is number
       - httpd_port > 0
       - httpd_port < 65536
-    quiet: yes
+    quiet: true
 
 - name: assert | Test https_ssl_enable
   ansible.builtin.assert:
     that:
       - https_ssl_enable is defined
       - https_ssl_enable is boolean
-    quiet: yes
+    quiet: true
 
 - name: assert | Test httpd_ssl_servername
   ansible.builtin.assert:
@@ -29,7 +29,7 @@
       - httpd_ssl_servername is defined
       - httpd_ssl_servername is string
       - httpd_ssl_servername is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test httpd_ssl_port
   ansible.builtin.assert:
@@ -39,13 +39,13 @@
       - httpd_ssl_port > 0
       - httpd_ssl_port < 65535
       - httpd_ssl_port != httpd_port
-    quiet: yes
+    quiet: true
 
 - name: assert | Test httpd_locations
   ansible.builtin.assert:
     that:
       - httpd_locations is iterable
-    quiet: yes
+    quiet: true
   when:
     - httpd_locations is defined
 
@@ -61,7 +61,7 @@
       - item.backend_url is defined
       - item.backend_url is string
       - item.backend_url is not none
-    quiet: yes
+    quiet: true
   loop: "{{ httpd_locations }}"
   loop_control:
     label: "{{ item.name }}"
@@ -72,7 +72,7 @@
   ansible.builtin.assert:
     that:
       - httpd_vhosts is iterable
-    quiet: yes
+    quiet: true
   when:
     - httpd_vhosts is defined
 
@@ -84,7 +84,7 @@
       - item.name is not none
       - item.servername is defined
       - item.servername is string
-    quiet: yes
+    quiet: true
   loop: "{{ httpd_vhosts }}"
   loop_control:
     label: "{{ item.name }}"
@@ -95,7 +95,7 @@
   ansible.builtin.assert:
     that:
       - item.create_docroot is boolean
-    quiet: yes
+    quiet: true
   loop: "{{ httpd_vhosts }}"
   loop_control:
     label: "{{ item.name }}"
@@ -107,7 +107,7 @@
   ansible.builtin.assert:
     that:
       - item.serveralias is iterable
-    quiet: yes
+    quiet: true
   loop: "{{ httpd_vhosts }}"
   loop_control:
     label: "{{ item.name }}"
@@ -119,7 +119,7 @@
   ansible.builtin.assert:
     that:
       - httpd_directories is iterable
-    quiet: yes
+    quiet: true
   when:
     - httpd_directories is defined
 
@@ -132,7 +132,7 @@
       - item.path is string
       - item.path is not none
       - item.option is defined or item.allow_override is defined
-    quiet: yes
+    quiet: true
   loop: "{{ httpd_directories }}"
   loop_control:
     label: "{{ item.name }}"
@@ -143,7 +143,7 @@
   ansible.builtin.assert:
     that:
       - item.options is iterable
-    quiet: yes
+    quiet: true
   loop: "{{ httpd_directories }}"
   loop_control:
     label: "{{ item.name }}"
@@ -156,7 +156,7 @@
     that:
       - item.allow_override is string
       - item.allow_override is not none
-    quiet: yes
+    quiet: true
   loop: "{{ httpd_directories }}"
   loop_control:
     label: "{{ item.name }}"
@@ -169,25 +169,25 @@
     that:
       - httpd_remove_example is defined
       - httpd_remove_example is boolean
-    quiet: yes
+    quiet: true
 
 - name: assert | Test httpd_additionnal_modules
   ansible.builtin.assert:
     that:
       - httpd_additionnal_modules is defined
       - httpd_additionnal_modules | type_debug == "list"
-    quiet: yes
+    quiet: true
 
 - name: assert | Test if httpd_modules_to_activate_with_command is set correctly
   ansible.builtin.assert:
     that:
       - httpd_modules_to_activate_with_command is defined
       - httpd_modules_to_activate_with_command | type_debug == "list"
-    quiet: yes
+    quiet: true
 
 - name: assert | Test if default_vhost_conf is set correctly
   ansible.builtin.assert:
     that:
       - default_vhost_conf is defined
       - default_vhost_conf is string
-    quiet: yes
+    quiet: true

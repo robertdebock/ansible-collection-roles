@@ -14,8 +14,8 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 ---
 - name: Converge
   hosts: all
-  become: yes
-  gather_facts: yes
+  become: true
+  gather_facts: true
 
   roles:
     - role: robertdebock.roles.rsyslog
@@ -27,8 +27,8 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
 ---
 - name: Prepare
   hosts: all
-  become: yes
-  gather_facts: no
+  become: true
+  gather_facts: false
 
   roles:
     - role: robertdebock.roles.bootstrap
@@ -45,7 +45,7 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 # defaults file for rsyslog
 
 # To configure a server to receive logs, set rsyslog_receiver to yes.
-rsyslog_receiver: no
+rsyslog_receiver: false
 
 # To forward logs to another server, set rsyslog_remote to the hostname or
 # the ipaddress of the receiving rsyslog server.
@@ -58,7 +58,7 @@ rsyslog_receiver: no
 rsyslog_remote_selector: "*.*"
 
 # If rsylog_remote is set, use TCP if yes. UDP if no.
-rsyslog_remote_tcp: yes
+rsyslog_remote_tcp: true
 
 # If rsylog_remote is set, destination port to use.
 rsyslog_remote_port: 514
@@ -75,7 +75,7 @@ rsyslog_mods:
   - imjournal
 
 # Configure rsyslog minimally (may be in conflict with custom configuration files)
-rsyslog_deploy_default_config: yes
+rsyslog_deploy_default_config: true
 
 # Default rsyslogd rules
 rsyslog_default_rules:
@@ -105,7 +105,7 @@ rsyslog_package_state: present
 # if set to false (legacy default to remain compatible to sysklogd), the domain
 # part from a name that is within the same domain as the receiving system is
 # stripped. If set to on, full names are always used.
-rsyslog_preservefqdn: no
+rsyslog_preservefqdn: false
 
 # Configure additional config files in /etc/rsyslog.d
 # Example:
@@ -120,10 +120,10 @@ rsyslog_rsyslog_d_files: []
 
 # Avoid sd_journal_get_cursor() failed: Cannot assign requested address messages
 # due to logrotate
-rsyslog_workaroundjournalbug: no
+rsyslog_workaroundjournalbug: false
 
 # Turns off message reception via local log socket
-rsyslog_imuxsock_syssock: no
+rsyslog_imuxsock_syssock: false
 
 # Install additional rsyslog packages
 # Example for installing rsyslog-elastisearch:
@@ -136,10 +136,10 @@ rsyslog_features: []
 rsyslog_dest_conf_file: "/etc/rsyslog.conf"
 
 # Enable / Disable option OmitLocalLogging
-rsyslog_omit_local_logging: yes
+rsyslog_omit_local_logging: true
 
 # Allow using the traditional file format.
-rsyslog_traditional_file_format: yes
+rsyslog_traditional_file_format: true
 ```
 
 ## [Requirements](#requirements)
@@ -171,7 +171,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |[Amazon](https://hub.docker.com/r/robertdebock/amazonlinux)|Candidate|
 |[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|8, 9|
 |[Debian](https://hub.docker.com/r/robertdebock/debian)|all|
-|[Fedora](https://hub.docker.com/r/robertdebock/fedora/)|all|
+|[Fedora](https://hub.docker.com/r/robertdebock/fedora)|all|
 |[opensuse](https://hub.docker.com/r/robertdebock/opensuse)|all|
 |[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|all|
 

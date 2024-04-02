@@ -18,5 +18,5 @@ phpmyadmin_blowfish_secret: "x7GD9DBEE32bAWd2sTHKBfYiqOfnj82neaPD3wrDTs0K"
 phpmyadmin_database_user: admin
 phpmyadmin_database_pass: "P@s5-W0rd"
 
-phpmyadmin_database_compress: no
-phpmyadmin_database_allownopassword: no
+phpmyadmin_database_compress: false
+phpmyadmin_database_allownopassword: false

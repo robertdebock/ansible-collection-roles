@@ -10,8 +10,8 @@
     name: "{{ instance.user | default(tomcat_user) }}"
     state: present
     group: "{{ instance.group | default(tomcat_group) }}"
-    createhome: no
-    system: yes
+    createhome: false
+    system: true
 
 - name: instance | Ensure instance directory exists
   ansible.builtin.file:
@@ -33,7 +33,7 @@
     dest: "{{ tomcat_directory }}/{{ instance.name }}"
     owner: "{{ instance.user | default(tomcat_user) }}"
     group: "{{ instance.group | default(tomcat_group) }}"
-    remote_src: yes
+    remote_src: true
     extra_opts: "--strip-components=1"
     creates: "{{ tomcat_directory }}/{{ instance.name }}/bin"
     mode: "0755"

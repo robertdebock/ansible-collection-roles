@@ -4,7 +4,7 @@
 - name: Import assert.yml
   ansible.builtin.import_tasks:
     file: assert.yml
-  run_once: yes
+  run_once: true
   delegate_to: localhost
 
 - name: Prepare debian
@@ -28,7 +28,7 @@
     - name: Add collabora key (dnf and yum)
       ansible.builtin.rpm_key:
         key: "{{ collabora_online_key }}"
-        validate_certs: no
+        validate_certs: false
 
     - name: Add repository (dnf and yum)
       ansible.builtin.yum_repository:
@@ -54,4 +54,4 @@
   ansible.builtin.systemd:
     name: coolwsd
     state: started
-    enabled: yes
+    enabled: true

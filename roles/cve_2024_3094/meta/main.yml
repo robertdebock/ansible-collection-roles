@@ -1,0 +1,49 @@
+---
+galaxy_info:
+  author: robertdebock
+  role_name: cve_2024_3094
+  description: Check xz vulnerability (cve_2024_3094) on your system.
+  license: Apache-2.0
+  company: none
+  min_ansible_version: "2.12"
+
+  platforms:
+    - name: Alpine
+      versions:
+        - all
+    - name: Amazon
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - all
+    - name: EL
+      versions:
+        - all
+    - name: Fedora
+      versions:
+        - all
+    - name: opensuse
+      versions:
+        - all
+    - name: Ubuntu
+      versions:
+        - all
+
+  galaxy_tags:
+    - cve20243094
+    - application
+    - cloud
+    - database
+    - development
+    - infrastructure
+    - linux
+    - monitoring
+    - networking
+    - storage
+    - security
+    - system
+    - tools
+    - windows
+
+dependencies: []

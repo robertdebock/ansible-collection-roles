@@ -6,7 +6,7 @@
       - spamassassin_group is defined
       - spamassassin_group is string
       - spamassassin_group is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test spamassassin_user
   ansible.builtin.assert:
@@ -14,4 +14,4 @@
       - spamassassin_user is defined
       - spamassassin_user is string
       - spamassassin_user is not none
-    quiet: yes
+    quiet: true

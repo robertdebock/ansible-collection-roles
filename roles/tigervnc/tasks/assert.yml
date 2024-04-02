@@ -6,7 +6,7 @@
       - tigervnc_username is defined
       - tigervnc_username is string
       - tigervnc_username is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test tigervnc_groupname
   ansible.builtin.assert:
@@ -14,7 +14,7 @@
       - tigervnc_groupname is defined
       - tigervnc_groupname is string
       - tigervnc_groupname is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test tigervnc_password
   ansible.builtin.assert:
@@ -22,14 +22,14 @@
       - tigervnc_password is defined
       - tigervnc_password is string
       - tigervnc_password is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test tigervnc_user_exists
   ansible.builtin.assert:
     that:
       - tigervnc_user_exists is defined
       - tigervnc_user_exists is boolean
-    quiet: yes
+    quiet: true
 
 - name: assert | Test tigervnc_desktop_session
   ansible.builtin.assert:
@@ -37,4 +37,4 @@
       - tigervnc_desktop_session is defined
       - tigervnc_desktop_session is string
       - tigervnc_desktop_session is not none
-    quiet: yes
+    quiet: true

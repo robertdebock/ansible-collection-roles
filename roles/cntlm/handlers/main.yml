@@ -3,7 +3,7 @@
 
 - name: Systemctl daemon-reload
   ansible.builtin.systemd:
-    daemon_reload: yes
+    daemon_reload: true
   notify:
     - Restart software
 
@@ -28,7 +28,7 @@
     owner: root
     group: root
     mode: 0755
-    remote_src: yes
+    remote_src: true
 
 - name: Configure cntlm.conf
   ansible.builtin.template:

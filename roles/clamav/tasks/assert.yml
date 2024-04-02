@@ -5,14 +5,14 @@
     that:
       - clamav_can_scan_system is defined
       - clamav_can_scan_system is boolean
-    quiet: yes
+    quiet: true
 
 - name: assert | Test clamav_configuration
   ansible.builtin.assert:
     that:
       - clamav_configuration is defined
       - clamav_configuration is iterable
-    quiet: yes
+    quiet: true
 
 - name: assert | Test item in clamav_configuration
   ansible.builtin.assert:
@@ -20,7 +20,7 @@
       - item.line is defined
       - item.line is string
       - item.line is not none
-    quiet: yes
+    quiet: true
   loop: "{{ clamav_configuration }}"
   loop_control:
     label: "{{ item.line }}"
@@ -32,7 +32,7 @@
     that:
       - item.state is string
       - item.state in [ "absent", "present" ]
-    quiet: yes
+    quiet: true
   loop: "{{ clamav_configuration }}"
   loop_control:
     label: "{{ item.line }}"
@@ -44,6 +44,6 @@
   ansible.builtin.assert:
     that:
       - freshclam_private_mirrors is iterable
-    quiet: yes
+    quiet: true
   when:
     - freshclam_private_mirrors is defined

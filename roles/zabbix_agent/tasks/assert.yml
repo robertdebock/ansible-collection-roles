@@ -6,7 +6,7 @@
       - zabbix_agent_server_address is defined
       - zabbix_agent_server_address is string
       - zabbix_agent_server_address is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test zabbix_agent_listen_port
   ansible.builtin.assert:
@@ -15,7 +15,7 @@
       - zabbix_agent_listen_port is number
       - zabbix_agent_listen_port > 0
       - zabbix_agent_listen_port < 65536
-    quiet: yes
+    quiet: true
 
 - name: assert | Test zabbix_agent_server_active_address
   ansible.builtin.assert:
@@ -23,7 +23,7 @@
       - zabbix_agent_server_active_address is defined
       - zabbix_agent_server_active_address is string
       - zabbix_agent_server_active_address is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test zabbix_agent_hostname
   ansible.builtin.assert:
@@ -31,7 +31,7 @@
       - zabbix_agent_hostname is defined
       - zabbix_agent_hostname is string
       - zabbix_agent_hostname is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test zabbix_agent_hostmetadata
   ansible.builtin.assert:
@@ -39,7 +39,7 @@
       - zabbix_agent_hostmetadata is defined
       - zabbix_agent_hostmetadata is string
       - zabbix_agent_hostmetadata is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test zabbix_agent_timeout
   ansible.builtin.assert:
@@ -47,7 +47,7 @@
       - zabbix_agent_timeout is defined
       - zabbix_agent_timeout is number
       - zabbix_agent_timeout >= 0
-    quiet: yes
+    quiet: true
 
 - name: assert | Test zabbix_agent_logremotecommands
   ansible.builtin.assert:
@@ -55,4 +55,4 @@
       - zabbix_agent_logremotecommands is defined
       - zabbix_agent_logremotecommands is string
       - zabbix_agent_logremotecommands in [ "0", "1" ]
-    quiet: yes
+    quiet: true

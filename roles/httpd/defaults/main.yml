@@ -8,7 +8,7 @@ httpd_servername: "{{ ansible_fqdn }}"
 httpd_port: 80
 
 # Enable (self-signed certificates) SSL?
-https_ssl_enable: no
+https_ssl_enable: false
 
 # To configure https, set the hostname to listen to.
 httpd_ssl_servername: "{{ ansible_fqdn }}"
@@ -23,7 +23,7 @@ httpd_openssl_crt: "{{ httpd_openssl_crt_directory }}/apache-httpd.crt"
 httpd_openssl_key: "{{ httpd_openssl_key_directory }}/apache-httpd.key"
 
 # If the "it works" page should be kept
-httpd_remove_example: no
+httpd_remove_example: false
 
 # Additionnal httpd module to install
 

@@ -4,7 +4,7 @@
 - name: Import assert.yml
   ansible.builtin.import_tasks:
     file: assert.yml
-  run_once: yes
+  run_once: true
   delegate_to: localhost
 
 - name: Set swappiness
@@ -73,7 +73,7 @@
         - ansible_swaptotal_mb > 0
       notify:
         - Gather facts
-      changed_when: yes
+      changed_when: true
 
     - name: Remove swap from fstab
       ansible.builtin.lineinfile:

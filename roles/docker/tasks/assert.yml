@@ -4,6 +4,6 @@
   ansible.builtin.assert:
     that:
       - docker_privileged_users is iterable
-    quiet: yes
+    quiet: true
   when:
     - docker_privileged_users is defined

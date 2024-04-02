@@ -2,13 +2,13 @@
 # defaults file for vsftpd
 
 # Allow anonymous FTP? (Beware - allowed by default if you disable this).
-vsftpd_anonymous_enable: yes
+vsftpd_anonymous_enable: true
 
 # Enable this to allow local users to log in.
-vsftpd_local_enable: yes
+vsftpd_local_enable: true
 
 # Enable this to enable any form of FTP write command.
-vsftpd_write_enable: yes
+vsftpd_write_enable: true
 
 # Default umask for local users is 077. You may wish to change this to 022,
 # if your users expect that (022 is used by most other ftpd's)
@@ -18,26 +18,26 @@ vsftpd_local_umask: "022"
 # has an effect if the above global write enable is activated. Also, you will
 # obviously need to create a directory writable by the FTP user.
 # When SELinux is enforcing check for SE bool allow_ftpd_anon_write, allow_ftpd_full_access
-vsftpd_anon_upload_enable: no
+vsftpd_anon_upload_enable: false
 
 # Enable this if you want the anonymous FTP user to be able to create
 # new directories.
-vsftpd_anon_mkdir_write_enable: no
+vsftpd_anon_mkdir_write_enable: false
 
 # Activate directory messages - messages given to remote users when they
 # go into a certain directory.
-vsftpd_dirmessage_enable: yes
+vsftpd_dirmessage_enable: true
 
 # Activate logging of uploads/downloads.
-vsftpd_xferlog_enable: yes
+vsftpd_xferlog_enable: true
 
 # Make sure PORT transfer connections originate from port 20 (ftp-data).
-vsftpd_connect_from_port_20: yes
+vsftpd_connect_from_port_20: true
 
 # If you want, you can arrange for uploaded anonymous files to be owned by
 # a different user. Note! Using "root" for uploaded files is not
 # recommended!
-vsftpd_chown_uploads: no
+vsftpd_chown_uploads: false
 vsftpd_chown_username: whoever
 
 # You may override where the log file goes if you like. The default is shown
@@ -46,7 +46,7 @@ vsftpd_xferlog_file: /var/log/xferlog
 
 # If you want, you can have your log file in standard ftpd xferlog format.
 # Note that the default log file location is /var/log/xferlog in this case.
-vsftpd_xferlog_std_format: yes
+vsftpd_xferlog_std_format: true
 
 # You may change the default value for timing out an idle session.
 vsftpd_idle_session_timeout: 600
@@ -61,7 +61,7 @@ vsftpd_nopriv_user: ftpsecure
 # Enable this and the server will recognise asynchronous ABOR requests. Not
 # recommended for security (the code is non-trivial). Not enabling it,
 # however, may confuse older FTP clients.
-vsftpd_async_abor_enable: yes
+vsftpd_async_abor_enable: true
 
 # By default the server will pretend to allow ASCII mode but in fact ignore
 # the request. Turn on the below options to have the server actually do ASCII
@@ -72,15 +72,15 @@ vsftpd_async_abor_enable: yes
 # predicted this attack and has always been safe, reporting the size of the
 # raw file.
 # ASCII mangling is a horrible feature of the protocol.
-vsftpd_ascii_upload_enable: no
-vsftpd_ascii_download_enable: no
+vsftpd_ascii_upload_enable: false
+vsftpd_ascii_download_enable: false
 
 # You may fully customise the login banner string:
 vsftpd_ftpd_banner: "Welcome to blah FTP service."
 
 # You may specify a file of disallowed anonymous e-mail addresses. Apparently
 # useful for combatting certain DoS attacks.
-vsftpd_deny_email_enable: yes
+vsftpd_deny_email_enable: true
 # (default follows)
 vsftpd_banned_email_file: /etc/vsftpd/banned_emails
 
@@ -90,8 +90,8 @@ vsftpd_banned_email_file: /etc/vsftpd/banned_emails
 # (Warning! chroot'ing can be very dangerous. If using chroot, make sure that
 # the user does not have write access to the top level directory within the
 # chroot)
-vsftpd_chroot_local_user: no
-vsftpd_chroot_list_enable: no
+vsftpd_chroot_local_user: false
+vsftpd_chroot_list_enable: false
 # (default follows)
 vsftpd_chroot_list_file: /etc/vsftpd/chroot_list
 
@@ -99,12 +99,12 @@ vsftpd_chroot_list_file: /etc/vsftpd/chroot_list
 # default to avoid remote users being able to cause excessive I/O on large
 # sites. However, some broken FTP clients such as "ncftp" and "mirror" assume
 # the presence of the "-R" option, so there is a strong case for enabling it.
-vsftpd_ls_recurse_enable: no
+vsftpd_ls_recurse_enable: false
 
 # When "listen" directive is enabled, vsftpd runs in standalone mode and
 # listens on IPv4 sockets. This directive cannot be used in conjunction
 # with the listen_ipv6 directive.
-vsftpd_listen: no
+vsftpd_listen: false
 
 # This directive enables listening on IPv6 sockets. By default, listening
 # on the IPv6 "any" address (::) will accept connections from both IPv6
@@ -113,16 +113,16 @@ vsftpd_listen: no
 # addresses) then you must run two copies of vsftpd with two configuration
 # files.
 # Make sure, that one of the listen options is commented !!
-vsftpd_listen_ipv6: yes
+vsftpd_listen_ipv6: true
 
 vsftpd_pam_service_name: vsftpd
-vsftpd_userlist_enable: yes
+vsftpd_userlist_enable: true
 
 # If enabled, vsftpd will display directory listings with the time
 # in  your  local  time  zone.  The default is to display GMT. The
 # times returned by the MDTM FTP command are also affected by this
 # option.
-vsftpd_use_localtime: yes
+vsftpd_use_localtime: true
 
 # This option should be the name of a directory which is empty.  Also, the
 # directory should not be writable by the ftp user. This directory is used
@@ -134,4 +134,4 @@ vsftpd_secure_chroot_dir: /var/run/vsftpd/empty
 # encrypted connections.
 # vsftpd_rsa_cert_file: /etc/ssl/certs/ssl-cert-snakeoil.pem
 # vsftpd_rsa_private_key_file: /etc/ssl/private/ssl-cert-snakeoil.key
-vsftpd_ssl_enable: no
+vsftpd_ssl_enable: false

@@ -6,7 +6,7 @@
       - revealmd_directory is defined
       - revealmd_directory is string
       - revealmd_directory is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test revealmd_presentation
   ansible.builtin.assert:
@@ -14,7 +14,7 @@
       - revealmd_presentation is defined
       - revealmd_presentation is string
       - revealmd_presentation is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test revealmd_port
   ansible.builtin.assert:
@@ -23,7 +23,7 @@
       - revealmd_port is number
       - revealmd_port > 0
       - revealmd_port < 65536
-    quiet: yes
+    quiet: true
 
 - name: assert | Test revealmd_options
   ansible.builtin.assert:
@@ -31,4 +31,4 @@
       - revealmd_options is defined
       - revealmd_options is string
       - revealmd_options is not none
-    quiet: yes
+    quiet: true

@@ -9,7 +9,7 @@
   ansible.builtin.copy:
     src: "{{ earlyoom_clone_destination }}/earlyoom"
     dest: "{{ earlyoom_installation_destination }}"
-    remote_src: yes
+    remote_src: true
     mode: "0750"
 
 - name: Restart earlyoom

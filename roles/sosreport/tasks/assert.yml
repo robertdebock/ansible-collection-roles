@@ -6,7 +6,7 @@
       - sosreport_remote_location is defined
       - sosreport_remote_location is string
       - sosreport_remote_location is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test sosreport_local_location
   ansible.builtin.assert:
@@ -14,4 +14,4 @@
       - sosreport_local_location is defined
       - sosreport_local_location is string
       - sosreport_local_location is not none
-    quiet: yes
+    quiet: true

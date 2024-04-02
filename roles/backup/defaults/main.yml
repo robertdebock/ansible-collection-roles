@@ -8,7 +8,7 @@ backup_directory: backups
 backup_remote_directory: /tmp
 
 # Cleanup files created on the {{ backup_remote_directory }} when done?
-backup_cleanup: yes
+backup_cleanup: true
 
 # What timestamp format to use when saving files.
 backup_timestamp: "{{ ansible_date_time.date }}"

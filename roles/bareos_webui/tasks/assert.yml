@@ -5,7 +5,7 @@
     that:
       - bareos_webui_directors is defined
       - bareos_webui_directors is iterable
-    quiet: yes
+    quiet: true
 
 - name: assert | Test items in bareos_webui_directors are set correctly when enabled
   ansible.builtin.assert:
@@ -16,7 +16,7 @@
       - item.enabled is boolean
       - item.diraddress is defined
       - item.diraddress is string
-    quiet: yes
+    quiet: true
   loop: "{{ bareos_webui_directors }}"
   loop_control:
     label: "{{ item.name }}"
@@ -30,7 +30,7 @@
       - item.name is string
       - item.enabled is defined
       - item.enabled is boolean
-    quiet: yes
+    quiet: true
   loop: "{{ bareos_webui_directors }}"
   loop_control:
     label: "{{ item.name }}"
@@ -42,7 +42,7 @@
     that:
       - bareos_webui_configuration is defined
       - bareos_webui_configuration is iterable
-    quiet: yes
+    quiet: true
 
 - name: assert | Test items in bareos_webui_configuration are set correctly
   ansible.builtin.assert:
@@ -52,7 +52,7 @@
       - item.option is defined
       - item.option is string
       - item.value is defined
-    quiet: yes
+    quiet: true
   loop: "{{ bareos_webui_configuration }}"
   loop_control:
     label: "{{ item.section }}:{{ item.option }}"

@@ -5,13 +5,13 @@
     that:
       - diskspace_mounts is defined
       - diskspace_mounts is iterable
-    quiet: yes
+    quiet: true
 
 - name: assert | Test mandatory item in diskspace_mounts
   ansible.builtin.assert:
     that:
       - item.name is defined
-    quiet: yes
+    quiet: true
   loop: "{{ diskspace_mounts }}"
   loop_control:
     label: "{{ item.name }}"
@@ -20,7 +20,7 @@
   ansible.builtin.assert:
     that:
       - item.megabytes_available is number
-    quiet: yes
+    quiet: true
   loop: "{{ diskspace_mounts }}"
   when:
     - item.megabytes_available is defined
@@ -31,7 +31,7 @@
   ansible.builtin.assert:
     that:
       - item.gigabytes_available is number
-    quiet: yes
+    quiet: true
   loop: "{{ diskspace_mounts }}"
   when:
     - item.gigabytes_available is defined
@@ -42,7 +42,7 @@
   ansible.builtin.assert:
     that:
       - item.inodes_available is number
-    quiet: yes
+    quiet: true
   loop: "{{ diskspace_mounts }}"
   when:
     - item.inodes_available is defined
@@ -55,7 +55,7 @@
       - item.megabytes_available is defined or
         item.gigabytes_available is defined or
         item.inodes_available is defined
-    quiet: yes
+    quiet: true
   loop: "{{ diskspace_mounts }}"
   loop_control:
     label: "{{ item.name }}"

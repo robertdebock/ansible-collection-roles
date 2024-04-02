@@ -4,7 +4,7 @@
 - name: Import assert.yml
   ansible.builtin.import_tasks:
     file: assert.yml
-  run_once: yes
+  run_once: true
   delegate_to: localhost
 
 - name: Install sosreport
@@ -29,7 +29,7 @@
     cmd: "{{ sosreport_command }}"
   when:
     - sosreport_find_sosreports.matched == 0
-  changed_when: yes
+  changed_when: true
 
 - name: Create local directory
   ansible.builtin.file:
@@ -37,8 +37,8 @@
     state: directory
     mode: "0755"
   delegate_to: localhost
-  run_once: yes
-  become: no
+  run_once: true
+  become: false
 
 - name: Find sosreports after running
   ansible.builtin.find:
@@ -50,7 +50,7 @@
   ansible.builtin.fetch:
     src: "{{ item.path }}"
     dest: "{{ sosreport_local_location }}/"
-    flat: yes
+    flat: true
   loop: "{{ sosreport_find_sosreport.files }}"
   when:
     - sosreport_find_sosreport is defined

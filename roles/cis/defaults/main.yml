@@ -8,326 +8,326 @@
 # playbook.
 
 # 1.1.1.1 Ensure mounting of cramfs filesystems is disabled (Scored)
-cis_cramfs_disabled: yes
+cis_cramfs_disabled: true
 
 # 1.1.1.2 Ensure mounting of vFAT filesystems is limited (Not Scored)
-cis_vfat_disabled: yes
+cis_vfat_disabled: true
 
 # 1.1.1.3 Ensure mounting of squashfs filesystems is disabled (Scored)
-cis_squashfs_disabled: yes
+cis_squashfs_disabled: true
 
 # 1.1.1.4 Ensure mounting of udf filesystems is disabled (Scored)
-cis_udf_disabled: yes
+cis_udf_disabled: true
 
 # 1.1.2 Ensure /tmp is configured (Scored)
-cis_tmp_configured: yes
+cis_tmp_configured: true
 
 # 1.1.3 Ensure nodev option set on /tmp partition (Scored)
-cis_tmp_nodev: yes
+cis_tmp_nodev: true
 
 # 1.1.4 Ensure nosuid option set on /tmp partition (Scored)
-cis_tmp_nosuid: yes
+cis_tmp_nosuid: true
 
 # 1.1.5 Ensure noexec option set on /tmp partition (Scored)
-cis_tmp_noexec: yes
+cis_tmp_noexec: true
 
 # 1.1.6 Ensure separate partition exists for /var (Scored)
-cis_var_partition: yes
+cis_var_partition: true
 
 # 1.1.7 Ensure separate partition exists for /var/tmp (Scored)
-cis_var_tmp_partition: yes
+cis_var_tmp_partition: true
 
 # 1.1.8 Ensure nodev option set on /var/tmp partition (Scored)
-cis_var_tmp_nodev: yes
+cis_var_tmp_nodev: true
 
 # 1.1.9 Ensure nosuid option set on /var/tmp partition (Scored)
-cis_var_tmp_nosuid: yes
+cis_var_tmp_nosuid: true
 
 # 1.1.10 Ensure noexec option set on /var/tmp partition (Scored)
-cis_var_tmp_noexec: yes
+cis_var_tmp_noexec: true
 
 # 1.1.11 Ensure separate partition exists for /var/log (Scored)
-cis_var_log_partition: yes
+cis_var_log_partition: true
 
 # 1.1.12 Ensure separate partition exists for /var/log/audit (Scored)
-cis_var_log_audit_partition: yes
+cis_var_log_audit_partition: true
 
 # 1.1.13 Ensure separate partition exists for /home (Scored)
-cis_home_partition: yes
+cis_home_partition: true
 
 # 1.1.14 Ensure nodev option set on /home partition (Scored)
-cis_home_nodev: yes
+cis_home_nodev: true
 
 # 1.1.15 Ensure nodev option set on /dev/shm partition (Scored)
-cis_dev_shm_nodev: yes
+cis_dev_shm_nodev: true
 
 # 1.1.16 Ensure nosuid option set on /dev/shm partition (Scored)
-cis_dev_shm_nosuid: yes
+cis_dev_shm_nosuid: true
 
 # 1.1.17 Ensure noexec option set on /dev/shm partition (Scored)
-cis_dev_shm_noexec: yes
+cis_dev_shm_noexec: true
 
 # 1.1.18 Ensure nodev option set on removable media partitions (Not Scored)
-cis_removable_media_nodev: yes
+cis_removable_media_nodev: true
 
 # 1.1.19 Ensure nosuid option set on removable media partitions (Not Scored)
-cis_removable_media_nosuid: yes
+cis_removable_media_nosuid: true
 
 # 1.1.20 Ensure noexec option set on removable media partitions (Not Scored)
-cis_removable_media_noexec: yes
+cis_removable_media_noexec: true
 
 # 1.1.21 Ensure sticky bit is set on all world-writable directories (Scored)
-cis_fix_sticky_bit: yes
+cis_fix_sticky_bit: true
 
 # 1.1.22 Disable Automounting
-cis_disable_automount: yes
+cis_disable_automount: true
 
 # 1.1.23 Disable USB Storage (Scored)
-cis_usb_storage_disabled: yes
+cis_usb_storage_disabled: true
 
 # 1.2.1 Ensure GPG keys are configured (Not Scored)
-cis_gpg_keys_configured: yes
+cis_gpg_keys_configured: true
 
 # 1.2.2 Ensure gpgcheck is globally activated (Scored)
-cis_gpgcheck_enabled: yes
+cis_gpgcheck_enabled: true
 
 # 1.2.3 Ensure package manager repositories are configured (Not Scored)
-cis_repositories_configured: yes
+cis_repositories_configured: true
 
 # 1.3.1 Ensure sudo is installed (Scored)
-cis_sudo_installed: yes
+cis_sudo_installed: true
 
 # 1.3.2 Ensure sudo commands use pty (Scored)
-cis_sudo_use_pty: yes
+cis_sudo_use_pty: true
 
 # 1.3.3 Ensure sudo log file exists (Scored)
-cis_sudo_logfile: yes
+cis_sudo_logfile: true
 
 # 1.4.1 Ensure AIDE is installed (Scored)
-cis_aide_installed: yes
+cis_aide_installed: true
 
 # 1.4.2 Ensure filesystem integrity is regularly checked (Scored)
-cis_filesystem_integrity_checked: yes
+cis_filesystem_integrity_checked: true
 
 # 1.5.1 Ensure permissions on bootloader config are configured (Scored)
-cis_permissions_bootloader: yes
+cis_permissions_bootloader: true
 
 # 1.5.2 Ensure bootloader password is set (Scored)
-cis_bootloader_password_set: yes
+cis_bootloader_password_set: true
 cis_bootloader_password: changeme
 
 # 1.5.3 Ensure authentication required for single user mode (Scored)
-cis_authentication_single_user_mode: yes
+cis_authentication_single_user_mode: true
 
 # 1.6.1 Ensure core dumps are restricted (Scored)
-cis_core_dumps_restricted: yes
+cis_core_dumps_restricted: true
 
 # 1.6.2 Ensure address space layout randomization (ASLR) is enabled (Scored)
-cis_aslr_enabled: yes
+cis_aslr_enabled: true
 
 # 1.7.1.1 Ensure SELinux is installed (Scored)
-cis_selinux_installed: yes
+cis_selinux_installed: true
 
 # 1.7.1.2 Ensure SELinux is not disabled in bootloader configuration (Scored)
-cis_selinux_not_disabled: yes
+cis_selinux_not_disabled: true
 
 # 1.7.1.3 Ensure SELinux policy is configured (Scored)
-cis_selinux_policy_configured: yes
+cis_selinux_policy_configured: true
 cis_selinux_policy: targeted
 
 # 1.7.1.4 Ensure the SELinux state is enforcing (Scored)
-cis_selinux_state_enforcing: yes
+cis_selinux_state_enforcing: true
 
 # 1.7.1.5 Ensure no unconfined services exist (Scored)
-cis_no_unconfined_services: yes
+cis_no_unconfined_services: true
 
 # 1.7.1.6 Ensure SETroubleshoot is not installed (Scored)
-cis_setroubleshoot_not_installed: yes
+cis_setroubleshoot_not_installed: true
 
 # 1.7.1.7 Ensure the MCS Translation Service (mcstrans) is not installed (Scored)
-cis_mcs_translation_service_not_installed: yes
+cis_mcs_translation_service_not_installed: true
 
 # 1.8.1.1 Ensure message of the day is configured properly (Scored)
-cis_message_of_the_day_configured: yes
+cis_message_of_the_day_configured: true
 cis_message_of_the_day: |
   UNAUTHORIZED ACCESS TO THIS DEVICE IS PROHIBITED
   You must have explicit, authorized permission to access or configure this device. Unauthorized attempts and actions to access or use this system may result in civil and/or criminal penalties. All activities performed on this device are logged and monitored.
 
 # 1.8.1.2 Ensure local login warning banner is configured properly (Scored)
-cis_local_login_banner_configured: yes
+cis_local_login_banner_configured: true
 
 # 1.8.1.3 Ensure remote login warning banner is configured properly (Scored)
-cis_remote_login_banner_configured: yes
+cis_remote_login_banner_configured: true
 
 # 1.8.1.4 Ensure permissions on /etc/motd are configured (Scored)
-cis_permissions_etc_motd: yes
+cis_permissions_etc_motd: true
 
 # 1.8.1.5 Ensure permissions on /etc/issue are configured (Scored)
-cis_permissions_etc_issue: yes
+cis_permissions_etc_issue: true
 
 # 1.8.1.6 Ensure permissions on /etc/issue.net are configured (Scored)
-cis_permissions_etc_issue_net: yes
+cis_permissions_etc_issue_net: true
 
 # 1.8.2 Ensure GDM login banner is configured (Scored)
-cis_gdm_login_banner_configured: yes
+cis_gdm_login_banner_configured: true
 
 # 1.9 Ensure updates, patches, and additional security software are installed (Not Scored)
-cis_updates_installed: yes
+cis_updates_installed: true
 
 # 1.10 Ensure system-wide crypto policy is not legacy (Scored)
-cis_crypto_policy_not_legacy: yes
+cis_crypto_policy_not_legacy: true
 cis_crypto_policy: FIPS
 
 # 1.11 Ensure system-wide crypto policy is FUTURE or FIPS (Scored)
-cis_ensure_crypto_policy: yes
+cis_ensure_crypto_policy: true
 
 # 2.1.1 Ensure xinetd is not installed (Scored)
-cis_xinet_not_installed: yes
+cis_xinet_not_installed: true
 
 # 2.2.1.1 Ensure time synchronization is in use (Not Scored)
-cis_time_synchronization: yes
+cis_time_synchronization: true
 
 # 2.2.1.2 Ensure chrony is configured (Scored)
-cis_chrony_configured: yes
+cis_chrony_configured: true
 cis_chrony_servers: []
 cis_chrony_pools:
   - name: "2.fedora.pool.ntp.org"
     options: iburst
 
 # 2.2.2 Ensure X Window System is not installed (Scored)
-cis_x_windows_system_not_installed: yes
+cis_x_windows_system_not_installed: true
 
 # 2.2.3 Ensure rsync service is not enabled (Scored)
-cis_rsync_service_not_enabled: yes
+cis_rsync_service_not_enabled: true
 
 # 2.2.4 Ensure Avahi Server is not enabled (Scored)
-cis_avahi_server_not_enabled: yes
+cis_avahi_server_not_enabled: true
 
 # 2.2.5 Ensure SNMP Server is not enabled (Scored)
-cis_snmp_server_not_enabled: yes
+cis_snmp_server_not_enabled: true
 
 # 2.2.6 Ensure HTTP Proxy Server is not enabled (Scored)
-cis_http_proxy_server_not_enabled: yes
+cis_http_proxy_server_not_enabled: true
 
 # 2.2.7 Ensure Samba is not enabled (Scored)
-cis_samba_server_not_enabled: yes
+cis_samba_server_not_enabled: true
 
 # 2.2.8 Ensure IMAP and POP3 server is not enabled (Scored)
-cis_imap_and_pop3_server_not_enabled: yes
+cis_imap_and_pop3_server_not_enabled: true
 
 # 2.2.9 Ensure HTTP server is not enabled (Scored)
-cis_http_server_not_enabled: yes
+cis_http_server_not_enabled: true
 
 # 2.2.10 Ensure FTP Server is not enabled (Scored)
-cis_ftp_server_not_enabled: yes
+cis_ftp_server_not_enabled: true
 
 # 2.2.11 Ensure DNS Server is not enabled (Scored)
-cis_dns_server_not_enabled: yes
+cis_dns_server_not_enabled: true
 
 # 2.2.12 Ensure NFS is not enabled (Scored)
-cis_nfs_server_not_enabled: yes
+cis_nfs_server_not_enabled: true
 
 # 2.2.13 Ensure RPC is not enabled (Scored)
-cis_rpc_not_enabled: yes
+cis_rpc_not_enabled: true
 
 # 2.2.14 Ensure LDAP server is not enabled (Scored)
-cis_ldap_server_not_enabled: yes
+cis_ldap_server_not_enabled: true
 
 # 2.2.15 Ensure DHCP Server is not enabled (Scored)
-cis_dhcp_server_not_enabled: yes
+cis_dhcp_server_not_enabled: true
 
 # 2.2.16 Ensure CUPS is not enabled (Scored)
-cis_cups_not_enabled: yes
+cis_cups_not_enabled: true
 
 # 2.2.17 Ensure NIS Server is not enabled (Scored)
-cis_nis_server_not_enabled: yes
+cis_nis_server_not_enabled: true
 
 # 2.2.18 Ensure mail transfer agent is configured for local-only mode (Scored)
-cis_mta_local_only_mode: yes
+cis_mta_local_only_mode: true
 
 # 2.3.1 Ensure NIS Client is not installed (Scored)
-cis_nis_client_not_installed: yes
+cis_nis_client_not_installed: true
 
 # 2.3.2 Ensure telnet client is not installed (Scored)
-cis_telnet_client_not_installed: yes
+cis_telnet_client_not_installed: true
 
 # 2.3.3 Ensure LDAP client is not installed (Scored)
-cis_ldap_client_not_installed: yes
+cis_ldap_client_not_installed: true
 
 # 3.1.1 Ensure IP forwarding is disabled (Scored)
-cis_ip_forwarding_disabled: yes
+cis_ip_forwarding_disabled: true
 
 # 3.1.2 Ensure packet redirect sending is disabled (Scored)
-cis_packet_redirect_sending_disabled: yes
+cis_packet_redirect_sending_disabled: true
 
 # 3.2.1 Ensure source routed packets are not accepted (Scored)
-cis_source_routed_packets_not_accepted: yes
+cis_source_routed_packets_not_accepted: true
 
 # 3.2.2 Ensure ICMP redirects are not accepted (Scored)
-cis_icmp_redirects_not_accepted: yes
+cis_icmp_redirects_not_accepted: true
 
 # 3.2.3 Ensure secure ICMP redirects are not accepted (Scored)
-cis_secure_icmp_redirects_not_accepted: yes
+cis_secure_icmp_redirects_not_accepted: true
 
 # 3.2.4 Ensure suspicious packets are logged (Scored)
-cis_suspicious_packets_logged: yes
+cis_suspicious_packets_logged: true
 
 # 3.2.5 Ensure broadcast ICMP requests are ignored (Scored)
-cis_broadcast_icmp_requests_ignored: yes
+cis_broadcast_icmp_requests_ignored: true
 
 # 3.2.6 Ensure bogus ICMP responses are ignored (Scored)
-cis_bogus_icmp_responses_ignored: yes
+cis_bogus_icmp_responses_ignored: true
 
 # 3.2.7 Ensure Reverse Path Filtering is enabled (Scored)
-cis_reverse_path_filtering: yes
+cis_reverse_path_filtering: true
 
 # 3.2.8 Ensure TCP SYN Cookies is enabled (Scored)
-cis_tcp_syn_cookies_enabled: yes
+cis_tcp_syn_cookies_enabled: true
 
 # 3.2.9 Ensure IPv6 router advertisements are not accepted (Scored)
-cis_ipv6_router_advertisements_not_accepted: yes
+cis_ipv6_router_advertisements_not_accepted: true
 
 # 3.3.1 Ensure DCCP is disabled (Scored)
-cis_dccp_disabled: yes
+cis_dccp_disabled: true
 
 # 3.3.2 Ensure SCTP is disabled (Scored)
-cis_sctp_disabled: yes
+cis_sctp_disabled: true
 
 # 3.3.3 Ensure RDS is disabled (Scored)
-cis_rds_disabled: yes
+cis_rds_disabled: true
 
 # 3.3.4 Ensure TIPC is disabled (Scored)
-cis_tipc_disabled: yes
+cis_tipc_disabled: true
 
 # 3.4.1.1 Ensure a Firewall package is installed (Scored)
-cis_firewall_package_installed: yes
+cis_firewall_package_installed: true
 cis_firewall_package: firewalld
 
 # 3.4.2.1 Ensure firewalld service is enabled and running (Scored)
-cis_firewalld_enabled_and_running: yes
+cis_firewalld_enabled_and_running: true
 
 # 3.4.2.2 Ensure nftables is not enabled (Scored)
-cis_nftables_not_enabled: yes
+cis_nftables_not_enabled: true
 
 # 3.4.2.3 Ensure default zone is set (Scored)
-cis_default_zone_set: yes
+cis_default_zone_set: true
 cis_default_zone: public
 
 # 3.4.2.4 Ensure network interfaces are assigned to appropriate zone (Not Scored)
-cis_firewalld_network_interface_assigned_zones: yes
+cis_firewalld_network_interface_assigned_zones: true
 cis_firewalld_zone_interface_mapping:
   - zone: public
     interface: eth0
 
 # 3.4.2.5 Ensure unnecessary services and ports are not accepted (Not Scored)
-cis_unnecessary_services_ports_not_accepted: yes
+cis_unnecessary_services_ports_not_accepted: true
 cis_unnecessary_services:
   - cockpit
 cis_unnecessary_ports:
   - 12345/tcp
 
 # 3.4.2.6 Ensure iptables is not enabled (Scored)
-cis_iptables_not_enabled: yes
+cis_iptables_not_enabled: true
 
 # 3.4.3 Configure nftables
 # This section and all the subsection under 3.4.3 is skipped because section
@@ -340,93 +340,93 @@ cis_iptables_not_enabled: yes
 # mutually exclusive and firewalld is the default, which uses nft as a backend.
 
 # 3.5 Ensure wireless interfaces are disabled (Scored)
-cis_wireless_interface_disabled: yes
+cis_wireless_interface_disabled: true
 
 # 3.6 Disable IPv6 (Not Scored)
-cis_disable_ipv6: yes
+cis_disable_ipv6: true
 
 # 4.1.1.1 Ensure auditd is installed (Scored)
-cis_auditd_installed: yes
+cis_auditd_installed: true
 
 # 4.1.1.2 Ensure auditd service is enabled (Scored)
-cis_auditd_service_enabled: yes
+cis_auditd_service_enabled: true
 
 # 4.1.1.3 Ensure auditing for processes that start prior to auditd is enabled (Scored)
-cis_auditing_processes_prior_start: yes
+cis_auditing_processes_prior_start: true
 
 # 4.1.1.4 Ensure audit_backlog_limit is sufficient (Scored)
-cis_audit_backlog_limit_sufficient: yes
+cis_audit_backlog_limit_sufficient: true
 
 # 4.1.2.1 Ensure audit log storage size is configured (Scored)
-cis_audit_log_storage_size_configured: yes
+cis_audit_log_storage_size_configured: true
 cis_audit_log_storage_size: 128
 
 # 4.1.2.2 Ensure audit logs are not automatically deleted (Scored)
-cis_audit_logs_no_automatically_deleted: yes
+cis_audit_logs_no_automatically_deleted: true
 
 # 4.1.2.3 Ensure system is disabled when audit logs are full (Scored)
-cis_system_disabled_audit_logs_full: yes
+cis_system_disabled_audit_logs_full: true
 
 # 4.1.3 Ensure changes to system administration scope (sudoers) is collected (Scored)
-cis_changed_to_system_administrator_scope_collected: yes
+cis_changed_to_system_administrator_scope_collected: true
 
 # 4.1.4 Ensure login and logout events are collected (Scored)
-cis_login_and_login_events_collected: yes
+cis_login_and_login_events_collected: true
 
 # 4.1.5 Ensure session initiation information is collected (Scored)
-cis_session_initiation_information_collected: yes
+cis_session_initiation_information_collected: true
 
 # 4.1.6 Ensure events that modify date and time information are collected (Scored)
-cis_events_modify_time_and_date_collected: yes
+cis_events_modify_time_and_date_collected: true
 
 # 4.1.7 Ensure events that modify the system's Mandatory Access Controls are collected (Scored)
-cis_events_modifying_mac_collected: yes
+cis_events_modifying_mac_collected: true
 
 # 4.1.8 Ensure events that modify the system's network environment are collected (Scored)
-cis_events_modifying_systems_network_collected: yes
+cis_events_modifying_systems_network_collected: true
 
 # 4.1.9 Ensure discretionary access control permission modification events are collected (Scored)
-cis_dac_permission_modification_collected: yes
+cis_dac_permission_modification_collected: true
 
 # 4.1.10 Ensure unsuccessful unauthorized file access attempts are collected (Scored)
-cis_unsuccessful_files_access_collected: yes
+cis_unsuccessful_files_access_collected: true
 
 # 4.1.11 Ensure events that modify user/group information are collected (Scored)
-cis_events_modifying_user_group_collected: yes
+cis_events_modifying_user_group_collected: true
 
 # 4.1.12 Ensure successful file system mounts are collected (Scored)
-cis_successful_mounts_collected: yes
+cis_successful_mounts_collected: true
 
 # 4.1.13 Ensure use of privileged commands is collected (Scored)
-cis_privileged_commands_collected: yes
+cis_privileged_commands_collected: true
 # A list of partitions that will be checked. Extend this with all partitions
 # that could contain executables.
 cis_privileged_commands_collected_partitions:
   - /
 
 # 4.1.14 Ensure file deletion events by users are collected (Scored)
-cis_file_deletion_users_collected: yes
+cis_file_deletion_users_collected: true
 
 # 4.1.15 Ensure kernel module loading and unloading is collected (Scored)
-cis_kernel_module_loading_unloading_collected: yes
+cis_kernel_module_loading_unloading_collected: true
 
 # 4.1.16 Ensure system administrator actions (sudolog) are collected (Scored)
-cis_system_administrator_actions_collected: yes
+cis_system_administrator_actions_collected: true
 
 # 4.1.17 Ensure the audit configuration is immutable (Scored)
-cis_audit_configuration_immutable: yes
+cis_audit_configuration_immutable: true
 
 # 4.2.1.1 Ensure rsyslog is installed (Scored)
-cis_syslog_installed: yes
+cis_syslog_installed: true
 
 # 4.2.1.2 Ensure rsyslog Service is enabled (Scored)
-cis_rsyslog_enabled: yes
+cis_rsyslog_enabled: true
 
 # 4.2.1.3 Ensure rsyslog default file permissions configured (Scored)
-cis_rsyslog_file_permissions_configured: yes
+cis_rsyslog_file_permissions_configured: true
 
 # 4.2.1.4 Ensure logging is configured (Not Scored)
-cis_logging_configured: yes
+cis_logging_configured: true
 
 cis_logging_site_policy:
   - rule: |-
@@ -472,7 +472,7 @@ cis_logging_site_policy:
     destination: '-/var/log/localmessages'
 
 # 4.2.1.5 Ensure rsyslog is configured to send logs to a remote log host (Scored)
-cis_rsyslog_configured_remote_log_host: yes
+cis_rsyslog_configured_remote_log_host: true
 
 # 4.2.1.5 Ensure rsyslog is configured to send logs to a remote log host (Scored)
 cis_rsyslog_site_policy_host: loghost.example.com
@@ -481,39 +481,39 @@ cis_rsyslog_site_policy_host: loghost.example.com
 # This item is not implemented because it would need to run on another host.
 
 # 4.2.2.1 Ensure journald is configured to send logs to rsyslog (Scored)
-cis_journald_send_to_rsyslog: yes
+cis_journald_send_to_rsyslog: true
 
 # 4.2.2.2 Ensure journald is configured to compress large log files (Scored)
-cis_journald_compless_log_files: yes
+cis_journald_compless_log_files: true
 
 # 4.2.2.3 Ensure journald is configured to write logfiles to persistent disk (Scored)
-cis_journald_write_logfiles_to_disk: yes
+cis_journald_write_logfiles_to_disk: true
 
 # 4.2.3 Ensure permissions on all logfiles are configured (Scored)
-cis_permissions_on_logfiles: yes
+cis_permissions_on_logfiles: true
 
 # 4.3 Ensure logrotate is configured (Not Scored)
-cis_logrotate_configured: yes
+cis_logrotate_configured: true
 cis_logrotate_policy:
   - name: dnf
 
 # 5.1.1 Ensure cron daemon is enabled (Scored)
-cis_cron_enabled: yes
+cis_cron_enabled: true
 
 # 5.1.2 Ensure permissions on /etc/crontab are configured (Scored)
-cis_cron_permissions_configured: yes
+cis_cron_permissions_configured: true
 
 # 5.1.3 Ensure permissions on /etc/cron.hourly are configured (Scored)
-cis_cron_hourly_permissions_configured: yes
+cis_cron_hourly_permissions_configured: true
 
 # 5.1.4 Ensure permissions on /etc/cron.daily are configured (Scored)
-cis_cron_daily_permissions_configured: yes
+cis_cron_daily_permissions_configured: true
 
 # 5.1.5 Ensure permissions on /etc/cron.weekly are configured (Scored)
-cis_cron_weekly_permissions_configured: yes
+cis_cron_weekly_permissions_configured: true
 
 # 5.1.6 Ensure permissions on /etc/cron.monthly are configured (Scored)
-cis_cron_monthly_permissions_configured: yes
+cis_cron_monthly_permissions_configured: true
 
 # 5.1.7 Ensure permissions on /etc/cron.d are configured (Scored)
-cis_cron_d_permissions_configured: yes
+cis_cron_d_permissions_configured: true

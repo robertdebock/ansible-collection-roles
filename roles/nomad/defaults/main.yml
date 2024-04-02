@@ -2,11 +2,11 @@
 # defaults file for nomad
 
 # You can install nomad using a package in this role. If you have installed
-# nomad manually, set this to `no`.
-nomad_install_package: yes
+# nomad manually, set this to `false`.
+nomad_install_package: true
 
-# Set this to "yes" for a server.
-nomad_server: yes
+# Set this to "true" for a server.
+nomad_server: true
 
 # Configuration items for the Nomad server
 nomad_server_data_dir: /tmp/server
@@ -16,8 +16,8 @@ nomad_server_log_level: INFO
 # How many servers and agents are expected?
 nomad_server_bootstrap_expect: 1
 
-# This this to "yes" for an agent.
-nomad_agent: no
+# This this to "true" for an agent.
+nomad_agent: false
 
 # Configuration items for the Nomad agent
 nomad_agent_log_level: INFO

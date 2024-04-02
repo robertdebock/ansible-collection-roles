@@ -3,4 +3,4 @@
 
 - name: Update package cache
   ansible.builtin.package:
-    update_cache: yes
+    update_cache: true

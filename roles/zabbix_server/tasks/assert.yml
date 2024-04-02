@@ -6,7 +6,7 @@
       - zabbix_server_database_user is defined
       - zabbix_server_database_user is string
       - zabbix_server_database_user is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test zabbix_server_database_password
   ansible.builtin.assert:
@@ -14,7 +14,7 @@
       - zabbix_server_database_password is defined
       - zabbix_server_database_password is string
       - zabbix_server_database_password is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test zabbix_server_database_host
   ansible.builtin.assert:
@@ -22,4 +22,4 @@
       - zabbix_server_database_host is defined
       - zabbix_server_database_host is string
       - zabbix_server_database_host is not none
-    quiet: yes
+    quiet: true

@@ -1,0 +1,33 @@
+---
+
+- name: assert | Test vault_autosnapshot_address
+  ansible.builtin.assert:
+    that:
+      - vault_autosnapshot_address is defined
+      - vault_autosnapshot_address is string
+      - vault_autosnapshot_address is not none
+    quiet: true
+
+- name: assert | Test vault_autosnapshot_token
+  ansible.builtin.assert:
+    that:
+      - vault_autosnapshot_token is defined
+      - vault_autosnapshot_token is string
+      - vault_autosnapshot_token is not none
+    quiet: true
+
+- name: assert | Test vault_autosnapshot_ssl_verify
+  ansible.builtin.assert:
+    that:
+      - vault_autosnapshot_ssl_verify is defined
+      - vault_autosnapshot_ssl_verify is boolean
+      - vault_autosnapshot_ssl_verify is not none
+    quiet: true
+
+- name: assert | Test vault_autosnapshot_list
+  ansible.builtin.assert:
+    that:
+      - vault_autosnapshot_list is defined
+      - vault_autosnapshot_list is iterable
+      - vault_autosnapshot_list is not none
+    quiet: true

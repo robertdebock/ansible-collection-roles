@@ -5,11 +5,11 @@
     that:
       - sysctl_set is defined
       - sysctl_set is boolean
-    quiet: yes
+    quiet: true
 
 - name: assert | Test sysctl_reload
   ansible.builtin.assert:
     that:
       - sysctl_reload is defined
       - sysctl_reload is boolean
-    quiet: yes
+    quiet: true

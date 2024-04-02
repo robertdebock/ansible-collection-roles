@@ -20,4 +20,4 @@
   ansible.builtin.service:
     name: "{{ powertop_service }}"
     state: stopped
-    enabled: yes
+    enabled: true

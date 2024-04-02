@@ -3,10 +3,10 @@
 
 - name: Systemctl daemon-reload
   ansible.builtin.systemd:
-    daemon_reload: yes
+    daemon_reload: true
 
 - name: Restart tigervnc
   ansible.builtin.systemd:
     name: "{{ tigervnc_service }}"
     state: restarted
-    daemon_reload: yes
+    daemon_reload: true

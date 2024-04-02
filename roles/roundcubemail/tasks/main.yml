@@ -4,7 +4,7 @@
 - name: Import assert.yml
   ansible.builtin.import_tasks:
     file: assert.yml
-  run_once: yes
+  run_once: true
   delegate_to: localhost
 
 - name: Install requirements
@@ -51,8 +51,8 @@
     - name: Enable selinux boolean httpd_setrlimit
       ansible.posix.seboolean:
         name: "{{ item }}"
-        state: yes
-        persistent: yes
+        state: true
+        persistent: true
       loop:
         - httpd_setrlimit
         - daemons_enable_cluster_mode

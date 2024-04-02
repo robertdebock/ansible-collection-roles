@@ -6,7 +6,7 @@
       - dhcpd_ipv4_interface is defined
       - dhcpd_ipv4_interface is string
       - dhcpd_ipv4_interface is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test dhcpd_default_lease_time
   ansible.builtin.assert:
@@ -14,7 +14,7 @@
       - dhcpd_default_lease_time is defined
       - dhcpd_default_lease_time is number
       - dhcpd_default_lease_time > 0
-    quiet: yes
+    quiet: true
 
 - name: assert | Test dhcpd_max_lease_time
   ansible.builtin.assert:
@@ -22,7 +22,7 @@
       - dhcpd_max_lease_time is defined
       - dhcpd_max_lease_time is number
       - dhcpd_max_lease_time > 0
-    quiet: yes
+    quiet: true
 
 - name: assert | Test dhcpd_subnet_mask
   ansible.builtin.assert:
@@ -30,7 +30,7 @@
       - dhcpd_subnet_mask is defined
       - dhcpd_subnet_mask is string
       - dhcpd_subnet_mask is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test dhcpd_broadcast_address
   ansible.builtin.assert:
@@ -38,7 +38,7 @@
       - dhcpd_broadcast_address is defined
       - dhcpd_broadcast_address is string
       - dhcpd_broadcast_address is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test dhcpd_routers
   ansible.builtin.assert:
@@ -46,14 +46,14 @@
       - dhcpd_routers is defined
       - dhcpd_routers is string
       - dhcpd_routers is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test dhcpd_domain_name_servers
   ansible.builtin.assert:
     that:
       - dhcpd_domain_name_servers is defined
       - dhcpd_domain_name_servers is iterable
-    quiet: yes
+    quiet: true
 
 - name: assert | Test dhcpd_domain_search
   ansible.builtin.assert:
@@ -61,7 +61,7 @@
       - dhcpd_domain_search is defined
       - dhcpd_domain_search is string
       - dhcpd_domain_search is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test dhcpd_filename
   ansible.builtin.assert:
@@ -69,7 +69,7 @@
       - dhcpd_filename is defined
       - dhcpd_filename is string
       - dhcpd_filename is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test dhcpd_next_server
   ansible.builtin.assert:
@@ -77,13 +77,13 @@
       - dhcpd_next_server is defined
       - dhcpd_next_server is string
       - dhcpd_next_server is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test dhcpd_subnets
   ansible.builtin.assert:
     that:
       - dhcpd_subnets is iterable
-    quiet: yes
+    quiet: true
   when:
     - dhcpd_subnets is defined
     - dhcpd_subnets is string
@@ -98,7 +98,7 @@
       - item.netmask is defined
       - item.netmask is string
       - item.netmask is not none
-    quiet: yes
+    quiet: true
   loop: "{{ dhcpd_subnets }}"
   loop_control:
     label: "{{ item.network }}"

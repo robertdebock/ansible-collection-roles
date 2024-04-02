@@ -14,8 +14,8 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 ---
 - name: Converge
   hosts: all
-  become: yes
-  gather_facts: yes
+  become: true
+  gather_facts: true
 
   vars_files:
     - ../../vars/main.yml
@@ -23,7 +23,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 
   roles:
     - role: robertdebock.roles.httpd
-      # https_ssl_enable: yes
+      # https_ssl_enable: true
       httpd_port: 8080
       httpd_ssl_port: 8443
       httpd_locations:
@@ -62,7 +62,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
       #   - name: no_doc_root
       #     servername: nodocroot.example.com
       #     documentroot: /var/www/html/nodocroot
-      #     create_docroot: no
+      #     create_docroot: false
       httpd_directories:
         - name: my_directory
           path: "{{ httpd_data_directory }}/my_directory"
@@ -78,8 +78,8 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
 ---
 - name: Prepare
   hosts: all
-  become: yes
-  gather_facts: no
+  become: true
+  gather_facts: false
 
   roles:
     - role: robertdebock.roles.bootstrap
@@ -109,7 +109,7 @@ httpd_servername: "{{ ansible_fqdn }}"
 httpd_port: 80
 
 # Enable (self-signed certificates) SSL?
-https_ssl_enable: no
+https_ssl_enable: false
 
 # To configure https, set the hostname to listen to.
 httpd_ssl_servername: "{{ ansible_fqdn }}"
@@ -124,7 +124,7 @@ httpd_openssl_crt: "{{ httpd_openssl_crt_directory }}/apache-httpd.crt"
 httpd_openssl_key: "{{ httpd_openssl_key_directory }}/apache-httpd.key"
 
 # If the "it works" page should be kept
-httpd_remove_example: no
+httpd_remove_example: false
 
 # Additionnal httpd module to install
 
@@ -173,7 +173,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |---------|----|
 |[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|8, 9|
 |[Debian](https://hub.docker.com/r/robertdebock/debian)|all|
-|[Fedora](https://hub.docker.com/r/robertdebock/fedora/)|all|
+|[Fedora](https://hub.docker.com/r/robertdebock/fedora)|all|
 |[opensuse](https://hub.docker.com/r/robertdebock/opensuse)|all|
 |[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|all|
 

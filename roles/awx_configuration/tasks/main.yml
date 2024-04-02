@@ -4,7 +4,7 @@
 - name: Import assert.yml
   ansible.builtin.import_tasks:
     file: assert.yml
-  run_once: yes
+  run_once: true
   delegate_to: localhost
 
 - name: Manage organizations
@@ -18,7 +18,7 @@
   loop: "{{ awx_configuration_organizations }}"
   when:
     - not awx_configuration_ci
-  no_log: yes
+  no_log: true
 
 - name: Manage credentials
   awx.awx.credential:
@@ -33,4 +33,4 @@
   loop: "{{ awx_configuration_credentials }}"
   when:
     - not awx_configuration_ci
-  no_log: yes
+  no_log: true

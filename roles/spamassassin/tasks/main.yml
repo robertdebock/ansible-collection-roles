@@ -4,7 +4,7 @@
 - name: Import assert.yml
   ansible.builtin.import_tasks:
     file: assert.yml
-  run_once: yes
+  run_once: true
   delegate_to: localhost
 
 - name: Install spamassassin
@@ -16,7 +16,7 @@
   ansible.builtin.group:
     name: "{{ spamassassin_group }}"
     state: present
-    system: yes
+    system: true
 
 - name: Create user
   ansible.builtin.user:
@@ -24,7 +24,7 @@
     state: present
     group: "{{ spamassassin_group }}"
     comment: Spamassassin user
-    system: yes
+    system: true
 
 - name: Configure rsyslog
   ansible.builtin.template:
@@ -53,4 +53,4 @@
   ansible.builtin.service:
     name: "{{ spamassassin_service.name }}"
     state: "{{ spamassassin_service.state | default(omit) }}"
-    enabled: yes
+    enabled: true

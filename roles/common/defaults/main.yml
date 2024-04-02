@@ -13,4 +13,4 @@ common_hostname: "{{ inventory_hostname }}"
 common_hosts: "{{ groups.all }}"
 
 # Do you want to reboot on a hostname change?
-common_reboot: yes
+common_reboot: true

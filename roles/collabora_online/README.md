@@ -14,8 +14,8 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 ---
 - name: Converge
   hosts: all
-  become: yes
-  gather_facts: yes
+  become: true
+  gather_facts: true
 
   roles:
     - role: robertdebock.roles.collabora_online
@@ -27,8 +27,8 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
 ---
 - name: Prepare
   hosts: all
-  become: yes
-  gather_facts: no
+  become: true
+  gather_facts: false
 
   roles:
     - role: robertdebock.roles.bootstrap
@@ -41,7 +41,7 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
           group: cool
           home: /opt/cool
           shell: /usr/sbin/nologin
-          system: yes
+          system: true
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.
@@ -71,7 +71,7 @@ collabora_online_version: "6.4"
 collabora_online_ssl_enabled: "false"
 
 # These settings become relevant when `collabora_online_ssl_enabled` is set to
-# `yes`.
+# `true`.
 collabora_online_ssl_cert: /etc/coolwsd/coolwsd.crt
 collabora_online_ssl_key: /etc/coolwsd/coolwsd.key
 collabora_online_ssl_ca: /etc/coolwsd/coolwsd.keycrt

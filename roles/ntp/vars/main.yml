@@ -42,8 +42,8 @@ _ntp_timezone_packages:
 ntp_timezone_packages: "{{ _ntp_timezone_packages[ansible_os_family] | default(_ntp_timezone_packages['default']) }}"
 
 _ntp_timezone_supported:
-  default: no
-  Debian: yes
-  RedHat: yes
+  default: false
+  Debian: true
+  RedHat: true
 
 ntp_timezone_supported: "{{ _ntp_timezone_supported[ansible_os_family] | default(_ntp_timezone_supported['default']) }}"

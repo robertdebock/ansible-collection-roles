@@ -3,7 +3,7 @@
 
 - name: Systemctl daemon-reexec
   ansible.builtin.systemd:
-    daemon_reexec: yes
+    daemon_reexec: true
 
 - name: Restart mysql server
   ansible.builtin.service:
@@ -18,4 +18,4 @@
     name: root
     password: "{{ mysql_root_password }}"
     state: present
-  no_log: yes
+  no_log: true

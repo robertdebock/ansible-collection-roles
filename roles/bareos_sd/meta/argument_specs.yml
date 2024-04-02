@@ -9,7 +9,7 @@ argument_specs:
     options:
       bareos_sd_backup_configurations:
         type: "bool"
-        default: no
+        default: false
         description: "Backup the configuration files."
       bareos_sd_hostname:
         type: "str"
@@ -25,11 +25,11 @@ argument_specs:
         description: "The amount of jobs to run concurrently."
       bareos_sd_tls_enable:
         type: "bool"
-        default: yes
+        default: true
         description: "Enable TLS."
       bareos_sd_tls_verify_peer:
         type: "bool"
-        default: no
+        default: false
         description: "Verify the peer."
       bareos_sd_devices:
         type: "list"
@@ -49,5 +49,5 @@ argument_specs:
         description: "A list of S3 profiles to configure."
       bareos_sd_install_debug_packages:
         type: "bool"
-        default: no
+        default: false
         description: "Install debug packages. This requires the debug repositories to be enabled."

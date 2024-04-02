@@ -4,7 +4,7 @@
 - name: Import assert.yml
   ansible.builtin.import_tasks:
     file: assert.yml
-  run_once: yes
+  run_once: true
   delegate_to: localhost
 
 - name: Install requirements
@@ -25,7 +25,7 @@
     - name: See if a reboot is required (rhel)
       ansible.builtin.command:
         cmd: needs-restarting -r
-      check_mode: no
+      check_mode: false
       register: reboot_rhel_needsrestarting
       changed_when:
         - reboot_rhel_needsrestarting.rc == 1
@@ -47,7 +47,7 @@
     - name: See if a reboot is required (debian)
       ansible.builtin.command:
         cmd: needrestart -b
-      check_mode: no
+      check_mode: false
       register: reboot_debian_needrestarting
       changed_when:
         - "'NEEDRESTART-KSTA: 3' in reboot_debian_needrestarting.stdout_lines"

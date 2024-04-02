@@ -10,8 +10,8 @@
     name: tailscale-stable
     description: Tailscale stable
     baseurl: "{{ tailscale_repo_baseurl }}"
-    gpgcheck: no
-    repo_gpgcheck: yes
+    gpgcheck: false
+    repo_gpgcheck: true
     gpgkey: "{{ tailscale_repo_gpgkey }}"
   when:
     - ansible_pkg_mgr in [ "yum", "dnf" ]
@@ -44,7 +44,7 @@
   ansible.builtin.service:
     name: tailscaled
     state: started
-    enabled: yes
+    enabled: true
 
 - name: Modify routing settings
   when:
@@ -76,10 +76,10 @@
 
     - name: Allow masquarading
       ansible.posix.firewalld:
-        masquerade: yes
+        masquerade: true
         state: enabled
-        immediate: yes
-        permanent: yes
+        immediate: true
+        permanent: true
       when:
         - "'firewalld' in ansible_facts.packages"
 
@@ -87,8 +87,8 @@
   ansible.builtin.command:
     cmd: tailscale status
   register: tailscale_status
-  changed_when: no
-  failed_when: no
+  changed_when: false
+  failed_when: false
 
 - name: Run tailscale up
   when:
@@ -102,15 +102,15 @@
         - name: Run tailscale up regular
           ansible.builtin.command:
             cmd: "{{ tailscale_up_command }}"
-          changed_when: yes
+          changed_when: true
       rescue:
         - name: Run tailscale up reset
           ansible.builtin.command:
             cmd: "{{ tailscale_up_command }} --reset"
-          changed_when: yes
+          changed_when: true
     - name: Run tailscale up with advertised routes
       ansible.builtin.command:
         cmd: "{{ tailscale_up_command }} --advertise-routes={{ tailscale_advertise_routes | join(',') }}"
-      changed_when: yes
+      changed_when: true
       when:
         - tailscale_advertise_routes | length > 0

@@ -5,14 +5,14 @@
     that:
       - mongodb_dbpath is defined
       - mongodb_dbpath is string
-    quiet: yes
+    quiet: true
 
 - name: assert | Test mongodb_systemlog_path
   ansible.builtin.assert:
     that:
       - mongodb_systemlog_path is defined
       - mongodb_systemlog_path is string
-    quiet: yes
+    quiet: true
 
 - name: assert | Test mongodb_port
   ansible.builtin.assert:
@@ -21,11 +21,11 @@
       - mongodb_port is number
       - mongodb_port > 0
       - mongodb_port < 65536
-    quiet: yes
+    quiet: true
 
 - name: assert | Test mongodb_bindip
   ansible.builtin.assert:
     that:
       - mongodb_bindip is defined
       - mongodb_bindip is string
-    quiet: yes
+    quiet: true

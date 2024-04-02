@@ -10,7 +10,7 @@
     paths: "{{ collectd_conf_include_dir }}"
     file_type: file
     patterns: ['^(?![0-9]{3}-)\w*\.conf$']
-    use_regex: yes
+    use_regex: true
   register: collectd_files_to_delete
 
 - name: plugins | Remove obsolete plugin files

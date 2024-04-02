@@ -3,7 +3,7 @@
 
 # You can configure your tailscale node to act as an exit node.
 # Enabling this, sets the required sysctl settings and adds a firewalld rule.
-tailscale_exit_node: no
+tailscale_exit_node: false
 
 # To route traffice for certain subnets through tailscale, add them here.
 tailscale_advertise_routes: []
@@ -13,4 +13,4 @@ tailscale_advertise_routes: []
 tailscale_authkey: ""
 
 # You can specify a hostname.
-tailscale_hostname: "{{ ansible_hostname }}
+tailscale_hostname: "{{ ansible_hostname }}"

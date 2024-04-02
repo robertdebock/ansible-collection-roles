@@ -4,8 +4,8 @@
 digitalocean_agent_gpgkey: "https://repos.insights.digitalocean.com/sonar-agent.asc"
 
 _digitalocean_agent_validate_certs:
-  default: yes
-  Debian: no
+  default: true
+  Debian: false
 
 digitalocean_agent_validate_certs: "{{ _digitalocean_agent_validate_certs[ansible_os_family] | default(_digitalocean_agent_validate_certs['default']) }}"
 

@@ -4,7 +4,7 @@
 - name: Import assert.yml
   ansible.builtin.import_tasks:
     file: assert.yml
-  run_once: yes
+  run_once: true
   delegate_to: localhost
 
 - name: Create directory
@@ -24,7 +24,7 @@
   ansible.builtin.unarchive:
     src: "{{ mediawiki_source }}"
     dest: "{{ mediawiki_destination }}"
-    remote_src: yes
+    remote_src: true
     creates: "{{ mediawiki_destination }}/mediawiki-{{ mediawiki_version }}"
     setype: httpd_sys_script_rw_t
     mode: "0755"

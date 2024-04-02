@@ -5,7 +5,7 @@
 # files that have either no owner or group. `no` will change the ownership of
 # files to the user and group set with `unowned_files_default_owner` and
 # `unowned_files_default_group`.
-unowned_files_delete: no
+unowned_files_delete: false
 
 # If files have no owner, but do have a group, change the owner to this
 # variable.

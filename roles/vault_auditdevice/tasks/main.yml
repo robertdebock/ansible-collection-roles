@@ -4,7 +4,7 @@
 - name: Import assert.yml
   ansible.builtin.import_tasks:
     file: assert.yml
-  run_once: yes
+  run_once: true
   delegate_to: localhost
 
 - name: List existing audit devices configured
@@ -15,8 +15,8 @@
       X-Vault-Token: "{{ vault_auditdevice_token }}"
     validate_certs: "{{ vault_auditdevice_ssl_verify }}"
   register: vault_auditdevice_list_retreived
-  run_once: yes
-  changed_when: no
+  run_once: true
+  changed_when: false
 
 - name: Create audit devices
   ansible.builtin.uri:
@@ -38,6 +38,6 @@
     label: "{{ item.description }}"
   when:
     - item.name not in vault_auditdevice_list_retreived.json
-  changed_when: yes
+  changed_when: true
   register: vault_auditdevice_list
-  run_once: yes
+  run_once: true

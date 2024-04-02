@@ -5,7 +5,7 @@
     that:
       - keepalived_vrrp_instances is defined
       - keepalived_vrrp_instances is iterable
-    quiet: yes
+    quiet: true
 
 - name: assert | Test item in keepalived_vrrp_instances
   ansible.builtin.assert:
@@ -27,7 +27,7 @@
       - item.priority is number
       - item.priority >= 1
       - item.priority <= 255
-    quiet: yes
+    quiet: true
   loop: "{{ keepalived_vrrp_instances }}"
   loop_control:
     label: "{{ item.name }}"

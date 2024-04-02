@@ -39,9 +39,9 @@ eclipse_plugins: []
 #   repository: "https://repo1.maven.org/maven2/.m2e/connectors/m2eclipse-egit/0.15.1/N/0.15.1.201806191431"
 
 # You can have this role install Lombok into Eclipse.
-eclipse_install_lombok: yes
+eclipse_install_lombok: true
 # Also specify the version of lombok.
 eclipse_lombok_version: "1.18.22"
 
 # You may install Maven.
-eclipse_install_maven: yes
+eclipse_install_maven: true

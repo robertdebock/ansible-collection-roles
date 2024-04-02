@@ -4,12 +4,12 @@
 - name: Import assert.yml
   ansible.builtin.import_tasks:
     file: assert.yml
-  run_once: yes
+  run_once: true
   delegate_to: localhost
 
 - name: Cleanup apt cache
   ansible.builtin.apt:
-    autoclean: yes
+    autoclean: true
   when:
     - ansible_pkg_mgr == "apt"
 

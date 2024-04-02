@@ -4,7 +4,7 @@
 - name: Import assert.yml
   ansible.builtin.import_tasks:
     file: assert.yml
-  run_once: yes
+  run_once: true
   delegate_to: localhost
 
 - name: List existing snapshots configured
@@ -18,8 +18,8 @@
       - 200
     validate_certs: "{{ vault_snapshot_ssl_verify }}"
   register: vault_snapshot_list
-  run_once: yes
-  changed_when: no
+  run_once: true
+  changed_when: false
 
 - name: Configure Vault auto snapshot
   ansible.builtin.uri:
@@ -47,8 +47,8 @@
   loop: "{{ vault_snapshot_schedules }}"
   loop_control:
     label: "{{ item.name }}"
-  run_once: yes
-  changed_when: yes
+  run_once: true
+  changed_when: true
   when:
     - ( vault_snapshot_list.json.data.keys is defined and item.name not in vault_snapshot_list.json.data['keys'] ) or
       vault_snapshot_list.json.data is not defined

@@ -4,7 +4,7 @@
 - name: Import assert.yml
   ansible.builtin.import_tasks:
     file: assert.yml
-  run_once: yes
+  run_once: true
   delegate_to: localhost
 
 - name: Check if package is installed
@@ -12,7 +12,7 @@
     name: "{{ item }}"
     state: present
   loop: "{{ upgrade_packages }}"
-  check_mode: yes
+  check_mode: true
   when:
     - upgrade_packages is defined
     - upgrade_packages | length > 0

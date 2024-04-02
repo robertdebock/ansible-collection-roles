@@ -14,8 +14,8 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 ---
 - name: Converge
   hosts: all
-  become: yes
-  gather_facts: yes
+  become: true
+  gather_facts: true
 
   roles:
     - role: robertdebock.roles.vault_configuration
@@ -27,14 +27,15 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
 ---
 - name: Prepare
   hosts: all
-  become: yes
-  gather_facts: no
+  become: true
+  gather_facts: false
 
   roles:
     - role: robertdebock.roles.bootstrap
     - role: robertdebock.roles.core_dependencies
     - role: robertdebock.roles.hashicorp
     - role: robertdebock.roles.vault
+      vault_hardening_disable_swap: false
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.
@@ -56,15 +57,6 @@ vault_configuration_group: vault
 # - `vault_type` to `"ent"` or `"hsm"`.
 # vault_configuration_license: "XYZABC"
 
-# Environment variables can be saved to /etc/vault.d.vault.env. These are loaded when starting Vault.
-# vault_configuration_environment:
-#   - name: http_proxy
-#     value: "http://proxy.example.com:3128"
-#   - name: HTTP_PROXY
-#     value: "http://proxy.example.com:3128"
-#   - name: no_proxy
-#     value: "direct.example.com,other.example.com"
-
 # Specify the location where TLS material should be placed. This is typically `/opt/vault/tls`.
 vault_configuration_tls_directory: "/opt/vault/tls"
 
@@ -78,11 +70,11 @@ vault_configuration_max_lease_ttl: "768h"
 vault_configuration_default_lease_ttl: "768h"
 vault_configuration_api_addr: "https://{{ ansible_fqdn }}:8200"
 vault_configuration_cluster_addr: "https://{{ ansible_fqdn }}:8201"
-vault_configuration_disable_cache: no
-vault_configuration_disable_mlock: yes
-vault_configuration_disable_clustering: no
+vault_configuration_disable_cache: false
+vault_configuration_disable_mlock: true
+vault_configuration_disable_clustering: false
 vault_configuration_plugin_directory: ""
-vault_configuration_ui: no
+vault_configuration_ui: false
 vault_configuration_log_level: ""
 
 #
@@ -102,7 +94,7 @@ vault_configuration_listeners:
     max_request_duration: "90s"
     proxy_protocol_behavior: ""
     proxy_protocol_authorized_addrs: ""
-    tls_disable: no
+    tls_disable: false
     # You can specify a file (`tls_cert_file`) OR the content of the file (`tls_cert`).
     # tls_cert_file: "/opt/vault/tls/vault.crt"
     tls_cert: |
@@ -161,18 +153,18 @@ vault_configuration_listeners:
       -----END PRIVATE KEY-----
     tls_min_version: "tls12"
     tls_cipher_suites: ""
-    tls_require_and_verify_client_cert: no
+    tls_require_and_verify_client_cert: false
     tls_client_ca_file: ""
-    tls_disable_client_certs: no
+    tls_disable_client_certs: false
     x_forwarded_for_authorized_addrs: ""
     x_forwarded_for_hop_skips: 0
-    x_forwarded_for_reject_not_authorized: yes
-    x_forwardesd_for_reject_not_present: yes
+    x_forwarded_for_reject_not_authorized: true
+    x_forwardesd_for_reject_not_present: true
     telemetry:
-      unauthenticated_metrics_access: no
+      unauthenticated_metrics_access: false
     profiling:
-      unauthenticated_pprof_access: no
-      unauthenticated_in_flight_request_access: no
+      unauthenticated_pprof_access: false
+      unauthenticated_in_flight_request_access: false
   - type: "unix"
     address: "/run/vault/vault.sock"
     socket_mode: "666"
@@ -229,7 +221,7 @@ vault_configuration_storage_raft:
       leader_client_key_file: ""
       leader_client_cert: ""
       leader_client_key: ""
-  retry_join_as_non_voter: no
+  retry_join_as_non_voter: false
   max_entry_size: 1048576
   autopilot_reconcile_interval: "10s"
   autopilot_update_interval: "2s"
@@ -242,7 +234,7 @@ vault_configuration_storage_raft:
 #   address: "127.0.0.1:8500"
 #   check_timeout: "5s"
 #   consistency_mode: "default"
-#   disable_registration: no
+#   disable_registration: false
 #   max_parallel: 128
 #   path: "vault/"
 #   scheme: "http"
@@ -255,7 +247,7 @@ vault_configuration_storage_raft:
 
 # The "inmem" (Memory) storage stanza has no parameters. Use it by setting it to 'yes'.
 # NOT IMPLEMENTED.
-# vault_configuration_storage_inmem: yes
+# vault_configuration_storage_inmem: true
 
 #
 # (UN)SEAL SETTINGS
@@ -272,7 +264,7 @@ vault_configuration_storage_raft:
 #   access_key:
 #   secret_key:
 #   kms_key_id:
-#   disabled: no
+#   disabled: false
 
 # AWS KMS can be used to unseal Vault.
 # Values used below are taken from https://developer.hashicorp.com/vault/docs/configuration/seal/awskms
@@ -282,7 +274,7 @@ vault_configuration_storage_raft:
 #   session_token: ""
 #   secret_key: ""
 #   kms_key_id: ""
-#   disabled: no
+#   disabled: false
 #   endpoint: ""
 
 # Azure KeyVault can be used to unseal Vault.
@@ -294,7 +286,7 @@ vault_configuration_storage_raft:
 #   vault_name: "hc-vault"
 #   key_name: "vault_key"
 #   resource: ""
-#   disabled: no
+#   disabled: false
 
 # Goole GCP KMS can be used to unseal Vault.
 # NOT IMPLEMENTED.
@@ -304,7 +296,7 @@ vault_configuration_storage_raft:
 #   region:
 #   key_ring:
 #   crypto_key:
-#   disabled: no
+#   disabled: false
 
 # OCI KMS can be used to unseal Vault.
 # vault_configuration_seal_ocikms:
@@ -312,7 +304,7 @@ vault_configuration_storage_raft:
 #   crypto_endpoint: "https://afnxza26aag4s-crypto.kms.us-ashburn-1.oraclecloud.com"
 #   management_endpoint:  "https://afnxza26aag4s-management.kms.us-ashburn-1.oraclecloud.com"
 #   auth_type_api_key: false
-#   disabled: no
+#   disabled: false
 
 # An HSM supporting PKCS11 can be used to unseal Vault.
 # vault_configuration_seal_pkcs11:
@@ -330,7 +322,7 @@ vault_configuration_storage_raft:
 #   # hmac_mechanism: ""
 #   # generate_key: ""
 #   # force_rw_session: ""
-#   disabled: no
+#   disabled: false
 
 # Another Vault (with the Transit secrets engine) can be used to unseal Vault.
 # NOT IMPLEMENTED.
@@ -346,7 +338,7 @@ vault_configuration_storage_raft:
 #   tls_client_key:
 #   tls_server_name:
 #   tls_skip_verify:
-#   disabled: no
+#   disabled: false
 ```
 
 ## [Requirements](#requirements)
@@ -380,7 +372,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |[Amazon](https://hub.docker.com/r/robertdebock/amazonlinux)|Candidate|
 |[Debian](https://hub.docker.com/r/robertdebock/debian)|all|
 |[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|all|
-|[Fedora](https://hub.docker.com/r/robertdebock/fedora)|37, 38|
+|[Fedora](https://hub.docker.com/r/robertdebock/fedora)|38, 39|
 |[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|all|
 
 The minimum version of Ansible required is 2.12, tests have been done to:

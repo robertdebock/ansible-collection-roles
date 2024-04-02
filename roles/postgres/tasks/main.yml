@@ -4,7 +4,7 @@
 - name: Import assert.yml
   ansible.builtin.import_tasks:
     file: assert.yml
-  run_once: yes
+  run_once: true
   delegate_to: localhost
 
 - name: Install postgres
@@ -29,14 +29,14 @@
   when:
     - ansible_os_family != "Debian"
   become_user: postgres
-  become: yes
+  become: true
 
 - name: Configure postgres
   ansible.builtin.lineinfile:
     path: "{{ postgres_conf_dir }}/postgresql.conf"
     regex: "^{{ item.name }} ="
     line: "{{ item.name }} = '{{ item.value }}'"
-    create: yes
+    create: true
     mode: "0644"
   notify:
     - Restart postgres
@@ -63,7 +63,7 @@
     path: "{{ postgres_conf_dir }}/postgresql.conf"
     regex: "^{{ item.name }} ="
     line: "{{ item.name }} = '{{ item.value }}'"
-    create: yes
+    create: true
     mode: "0644"
   notify:
     - Restart postgres
@@ -82,7 +82,7 @@
   ansible.builtin.template:
     src: pg_hba.conf.j2
     dest: "{{ postgres_conf_dir }}/pg_hba.conf"
-    backup: yes
+    backup: true
     mode: "0644"
   notify:
     - Reload postgres
@@ -94,7 +94,7 @@
   ansible.builtin.service:
     name: postgresql
     state: started
-    enabled: yes
+    enabled: true
 
 - name: Install psycopg2-binary
   ansible.builtin.pip:
@@ -123,7 +123,7 @@
   when:
     - postgres_databases is defined
   become_user: postgres
-  become: yes
+  become: true
 
 - name: Create postgres users
   community.postgresql.postgresql_user:
@@ -138,5 +138,5 @@
   when:
     - postgres_users is defined
   become_user: postgres
-  become: yes
-  no_log: yes
+  become: true
+  no_log: true

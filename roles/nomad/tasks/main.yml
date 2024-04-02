@@ -4,7 +4,7 @@
 - name: Import assert.yml
   ansible.builtin.import_tasks:
     file: assert.yml
-  run_once: yes
+  run_once: true
   delegate_to: localhost
 
 - name: Install nomad
@@ -50,12 +50,12 @@
   ansible.builtin.service:
     name: nomad
     state: started
-    enabled: yes
+    enabled: true
 
 - name: Determine nomad leader
   ansible.builtin.set_fact:
     nomad_leader: "{{ ansible_hostname }}"
-  run_once: yes
+  run_once: true
   when:
     - nomad_server
 
@@ -63,7 +63,7 @@
   ansible.builtin.command:
     cmd: nomad server members
   register: nomad_list_server_members
-  changed_when: no
+  changed_when: false
   when:
     - nomad_server
 
@@ -74,4 +74,4 @@
   when:
     - ansible_hostname != nomad_server
     - ansible_hostname not in nomad_list_server_members.stdout
-  changed_when: yes
+  changed_when: true

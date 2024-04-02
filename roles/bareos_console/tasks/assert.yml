@@ -4,7 +4,7 @@
   ansible.builtin.assert:
     that:
       - bareos_console_directors is iterable
-    quiet: yes
+    quiet: true
   when:
     - bareos_console_directors is defined
 
@@ -23,7 +23,7 @@
       - item.description is defined
       - item.description is string
       - item.description != ""
-    quiet: yes
+    quiet: true
   loop: "{{ bareos_console_directors }}"
   loop_control:
     label: "{{ item.name }}"
@@ -34,7 +34,7 @@
   ansible.builtin.assert:
     that:
       - item.tls_enable is boolean
-    quiet: yes
+    quiet: true
   loop: "{{ bareos_console_directors }}"
   loop_control:
     label: "{{ item.name }}"
@@ -45,7 +45,7 @@
   ansible.builtin.assert:
     that:
       - item.tls_verify_peer is boolean
-    quiet: yes
+    quiet: true
   loop: "{{ bareos_console_directors }}"
   loop_control:
     label: "{{ item.name }}"

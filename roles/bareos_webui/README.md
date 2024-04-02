@@ -14,17 +14,17 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 ---
 - name: Converge
   hosts: all
-  become: yes
-  gather_facts: yes
+  become: true
+  gather_facts: true
 
   roles:
     - role: robertdebock.roles.bareos_webui
       bareos_webui_directors:
         - name: localhost-dir
-          enabled: yes
+          enabled: true
           diraddress: localhost
         - name: disabled-dir
-          enabled: no
+          enabled: false
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-bareos_webui/blob/master/molecule/default/prepare.yml):
@@ -33,8 +33,8 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
 ---
 - name: Prepare
   hosts: all
-  become: yes
-  gather_facts: no
+  become: true
+  gather_facts: false
 
   roles:
     - role: robertdebock.roles.bootstrap
@@ -87,7 +87,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |---------|----|
 |[Debian](https://hub.docker.com/r/robertdebock/debian)|bookworm, bullseye, buster|
 |[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|8, 9|
-|[Fedora](https://hub.docker.com/r/robertdebock/fedora/)|38, 39|
+|[Fedora](https://hub.docker.com/r/robertdebock/fedora)|38, 39|
 |[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|jammy, focal|
 
 The minimum version of Ansible required is 2.12, tests have been done to:

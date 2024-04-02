@@ -5,7 +5,7 @@
 ntp_state: started
 
 # The state of the NTP service at boot.
-ntp_enabled: yes
+ntp_enabled: true
 
 # A list of IP addresses to listen on.
 ntp_interfaces:

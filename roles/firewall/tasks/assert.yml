@@ -6,7 +6,7 @@
       - firewall_default_protocol is defined
       - firewall_default_protocol is string
       - firewall_default_protocol in [ "tcp", "udp" ]
-    quiet: yes
+    quiet: true
 
 - name: assert | Test firewall_default_rule
   ansible.builtin.assert:
@@ -14,13 +14,13 @@
       - firewall_default_rule is defined
       - firewall_default_rule is string
       - firewall_default_rule in [ "allow", "deny" ]
-    quiet: yes
+    quiet: true
 
 - name: assert | Test firewall_services
   ansible.builtin.assert:
     that:
       - firewall_services is iterable
-    quiet: yes
+    quiet: true
   when:
     - firewall_services is defined
 
@@ -30,7 +30,7 @@
       - item.name is defined
       - item.name is string
       - item.name is not none
-    quiet: yes
+    quiet: true
   loop: "{{ firewall_services }}"
   loop_control:
     label: "{{ item.name }}"
@@ -45,7 +45,7 @@
       - item.name is number
       - item.name > 0
       - item.name < 65536
-    quiet: yes
+    quiet: true
   loop: "{{ firewall_services }}"
   loop_control:
     label: "{{ item.name }}"
@@ -58,7 +58,7 @@
     that:
       - item.state is string
       - item.state in [ "absent", "present" ]
-    quiet: yes
+    quiet: true
   loop: "{{ firewall_services }}"
   loop_control:
     label: "{{ item.state | default('unset') }}"

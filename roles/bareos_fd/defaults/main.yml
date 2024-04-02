@@ -4,10 +4,10 @@
 # The client has these configuration parameters.
 
 # Backup existing configurations.
-bareos_fd_backup_configurations: no
+bareos_fd_backup_configurations: false
 
 # Install debug packages. This requires the debug repositories to be enabled.
-bareos_fd_install_debug_packages: no
+bareos_fd_install_debug_packages: false
 
 # The hostname of the File Daemon.
 bareos_fd_hostname: "{{ inventory_hostname }}"
@@ -22,10 +22,10 @@ bareos_fd_message: "Standard"
 bareos_fd_maximum_concurrent_jobs: 20
 
 # Enable TLS.
-bareos_fd_tls_enable: yes
+bareos_fd_tls_enable: true
 
 # Verify the peer.
-bareos_fd_tls_verify_peer: no
+bareos_fd_tls_verify_peer: false
 
 # The inteval in seconds to send a heartbeat.
 bareos_fd_heartbeat_interval: 0
@@ -34,11 +34,11 @@ bareos_fd_heartbeat_interval: 0
 bareos_fd_directors:
   - name: "bareos-dir"
     password: "secretpassword"
-    monitor: no
+    monitor: false
     description: "Allow the configured Director to access this file daemon."
   - name: bareos-mon
     password: "secretpassword"
-    monitor: yes
+    monitor: true
     description: "Restricted Director, used by tray-monitor to get the status of this file daemon."
 
 # The Messages to configure.
@@ -52,8 +52,8 @@ bareos_fd_messages:
         - "!restored"
     description: "Send relevant messages to the Director."
 
-# For encryption of data, set this to `yes`.
-bareos_fd_encryption_enabled: no
+# For encryption of data, set this to `true`.
+bareos_fd_encryption_enabled: false
 
 # You may bring your own private key. If not specified, a new one will be generated.
 bareos_fd_encryption_private_key: ""

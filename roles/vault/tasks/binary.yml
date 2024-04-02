@@ -3,13 +3,13 @@
 - name: binary | Create Vault group
   ansible.builtin.group:
     name: "{{ vault_group }}"
-    system: yes
+    system: true
 
 - name: binary | Create Vault user
   ansible.builtin.user:
     name: "{{ vault_user }}"
-    create_home: no
-    system: yes
+    create_home: false
+    system: true
     shell: "{{ vault_user_shell }}"
     group: "{{ vault_group }}"
 
@@ -29,7 +29,7 @@
     owner: root
     group: root
     mode: "0644"
-    remote_src: yes
+    remote_src: true
 
 - name: binary | Check if vault_path exists
   ansible.builtin.stat:
@@ -94,7 +94,7 @@
     owner: root
     group: root
     mode: "0755"
-    remote_src: yes
+    remote_src: true
   notify:
     - Restart vault
 
@@ -102,7 +102,7 @@
   community.general.capabilities:
     path: "{{ vault_path }}/usr/bin/vault"
     capability: cap_ipc_lock+ep
-  changed_when: no
+  changed_when: false
 
 - name: binary | Touch vault.env
   ansible.builtin.file:
@@ -143,7 +143,7 @@
     owner: root
     group: root
     mode: "0644"
-    force: no
+    force: false
   notify:
     - Restart vault
 

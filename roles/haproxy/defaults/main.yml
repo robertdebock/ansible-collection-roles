@@ -2,7 +2,7 @@
 # defaults file for haproxy
 
 # Configure stats in HAProxy?
-haproxy_stats: yes
+haproxy_stats: true
 haproxy_stats_port: 1936
 haproxy_stats_bind_addr: "0.0.0.0"
 

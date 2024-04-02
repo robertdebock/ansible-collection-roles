@@ -6,7 +6,7 @@
       - cron_shell is defined
       - cron_shell is string
       - cron_shell is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test cron_path
   ansible.builtin.assert:
@@ -14,7 +14,7 @@
       - cron_path is defined
       - cron_path is string
       - cron_path is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test cron_mailto
   ansible.builtin.assert:
@@ -22,13 +22,13 @@
       - cron_mailto is defined
       - cron_mailto is string
       - cron_mailto is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test cron_jobs
   ansible.builtin.assert:
     that:
       - cron_jobs is iterable
-    quiet: yes
+    quiet: true
   when:
     - cron_jobs is defined
 
@@ -41,7 +41,7 @@
       - item.job is defined
       - item.job is string
       - item.job is not none
-    quiet: yes
+    quiet: true
   loop: "{{ cron_jobs }}"
   loop_control:
     label: "{{ item.name }}"
@@ -53,7 +53,7 @@
     that:
       - item.minute >= 0
       - item.minute <= 59
-    quiet: yes
+    quiet: true
   loop: "{{ cron_jobs }}"
   loop_control:
     label: "{{ item.name }}"
@@ -67,7 +67,7 @@
     that:
       - item.hour >= 0
       - item.hour <= 23
-    quiet: yes
+    quiet: true
   loop: "{{ cron_jobs }}"
   loop_control:
     label: "{{ item.name }}"
@@ -81,7 +81,7 @@
     that:
       - item.weekday >= 0
       - item.weekday <= 6
-    quiet: yes
+    quiet: true
   loop: "{{ cron_jobs }}"
   loop_control:
     label: "{{ item.name }}"

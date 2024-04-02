@@ -9,7 +9,7 @@ argument_specs:
     options:
       bareos_dir_backup_configurations:
         type: "bool"
-        default: no
+        default: false
         description: "Backup the configuration files."
       bareos_dir_hostname:
         type: "str"
@@ -33,11 +33,11 @@ argument_specs:
         description: "The messages configuration to use."
       bareos_dir_tls_enable:
         type: "bool"
-        default: yes
+        default: true
         description: "Enable TLS."
       bareos_dir_tls_verify_peer:
         type: "bool"
-        default: no
+        default: false
         description: "Verify the peer."
       bareos_dir_catalogs:
         type: "list"
@@ -85,5 +85,5 @@ argument_specs:
         description: "A list of storages to configure."
       bareos_dir_install_debug_packages:
         type: "bool"
-        default: no
+        default: false
         description: "Install debug packages. This requires the debug repositories to be enabled."

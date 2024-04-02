@@ -16,7 +16,7 @@ git_repository_destination: /home/{{ git_username | default('unset') }}/Document
 
 # Should git force (overwrite locally changed) clone? (Can also be controlled
 # per repository, see below.
-git_force: no
+git_force: false
 
 # The repositories to check out, bootstrap is pinned to a version, java will get HEAD/latest.
 # git_repositories:
@@ -27,4 +27,4 @@ git_force: no
 #     dest: java
 #   - repo: "ssh://git@github.com/robertdebock/ansible-role-tomcat.git"
 #     dest: tomcat
-#     force: yes
+#     force: true

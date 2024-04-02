@@ -5,4 +5,4 @@
 vault_initialize_addr: "http://localhost:8200"
 
 # You can show the (sensitive) information of initializing Vault. This includes the root-token and unseal-keys.
-vault_initialize_show_information: yes
+vault_initialize_show_information: true

@@ -6,7 +6,7 @@
       - grub_timeout is defined
       - grub_timeout is number
       - grub_timeout >= 0
-    quiet: yes
+    quiet: true
 
 - name: assert | Test grub_recordfail_timeout
   ansible.builtin.assert:
@@ -14,13 +14,13 @@
       - grub_recordfail_timeout is defined
       - grub_recordfail_timeout is number
       - grub_recordfail_timeout >= 0
-    quiet: yes
+    quiet: true
 
 - name: assert | Test grub_options
   ansible.builtin.assert:
     that:
       - grub_options is iterable
-    quiet: yes
+    quiet: true
   when:
     - grub_options is defined
 
@@ -31,7 +31,7 @@
       - item.option is string
       - item.option is not none
       - item.value is defined
-    quiet: yes
+    quiet: true
   loop: "{{ grub_options }}"
   loop_control:
     label: "{{ item.option }}"

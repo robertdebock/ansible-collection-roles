@@ -4,7 +4,7 @@
 - name: Import assert.yml
   ansible.builtin.import_tasks:
     file: assert.yml
-  run_once: yes
+  run_once: true
   delegate_to: localhost
 
 - name: Install prerequisites
@@ -15,6 +15,17 @@
   ansible.builtin.include_tasks:
     file: "{{ vault_installation_method }}.yml"
 
+- name: Add Vault environment variables
+  ansible.builtin.lineinfile:
+    path: /etc/vault.d/vault.env
+    create: true
+    regexp: "^{{ item.name }}="
+    line: "{{ item.name }}={{ item.value }}"
+    mode: "0644"
+  loop: "{{ vault_environment_settings }}"
+  notify:
+    - Restart vault
+
 - name: Include hardening tasks
   ansible.builtin.include_tasks:
     file: hardening.yml
@@ -23,13 +34,13 @@
   ansible.builtin.service:
     name: vault
     state: started
-    enabled: yes
+    enabled: true
   when:
     - vault_type == "oss"
 
 - name: Enable vault
   ansible.builtin.service:
     name: vault
-    enabled: yes
+    enabled: true
   when:
     - vault_type != "oss"

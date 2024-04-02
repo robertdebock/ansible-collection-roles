@@ -6,7 +6,7 @@
       - tomcat_mirror is defined
       - tomcat_mirror is string
       - tomcat_mirror is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test tomcat_name
   ansible.builtin.assert:
@@ -14,7 +14,7 @@
       - tomcat_name is defined
       - tomcat_name is string
       - tomcat_name is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test tomcat_directory
   ansible.builtin.assert:
@@ -22,7 +22,7 @@
       - tomcat_directory is defined
       - tomcat_directory is string
       - tomcat_directory is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test tomcat_version
   ansible.builtin.assert:
@@ -30,7 +30,7 @@
       - tomcat_version is defined
       - tomcat_version is number
       - tomcat_version in [ 7, 8, 9, 10 ]
-    quiet: yes
+    quiet: true
 
 - name: assert | Test tomcat_user
   ansible.builtin.assert:
@@ -38,7 +38,7 @@
       - tomcat_user is defined
       - tomcat_user is string
       - tomcat_user is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test tomcat_group
   ansible.builtin.assert:
@@ -46,7 +46,7 @@
       - tomcat_group is defined
       - tomcat_group is string
       - tomcat_group is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test tomcat_xms
   ansible.builtin.assert:
@@ -54,7 +54,7 @@
       - tomcat_xms is defined
       - tomcat_xms is string
       - tomcat_xms is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test tomcat_xmx
   ansible.builtin.assert:
@@ -62,7 +62,7 @@
       - tomcat_xmx is defined
       - tomcat_xmx is string
       - tomcat_xmx is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test tomcat_non_ssl_connector_port
   ansible.builtin.assert:
@@ -71,7 +71,7 @@
       - tomcat_non_ssl_connector_port is number
       - tomcat_non_ssl_connector_port >= -1
       - tomcat_non_ssl_connector_port < 65536
-    quiet: yes
+    quiet: true
 
 - name: assert | Test tomcat_ssl_connector_port
   ansible.builtin.assert:
@@ -80,7 +80,7 @@
       - tomcat_ssl_connector_port is number
       - tomcat_ssl_connector_port >= -1
       - tomcat_ssl_connector_port < 65536
-    quiet: yes
+    quiet: true
 
 - name: assert | Test tomcat_shutdown_port
   ansible.builtin.assert:
@@ -89,14 +89,14 @@
       - tomcat_shutdown_port is number
       - tomcat_shutdown_port >= -1
       - tomcat_shutdown_port < 65536
-    quiet: yes
+    quiet: true
 
 - name: assert | Test tomcat_ajp_enabled
   ansible.builtin.assert:
     that:
       - tomcat_ajp_enabled is defined
       - tomcat_ajp_enabled is boolean
-    quiet: yes
+    quiet: true
 
 - name: assert | Test tomcat_ajp_port
   ansible.builtin.assert:
@@ -105,7 +105,7 @@
       - tomcat_ajp_port is number
       - tomcat_ajp_port >= -1
       - tomcat_ajp_port < 65536
-    quiet: yes
+    quiet: true
 
 - name: assert | Test port collisions occur
   ansible.builtin.assert:
@@ -116,7 +116,7 @@
       - tomcat_ssl_connector_port != tomcat_shutdown_port
       - tomcat_ssl_connector_port != tomcat_ajp_port
       - tomcat_shutdown_port != tomcat_ajp_port
-    quiet: yes
+    quiet: true
 
 - name: assert | Test tomcat_jre_home
   ansible.builtin.assert:
@@ -124,28 +124,28 @@
       - tomcat_jre_home is defined
       - tomcat_jre_home is string
       - tomcat_jre_home is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test tomcat_service_state
   ansible.builtin.assert:
     that:
       - tomcat_service_state is defined
       - tomcat_service_state in [ "reloaded", "restarted", "started", "stopped" ]
-    quiet: yes
+    quiet: true
 
 - name: assert | Test tomcat_service_enabled
   ansible.builtin.assert:
     that:
       - tomcat_service_enabled is defined
       - tomcat_service_enabled is boolean
-    quiet: yes
+    quiet: true
 
 - name: assert | Test tomcat_instances
   ansible.builtin.assert:
     that:
       - tomcat_instances is defined
       - tomcat_instances is iterable
-    quiet: yes
+    quiet: true
 
 - name: assert | Test tomcat_address
   ansible.builtin.assert:
@@ -153,14 +153,14 @@
       - tomcat_address is defined
       - tomcat_address is string
       - tomcat_address is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test tomcat_access_log_enabled
   ansible.builtin.assert:
     that:
       - tomcat_access_log_enabled is defined
       - tomcat_access_log_enabled is boolean
-    quiet: yes
+    quiet: true
 
 - name: assert | Test tomcat_access_log_directory
   ansible.builtin.assert:
@@ -168,7 +168,7 @@
       - tomcat_access_log_directory is defined
       - tomcat_access_log_directory is string
       - tomcat_access_log_directory is not none
-    quiet: yes
+    quiet: true
   when:
     - tomcat_access_log_enabled
 
@@ -178,7 +178,7 @@
       - tomcat_access_log_prefix is defined
       - tomcat_access_log_prefix is string
       - tomcat_access_log_prefix is not none
-    quiet: yes
+    quiet: true
   when:
     - tomcat_access_log_enabled
 
@@ -188,7 +188,7 @@
       - tomcat_access_log_suffix is defined
       - tomcat_access_log_suffix is string
       - tomcat_access_log_suffix is not none
-    quiet: yes
+    quiet: true
   when:
     - tomcat_access_log_enabled
 
@@ -198,7 +198,7 @@
       - tomcat_access_log_pattern is defined
       - tomcat_access_log_pattern is string
       - tomcat_access_log_pattern is not none
-    quiet: yes
+    quiet: true
   when:
     - tomcat_access_log_enabled
 
@@ -209,7 +209,7 @@
       - item.name is string
       - item.name is match("^[a-zA-Z0-9_-]*$")
     fail_msg: "Please use alphanumeric characters only."
-    quiet: yes
+    quiet: true
   loop: "{{ tomcat_instances }}"
   loop_control:
     label: "{{ item.name }}"
@@ -220,7 +220,7 @@
       - item.version is defined
       - item.version is number
       - item.version in [7, 8, 9, 10]
-    quiet: yes
+    quiet: true
   loop: "{{ tomcat_instances }}"
   loop_control:
     label: "{{ item.name }}"
@@ -233,7 +233,7 @@
       - item.non_ssl_connector_port is number
       - item.non_ssl_connector_port >= -1
       - item.non_ssl_connector_port < 65536
-    quiet: yes
+    quiet: true
   loop: "{{ tomcat_instances }}"
   loop_control:
     label: "{{ item.name }}"
@@ -246,7 +246,7 @@
       - item.ssl_connector_port is number
       - item.ssl_connector_port >= -1
       - item.ssl_connector_port < 65536
-    quiet: yes
+    quiet: true
   loop: "{{ tomcat_instances }}"
   loop_control:
     label: "{{ item.name }}"
@@ -259,7 +259,7 @@
       - item.shutdown_port is number
       - item.shutdown_port >= -1
       - item.shutdown_port < 65536
-    quiet: yes
+    quiet: true
   loop: "{{ tomcat_instances }}"
   loop_control:
     label: "{{ item.name }}"
@@ -270,7 +270,7 @@
   ansible.builtin.assert:
     that:
       - item.ajp_enabled is boolean
-    quiet: yes
+    quiet: true
   loop: "{{ tomcat_instances }}"
   loop_control:
     label: "{{ item.name }}"
@@ -283,7 +283,7 @@
       - item.ajp_port is number
       - item.ajp_port >= -1
       - item.ajp_port < 65536
-    quiet: yes
+    quiet: true
   loop: "{{ tomcat_instances }}"
   loop_control:
     label: "{{ item.name }}"
@@ -296,7 +296,7 @@
       - item.address is defined
       - item.address is string
       - item.address is not none
-    quiet: yes
+    quiet: true
   loop: "{{ tomcat_instances }}"
   loop_control:
     label: "{{ item.name }}"
@@ -307,7 +307,7 @@
   ansible.builtin.assert:
     that:
       - item.java_opts is iterable
-    quiet: yes
+    quiet: true
   loop: "{{ tomcat_instances }}"
   loop_control:
     label: "{{ item.name }}"
@@ -318,7 +318,7 @@
   ansible.builtin.assert:
     that:
       - item.access_log_enabled is boolean
-    quiet: yes
+    quiet: true
   loop: "{{ tomcat_instances }}"
   loop_control:
     label: "{{ item.name }}"
@@ -330,7 +330,7 @@
     that:
       - item.access_log_directory is string
       - item.access_log_directory is not none
-    quiet: yes
+    quiet: true
   loop: "{{ tomcat_instances }}"
   loop_control:
     label: "{{ item.name }}"
@@ -342,7 +342,7 @@
     that:
       - item.access_log_prefix is string
       - item.access_log_prefix is not none
-    quiet: yes
+    quiet: true
   loop: "{{ tomcat_instances }}"
   loop_control:
     label: "{{ item.name }}"
@@ -354,7 +354,7 @@
     that:
       - item.access_log_suffix is string
       - item.access_log_suffix is not none
-    quiet: yes
+    quiet: true
   loop: "{{ tomcat_instances }}"
   loop_control:
     label: "{{ item.name }}"
@@ -366,7 +366,7 @@
     that:
       - item.access_log_pattern is string
       - item.access_log_pattern is not none
-    quiet: yes
+    quiet: true
   loop: "{{ tomcat_instances }}"
   loop_control:
     label: "{{ item.name }}"
@@ -377,7 +377,7 @@
   ansible.builtin.assert:
     that:
       - item.config_files is iterable
-    quiet: yes
+    quiet: true
   loop: "{{ tomcat_instances }}"
   loop_control:
     label: "{{ item.name }}"
@@ -388,7 +388,7 @@
   ansible.builtin.assert:
     that:
       - item.service_state in [ "reloaded", "restarted", "started", "stopped" ]
-    quiet: yes
+    quiet: true
   loop: "{{ tomcat_instances }}"
   loop_control:
     label: "{{ item.name }}"
@@ -399,7 +399,7 @@
   ansible.builtin.assert:
     that:
       - item.service_enabled is boolean
-    quiet: yes
+    quiet: true
   loop: "{{ tomcat_instances }}"
   loop_control:
     label: "{{ item.name }}"
@@ -412,7 +412,7 @@
       - item.packet_size is number
       - item.packet_size > 0
       - item.packet_size <= 65536
-    quiet: yes
+    quiet: true
   loop: "{{ tomcat_instances }}"
   loop_control:
     label: "{{ item.name }}"
@@ -424,7 +424,7 @@
     that:
       - item.ajp_secret is string
       - item.ajp_secret is not none
-    quiet: yes
+    quiet: true
   loop: "{{ tomcat_instances }}"
   loop_control:
     label: "{{ item.name }}"

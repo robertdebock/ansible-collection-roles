@@ -5,7 +5,7 @@
     that:
       - tailscale_exit_node is defined
       - tailscale_exit_node is boolean
-    quiet: yes
+    quiet: true
 
 - name: assert | Test tailscale_authkey
   ansible.builtin.assert:
@@ -13,18 +13,18 @@
       - tailscale_authkey is defined
       - tailscale_authkey is string
       - tailscale_authkey is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test tailscale_advertise_routes
   ansible.builtin.assert:
     that:
       - tailscale_advertise_routes is defined
       - tailscale_advertise_routes is iterable
-    quiet: yes
+    quiet: true
 
 - name: assert | Test tailscale_hostname
   ansible.builtin.assert:
     that:
       - tailscale_hostname is defined
       - tailscale_hostname is string
-    quiet: yes
+    quiet: true

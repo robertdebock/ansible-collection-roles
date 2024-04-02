@@ -6,7 +6,7 @@
       - ca_passphrase is defined
       - ca_passphrase is string
       - ca_passphrase is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test ca_common_name
   ansible.builtin.assert:
@@ -14,7 +14,7 @@
       - ca_common_name is defined
       - ca_common_name is string
       - ca_common_name is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test ca_country_name
   ansible.builtin.assert:
@@ -22,7 +22,7 @@
       - ca_country_name is defined
       - ca_country_name is string
       - ca_country_name | length <= 2
-    quiet: yes
+    quiet: true
 
 - name: assert | Test ca_email_address
   ansible.builtin.assert:
@@ -30,7 +30,7 @@
       - ca_email_address is defined
       - ca_email_address is string
       - ca_email_address is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test ca_organization_name
   ansible.builtin.assert:
@@ -38,7 +38,7 @@
       - ca_organization_name is defined
       - ca_organization_name is string
       - ca_organization_name is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test ca_organizational_unit_name
   ansible.builtin.assert:
@@ -46,7 +46,7 @@
       - ca_organizational_unit_name is defined
       - ca_organizational_unit_name is string
       - ca_organizational_unit_name is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test ca_state_or_province_name
   ansible.builtin.assert:
@@ -54,13 +54,13 @@
       - ca_state_or_province_name is defined
       - ca_state_or_province_name is string
       - ca_state_or_province_name is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test ca_requests
   ansible.builtin.assert:
     that:
       - ca_requests is iterable
-    quiet: yes
+    quiet: true
   when:
     - ca_requests is defined
 
@@ -70,7 +70,7 @@
       - item is string or
         item is iterable
       - item is not none
-    quiet: yes
+    quiet: true
   loop: "{{ ca_requests }}"
   when:
     - ca_requests is defined
@@ -82,7 +82,7 @@
       - ca_publication_location is defined
       - ca_publication_location is string
       - ca_publication_location is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test ca_openssl_path
   ansible.builtin.assert:
@@ -90,7 +90,7 @@
       - ca_openssl_path is defined
       - ca_openssl_path is string
       - ca_openssl_path is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test ca_private_path
   ansible.builtin.assert:
@@ -98,7 +98,7 @@
       - ca_private_path is defined
       - ca_private_path is string
       - ca_private_path is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test ca_certs_path
   ansible.builtin.assert:
@@ -106,7 +106,7 @@
       - ca_certs_path is defined
       - ca_certs_path is string
       - ca_certs_path is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test ca_privatekey_path
   ansible.builtin.assert:
@@ -114,7 +114,7 @@
       - ca_privatekey_path is defined
       - ca_privatekey_path is string
       - ca_privatekey_path is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test ca_csr_path
   ansible.builtin.assert:
@@ -122,7 +122,7 @@
       - ca_csr_path is defined
       - ca_csr_path is string
       - ca_csr_path is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test ca_certificate_path
   ansible.builtin.assert:
@@ -130,4 +130,4 @@
       - ca_certificate_path is defined
       - ca_certificate_path is string
       - ca_certificate_path is not none
-    quiet: yes
+    quiet: true

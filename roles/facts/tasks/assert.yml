@@ -4,7 +4,7 @@
   ansible.builtin.assert:
     that:
       - facts is iterable
-    quiet: yes
+    quiet: true
   when:
     - facts is defined
 
@@ -15,7 +15,7 @@
       - item.key is string
       - item.key is not none
       - item.value is defined
-    quiet: yes
+    quiet: true
   loop: "{{ facts }}"
   loop_control:
     label: "{{ item.key }}"

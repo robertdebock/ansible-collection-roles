@@ -1,0 +1,25 @@
+---
+
+argument_specs:
+  main:
+    short_description: "Configure vault_autosnapshot on your system."
+    description: >
+      Install and configure vault_autosnapshot on your system.
+    author: Robert de Bock
+    options:
+      vault_autosnapshot_address:
+        type: "str"
+        default: "https://vault.example.com:8200"
+        description: "The address of the Vault server, inlcuding the protocol identifier (http/https) and port number."
+      vault_autosnapshot_token:
+        type: "str"
+        default: "hvs.1234567890abcdef"
+        description: "The token to use for authentication with the Vault server."
+      vault_autosnapshot_ssl_verify:
+        type: "bool"
+        default: true
+        description: "Whether to verify the SSL certificate of the Vault server."
+      vault_autosnapshot_list:
+        type: "list"
+        default: []
+        description: "A list of snapshots to create. Only `storage_type: local` has been implemented."

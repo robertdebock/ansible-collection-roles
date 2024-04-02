@@ -12,7 +12,7 @@ tigervnc_groupname: vncgroup
 tigervnc_password: vncpass
 
 # Use existing user's vnc paswword
-tigervnc_user_exists: no
+tigervnc_user_exists: false
 
 # Desktop session xstartup should connect to e.g. gnome-session, mate-session
 tigervnc_desktop_session: gnome-session

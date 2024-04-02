@@ -11,11 +11,11 @@ argument_specs:
     options:
       bareos_fd_backup_configurations:
         type: "bool"
-        default: no
+        default: false
         description: "Backup existing configurations."
       bareos_fd_install_debug_packages:
         type: "bool"
-        default: no
+        default: false
         description: "Install debug packages. This requires the debug repositories to be enabled."
       bareos_fd_hostname:
         type: "str"
@@ -35,11 +35,11 @@ argument_specs:
         description: "The maximum number of concurrent jobs."
       bareos_fd_tls_enable:
         type: "bool"
-        default: yes
+        default: true
         description: "Enable TLS."
       bareos_fd_tls_verify_peer:
         type: "bool"
-        default: no
+        default: false
         description: "Verify the peer."
       bareos_fd_heartbeat_interval:
         type: "int"
@@ -55,7 +55,7 @@ argument_specs:
         description: "The Messages to configure."
       bareos_fd_encryption_enabled:
         type: "bool"
-        default: no
+        default: false
         description: "For encryption of data, set this to `yes`."
       bareos_fd_encryption_private_key:
         type: "str"

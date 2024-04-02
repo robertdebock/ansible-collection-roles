@@ -5,7 +5,7 @@
     that:
       - bareos_repository_type is defined
       - bareos_repository_type in [ "community", "subscription" ]
-    quiet: yes
+    quiet: true
 
 - name: assert | Test bareos_repository_username
   ansible.builtin.assert:
@@ -13,7 +13,7 @@
       - bareos_repository_username is defined
       - bareos_repository_username is string
       - bareos_repository_username != ""
-    quiet: yes
+    quiet: true
   when:
     - bareos_repository_type == "subscription"
 
@@ -23,7 +23,7 @@
       - bareos_repository_password is defined
       - bareos_repository_password is string
       - bareos_repository_password != ""
-    quiet: yes
+    quiet: true
   when:
     - bareos_repository_type == "subscription"
 
@@ -32,7 +32,7 @@
     that:
       - bareos_repository_release is defined
       - bareos_repository_release in [ "current", "next", "release" ]
-    quiet: yes
+    quiet: true
 
 - name: assert | Test bareos_repository_version
   ansible.builtin.assert:
@@ -40,7 +40,7 @@
       - bareos_repository_version is defined
       - bareos_repository_version is number
       - bareos_repository_version in [ 20, 21, 22, 23 ]
-    quiet: yes
+    quiet: true
   when:
     - bareos_repository_type == "subscription"
 
@@ -49,4 +49,4 @@
     that:
       - bareos_repository_enable_tracebacks is defined
       - bareos_repository_enable_tracebacks is boolean
-    quiet: yes
+    quiet: true

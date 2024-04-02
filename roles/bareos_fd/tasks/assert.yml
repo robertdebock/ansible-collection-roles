@@ -5,7 +5,7 @@
     that:
       - bareos_fd_backup_configurations is defined
       - bareos_fd_backup_configurations is boolean
-    quiet: yes
+    quiet: true
 
 - name: assert | Test bareos_fd_hostname
   ansible.builtin.assert:
@@ -13,7 +13,7 @@
       - bareos_fd_hostname is defined
       - bareos_fd_hostname is string
       - bareos_fd_hostname is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test bareos_fd_max_job_bandwidth
   ansible.builtin.assert:
@@ -21,7 +21,7 @@
       - bareos_fd_max_job_bandwidth is defined
       - bareos_fd_max_job_bandwidth is string
       - bareos_fd_max_job_bandwidth is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test bareos_fd_message
   ansible.builtin.assert:
@@ -29,63 +29,63 @@
       - bareos_fd_message is defined
       - bareos_fd_message is string
       - bareos_fd_message is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test bareos_fd_tls_enable
   ansible.builtin.assert:
     that:
       - bareos_fd_tls_enable is defined
       - bareos_fd_tls_enable is boolean
-    quiet: yes
+    quiet: true
 
 - name: assert | Test bareos_fd_tls_verify_peer
   ansible.builtin.assert:
     that:
       - bareos_fd_tls_verify_peer is defined
       - bareos_fd_tls_verify_peer is boolean
-    quiet: yes
+    quiet: true
 
 - name: assert | Test bareos_fd_heartbeat_interval
   ansible.builtin.assert:
     that:
       - bareos_fd_heartbeat_interval is defined
       - bareos_fd_heartbeat_interval is number
-    quiet: yes
+    quiet: true
 
 - name: assert | Test bareos_fd_maximum_concurrent_jobs
   ansible.builtin.assert:
     that:
       - bareos_fd_maximum_concurrent_jobs is defined
       - bareos_fd_maximum_concurrent_jobs is number
-    quiet: yes
+    quiet: true
 
 - name: assert | Test bareos_fd_directors
   ansible.builtin.assert:
     that:
       - bareos_fd_directors is defined
       - bareos_fd_directors is iterable
-    quiet: yes
+    quiet: true
 
 - name: assert | Test bareos_fd_messages
   ansible.builtin.assert:
     that:
       - bareos_fd_messages is defined
       - bareos_fd_messages is iterable
-    quiet: yes
+    quiet: true
 
 - name: assert | Test bareos_fd_encryption_enabled
   ansible.builtin.assert:
     that:
       - bareos_fd_encryption_enabled is defined
       - bareos_fd_encryption_enabled is boolean
-    quiet: yes
+    quiet: true
 
 - name: assert | Test bareos_fd_encryption_private_key
   ansible.builtin.assert:
     that:
       - bareos_fd_encryption_private_key is defined
       - bareos_fd_encryption_private_key is string
-    quiet: yes
+    quiet: true
   when:
     - bareos_fd_encryption_enabled
 
@@ -95,6 +95,6 @@
       - bareos_fd_encryption_master_public_key is defined
       - bareos_fd_encryption_master_public_key is string
       - bareos_fd_encryption_master_public_key != ""
-    quiet: yes
+    quiet: true
   when:
     - bareos_fd_encryption_enabled

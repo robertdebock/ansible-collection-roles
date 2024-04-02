@@ -19,11 +19,11 @@ argument_specs:
         description: "The version to install, only required for licensed installation."
       collabora_online_secret_key:
         type: "str"
-        required: no
+        required: false
         description: "The secret key as handed out by Collabora."
       collabora_online_allowed_languages:
         type: "str"
-        required: no
+        required: false
         description: "The languages allowed."
       collabora_online_ssl_enabled:
         type: "str"

@@ -4,7 +4,7 @@
 - name: Import assert.yml
   ansible.builtin.import_tasks:
     file: assert.yml
-  run_once: yes
+  run_once: true
   delegate_to: localhost
 
 - name: Install glusterfs requirements
@@ -56,11 +56,11 @@
     - ansible_selinux.status is defined
     - ansible_selinux.status == "enabled"
   block:
-    - name: Set selinux boolean nis_enabled to yes
+    - name: Set selinux boolean nis_enabled to true
       ansible.posix.seboolean:
         name: nis_enabled
-        state: yes
-        persistent: yes
+        state: true
+        persistent: true
 
     - name: Place selinux type enforcement
       ansible.builtin.copy:
@@ -80,13 +80,13 @@
   ansible.builtin.service:
     name: glusterd
     state: started
-    enabled: yes
+    enabled: true
 
 - name: Peer with other nodes
   ansible.builtin.command:
     cmd: "gluster peer probe {{ hostvars[item]['ansible_default_ipv4']['address'] }}"
   loop: "{{ groups.all }}"
-  run_once: yes
+  run_once: true
   register: glusterfs_peer_with_other_nodes
   changed_when:
     - "'already in peer list' not in glusterfs_peer_with_other_nodes.stdout"
@@ -102,10 +102,10 @@
         name: "{{ item.name }}"
         state: present
         bricks: "{{ item.bricks }}"
-        rebalance: "{{ item.rebalance | default('yes') }}"
+        rebalance: "{{ item.rebalance | default(true) }}"
         cluster: "{{ groups.all | map('extract', hostvars, ['ansible_default_ipv4', 'address']) | join(',') }}"
         replicas: "{{ item.replicas | default(groups.all | length) }}"
-      run_once: yes
+      run_once: true
       loop: "{{ glusterfs_volumes }}"
 
     - name: Create volume mountpoint

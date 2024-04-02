@@ -4,7 +4,7 @@
 - name: Import assert.yml
   ansible.builtin.import_tasks:
     file: assert.yml
-  run_once: yes
+  run_once: true
   delegate_to: localhost
 
 - name: Remove conflicting software
@@ -25,7 +25,7 @@
   ansible.builtin.service:
     name: "{{ firewall_service }}"
     state: started
-    enabled: yes
+    enabled: true
   when:
     - ansible_connection not in [ "container", "docker", "community.docker.docker" ]
     - firewall_service is defined
@@ -48,7 +48,7 @@
     rule: "{{ item.rule | default(firewall_default_rule) }}"
     to_port: "{{ item.name }}"
     proto: "{{ item.protocol | default(firewall_default_protocol) }}"
-    delete: yes
+    delete: true
   loop: "{{ firewall_services }}"
   when:
     - ansible_connection not in [ "container", "docker", "community.docker.docker" ]
@@ -62,7 +62,7 @@
 - name: Open ports (firewalld-port)
   ansible.posix.firewalld:
     port: "{{ item.name }}/{{ item.protocol | default(firewall_default_protocol) }}"
-    permanent: yes
+    permanent: true
     state: enabled
   loop: "{{ firewall_services }}"
   when:
@@ -78,7 +78,7 @@
 - name: Close ports (firewalld-port)
   ansible.posix.firewalld:
     port: "{{ item.name }}/{{ item.protocol | default(firewall_default_protocol) }}"
-    permanent: yes
+    permanent: true
     state: disabled
   loop: "{{ firewall_services }}"
   when:
@@ -96,7 +96,7 @@
 - name: Open ports (firewalld-service)
   ansible.posix.firewalld:
     service: "{{ item.name }}"
-    permanent: yes
+    permanent: true
     state: enabled
   loop: "{{ firewall_services }}"
   when:
@@ -112,7 +112,7 @@
 - name: Close ports (firewalld-service)
   ansible.posix.firewalld:
     service: "{{ item.name }}"
-    permanent: yes
+    permanent: true
     state: disabled
   loop: "{{ firewall_services }}"
   when:

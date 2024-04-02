@@ -5,25 +5,25 @@
     that:
       - types_strings is defined
       - types_strings is iterable
-    quiet: yes
+    quiet: true
 
 - name: assert | Test types_integers
   ansible.builtin.assert:
     that:
       - types_integers is defined
       - types_integers is iterable
-    quiet: yes
+    quiet: true
 
 - name: assert | Test types_booleans
   ansible.builtin.assert:
     that:
       - types_booleans is defined
       - types_booleans is iterable
-    quiet: yes
+    quiet: true
 
 - name: assert | Test types_floats
   ansible.builtin.assert:
     that:
       - types_floats is defined
       - types_floats is iterable
-    quiet: yes
+    quiet: true

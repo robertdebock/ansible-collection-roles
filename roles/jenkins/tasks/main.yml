@@ -4,14 +4,14 @@
 - name: Import assert.yml
   ansible.builtin.import_tasks:
     file: assert.yml
-  run_once: yes
+  run_once: true
   delegate_to: localhost
 
 - name: Add yum repository
   ansible.builtin.get_url:
     url: "{{ jenkins_yum_repository_baseurl }}"
     dest: /etc/yum.repos.d/jenkins.repo
-    validate_certs: no
+    validate_certs: false
     mode: "0644"
   when:
     - ansible_pkg_mgr in [ "dnf", "yum" ]
@@ -20,7 +20,7 @@
   ansible.builtin.rpm_key:
     key: "{{ jenkins_rpm_key }}"
     state: present
-    validate_certs: no
+    validate_certs: false
   when:
     - ansible_pkg_mgr in [ "dnf", "yum", "zypper" ]
 
@@ -79,4 +79,4 @@
   ansible.builtin.service:
     name: jenkins
     state: started
-    enabled: yes
+    enabled: true

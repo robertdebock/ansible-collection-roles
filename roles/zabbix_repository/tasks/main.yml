@@ -4,7 +4,7 @@
 - name: Import assert.yml
   ansible.builtin.import_tasks:
     file: assert.yml
-  run_once: yes
+  run_once: true
   delegate_to: localhost
 
 - name: Install zabbix repository
@@ -26,13 +26,13 @@
         - name: Get current crypto policy
           ansible.builtin.command:
             cmd: update-crypto-policies --show
-          changed_when: no
+          changed_when: false
           register: elastic_repo_current_crypto_policy
 
         - name: Switch to legacy crypto policy
           ansible.builtin.command:
             cmd: update-crypto-policies --set LEGACY
-          changed_when: yes
+          changed_when: true
           when:
             - elastic_repo_current_crypto_policy.stdout != "LEGACY"
           notify:
@@ -41,7 +41,7 @@
     - name: Install (dnf/yum) repository
       ansible.builtin.package:
         name: "{{ zabbix_repository_package }}"
-        disable_gpg_check: yes
+        disable_gpg_check: true
         state: present
       register: zabbix_repository_install_dnf_yum
       when:
@@ -60,7 +60,7 @@
       community.general.zypper:
         name: "{{ zabbix_repository_package }}"
         state: present
-        disable_gpg_check: yes
+        disable_gpg_check: true
       register: zabbix_repository_install_zypper
       when:
         - ansible_pkg_mgr == "zypper"

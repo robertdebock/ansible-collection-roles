@@ -14,8 +14,8 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 ---
 - name: Converge
   hosts: all
-  become: yes
-  gather_facts: yes
+  become: true
+  gather_facts: true
 
   roles:
     - role: robertdebock.roles.httpd
@@ -28,8 +28,8 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
 ---
 - name: Prepare
   hosts: all
-  become: yes
-  gather_facts: no
+  become: true
+  gather_facts: false
 
   roles:
     - role: robertdebock.roles.bootstrap
@@ -60,22 +60,22 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 php_alpine_version: 7
 
 # All the settings for PHP.
-php_display_errors: no
-php_startup_errors: no
-php_error_reporting: no
-php_html_errors: yes
-php_log_errors: yes
+php_display_errors: false
+php_startup_errors: false
+php_error_reporting: false
+php_html_errors: true
+php_log_errors: true
 php_max_input_time: 60
 php_max_execution_time: 60
 php_output_buffering: 4096
-php_register_argc_argv: no
+php_register_argc_argv: false
 php_request_order: GP
 php_session_gc_divisor: 1000
 php_session_hash_bits_per_character: 5
-php_short_open_tag: no
-php_track_errors: no
+php_short_open_tag: false
+php_track_errors: false
 php_variables_order: GPCS
-php_engine: yes
+php_engine: true
 php_date_timezone: Europe/Amsterdam
 php_memory_limit: 128M
 php_upload_max_filesize: 2M
@@ -123,7 +123,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |---------|----|
 |[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|8, 9|
 |[Debian](https://hub.docker.com/r/robertdebock/debian)|all|
-|[Fedora](https://hub.docker.com/r/robertdebock/fedora/)|all|
+|[Fedora](https://hub.docker.com/r/robertdebock/fedora)|all|
 |[opensuse](https://hub.docker.com/r/robertdebock/opensuse)|all|
 |[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|all|
 

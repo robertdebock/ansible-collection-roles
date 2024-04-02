@@ -6,7 +6,7 @@
       - collectd_conf_hostname is defined
       - collectd_conf_hostname is string
       - collectd_conf_hostname is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test collectd_conf_fqdnlookup
   ansible.builtin.assert:
@@ -14,7 +14,7 @@
       - collectd_conf_fqdnlookup is defined
       - collectd_conf_fqdnlookup is string
       - collectd_conf_fqdnlookup in [ "false", "true" ]
-    quiet: yes
+    quiet: true
 
 - name: assert | Test collectd_conf_basedir
   ansible.builtin.assert:
@@ -22,7 +22,7 @@
       - collectd_conf_basedir is defined
       - collectd_conf_basedir is string
       - collectd_conf_basedir is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test collectd_conf_pidfile
   ansible.builtin.assert:
@@ -30,7 +30,7 @@
       - collectd_conf_pidfile is defined
       - collectd_conf_pidfile is string
       - collectd_conf_pidfile is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test collectd_conf_typesdb
   ansible.builtin.assert:
@@ -38,7 +38,7 @@
       - collectd_conf_typesdb is defined
       - collectd_conf_typesdb is string
       - collectd_conf_typesdb is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test collectd_conf_autoloadplugin
   ansible.builtin.assert:
@@ -46,7 +46,7 @@
       - collectd_conf_autoloadplugin is defined
       - collectd_conf_autoloadplugin is string
       - collectd_conf_autoloadplugin in [ "false", "true" ]
-    quiet: yes
+    quiet: true
 
 - name: assert | Test collectd_conf_collectinternalstats
   ansible.builtin.assert:
@@ -54,7 +54,7 @@
       - collectd_conf_collectinternalstats is defined
       - collectd_conf_collectinternalstats is string
       - collectd_conf_collectinternalstats in [ "false", "true" ]
-    quiet: yes
+    quiet: true
 
 - name: assert | Test collectd_conf_interval
   ansible.builtin.assert:
@@ -62,7 +62,7 @@
       - collectd_conf_interval is defined
       - collectd_conf_interval is number
       - collectd_conf_interval > 0
-    quiet: yes
+    quiet: true
 
 - name: assert | Test collectd_conf_maxreadinterval
   ansible.builtin.assert:
@@ -70,7 +70,7 @@
       - collectd_conf_maxreadinterval is defined
       - collectd_conf_maxreadinterval is number
       - collectd_conf_maxreadinterval > 0
-    quiet: yes
+    quiet: true
 
 - name: assert | Test collectd_conf_timeout
   ansible.builtin.assert:
@@ -78,7 +78,7 @@
       - collectd_conf_timeout is defined
       - collectd_conf_timeout is number
       - collectd_conf_timeout > 0
-    quiet: yes
+    quiet: true
 
 - name: assert | Test collectd_conf_readthreads
   ansible.builtin.assert:
@@ -86,7 +86,7 @@
       - collectd_conf_readthreads is defined
       - collectd_conf_readthreads is number
       - collectd_conf_readthreads > 0
-    quiet: yes
+    quiet: true
 
 - name: assert | Test collectd_conf_writethreads
   ansible.builtin.assert:
@@ -94,7 +94,7 @@
       - collectd_conf_writethreads is defined
       - collectd_conf_writethreads is number
       - collectd_conf_writethreads > 0
-    quiet: yes
+    quiet: true
 
 - name: assert | Test collectd_conf_include_dir
   ansible.builtin.assert:
@@ -102,14 +102,14 @@
       - collectd_conf_include_dir is defined
       - collectd_conf_include_dir is string
       - collectd_conf_include_dir is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test collectd_conf_fnmatch_filters
   ansible.builtin.assert:
     that:
       - collectd_conf_fnmatch_filters is defined
       - collectd_conf_fnmatch_filters is iterable
-    quiet: yes
+    quiet: true
 
 - name: assert | Test collectd_plugin_logging
   ansible.builtin.assert:
@@ -117,7 +117,7 @@
       - collectd_plugin_logging is defined
       - collectd_plugin_logging is string
       - collectd_plugin_logging in [ "logfile", "log_stash", "syslog" ]
-    quiet: yes
+    quiet: true
 
 - name: assert | Test collectd_plugin_logging_directory
   ansible.builtin.assert:
@@ -125,7 +125,7 @@
       - collectd_plugin_logging_directory is defined
       - collectd_plugin_logging_directory is string
       - collectd_plugin_logging_directory is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test collectd_plugin_logfile_loglevel
   ansible.builtin.assert:
@@ -133,7 +133,7 @@
       - collectd_plugin_logfile_loglevel is defined
       - collectd_plugin_logfile_loglevel is string
       - collectd_plugin_logfile_loglevel in [ "emerg", "alert", "crit", "err", "warning", "notice", "info", "debug"]
-    quiet: yes
+    quiet: true
 
 - name: assert | Test collectd_plugin_logfile_file
   ansible.builtin.assert:
@@ -141,7 +141,7 @@
       - collectd_plugin_logfile_file is defined
       - collectd_plugin_logfile_file is string
       - collectd_plugin_logfile_file is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test collectd_plugin_logfile_timestamp
   ansible.builtin.assert:
@@ -149,7 +149,7 @@
       - collectd_plugin_logfile_timestamp is defined
       - collectd_plugin_logfile_timestamp is string
       - collectd_plugin_logfile_timestamp in [ "false", "true" ]
-    quiet: yes
+    quiet: true
 
 - name: assert | Test collectd_plugin_logfile_printseverity
   ansible.builtin.assert:
@@ -157,7 +157,7 @@
       - collectd_plugin_logfile_printseverity is defined
       - collectd_plugin_logfile_printseverity is string
       - collectd_plugin_logfile_printseverity in [ "false", "true" ]
-    quiet: yes
+    quiet: true
 
 - name: assert | Test collectd_plugin_logstash_loglevel
   ansible.builtin.assert:
@@ -165,7 +165,7 @@
       - collectd_plugin_logstash_loglevel is defined
       - collectd_plugin_logstash_loglevel is string
       - collectd_plugin_logstash_loglevel in [ "emerg", "alert", "crit", "err", "warning", "notice", "info", "debug" ]
-    quiet: yes
+    quiet: true
 
 - name: assert | Test collectd_plugin_logstash_file
   ansible.builtin.assert:
@@ -173,7 +173,7 @@
       - collectd_plugin_logstash_file is defined
       - collectd_plugin_logstash_file is string
       - collectd_plugin_logstash_file is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test collectd_plugin_syslog_loglevel
   ansible.builtin.assert:
@@ -181,18 +181,18 @@
       - collectd_plugin_syslog_loglevel is defined
       - collectd_plugin_syslog_loglevel is string
       - collectd_plugin_syslog_loglevel in [ "emerg", "alert", "crit", "err", "warning", "notice", "info", "debug" ]
-    quiet: yes
+    quiet: true
 
 - name: assert | Test collectd_basic_plugins
   ansible.builtin.assert:
     that:
       - collectd_basic_plugins is defined
       - collectd_basic_plugins is iterable
-    quiet: yes
+    quiet: true
 
 - name: assert | Test collectd_plugins
   ansible.builtin.assert:
     that:
       - collectd_plugins is defined
       - collectd_plugins is iterable
-    quiet: yes
+    quiet: true

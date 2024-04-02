@@ -4,7 +4,7 @@
 - name: Import assert.yml
   ansible.builtin.import_tasks:
     file: assert.yml
-  run_once: yes
+  run_once: true
   delegate_to: localhost
 
 - name: Install podman
@@ -35,8 +35,8 @@
       ansible.builtin.service:
         name: "{{ podman_service }}"
         state: started
-        enabled: yes
-      become: yes
+        enabled: true
+      become: true
       become_user: "{{ podman_user }}"
 
     - name: Get user details

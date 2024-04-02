@@ -4,7 +4,7 @@
 - name: Import assert.yml
   ansible.builtin.import_tasks:
     file: assert.yml
-  run_once: yes
+  run_once: true
   delegate_to: localhost
 
 - name: Add repository (rpm)
@@ -12,11 +12,11 @@
     name: "{{ item.name }}"
     description: "{{ item.description }}"
     baseurl: "{{ item.baseurl }}"
-    gpgcheck: yes
+    gpgcheck: true
     gpgkey: "{{ item.gpgkey }}"
     username: "{{ item.username | default(omit) }}"
     password: "{{ item.password | default(omit) }}"
-  no_log: yes
+  no_log: true
   loop: "{{ bareos_repository_list }}"
   loop_control:
     label: "{{ item.name }}"
@@ -40,7 +40,7 @@
         owner: root
         group: root
         mode: "0644"
-      no_log: yes
+      no_log: true
 
     - name: Place credentials file (apt)
       ansible.builtin.copy:
@@ -52,7 +52,7 @@
         owner: root
         group: root
         mode: "0600"
-      no_log: yes
+      no_log: true
       when:
         - bareos_repository_type == "subscription"
 
@@ -61,8 +61,8 @@
         repo: "{{ item.deb_repo }}"
         state: present
         filename: "{{ item.name }}"
-        update_cache: yes
-      no_log: yes
+        update_cache: true
+      no_log: true
       loop: "{{ bareos_repository_list }}"
       loop_control:
         label: "{{ item.name }}"
@@ -80,7 +80,7 @@
         owner: root
         group: root
         mode: "0644"
-      no_log: yes
+      no_log: true
 
     - name: Import gpg key (zypper)
       ansible.builtin.rpm_key:
@@ -95,7 +95,7 @@
         owner: root
         group: root
         mode: "0600"
-      no_log: yes
+      no_log: true
       when:
         - bareos_repository_type == "subscription"
 
@@ -117,11 +117,11 @@
         name: "{{ item.name }}"
         description: "{{ item.description }}"
         baseurl: "{{ item.baseurl }}"
-        gpgcheck: yes
+        gpgcheck: true
         gpgkey: "{{ item.gpgkey }}"
         username: "{{ item.username | default(omit) }}"
         password: "{{ item.password | default(omit) }}"
-      no_log: yes
+      no_log: true
       loop: "{{ bareos_repository_debug_list }}"
       loop_control:
         label: "{{ item.name }}"
@@ -147,4 +147,4 @@
       ansible.posix.sysctl:
         name: kernel.yama.ptrace_scope
         value: "0"
-        sysctl_set: yes
+        sysctl_set: true

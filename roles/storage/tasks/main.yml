@@ -4,7 +4,7 @@
 - name: Import assert.yml
   ansible.builtin.import_tasks:
     file: assert.yml
-  run_once: yes
+  run_once: true
   delegate_to: localhost
 
 - name: Install requirements
@@ -24,7 +24,7 @@
     line: "- - -"
     mode: "0444"
   loop: "{{ storage_scsi_busses.files }}"
-  changed_when: no
+  changed_when: false
 
 - name: Include partition
   ansible.builtin.include_tasks:

@@ -92,10 +92,10 @@ postfix_smtp_tls_security_level: none
 # postfix_header_checks_template: /path/to/header_checks.j2
 
 # Whether or not to use the local biff service.
-# postfix_biff: yes
+# postfix_biff: true
 
 # With locally submitted mail, append the string ".$mydomain" to addresses that have no ".domain" information
-# postfix_append_dot_mydomain: no
+# postfix_append_dot_mydomain: false
 
 # The alias databases that are used for local(8) delivery
 # postfix_alias_maps: "hash:/etc/aliases"
@@ -122,7 +122,7 @@ postfix_smtp_tls_security_level: none
 # postfix_virtual_gid_maps: "static:2000"
 
 # Enable SASL authentication in the Postfix SMTP server.
-# postfix_smtpd_sasl_auth_enable: yes
+# postfix_smtpd_sasl_auth_enable: true
 
 # The name of the Postfix SMTP server's local SASL authentication realm.
 # postfix_smtpd_sasl_local_domain: $myhostname
@@ -131,10 +131,10 @@ postfix_smtp_tls_security_level: none
 # postfix_smtpd_sasl_security_options: noanonymous
 
 # Report the SASL authenticated user name in the smtpd(8) Received message header.
-# postfix_smtpd_sasl_authenticated_header: yes
+# postfix_smtpd_sasl_authenticated_header: true
 
 # Enable interoperability with remote SMTP clients that implement an obsolete version of the AUTH command (RFC 4954).
-# postfix_broken_sasl_auth_clients: no
+# postfix_broken_sasl_auth_clients: false
 
 # A file containing (PEM format) CA certificates of root CAs trusted to sign either remote SMTP client certificates or intermediate CA certificates.
 # postfix_smtpd_tls_CAfile: /etc/letsencrypt/live/smtp.syhosting.ch/chain.pem
@@ -146,13 +146,13 @@ postfix_smtp_tls_security_level: none
 # postfix_smtpd_tls_key_file: /etc/letsencrypt/live/smtp.syhosting.ch/privkey.pem
 
 # Request that the Postfix SMTP server produces Received: message headers that include information about the protocol and cipher used, as well as the remote SMTP client CommonName and client certificate issuer CommonName.
-# postfix_smtpd_tls_received_header: yes
+# postfix_smtpd_tls_received_header: true
 
 # The default SMTP TLS security level for the Postfix SMTP client; when a non-empty value is specified, this overrides the obsolete parameters smtp_use_tls, smtp_enforce_tls, and smtp_tls_enforce_peername.
 # postfix_smtpd_tls_security_level: may
 
 # Ask a remote SMTP client for a client certificate.
-# postfix_smtpd_tls_ask_ccert: yes
+# postfix_smtpd_tls_ask_ccert: true
 
 # Enable additional Postfix SMTP server logging of TLS activity.
 # postfix_smtpd_tls_loglevel: 1
@@ -191,7 +191,7 @@ postfix_smtp_tls_security_level: none
 # postfix_message_size_limit: 10240000
 
 # Require that a remote SMTP client introduces itself with the HELO or EHLO command before sending the MAIL command or other commands that require EHLO negotiation.
-# postfix_smtpd_helo_required: no
+# postfix_smtpd_helo_required: false
 
 # The time unit over which client connection rates and other rates are calculated.
 # postfix_anvil_rate_time_unit: 60s
@@ -216,9 +216,9 @@ postfix_smtp_tls_security_level: none
 # So either specifcy a port number or a service name like `smtp`.
 postfix_smtp_listen_port: smtp
 
-postfix_smtp_use_tls: no
-postfix_smtp_sasl_auth_enable: no
+postfix_smtp_use_tls: false
+postfix_smtp_sasl_auth_enable: false
 postfix_smtp_sasl_password_map: ""
 postfix_smtp_sasl_security_options: ""
-postfix_smtp_tls_wrappermode: no
+postfix_smtp_tls_wrappermode: false
 postfix_smtp_sasl_password_map_content: ""

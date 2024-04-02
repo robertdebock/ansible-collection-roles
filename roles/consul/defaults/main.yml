@@ -2,8 +2,8 @@
 # defaults file for consul
 
 # You can install consul using a package in this role. If you have installed
-# consul manually, set this to `no`.
-consul_install_package: yes
+# consul manually, set this to `false`.
+consul_install_package: true
 
 # This flag controls the datacenter in which the agent is running.
 consul_datacenter: my-dc-1
@@ -15,10 +15,10 @@ consul_data_dir: /opt/consul
 consul_client_addr: "0.0.0.0"
 
 # Enables the built-in web UI server and the required HTTP routes.
-consul_ui: yes
+consul_ui: true
 
 # This flag is used to control if an agent is in server or client mode.
-consul_server: yes
+consul_server: true
 
 # This flag provides the number of expected servers in the datacenter.
 # consul_bootstrap_expect: 3
@@ -44,4 +44,4 @@ consul_server: yes
 #     port: 80
 
 # In same cases you may not want to start Consul as a service, because you are "bootstrapping" for example.
-consule_service_started_and_enabled: yes
+consule_service_started_and_enabled: true

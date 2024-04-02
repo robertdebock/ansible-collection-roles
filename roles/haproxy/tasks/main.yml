@@ -4,7 +4,7 @@
 - name: Import assert.yml
   ansible.builtin.import_tasks:
     file: assert.yml
-  run_once: yes
+  run_once: true
   delegate_to: localhost
 
 - name: Install haproxy
@@ -15,13 +15,13 @@
 - name: Create group
   ansible.builtin.group:
     name: haproxy
-    system: yes
+    system: true
     state: present
 
 - name: Create user
   ansible.builtin.user:
     name: haproxy
-    system: yes
+    system: true
     state: present
 
 - name: Configure software
@@ -30,7 +30,7 @@
     dest: /etc/haproxy/haproxy.cfg
     # validate: haproxy -c -f %s
     mode: "0640"
-    backup: yes
+    backup: true
   notify:
     - Restart haproxy
 
@@ -51,8 +51,8 @@
     - name: Allow haproxy to open any port
       ansible.posix.seboolean:
         name: haproxy_connect_any
-        state: yes
-        persistent: yes
+        state: true
+        persistent: true
       notify:
         - Reboot
 
@@ -63,4 +63,4 @@
   ansible.builtin.service:
     name: haproxy
     state: started
-    enabled: yes
+    enabled: true

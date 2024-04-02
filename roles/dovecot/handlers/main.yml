@@ -5,7 +5,7 @@
   ansible.builtin.copy:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
-    remote_src: yes
+    remote_src: true
     mode: "0640"
   loop:
     - src: /usr/share/doc/dovecot/example-config/dovecot.conf

@@ -6,11 +6,11 @@
       - hostname is defined
       - hostname is string
       - hostname is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test hostname_reboot
   ansible.builtin.assert:
     that:
       - hostname_reboot is defined
       - hostname_reboot is boolean
-    quiet: yes
+    quiet: true

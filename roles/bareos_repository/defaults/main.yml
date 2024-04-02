@@ -19,4 +19,4 @@ bareos_repository_release: current
 bareos_repository_version: 23
 
 # You can enable tracebacks for troubleshooting purposes.
-bareos_repository_enable_tracebacks: no
+bareos_repository_enable_tracebacks: false

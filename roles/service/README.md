@@ -14,8 +14,8 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 ---
 - name: Converge
   hosts: all
-  become: yes
-  gather_facts: yes
+  become: true
+  gather_facts: true
 
   vars:
     _service_test_command:
@@ -33,12 +33,12 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
           description: Simple Service
           start_command: "{{ service_test_command }} 3600"
           state: started
-          enabled: yes
+          enabled: true
         - name: stopped-service
           description: Simple Service
           start_command: "{{ service_test_command }} 3601"
           state: stopped
-          enabled: no
+          enabled: false
         - name: specific-stop-service
           description: Specific Stop Service
           start_command: "{{ service_test_command }} 1440"
@@ -77,8 +77,8 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
 ---
 - name: Prepare
   hosts: all
-  become: yes
-  gather_facts: no
+  become: true
+  gather_facts: false
   serial: 30%
 
   roles:
@@ -155,7 +155,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |---------|----|
 |[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|8, 9|
 |[Debian](https://hub.docker.com/r/robertdebock/debian)|all|
-|[Fedora](https://hub.docker.com/r/robertdebock/fedora/)|all|
+|[Fedora](https://hub.docker.com/r/robertdebock/fedora)|all|
 |[opensuse](https://hub.docker.com/r/robertdebock/opensuse)|all|
 |[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|all|
 

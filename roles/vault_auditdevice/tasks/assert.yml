@@ -6,7 +6,7 @@
       - vault_auditdevice_address is defined
       - vault_auditdevice_address is string
       - vault_auditdevice_address is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test vault_auditdevice_token
   ansible.builtin.assert:
@@ -14,18 +14,18 @@
       - vault_auditdevice_token is defined
       - vault_auditdevice_token is string
       - vault_auditdevice_token is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test vault_auditdevice_list
   ansible.builtin.assert:
     that:
       - vault_auditdevice_list is defined
       - vault_auditdevice_list is iterable
-    quiet: yes
+    quiet: true
 
 - name: assert | Test vault_auditdevice_ssl_verify
   ansible.builtin.assert:
     that:
       - vault_auditdevice_ssl_verify is defined
       - vault_auditdevice_ssl_verify is boolean
-    quiet: yes
+    quiet: true

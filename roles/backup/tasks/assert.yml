@@ -6,7 +6,7 @@
       - backup_directory is defined
       - backup_directory is string
       - backup_directory is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test backup_remote_directory
   ansible.builtin.assert:
@@ -14,14 +14,14 @@
       - backup_remote_directory is defined
       - backup_remote_directory is string
       - backup_remote_directory is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test backup_cleanup
   ansible.builtin.assert:
     that:
       - backup_cleanup is defined
       - backup_cleanup is boolean
-    quiet: yes
+    quiet: true
 
 - name: assert | Test backup_timestamp
   ansible.builtin.assert:
@@ -29,7 +29,7 @@
       - backup_timestamp is defined
       - backup_timestamp is string
       - backup_timestamp is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test backup_format
   ansible.builtin.assert:
@@ -37,13 +37,13 @@
       - backup_format is defined
       - backup_format is string
       - backup_format in [ "gz", "tgz", "zip", "bz2" ]
-    quiet: yes
+    quiet: true
 
 - name: assert | Test backup_objects
   ansible.builtin.assert:
     that:
       - backup_objects is iterable
-    quiet: yes
+    quiet: true
   when:
     - backup_objects is defined
 
@@ -59,7 +59,7 @@
       - item.source is defined
       - item.source is string
       - item.source is not none
-    quiet: yes
+    quiet: true
   loop: "{{ backup_objects }}"
   loop_control:
     label: "{{ item.name }}"

@@ -14,8 +14,8 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 ---
 - name: Converge
   hosts: all
-  become: yes
-  gather_facts: yes
+  become: true
+  gather_facts: true
 
   pre_tasks:
     - name: Read token from remote machine
@@ -59,8 +59,8 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
 ---
 - name: Prepare
   hosts: all
-  become: yes
-  gather_facts: no
+  become: true
+  gather_facts: false
 
   roles:
     - role: robertdebock.roles.bootstrap
@@ -73,7 +73,7 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
       vault_configuration_listener_tcp:
         address: "127.0.0.1:8200"
         cluster_address: "127.0.0.1:8201"
-        tls_disable: yes
+        tls_disable: true
       vault_configuration_storage_raft:
         path: "/opt/vault/data"
         node_id: "{{ ansible_hostname }}"
@@ -134,7 +134,7 @@ vault_snapshot_token: "simple"
 vault_snapshot_schedules: []
 
 # Should SSL certificate verification be disabled?
-vault_snapshot_ssl_verify: yes
+vault_snapshot_ssl_verify: true
 ```
 
 ## [Requirements](#requirements)
@@ -169,7 +169,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |[Amazon](https://hub.docker.com/r/robertdebock/amazonlinux)|Candidate|
 |[Debian](https://hub.docker.com/r/robertdebock/debian)|all|
 |[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|all|
-|[Fedora](https://hub.docker.com/r/robertdebock/fedora/)|37, 38|
+|[Fedora](https://hub.docker.com/r/robertdebock/fedora)|37, 38|
 |[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|all|
 
 The minimum version of Ansible required is 2.12, tests have been done to:

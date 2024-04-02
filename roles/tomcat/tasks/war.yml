@@ -4,7 +4,7 @@
   ansible.builtin.get_url:
     url: "{{ war.url }}"
     dest: "{{ tomcat_directory }}//{{ instance.name }}/webapps/"
-    validate_certs: no
+    validate_certs: false
     mode: "0640"
   when:
     - war.url is defined

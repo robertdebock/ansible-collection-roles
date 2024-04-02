@@ -9,7 +9,7 @@
 - name: Install packages
   ansible.builtin.package:
     name: "{{ core_dependencies_packages }}"
-    update_cache: yes
+    update_cache: true
   notify:
     - Gather facts
 

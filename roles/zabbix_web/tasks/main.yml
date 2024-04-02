@@ -4,7 +4,7 @@
 - name: Import assert.yml
   ansible.builtin.import_tasks:
     file: assert.yml
-  run_once: yes
+  run_once: true
   delegate_to: localhost
 
 - name: Install zabbix_web
@@ -25,8 +25,8 @@
 - name: Set selinux settings for zabbix_web
   ansible.posix.seboolean:
     name: "{{ item }}"
-    state: yes
-    persistent: yes
+    state: true
+    persistent: true
   loop:
     - httpd_can_network_connect
     - httpd_can_network_connect_db
@@ -49,8 +49,8 @@
 - name: Add zabbix groups
   community.zabbix.zabbix_group:
     server_url: "{{ zabbix_web_server }}"
-    login_user: "{{ zabbix_web_username }}"
-    login_password: "{{ zabbix_web_password }}"
+    http_login_user: "{{ zabbix_web_username }}"
+    http_login_password: "{{ zabbix_web_password }}"
     validate_certs: "{{ zabbix_web_validate_certs }}"
     state: present
     host_groups:
@@ -59,14 +59,14 @@
   when:
     - zabbix_web_groups is defined
     - ansible_connection not in [ "container", "docker", "community.docker.docker" ]
-  run_once: yes
-  no_log: yes
+  run_once: true
+  no_log: true
 
 - name: Add zabbix hosts
   community.zabbix.zabbix_host:
     server_url: "{{ zabbix_web_server }}"
-    login_user: "{{ zabbix_web_username }}"
-    login_password: "{{ zabbix_web_password }}"
+    http_login_user: "{{ zabbix_web_username }}"
+    http_login_password: "{{ zabbix_web_password }}"
     validate_certs: "{{ zabbix_web_validate_certs }}"
     host_name: "{{ item.name }}"
     visible_name: "{{ item.visible_name | default(item.name) }}"
@@ -87,6 +87,6 @@
   when:
     - zabbix_web_hosts is defined
     - ansible_connection not in [ "container", "docker", "community.docker.docker" ]
-  run_once: yes
+  run_once: true
   loop_control:
     label: "{{ item.name }}"

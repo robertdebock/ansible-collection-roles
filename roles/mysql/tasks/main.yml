@@ -4,7 +4,7 @@
 - name: Import assert.yml
   ansible.builtin.import_tasks:
     file: assert.yml
-  run_once: yes
+  run_once: true
   delegate_to: localhost
 
 - name: Install mysql
@@ -47,7 +47,7 @@
   ansible.builtin.service:
     name: "{{ mysql_service }}"
     state: started
-    enabled: yes
+    enabled: true
 
 - name: Flush handlers
   ansible.builtin.meta: flush_handlers
@@ -73,7 +73,7 @@
     label: "{{ item.name }}"
   when:
     - mysql_databases is defined
-  no_log: yes
+  no_log: true
 
 - name: Create users
   community.mysql.mysql_user:
@@ -92,7 +92,7 @@
     label: "{{ item.name }}"
   when:
     - mysql_users is defined
-  no_log: yes
+  no_log: true
 
 - name: Flush handlers again
   ansible.builtin.meta: flush_handlers

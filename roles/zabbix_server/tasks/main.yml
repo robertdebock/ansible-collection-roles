@@ -4,7 +4,7 @@
 - name: Import assert.yml
   ansible.builtin.import_tasks:
     file: assert.yml
-  run_once: yes
+  run_once: true
   delegate_to: localhost
 
 - name: Install zabbix-server requirements
@@ -37,8 +37,8 @@
     - name: Set selinux settings for zabbix_server
       ansible.posix.seboolean:
         name: "{{ item }}"
-        state: yes
-        persistent: yes
+        state: true
+        persistent: true
       loop:
         - httpd_can_connect_zabbix
         - httpd_can_network_connect_db
@@ -69,7 +69,7 @@
   ansible.builtin.service:
     name: zabbix-server
     state: started
-    enabled: yes
+    enabled: true
   when:
     - not ci
   vars:

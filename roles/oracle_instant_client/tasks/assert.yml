@@ -7,7 +7,7 @@
       - oracle_instant_client_type is string
       - oracle_instant_client_type is not none
       - oracle_instant_client_type in [ "basic", "devel", "all" ]
-    quiet: yes
+    quiet: true
 
 - name: assert | Test oracle_instant_client_version
   ansible.builtin.assert:
@@ -15,7 +15,7 @@
       - oracle_instant_client_version is defined
       - oracle_instant_client_version is string
       - oracle_instant_client_version is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test oracle_instant_client_installation_type
   ansible.builtin.assert:
@@ -24,4 +24,4 @@
       - oracle_instant_client_installation_type is string
       - oracle_instant_client_installation_type is not none
       - oracle_instant_client_installation_type in [ "package", "zip" ]
-    quiet: yes
+    quiet: true

@@ -6,7 +6,7 @@
       - zabbix_proxy_mode is defined
       - zabbix_proxy_mode is string
       - zabbix_proxy_mode in [ "0", "1" ]
-    quiet: yes
+    quiet: true
 
 - name: assert | Test zabbix_proxy_server
   ansible.builtin.assert:
@@ -14,7 +14,7 @@
       - zabbix_proxy_server is defined
       - zabbix_proxy_server is string
       - zabbix_proxy_server is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test zabbix_proxy_server_port
   ansible.builtin.assert:
@@ -23,7 +23,7 @@
       - zabbix_proxy_server_port is number
       - zabbix_proxy_server_port > 0
       - zabbix_proxy_server_port < 65536
-    quiet: yes
+    quiet: true
 
 - name: assert | Test zabbix_proxy_hostname
   ansible.builtin.assert:
@@ -31,7 +31,7 @@
       - zabbix_proxy_hostname is defined
       - zabbix_proxy_hostname is string
       - zabbix_proxy_hostname is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test zabbix_proxy_database_hostname
   ansible.builtin.assert:
@@ -39,7 +39,7 @@
       - zabbix_proxy_database_hostname is defined
       - zabbix_proxy_database_hostname is string
       - zabbix_proxy_database_hostname is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test zabbix_proxy_database_name
   ansible.builtin.assert:
@@ -47,7 +47,7 @@
       - zabbix_proxy_database_name is defined
       - zabbix_proxy_database_name is string
       - zabbix_proxy_database_name is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test zabbix_proxy_database_user
   ansible.builtin.assert:
@@ -55,7 +55,7 @@
       - zabbix_proxy_database_user is defined
       - zabbix_proxy_database_user is string
       - zabbix_proxy_database_user is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test zabbix_proxy_database_password
   ansible.builtin.assert:
@@ -63,7 +63,7 @@
       - zabbix_proxy_database_password is defined
       - zabbix_proxy_database_password is string
       - zabbix_proxy_database_password is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test zabbix_proxy_database_port
   ansible.builtin.assert:
@@ -72,4 +72,4 @@
       - zabbix_proxy_database_port is number
       - zabbix_proxy_database_port > 0
       - zabbix_proxy_database_port < 65536
-    quiet: yes
+    quiet: true

@@ -24,7 +24,7 @@
     state: dump
     target: "{{ backup_remote_directory }}/{{ object.type }}-{{ object.name }}-{{ backup_timestamp }}.sql"
   become_user: postgres
-  become: yes
+  become: true
   when:
     - object.type == "postgres"
 
@@ -41,8 +41,8 @@
   ansible.builtin.fetch:
     src: "{{ backup_remote_directory }}/{{ object.type }}-{{ object.name }}-{{ backup_timestamp }}.{{ object.format | default(backup_format) }}"
     dest: "{{ backup_directory }}/{{ inventory_hostname }}/"
-    flat: yes
-  become: no
+    flat: true
+  become: false
   when:
     - object.type in [ "mysql", "postgres" ]
 

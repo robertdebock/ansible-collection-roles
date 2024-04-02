@@ -61,14 +61,14 @@ enpass_yum_repositories:
   - name: enpass
     description: Enpass password manager repository
     baseurl: "https://yum.enpass.io/stable/$basearch/"
-    gpgcheck: yes
+    gpgcheck: true
     gpgkey: "https://yum.enpass.io/RPM-GPG-KEY-enpass-signing-key"
   - name: enpass-testing
     description: Enpass password manager repository
     baseurl: "https://yum.enpass.io/testing/$basearch/"
-    gpgcheck: yes
+    gpgcheck: true
     gpgkey: "https://yum.enpass.io/RPM-GPG-KEY-enpass-signing-key"
-    enabled: no
+    enabled: false
 
 # - name: enpass
 #   repo: "https://yum.enpass.io/stable/x86_64/"

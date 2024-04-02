@@ -23,14 +23,14 @@
   ansible.builtin.command:
     cmd: mount -o remount,noexec /dev/shm  # noqa command-instead-of-module Remounting not in module
   args:
-    warn: no
+    warn: false
 
 - name: Copy aide.db.new.gz to aide.db.gz
   ansible.builtin.copy:
     src: /var/lib/aide/aide.db.new.gz
     dest: /var/lib/aide/aide.db.gz
     mode: "0600"
-    remote_src: yes
+    remote_src: true
 
 - name: Run grub2-mkconfig
   ansible.builtin.command:
@@ -38,7 +38,7 @@
 
 - name: Systemctl daemon-reload
   ansible.builtin.systemd:
-    daemon_reload: yes
+    daemon_reload: true
 
 - name: Reboot
   ansible.builtin.reboot:

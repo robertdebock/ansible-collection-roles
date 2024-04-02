@@ -4,7 +4,7 @@
   ansible.builtin.assert:
     that:
       - glusterfs_bricks is iterable
-    quiet: yes
+    quiet: true
   when:
     - glusterfs_bricks is defined
 
@@ -20,7 +20,7 @@
       - item.mountpoint is defined
       - item.mountpoint is string
       - item.mountpoint is not none
-    quiet: yes
+    quiet: true
   loop: "{{ glusterfs_bricks }}"
   loop_control:
     label: "{{ item.name }}"
@@ -31,7 +31,7 @@
   ansible.builtin.assert:
     that:
       - glusterfs_volumes is iterable
-    quiet: yes
+    quiet: true
   when:
     - glusterfs_volumes is defined
 
@@ -52,7 +52,7 @@
       - item.mountpoint is not none
       - item.rebalance is defined
       - item.rebalance is boolean
-    quiet: yes
+    quiet: true
   loop: "{{ glusterfs_volumes }}"
   loop_control:
     label: "{{ item.name }}"

@@ -9,8 +9,8 @@ zabbix_repository_version_minor: 1
 
 # An extra package is required for RHEL9 (`crypto-policies-scripts`).
 # This variable determines if it should be removed or not.
-zabbix_repository_cleanup_requirements: yes
+zabbix_repository_cleanup_requirements: true
 
 # The crypto policy must be modified on RHEL9. This variable determines if
 # the policy should be switched back to the default.
-zabbix_repository_revert_crypto_policy: yes
+zabbix_repository_revert_crypto_policy: true

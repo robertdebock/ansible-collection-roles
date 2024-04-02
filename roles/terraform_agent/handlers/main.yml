@@ -1,0 +1,10 @@
+---
+# handler file for terraform_agent
+
+- name: Restart the Terraform Agent
+  ansible.builtin.service:
+    name: tfc-agent
+    state: restarted
+  when:
+    - terraform_agent_token is defined
+    - terraform_agent_token != ""

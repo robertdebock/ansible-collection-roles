@@ -14,8 +14,8 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 ---
 - name: Converge
   hosts: all
-  become: yes
-  gather_facts: yes
+  become: true
+  gather_facts: true
 
   roles:
     - role: robertdebock.roles.cntlm
@@ -27,8 +27,8 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
 ---
 - name: Prepare
   hosts: all
-  become: yes
-  gather_facts: no
+  become: true
+  gather_facts: false
 
   roles:
     - role: robertdebock.roles.bootstrap
@@ -66,7 +66,7 @@ cntlm_listen: 3128
 
 # When you've got a password hash, you may fill it in here.
 # cntlm_passntlmv2: 1234567890abcdef
-cntlm_auth_ntlm: no
+cntlm_auth_ntlm: false
 
 # What hosts to omit in the proxy.
 cntlm_noproxy: localhost
@@ -75,19 +75,19 @@ cntlm_noproxy: localhost
 cntlm_tmp: /root
 
 # Which IPs or CIDR subnets CNTLM is accessible from.
-# Items other than 127.0.0.1 are only effective if gateway_enabled is set to `yes`.
+# Items other than 127.0.0.1 are only effective if gateway_enabled is set to `true`.
 cntlm_allows:
   - "127.0.0.1"
 
-# If "yes", include the default ansible_default_ipv4 IP in cntlm_allows ([inventory_hostname]['ansible_default_ipv4'] )
-cntlm_allows_include_local_ipv4: no
+# If "true", include the default ansible_default_ipv4 IP in cntlm_allows ([inventory_hostname]['ansible_default_ipv4'] )
+cntlm_allows_include_local_ipv4: false
 
 # By default ("0/0"), CNTLM is inaccessible from all other IP addresses.
 cntlm_denies:
   - "0/0"
 
-# If yes, access to CNTLM is possible from outside of the local host, subject to cntlm_allows and cntlm_denies:
-gateway_enabled: no
+# If true, access to CNTLM is possible from outside of the local host, subject to cntlm_allows and cntlm_denies:
+gateway_enabled: false
 ```
 
 ## [Requirements](#requirements)
@@ -120,7 +120,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |---------|----|
 |[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|8, 9|
 |[Debian](https://hub.docker.com/r/robertdebock/debian)|all|
-|[Fedora](https://hub.docker.com/r/robertdebock/fedora/)|all|
+|[Fedora](https://hub.docker.com/r/robertdebock/fedora)|all|
 |[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|all|
 
 The minimum version of Ansible required is 2.12, tests have been done to:

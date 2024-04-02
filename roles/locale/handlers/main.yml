@@ -4,6 +4,6 @@
 - name: Localectl set-locale
   ansible.builtin.command:
     cmd: "{{ locale_notify_command }}"
-  changed_when: yes
+  changed_when: true
   when:
     - ansible_connection not in [ "container", "docker", "community.docker.docker" ]

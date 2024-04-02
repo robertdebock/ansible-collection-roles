@@ -4,13 +4,13 @@
 - name: Import assert.yml
   ansible.builtin.import_tasks:
     file: assert.yml
-  run_once: yes
+  run_once: true
   delegate_to: localhost
 
 - name: Install zabbix-agent software (Not Debian)
   ansible.builtin.package:
     name: zabbix-agent
-    disable_gpg_check: yes
+    disable_gpg_check: true
     state: present
   when:
     - ansible_os_family != "Debian"
@@ -49,4 +49,4 @@
   ansible.builtin.service:
     name: "{{ zabbix_agent_service }}"
     state: started
-    enabled: yes
+    enabled: true

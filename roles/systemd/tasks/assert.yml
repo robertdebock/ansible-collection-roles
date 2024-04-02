@@ -6,13 +6,13 @@
       - systemd_default_target is defined
       - systemd_default_target is string
       - systemd_default_target in [ "multi-user.target", "graphical.target", "rescue.target" ]
-    quiet: yes
+    quiet: true
 
 - name: assert | Test systemd_coredump
   ansible.builtin.assert:
     that:
       - systemd_coredump is iterable
-    quiet: yes
+    quiet: true
   when:
     - systemd_coredump is defined
 
@@ -23,7 +23,7 @@
       - item.option is string
       - item.option is not none
       - item.value is defined
-    quiet: yes
+    quiet: true
   loop: "{{ systemd_coredump }}"
   when:
     - systemd_coredump is defined
@@ -32,7 +32,7 @@
   ansible.builtin.assert:
     that:
       - systemd_journald is iterable
-    quiet: yes
+    quiet: true
   when:
     - systemd_journald is defined
 
@@ -43,7 +43,7 @@
       - item.option is string
       - item.option is not none
       - item.value is defined
-    quiet: yes
+    quiet: true
   loop: "{{ systemd_journald }}"
   when:
     - systemd_journald is defined
@@ -52,7 +52,7 @@
   ansible.builtin.assert:
     that:
       - systemd_logind is iterable
-    quiet: yes
+    quiet: true
   when:
     - systemd_logind is defined
 
@@ -63,7 +63,7 @@
       - item.option is string
       - item.option is not none
       - item.value is defined
-    quiet: yes
+    quiet: true
   loop: "{{ systemd_logind }}"
   when:
     - systemd_logind is defined
@@ -72,7 +72,7 @@
   ansible.builtin.assert:
     that:
       - systemd_resolved is iterable
-    quiet: yes
+    quiet: true
   when:
     - systemd_resolved is defined
 
@@ -83,7 +83,7 @@
       - item.option is string
       - item.option is not none
       - item.value is defined
-    quiet: yes
+    quiet: true
   loop: "{{ systemd_resolved }}"
   when:
     - systemd_resolved is defined
@@ -92,7 +92,7 @@
   ansible.builtin.assert:
     that:
       - systemd_system is iterable
-    quiet: yes
+    quiet: true
   when:
     - systemd_system is defined
 
@@ -103,7 +103,7 @@
       - item.option is string
       - item.option is not none
       - item.value is defined
-    quiet: yes
+    quiet: true
   loop: "{{ systemd_system }}"
   when:
     - systemd_system is defined
@@ -112,7 +112,7 @@
   ansible.builtin.assert:
     that:
       - systemd_user is iterable
-    quiet: yes
+    quiet: true
   when:
     - systemd_user is defined
 
@@ -123,7 +123,7 @@
       - item.option is string
       - item.option is not none
       - item.value is defined
-    quiet: yes
+    quiet: true
   loop: "{{ systemd_user }}"
   when:
     - systemd_user is defined

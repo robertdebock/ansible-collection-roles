@@ -14,8 +14,8 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 ---
 - name: Converge
   hosts: all
-  become: yes
-  gather_facts: yes
+  become: true
+  gather_facts: true
 
   roles:
     - role: robertdebock.roles.nomad
@@ -27,8 +27,8 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
 ---
 - name: Prepare
   hosts: all
-  become: yes
-  gather_facts: no
+  become: true
+  gather_facts: false
 
   roles:
     - role: robertdebock.roles.bootstrap
@@ -47,11 +47,11 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 # defaults file for nomad
 
 # You can install nomad using a package in this role. If you have installed
-# nomad manually, set this to `no`.
-nomad_install_package: yes
+# nomad manually, set this to `false`.
+nomad_install_package: true
 
-# Set this to "yes" for a server.
-nomad_server: yes
+# Set this to "true" for a server.
+nomad_server: true
 
 # Configuration items for the Nomad server
 nomad_server_data_dir: /tmp/server
@@ -61,8 +61,8 @@ nomad_server_log_level: INFO
 # How many servers and agents are expected?
 nomad_server_bootstrap_expect: 1
 
-# This this to "yes" for an agent.
-nomad_agent: no
+# This this to "true" for an agent.
+nomad_agent: false
 
 # Configuration items for the Nomad agent
 nomad_agent_log_level: INFO
@@ -103,7 +103,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |---------|----|
 |[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|8, 9|
 |[Debian](https://hub.docker.com/r/robertdebock/debian)|bullseye|
-|[Fedora](https://hub.docker.com/r/robertdebock/fedora/)|37, 38|
+|[Fedora](https://hub.docker.com/r/robertdebock/fedora)|37, 38|
 |[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|all|
 
 The minimum version of Ansible required is 2.12, tests have been done to:

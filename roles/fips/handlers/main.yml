@@ -5,12 +5,12 @@
   ansible.builtin.command:
     cmd: grubby --default-kernel
   register: fips_default_kernel
-  changed_when: no
+  changed_when: false
 
 - name: Update default kernel arguments
   ansible.builtin.command:
     cmd: grubby --update-kernel=$(grubby --default-kernel) --args=fips=1
-  changed_when: yes
+  changed_when: true
   notify:
     - Reboot
 

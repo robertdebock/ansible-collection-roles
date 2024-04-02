@@ -4,7 +4,7 @@
 - name: Import assert.yml
   ansible.builtin.import_tasks:
     file: assert.yml
-  run_once: yes
+  run_once: true
   delegate_to: localhost
 
 - name: Install requirements
@@ -22,7 +22,7 @@
   ansible.builtin.unarchive:
     src: "https://releases.hashicorp.com/vault-plugin-database-oracle/{{ vault_plugin_oracle_version }}/vault-plugin-database-oracle_{{ vault_plugin_oracle_version }}_linux_amd64.zip"
     dest: "{{ vault_plugin_oracle_directory }}"
-    remote_src: yes
+    remote_src: true
     creates: "{{ vault_plugin_oracle_directory }}/vault-plugin-database-oracle"
   notify:
     - Set capabilities
@@ -31,7 +31,7 @@
   ansible.builtin.stat:
     path: "{{ vault_plugin_oracle_directory }}/vault-plugin-database-oracle"
     checksum_algorithm: sha256
-    get_checksum: yes
+    get_checksum: true
   register: vault_plugin_oracle_sha256sum
 
 - name: Show instructions

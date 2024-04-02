@@ -6,7 +6,7 @@
       - restore_directory is defined
       - restore_directory is string
       - restore_directory is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test restore_remote_directory
   ansible.builtin.assert:
@@ -14,14 +14,14 @@
       - restore_remote_directory is defined
       - restore_remote_directory is string
       - restore_remote_directory is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test restore_objects
   ansible.builtin.assert:
     that:
       - restore_objects is defined
       - restore_objects is iterable
-    quiet: yes
+    quiet: true
 
 - name: assert | Test item in restore_objects
   ansible.builtin.assert:
@@ -35,7 +35,7 @@
       - item.destination is defined
       - item.destination is string
       - item.destination is not none
-    quiet: yes
+    quiet: true
   loop: "{{ restore_objects }}"
   loop_control:
     label: "{{ item.name }}"

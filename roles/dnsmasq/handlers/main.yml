@@ -4,7 +4,7 @@
 - name: Test dnsmasq configuration
   ansible.builtin.command:
     cmd: dnsmasq --test
-  changed_when: yes
+  changed_when: true
 
 - name: Restart dnsmasq
   ansible.builtin.service:

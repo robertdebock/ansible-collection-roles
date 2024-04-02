@@ -14,8 +14,8 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 ---
 - name: Converge
   hosts: all
-  become: yes
-  gather_facts: no
+  become: true
+  gather_facts: false
 
   pre_tasks:
     - name: Read /root/.vault-token
@@ -25,7 +25,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 
   roles:
     - role: robertdebock.roles.vault_auditdevice
-      vault_auditdevice_ssl_verify: no
+      vault_auditdevice_ssl_verify: false
       vault_auditdevice_token: "{{ vault_auditdevice_token_slurped['content'] | b64decode }}"
       vault_auditdevice_list:
         - name: local_file/  # Make sure the value is trailed by a `/`.
@@ -42,8 +42,8 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
 
 - name: Prepare
   hosts: all
-  become: yes
-  gather_facts: no
+  become: true
+  gather_facts: false
 
   roles:
     - role: robertdebock.roles.bootstrap
@@ -59,9 +59,9 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
       ansible.builtin.command:
         cmd: vault operator init -format=yaml
       register: vault_auditdevice_init
-      changed_when: yes
+      changed_when: true
       environment:
-        VAULT_SKIP_VERIFY: yes
+        VAULT_SKIP_VERIFY: true
       notify:
         - Unseal vault
 
@@ -95,10 +95,10 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
     - name: Unseal vault
       ansible.builtin.command:
         cmd: vault operator unseal "{{ item }}"
-      changed_when: yes
+      changed_when: true
       loop: "{{ vault_auditdevice_init_yaml['unseal_keys_b64'] }}"
       environment:
-        VAULT_SKIP_VERIFY: yes
+        VAULT_SKIP_VERIFY: true
       when:
         - vault_auditdevice_init is defined
 ```
@@ -123,7 +123,7 @@ vault_auditdevice_token: "simple"
 vault_auditdevice_list: []
 
 # Should SSL certificate verification be disabled?
-vault_auditdevice_ssl_verify: yes
+vault_auditdevice_ssl_verify: true
 ```
 
 ## [Requirements](#requirements)
@@ -157,7 +157,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |[Amazon](https://hub.docker.com/r/robertdebock/amazonlinux)|Candidate|
 |[Debian](https://hub.docker.com/r/robertdebock/debian)|bullseye|
 |[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|8, 9|
-|[Fedora](https://hub.docker.com/r/robertdebock/fedora/)|38, 39|
+|[Fedora](https://hub.docker.com/r/robertdebock/fedora)|38, 39|
 |[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|all|
 
 The minimum version of Ansible required is 2.12, tests have been done to:

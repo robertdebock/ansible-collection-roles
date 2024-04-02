@@ -6,7 +6,7 @@
       - mount_default_mode is defined
       - mount_default_mode is string
       - mount_default_mode is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test mount_default_owner
   ansible.builtin.assert:
@@ -14,7 +14,7 @@
       - mount_default_owner is defined
       - mount_default_owner is string
       - mount_default_owner is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test mount_default_group
   ansible.builtin.assert:
@@ -22,14 +22,14 @@
       - mount_default_group is defined
       - mount_default_group is string
       - mount_default_group is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test mount_requests
   ansible.builtin.assert:
     that:
       - mount_requests is defined
       - mount_requests is iterable
-    quiet: yes
+    quiet: true
   when:
     - mount_requests is defined
 
@@ -37,7 +37,7 @@
   ansible.builtin.assert:
     that:
       - item.backup is boolean
-    quiet: yes
+    quiet: true
   loop: "{{ mount_requests }}"
   loop_control:
     label: "{{ item.path }}"
@@ -48,7 +48,7 @@
   ansible.builtin.assert:
     that:
       - item.boot is boolean
-    quiet: yes
+    quiet: true
   loop: "{{ mount_requests }}"
   loop_control:
     label: "{{ item.path }}"
@@ -62,7 +62,7 @@
         that:
           - item.fstype is string
           - item.fstype in [ "ext3", "ext4", "iso9660", "nfs", "none", "swap", "xfs" ]
-        quiet: yes
+        quiet: true
       loop: "{{ mount_requests }}"
       loop_control:
         label: "{{ item.path }}"
@@ -79,7 +79,7 @@
       - item.path is defined
       - item.path is string
       - item.path is not none
-    quiet: yes
+    quiet: true
   loop: "{{ mount_requests }}"
   loop_control:
     label: "{{ item.path }}"
@@ -89,7 +89,7 @@
     that:
       - item.state is string
       - item.state in [ "absent", "mounted", "present", "remounted", "unmounted" ]
-    quiet: yes
+    quiet: true
   when:
     - item.state is defined
   loop: "{{ mount_requests }}"

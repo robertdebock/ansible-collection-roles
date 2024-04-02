@@ -4,7 +4,7 @@
 - name: Import assert.yml
   ansible.builtin.import_tasks:
     file: assert.yml
-  run_once: yes
+  run_once: true
   delegate_to: localhost
 
 - name: Install requirements
@@ -102,8 +102,8 @@
   ansible.builtin.shell:
     cmd: set -o pipefail && readlink -f /usr/bin/java | sed 's%/bin/java%%'
     executable: /bin/bash
-  changed_when: no
-  check_mode: no
+  changed_when: false
+  check_mode: false
   register: java_home
 
 - name: Set JAVA_HOME in /etc/environment
@@ -111,5 +111,5 @@
     path: /etc/profile.d/java_home.sh
     regexp: '^export JAVA_HOME='
     line: 'export JAVA_HOME="{{ java_home.stdout }}"'
-    create: yes
+    create: true
     mode: "0644"

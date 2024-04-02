@@ -12,7 +12,7 @@
     - name: Trust APT key
       ansible.builtin.apt_key:
         url: "https://apt.enpass.io/keys/enpass-linux.key"
-        validate_certs: no
+        validate_certs: false
 
     - name: Add APT repository
       ansible.builtin.apt_repository:

@@ -4,7 +4,7 @@
 - name: Import assert.yml
   ansible.builtin.import_tasks:
     file: assert.yml
-  run_once: yes
+  run_once: true
   delegate_to: localhost
 
 - name: Install requirements
@@ -16,7 +16,7 @@
   ansible.builtin.unarchive:
     src: "{{ dsvpn_release_url }}"
     dest: "{{ dsvpn_temporary_directory }}"
-    remote_src: yes
+    remote_src: true
     creates: "{{ dsvpn_temporary_directory }}/dsvpn-{{ dsvpn_version }}"
     mode: "0755"
 
@@ -28,7 +28,7 @@
   ansible.builtin.copy:
     src: "{{ dsvpn_temporary_directory }}/dsvpn-{{ dsvpn_version }}/dsvpn"
     dest: "{{ dsvpn_install_directory }}/dsvpn"
-    remote_src: yes
+    remote_src: true
     mode: "750"
 
 - name: Generate key

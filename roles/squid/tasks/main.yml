@@ -4,24 +4,24 @@
 - name: Import assert.yml
   ansible.builtin.import_tasks:
     file: assert.yml
-  run_once: yes
+  run_once: true
   delegate_to: localhost
 
 - name: Create group
   ansible.builtin.group:
     name: "{{ squid_group }}"
-    system: yes
+    system: true
     state: present
 
 - name: Create user
   ansible.builtin.user:
     name: "{{ squid_user }}"
     group: "{{ squid_group }}"
-    create_home: no
+    create_home: false
     state: present
     home: /var/spool/squid
     shell: /sbin/nologin
-    system: yes
+    system: true
 
 - name: Install squid
   ansible.builtin.package:
@@ -52,6 +52,6 @@
   ansible.builtin.service:
     name: "{{ squid_service }}"
     state: started
-    enabled: yes
+    enabled: true
   when:
     - not ansible_check_mode

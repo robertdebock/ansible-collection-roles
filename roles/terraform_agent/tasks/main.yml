@@ -4,7 +4,7 @@
 - name: Import assert.yml
   ansible.builtin.import_tasks:
     file: assert.yml
-  run_once: yes
+  run_once: true
   delegate_to: localhost
 
 - name: Install requirements
@@ -24,7 +24,9 @@
   ansible.builtin.unarchive:
     src: "https://releases.hashicorp.com/tfc-agent/{{ terraform_agent_version }}/tfc-agent_{{ terraform_agent_version }}_linux_amd64.zip"
     dest: "{{ terraform_agent_installation_path }}"
-    remote_src: yes
+    remote_src: true
+  notify:
+    - Restart the Terraform Agent
 
 - name: Place environment variable file
   ansible.builtin.template:
@@ -33,6 +35,8 @@
     mode: 0644
     owner: root
     group: root
+  notify:
+    - Restart the Terraform Agent
 
 - name: Place a service file for Terraform Agent
   ansible.builtin.template:
@@ -41,12 +45,14 @@
     mode: 0644
     owner: root
     group: root
+  notify:
+    - Restart the Terraform Agent
 
 - name: Start the Terraform Agent
   ansible.builtin.service:
     name: tfc-agent
     state: started
-    enabled: yes
+    enabled: true
   when:
     - terraform_agent_token is defined
     - terraform_agent_token != ""

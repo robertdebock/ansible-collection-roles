@@ -6,4 +6,4 @@
       - haveged_write_wakeup_threshold is defined
       - haveged_write_wakeup_threshold is number
       - haveged_write_wakeup_threshold > 0
-    quiet: yes
+    quiet: true

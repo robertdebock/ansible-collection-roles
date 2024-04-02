@@ -6,7 +6,7 @@
       - item.name is defined
       - item.name is string
       - item.name is not none
-    quiet: yes
+    quiet: true
 
 - name: assert_awx_configuration_organizations | Test awx_configuration_organizations.description
   ansible.builtin.assert:
@@ -14,12 +14,12 @@
       - item.description is defined
       - item.description is string
       - item.description is not none
-    quiet: yes
+    quiet: true
 
 - name: assert_awx_configuration_organizations | Test awx_configuration_organizations.galaxy_credentials
   ansible.builtin.assert:
     that:
       - item.galaxy_credentials is iterable
-    quiet: yes
+    quiet: true
   when:
     - item.galaxy_credentials is defined

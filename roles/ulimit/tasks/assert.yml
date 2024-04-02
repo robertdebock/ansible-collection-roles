@@ -4,7 +4,7 @@
   ansible.builtin.assert:
     that:
       - ulimit_items is iterable
-    quiet: yes
+    quiet: true
   when:
     - ulimit_items is defined
 
@@ -16,7 +16,7 @@
       - item.limit_item in ulimit_acceptable_limit_items
       - item.value is defined
       - item.value is number
-    quiet: yes
+    quiet: true
   loop: "{{ ulimit_items }}"
   loop_control:
     label: "{{ item.limit_item }}"
@@ -50,7 +50,7 @@
       - ulimit_domain is defined
       - ulimit_domain is string
       - ulimit_domain is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test ulimit_limit_type
   ansible.builtin.assert:
@@ -58,7 +58,7 @@
       - ulimit_limit_type is defined
       - ulimit_limit_type is string
       - ulimit_limit_type in [ "hard", "soft", "-" ]
-    quiet: yes
+    quiet: true
 
 - name: assert | Test ulimit_dest
   ansible.builtin.assert:
@@ -66,11 +66,11 @@
       - ulimit_dest is defined
       - ulimit_dest is string
       - ulimit_dest is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test ulimit_backup
   ansible.builtin.assert:
     that:
       - ulimit_backup is defined
       - ulimit_backup is boolean
-    quiet: yes
+    quiet: true

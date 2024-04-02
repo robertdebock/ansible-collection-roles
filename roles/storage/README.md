@@ -14,8 +14,8 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 ---
 - name: Converge
   hosts: all
-  become: yes
-  gather_facts: yes
+  become: true
+  gather_facts: true
 
   pre_tasks:
     # For testing in containers, a loopback device is created in `prepare.yml`.
@@ -66,8 +66,8 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
 ---
 - name: Prepare
   hosts: all
-  become: yes
-  gather_facts: no
+  become: true
+  gather_facts: false
 
   roles:
     - role: robertdebock.roles.bootstrap
@@ -88,12 +88,12 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
         vg: data
         lv: test1
         state: absent
-        force: yes
+        force: true
 
     - name: Remove all loop devices
       ansible.builtin.command:
         cmd: losetup -D
-      changed_when: yes
+      changed_when: true
       when:
         - ansible_distribution != "Alpine"
 
@@ -105,12 +105,12 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
           ansible.builtin.command:
             cmd: losetup -a
           register: loop_devices
-          changed_when: no
+          changed_when: false
 
         - name: Remove loop device
           ansible.builtin.command:
             cmd: "losetup -d {{ item | split(':') | first }}"
-          changed_when: yes
+          changed_when: true
           loop: "{{ loop_devices.stdout_lines }}"
 
     # Since we're in a container, let's create a file.
@@ -127,7 +127,7 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
       ansible.builtin.command:
         cmd: losetup -f
       register: loop_device
-      changed_when: no
+      changed_when: false
 
     - name: Store loop device on disk
       ansible.builtin.copy:
@@ -140,7 +140,7 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
     - name: Create loop device
       ansible.builtin.command:
         cmd: losetup {{ loop_device.stdout }} /blockdevice.img
-      changed_when: yes
+      changed_when: true
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.
@@ -193,7 +193,7 @@ storage_default_fstype: ext4
 #     group: root
 #     mode: "0755"
 #     opts: defaults
-#     boot: yes
+#     boot: true
 #     dump: 0
 #     passno: 2
 ```
@@ -227,7 +227,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |[Amazon](https://hub.docker.com/r/robertdebock/amazonlinux)|Candidate|
 |[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|8, 9|
 |[Debian](https://hub.docker.com/r/robertdebock/debian)|all|
-|[Fedora](https://hub.docker.com/r/robertdebock/fedora/)|all|
+|[Fedora](https://hub.docker.com/r/robertdebock/fedora)|all|
 |[opensuse](https://hub.docker.com/r/robertdebock/opensuse)|all|
 |[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|all|
 

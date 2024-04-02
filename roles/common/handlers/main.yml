@@ -3,7 +3,7 @@
 
 - name: Gather facts
   ansible.builtin.setup:
-  become: no
+  become: false
 
 - name: Reload network manager
   ansible.builtin.service:

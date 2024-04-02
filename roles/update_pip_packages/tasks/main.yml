@@ -4,7 +4,7 @@
 - name: Import assert.yml
   ansible.builtin.import_tasks:
     file: assert.yml
-  run_once: yes
+  run_once: true
   delegate_to: localhost
 
 - name: Install requirements
@@ -17,7 +17,7 @@
     - name: Check pip
       ansible.builtin.command:
         cmd: which pip
-      changed_when: no
+      changed_when: false
       register: update_pip_packages_pip
       environment:
         PATH: "/bin:/usr/bin:/usr/local/bin"
@@ -31,7 +31,7 @@
     - name: Check pip3
       ansible.builtin.command:
         cmd: which pip3
-      changed_when: no
+      changed_when: false
       register: update_pip_packages_pip3
       environment:
         PATH: "/bin:/usr/bin:/usr/local/bin"

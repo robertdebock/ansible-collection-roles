@@ -4,6 +4,6 @@
   ansible.builtin.assert:
     that:
       - tune2fs_settings is iterable
-    quiet: yes
+    quiet: true
   when:
     - tune2fs_settings is defined

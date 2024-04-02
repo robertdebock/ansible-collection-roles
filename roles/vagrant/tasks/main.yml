@@ -4,7 +4,7 @@
 - name: Import assert.yml
   ansible.builtin.import_tasks:
     file: assert.yml
-  run_once: yes
+  run_once: true
   delegate_to: localhost
 
 - name: Download vagrant
@@ -17,7 +17,7 @@
   ansible.builtin.package:
     name: "/tmp/{{ vagrant_package | basename }}"
     state: present
-    disable_gpg_check: yes
+    disable_gpg_check: true
   when:
     - ansible_pkg_mgr in [ "yum", "dnf" ]
 
@@ -25,7 +25,7 @@
   community.general.zypper:
     name: "/tmp/{{ vagrant_package | basename }}"
     state: present
-    disable_gpg_check: yes
+    disable_gpg_check: true
   when:
     - ansible_pkg_mgr == "zypper"
 
@@ -41,7 +41,7 @@
     src: "/tmp/{{ vagrant_package | basename }}"
     dest: "{{ vagrant_unarchive_dest }}"
     creates: "{{ vagrant_unarchive_dest }}/vagrant"
-    remote_src: yes
+    remote_src: true
     mode: "0755"
   when:
     - ansible_pkg_mgr not in [ "apt", "dnf", "yum", "zypper" ]

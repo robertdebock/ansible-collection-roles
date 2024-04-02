@@ -4,9 +4,9 @@
 - name: Import assert.yml
   ansible.builtin.import_tasks:
     file: assert.yml
-  run_once: yes
+  run_once: true
   delegate_to: localhost
-  become: no
+  become: false
 
 - name: Install requirements
   ansible.builtin.package:
@@ -46,8 +46,8 @@
         description: "{{ gitlab_repository_name }}"
         file: /etc/yum.repos.d/{{ gitlab_repository_name }}.repo
         baseurl: "{{ gitlab_repository_url }}"
-        gpgcheck: yes
-        sslverify: yes
+        gpgcheck: true
+        sslverify: true
         sslcacert: /etc/pki/tls/certs/ca-bundle.crt
         metadata_expire: "300"
 
@@ -56,12 +56,12 @@
     - name: Check if gitlab-rake is available
       ansible.builtin.command:
         cmd: gitlab-rake --version
-      changed_when: no
+      changed_when: false
       register: gitlab_rake_version
     - name: Use gitlab-rake to check db migrations
       ansible.builtin.command:
         cmd: "gitlab-rake db:migrate:status"
-      changed_when: no
+      changed_when: false
       register: gitlab_rake_database_migrations
       until: '"  down    " not in gitlab_rake_database_migrations.stdout'
       retries: "{{ gitlab_database_migrations_retries }}"
@@ -87,7 +87,7 @@
       ansible.builtin.file:
         path: /etc/gitlab/ssl
         state: directory
-        recurse: yes
+        recurse: true
         owner: root
         group: root
         mode: "0750"

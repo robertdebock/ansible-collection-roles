@@ -11,4 +11,4 @@ ulimit_limit_type: soft
 ulimit_dest: /etc/security/limits.conf
 
 # Should a backup of limits.conf be created on changes?
-ulimit_backup: yes
+ulimit_backup: true

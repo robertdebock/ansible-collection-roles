@@ -5,7 +5,7 @@
     that:
       - xrdp_configuration is defined
       - xrdp_configuration is iterable
-    quiet: yes
+    quiet: true
 
 - name: assert | Test item in xrdp_configuration
   ansible.builtin.assert:
@@ -17,7 +17,7 @@
       - item.section is string
       - item.section is not none
       - item.value is defined
-    quiet: yes
+    quiet: true
   loop: "{{ xrdp_configuration }}"
   loop_control:
     label: "{{ item.option }}"

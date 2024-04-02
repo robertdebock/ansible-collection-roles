@@ -4,7 +4,7 @@
 - name: Import assert.yml
   ansible.builtin.import_tasks:
     file: assert.yml
-  run_once: yes
+  run_once: true
   delegate_to: localhost
 
 - name: Create remote_backup_directory
@@ -19,7 +19,7 @@
     state: directory
     mode: "0750"
   connection: local
-  become: no
+  become: false
 
 - name: Loop over objects in backup_objects
   ansible.builtin.include_tasks:

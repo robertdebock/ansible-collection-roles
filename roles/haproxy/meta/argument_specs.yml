@@ -9,7 +9,7 @@ argument_specs:
     options:
       haproxy_stats:
         type: "bool"
-        default: yes
+        default: true
         description: "Configure stats in HAProxy?"
       haproxy_stats_port:
         type: "int"

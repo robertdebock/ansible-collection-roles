@@ -14,7 +14,7 @@ gitlab_release: 0
 gitlab_distribution: community
 
 # Would you like Ansible to show you the initial_root_password?
-gitlab_show_initial_root_password: no
+gitlab_show_initial_root_password: false
 
 # Instead of defining the variables below, you can also simply copy a configuration file.
 # Place this file into the `files` directory that hosts the playbooks.
@@ -34,7 +34,7 @@ gitlab_rails_time_zone: UTC
 # package `ruby` is required for that. By default `ruby` is installed and
 # uninstalled. This makes the role not idempotent, so CI ruby is not un-
 # installed.
-gitlab_cleanup_ruby: yes
+gitlab_cleanup_ruby: true
 
 # This role checks for outstanding database migrations. The role wil wait for
 # migrations to finish. This value is in minutes.
@@ -58,16 +58,16 @@ gitlab_database_migrations_retries: 300
 gitlab_default_theme: dark
 
 # You can disable features for newly created projects.
-gitlab_default_projects_features_issues: yes
-gitlab_default_projects_features_merge_requests: yes
-gitlab_default_projects_features_wiki: yes
-gitlab_default_projects_features_snippets: yes
-gitlab_default_projects_features_builds: yes
-gitlab_default_projects_features_container_registry: yes
+gitlab_default_projects_features_issues: true
+gitlab_default_projects_features_merge_requests: true
+gitlab_default_projects_features_wiki: true
+gitlab_default_projects_features_snippets: true
+gitlab_default_projects_features_builds: true
+gitlab_default_projects_features_container_registry: true
 
 # LDAP settings.
-gitlab_rails_ldap_enabled: no
-gitlab_rails_prevent_ldap_sign_in: no
+gitlab_rails_ldap_enabled: false
+gitlab_rails_prevent_ldap_sign_in: false
 # When `gitlab_rails_ldap_enabled` is set to `yes`, you need to define (at
 # least on) `gitlab_rails_ldap_servers`.
 # gitlab_rails_ldap_servers:
@@ -79,19 +79,19 @@ gitlab_rails_prevent_ldap_sign_in: no
 #     bind_dn: _the_full_dn_of_the_user_you_will_bind_with
 #     password: _the_password_of_the_bind_user
 #     encryption: plain
-#     verify_certificates: yes
-#     smartcard_auth: yes
-#     active_directory: yes
-#     allow_username_or_email_login: no
-#     lowercase_usernames: no
-#     block_auto_created_users: no
+#     verify_certificates: true
+#     smartcard_auth: true
+#     active_directory: true
+#     allow_username_or_email_login: false
+#     lowercase_usernames: false
+#     block_auto_created_users: false
 #     base: ""
 #     user_filter: ""
 #     # These settings are only available when `gitlab_distribution` is set to
 #     # the value `enterprise`.
 #     # group_base: ""
 #     # admin_group: ""
-#     # sync_ssh_keys: no
+#     # sync_ssh_keys: false
 #   - name: secondary
 #     label: LDAP
 #     host: _your_ldap_server
@@ -100,22 +100,22 @@ gitlab_rails_prevent_ldap_sign_in: no
 #     bind_dn: _the_full_dn_of_the_user_you_will_bind_with
 #     password: _the_password_of_the_bind_user
 #     encryption: plain
-#     verify_certificates: yes
-#     smartcard_auth: yes
-#     active_directory: yes
-#     allow_username_or_email_login: no
-#     lowercase_usernames: no
-#     block_auto_created_users: no
+#     verify_certificates: true
+#     smartcard_auth: true
+#     active_directory: true
+#     allow_username_or_email_login: false
+#     lowercase_usernames: false
+#     block_auto_created_users: false
 #     base: ""
 #     user_filter: ""
 #     # These settings are only available when `gitlab_distribution` is set to
 #     # the value `enterprise`.
 #     # group_base: ""
 #     # admin_group: ""
-#     # sync_ssh_keys: no
+#     # sync_ssh_keys: false
 
 # Backup settings.
-gitlab_rails_manage_backup_path: yes
+gitlab_rails_manage_backup_path: true
 gitlab_rails_backup_path: /var/opt/gitlab/backups
 gitlab_rails_backup_gitaly_backup_path: /opt/gitlab/embedded/bin/gitaly-backup
 gitlab_rails_backup_archive_permissions: "0644"
@@ -128,7 +128,7 @@ gitlab_rails_backup_keep_time: 604800
 #   region: eu-west-1
 #   aws_access_key_id: AKIAKIAKI
 #   aws_secret_access_key: secret123
-#   use_iam_profile: no
+#   use_iam_profile: false
 # gitlab_rails_backup_upload_remote_directory: my.s3.bucket
 # gitlab_rails_backup_multipart_chunk_size: 104857600
 # gitlab_rails_backup_encryption: AES256
@@ -152,27 +152,27 @@ gitlab_rails_backup_keep_time: 604800
 #   SKIP: db,uploads,repositories,builds,artifacts,lfs,registry,pages
 
 # SMTP settings.
-gitlab_rails_smtp_enable: yes
+gitlab_rails_smtp_enable: true
 gitlab_rails_smtp_address: smtp.server
 gitlab_rails_smtp_port: 465
 gitlab_rails_smtp_user_name: smtp user
 gitlab_rails_smtp_password: smtp password
 gitlab_rails_smtp_domain: example.com
 gitlab_rails_smtp_authentication: login
-gitlab_rails_smtp_enable_starttls_auto: yes
-gitlab_rails_smtp_tls: no
-gitlab_rails_smtp_pool: no
+gitlab_rails_smtp_enable_starttls_auto: true
+gitlab_rails_smtp_tls: false
+gitlab_rails_smtp_pool: false
 gitlab_rails_smtp_openssl_verify_mode: none
 gitlab_rails_smtp_ca_path: /etc/ssl/certs
 gitlab_rails_smtp_ca_file: /etc/ssl/certs/ca-certificates.crt
 
 # E-mail settings.
-gitlab_rails_gitlab_email_enabled: yes
+gitlab_rails_gitlab_email_enabled: true
 gitlab_rails_gitlab_email_from: "example@example.com"
 gitlab_rails_gitlab_email_display_name: Example
 gitlab_rails_gitlab_email_reply_to: "noreply@example.com"
 gitlab_rails_gitlab_email_subject_suffix: ""
-gitlab_rails_gitlab_email_smime_enabled: no
+gitlab_rails_gitlab_email_smime_enabled: false
 gitlab_rails_gitlab_email_smime_key_file: /etc/gitlab/ssl/gitlab_smime.key
 gitlab_rails_gitlab_email_smime_cert_file: /etc/gitlab/ssl/gitlab_smime.crt
 gitlab_rails_gitlab_email_smime_ca_certs_file: /etc/gitlab/ssl/gitlab_smime_cas.crt
@@ -294,7 +294,7 @@ gitlab_rails_gitlab_email_smime_ca_certs_file: /etc/gitlab/ssl/gitlab_smime_cas.
 
 # Database settings
 # If you are using the internal database, set `gitlab_rails_db_enabled` to "no".
-gitlab_rails_db_enabled: no
+gitlab_rails_db_enabled: false
 gitlab_rails_db_adapter: postgresql
 gitlab_rails_db_encoding: unicode
 # gitlab_rails_db_collation:
@@ -309,7 +309,7 @@ gitlab_rails_db_sslcompression: 0
 # gitlab_rails_db_sslrootcert:
 # gitlab_rails_db_sslcert:
 # gitlab_rails_db_sslkey:
-gitlab_rails_db_prepared_statements: no
+gitlab_rails_db_prepared_statements: false
 gitlab_rails_db_statements_limit: 1000
 # gitlab_rails_db_connect_timeout:
 # gitlab_rails_db_keepalives:
@@ -321,15 +321,15 @@ gitlab_rails_db_statements_limit: 1000
 
 # SSL settings
 # # If you do not want to use SSL, use this structure.
-# gitlab_letsencrypt: no
+# gitlab_letsencrypt: false
 # gitlab_external_url: "http://gitlab.example.com" # (No `https` in the value.)
 # # If you bring your own certificates, use this structure.
-# gitlab_letsencrypt: no
+# gitlab_letsencrypt: false
 # gitlab_ssl_directory: /etc/gitlab/ssl
 # gitlab_ssl_key: some_file.key
 # gitlab_ssl_crt: some_file.crt
 # # If you'd like to use letsencrypt, use this scructure.
-# gitlab_letsencrypt: yes
+# gitlab_letsencrypt: true
 # gitlab_letsencrypt_contact_emails:
 #   - robert@meinit.nl
 # gitlab_acme_staging_endpoint: https://ca.internal/acme/acme/directory
@@ -338,7 +338,7 @@ gitlab_rails_db_statements_limit: 1000
 # gitlab_letsencrypt_key_size: 2048
 # gitlab_letsencrypt_owner: root
 # gitlab_letsencrypt_wwwroot: /var/opt/gitlab/nginx/www
-# gitlab_letsencrypt_auto_renew: yes
+# gitlab_letsencrypt_auto_renew: true
 # gitlab_letsencrypt_auto_renew_hour: 0
 # gitlab_letsencrypt_auto_renew_minute: nil
 # gitlab_letsencrypt_auto_renew_day_of_month: nil

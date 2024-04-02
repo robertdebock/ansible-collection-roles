@@ -6,7 +6,7 @@
       - php_fpm_listen is defined
       - php_fpm_listen is string
       - php_fpm_listen is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test php_fpm_listen_owner
   ansible.builtin.assert:
@@ -14,7 +14,7 @@
       - php_fpm_listen_owner is defined
       - php_fpm_listen_owner is string
       - php_fpm_listen_owner is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test php_fpm_listen_group
   ansible.builtin.assert:
@@ -22,7 +22,7 @@
       - php_fpm_listen_group is defined
       - php_fpm_listen_group is string
       - php_fpm_listen_group is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test php_fpm_listen_mode
   ansible.builtin.assert:
@@ -30,7 +30,7 @@
       - php_fpm_listen_mode is defined
       - php_fpm_listen_mode is string
       - php_fpm_listen_mode is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test php_fpm_pm
   ansible.builtin.assert:
@@ -38,7 +38,7 @@
       - php_fpm_pm is defined
       - php_fpm_pm is string
       - php_fpm_pm in [ "dynamic", "ondemand", "static" ]
-    quiet: yes
+    quiet: true
 
 - name: assert | Test php_fpm_pm_max_children
   ansible.builtin.assert:
@@ -46,7 +46,7 @@
       - php_fpm_pm_max_children is defined
       - php_fpm_pm_max_children is number
       - php_fpm_pm_max_children > 0
-    quiet: yes
+    quiet: true
 
 - name: assert | Test php_fpm_pm_start_servers
   ansible.builtin.assert:
@@ -54,7 +54,7 @@
       - php_fpm_pm_start_servers is defined
       - php_fpm_pm_start_servers is number
       - php_fpm_pm_start_servers > 0
-    quiet: yes
+    quiet: true
 
 - name: assert | Test php_fpm_pm_min_spare_servers
   ansible.builtin.assert:
@@ -62,7 +62,7 @@
       - php_fpm_pm_min_spare_servers is defined
       - php_fpm_pm_min_spare_servers is number
       - php_fpm_pm_min_spare_servers > 0
-    quiet: yes
+    quiet: true
 
 - name: assert | Test php_fpm_pm_max_spare_servers
   ansible.builtin.assert:
@@ -70,4 +70,4 @@
       - php_fpm_pm_max_spare_servers is defined
       - php_fpm_pm_max_spare_servers is number
       - php_fpm_pm_max_spare_servers > 0
-    quiet: yes
+    quiet: true

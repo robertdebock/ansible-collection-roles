@@ -4,7 +4,7 @@
 - name: Import assert.yml
   ansible.builtin.import_tasks:
     file: assert.yml
-  run_once: yes
+  run_once: true
   delegate_to: localhost
 
 - name: Install requirements
@@ -36,7 +36,7 @@
       ansible.builtin.command:
         cmd: gitlab-runner list
       register: gitlab_runner_get_registration_status
-      changed_when: no
+      changed_when: false
 
     - name: Register gitlab runner
       ansible.builtin.command:
@@ -54,7 +54,7 @@
           {% endif %}
           --locked="false"
           --request-concurrency "{{ gitlab_runner_concurrency }}"
-      changed_when: yes
+      changed_when: true
       when:
         - gitlab_runner_name not in gitlab_runner_get_registration_status.stderr
 
@@ -71,4 +71,4 @@
   ansible.builtin.service:
     name: "{{ gitlab_runner_service }}"
     state: started
-    enabled: yes
+    enabled: true

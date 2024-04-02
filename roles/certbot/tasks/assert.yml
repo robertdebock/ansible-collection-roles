@@ -6,14 +6,14 @@
       - certbot_system is defined
       - certbot_system is string
       - certbot_system in [ "apache", "nginx", "haproxy", "standalone" ]
-    quiet: yes
+    quiet: true
 
 - name: assert | Test certbot_domains
   ansible.builtin.assert:
     that:
       - certbot_domains is defined
       - certbot_domains is iterable
-    quiet: yes
+    quiet: true
 
 - name: assert | Test item in certbot_domains
   ansible.builtin.assert:
@@ -21,7 +21,7 @@
       - item is defined
       - item is string
       - '"." in item'
-    quiet: yes
+    quiet: true
   loop: "{{ certbot_domains }}"
 
 - name: assert | Test certbot_email
@@ -30,4 +30,4 @@
       - certbot_email is defined
       - certbot_email is string
       - certbot_email is not none
-    quiet: yes
+    quiet: true

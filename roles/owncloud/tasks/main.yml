@@ -4,7 +4,7 @@
 - name: Import assert.yml
   ansible.builtin.import_tasks:
     file: assert.yml
-  run_once: yes
+  run_once: true
   delegate_to: localhost
 
 - name: Install requirements
@@ -15,8 +15,8 @@
 - name: Modify selinux settings
   ansible.posix.seboolean:
     name: "{{ item }}"
-    state: yes
-    persistent: yes
+    state: true
+    persistent: true
   when:
     - ansible_selinux.status is defined
     - ansible_selinux.status == "enabled"
@@ -26,7 +26,7 @@
   ansible.builtin.unarchive:
     src: "{{ owncloud_archive }}"
     dest: "{{ owncloud_destination }}"
-    remote_src: yes
+    remote_src: true
     owner: "{{ owncloud_httpd_owner }}"
     group: "{{ owncloud_httpd_group }}"
     creates: "{{ owncloud_destination }}/owncloud"
@@ -52,8 +52,8 @@
     - Set owncloud trusted domains
     - Restart httpd
     - Set permission
-  no_log: yes
-  become: yes
+  no_log: true
+  become: true
   become_user: "{{ owncloud_httpd_owner }}"
 
 - name: Setup crontab

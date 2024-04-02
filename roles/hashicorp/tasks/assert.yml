@@ -5,13 +5,13 @@
     that:
       - hashicorp_installation_method is defined
       - hashicorp_installation_method in [ "package", "manual" ]
-    quiet: yes
+    quiet: true
 
 - name: assert | Test hashicorp_products
   ansible.builtin.assert:
     that:
       - hashicorp_products is iterable
-    quiet: yes
+    quiet: true
   when:
     - hashicorp_products is defined
 
@@ -20,7 +20,7 @@
     that:
       - item.name is string
       - item.name is regex('^(consul|consul-template|nomad|packer|terraform|vagrant|vault).*')
-    quiet: yes
+    quiet: true
   loop: "{{ hashicorp_products }}"
   loop_control:
     label: "{{ item.name }}"
@@ -33,7 +33,7 @@
     that:
       - item.name is string
       - item.name is regex('^(consul|consul-template|nomad|packer|terraform|vagrant|vault).*')
-    quiet: yes
+    quiet: true
   loop: "{{ hashicorp_products }}"
   loop_control:
     label: "{{ item.name }}"
@@ -53,7 +53,7 @@
       - item.type is string
       - item.type is not none
       - item.type in [ "ent", "hsm", "oss" ]
-    quiet: yes
+    quiet: true
   loop: "{{ hashicorp_products }}"
   loop_control:
     label: "{{ item.name }}"
@@ -67,7 +67,7 @@
       - hashicorp_destination is defined
       - hashicorp_destination is string
       - hashicorp_destination is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test hashicorp_group
   ansible.builtin.assert:
@@ -75,7 +75,7 @@
       - hashicorp_group is defined
       - hashicorp_group is string
       - hashicorp_group is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test hashicorp_owner
   ansible.builtin.assert:
@@ -83,7 +83,7 @@
       - hashicorp_owner is defined
       - hashicorp_owner is string
       - hashicorp_owner is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test hashicorp_mode
   ansible.builtin.assert:
@@ -91,4 +91,4 @@
       - hashicorp_mode is defined
       - hashicorp_mode is string
       - hashicorp_mode is not none
-    quiet: yes
+    quiet: true

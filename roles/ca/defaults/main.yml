@@ -2,11 +2,11 @@
 # defaults file for ca
 
 # set ca_init: 'yes' to create CA
-ca_init: yes
+ca_init: true
 
 # ca_own_root: 'yes' if you want to have yout own root CA.
 # if no, set ca_certificate_path manually
-ca_own_root: yes
+ca_own_root: true
 
 # A passphrase for the CA key.
 ca_passphrase: SuP3rS3creT

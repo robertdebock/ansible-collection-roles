@@ -10,7 +10,7 @@
     name: code
     description: Visual Studio Code
     baseurl: "https://packages.microsoft.com/yumrepos/vscode"
-    gpgcheck: yes
+    gpgcheck: true
     gpgkey: "https://packages.microsoft.com/keys/microsoft.asc"
   when:
     - ansible_pkg_mgr in [ "yum", "dnf" ]

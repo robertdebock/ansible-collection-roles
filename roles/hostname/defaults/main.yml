@@ -5,4 +5,4 @@
 hostname: "{{ inventory_hostname_short }}"
 
 # Should the machine be rebooted when the hostname is changed?
-hostname_reboot: yes
+hostname_reboot: true

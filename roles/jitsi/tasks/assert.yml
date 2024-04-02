@@ -6,14 +6,14 @@
       - jitsi_release is defined
       - jitsi_release is string
       - jitsi_release in [ "stable", "testing", "nightly" ]
-    quiet: yes
+    quiet: true
 
 - name: assert | Test jitsi_settings
   ansible.builtin.assert:
     that:
       - jitsi_settings is defined
       - jitsi_settings is iterable
-    quiet: yes
+    quiet: true
 
 - name: assert | Test item in jitsi_settings
   ansible.builtin.assert:
@@ -28,7 +28,7 @@
       - item.type is defined
       - item.type is string
       - item.type in [ "string", "boolean" ]
-    quiet: yes
+    quiet: true
   loop: "{{ jitsi_settings }}"
   loop_control:
     label: "{{ item.name }}"

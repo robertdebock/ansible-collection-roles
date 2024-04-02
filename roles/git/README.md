@@ -14,8 +14,8 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 ---
 - name: Converge
   hosts: all
-  become: yes
-  gather_facts: yes
+  become: true
+  gather_facts: true
 
   vars:
     git_username: root
@@ -26,7 +26,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
         dest: bootstrap
       - repo: "https://github.com/robertdebock/robertdebock.bootstrap"
         dest: bootstrap-force
-        force: yes
+        force: true
       - repo: "https://github.com/robertdebock/robertdebock.bootstrap"
         dest: bootstrap-version
         version: "2.11.1"
@@ -41,8 +41,8 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
 ---
 - name: Prepare
   hosts: all
-  gather_facts: no
-  become: yes
+  gather_facts: false
+  become: true
   serial: 30%
 
   roles:
@@ -74,7 +74,7 @@ git_repository_destination: /home/{{ git_username | default('unset') }}/Document
 
 # Should git force (overwrite locally changed) clone? (Can also be controlled
 # per repository, see below.
-git_force: no
+git_force: false
 
 # The repositories to check out, bootstrap is pinned to a version, java will get HEAD/latest.
 # git_repositories:
@@ -85,7 +85,7 @@ git_force: no
 #     dest: java
 #   - repo: "ssh://git@github.com/robertdebock/ansible-role-tomcat.git"
 #     dest: tomcat
-#     force: yes
+#     force: true
 ```
 
 ## [Requirements](#requirements)
@@ -117,7 +117,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |[Amazon](https://hub.docker.com/r/robertdebock/amazonlinux)|Candidate|
 |[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|8, 9|
 |[Debian](https://hub.docker.com/r/robertdebock/debian)|all|
-|[Fedora](https://hub.docker.com/r/robertdebock/fedora/)|all|
+|[Fedora](https://hub.docker.com/r/robertdebock/fedora)|all|
 |[opensuse](https://hub.docker.com/r/robertdebock/opensuse)|all|
 |[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|all|
 

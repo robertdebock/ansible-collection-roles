@@ -4,7 +4,7 @@
 - name: Import assert.yml
   ansible.builtin.import_tasks:
     file: assert.yml
-  run_once: yes
+  run_once: true
   delegate_to: localhost
 
 - name: Show strings
@@ -16,7 +16,7 @@
   ansible.builtin.assert:
     that:
       - item is string
-    quiet: yes
+    quiet: true
   loop: "{{ types_strings }}"
 
 - name: Show integers
@@ -28,7 +28,7 @@
   ansible.builtin.assert:
     that:
       - item is number
-    quiet: yes
+    quiet: true
   loop: "{{ types_integers }}"
 
 - name: Show booleans
@@ -40,7 +40,7 @@
   ansible.builtin.assert:
     that:
       - item is boolean
-    quiet: yes
+    quiet: true
   loop: "{{ types_booleans }}"
 
 - name: Show floats
@@ -52,7 +52,7 @@
   ansible.builtin.assert:
     that:
       - item is float
-    quiet: yes
+    quiet: true
   loop: "{{ types_floats }}"
 
 - name: Show map
@@ -63,7 +63,7 @@
   ansible.builtin.assert:
     that:
       - types_map is mapping
-    quiet: yes
+    quiet: true
 
 - name: Show list of lists
   ansible.builtin.debug:
@@ -73,5 +73,5 @@
   ansible.builtin.assert:
     that:
       - item is list
-    quiet: yes
+    quiet: true
   loop: "{{ types_lists }}"

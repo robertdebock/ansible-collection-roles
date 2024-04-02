@@ -14,8 +14,8 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 ---
 - name: Converge
   hosts: all
-  become: yes
-  gather_facts: yes
+  become: true
+  gather_facts: true
 
   roles:
     - role: robertdebock.roles.tigervnc
@@ -27,8 +27,8 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
 ---
 - name: Prepare
   hosts: all
-  become: yes
-  gather_facts: no
+  become: true
+  gather_facts: false
 
   roles:
     - role: robertdebock.roles.bootstrap
@@ -64,7 +64,7 @@ tigervnc_groupname: vncgroup
 tigervnc_password: vncpass
 
 # Use existing user's vnc paswword
-tigervnc_user_exists: no
+tigervnc_user_exists: false
 
 # Desktop session xstartup should connect to e.g. gnome-session, mate-session
 tigervnc_desktop_session: gnome-session

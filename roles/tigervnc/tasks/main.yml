@@ -4,7 +4,7 @@
 - name: Import assert.yml
   ansible.builtin.import_tasks:
     file: assert.yml
-  run_once: yes
+  run_once: true
   delegate_to: localhost
 
 - name: Install software
@@ -25,7 +25,7 @@
     cmd: 'set -o pipefail && printf "{{ tigervnc_password }}\n{{ tigervnc_password }}\n" | vncpasswd'
     creates: /home/{{ tigervnc_username }}/.vnc/passwd
     executable: /bin/bash
-  become: yes
+  become: true
   become_user: "{{ tigervnc_username }}"
   when:
     - not tigervnc_user_exists
@@ -86,5 +86,5 @@
   ansible.builtin.systemd:
     name: "{{ tigervnc_service }}"
     state: started
-    enabled: yes
-    daemon-reload: yes
+    enabled: true
+    daemon-reload: true

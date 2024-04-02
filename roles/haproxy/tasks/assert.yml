@@ -5,7 +5,7 @@
     that:
       - haproxy_stats is defined
       - haproxy_stats is boolean
-    quiet: yes
+    quiet: true
 
 - name: assert | Test haproxy_stats_port
   ansible.builtin.assert:
@@ -14,7 +14,7 @@
       - haproxy_stats_port is number
       - haproxy_stats_port > 0
       - haproxy_stats_port < 65536
-    quiet: yes
+    quiet: true
 
 - name: assert | Test haproxy_stats_bind_addr
   ansible.builtin.assert:
@@ -22,7 +22,7 @@
       - haproxy_stats_bind_addr is defined
       - haproxy_stats_bind_addr is string
       - haproxy_stats_bind_addr is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test haproxy_retries
   ansible.builtin.assert:
@@ -30,7 +30,7 @@
       - haproxy_retries is defined
       - haproxy_retries is number
       - haproxy_retries >= 0
-    quiet: yes
+    quiet: true
 
 - name: assert | Test timeouts are set correctly
   ansible.builtin.assert:
@@ -38,7 +38,7 @@
       - item is defined
       - item is string
       - item is not none
-    quiet: yes
+    quiet: true
   loop:
     - "{{ haproxy_timeout_http_request }}"
     - "{{ haproxy_timeout_connect }}"
@@ -53,14 +53,14 @@
       - haproxy_maxconn is defined
       - haproxy_maxconn is number
       - haproxy_maxconn > 0
-    quiet: yes
+    quiet: true
 
 - name: assert | Test haproxy_frontends
   ansible.builtin.assert:
     that:
       - haproxy_frontends is defined
       - haproxy_frontends is iterable
-    quiet: yes
+    quiet: true
 
 - name: assert | Test item in haproxy_frontends
   ansible.builtin.assert:
@@ -78,7 +78,7 @@
       - item.default_backend is defined
       - item.default_backend is string
       - item.default_backend is not none
-    quiet: yes
+    quiet: true
   loop: "{{ haproxy_frontends }}"
   loop_control:
     label: "{{ item.name }}"
@@ -89,7 +89,7 @@
       - item.ssl is boolean
       - item.crts is defined
       - item.crts is iterable
-    quiet: yes
+    quiet: true
   loop: "{{ haproxy_frontends }}"
   loop_control:
     label: "{{ item.name }}"
@@ -101,7 +101,7 @@
     that:
       - item.mode is string
       - item.mode in [ "http", "tcp" ]
-    quiet: yes
+    quiet: true
   loop: "{{ haproxy_frontends }}"
   loop_control:
     label: "{{ item.name }}"
@@ -113,7 +113,7 @@
     that:
       - haproxy_backends is defined
       - haproxy_backends is iterable
-    quiet: yes
+    quiet: true
 
 - name: assert | Test haproxy_backend_default_balance
   ansible.builtin.assert:
@@ -121,7 +121,7 @@
       - haproxy_backend_default_balance is defined
       - haproxy_backend_default_balance is string
       - haproxy_backend_default_balance in [ "roundrobin", "static-rr", "leastconn", "first", "source", "uri", "url_param", "hdr", "rdp-cookie" ]
-    quiet: yes
+    quiet: true
 
 - name: assert | Test item in haproxy_backends
   ansible.builtin.assert:
@@ -140,7 +140,7 @@
       - item.port > 0
       - item.port < 65536
       - (item.options is defined and item.options is iterable) or item.options is undefined
-    quiet: yes
+    quiet: true
   loop: "{{ haproxy_backends }}"
   loop_control:
     label: "{{ item.name }}"
@@ -150,7 +150,7 @@
     that:
       - item.mode is string
       - item.mode in [ "http", "tcp" ]
-    quiet: yes
+    quiet: true
   loop: "{{ haproxy_backends }}"
   loop_control:
     label: "{{ item.name }}"
@@ -162,7 +162,7 @@
     that:
       - item.httpcheck is boolean
         or item.httpcheck is string
-    quiet: yes
+    quiet: true
   loop: "{{ haproxy_backends }}"
   loop_control:
     label: "{{ item.name }}"
@@ -175,7 +175,7 @@
       - item.httpcheck_method is string
       - item.httpcheck_method is not none
       - item.httpcheck is defined
-    quiet: yes
+    quiet: true
   loop: "{{ haproxy_backends }}"
   loop_control:
     label: "{{ item.name }}"
@@ -186,7 +186,7 @@
   ansible.builtin.assert:
     that:
       - item.http_check is mapping
-    quiet: yes
+    quiet: true
   loop: "{{ haproxy_backends }}"
   loop_control:
     label: "{{ item.name }}"
@@ -201,7 +201,7 @@
       - item.http_check.send.method in [ "GET", "HEAD" ]
       - item.http_check.send.uri is defined
       - item.http_check.send.uri is not none
-    quiet: yes
+    quiet: true
   loop: "{{ haproxy_backends }}"
   loop_control:
     label: "{{ item.name }}"
@@ -213,7 +213,7 @@
     that:
       - item.http_check.expect is string
       - item.http_check.expect is not none
-    quiet: yes
+    quiet: true
   loop: "{{ haproxy_backends }}"
   loop_control:
     label: "{{ item.name }}"
@@ -225,7 +225,7 @@
     that:
       - haproxy_listens is defined
       - haproxy_listens is iterable
-    quiet: yes
+    quiet: true
 
 - name: assert | Test item in haproxy_listens
   ansible.builtin.assert:
@@ -250,7 +250,7 @@
       - item.port < 65536
       - item.servers is defined
       - item.servers is iterable
-    quiet: yes
+    quiet: true
   loop: "{{ haproxy_listens }}"
   loop_control:
     label: "{{ item.name }}"
@@ -261,7 +261,7 @@
       - item.ssl is boolean
       - item.crts is defined
       - item.crts is iterable
-    quiet: yes
+    quiet: true
   loop: "{{ haproxy_listens }}"
   loop_control:
     label: "{{ item.name }}"
@@ -273,7 +273,7 @@
     that:
       - item.mode is string
       - item.mode in [ "http", "tcp" ]
-    quiet: yes
+    quiet: true
   loop: "{{ haproxy_listens }}"
   loop_control:
     label: "{{ item.name }}"
@@ -286,13 +286,13 @@
       - haproxy_listen_default_balance is defined
       - haproxy_listen_default_balance is string
       - haproxy_listen_default_balance in [ "roundrobin", "static-rr", "leastconn", "first", "source", "uri", "url_param", "hdr", "rdp-cookie" ]
-    quiet: yes
+    quiet: true
 
 - name: assert | Test httpcheck item in haproxy_listens
   ansible.builtin.assert:
     that:
       - item.httpcheck is boolean
-    quiet: yes
+    quiet: true
   loop: "{{ haproxy_listens }}"
   loop_control:
     label: "{{ item.name }}"

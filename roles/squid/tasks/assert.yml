@@ -7,7 +7,7 @@
       - squid_port is number
       - squid_port > 0
       - squid_port < 65536
-    quiet: yes
+    quiet: true
 
 - name: assert | Test squid_cache_dir
   ansible.builtin.assert:
@@ -15,13 +15,13 @@
       - squid_cache_dir is defined
       - squid_cache_dir is string
       - squid_cache_dir.split(" ")[0] in [ "ufs", "aufs", "diskd", "rock", "null" ]
-    quiet: yes
+    quiet: true
 
 - name: assert | Test squid_acls
   ansible.builtin.assert:
     that:
       - squid_acls is iterable
-    quiet: yes
+    quiet: true
   when:
     - squid_acls is defined
 
@@ -37,7 +37,7 @@
       - item.value is defined
       - item.value is string
       - item.value is not none
-    quiet: yes
+    quiet: true
   loop: "{{ squid_acls }}"
   loop_control:
     label: "{{ item.name }}"
@@ -52,7 +52,7 @@
       - item.state is not none
       - item.acls is defined
       - item.acls is iterable
-    quiet: yes
+    quiet: true
   loop: "{{ squid_http_access }}"
   loop_control:
     label: "{{ item.state }}"
@@ -63,7 +63,7 @@
   ansible.builtin.assert:
     that:
       - squid_rules is iterable
-    quiet: yes
+    quiet: true
   when:
     - squid_rules is defined
 
@@ -76,7 +76,7 @@
       - item.decision is defined
       - item.decision is string
       - item.decision in [ "allow", "deny" ]
-    quiet: yes
+    quiet: true
   loop: "{{ squid_rules }}"
   loop_control:
     label: "{{ item.acl }}"
@@ -88,6 +88,6 @@
     that:
       - squid_logformat is string
       - squid_logformat.split(" ") | length > 1
-    quiet: yes
+    quiet: true
   when:
     - squid_logformat is defined

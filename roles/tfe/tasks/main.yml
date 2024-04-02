@@ -4,7 +4,7 @@
 - name: Import assert.yml
   ansible.builtin.import_tasks:
     file: assert.yml
-  run_once: yes
+  run_once: true
   delegate_to: localhost
 
 - name: Log into DockerHub
@@ -23,6 +23,16 @@
     owner: root
     group: root
     mode: '0775'
+
+- name: Create /var/lib/terraform-enterprise
+  ansible.builtin.file:
+    path: /var/lib/terraform-enterprise
+    state: directory
+    owner: root
+    group: root
+    mode: '0775'
+  when:
+    - tfe_operational_mode == "disk"
 
 - name: Place TLS material
   ansible.builtin.copy:

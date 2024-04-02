@@ -14,7 +14,7 @@
 
     - name: requests | Copy requested key
       ansible.builtin.copy:
-        remote_src: yes
+        remote_src: true
         src: "{{ request.keyfile_path }}"
         dest: "{{ ca_path }}/{{ ca_subject_keys_path }}/{{ request.name | default(request) }}.pem"
         mode: "0644"
@@ -68,7 +68,7 @@
         src: "{{ ca_path }}/{{ ca_certs_path }}/{{ request.name | default(request) }}.crt"
         dest: "{{ ca_publication_location }}/{{ request.name | default(request) }}.crt"
         mode: "644"
-        remote_src: yes
+        remote_src: true
       when:
         - ca_publication_location is defined
 
@@ -90,7 +90,7 @@
       register: revoke_result
       changed_when:
         - revoke_result is not failed
-      ignore_errors: yes
+      ignore_errors: true
 
     - name: requests | Update crl
       ansible.builtin.command:

@@ -7,13 +7,13 @@
       - swap_swappiness is number
       - swap_swappiness >= 0
       - swap_swappiness <= 100
-    quiet: yes
+    quiet: true
 
 - name: assert | Test swap_files
   ansible.builtin.assert:
     that:
       - swap_files is iterable
-    quiet: yes
+    quiet: true
   when:
     - swap_files is defined
 
@@ -23,7 +23,7 @@
       - item.path is defined
       - item.size is number
       - item.size >= 0
-    quiet: yes
+    quiet: true
   loop: "{{ swap_files }}"
   loop_control:
     label: "{{ item.path }}"
@@ -35,4 +35,4 @@
     that:
       - swap_enabled is defined
       - swap_enabled is boolean
-    quiet: yes
+    quiet: true

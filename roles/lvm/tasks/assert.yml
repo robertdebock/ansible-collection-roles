@@ -4,13 +4,13 @@
   ansible.builtin.assert:
     that:
       - lvm_default_pesize is defined
-    quiet: yes
+    quiet: true
 
 - name: assert | Test lvm_volume_groups
   ansible.builtin.assert:
     that:
       - lvm_volume_groups is iterable
-    quiet: yes
+    quiet: true
   when:
     - lvm_volume_groups is defined
 
@@ -22,7 +22,7 @@
       - item.name is not none
       - item.pvs is defined
       - item.pvs is iterable
-    quiet: yes
+    quiet: true
   loop: "{{ lvm_volume_groups }}"
   loop_control:
     label: "{{ item.name }}"
@@ -34,7 +34,7 @@
     that:
       - item.pesize is string or item.pesize is number
       - item.pesize is not none
-    quiet: yes
+    quiet: true
   loop: "{{ lvm_volume_groups }}"
   loop_control:
     label: "{{ item.name }}"
@@ -46,7 +46,7 @@
   ansible.builtin.assert:
     that:
       - lvm_logical_volumes is iterable
-    quiet: yes
+    quiet: true
   when:
     - lvm_logical_volumes is defined
 
@@ -62,7 +62,7 @@
       - item.size is defined
       - item.size is string or item.size is number
       - item.size is not none
-    quiet: yes
+    quiet: true
   loop: "{{ lvm_logical_volumes }}"
   loop_control:
     label: "{{ item.name }}"
@@ -74,7 +74,7 @@
     that:
       - item.opts is string
       - item.opts is not none
-    quiet: yes
+    quiet: true
   loop: "{{ lvm_logical_volumes }}"
   loop_control:
     label: "{{ item.name }}"

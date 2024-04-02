@@ -14,13 +14,13 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 ---
 - name: Converge
   hosts: all
-  become: yes
-  gather_facts: yes
+  become: true
+  gather_facts: true
 
   roles:
     - role: robertdebock.roles.zabbix_repository
-      zabbix_repository_cleanup_requirements: no
-      zabbix_repository_revert_crypto_policy: no
+      zabbix_repository_cleanup_requirements: false
+      zabbix_repository_revert_crypto_policy: false
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-zabbix_repository/blob/master/molecule/default/prepare.yml):
@@ -29,8 +29,8 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
 ---
 - name: Prepare
   hosts: all
-  become: yes
-  gather_facts: no
+  become: true
+  gather_facts: false
 
   roles:
     - role: robertdebock.roles.bootstrap
@@ -55,11 +55,11 @@ zabbix_repository_version_minor: 1
 
 # An extra package is required for RHEL9 (`crypto-policies-scripts`).
 # This variable determines if it should be removed or not.
-zabbix_repository_cleanup_requirements: yes
+zabbix_repository_cleanup_requirements: true
 
 # The crypto policy must be modified on RHEL9. This variable determines if
 # the policy should be switched back to the default.
-zabbix_repository_revert_crypto_policy: yes
+zabbix_repository_revert_crypto_policy: true
 ```
 
 ## [Requirements](#requirements)

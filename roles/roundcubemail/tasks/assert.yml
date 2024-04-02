@@ -6,7 +6,7 @@
       - roundcubemail_database_host is defined
       - roundcubemail_database_host is string
       - roundcubemail_database_host is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test roundcubemail_database_user
   ansible.builtin.assert:
@@ -14,7 +14,7 @@
       - roundcubemail_database_user is defined
       - roundcubemail_database_user is string
       - roundcubemail_database_user is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test roundcubemail_database_password
   ansible.builtin.assert:
@@ -22,7 +22,7 @@
       - roundcubemail_database_password is defined
       - roundcubemail_database_password is string
       - roundcubemail_database_password is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test roundcubemail_database_name
   ansible.builtin.assert:
@@ -30,7 +30,7 @@
       - roundcubemail_database_name is defined
       - roundcubemail_database_name is string
       - roundcubemail_database_name is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test roundcubemail_support_url
   ansible.builtin.assert:
@@ -38,7 +38,7 @@
       - roundcubemail_support_url is defined
       - roundcubemail_support_url is string
       - roundcubemail_support_url is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test roundcubemail_des_key
   ansible.builtin.assert:
@@ -46,7 +46,7 @@
       - roundcubemail_des_key is defined
       - roundcubemail_des_key is string
       - roundcubemail_des_key is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test roundcubemail_spellcheck_engine
   ansible.builtin.assert:
@@ -54,7 +54,7 @@
       - roundcubemail_spellcheck_engine is defined
       - roundcubemail_spellcheck_engine is string
       - roundcubemail_spellcheck_engine in [ "atd", "enchant", "google", "pspell" ]
-    quiet: yes
+    quiet: true
 
 - name: assert | Test roundcubemail_default_host
   ansible.builtin.assert:
@@ -62,14 +62,14 @@
       - roundcubemail_default_host is defined
       - roundcubemail_default_host is string
       - roundcubemail_default_host is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test roundcubemail_default_port
   ansible.builtin.assert:
     that:
       - roundcubemail_default_port is defined
       - roundcubemail_default_port is number
-    quiet: yes
+    quiet: true
 
 - name: assert | Test roundcubemail_smtp_server
   ansible.builtin.assert:
@@ -77,14 +77,14 @@
       - roundcubemail_smtp_server is defined
       - roundcubemail_smtp_server is string
       - roundcubemail_smtp_server is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test roundcubemail_smtp_port
   ansible.builtin.assert:
     that:
       - roundcubemail_smtp_port is defined
       - roundcubemail_smtp_port is number
-    quiet: yes
+    quiet: true
 
 
 - name: assert | Test roundcubemail_smtp_user
@@ -93,7 +93,7 @@
       - roundcubemail_smtp_user is defined
       - roundcubemail_smtp_user is string
       - roundcubemail_smtp_user is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test roundcubemail_smtp_pass
   ansible.builtin.assert:
@@ -101,4 +101,4 @@
       - roundcubemail_smtp_pass is defined
       - roundcubemail_smtp_pass is string
       - roundcubemail_smtp_pass is not none
-    quiet: yes
+    quiet: true

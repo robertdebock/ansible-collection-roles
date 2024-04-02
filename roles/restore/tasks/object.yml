@@ -6,7 +6,7 @@
     patterns: "{{ object.type }}-{{ object.name }}-*"
   register: restore_found_files
   delegate_to: localhost
-  become: no
+  become: false
 
 - name: object | Select latest_file in restore_found_files
   ansible.builtin.set_fact:
@@ -28,7 +28,7 @@
   when:
     - latest_file is defined
     - object.type == "directory"
-  changed_when: yes
+  changed_when: true
 
 - name: object | Find extension
   ansible.builtin.set_fact:
@@ -42,7 +42,7 @@
     src: "{{ restore_remote_directory }}/{{ latest_file.path | basename }}"
     dest: "{{ restore_remote_directory }}"
     exclude: "{{ object.exclude | default(omit) }}"
-    remote_src: yes
+    remote_src: true
     mode: "0755"
   when:
     - latest_file is defined
@@ -66,7 +66,7 @@
     src: "{{ restore_remote_directory }}/{{ latest_file.path | basename }}"
     dest: "{{ restore_remote_directory }}"
     exclude: "{{ object.exclude | default(omit) }}"
-    remote_src: yes
+    remote_src: true
     mode: "0755"
   when:
     - latest_file is defined
@@ -79,7 +79,7 @@
     target: "{{ restore_remote_directory }}/{{ latest_file.path | basename | splitext | first }}.sql"
     state: restore
   become_user: postgres
-  become: yes
+  become: true
   when:
     - latest_file is defined
     - object.type == "mysql"

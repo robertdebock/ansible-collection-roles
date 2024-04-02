@@ -6,7 +6,7 @@
       - collabora_online_type is defined
       - collabora_online_type is string
       - collabora_online_type in [ "code", "licensed" ]
-    quiet: yes
+    quiet: true
 
 - name: assert | Test collabora_online_version
   ansible.builtin.assert:
@@ -14,7 +14,7 @@
       - collabora_online_version is defined
       - collabora_online_version is string
       - collabora_online_version is not none
-    quiet: yes
+    quiet: true
   when:
     - collabora_online_type == "licensed"
 
@@ -23,7 +23,7 @@
     that:
       - collabora_online_secret_key is string
       - collabora_online_secret_key is not none
-    quiet: yes
+    quiet: true
   when:
     - collabora_online_secret_key is defined
 
@@ -32,7 +32,7 @@
     that:
       - collabora_online_allowed_languages is string
       - collabora_online_allowed_languages is not none
-    quiet: yes
+    quiet: true
   when:
     - collabora_online_allowed_languages is defined
 
@@ -42,7 +42,7 @@
       - collabora_online_ssl_enabled is defined
       - collabora_online_ssl_enabled is string
       - collabora_online_ssl_enabled in [ "false", "true" ]
-    quiet: yes
+    quiet: true
 
 - name: assert | Test collabora_online_ssl_*
   ansible.builtin.assert:
@@ -59,7 +59,7 @@
       - collabora_online_ciphers is defined
       - collabora_online_ciphers is string
       - collabora_online_ciphers is not none
-    quiet: yes
+    quiet: true
   when:
     - collabora_online_ssl_enabled
 
@@ -69,7 +69,7 @@
       - collabora_online_mount_jail_tree is defined
       - collabora_online_mount_jail_tree is string
       - collabora_online_mount_jail_tree in [ "false", "true" ]
-    quiet: yes
+    quiet: true
 
 - name: assert | Test collabora_online_log_level
   ansible.builtin.assert:
@@ -77,7 +77,7 @@
       - collabora_online_log_level is defined
       - collabora_online_log_level is string
       - collabora_online_log_level in [ "0", "1", "2", "3", "4", "5", "6", "7", "8", "none", "fatal", "critical", "error", "warning", "notice", "information", "debug", "trace" ]
-    quiet: yes
+    quiet: true
 
 - name: assert | Test collabora_online_admin_username
   ansible.builtin.assert:
@@ -88,7 +88,7 @@
       - collabora_online_admin_password is defined
       - collabora_online_admin_password is string
       - collabora_online_admin_password is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test collabora_online_admin_password
   ansible.builtin.assert:
@@ -99,4 +99,4 @@
       - collabora_online_admin_username is defined
       - collabora_online_admin_username is string
       - collabora_online_admin_username is not none
-    quiet: yes
+    quiet: true

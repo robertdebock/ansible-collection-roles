@@ -5,7 +5,7 @@
     that:
       - php_ini_location is string
       - php_ini_location is not none
-    quiet: yes
+    quiet: true
   when:
     - php_ini_location is defined
 
@@ -15,7 +15,7 @@
       - php_alpine_version is defined
       - php_alpine_version is number
       - php_alpine_version in [ 5, 7 ]
-    quiet: yes
+    quiet: true
   when:
     - ansible_os_family == "Alpine"
 
@@ -24,49 +24,49 @@
     that:
       - php_display_errors is defined
       - php_display_errors is boolean
-    quiet: yes
+    quiet: true
 
 - name: assert | Test php_startup_errors
   ansible.builtin.assert:
     that:
       - php_startup_errors is defined
       - php_startup_errors is boolean
-    quiet: yes
+    quiet: true
 
 - name: assert | Test php_error_reporting
   ansible.builtin.assert:
     that:
       - php_error_reporting is defined
       - php_error_reporting is boolean
-    quiet: yes
+    quiet: true
 
 - name: assert | Test php_html_errors
   ansible.builtin.assert:
     that:
       - php_display_errors is defined
       - php_display_errors is boolean
-    quiet: yes
+    quiet: true
 
 - name: assert | Test php_log_errors
   ansible.builtin.assert:
     that:
       - php_log_errors is defined
       - php_log_errors is boolean
-    quiet: yes
+    quiet: true
 
 - name: assert | Test php_max_input_time
   ansible.builtin.assert:
     that:
       - php_max_input_time is defined
       - php_max_input_time is number
-    quiet: yes
+    quiet: true
 
 - name: assert | Test php_max_execution_time
   ansible.builtin.assert:
     that:
       - php_max_execution_time is defined
       - php_max_execution_time is number
-    quiet: yes
+    quiet: true
 
 - name: assert | Test php_output_buffering
   ansible.builtin.assert:
@@ -74,14 +74,14 @@
       - php_output_buffering is defined
       - php_output_buffering in [ "Off", "On" ] or
         php_output_buffering is number
-    quiet: yes
+    quiet: true
 
 - name: assert | Test php_register_argc_argv
   ansible.builtin.assert:
     that:
       - php_register_argc_argv is defined
       - php_register_argc_argv is boolean
-    quiet: yes
+    quiet: true
 
 - name: assert | Test php_request_order
   ansible.builtin.assert:
@@ -89,35 +89,35 @@
       - php_request_order is defined
       - php_request_order is string
       - php_request_order is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test php_session_gc_divisor
   ansible.builtin.assert:
     that:
       - php_session_gc_divisor is defined
       - php_session_gc_divisor is number
-    quiet: yes
+    quiet: true
 
 - name: assert | Test php_session_hash_bits_per_character
   ansible.builtin.assert:
     that:
       - php_session_hash_bits_per_character is defined
       - php_session_hash_bits_per_character is number
-    quiet: yes
+    quiet: true
 
 - name: assert | Test php_short_open_tag
   ansible.builtin.assert:
     that:
       - php_short_open_tag is defined
       - php_short_open_tag is boolean
-    quiet: yes
+    quiet: true
 
 - name: assert | Test php_track_errors
   ansible.builtin.assert:
     that:
       - php_track_errors is defined
       - php_track_errors is boolean
-    quiet: yes
+    quiet: true
 
 - name: assert | Test php_variables_order
   ansible.builtin.assert:
@@ -125,14 +125,14 @@
       - php_variables_order is defined
       - php_variables_order is string
       - php_variables_order is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test php_engine
   ansible.builtin.assert:
     that:
       - php_engine is defined
       - php_engine is boolean
-    quiet: yes
+    quiet: true
 
 - name: assert | Test php_date_timezone
   ansible.builtin.assert:
@@ -140,7 +140,7 @@
       - php_date_timezone is defined
       - php_date_timezone is string
       - php_date_timezone is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test php_memory_limit
   ansible.builtin.assert:
@@ -148,7 +148,7 @@
       - php_memory_limit is defined
       - php_memory_limit is string
       - php_memory_limit is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test php_upload_max_filesize
   ansible.builtin.assert:
@@ -156,7 +156,7 @@
       - php_upload_max_filesize is defined
       - php_upload_max_filesize is string
       - php_upload_max_filesize is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test php_post_max_size
   ansible.builtin.assert:
@@ -164,12 +164,12 @@
       - php_post_max_size is defined
       - php_post_max_size is string
       - php_post_max_size is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test php_extensions
   ansible.builtin.assert:
     that:
       - php_extensions is iterable
-    quiet: yes
+    quiet: true
   when:
     - php_extensions is defined

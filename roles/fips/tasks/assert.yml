@@ -5,4 +5,4 @@
     that:
       - fips_policy is defined
       - fips_policy in [ "DEFAULT", "FUTURE", "FIPS", "LEGACY" ]
-    quiet: yes
+    quiet: true

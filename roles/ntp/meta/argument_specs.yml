@@ -16,7 +16,7 @@ argument_specs:
           - stopped
       ntp_enabled:
         type: "bool"
-        default: yes
+        default: true
         description: "The state of the NTP service at boot."
       ntp_interfaces:
         type: "list"
@@ -36,7 +36,7 @@ argument_specs:
       ntp_servers:
         type: "list"
         elements: str
-        required: no
+        required: false
         description: "A list of NTP servers and their options."
       ntp_timezone:
         type: "str"

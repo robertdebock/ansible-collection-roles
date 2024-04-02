@@ -10,4 +10,4 @@ swap_swappiness: 60
 #     size: 1024
 
 # You can disable swap if required.
-swap_enabled: yes
+swap_enabled: true

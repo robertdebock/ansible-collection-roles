@@ -14,8 +14,8 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 ---
 - name: Converge
   hosts: all
-  become: yes
-  gather_facts: yes
+  become: true
+  gather_facts: true
 
   roles:
     - role: robertdebock.roles.types
@@ -27,8 +27,8 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
 ---
 - name: Prepare
   hosts: all
-  become: yes
-  gather_facts: no
+  become: true
+  gather_facts: false
 
   roles:
     - role: robertdebock.roles.bootstrap
@@ -58,17 +58,23 @@ types_integers:
 # A list of booleans.
 types_booleans:
   - yes
-  - Yes
-  - YES
-  - true
-  - True
-  - TRUE
+  - Yes  # yamllint disable-line rule:truthy
+  - YES  # yamllint disable-line rule:truthy
+  - true  # yamllint disable-line rule:truthy
+  - True  # yamllint disable-line rule:truthy
+  - TRUE  # yamllint disable-line rule:truthy
+  - On  # yamllint disable-line rule:truthy
+  - ON  # yamllint disable-line rule:truthy
+  - on  # yamllint disable-line rule:truthy
   - no
-  - No
-  - NO
-  - false
-  - False
-  - FALSE
+  - No  # yamllint disable-line rule:truthy
+  - NO  # yamllint disable-line rule:truthy
+  - false  # yamllint disable-line rule:truthy
+  - False  # yamllint disable-line rule:truthy
+  - FALSE  # yamllint disable-line rule:truthy
+  - Off  # yamllint disable-line rule:truthy
+  - OFF  # yamllint disable-line rule:truthy
+  - off  # yamllint disable-line rule:truthy
 
 # A list of floats.
 types_floats:
@@ -115,7 +121,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |[Amazon](https://hub.docker.com/r/robertdebock/amazonlinux)|Candidate|
 |[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|8, 9|
 |[Debian](https://hub.docker.com/r/robertdebock/debian)|all|
-|[Fedora](https://hub.docker.com/r/robertdebock/fedora/)|all|
+|[Fedora](https://hub.docker.com/r/robertdebock/fedora)|all|
 |[opensuse](https://hub.docker.com/r/robertdebock/opensuse)|all|
 |[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|all|
 

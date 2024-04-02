@@ -6,36 +6,36 @@ argument_specs:
       snmpd_security_names:
         type: list
         elements: dict
-        required: no
+        required: false
         description: "A list of security names."
       snmpd_groups:
         type: list
         elements: dict
-        required: no
+        required: false
         description: "A list of groups."
       snmpd_views:
         type: list
         elements: dict
-        required: no
+        required: false
         description: "A list of views."
       snmpd_accesses:
         type: list
         elements: dict
-        required: no
+        required: false
         description: "A list of accesses."
       snmpd_syslocation:
         type: str
-        required: no
+        required: false
         default: Unknown
         description: "The location for a system."
       snmpd_syscontact:
         type: str
-        required: no
+        required: false
         default: "Root <root@localhost>"
         description: "The contact for a system."
       snmpd_dontlogtcpwrappersconnects:
         type: str
-        required: no
+        required: false
         default: "yes"
         description: "Prevent log entries."
         choices:
@@ -44,19 +44,19 @@ argument_specs:
       snmpd_processes:
         type: list
         elements: dict
-        required: no
+        required: false
         description: "A list of processes to monitor."
       snmpd_scripts:
         type: list
         elements: dict
-        required: no
+        required: false
         description: "A list of scripts to expose."
       snmpd_disks:
         type: list
         elements: dict
-        required: no
+        required: false
         description: "A list of disks to monitor."
       snmpd_load:
         type: dict
-        required: no
+        required: false
         description: "The load thresholds."

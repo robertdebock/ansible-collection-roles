@@ -4,15 +4,15 @@
 - name: Import assert.yml
   ansible.builtin.import_tasks:
     file: assert.yml
-  run_once: yes
+  run_once: true
   delegate_to: localhost
 
 - name: Find site-package location
   ansible.builtin.command:
     cmd: "python{{ ansible_python.version.major }} -c 'import site; print(site.getsitepackages()[0])'"
   register: mitogen_site_packages_path
-  changed_when: no
-  check_mode: no
+  changed_when: false
+  check_mode: false
 
 - name: Create site-packages location
   ansible.builtin.file:
@@ -24,7 +24,7 @@
   ansible.builtin.unarchive:
     src: https://github.com/dw/mitogen/archive/stable.zip
     dest: "{{ mitogen_site_packages_path.stdout }}"
-    remote_src: yes
+    remote_src: true
     creates: "{{ mitogen_site_packages_path.stdout }}/mitogen-stable"
     mode: "0750"
 
@@ -35,7 +35,7 @@
     option: strategy_plugins
     value: "{{ mitogen_site_packages_path.stdout }}/mitogen-stable/ansible_mitogen/plugins/strategy"
     mode: "0644"
-  become: yes
+  become: true
   become_user: root
 
 - name: Configure ansible to use mitogen strategy
@@ -45,5 +45,5 @@
     option: strategy
     value: mitogen_linear
     mode: "0644"
-  become: yes
+  become: true
   become_user: root

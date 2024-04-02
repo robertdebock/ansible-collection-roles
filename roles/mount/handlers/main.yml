@@ -3,6 +3,6 @@
 - name: Run swapon
   ansible.builtin.command:
     cmd: swapon -a
-  changed_when: yes
+  changed_when: true
   when:
     - mount_requests | regex_search("swap")

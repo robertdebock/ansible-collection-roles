@@ -4,7 +4,7 @@
 - name: Import assert.yml
   ansible.builtin.import_tasks:
     file: assert.yml
-  run_once: yes
+  run_once: true
   delegate_to: localhost
 
 - name: Install dhcpd software
@@ -16,7 +16,7 @@
   ansible.builtin.template:
     src: "{{ dhcpd_defaults_src }}"
     dest: "{{ dhcpd_defaults_dest }}"
-    backup: yes
+    backup: true
     mode: "0640"
   when:
     - ansible_os_family == "Debian" or
@@ -28,7 +28,7 @@
   ansible.builtin.template:
     src: dhcpd.conf.j2
     dest: "{{ dhcpd_confdir }}/dhcpd.conf"
-    backup: yes
+    backup: true
     mode: "0640"
   notify:
     - Restart dhcpd
@@ -39,7 +39,7 @@
       ansible.builtin.service:
         name: "{{ dhcpd_service }}"
         state: started
-        enabled: yes
+        enabled: true
   rescue:
     - name: Install procps
       ansible.builtin.package:
@@ -60,4 +60,4 @@
       ansible.builtin.service:
         name: "{{ dhcpd_service }}"
         state: started
-        enabled: yes
+        enabled: true

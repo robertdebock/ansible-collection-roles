@@ -7,4 +7,4 @@
       - host.name | length > 0
       - host.options is defined
       - host.options is iterable
-    quiet: yes
+    quiet: true

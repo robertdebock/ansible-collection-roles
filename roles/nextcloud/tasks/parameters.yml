@@ -7,8 +7,8 @@
         cmd: php occ config:app:get {{ item.section }} {{ item.name }} --output yaml
         chdir: "{{ nextcloud_destination }}/nextcloud"
       register: nextcloud_list_value
-      changed_when: no
-      become: yes
+      changed_when: false
+      become: true
       become_user: "{{ nextcloud_httpd_owner }}"
       failed_when:
         - nextcloud_list_value.stdout | from_yaml != item.value
@@ -17,8 +17,8 @@
       ansible.builtin.command:
         cmd: php occ config:app:set {{ item.section }} {{ item.name }} --value {{ item.value }}
         chdir: "{{ nextcloud_destination }}/nextcloud"
-      changed_when: no
-      become: yes
+      changed_when: false
+      become: true
       become_user: "{{ nextcloud_httpd_owner }}"
       notify:
         - Set permissions

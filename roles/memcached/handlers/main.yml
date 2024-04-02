@@ -3,7 +3,7 @@
 
 - name: Systemctl daemon-reload
   ansible.builtin.systemd:
-    daemon_reload: yes
+    daemon_reload: true
   notify:
     - Restart memcached
 

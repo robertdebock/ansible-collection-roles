@@ -14,8 +14,8 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 ---
 - name: Converge
   hosts: all
-  become: yes
-  gather_facts: yes
+  become: true
+  gather_facts: true
 
   vars:
     # tomcat_address: "127.0.0.1"
@@ -77,7 +77,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
       #   non_ssl_connector_port: 8089
       #   ssl_connector_port: 8451
       #   ajp_port: 8018
-      #   access_log_enabled: yes
+      #   access_log_enabled: true
       #   access_log_directory: "my-logs"
       #   access_log_prefix: my-access-logs
       #   access_log_suffix: ".log"
@@ -103,8 +103,8 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
 ---
 - name: Prepare
   hosts: all
-  become: yes
-  gather_facts: no
+  become: true
+  gather_facts: false
 
   roles:
     - role: robertdebock.roles.bootstrap
@@ -139,19 +139,19 @@ tomcat_non_ssl_connector_port: 8080
 tomcat_ssl_connector_port: 8443
 tomcat_shutdown_port: 8005
 tomcat_shutdown_pass: SHUTDOWN
-tomcat_ajp_enabled: yes
+tomcat_ajp_enabled: true
 tomcat_ajp_port: 8009
 tomcat_ajp_secret: "SoMe-SeCrEt"
 tomcat_jre_home: /usr
 tomcat_service_state: started
-tomcat_service_enabled: yes
+tomcat_service_enabled: true
 # You can bind Tomcat to a specified address globally using this variable, or
 # in the `tomcat_instances`. The `tomcat_instances.address` is more specific
 # so it takes priority over `tomcat_address`.
 tomcat_address: "0.0.0.0"
 
 # Configure tomcat access logs
-tomcat_access_log_enabled: yes
+tomcat_access_log_enabled: true
 tomcat_access_log_directory: logs
 tomcat_access_log_prefix: localhost_access_log
 tomcat_access_log_suffix: ".txt"
@@ -230,7 +230,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |---------|----|
 |[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|8, 9|
 |[Debian](https://hub.docker.com/r/robertdebock/debian)|all|
-|[Fedora](https://hub.docker.com/r/robertdebock/fedora/)|all|
+|[Fedora](https://hub.docker.com/r/robertdebock/fedora)|all|
 |[opensuse](https://hub.docker.com/r/robertdebock/opensuse)|all|
 |[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|all|
 

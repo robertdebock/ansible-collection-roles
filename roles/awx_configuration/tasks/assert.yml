@@ -6,7 +6,7 @@
       - awx_configuration_controller_host is defined
       - awx_configuration_controller_host is string
       - awx_configuration_controller_host is regex("^https?://.*")
-    quiet: yes
+    quiet: true
 
 - name: assert | Test awx_configuration_controller_password
   ansible.builtin.assert:
@@ -14,7 +14,7 @@
       - awx_configuration_controller_password is defined
       - awx_configuration_controller_password is string
       - awx_configuration_controller_password is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test awx_configuration_controller_username
   ansible.builtin.assert:
@@ -22,14 +22,14 @@
       - awx_configuration_controller_username is defined
       - awx_configuration_controller_username is string
       - awx_configuration_controller_username is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test awx_configuration_credentials
   ansible.builtin.assert:
     that:
       - awx_configuration_credentials is defined
       - awx_configuration_credentials is iterable
-    quiet: yes
+    quiet: true
 
 - name: assert | Test items in awx_configuration_credentials are set correctly
   ansible.builtin.include_tasks:
@@ -42,7 +42,7 @@
     that:
       - awx_configuration_organizations is defined
       - awx_configuration_organizations is iterable
-    quiet: yes
+    quiet: true
 
 - name: assert | Test items in awx_configuration_organizations are set correctly
   ansible.builtin.include_tasks:
@@ -54,4 +54,4 @@
     that:
       - awx_configuration_ci is defined
       - awx_configuration_ci is boolean
-    quiet: yes
+    quiet: true

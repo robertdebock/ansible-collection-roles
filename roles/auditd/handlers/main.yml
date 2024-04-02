@@ -4,14 +4,14 @@
 - name: Run augenrules
   ansible.builtin.command:
     cmd: augenrules
-  changed_when: yes
+  changed_when: true
   notify:
     - Load rules
 
 - name: Load rules
   ansible.builtin.command:
     cmd: augenrules --load
-  changed_when: yes
+  changed_when: true
   when:
     - ansible_connection not in [ "container", "docker", "community.docker.docker" ]
 
@@ -20,3 +20,5 @@
     name: "{{ auditd_service }}"
     state: restarted
     use: service  # systemctl can't restart auditd, service can: https://access.redhat.com/solutions/2664811
+  when:
+    - auditd_start_service

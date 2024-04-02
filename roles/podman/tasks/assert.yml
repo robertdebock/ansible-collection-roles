@@ -4,7 +4,7 @@
   ansible.builtin.assert:
     that:
       - podman_storage is iterable
-    quiet: yes
+    quiet: true
   when:
     - podman_storage is defined
 
@@ -13,6 +13,6 @@
     that:
       - podman_user is string
       - podman_user is not none
-    quiet: yes
+    quiet: true
   when:
     - podman_user is defined

@@ -4,7 +4,7 @@
   ansible.builtin.assert:
     that:
       - filesystem.name is defined
-    quiet: yes
+    quiet: true
 
 - name: filesystem | Create filesystems
   community.general.filesystem:

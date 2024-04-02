@@ -3,7 +3,7 @@
 
 - name: Systemctl daemon-reexec
   ansible.builtin.systemd:
-    daemon_reexec: yes
+    daemon_reexec: true
   when:
     - ansible_service_mgr == "systemd"
 

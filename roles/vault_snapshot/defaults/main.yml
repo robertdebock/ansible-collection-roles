@@ -11,4 +11,4 @@ vault_snapshot_token: "simple"
 vault_snapshot_schedules: []
 
 # Should SSL certificate verification be disabled?
-vault_snapshot_ssl_verify: yes
+vault_snapshot_ssl_verify: true

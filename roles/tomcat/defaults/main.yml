@@ -13,19 +13,19 @@ tomcat_non_ssl_connector_port: 8080
 tomcat_ssl_connector_port: 8443
 tomcat_shutdown_port: 8005
 tomcat_shutdown_pass: SHUTDOWN
-tomcat_ajp_enabled: yes
+tomcat_ajp_enabled: true
 tomcat_ajp_port: 8009
 tomcat_ajp_secret: "SoMe-SeCrEt"
 tomcat_jre_home: /usr
 tomcat_service_state: started
-tomcat_service_enabled: yes
+tomcat_service_enabled: true
 # You can bind Tomcat to a specified address globally using this variable, or
 # in the `tomcat_instances`. The `tomcat_instances.address` is more specific
 # so it takes priority over `tomcat_address`.
 tomcat_address: "0.0.0.0"
 
 # Configure tomcat access logs
-tomcat_access_log_enabled: yes
+tomcat_access_log_enabled: true
 tomcat_access_log_directory: logs
 tomcat_access_log_prefix: localhost_access_log
 tomcat_access_log_suffix: ".txt"

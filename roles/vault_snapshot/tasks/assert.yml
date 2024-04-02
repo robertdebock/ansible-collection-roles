@@ -6,7 +6,7 @@
       - vault_snapshot_address is defined
       - vault_snapshot_address is string
       - vault_snapshot_address is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test vault_snapshot_token
   ansible.builtin.assert:
@@ -14,14 +14,14 @@
       - vault_snapshot_token is defined
       - vault_snapshot_token is string
       - vault_snapshot_token is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test vault_snapshot_schedules
   ansible.builtin.assert:
     that:
       - vault_snapshot_schedules is defined
       - vault_snapshot_schedules is iterable
-    quiet: yes
+    quiet: true
 
 - name: assert | Test item.name in vault_snapshot_schedules
   ansible.builtin.assert:
@@ -29,7 +29,7 @@
       - item.name is defined
       - item.name is string
       - item.name is not none
-    quiet: yes
+    quiet: true
   loop: "{{ vault_snapshot_schedules }}"
   loop_control:
     label: "{{ item.name }}"
@@ -39,7 +39,7 @@
     that:
       - item.interval_seconds is defined
       - item.interval_seconds is number
-    quiet: yes
+    quiet: true
   loop: "{{ vault_snapshot_schedules }}"
   loop_control:
     label: "{{ item.interval_seconds }}"
@@ -48,7 +48,7 @@
   ansible.builtin.assert:
     that:
       - item.retain is number
-    quiet: yes
+    quiet: true
   loop: "{{ vault_snapshot_schedules }}"
   loop_control:
     label: "{{ item.retain }}"
@@ -61,7 +61,7 @@
       - item.path_prefix is defined
       - item.path_prefix is string
       - item.path_prefix is not none
-    quiet: yes
+    quiet: true
   loop: "{{ vault_snapshot_schedules }}"
   loop_control:
     label: "{{ item.path_prefix }}"
@@ -74,7 +74,7 @@
       - item.storage_type is defined
       - item.storage_type is string
       - item.storage_type in [ "local", "aws-s3", "azure-blob"]
-    quiet: yes
+    quiet: true
   loop: "{{ vault_snapshot_schedules }}"
   loop_control:
     label: "{{ item.storage_type }}"
@@ -83,7 +83,7 @@
   ansible.builtin.assert:
     that:
       - item.local_max_space is number
-    quiet: yes
+    quiet: true
   loop: "{{ vault_snapshot_schedules }}"
   loop_control:
     label: "{{ item.local_max_space | default('unset') }}"
@@ -97,7 +97,7 @@
       - item.aws_s3_bucket is defined
       - item.aws_s3_bucket is string
       - item.aws_s3_bucket is not none
-    quiet: yes
+    quiet: true
   loop: "{{ vault_snapshot_schedules }}"
   loop_control:
     label: "{{ item.aws_s3_bucket | default('unset') }}"
@@ -110,7 +110,7 @@
       - item.aws_s3_region is defined
       - item.aws_s3_region is string
       - item.aws_s3_region is not none
-    quiet: yes
+    quiet: true
   loop: "{{ vault_snapshot_schedules }}"
   loop_control:
     label: "{{ item.aws_s3_region | default('unset') }}"
@@ -122,7 +122,7 @@
     that:
       - item.aws_access_key_id is string
       - item.aws_access_key_id is not none
-    quiet: yes
+    quiet: true
   loop: "{{ vault_snapshot_schedules }}"
   loop_control:
     label: "{{ item.aws_access_key_id | default('unset') }}"
@@ -135,7 +135,7 @@
     that:
       - item.aws_secret_access_key is string
       - item.aws_secret_access_key is not none
-    quiet: yes
+    quiet: true
   loop: "{{ vault_snapshot_schedules }}"
   loop_control:
     label: "SENSITIVE_SO_HIDDEN"
@@ -147,7 +147,7 @@
   ansible.builtin.assert:
     that:
       - item.aws_s3_enable_kms is boolean
-    quiet: yes
+    quiet: true
   loop: "{{ vault_snapshot_schedules }}"
   loop_control:
     label: "{{ item.aws_s3_enable_kms | default('unset') }}"
@@ -161,7 +161,7 @@
       - item.azure_container_name is defined
       - item.azure_container_name is string
       - item.azure_container_name is not none
-    quiet: yes
+    quiet: true
   loop: "{{ vault_snapshot_schedules }}"
   loop_control:
     label: "{{ item.azure_container_name | default('unset') }}"
@@ -173,7 +173,7 @@
     that:
       - item.azure_account_name is string
       - item.azure_account_name is not none
-    quiet: yes
+    quiet: true
   loop: "{{ vault_snapshot_schedules }}"
   loop_control:
     label: "{{ item.azure_account_name | default('unset') }}"
@@ -186,7 +186,7 @@
     that:
       - item.azure_account_key is string
       - item.azure_account_key is not none
-    quiet: yes
+    quiet: true
   loop: "{{ vault_snapshot_schedules }}"
   loop_control:
     label: "{{ item.azure_account_key | default('unset') }}"
@@ -199,4 +199,4 @@
     that:
       - vault_snapshot_ssl_verify is defined
       - vault_snapshot_ssl_verify is boolean
-    quiet: yes
+    quiet: true

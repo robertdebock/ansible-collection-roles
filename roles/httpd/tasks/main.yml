@@ -4,7 +4,7 @@
 - name: Import assert.yml
   ansible.builtin.import_tasks:
     file: assert.yml
-  run_once: yes
+  run_once: true
   delegate_to: localhost
 
 - name: Install apache httpd
@@ -20,8 +20,8 @@
     - name: Modify selinux settings
       ansible.posix.seboolean:
         name: "{{ item }}"
-        state: yes
-        persistent: yes
+        state: true
+        persistent: true
       when:
         - ansible_selinux.status is defined
         - ansible_selinux.status == "enabled"
@@ -49,7 +49,7 @@
 - name: Activate httpd module | Debian
   ansible.builtin.command:
     cmd: "a2enmod {{ item }}"
-  changed_when: no
+  changed_when: false
   loop: "{{ httpd_modules_to_activate_with_command }}"
   when:
     - ansible_os_family == 'Debian'
@@ -105,4 +105,4 @@
   ansible.builtin.service:
     name: "{{ httpd_service }}"
     state: started
-    enabled: yes
+    enabled: true

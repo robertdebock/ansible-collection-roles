@@ -14,8 +14,8 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 ---
 - name: Converge
   hosts: all
-  become: yes
-  gather_facts: yes
+  become: true
+  gather_facts: true
 
   roles:
     - role: robertdebock.roles.apt_repository
@@ -29,8 +29,8 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
 ---
 - name: Prepare
   hosts: all
-  become: yes
-  gather_facts: no
+  become: true
+  gather_facts: false
 
   roles:
     - role: robertdebock.roles.bootstrap
@@ -46,7 +46,7 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
     - name: Install yarn public key
       ansible.builtin.apt_key:
         url: "https://dl.yarnpkg.com/debian/pubkey.gpg"
-        validate_certs: no
+        validate_certs: false
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.

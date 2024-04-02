@@ -4,17 +4,17 @@
 - name: Create selinux mod for glusterfs
   ansible.builtin.command:
     cmd: checkmodule -M -m -o /etc/glusterfs/{{ item }}.mod /etc/glusterfs/{{ item }}.te
-  changed_when: yes
+  changed_when: true
   loop: "{{ glusterfs_selinux_local_policies }}"
 
 - name: Create selinux pp for glusterfs
   ansible.builtin.command:
     cmd: semodule_package -o /etc/glusterfs/{{ item }}.pp -m /etc/glusterfs/{{ item }}.mod
-  changed_when: yes
+  changed_when: true
   loop: "{{ glusterfs_selinux_local_policies }}"
 
 - name: Load selinux pp for glusterfs
   ansible.builtin.command:
     cmd: semodule -i /etc/glusterfs/{{ item }}.pp
-  changed_when: yes
+  changed_when: true
   loop: "{{ glusterfs_selinux_local_policies }}"

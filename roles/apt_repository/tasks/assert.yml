@@ -4,7 +4,7 @@
   ansible.builtin.assert:
     that:
       - apt_repositories is iterable
-    quiet: yes
+    quiet: true
   when:
     - apt_repositories is defined
 
@@ -12,7 +12,7 @@
   ansible.builtin.assert:
     that:
       - item.repo is string
-    quiet: yes
+    quiet: true
   loop: "{{ apt_repositories }}"
   loop_control:
     label: "{{ item.repo }}"
@@ -24,7 +24,7 @@
     that:
       - item.state is string
       - item.state in [ "absent", "present" ]
-    quiet: yes
+    quiet: true
   loop: "{{ apt_repositories }}"
   loop_control:
     label: "{{ item.repo }}"
@@ -36,7 +36,7 @@
   ansible.builtin.assert:
     that:
       - item.validate_certs is boolean
-    quiet: yes
+    quiet: true
   loop: "{{ apt_repositories }}"
   loop_control:
     label: "{{ item.repo }}"

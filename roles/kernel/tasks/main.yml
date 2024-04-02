@@ -4,7 +4,7 @@
 - name: Import assert.yml
   ansible.builtin.import_tasks:
     file: assert.yml
-  run_once: yes
+  run_once: true
   delegate_to: localhost
 
 - name: Install requirements
@@ -16,7 +16,7 @@
   ansible.builtin.unarchive:
     src: "{{ kernel_unarchive_src }}"
     dest: "{{ kernel_build_location }}"
-    remote_src: yes
+    remote_src: true
     creates: "{{ kernel_unarchive_creates }}"
     mode: "0755"
 
@@ -44,7 +44,7 @@
   async: 1800
   poll: 0
   register: kernel_make
-  changed_when: no
+  changed_when: false
 
 - name: Wait for make
   ansible.builtin.async_status:

@@ -4,13 +4,13 @@
 - name: Import assert.yml
   ansible.builtin.import_tasks:
     file: assert.yml
-  run_once: yes
+  run_once: true
   delegate_to: localhost
 
 - name: Install repository key
   ansible.builtin.apt_key:
     url: "https://download.jitsi.org/jitsi-key.gpg.key"
-    validate_certs: no
+    validate_certs: false
     state: present
 
 - name: Add repository

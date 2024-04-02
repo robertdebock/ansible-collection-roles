@@ -14,31 +14,31 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 ---
 - name: Converge
   hosts: all
-  become: yes
-  gather_facts: yes
+  become: true
+  gather_facts: true
 
   roles:
     - role: robertdebock.roles.bareos_sd
-      bareos_sd_backup_configurations: yes
-      bareos_sd_install_debug_packages: yes
+      bareos_sd_backup_configurations: true
+      bareos_sd_install_debug_packages: true
       bareos_sd_devices:
         - name: "FileStorage"
           description: "File device. A connecting Director must have the same Name and MediaType."
           media_type: "File"
           archive_device: "/var/lib/bareos/storage"
-          label_media: yes
-          random_access: yes
-          automatic_mount: yes
-          removable_media: no
-          always_open: no
+          label_media: true
+          random_access: true
+          automatic_mount: true
+          removable_media: false
+          always_open: false
           maximum_concurrent_jobs: 1
         - name: "disabled-device"
-          enabled: no
+          enabled: false
       bareos_sd_directors:
         - name: bareos-dir
           password: "somepassword"
         - name: "disabled-director"
-          enabled: no
+          enabled: false
       bareos_sd_messages:
         - name: "Standard"
           description: "Send relevant messages to the Director."
@@ -59,11 +59,11 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
             - "!skipped"
             - "!saved"
         - name: "disabled-message"
-          enabled: no
+          enabled: false
       bareos_sd_s3_profiles:
         - name: exoscale
           host: "sos.exo.io:443"
-          use_https: yes
+          use_https: true
           access_key: "SomeAPIKey"
           secret_key: "SomeSecret"
           pricing_dir: ""
@@ -78,13 +78,13 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
 ---
 - name: Prepare
   hosts: all
-  become: yes
-  gather_facts: no
+  become: true
+  gather_facts: false
 
   roles:
     - role: robertdebock.roles.bootstrap
     - role: robertdebock.roles.bareos_repository
-      bareos_repository_enable_tracebacks: yes
+      bareos_repository_enable_tracebacks: true
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.
@@ -100,10 +100,10 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 # The Storage Daemon has these configuration parameters.
 
 # Backup the configuration files.
-bareos_sd_backup_configurations: no
+bareos_sd_backup_configurations: false
 
 # Install debug packages. This requires the debug repositories to be enabled.
-bareos_sd_install_debug_packages: no
+bareos_sd_install_debug_packages: false
 
 # The hostname of the Storage Daemon.
 bareos_sd_hostname: "{{ inventory_hostname }}"
@@ -115,10 +115,10 @@ bareos_sd_message: "Standard"
 bareos_sd_max_concurrent_jobs: 20
 
 # Enable TLS.
-bareos_sd_tls_enable: yes
+bareos_sd_tls_enable: true
 
 # Verify the peer.
-bareos_sd_tls_verify_peer: no
+bareos_sd_tls_verify_peer: false
 
 # A list of devices to configure.
 bareos_sd_devices: []
@@ -161,7 +161,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |---------|----|
 |[Debian](https://hub.docker.com/r/robertdebock/debian)|bookworm, bullseye, buster|
 |[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|7, 8, 9|
-|[Fedora](https://hub.docker.com/r/robertdebock/fedora/)|38, 39|
+|[Fedora](https://hub.docker.com/r/robertdebock/fedora)|38, 39|
 |[opensuse](https://hub.docker.com/r/robertdebock/opensuse)|all|
 |[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|jammy, focal|
 

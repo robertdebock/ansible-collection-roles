@@ -5,13 +5,13 @@
     that:
       - scripts_shell is defined
       - scripts_shell in [ "/bin/sh", "/bin/bash" ]
-    quiet: yes
+    quiet: true
 
 - name: assert | Test scripts
   ansible.builtin.assert:
     that:
       - scripts is iterable
-    quiet: yes
+    quiet: true
   when:
     - scripts is defined
 
@@ -21,7 +21,7 @@
       - item.name is defined
       - item.name is string
       - item.name is not none
-    quiet: yes
+    quiet: true
   loop: "{{ scripts }}"
   loop_control:
     label: "{{ item.name }}"
@@ -32,7 +32,7 @@
       - item.directory is defined
       - item.directory is string
       - item.directory is not none
-    quiet: yes
+    quiet: true
   loop: "{{ scripts }}"
   loop_control:
     label: "{{ item.directory }}"
@@ -43,7 +43,7 @@
       - item.lines is defined
       - item.lines is iterable
       - item.lines | length > 0
-    quiet: yes
+    quiet: true
   loop: "{{ scripts }}"
   loop_control:
     label: "{{ item.lines }}"
@@ -53,7 +53,7 @@
     that:
       - item.sleep is number
       - item.sleep >= 0
-    quiet: yes
+    quiet: true
   when:
     - item.sleep is defined
   loop: "{{ scripts }}"

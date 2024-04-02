@@ -6,7 +6,7 @@
       - terraform_version is defined
       - terraform_version is string
       - terraform_version is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test terraform_destination
   ansible.builtin.assert:
@@ -14,4 +14,4 @@
       - terraform_destination is defined
       - terraform_destination is string
       - terraform_destination is not none
-    quiet: yes
+    quiet: true

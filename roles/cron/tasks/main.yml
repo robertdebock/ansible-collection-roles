@@ -4,7 +4,7 @@
 - name: Import assert.yml
   ansible.builtin.import_tasks:
     file: assert.yml
-  run_once: yes
+  run_once: true
   delegate_to: localhost
 
 - name: Install cron
@@ -17,7 +17,7 @@
     path: "{{ cron_configuration }}"
     line: "SHELL={{ cron_shell }}"
     regexp: "^SHELL"
-    create: yes
+    create: true
     mode: "0600"
   notify:
     - Restart cron
@@ -27,7 +27,7 @@
     path: "{{ cron_configuration }}"
     line: "PATH={{ cron_path }}"
     regexp: "^PATH"
-    create: yes
+    create: true
     mode: "0600"
   notify:
     - Restart cron
@@ -37,7 +37,7 @@
     path: "{{ cron_configuration }}"
     line: "MAILTO={{ cron_mailto }}"
     regexp: "^MAILTO"
-    create: yes
+    create: true
     mode: "0600"
   notify:
     - Restart cron
@@ -46,7 +46,7 @@
   ansible.builtin.service:
     name: "{{ cron_service }}"
     state: started
-    enabled: yes
+    enabled: true
   when:
     - cron_service is defined
     - cron_service | length

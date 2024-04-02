@@ -8,7 +8,7 @@
     cmd: "(sleep {{ reboot_delay }} && {{ reboot_command }} &)"  # noqa no-changed-when This was before the reboot module existed.
   async: 1
   poll: 0
-  failed_when: no
+  failed_when: false
 
 - name: reboot | 1 wait for the start of reboot
   ansible.builtin.pause:

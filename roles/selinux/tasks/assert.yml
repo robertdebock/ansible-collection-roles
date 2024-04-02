@@ -6,7 +6,7 @@
       - selinux_state is defined
       - selinux_state is string
       - selinux_state in [ "disabled", "enforcing", "permissive" ]
-    quiet: yes
+    quiet: true
 
 - name: assert | Test selinux_policy
   ansible.builtin.assert:
@@ -14,20 +14,20 @@
       - selinux_policy is defined
       - selinux_policy is string
       - selinux_policy in [ "default", "minimum", "mls", "targeted" ]
-    quiet: yes
+    quiet: true
 
 - name: assert | Test selinux_reboot
   ansible.builtin.assert:
     that:
       - selinux_reboot is defined
       - selinux_reboot is boolean
-    quiet: yes
+    quiet: true
 
 - name: assert | Test selinux_booleans
   ansible.builtin.assert:
     that:
       - selinux_booleans is iterable
-    quiet: yes
+    quiet: true
   when:
     - selinux_booleans is defined
 
@@ -37,7 +37,7 @@
       - item.name is defined
       - item.name is string
       - item.name is not none
-    quiet: yes
+    quiet: true
   loop: "{{ selinux_booleans }}"
   loop_control:
     label: "{{ item.name }}"
@@ -48,7 +48,7 @@
   ansible.builtin.assert:
     that:
       - item.state is boolean
-    quiet: yes
+    quiet: true
   loop: "{{ selinux_booleans }}"
   loop_control:
     label: "{{ item.name }}"
@@ -60,7 +60,7 @@
   ansible.builtin.assert:
     that:
       - item.persistent is boolean
-    quiet: yes
+    quiet: true
   loop: "{{ selinux_booleans }}"
   loop_control:
     label: "{{ item.name }}"

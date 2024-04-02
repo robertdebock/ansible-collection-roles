@@ -21,5 +21,5 @@ argument_specs:
         description: "A list of audit devices to configure. Please have look in `molecule/default/converge.yml` for a complete example."
       vault_auditdevice_ssl_verify:
         type: "bool"
-        default: yes
+        default: true
         description: "Should SSL certificate verification be disabled?"

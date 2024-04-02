@@ -3,12 +3,12 @@
 
 - name: Update cache
   ansible.builtin.apt:
-    update_cache: yes
+    update_cache: true
 
 - name: Switch back to default crypto policy
   ansible.builtin.command:
     cmd: update-crypto-policies --set DEFAULT
-  changed_when: yes
+  changed_when: true
   when:
     - zabbix_repository_revert_crypto_policy
 

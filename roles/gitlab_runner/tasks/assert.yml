@@ -6,14 +6,14 @@
       - gitlab_runner_name is defined
       - gitlab_runner_name is string
       - gitlab_runner_name is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test gitlab_runner_registration_token
   ansible.builtin.assert:
     that:
       - gitlab_runner_registration_token is string
       - gitlab_runner_registration_token is not none
-    quiet: yes
+    quiet: true
   when:
     - gitlab_runner_registration_token is defined
 
@@ -23,13 +23,13 @@
       - gitlab_runner_url is defined
       - gitlab_runner_url is string
       - gitlab_runner_url is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test gitlab_runner_tags
   ansible.builtin.assert:
     that:
       - gitlab_runner_tags is iterable
-    quiet: yes
+    quiet: true
   when:
     - gitlab_runner_tags is defined
 
@@ -38,7 +38,7 @@
     that:
       - gitlab_runner_executor is string
       - gitlab_runner_executor in [ "ssh", "shell", "parallels", "virtualbox", "docker", "docker_machine", "kubernetes", "custom" ]
-    quiet: yes
+    quiet: true
 
 - name: assert | Test gitlab_runner_docker_image
   ansible.builtin.assert:
@@ -46,7 +46,7 @@
       - gitlab_runner_docker_image is defined
       - gitlab_runner_docker_image is string
       - gitlab_runner_docker_image is not none
-    quiet: yes
+    quiet: true
   when:
     - gitlab_runner_executor == "docker"
 
@@ -56,7 +56,7 @@
       - gitlab_runner_version is defined
       - gitlab_runner_version is string
       - gitlab_runner_version is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test gitlab_runner_concurrency
   ansible.builtin.assert:
@@ -64,4 +64,4 @@
       - gitlab_runner_concurrency is defined
       - gitlab_runner_concurrency is number
       - gitlab_runner_concurrency >= 0
-    quiet: yes
+    quiet: true

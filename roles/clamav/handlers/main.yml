@@ -46,4 +46,4 @@
 - name: Load selinux pp for clamav
   ansible.builtin.command:
     cmd: semodule -i /etc/my-clamd.pp
-  changed_when: yes
+  changed_when: true

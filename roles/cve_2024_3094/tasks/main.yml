@@ -1,0 +1,15 @@
+---
+# tasks file for cve_2024_3094
+
+- name: Run xz --version
+  ansible.builtin.command:
+    cmd: xz --version
+  register: xz_version
+  failed_when: false
+  changed_when: false
+
+- name: Fail if vulnerable version of xz is installed
+  ansible.builtin.fail:
+    msg: "Vulnerable version of xz is installed"
+  when:
+    - xz_version.stdout | ansible.builtin.regex_search("5\.6\.(0|1)")

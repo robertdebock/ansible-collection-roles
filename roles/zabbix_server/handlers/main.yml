@@ -4,17 +4,17 @@
 - name: Create selinux mod for zabbix_server
   ansible.builtin.command:
     cmd: checkmodule -M -m -o /etc/zabbix/my-zabbixserver.mod /etc/zabbix/my-zabbixserver.te
-  changed_when: yes
+  changed_when: true
 
 - name: Create selinux pp for zabbix_server
   ansible.builtin.command:
     cmd: semodule_package -o /etc/zabbix/my-zabbixserver.pp -m /etc/zabbix/my-zabbixserver.mod
-  changed_when: yes
+  changed_when: true
 
 - name: Load selinux pp for zabbix_server
   ansible.builtin.command:
     cmd: semodule -i /etc/zabbix/my-zabbixserver.pp
-  changed_when: yes
+  changed_when: true
 
 - name: Import zabbix schema
   community.mysql.mysql_db:

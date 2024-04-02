@@ -6,7 +6,7 @@
     name: "{{ gnome_packages }}"
     state: present
     exclude: "{{ gnome_exclude | default(omit) }}"
-    allowerasing: yes
+    allowerasing: true
   when:
     - ansible_pkg_mgr == "dnf"
 
@@ -21,7 +21,7 @@
   ansible.builtin.service:
     name: dbus-broker
     state: started
-    enabled: yes
+    enabled: true
   when:
     - ansible_distribution == "Fedora"
 
@@ -29,4 +29,4 @@
   ansible.builtin.service:
     name: gdm
     state: started
-    enabled: yes
+    enabled: true

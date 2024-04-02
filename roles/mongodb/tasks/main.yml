@@ -4,7 +4,7 @@
 - name: Import assert.yml
   ansible.builtin.import_tasks:
     file: assert.yml
-  run_once: yes
+  run_once: true
   delegate_to: localhost
 
 - name: Prepare distribtions that use "apt"
@@ -15,14 +15,14 @@
       ansible.builtin.get_url:
         url: "https://pgp.mongodb.com/server-6.0.asc"
         dest: /usr/share/keyrings/mongodb-server-6.0.asc
-        # validate_certs: no
+        # validate_certs: false
         mode: "0644"
 
     - name: Install mongodb repository (deb)
       ansible.builtin.apt_repository:
         repo: "{{ mongodb_apt_repository }}"
-        update_cache: yes
-        # validate_certs: no
+        update_cache: true
+        # validate_certs: false
         filename: mongodb-org-6.0.list
 
 - name: Install mongodb repository (rpm)
@@ -30,8 +30,8 @@
     name: mongodb-org-6.0
     description: MongoDB Repository
     baseurl: https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/6.0/x86_64/
-    gpgcheck: yes
-    enabled: yes
+    gpgcheck: true
+    enabled: true
     gpgkey: https://www.mongodb.org/static/pgp/server-6.0.asc
   when:
     - ansible_pkg_mgr in [ "dnf", "yum" ]
@@ -54,4 +54,4 @@
   ansible.builtin.service:
     name: mongod
     state: started
-    enabled: yes
+    enabled: true

@@ -9,7 +9,7 @@
 - name: Unmask systemd-logind
   ansible.builtin.systemd:
     name: systemd-logind
-    masked: no
+    masked: false
 
 - name: Restart systemd-logind
   ansible.builtin.service:

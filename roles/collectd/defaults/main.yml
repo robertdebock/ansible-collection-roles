@@ -191,7 +191,7 @@ collectd_plugins: []
 #    flush_interval: 600 #seconds
 #    flush_timeout:
 #    config: |4
-#      Something: yes
+#      Something: true
 #      <Nested block>
 #        NestedKey: "value"
 #      </Nested>

@@ -4,7 +4,7 @@
 - name: Import assert.yml
   ansible.builtin.import_tasks:
     file: assert.yml
-  run_once: yes
+  run_once: true
   delegate_to: localhost
 
 - name: Install using package
@@ -31,7 +31,7 @@
           ansible.builtin.apt_key:
             url: "https://apt.releases.hashicorp.com/gpg"
             state: present
-            validate_certs: no
+            validate_certs: false
 
         - name: Install repository for Debian
           ansible.builtin.apt_repository:
@@ -73,7 +73,7 @@
         group: "{{ hashicorp_group }}"
         mode: "{{ hashicorp_mode }}"
         owner: "{{ hashicorp_owner }}"
-        remote_src: yes
+        remote_src: true
       loop: "{{ hashicorp_products }}"
       loop_control:
         label: "{{ item.name }}"

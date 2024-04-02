@@ -7,7 +7,7 @@
     - name: hardening | Disable swap now
       ansible.builtin.command:
         cmd: swapoff -a
-      changed_when: yes
+      changed_when: true
       when:
         - ansible_swaptotal_mb > 0
 
@@ -68,6 +68,6 @@
     - name: hardening | Enable AppArmor (enforcing)
       ansible.builtin.command:
         cmd: aa-enforce /etc/apparmor.d/usr.bin.vault
-      changed_when: yes
+      changed_when: true
       when:
         - ansible_apparmor.status == "enabled"

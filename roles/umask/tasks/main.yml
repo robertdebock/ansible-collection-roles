@@ -4,7 +4,7 @@
 - name: Import assert.yml
   ansible.builtin.import_tasks:
     file: assert.yml
-  run_once: yes
+  run_once: true
   delegate_to: localhost
 
 - name: Set umask
@@ -12,8 +12,8 @@
     path: ~/.bashrc
     line: "umask {{ umask }}"
     regexp: '^umask\s+\d+'
-    create: yes
+    create: true
     mode: "0644"
-  become: yes
+  become: true
   become_user: "{{ item }}"
   loop: "{{ umask_users }}"

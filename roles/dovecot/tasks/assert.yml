@@ -6,7 +6,7 @@
       - dovecot_mailbox_location is defined
       - dovecot_mailbox_location is string
       - dovecot_mailbox_location is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test dovecot_mail_access_groups
   ansible.builtin.assert:
@@ -14,4 +14,4 @@
       - dovecot_mail_access_groups is defined
       - dovecot_mail_access_groups is string
       - dovecot_mail_access_groups is not none
-    quiet: yes
+    quiet: true

@@ -13,8 +13,8 @@
     name: AzureCLI
     description: Azure CLI
     baseurl: "https://packages.microsoft.com/yumrepos/azure-cli"
-    enabled: yes
-    gpgcheck: yes
+    enabled: true
+    gpgcheck: true
     gpgkey: "https://packages.microsoft.com/keys/microsoft.asc"
   when:
     - ansible_pkg_mgr in [ "yum", "dnf" ]

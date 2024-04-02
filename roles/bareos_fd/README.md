@@ -14,14 +14,14 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 ---
 - name: Converge
   hosts: all
-  become: yes
-  gather_facts: yes
+  become: true
+  gather_facts: true
 
   roles:
     - role: robertdebock.roles.bareos_fd
-      bareos_fd_backup_configurations: yes
-      bareos_fd_install_debug_packages: yes
-      bareos_fd_encryption_enabled: yes
+      bareos_fd_backup_configurations: true
+      bareos_fd_install_debug_packages: true
+      bareos_fd_encryption_enabled: true
       bareos_fd_encryption_private_key: |
         -----BEGIN RSA PRIVATE KEY-----
         MIIJKAIBAAKCAgEAvFS5DDxBm2Hgf6LM2QnU3eKTw6PHpCBESjuqoKDnwnjL9wXH
@@ -101,13 +101,13 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
       bareos_fd_directors:
         - name: "bareos-dir"
           password: "secretpassword"
-          monitor: no
-          connection_from_client_to_director: yes
-          connection_from_director_to_client: no
-          tls_enable: yes
-          tls_verify_peer: no
+          monitor: false
+          connection_from_client_to_director: true
+          connection_from_director_to_client: false
+          tls_enable: true
+          tls_verify_peer: false
         - name: "disabled-director"
-          enabled: no
+          enabled: false
       bareos_fd_messages:
         - name: "Standard"
           director:
@@ -128,7 +128,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
             - "!skipped"
             - "!saved"
         - name: "disabled-message"
-          enabled: no
+          enabled: false
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-bareos_fd/blob/master/molecule/default/prepare.yml):
@@ -137,13 +137,13 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
 ---
 - name: Prepare
   hosts: all
-  become: yes
-  gather_facts: no
+  become: true
+  gather_facts: false
 
   roles:
     - role: robertdebock.roles.bootstrap
     - role: robertdebock.roles.bareos_repository
-      bareos_repository_enable_tracebacks: yes
+      bareos_repository_enable_tracebacks: true
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.
@@ -159,10 +159,10 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 # The client has these configuration parameters.
 
 # Backup existing configurations.
-bareos_fd_backup_configurations: no
+bareos_fd_backup_configurations: false
 
 # Install debug packages. This requires the debug repositories to be enabled.
-bareos_fd_install_debug_packages: no
+bareos_fd_install_debug_packages: false
 
 # The hostname of the File Daemon.
 bareos_fd_hostname: "{{ inventory_hostname }}"
@@ -177,10 +177,10 @@ bareos_fd_message: "Standard"
 bareos_fd_maximum_concurrent_jobs: 20
 
 # Enable TLS.
-bareos_fd_tls_enable: yes
+bareos_fd_tls_enable: true
 
 # Verify the peer.
-bareos_fd_tls_verify_peer: no
+bareos_fd_tls_verify_peer: false
 
 # The inteval in seconds to send a heartbeat.
 bareos_fd_heartbeat_interval: 0
@@ -189,11 +189,11 @@ bareos_fd_heartbeat_interval: 0
 bareos_fd_directors:
   - name: "bareos-dir"
     password: "secretpassword"
-    monitor: no
+    monitor: false
     description: "Allow the configured Director to access this file daemon."
   - name: bareos-mon
     password: "secretpassword"
-    monitor: yes
+    monitor: true
     description: "Restricted Director, used by tray-monitor to get the status of this file daemon."
 
 # The Messages to configure.
@@ -207,8 +207,8 @@ bareos_fd_messages:
         - "!restored"
     description: "Send relevant messages to the Director."
 
-# For encryption of data, set this to `yes`.
-bareos_fd_encryption_enabled: no
+# For encryption of data, set this to `true`.
+bareos_fd_encryption_enabled: false
 
 # You may bring your own private key. If not specified, a new one will be generated.
 bareos_fd_encryption_private_key: ""
@@ -245,7 +245,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |---------|----|
 |[Debian](https://hub.docker.com/r/robertdebock/debian)|bookworm, bullseye, buster|
 |[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|7, 8, 9|
-|[Fedora](https://hub.docker.com/r/robertdebock/fedora/)|38, 39|
+|[Fedora](https://hub.docker.com/r/robertdebock/fedora)|38, 39|
 |[opensuse](https://hub.docker.com/r/robertdebock/opensuse)|all|
 |[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|jammy, focal|
 

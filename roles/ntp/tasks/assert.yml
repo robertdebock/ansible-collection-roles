@@ -5,21 +5,21 @@
     that:
       - ntp_state is defined
       - ntp_state in [ "started", "stopped" ]
-    quiet: yes
+    quiet: true
 
 - name: assert | Test ntp_enabled
   ansible.builtin.assert:
     that:
       - ntp_enabled is defined
       - ntp_enabled is boolean
-    quiet: yes
+    quiet: true
 
 - name: assert | Test ntp_interfaces
   ansible.builtin.assert:
     that:
       - ntp_interfaces is defined
       - ntp_interfaces is iterable
-    quiet: yes
+    quiet: true
 
 - name: assert | Test item in ntp_interfaces
   ansible.builtin.assert:
@@ -27,7 +27,7 @@
       - item.address is defined
       - item.address is string
       - item.address is not none
-    quiet: yes
+    quiet: true
   loop: "{{ ntp_interfaces }}"
   loop_control:
     label: "{{ item.address }}"
@@ -37,7 +37,7 @@
     that:
       - ntp_pool is defined
       - ntp_pool is iterable
-    quiet: yes
+    quiet: true
 
 - name: assert | Test item in ntp_pool
   ansible.builtin.assert:
@@ -45,7 +45,7 @@
       - item.name is defined
       - item.name is string
       - item.name is not none
-    quiet: yes
+    quiet: true
   loop: "{{ ntp_pool }}"
   loop_control:
     label: "{{ item.name }}"
@@ -54,7 +54,7 @@
   ansible.builtin.assert:
     that:
       - ntp_server is iterable
-    quiet: yes
+    quiet: true
   when:
     - ntp_server is defined
 
@@ -64,7 +64,7 @@
       - item.name is defined
       - item.name is string
       - item.name is not none
-    quiet: yes
+    quiet: true
   when:
     - ntp_server is defined
 
@@ -74,4 +74,4 @@
       - ntp_timezone is defined
       - ntp_timezone is string
       - ntp_timezone is not none
-    quiet: yes
+    quiet: true

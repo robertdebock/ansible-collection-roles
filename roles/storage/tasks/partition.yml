@@ -7,7 +7,7 @@
       - partition.number is defined
       - partition.part_start is defined or
         partition.part_end is defined
-    quiet: yes
+    quiet: true
 
 - name: partition | Test partition.label
   ansible.builtin.assert:
@@ -15,7 +15,7 @@
       - partition.label is defined
       - partition.label is iterable
       - partition.label in [ "aix", "amiga", "bsd", "dvh", "gpt", "loop", "mac", "msdos", "pc98", "sun" ]
-    quiet: yes
+    quiet: true
   when:
     - partition.label is defined
 

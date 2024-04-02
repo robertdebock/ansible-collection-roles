@@ -4,7 +4,7 @@
 - name: Import assert.yml
   ansible.builtin.import_tasks:
     file: assert.yml
-  run_once: yes
+  run_once: true
   delegate_to: localhost
 
 - name: Install crypto-policies-scripts
@@ -19,14 +19,14 @@
   register: fips_mode
   when:
     - ansible_os_family == "RedHat"
-  changed_when: no
+  changed_when: false
   failed_when:
     - fips_mode.rc not in fips_exit_codes
 
 - name: Enable FIPS mode
   ansible.builtin.command:
     cmd: /usr/bin/fips-mode-setup --enable
-  changed_when: no
+  changed_when: false
   when:
     - ansible_os_family == "RedHat"
     - fips_mode.rc == fips_disabled_code
@@ -41,12 +41,12 @@
   register: fips_current_crypto_policy
   when:
     - ansible_os_family == "RedHat"
-  changed_when: no
+  changed_when: false
 
 - name: Set crypto policy
   ansible.builtin.command:
     cmd: update-crypto-policies --set {{ fips_policy }}
-  changed_when: yes
+  changed_when: true
   when:
     - ansible_os_family == "RedHat"
     - fips_current_crypto_policy.stdout != fips_policy

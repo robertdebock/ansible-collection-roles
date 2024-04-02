@@ -4,7 +4,7 @@
 - name: Import assert.yml
   ansible.builtin.import_tasks:
     file: assert.yml
-  run_once: yes
+  run_once: true
   delegate_to: localhost
 
 - name: Install requirements
@@ -20,7 +20,7 @@
 - name: Create git group
   ansible.builtin.group:
     name: git
-    system: yes
+    system: true
 
 - name: Create git user
   ansible.builtin.user:
@@ -29,8 +29,8 @@
     comment: Git Version Control
     group: git
     home: /home/git
-    system: yes
-    createhome: yes
+    system: true
+    createhome: true
 
 - name: Check if /etc/gitea/app.ini exists
   ansible.builtin.stat:
@@ -61,7 +61,7 @@
   ansible.builtin.service:
     name: gitea
     state: started
-    enabled: yes
+    enabled: true
 
 - name: Lock down configuration
   ansible.builtin.file:

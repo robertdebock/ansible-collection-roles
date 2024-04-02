@@ -22,4 +22,4 @@ awx_configuration_organizations: []
 awx_configuration_credentials: []
 
 # It's difficult to test this role in CI, AWX is not available.
-awx_configuration_ci: no
+awx_configuration_ci: false

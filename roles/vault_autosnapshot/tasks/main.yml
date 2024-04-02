@@ -1,0 +1,63 @@
+---
+# tasks file for vault_autosnapshot
+
+- name: Import assert.yml
+  ansible.builtin.import_tasks:
+    file: assert.yml
+  run_once: true
+  delegate_to: localhost
+
+- name: Check of Vault is configured to use RAFT storage
+  ansible.builtin.uri:
+    url: "{{ vault_autosnapshot_address }}/v1/sys/storage/raft/config"
+    method: GET
+    headers:
+      X-Vault-Token: "{{ vault_autosnapshot_token }}"
+    validate_certs: "{{ vault_autosnapshot_ssl_verify }}"
+  register: vault_raft_config_retreived
+  when:
+    - vault_autosnapshot_token is defined
+    - vault_autosnapshot_token != ""
+  failed_when:
+    - vault_raft_config_retreived.status != 200
+  
+- name: List existing autosnapshots configured
+  ansible.builtin.uri:
+    url: "{{ vault_autosnapshot_address }}/v1/sys/storage/raft/snapshot-auto/config"
+    method: GET
+    headers:
+      X-Vault-Token: "{{ vault_autosnapshot_token }}"
+    validate_certs: "{{ vault_autosnapshot_ssl_verify }}"
+  register: vault_autosnapshot_list_retreived
+  changed_when: false
+  when:
+    - vault_autosnapshot_token is defined
+    - vault_autosnapshot_token != ""
+
+- name: Show vault_autosnapshot_list_retreived
+  ansible.builtin.debug:
+    var: vault_autosnapshot_list_retreived
+  when:
+    - vault_autosnapshot_list_retreived.status is defined
+
+- name: Create autosnapshots
+  ansible.builtin.uri:
+    url: "https://localhost:8200/v1/sys/storage/raft/snapshot-auto/config/hourly"
+    validate_certs: false
+    method: POST
+    body:
+      interval: "{{ item.interval }}"
+      retain: "{{ item.retain }}"
+      storage_type: "{{ item.storage_type }}"
+      path_prefix: "{{ item.path_prefix }}"
+      file_prefix: "{{ item.file_prefix }}"
+      local_max_space: "{{ item.local_max_space | default(omit) }}"
+    body_format: json
+    headers:
+      X-Vault-Token: "{{ vault_root_token }}"
+    status_code: 204
+  loop: "{{ vault_autosnapshot_list }}"
+  when:
+    - vault_autosnapshot_list_retreived.status != 200
+    - vault_autosnapshot_token is defined
+    - vault_autosnapshot_token != ""

@@ -5,7 +5,7 @@
     that:
       - export.hosts is defined
       - export.hosts is iterable
-    quiet: yes
+    quiet: true
 
 - name: assert_export | Test item in export.hosts
   ansible.builtin.include_tasks:

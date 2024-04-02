@@ -6,7 +6,7 @@
       - cargo_prefix is defined
       - cargo_prefix is string
       - cargo_prefix is not none
-    quiet: yes
+    quiet: true
 
 - name: assert | Test cargo_tmp
   ansible.builtin.assert:
@@ -14,4 +14,4 @@
       - cargo_tmp is defined
       - cargo_tmp is string
       - cargo_tmp is not none
-    quiet: yes
+    quiet: true

@@ -6,7 +6,7 @@
       - volume.name is defined
       - volume.vg is defined
       - volume.size is defined
-    quiet: yes
+    quiet: true
 
 - name: volume | Create logical volume
   community.general.lvol:

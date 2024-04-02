@@ -4,7 +4,7 @@
 - name: Import assert.yml
   ansible.builtin.import_tasks:
     file: assert.yml
-  run_once: yes
+  run_once: true
   delegate_to: localhost
 
 - name: Install requirements
@@ -61,8 +61,8 @@
 - name: Set SELinux boolean httpd_can_network_connect
   ansible.posix.seboolean:
     name: httpd_can_network_connect
-    state: yes
-    persistent: yes
+    state: true
+    persistent: true
   when:
     - ansible_selinux.status is defined
     - ansible_selinux.status == "enabled"

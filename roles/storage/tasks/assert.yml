@@ -6,13 +6,13 @@
       - storage_default_fstype is defined
       - storage_default_fstype is string
       - storage_default_fstype in [ "btrfs", "cramfs", "ext2", "ext3", "ext4", "fat", "msdos", "ntfs", "vfat", "xfs" ]
-    quiet: yes
+    quiet: true
 
 - name: assert | Test storage_partitions
   ansible.builtin.assert:
     that:
       - storage_partitions is iterable
-    quiet: yes
+    quiet: true
   when:
     - storage_partitions is defined
 
@@ -22,7 +22,7 @@
       - item.name is defined
       - item.name is string
       - item.name is not none
-    quiet: yes
+    quiet: true
   loop: "{{ storage_partitions }}"
   loop_control:
     label: "{{ item.name }}"
@@ -35,7 +35,7 @@
       - item.number is defined
       - item.number is number
       - item.number > 0
-    quiet: yes
+    quiet: true
   loop: "{{ storage_partitions }}"
   loop_control:
     label: "{{ item.name }}"
@@ -48,7 +48,7 @@
       - item.part_end is defined
       - item.part_end is string
       - item.part_end is not none
-    quiet: yes
+    quiet: true
   loop: "{{ storage_partitions }}"
   loop_control:
     label: "{{ item.name }}"
@@ -59,7 +59,7 @@
   ansible.builtin.assert:
     that:
       - storage_volumegroups is iterable
-    quiet: yes
+    quiet: true
   when:
     - storage_volumegroups is defined
 
@@ -69,7 +69,7 @@
       - item.name is defined
       - item.name is string
       - item.name is not none
-    quiet: yes
+    quiet: true
   loop: "{{ storage_volumegroups }}"
   loop_control:
     label: "{{ item.name }}"
@@ -81,7 +81,7 @@
     that:
       - item.devices is defined
       - item.devices is iterable
-    quiet: yes
+    quiet: true
   loop: "{{ storage_volumegroups }}"
   loop_control:
     label: "{{ item.name }}"
@@ -92,7 +92,7 @@
   ansible.builtin.assert:
     that:
       - item.size is number
-    quiet: yes
+    quiet: true
   loop: "{{ storage_volumegroups }}"
   loop_control:
     label: "{{ item.name }}"
@@ -104,7 +104,7 @@
   ansible.builtin.assert:
     that:
       - storage_volumes is iterable
-    quiet: yes
+    quiet: true
   when:
     - storage_volumes is defined
 
@@ -114,7 +114,7 @@
       - item.name is defined
       - item.name is string
       - item.name is not none
-    quiet: yes
+    quiet: true
   loop: "{{ storage_volumes }}"
   loop_control:
     label: "{{ item.name }}"
@@ -127,7 +127,7 @@
       - item.vg is defined
       - item.vg is string
       - item.vg is not none
-    quiet: yes
+    quiet: true
   loop: "{{ storage_volumes }}"
   loop_control:
     label: "{{ item.name }}"
@@ -138,7 +138,7 @@
   ansible.builtin.assert:
     that:
       - item.size is defined
-    quiet: yes
+    quiet: true
   loop: "{{ storage_volumes }}"
   loop_control:
     label: "{{ item.name }}"
@@ -149,7 +149,7 @@
   ansible.builtin.assert:
     that:
       - storage_filesystems is iterable
-    quiet: yes
+    quiet: true
   when:
     - storage_filesystems is defined
 
@@ -159,7 +159,7 @@
       - item.name is defined
       - item.name is string
       - item.name is not none
-    quiet: yes
+    quiet: true
   loop: "{{ storage_filesystems }}"
   loop_control:
     label: "{{ item.name }}"
@@ -171,7 +171,7 @@
     that:
       - item.fstype is defined
       - item.fstype is string
-    quiet: yes
+    quiet: true
   loop: "{{ storage_filesystems }}"
   loop_control:
     label: "{{ item.name }}"
@@ -182,7 +182,7 @@
   ansible.builtin.assert:
     that:
       - storage_mounts is iterable
-    quiet: yes
+    quiet: true
   when:
     - storage_mounts is defined
 
@@ -192,7 +192,7 @@
       - item.name is defined
       - item.name is string
       - item.name is not none
-    quiet: yes
+    quiet: true
   loop: "{{ storage_mounts }}"
   loop_control:
     label: "{{ item.name }}"
@@ -205,7 +205,7 @@
       - item.src is defined
       - item.src is string
       - item.src is not none
-    quiet: yes
+    quiet: true
   loop: "{{ storage_mounts }}"
   loop_control:
     label: "{{ item.name }}"
@@ -218,7 +218,7 @@
       - item.owner is defined
       - item.owner is string
       - item.owner is not none
-    quiet: yes
+    quiet: true
   loop: "{{ storage_mounts }}"
   loop_control:
     label: "{{ item.name }}"
@@ -231,7 +231,7 @@
       - item.group is defined
       - item.group is string
       - item.group is not none
-    quiet: yes
+    quiet: true
   loop: "{{ storage_mounts }}"
   loop_control:
     label: "{{ item.name }}"
@@ -244,7 +244,7 @@
       - item.mode is defined
       - item.mode is string
       - item.mode is not none
-    quiet: yes
+    quiet: true
   loop: "{{ storage_mounts }}"
   loop_control:
     label: "{{ item.name }}"
@@ -256,7 +256,7 @@
     that:
       - item.opts is string
       - item.opts is not none
-    quiet: yes
+    quiet: true
   loop: "{{ storage_mounts }}"
   loop_control:
     label: "{{ item.name }}"
@@ -268,7 +268,7 @@
   ansible.builtin.assert:
     that:
       - item.boot is boolean
-    quiet: yes
+    quiet: true
   loop: "{{ storage_mounts }}"
   loop_control:
     label: "{{ item.name }}"
@@ -281,7 +281,7 @@
     that:
       - item.dump is number
       - item.dump in [0, 1]
-    quiet: yes
+    quiet: true
   loop: "{{ storage_mounts }}"
   loop_control:
     label: "{{ item.name }}"
@@ -294,7 +294,7 @@
     that:
       - item.passno is number
       - item.passno in [0, 1, 2]
-    quiet: yes
+    quiet: true
   loop: "{{ storage_mounts }}"
   loop_control:
     label: "{{ item.name }}"
