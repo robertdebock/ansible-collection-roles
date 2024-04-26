@@ -58,6 +58,9 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 # consul manually, set this to `false`.
 consul_install_package: true
 
+# Consul requires a license. Without setting a license (or an empty license), some steps are skipped.
+consul_license: ""
+
 # This flag controls the datacenter in which the agent is running.
 consul_datacenter: my-dc-1
 
@@ -130,7 +133,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |[Amazon](https://hub.docker.com/r/robertdebock/amazonlinux)|Candidate|
 |[Debian](https://hub.docker.com/r/robertdebock/debian)|bullseye|
 |[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|all|
-|[Fedora](https://hub.docker.com/r/robertdebock/fedora)|37, 38|
+|[Fedora](https://hub.docker.com/r/robertdebock/fedora)|38, 39|
 |[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|all|
 
 The minimum version of Ansible required is 2.12, tests have been done to:

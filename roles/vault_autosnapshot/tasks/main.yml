@@ -20,7 +20,7 @@
     - vault_autosnapshot_token != ""
   failed_when:
     - vault_raft_config_retreived.status != 200
-  
+
 - name: List existing autosnapshots configured
   ansible.builtin.uri:
     url: "{{ vault_autosnapshot_address }}/v1/sys/storage/raft/snapshot-auto/config"

@@ -94,6 +94,14 @@ tfe_tls_bundle: "bundle.pem"
 # You can set the operational mode to either: "disk", "external" or "active-active".
 tfe_operational_mode: "active-active"
 
+# Maximum number of Terraform runs that can execute concurrently on each Terraform Enterprise node.
+tfe_capacity_concurrency: 10
+
+# Enable log forwarding by setting a path.
+# The file (basename) will originate from this Ansible role, unless you have
+# a custom file in your `files/` directory of your playbook directory.
+# tfe_log_forwarding_config_path: /etc/terraform-enterprise/fluent-bit/fluent-bit.conf
+
 # Details on the database host. This host should already exist, this role
 # does not create a database.
 # These variables are required when `tfe_operational_mode` is set to `active-active` or `external`.

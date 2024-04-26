@@ -32,18 +32,8 @@ galaxy_info:
 
   galaxy_tags:
     - cve20243094
-    - application
-    - cloud
-    - database
-    - development
-    - infrastructure
     - linux
-    - monitoring
-    - networking
-    - storage
     - security
     - system
-    - tools
-    - windows
 
 dependencies: []

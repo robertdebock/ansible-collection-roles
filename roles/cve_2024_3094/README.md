@@ -19,6 +19,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 
   roles:
     - role: robertdebock.roles.cve_2024_3094
+      cve_2024_3094_cleanup: false
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-cve_2024_3094/blob/master/molecule/default/prepare.yml):
@@ -32,10 +33,29 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
 
   roles:
     - role: robertdebock.roles.bootstrap
+    - role: robertdebock.roles.openssh
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.
 
+## [Role Variables](#role-variables)
+
+The default values for the variables are set in [`defaults/main.yml`](https://github.com/robertdebock/ansible-role-cve_2024_3094/blob/master/defaults/main.yml):
+
+```yaml
+---
+# defaults file for cve_2024_3094
+
+# If requirements are installed, would you like to remove them after this role ran?
+cve_2024_3094_cleanup: true
+
+# Where to look for `sshd`, a list of paths.
+cve_2024_3094_sshd_paths:
+      - /usr/bin
+      - /usr/sbin
+      - /usr/local/bin
+      - /usr/local/sbin
+```
 
 ## [Requirements](#requirements)
 
@@ -48,6 +68,7 @@ The following roles are used to prepare a system. You can prepare your system in
 | Requirement | GitHub | GitLab |
 |-------------|--------|--------|
 |[robertdebock.bootstrap](https://galaxy.ansible.com/robertdebock/bootstrap)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-bootstrap/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-bootstrap/actions)|[![Build Status GitLab](https://gitlab.com/robertdebock-iac/ansible-role-bootstrap/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-bootstrap)|
+|[robertdebock.openssh](https://galaxy.ansible.com/robertdebock/openssh)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-openssh/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-openssh/actions)|[![Build Status GitLab](https://gitlab.com/robertdebock-iac/ansible-role-openssh/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-openssh)|
 
 ## [Context](#context)
 

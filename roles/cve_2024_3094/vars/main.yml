@@ -1,0 +1,15 @@
+---
+# vars file for cve_2024_3094
+
+_cve_2024_3094_requirements:
+  default:
+    - util-linux
+  Alpine:
+    - hexdump
+  Debian:
+    - bsdextrautils
+  Ubuntu:
+    - bsdmainutils
+  Suse:
+    - util-linux
+cve_2024_3094_requirements: "{{ _cve_2024_3094_requirements[ansible_distribution] | default(_cve_2024_3094_requirements[ansible_os_family]) | default(_cve_2024_3094_requirements['default']) }}"

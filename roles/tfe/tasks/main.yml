@@ -16,23 +16,26 @@
     - tfe_license is defined
     - tfe_license != ""
 
-- name: Create /etc/terraform-enterprise/certs
-  ansible.builtin.file:
-    path: /etc/terraform-enterprise/certs
-    state: directory
-    owner: root
-    group: root
-    mode: '0775'
-
 - name: Create /var/lib/terraform-enterprise
   ansible.builtin.file:
     path: /var/lib/terraform-enterprise
     state: directory
     owner: root
     group: root
-    mode: '0775'
+    mode: "0775"
   when:
     - tfe_operational_mode == "disk"
+
+- name: Create directories in /etc/terraform-enterprise
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+  loop:
+    - /etc/terraform-enterprise
+    - /etc/terraform-enterprise/certs
 
 - name: Place TLS material
   ansible.builtin.copy:
@@ -44,25 +47,17 @@
   loop:
     - name: "{{ tfe_tls_bundle }}"
       dest: /etc/terraform-enterprise/certs/bundle.pem
-      mode: '0664'
+      mode: "0664"
     - name: "{{ tfe_tls_certificate }}"
       dest: /etc/terraform-enterprise/certs/cert.pem
-      mode: '0664'
+      mode: "0664"
     - name: "{{ tfe_tls_key }}"
       dest: /etc/terraform-enterprise/certs/key.pem
-      mode: '0660'
+      mode: "0660"
   loop_control:
     label: "{{ item.name }}"
   notify:
     - Restart terraform-enterprise
-
-- name: Create /etc/terraform-enterprise
-  ansible.builtin.file:
-    path: /etc/terraform-enterprise
-    state: directory
-    owner: root
-    group: root
-    mode: '0755'
 
 - name: Place docker-compose.yml
   ansible.builtin.template:
@@ -70,7 +65,7 @@
     dest: /etc/terraform-enterprise/docker-compose.yml
     owner: root
     group: root
-    mode: '0644'
+    mode: "0644"
   notify:
     - Restart terraform-enterprise
 
@@ -80,10 +75,29 @@
     dest: /etc/terraform-enterprise/.env
     owner: root
     group: root
-    mode: '0400'
+    mode: "0400"
+  notify:
+    - Restart terraform-enterprise
+
+- name: Create directory tfe_log_forwarding_config_path
+  ansible.builtin.file:
+    path: "{{ tfe_log_forwarding_config_path | dirname }}"
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
   when:
-    - tfe_license is defined
-    - tfe_license != ""
+    - tfe_log_forwarding_config_path is defined
+
+- name: Place fluent-bit configuration
+  ansible.builtin.copy:
+    src: "{{ tfe_log_forwarding_config_path | basename }}"
+    dest: "{{ tfe_log_forwarding_config_path }}"
+    owner: root
+    group: root
+    mode: "0644"
+  when:
+    - tfe_log_forwarding_config_path is defined
   notify:
     - Restart terraform-enterprise
 
@@ -93,7 +107,7 @@
     dest: /etc/systemd/system/terraform-enterprise.service
     owner: root
     group: root
-    mode: '0644'
+    mode: "0644"
   notify:
     - Reload systemd
 

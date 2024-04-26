@@ -1,10 +1,10 @@
-# [vault_autosnapshot](#vault_autosnapshot)
+# [Ansible role vault_autosnapshot](#vault_autosnapshot)
 
-Install and configure vault_autosnapshot on your system.
+Configure vault_autosnapshot on your system.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-vault_autosnapshot/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-vault_autosnapshot/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-vault_autosnapshot/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-vault_autosnapshot)|[![downloads](https://img.shields.io/ansible/role/d/)](https://galaxy.ansible.com/robertdebock/vault_autosnapshot)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-vault_autosnapshot.svg)](https://github.com/robertdebock/ansible-role-vault_autosnapshot/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-vault_autosnapshot/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-vault_autosnapshot/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-vault_autosnapshot/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-vault_autosnapshot)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/vault_autosnapshot)](https://galaxy.ansible.com/robertdebock/vault_autosnapshot)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-vault_autosnapshot.svg)](https://github.com/robertdebock/ansible-role-vault_autosnapshot/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -32,6 +32,11 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
 
   roles:
     - role: robertdebock.roles.bootstrap
+    - role: robertdebock.roles.core_dependencies
+    - role: robertdebock.roles.hashicorp
+    - role: robertdebock.roles.vault
+      vault_hardening_disable_swap: false
+      # vault_type: ent  # Requires a license, not available in CI.
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.
@@ -44,6 +49,26 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 ---
 # defaults file for vault_autosnapshot
 
+# The address of the Vault server, inlcuding the protocol identifier (http/https) and port number.
+vault_autosnapshot_address: "https://vault.example.com:8200"
+
+# The token to use for authentication with the Vault server.
+vault_autosnapshot_token: ""
+
+# Whether to verify the SSL certificate of the Vault server.
+vault_autosnapshot_ssl_verify: true
+
+# A list of snapshots to create. Only `storage_type: local` has been implemented.
+# For example:
+# vault_autosnapshot_list:
+#   - name: "hourly_file"
+#     storage_type: "local"  # Can be "local", "azure-blob" or "aws-s3".
+#     interval: "60m"
+#     retain: "24"
+#     path_prefix: "/opt/vault/snapshots"
+#     file_prefix: "vault-snaphot"
+#     local_max_space: "1024 * 1024 * 1024"  # 1GB, only for local storage type.
+vault_autosnapshot_list: []
 ```
 
 ## [Requirements](#requirements)
@@ -57,6 +82,9 @@ The following roles are used to prepare a system. You can prepare your system in
 | Requirement | GitHub | GitLab |
 |-------------|--------|--------|
 |[robertdebock.bootstrap](https://galaxy.ansible.com/robertdebock/bootstrap)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-bootstrap/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-bootstrap/actions)|[![Build Status GitLab](https://gitlab.com/robertdebock-iac/ansible-role-bootstrap/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-bootstrap)|
+|[robertdebock.core_dependencies](https://galaxy.ansible.com/robertdebock/core_dependencies)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-core_dependencies/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-core_dependencies/actions)|[![Build Status GitLab](https://gitlab.com/robertdebock-iac/ansible-role-core_dependencies/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-core_dependencies)|
+|[robertdebock.hashicorp](https://galaxy.ansible.com/robertdebock/hashicorp)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-hashicorp/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-hashicorp/actions)|[![Build Status GitLab](https://gitlab.com/robertdebock-iac/ansible-role-hashicorp/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-hashicorp)|
+|[robertdebock.vault](https://galaxy.ansible.com/robertdebock/vault)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-vault/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-vault/actions)|[![Build Status GitLab](https://gitlab.com/robertdebock-iac/ansible-role-vault/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-vault)|
 
 ## [Context](#context)
 

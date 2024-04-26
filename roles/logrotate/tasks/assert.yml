@@ -12,8 +12,6 @@
   ansible.builtin.assert:
     that:
       - logrotate_keep is defined
-      - logrotate_keep is number
-      - logrotate_keep >= 0
     quiet: true
 
 - name: assert | Test logrotate_compress
@@ -69,6 +67,19 @@
     label: "{{ item.name }}"
   when:
     - logrotate_entries is defined
+    - item.state is not defined or item.state != "absent"
+
+- name: assert | Test state in logrotate_entries
+  ansible.builtin.assert:
+    that:
+      - item.state is string
+      - item.state in [ "present", "absent" ]
+    quiet: true
+  loop: "{{ logrotate_entries }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - item.state is defined
 
 - name: assert | Test frequency in logrotate_entries
   ansible.builtin.assert:
@@ -86,13 +97,13 @@
   ansible.builtin.assert:
     that:
       - item.keep is number
-      - item.keep >= 1
     quiet: true
   loop: "{{ logrotate_entries }}"
   loop_control:
     label: "{{ item.name }}"
   when:
     - item.keep is defined
+    - item.keep is number
 
 - name: assert | Test compress in logrotate_entries
   ansible.builtin.assert:
@@ -170,6 +181,18 @@
     - item.create_mode is defined or
       item.create_user is defined or
       item.create_group is defined
+
+- name: assert | Test maxsize in logrotate_entries
+  ansible.builtin.assert:
+    that:
+      - item.maxsize is string
+      - item.maxsize is not none
+    quiet: true
+  loop: "{{ logrotate_entries }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - item.maxsize is defined
 
 - name: assert | Test minsize in logrotate_entries
   ansible.builtin.assert:

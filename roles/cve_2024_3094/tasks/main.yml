@@ -1,15 +1,44 @@
 ---
 # tasks file for cve_2024_3094
 
-- name: Run xz --version
+- name: Import assert.yml
+  ansible.builtin.import_tasks:
+    file: assert.yml
+  run_once: true
+  delegate_to: localhost
+
+- name: Check for 5.6.* in xz --version output
   ansible.builtin.command:
     cmd: xz --version
   register: xz_version
-  failed_when: false
+  changed_when: false
+  failed_when:
+    - xz_version.stdout | ansible.builtin.regex_search("5\.6\.(0|1)")
+
+- name: Find sshd path
+  ansible.builtin.find:
+    paths: "{{ cve_2024_3094_sshd_paths }}"
+    patterns: sshd
+  register: sshd_path
   changed_when: false
 
-- name: Fail if vulnerable version of xz is installed
-  ansible.builtin.fail:
-    msg: "Vulnerable version of xz is installed"
+- name: Inspect sshd when installed
   when:
-    - xz_version.stdout | ansible.builtin.regex_search("5\.6\.(0|1)")
+    - sshd_path.files | length > 0
+  block:
+    - name: Install requirements
+      ansible.builtin.package:
+        name: "{{ cve_2024_3094_requirements }}"
+      notify:
+        - Remove requirements
+
+    - name: Check for f30f1e... in hexdump output
+      ansible.builtin.command:
+        cmd: hexdump -ve '1/1 "%.2x"' {{ item.path }}
+      loop: "{{ sshd_path.files }}"
+      loop_control:
+        label: "{{ item.path }}"
+      register: hexdump_output
+      changed_when: false
+      failed_when:
+        - hexdump_output.stdout | ansible.builtin.regex_search("f30f1efa554889f54c89ce5389fb81e7000000804883ec28488954241848894c2410")

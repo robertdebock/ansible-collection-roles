@@ -20,6 +20,9 @@
   register: vault_snapshot_list
   run_once: true
   changed_when: false
+  when:
+    - vault_snapshot_token is defined
+    - vault_snapshot_token != ""
 
 - name: Configure Vault auto snapshot
   ansible.builtin.uri:

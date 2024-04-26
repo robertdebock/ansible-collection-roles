@@ -7,6 +7,14 @@
       - consul_install_package is boolean
     quiet: true
 
+- name: assert | Test consul_license
+  ansible.builtin.assert:
+    that:
+      - consul_license is defined
+      - consul_license is string
+      - consul_license is not none
+    quiet: true
+
 - name: assert | Test consul_datacenter
   ansible.builtin.assert:
     that:

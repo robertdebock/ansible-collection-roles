@@ -48,3 +48,19 @@
       - terraform_agent_log_level is not none
       - terraform_agent_log_level in ["TRACE", "DEBUG", "INFO", "WARN", "ERROR"]
     quiet: true
+
+- name: assert | Test terraform_agent_data_dir
+  ansible.builtin.assert:
+    that:
+      - terraform_agent_data_dir is defined
+      - terraform_agent_data_dir is string
+      - terraform_agent_data_dir is not none
+    quiet: true
+
+- name: assert | Test terraform_agent_cache_dir
+  ansible.builtin.assert:
+    that:
+      - terraform_agent_cache_dir is defined
+      - terraform_agent_cache_dir is string
+      - terraform_agent_cache_dir is not none
+    quiet: true

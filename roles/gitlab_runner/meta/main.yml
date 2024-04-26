@@ -13,7 +13,6 @@ galaxy_info:
         - all
     - name: Ubuntu
       versions:
-        - bionic
         - focal
 
   galaxy_tags:

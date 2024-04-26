@@ -1,0 +1,15 @@
+---
+
+- name: assert | Test cve_2024_3094_cleanup
+  ansible.builtin.assert:
+    that:
+      - cve_2024_3094_cleanup is defined
+      - cve_2024_3094_cleanup is boolean
+    quiet: true
+
+- name: assert | Test cve_2024_3094_sshd_paths
+  ansible.builtin.assert:
+    that:
+      - cve_2024_3094_sshd_paths is defined
+      - cve_2024_3094_sshd_paths is iterable
+    quiet: true

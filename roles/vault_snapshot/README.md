@@ -26,6 +26,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
   roles:
     - role: robertdebock.roles.vault_snapshot
       vault_snapshot_token: "{{ token_raw['content'] | b64decode }}"
+      vault_snapshot_ssl_verify: false
       vault_snapshot_schedules:
         - name: hourly
           interval_seconds: 3600
@@ -68,6 +69,7 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
     - role: robertdebock.roles.hashicorp
     - role: robertdebock.roles.vault
       vault_type: ent
+      vault_hardening_disable_swap: false
     - role: robertdebock.roles.vault_configuration
       vault_configuration_license: "{{ lookup('ansible.builtin.env', 'VAULT_LICENSE') }}"
       vault_configuration_listener_tcp:
@@ -92,7 +94,9 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
         cmd: vault operator init -format=yaml
       register: vault_init_raw
       environment:
-        VAULT_ADDR: "http://localhost:8200"
+        VAULT_ADDR: "https://localhost:8200"
+        VAULT_SKIP_VERIFY: "true"
+      changed_when: true
 
     - name: Store vault_init_raw output as YAML
       ansible.builtin.set_fact:
@@ -111,7 +115,9 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
         cmd: vault operator unseal {{ item }}
       loop: "{{ vault_init.unseal_keys_b64 }}"
       environment:
-        VAULT_ADDR: "http://localhost:8200"
+        VAULT_ADDR: "https://localhost:8200"
+        VAULT_SKIP_VERIFY: "true"
+      changed_when: true
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.
@@ -125,10 +131,10 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 # defaults file for vault_snapshot
 
 # Set the vault instance address. Similar to `VAULT_ADDR`.
-vault_snapshot_address: "http://localhost:8200"
+vault_snapshot_address: "https://localhost:8200"
 
 # Set a token to connect to Vault. Similar to `VAULT_TOKEN`.
-vault_snapshot_token: "simple"
+vault_snapshot_token: ""
 
 # A list of snapshots to configure. Please have look in `molecule/default/converge.yml` for a complete example.
 vault_snapshot_schedules: []
@@ -169,7 +175,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |[Amazon](https://hub.docker.com/r/robertdebock/amazonlinux)|Candidate|
 |[Debian](https://hub.docker.com/r/robertdebock/debian)|all|
 |[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|all|
-|[Fedora](https://hub.docker.com/r/robertdebock/fedora)|37, 38|
+|[Fedora](https://hub.docker.com/r/robertdebock/fedora)|39|
 |[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|all|
 
 The minimum version of Ansible required is 2.12, tests have been done to:

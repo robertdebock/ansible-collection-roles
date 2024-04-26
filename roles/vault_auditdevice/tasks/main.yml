@@ -14,9 +14,24 @@
     headers:
       X-Vault-Token: "{{ vault_auditdevice_token }}"
     validate_certs: "{{ vault_auditdevice_ssl_verify }}"
+    return_content: true
   register: vault_auditdevice_list_retreived
   run_once: true
   changed_when: false
+
+- name: Create log directories
+  ansible.builtin.file:
+    path: "{{ item.options.file_path }}"
+    state: directory
+    mode: "0755"
+    owner: vault
+    group: vault
+  loop:
+    - "{{ vault_auditdevice_list }}"
+  when:
+    - item.type is defined
+    - item.type == "file"
+  run_once: true
 
 - name: Create audit devices
   ansible.builtin.uri:
@@ -37,7 +52,6 @@
   loop_control:
     label: "{{ item.description }}"
   when:
-    - item.name not in vault_auditdevice_list_retreived.json
+    - item.name not in vault_auditdevice_list_retreived.content
   changed_when: true
-  register: vault_auditdevice_list
   run_once: true

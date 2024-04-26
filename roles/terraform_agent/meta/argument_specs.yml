@@ -15,3 +15,36 @@ argument_specs:
         type: "str"
         default: "/opt/tfc_agent"
         description: "Where to install the terraform_agent."
+      terraform_agent_terraform_enterprise_address:
+        type: "str"
+        default: "https://app.terraform.io"
+        description: "The URL here Terraform Enterprise or Terraform Cloud is hosted."
+      terraform_agent_token:
+        type: "str"
+        default: ""
+        description: >
+          The Agent Token generated on Terraform Enterprise or Terraform Cloud.
+          When no token (`""``) is defined, the agent will not be started.
+      terraform_agent_name:
+        type: "str"
+        default: "my_agent"
+        description: "The name of the Agent as it will be registered as in Terraform Enterprise or Terraform Cloud.:"
+      terraform_agent_log_level:
+        type: "str"
+        default: "INFO"
+        description: >
+          The log level of the agent. Either "TRACE", "DEBUG", "INFO", "WARN", or "ERROR".
+        choices:
+          - "TRACE"
+          - "DEBUG"
+          - "INFO"
+          - "WARN"
+          - "ERROR"
+      terraform_agent_data_dir:
+        type: "str"
+        default: "~/.tfc-agent"
+        description: The path to a directory to store all agent-related data, including Terraform configurations, cached Terraform release archives, etc.
+      terraform_agent_cache_dir:
+        type: "str"
+        default: "{{ terraform_agent_data_dir }}/cache"
+        description: The path to a directory to store all agent-related cache data, including cached Terraform release archives, policy binaries, etc.

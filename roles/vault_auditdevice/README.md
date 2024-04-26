@@ -50,6 +50,8 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
     - role: robertdebock.roles.core_dependencies
     - role: robertdebock.roles.hashicorp
     - role: robertdebock.roles.vault
+      vault_hardening_disable_swap: false
+
 
   tasks:
     - name: Flush handlers
@@ -80,16 +82,6 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
         mode: 0600
       when:
         - vault_auditdevice_init is defined
-
-    # - name: Store unseal keys
-    #   ansible.builtin.copy:
-    #     content: "{{ vault_auditdevice_init_yaml['unseal_keys_b64'] }}"
-    #     dest: /root/.vault-unseal-keys
-    #     owner: root
-    #     group: root
-    #     mode: 0600
-    #   when:
-    #     - vault_auditdevice_init is defined
 
   handlers:
     - name: Unseal vault
@@ -157,7 +149,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |[Amazon](https://hub.docker.com/r/robertdebock/amazonlinux)|Candidate|
 |[Debian](https://hub.docker.com/r/robertdebock/debian)|bullseye|
 |[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|8, 9|
-|[Fedora](https://hub.docker.com/r/robertdebock/fedora)|38, 39|
+|[Fedora](https://hub.docker.com/r/robertdebock/fedora)|39|
 |[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|all|
 
 The minimum version of Ansible required is 2.12, tests have been done to:

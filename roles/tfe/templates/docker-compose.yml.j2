@@ -17,6 +17,11 @@ services:
       TFE_TLS_KEY_FILE: "/etc/ssl/private/terraform-enterprise/key.pem"
       TFE_TLS_CA_BUNDLE_FILE: "/etc/ssl/private/terraform-enterprise/bundle.pem"
       TFE_IACT_SUBNETS: "${TFE_IACT_SUBNETS}"
+      TFE_CAPACITY_CONCURRENCY: "${TFE_CAPACITY_CONCURRENCY}"
+{% if tfe_log_forwarding_config_path is defined %}
+      TFE_LOG_FORWARDING_ENABLED: "${TFE_LOG_FORWARDING_ENABLED}"
+      TFE_LOG_FORWARDING_CONFIG_PATH: "${TFE_LOG_FORWARDING_CONFIG_PATH}"
+{% endif %}
 {% if tfe_operational_mode == "active-active" or tfe_operational_mode == "external" %}
       TFE_DATABASE_USER: "${TFE_DATABASE_USER}"
       TFE_DATABASE_PASSWORD: "${TFE_DATABASE_PASSWORD}"
@@ -67,5 +72,10 @@ services:
       - type: volume
         source: terraform-enterprise-cache
         target: /var/cache/tfe-task-worker/terraform
+{% if tfe_log_forwarding_config_path is defined and tfe_log_forwarding_config_path != "" %}
+      - type: bind
+        source: ./fluent-bit
+        target: /etc/terraform-enterprise/fluent-bit
+{% endif %}
 volumes:
   terraform-enterprise-cache:

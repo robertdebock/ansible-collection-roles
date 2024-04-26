@@ -5,18 +5,23 @@
   ansible.builtin.package:
     name: "{{ tailscale_dependencies }}"
 
+- name: Import Tailscale RPM key
+  ansible.builtin.rpm_key:
+    state: present
+    key: "{{ tailscale_repo_gpgkey }}"
+  when:
+    - ansible_pkg_mgr in [ "yum", "dnf", "zypper" ]
+
 - name: Add the Tailscale repository (yum/dnf)
   ansible.builtin.yum_repository:
     name: tailscale-stable
     description: Tailscale stable
     baseurl: "{{ tailscale_repo_baseurl }}"
-    gpgcheck: false
-    repo_gpgcheck: true
     gpgkey: "{{ tailscale_repo_gpgkey }}"
   when:
     - ansible_pkg_mgr in [ "yum", "dnf" ]
 
-- name: Add the Tailscale repository (apt)
+- name: Run apt tasks
   when:
     - ansible_pkg_mgr in [ "apt" ]
   block:
@@ -30,15 +35,23 @@
         repo: "{{ tailscale_apt_repo }}"
         filename: tailscale
 
-- name: Add tailscale repository (zypper)
-  community.general.zypper_repository:
-    repo: "{{ tailscale_repo_baseurl }}"
+- name: Run zypper tasks
   when:
     - ansible_pkg_mgr in [ "zypper" ]
+  block:
+    - name: Add tailscale repository (zypper)
+      community.general.zypper_repository:
+        repo: "{{ tailscale_repo_baseurl }}"
+
+    - name: Install tailscale (zypper)
+      community.general.zypper:
+        name: tailscale
 
 - name: Install tailscale
   ansible.builtin.package:
     name: tailscale
+  when:
+    - ansible_pkg_mgr not in [ "zypper" ]
 
 - name: Enable and start the server
   ansible.builtin.service:

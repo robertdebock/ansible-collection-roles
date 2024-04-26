@@ -57,6 +57,19 @@
   when:
     - consul_services is defined
 
+- name: Place license
+  ansible.builtin.copy:
+    content: "{{ consul_license }}"
+    dest: /etc/consul.d/license.json
+    owner: consul
+    group: consul
+    mode: "0644"
+  notify:
+    - Restart consul
+  when:
+    - consul_license is defined
+    - consul_license != ""
+
 - name: Start and enable consul
   ansible.builtin.service:
     name: consul
@@ -64,3 +77,5 @@
     enabled: true
   when:
     - consule_service_started_and_enabled
+    - consul_license is defined
+    - consul_license != ""

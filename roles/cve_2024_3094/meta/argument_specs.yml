@@ -7,4 +7,13 @@ argument_specs:
       Check xz vulnerability (cve_2024_3094) on your system.
       Fail if vulnerable, skip if not-vulnerable.
     author: Robert de Bock
-    options: {}
+    options:
+      cve_2024_3094_cleanup:
+        required: false
+        default: true
+        description: "If requirements are installed, would you like to remove them after this role ran?"
+        type: "bool"
+      cve_2024_3094_sshd_paths:
+        default: "['/usr/bin', '/usr/sbin', '/usr/local/bin', '/usr/local/sbin']"
+        description: "Where to look for `sshd`, a list of paths."
+        type: "list"

@@ -65,6 +65,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
         create_user: root
         create_group: utmp
         minsize: 1M
+        maxsize: 128M
         dateext: true
         dateformat: "-%Y%m%d"
         keep: 1
@@ -79,8 +80,15 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
         path: "/var/log/example-sharedscripts/*.log"
         sharedscripts: true
       - name: example-dateyesterday
+        state: present
         path: "/var/log/example-dateyesterday/*.log"
         dateyesterday: true
+      - name: example-absent
+        state: absent
+      # Negative numbers work on some distributions: `error: example-negative:10 bad rotation count '-1'\`
+      # - name: example-negative
+      #   path: "/var/log/example-keep-negative/*.log"
+      #   keep: -1
 
   roles:
     - role: robertdebock.roles.logrotate
@@ -104,6 +112,7 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
       ansible.builtin.file:
         path: "{{ item }}"
         state: directory
+        mode: "0755"
       loop:
         - /var/log/example
         - /var/log/example-frequency
@@ -120,6 +129,7 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
       ansible.builtin.copy:
         dest: "{{ item }}"
         content: "example"
+        mode: "0644"
       loop:
         - /var/log/example/app.log
         - /var/log/example-frequency/app.log

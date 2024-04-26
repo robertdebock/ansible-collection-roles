@@ -74,7 +74,7 @@
 
 - name: Place Vault license
   ansible.builtin.copy:
-    dest: "/etc/vault.d/license.hclic"
+    dest: "/etc/vault.d/vault.hclic"
     content: "{{ vault_configuration_license }}"
     mode: "0640"
     owner: "{{ vault_configuration_owner }}"

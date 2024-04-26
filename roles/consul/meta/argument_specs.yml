@@ -1,0 +1,65 @@
+---
+
+argument_specs:
+  main:
+    short_description: "Install and configure consul on your system."
+    description: >
+      Install and configure consul on your system.
+    author: Robert de Bock
+    options:
+      consul_install_package:
+        type: "bool"
+        default: true
+        description: "You can install consul using a package in this role. If you have installed consul manually, set this to `false`."
+      consul_license:
+        type: "str"
+        default: ""
+        description: "Consul requires a license. Without setting a license (or an empty license), some steps are skipped."
+      consul_datacenter:
+        type: "str"
+        default: "my-dc-1"
+        description: "This flag controls the datacenter in which the agent is running."
+      consul_data_dir:
+        type: "str"
+        default: "/opt/consul"
+        description: "This flag provides a data directory for the agent to store state."
+      consul_client_addr:
+        type: "str"
+        default: "0.0.0.0"
+        description: "The address to which Consul will bind client interfaces, including the HTTP and DNS servers"
+      consul_ui:
+        type: "bool"
+        default: true
+        description: "Enables the built-in web UI server and the required HTTP routes."
+      consul_server:
+        type: "bool"
+        default: true
+        description: "This flag is used to control if an agent is in server or client mode."
+      consul_bootstrap_expect:
+        type: "int"
+        default: 3
+        description: "This flag provides the number of expected servers in the datacenter."
+      consul_encrypt:
+        type: "str"
+        default: "6r73CP0icJrap1tsQ17yuqzVguho4/yz+aI/dkVg2Kk="
+        description: "Specifies the secret key to use for encryption of Consul network traffic."
+      consul_retry_join:
+        type: "list"
+        elements: "str"
+        description: "Similar to -join but allows retrying a join until it is successful."
+      consul_bind_addr:
+        type: "str"
+        default: "ansible_default_ipv4.address"
+        description: "The address that should be bound to for internal cluster communications."
+      consul_advertise_addr:
+        type: "str"
+        default: "ansible_default_ipv4.address"
+        description: "The advertise address is used to change the address that we advertise to other nodes in the cluster."
+      consul_services:
+        type: "list"
+        elements: "dict"
+        description: "You can define service that Consul should manage."
+      consule_service_started_and_enabled:
+        type: "bool"
+        default: true
+        description: "In same cases you may not want to start Consul as a service, because you are \"bootstrapping\" for example."

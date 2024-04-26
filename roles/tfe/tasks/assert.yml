@@ -73,6 +73,23 @@
       - tfe_operational_mode in ["disk", "external", "active-active"]
     quiet: true
 
+- name: assert | Tesst tfe_capacity_concurrency
+  ansible.builtin.assert:
+    that:
+      - tfe_capacity_concurrency is defined
+      - tfe_capacity_concurrency is integer
+      - tfe_capacity_concurrency is not none
+    quiet: true
+
+- name: assert | Test tfe_log_forwarding_config_path
+  ansible.builtin.assert:
+    that:
+      - tfe_log_forwarding_config_path is string
+      - tfe_log_forwarding_config_path is not none
+    quiet: true
+  when:
+    - tfe_log_forwarding_config_path is defined
+
 - name: assert | Tests for active-active or external
   when:
     - tfe_operational_mode in ["active-active", "external"]

@@ -19,3 +19,9 @@ terraform_agent_name: "my_agent"
 
 # The log level of the agent. Either "TRACE", "DEBUG", "INFO", "WARN", or "ERROR".
 terraform_agent_log_level: "INFO"
+
+# The path to a directory to store all agent-related data, including Terraform configurations, cached Terraform release archives, etc.
+terraform_agent_data_dir: "~/.tfc-agent"
+
+# The path to a directory to store all agent-related cache data, including cached Terraform release archives, policy binaries, etc.
+terraform_agent_cache_dir: "{{ terraform_agent_data_dir }}/cache"

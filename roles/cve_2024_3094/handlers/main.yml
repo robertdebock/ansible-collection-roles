@@ -1,0 +1,9 @@
+---
+# handlers file for cve_2024_3094
+
+- name: Remove requirements
+  ansible.builtin.package:
+    name: "{{ cve_2024_3094_requirements }}"
+    state: absent
+  when:
+    - cve_2024_3094_cleanup

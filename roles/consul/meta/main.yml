@@ -18,9 +18,9 @@ galaxy_info:
       versions:
         - all
     - name: Fedora
-      versions:  # Will never work on "all", as rawhide is not supported by HC.
-        - "37"
+      versions:  # Will never work on "all", for example "rawhide" is not supported by HC.
         - "38"
+        - "39"
     - name: Ubuntu
       versions:
         - all
