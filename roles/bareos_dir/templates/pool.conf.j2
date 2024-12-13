@@ -7,11 +7,29 @@ Pool {
 {% if item.recycle is defined %}
   Recycle = {{ item.recycle | ternary('Yes', 'No') }}
 {% endif %}
+{% if item.recycle_oldest_volume is defined %}
+  Recycle Oldest Volume = {{ item.recycle_oldest_volume | ternary('Yes', 'No') }}
+{% endif %}
+{% if item.recycle_current_volume is defined %}
+  Recycle Current Volume = {{ item.recycle_current_volume | ternary('Yes', 'No') }}
+{% endif %}
+{% if item.recycle_pool is defined %}
+  Recycle Pool = {{ item.recycle_pool }}
+{% endif %}
+{% if item.scratch_pool is defined %}
+  Scratch Pool = {{ item.scratch_pool }}
+{% endif %}
+{% if item.purge_oldest_volume is defined %}
+  Purge Oldest Volume = {{ item.purge_oldest_volume | ternary('Yes', 'No') }}
+{% endif %}
 {% if item.autoprune is defined %}
   AutoPrune = {{ item.autoprune | ternary('Yes', 'No') }}
 {% endif %}
 {% if item.volume_retention is defined %}
   Volume Retention = {{ item.volume_retention }}
+{% endif %}
+{% if item.action_on_purge is defined %}
+  Action On Purge = {{ item.action_on_purge }}
 {% endif %}
 {% if item.maximum_volume_bytes is defined %}
   Maximum Volume Bytes = {{ item.maximum_volume_bytes }}
@@ -21,6 +39,15 @@ Pool {
 {% endif %}
 {% if item.label_format is defined %}
   Label Format = "{{ item.label_format }}"
+{% endif %}
+{% if item.storage is defined %}
+  Storage = "{{ item.storage }}"
+{% endif %}
+{% if item.next_pool is defined %}
+  Next Pool = "{{ item.next_pool }}"
+{% endif %}
+{% if item.volume_use_duration is defined %}
+  Volume Use Duration = {{ item.volume_use_duration }}
 {% endif %}
 }
 {% else %}

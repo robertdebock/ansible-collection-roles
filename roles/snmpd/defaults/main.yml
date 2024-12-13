@@ -10,9 +10,9 @@ snmpd_groups:
   - name: notConfigGroup
     security_model: v1
     security_name: notConfigUser
-  - name: NotConfigGroup
+  - name: notConfigGroup
     security_model: v2c
-    security_name: NotConfigUser
+    security_name: notConfigUser
 
 snmpd_views:
   - name: systemview

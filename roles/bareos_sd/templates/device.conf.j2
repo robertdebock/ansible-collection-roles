@@ -6,6 +6,9 @@ Device {
 {% if item.description is defined %}
   Description = "{{ item.description }}"
 {% endif %}
+{% if item.count is defined %}
+  Count = "{{ item.count }}"
+{% endif %}
 {% if item.maximum_concurrent_jobs is defined %}
   Maximum Concurrent Jobs = {{ item.maximum_concurrent_jobs }}
 {% endif %}
@@ -22,6 +25,15 @@ Device {
   AutomaticMount = {{ item.automatic_mount | ternary('yes', 'No') }}
   RemovableMedia = {{ item.removable_media | ternary('yes', 'No') }}
   AlwaysOpen = {{ item.always_open | ternary('yes', 'No') }}
+{% if item.maximum_spool_size is defined %}
+  Maximum Spool Size = {{ item.maximum_spool_size }}
+{% endif %}
+{% if item.maximum_job_spool_size is defined %}
+  Maximum Job Spool Size = {{ item.maximum_job_spool_size }}
+{% endif %}
+{% if item.spool_directory is defined %}
+  Spool Directory = "{{ item.spool_directory }}"
+{% endif %}
 }
 {% else %}
 # This file is not enabled.

@@ -13,7 +13,10 @@ Client {
   Heartbeat Interval = {{ bareos_fd_heartbeat_interval }}
 {% endif %}
 {% if bareos_fd_maximum_concurrent_jobs != 20 %}
-  Maximum Concurrent Jobs = {{ bareos_fd_max_concurrent_jobs }}
+  Maximum Concurrent Jobs = {{ bareos_fd_maximum_concurrent_jobs }}
+{% endif %}
+{% if bareos_fd_max_job_bandwidth != "" %}
+  Maximum Bandwidth Per Job = {{ bareos_fd_max_job_bandwidth }}
 {% endif %}
 {% if bareos_fd_encryption_enabled %}
   PKI Signatures = Yes

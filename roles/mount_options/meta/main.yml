@@ -13,17 +13,14 @@ galaxy_info:
         - all
     - name: Amazon
       versions:
-        - all
+        - Candidate
     - name: Debian
       versions:
         - all
     - name: EL
       versions:
-        - all
+        - "9"
     - name: Fedora
-      versions:
-        - all
-    - name: opensuse
       versions:
         - all
     - name: Ubuntu

@@ -1,4 +1,12 @@
 ---
+
 github_variables_mapping:
   - name: secrets.VAULT_LICENSE
     variable: VAULT_LICENSE
+
+
+matrix_overrides:
+  amazonlinux:
+    python:
+      - python:3.9
+      - python:3.10

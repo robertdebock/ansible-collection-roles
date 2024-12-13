@@ -47,6 +47,10 @@ argument_specs:
         type: "list"
         default: []
         description: "A list of consoled to configure."
+      bareos_dir_counters:
+        type: "list"
+        default: []
+        description: "A list of counters to configure."
       bareos_dir_clients:
         type: "list"
         default: []

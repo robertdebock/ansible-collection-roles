@@ -1,0 +1,62 @@
+---
+# defaults file for vault_agent
+
+# The user that owns the Vault configuration files.
+vault_agent_user: "vault"
+
+# The group that owns the Vault configuration files.
+vault_agent_group: "vault"
+
+# The PID file for the Vault agent.
+# vault_agent_pid_file: "./pidfile"
+
+# The Vault address where the agent can connect to.
+# vault_agent_address: "http://vault.example.com:8200"
+
+# The number of times to retry connecting to Vault.
+vault_agent_retries: 5
+
+# The authentication method to use.
+# vault_agent_auto_auth:
+#   methods:
+#     - name: "aws"
+#       mount_path: "auth/aws-subaccount"
+#       config:
+#         type: "iam"
+#         role: "foobar"
+#   sinks:
+#     - name: file
+#       config:
+#         path: "/tmp/file-foo"
+#     - name: "file"
+#       wrap_ttl: "5m"
+#       aad_env_var: "Test_AAD_ENV"
+#       dh_type: "curve25519"
+#       dh_path: "/tmp/file-foo-dhpath2"
+#       config:
+#         path: "/tmp/file-bar"
+
+# By specifying (an empty cache configuration), the agent will store the token in the cache.
+vault_agent_cache: {}
+
+# Should this Vault offer proxy capabilties?
+# vault_agent_api_proxy:
+#   use_auto_auth_token: true
+
+# A list of listeners to configure.
+# vault_agent_listeners:
+#   - name: "tcp"
+#     address: "/path/to/socket"
+#     tls_disable: true
+#     agent_api:
+#       enable_quit: true
+#   - name: "tcp"
+#     address: "127.0.0.1:8100"
+#     tls_disable: true
+
+# A list of templates to render. The files mentioned in the source will not be placed by this role.
+# vault_agent_templates:
+#   - source: "/etc/vault/server.key.ctmpl"
+#     destination: "/etc/vault/server.key"
+#   - source: "/etc/vault/server.crt.ctmpl"
+#     destination: "/etc/vault/server.crt"

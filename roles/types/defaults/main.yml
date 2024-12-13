@@ -14,19 +14,19 @@ types_integers:
 
 # A list of booleans.
 types_booleans:
-  - yes
+  - yes  # yamllint disable-line rule:truthy
   - Yes  # yamllint disable-line rule:truthy
   - YES  # yamllint disable-line rule:truthy
-  - true  # yamllint disable-line rule:truthy
+  - true
   - True  # yamllint disable-line rule:truthy
   - TRUE  # yamllint disable-line rule:truthy
   - On  # yamllint disable-line rule:truthy
   - ON  # yamllint disable-line rule:truthy
   - on  # yamllint disable-line rule:truthy
-  - no
+  - no  # yamllint disable-line rule:truthy
   - No  # yamllint disable-line rule:truthy
   - NO  # yamllint disable-line rule:truthy
-  - false  # yamllint disable-line rule:truthy
+  - false
   - False  # yamllint disable-line rule:truthy
   - FALSE  # yamllint disable-line rule:truthy
   - Off  # yamllint disable-line rule:truthy

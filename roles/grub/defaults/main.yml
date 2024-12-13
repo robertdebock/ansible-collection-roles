@@ -5,6 +5,15 @@ grub_timeout: 5
 
 grub_recordfail_timeout: "{{ grub_timeout }}"
 
+grub_set_password: false
+grub_user: root
+# grub_password = changeme
+grub_password: grub.pbkdf2.sha512.10000.6CE338C69BC5180354034EEA28BB34BF6D50993A0AEAAE3F001F7CF8078BC3FBCB7968A4BE641AEB00D822FE55E0739ABF4D5F853AECA77958AC90A3DEC7132A.222738FE51C9A000ED1ECB77FA1A28C64AF1DE58D14F397DBF611343D7DC3443E38240663B8690F26F8F1A30BB58A88CCA9EDC4525F4DA0D93D8F2E7FB4623F0
+grub_password_unrestricted: true
+grub_password_unrestricted_files:
+  - /etc/grub.d/10_linux
+  - /etc/grub.d/20_linux_xen
+
 # Add options here, for example:
 # grub_options:
 #   - option: cgroup_enable

@@ -27,7 +27,7 @@
 - name: Configure exports
   ansible.builtin.template:
     src: exports.j2
-    dest: /etc/exports
+    dest: "{{ nfsserver_exports_file }}"
     mode: "0644"
   notify:
     - Reload exports

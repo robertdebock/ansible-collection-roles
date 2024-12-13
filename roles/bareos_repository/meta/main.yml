@@ -12,23 +12,17 @@ galaxy_info:
       versions:
         - bookworm
         - bullseye
-        - buster
     - name: EL
       versions:
-        - "7"
-        - "8"
         - "9"
     - name: Fedora
       versions:
         - "38"
         - "39"
-    - name: opensuse
-      versions:
-        - all
     - name: Ubuntu
       versions:
-        - jammy
         - focal
+        - jammy
 
   galaxy_tags:
     - backup

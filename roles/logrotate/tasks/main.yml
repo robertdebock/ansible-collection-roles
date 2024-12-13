@@ -45,7 +45,7 @@
 - name: Start logrotate
   ansible.builtin.service:
     name: "{{ logrotate_service }}"
-    state: started
-    enabled: true
+    state: "{{ logrotate_service_state }}"
+    enabled: "{{ logrotate_service_enabled }}"
   when:
     - logrotate_service != ""

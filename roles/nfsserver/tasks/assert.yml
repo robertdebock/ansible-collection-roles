@@ -39,3 +39,11 @@
   loop_control:
     label: "{{ export.share }}"
     loop_var: export
+
+- name: assert | Test nfsserver_exports_file
+  ansible.builtin.assert:
+    that:
+      - nfsserver_exports_file is defined
+      - nfsserver_exports_file is string
+      - nfsserver_exports_file is not none
+    quiet: true

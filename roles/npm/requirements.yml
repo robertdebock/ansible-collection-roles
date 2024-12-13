@@ -4,3 +4,4 @@ roles:
   - name: robertdebock.ca_certificates
   - name: robertdebock.epel
 collections:
+  - name: community.general

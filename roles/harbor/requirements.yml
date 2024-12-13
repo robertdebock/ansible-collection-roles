@@ -8,3 +8,5 @@ roles:
   - name: robertdebock.docker
   - name: robertdebock.docker_compose
   - name: robertdebock.selinux
+collections:
+  - name: community.general

@@ -16,14 +16,11 @@ galaxy_info:
         - all
     - name: EL
       versions:
-        - all
+        - "9"
     - name: Fedora
       versions:
         - "38"
         - "39"
-    - name: opensuse
-      versions:
-        - all
     - name: Ubuntu
       versions:
         - all

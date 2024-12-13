@@ -9,6 +9,9 @@ Schedule {
 {% for run in item.run %}
   Run = {{ run }}
 {% endfor %}
+{% if item.schedule_enabled is defined %}
+  Enabled = {{ item.schedule_enabled | ternary('yes', 'no') }}
+{% endif %}
 }
 {% else %}
 # This file is not enabled.

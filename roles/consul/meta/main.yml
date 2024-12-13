@@ -16,7 +16,7 @@ galaxy_info:
         - bullseye
     - name: EL
       versions:
-        - all
+        - "9"
     - name: Fedora
       versions:  # Will never work on "all", for example "rawhide" is not supported by HC.
         - "38"

@@ -1,0 +1,21 @@
+---
+
+argument_specs:
+  main:
+    short_description: "Install and configure Cisco AnyConnect Secure Mobility Client."
+    description: >
+      Install and configure cisco_anyconnect on your system.
+    author: Robert de Bock
+    options:
+      cisco_anyconnect_tmp_dir:
+        type: "str"
+        default: "/tmp/cisco-anyconnect"
+        description: "The directory where temporary files will be stored during installation"
+      cisco_anyconnect_download_url:
+        type: "str"
+        default: ""
+        description: The URL where the Cisco Anyconnect package can be downloaded from
+      cisco_anyconnect_install_dir:
+        type: "str"
+        default: "/opt"
+        description: "The directory where Cisco AnyConnect will be installed"

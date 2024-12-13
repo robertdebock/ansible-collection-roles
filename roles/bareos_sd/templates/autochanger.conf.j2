@@ -1,0 +1,15 @@
+{{ ansible_managed | comment }}
+
+{% if item.enabled is defined and item.enabled or item.enabled is not defined %}
+Autochanger {
+  Name = "{{ item.name }}"
+{% if item.description is defined %}
+  Description = "{{ item.description }}"
+{% endif %}
+  Device = {{ item.device }}
+  Changer Device = {{ item.changer_device }}
+  Changer Command = "{{ item.changer_command }}"
+}
+{% else %}
+# This file is not enabled.
+{% endif %}

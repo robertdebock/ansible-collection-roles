@@ -1,0 +1,51 @@
+---
+
+argument_specs:
+  main:
+    short_description: "Install and configure mysql on your system."
+    description: >
+      Install and configure mysql on your system.
+    author: Robert de Bock
+    options:
+      mysql_bind_address:
+        description: "The address mysql should bind to."
+        default: "127.0.0.1"
+      mysql_port:
+        description: "The port to listen on."
+        default: 3306
+      mysql_root_password:
+        description: "The password to set for the root user. Also stored in my.cnf"
+        default: "s3Cur31t4."
+      mysql_innodb_buffer_pool_size:
+        description: "The buffer pool size."
+        default: "1G"
+      mysql_innodb_io_capacity:
+        description: "The io capacity."
+        default: 4000
+      mysql_configuration_options:
+        description: "You can set the mysql(d) options here."
+        default:
+          - option: bind-address
+            section: mysqld
+            value: "{{ mysql_bind_address }}"
+          - option: port
+            section: mysqld
+            value: "{{ mysql_port }}"
+          - option: socket
+            section: mysqld
+            value: "{{ mysql_socket }}"
+          - section: mysqld
+            option: innodb_buffer_pool_size
+            value: "{{ mysql_innodb_buffer_pool_size }}"
+          - section: mysqld
+            option: innodb_io_capacity
+            value: "{{ mysql_innodb_io_capacity }}"
+          - section: mysqld
+            option: log-bin-trust-function-creators
+            value: "1"
+      mysql_databases:
+        description: "A list of databases to create."
+        default: []
+      mysql_users:
+        description: "A list of users to create."
+        default: []

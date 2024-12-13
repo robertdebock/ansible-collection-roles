@@ -4,10 +4,11 @@ roles:
   - name: robertdebock.bareos_repository
   # The `buildtools`, `python_pip` and `postgres` roles provide a database.
   - name: robertdebock.buildtools
-  # EPEL is required for python-pip on RHEL7.
-  - name: robertdebock.epel
   - name: robertdebock.python_pip
   - name: robertdebock.postgres
   # The `core_dependencies` and `postfix` roles provide mailing capabilities for the `bareos_role`: "dir".
-  # - name: robertdebock.core_dependencies
-  # - name: robertdebock.postfix
+  - name: robertdebock.core_dependencies
+  - name: robertdebock.postfix
+collections:
+  - name: community.general
+  - name: community.postgresql

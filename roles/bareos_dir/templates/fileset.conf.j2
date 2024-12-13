@@ -18,9 +18,45 @@ FileSet {
 {% if item.include.options.compression is defined %}
       Compression = {{ item.include.options.compression }}
 {% endif %}
+{% if item.include.options.no_atime is defined %}
+      No Atime = {{ item.include.options.no_atime | ternary('yes', 'no') }}
+{% endif %}
+{% if item.include.options.wilds is defined %}
+{% for wild in item.include.options.wilds %}
+      Wild = "{{ wild }}"
+{% endfor %}
+{% endif %}
+{% if item.include.options.wildfiles is defined %}
+{% for wildfile in item.include.options.wildfiles %}
+      Wild File = "{{ wildfile }}"
+{% endfor %}
+{% endif %}
+{% if item.include.options.wilddirs is defined %}
+{% for wilddir in item.include.options.wilddirs %}
+      Wild Dir = "{{ wilddir }}"
+{% endfor %}
+{% endif %}
+{% if item.include.options.regexs is defined %}
+{% for regex in item.include.options.regexs %}
+      Regex = "{{ regex }}"
+{% endfor %}
+{% endif %}
+{% if item.include.options.regexfiles is defined %}
+{% for regexfile in item.include.options.regexfiles %}
+      Regex File = "{{ regexfile }}"
+{% endfor %}
+{% endif %}
+{% if item.include.options.regexdirs is defined %}
+{% for regexdirs in item.include.options.regexdirs %}
+      Regex Dir = "{{ regexdir }}"
+{% endfor %}
+{% endif %}
+{% if item.include.options.exclude is defined %}
+      Exclude = {{ item.include.options.exclude | ternary('yes', 'no') }}
+{% endif %}
     }
 {% if item.include.exclude_dirs_containing is defined %}
-      Exclude Dir Containing = {{ item.include.exclude_dirs_containing }}
+    Exclude Dir Containing = {{ item.include.exclude_dirs_containing }}
 {% endif %}
 
 {% for file in item.include.files %}

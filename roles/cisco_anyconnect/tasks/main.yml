@@ -1,0 +1,54 @@
+---
+# tasks file for cisco_anyconnect
+
+- name: Import assert.yml
+  ansible.builtin.import_tasks:
+    file: assert.yml
+  run_once: true
+  delegate_to: localhost
+
+- name: Run tasks when cisco_anyconnect_download_url is set
+  when:
+    - cisco_anyconnect_download_url | length > 0
+  block:
+    - name: Extract version from download URL
+      ansible.builtin.set_fact:
+        cisco_anyconnect_version: "{{ cisco_anyconnect_download_url | regex_search('cisco-secure-client-linux64-(\\d+\\.\\d+\\.\\d+\\.\\d+)', '\\1') | first }}"
+
+    - name: Ensure temporary directory exists
+      ansible.builtin.file:
+        path: "{{ cisco_anyconnect_tmp_dir }}"
+        state: directory
+        mode: "0755"
+
+    - name: Create version directory
+      ansible.builtin.file:
+        path: "{{ cisco_anyconnect_install_dir }}/cisco-secure-client-linux64-{{ cisco_anyconnect_version }}"
+        state: directory
+        mode: "0755"
+
+    - name: Create temporary Cisco directory symlink
+      ansible.builtin.file:
+        src: "{{ cisco_anyconnect_install_dir }}/cisco-secure-client-linux64-{{ cisco_anyconnect_version }}"
+        dest: "/opt/cisco"  # The Cisco Anyconnect installer hardcodes this path.
+        state: link
+
+    - name: Get Cisco Anyconnect package
+      ansible.builtin.get_url:
+        url: "{{ cisco_anyconnect_download_url }}"
+        dest: "{{ cisco_anyconnect_tmp_dir }}/cisco-secure-client-linux64-{{ cisco_anyconnect_version }}-predeploy-k9.tar.gz"
+        mode: "0644"
+
+    - name: Extract Cisco Anyconnect package
+      ansible.builtin.unarchive:
+        src: "{{ cisco_anyconnect_tmp_dir }}/cisco-secure-client-linux64-{{ cisco_anyconnect_version }}-predeploy-k9.tar.gz"
+        dest: "{{ cisco_anyconnect_tmp_dir }}"
+        remote_src: true
+        creates: "{{ cisco_anyconnect_tmp_dir }}/cisco-secure-client-linux64-{{ cisco_anyconnect_version }}"
+
+    - name: Run Cisco Anyconnect installer
+      ansible.builtin.shell:
+        cmd: set -o pipefail && echo "y" | ./vpn_install.sh
+        chdir: "{{ cisco_anyconnect_tmp_dir }}/cisco-secure-client-linux64-{{ cisco_anyconnect_version }}/vpn"
+        creates: "{{ cisco_anyconnect_install_dir }}/cisco-secure-client-linux64-{{ cisco_anyconnect_version }}/anyconnect"
+        executable: /bin/bash

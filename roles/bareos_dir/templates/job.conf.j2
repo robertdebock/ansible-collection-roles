@@ -9,8 +9,35 @@
 {% if item.pool is defined %}
   Pool = {{ item.pool }}
 {% endif %}
+{% if item.next_pool is defined %}
+  Next Pool = {{ item.next_pool }}
+{% endif %}
 {% if item.type is defined %}
   Type = {{ item.type }}
+{% endif %}
+{% if item.accurate is defined %}
+  Accurate = {{ item.accurate | ternary('yes', 'no') }}
+{% endif %}
+{% if item.always_incremental is defined %}
+  Always Incremental = {{ item.always_incremental | ternary('yes', 'no') }}
+{% endif %}
+{% if item.always_incremental_job_retention is defined %}
+  Always Incremental Job Retention = {{ item.always_incremental_job_retention }}
+{% endif %}
+{% if item.always_incremental_keep_number is defined %}
+  Always Incremental Keep Number = {{ item.always_incremental_keep_number }}
+{% endif %}
+{% if item.always_incremental_max_full_age is defined %}
+  Always Incremental Max Full Age = {{ item.always_incremental_max_full_age }}
+{% endif %}
+{% if item.max_full_consolidations is defined %}
+  Max Full Consolidations = {{ item.max_full_consolidations }}
+{% endif %}
+{% if item.selection_type is defined %}
+  Selection Type = {{ item.selection_type }}
+{% endif %}
+{% if item.selection_pattern is defined %}
+  Selection Pattern = "{{ item.selection_pattern }}"
 {% endif %}
 {% if item.description is defined %}
   Description = "{{ item.description }}"
@@ -25,7 +52,7 @@
   Storage = "{{ item.storage }}"
 {% endif %}
 {% if item.jobdefs is defined %}
-  Job Defs = "{{ item.jobdefs }}"
+  JobDefs = "{{ item.jobdefs }}"
 {% endif %}
 {% if item.level is defined %}
   Level = {{ item.level }}
@@ -44,6 +71,106 @@
 {% endif %}
 {% if item.maximum_concurrent_jobs is defined %}
   Maximum Concurrent Jobs = {{ item.maximum_concurrent_jobs }}
+{% endif %}
+{% if item.max_concurrent_copies is defined %}
+  Max Concurrent Copies = {{ item.max_concurrent_copies }}
+{% endif %}
+{% if item.maximum_bandwidth is defined %}
+  Maximum Bandwidth = {{ item.maximum_bandwidth }}
+{% endif %}
+{% if item.priority is defined %}
+  Priority = {{ item.priority }}
+{% endif %}
+{% if item.allow_mixed_priority is defined %}
+  Allow Mixed Priority = {{ item.allow_mixed_priority | ternary('yes', 'no') }}
+{% endif %}
+{% if item.write_bootstrap is defined %}
+  Write Bootstrap = "{{ item.write_bootstrap }}"
+{% endif %}
+{% if item.full_backup_pool is defined %}
+  Full Backup Pool = {{ item.full_backup_pool }}
+{% endif %}
+{% if item.differential_backup_pool is defined %}
+  Differential Backup Pool = {{ item.differential_backup_pool }}
+{% endif %}
+{% if item.incremental_backup_pool is defined %}
+  Incremental Backup Pool = {{ item.incremental_backup_pool }}
+{% endif %}
+{% if item.virtual_full_backup_pool is defined %}
+  Virtual Full Backup Pool = {{ item.virtual_full_backup_pool }}
+{% endif %}
+{% if item.run_script is defined %}
+  Run Script {
+{% if item.run_script.command is defined %}
+    Command = "{{ item.run_script.command }}"
+{% endif %}
+{% if item.run_script.console is defined %}
+    console = "{{ item.run_script.console }}"
+{% endif %}
+{% if item.run_script.runs_on_client is defined %}
+    Runs On Client = {{ item.run_script.runs_on_client | ternary('yes', 'no') }}
+{% endif %}
+{% if item.run_script.runs_on_failure is defined %}
+    Runs On Failure = {{ item.run_script.runs_on_failure | ternary('yes', 'no') }}
+{% endif %}
+{% if item.run_script.runs_when is defined %}
+    Runs When = {{ item.run_script.runs_when }}
+{% endif %}
+  }
+{% endif %}
+{% if item.run_before_job is defined %}
+  RunBeforeJob = {{ item.run_before_job }}
+{% endif %}
+{% if item.run_after_job is defined %}
+  RunAfterJob = {{ item.run_after_job }}
+{% endif %}
+{% if item.spool_data is defined %}
+  Spool Data = {{ item.spool_data | ternary('yes', 'no') }}
+{% endif %}
+{% if item.spool_size is defined %}
+  Spool Size = {{ item.spool_size }}
+{% endif %}
+{% if item.job_enabled is defined %}
+  Enabled = {{ item.job_enabled | ternary('yes', 'no') }}
+{% endif %}
+{% if item.prune_files is defined %}
+  Prune Files = {{ item.prune_files | ternary('yes', 'no') }}
+{% endif %}
+{% if item.prune_jobs is defined %}
+  Prune Jobs = {{ item.prune_jobs | ternary('yes', 'no') }}
+{% endif %}
+{% if item.prune_volumes is defined %}
+  Prune Volumes = {{ item.prune_volumes | ternary('yes', 'no') }}
+{% endif %}
+{% if item.allow_duplicate_jobs is defined %}
+  Allow Duplicate Jobs = {{ item.allow_duplicate_jobs | ternary('yes', 'no') }}
+{% endif %}
+{% if item.cancel_lower_level_duplicates is defined %}
+  Cancel Lower Level Duplicates = {{ item.cancel_lower_level_duplicates | ternary('yes', 'no') }}
+{% endif %}
+{% if item.cancel_queued_duplicates is defined %}
+  Cancel Queued Duplicates = {{ item.cancel_queued_duplicates | ternary('yes', 'no') }}
+{% endif %}
+{% if item.cancel_running_duplicates is defined %}
+  Cancel Running Duplicates = {{ item.cancel_running_duplicates | ternary('yes', 'no') }}
+{% endif %}
+{% if item.backup_format is defined %}
+  Backup Format = {{ item.backup_format }}
+{% endif %}
+{% if item.max_run_sched_time is defined %}
+  Max Run Sched Time = {{ item.max_run_sched_time }}
+{% endif %}
+{% if item.max_run_time is defined %}
+  Max Run Time = {{ item.max_run_time }}
+{% endif %}
+{% if item.max_start_delay is defined %}
+  Max Start Delay = {{ item.max_start_delay }}
+{% endif %}
+{% if item.max_wait_time is defined %}
+  Max Wait Time = {{ item.max_wait_time }}
+{% endif %}
+{% if item.prefer_mounted_volumes is defined %}
+  Prefer Mounted Volumes = {{ item.prefer_mounted_volumes | ternary('yes', 'no') }}
 {% endif %}
 }
 {% else %}

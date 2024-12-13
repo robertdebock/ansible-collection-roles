@@ -5,7 +5,7 @@
 oracle_instant_client_type: "all"
 
 # The version of the client to install. Versions can be found here: https://www.oracle.com/database/technologies/instant-client/linux-x86-64-downloads.html
-oracle_instant_client_version: "21.13.0.0.0"
+oracle_instant_client_version: "21.15.0.0.0"
 
 # Set the installation package type, either: "package" or "zip".
 # The `oracle_instant_client_selected_type` is detected in `vars/main.yml`, but can be overridden here.

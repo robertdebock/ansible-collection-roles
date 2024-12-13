@@ -24,12 +24,15 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
         - name: robertdb
           gid: 1024
         - name: users
-        # You can also remove groups.
+          # You can also remove groups.
         - name: notgroup
           state: absent
           # A system group is also possible.
         - name: systemgroup
           system: true
+          # A group with sudo options.
+        - name: mywheel
+          sudo_options: "ALL=(ALL) NOPASSWD: ALL"
 
       # You can create users.
       users:
@@ -228,10 +231,9 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |---------|----|
 |[Alpine](https://hub.docker.com/r/robertdebock/alpine)|all|
 |[Amazon](https://hub.docker.com/r/robertdebock/amazonlinux)|Candidate|
-|[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|8, 9|
+|[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|9|
 |[Debian](https://hub.docker.com/r/robertdebock/debian)|all|
-|[Fedora](https://hub.docker.com/r/robertdebock/fedora)|all|
-|[opensuse](https://hub.docker.com/r/robertdebock/opensuse)|all|
+|[Fedora](https://hub.docker.com/r/robertdebock/fedora)|39, 40|
 |[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|all|
 
 The minimum version of Ansible required is 2.12, tests have been done to:

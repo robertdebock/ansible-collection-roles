@@ -14,3 +14,6 @@
 #           - no_subtree_check
 #           - nohide
 nfsserver_exports: []
+
+# You can write the exports in a specific file.
+nfsserver_exports_file: /etc/exports

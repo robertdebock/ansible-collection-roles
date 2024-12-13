@@ -120,6 +120,9 @@ bareos_sd_tls_enable: true
 # Verify the peer.
 bareos_sd_tls_verify_peer: false
 
+# A list of autochangers to configure.
+bareos_sd_autochangers: []
+
 # A list of devices to configure.
 bareos_sd_devices: []
 
@@ -159,11 +162,10 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|[Debian](https://hub.docker.com/r/robertdebock/debian)|bookworm, bullseye, buster|
-|[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|7, 8, 9|
+|[Debian](https://hub.docker.com/r/robertdebock/debian)|bookworm, bullseye|
+|[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|9|
 |[Fedora](https://hub.docker.com/r/robertdebock/fedora)|38, 39|
-|[opensuse](https://hub.docker.com/r/robertdebock/opensuse)|all|
-|[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|jammy, focal|
+|[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|jammy|
 
 The minimum version of Ansible required is 2.12, tests have been done to:
 

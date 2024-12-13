@@ -10,11 +10,7 @@ galaxy_info:
   platforms:
     - name: EL
       versions:
-        - "8"
         - "9"
-    - name: opensuse
-      versions:
-        - all
     - name: Ubuntu
       versions:
         - jammy

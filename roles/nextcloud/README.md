@@ -54,7 +54,7 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
 - name: Continue prepare with facts
   hosts: all
   become: true
-  gather_facts: true
+  gather_facts: false
 
   pre_tasks:
     - name: Include remi
@@ -166,8 +166,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|8, 9|
-|[opensuse](https://hub.docker.com/r/robertdebock/opensuse)|all|
+|[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|9|
 |[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|jammy|
 
 The minimum version of Ansible required is 2.12, tests have been done to:

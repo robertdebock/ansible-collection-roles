@@ -147,6 +147,40 @@
     - Validate configuration
     - Restart postfix
 
+- name: Creates cert/key directory
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    mode: 0700
+  loop:
+    - "{{ postfix_smtpd_tls_cert_file | dirname }}"
+    - "{{ postfix_smtpd_tls_key_file | dirname }}"
+  when:
+    - postfix_smtpd_tls_cert_file is defined
+    - postfix_smtpd_tls_key_file is defined
+    - postfix_smtpd_tls_cert_file_source is defined
+    - postfix_smtpd_tls_key_file_source is defined
+
+- name: Deploy Postfix TLS server certificate
+  ansible.builtin.copy:
+    src: "{{ postfix_smtpd_tls_cert_file_source }}"
+    dest: "{{ postfix_smtpd_tls_cert_file }}"
+    mode: "0600"
+  notify:
+    - Reload postfix
+  when:
+    - postfix_smtpd_tls_cert_file_source is defined
+
+- name: Deploy Postfix TLS server key
+  ansible.builtin.copy:
+    src: "{{ postfix_smtpd_tls_key_file_source }}"
+    dest: "{{ postfix_smtpd_tls_key_file }}"
+    mode: "0600"
+  notify:
+    - Reload postfix
+  when:
+    - postfix_smtpd_tls_key_file_source is defined
+
 - name: Flush handlers
   ansible.builtin.meta: flush_handlers
 
@@ -204,7 +238,7 @@
     dest: "{{ postfix_smtp_sasl_password_map }}"
     mode: "0600"
   when:
-    - postfix_smtp_sasl_password_map is defined
+    - postfix_smtp_sasl_password_map is defined and postfix_smtp_sasl_password_map != ""
   notify:
     - Rebuild sasl_password_map database
 

@@ -31,7 +31,7 @@
       when:
         - oracle_instant_client_type in [ "devel", "all" ]
 
-- name: Instal zip
+- name: Install zip
   when:
     - oracle_instant_client_installation_type in [ "zip" ]
   block:
@@ -96,7 +96,7 @@
     - name: Create /etc/ld.so.conf.d/oracle-instantclient.conf
       ansible.builtin.copy:
         dest: /etc/ld.so.conf.d/oracle-instantclient.conf
-        content: /usr/lib/oracle/{{ oracle_instant_client_major_version }}/client64/lib
+        content: "/usr/lib/oracle/{{ oracle_instant_client_major_version }}/client64/lib"
         mode: "0644"
       when:
         - oracle_instant_client_type in [ "basic", "all" ]

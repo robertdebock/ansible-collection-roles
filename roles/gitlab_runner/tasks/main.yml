@@ -44,15 +44,13 @@
           gitlab-runner register --non-interactive
           --name "{{ gitlab_runner_name }}"
           --url "{{ gitlab_runner_url }}"
-          --registration-token "{{ gitlab_runner_registration_token }}"
-          --tag-list "{{ gitlab_runner_tags | join(',') }}"
+          --token "{{ gitlab_runner_registration_token }}"
           --executor "{{ gitlab_runner_executor }}"
           --docker-image "{{ gitlab_runner_docker_image }}"
           {% if gitlab_runner_privileged %}
           --docker-privileged
           --docker-volumes /var/run/docker.sock:/var/run/docker.sock
           {% endif %}
-          --locked="false"
           --request-concurrency "{{ gitlab_runner_concurrency }}"
       changed_when: true
       when:

@@ -32,14 +32,15 @@
   when:
     - python_pip_trusted_host is defined
 
-- name: Update pip
+- name: Update pip.
   ansible.builtin.pip:
     name: "{{ python_pip_pip_package }}"
     state: "{{ python_pip_pip_state }}"  # noqa package-latest
     executable: "{{ python_pip_executable | default(omit) }}"
   when:
     - python_pip_update
-    - ansible_distribution_release != "bookworm"
+    - ansible_distribution_release not in [ "bookworm", "noble" ]
+    - ansible_os_family != "Alpine"
 
 - name: Install requested modules
   ansible.builtin.pip:
@@ -51,4 +52,5 @@
   loop_control:
     label: "{{ item.name }}"
   when:
-    - ansible_distribution_release != "bookworm"
+    - ansible_distribution_release not in [ "bookworm", "noble" ]
+    - ansible_os_family != "Alpine"

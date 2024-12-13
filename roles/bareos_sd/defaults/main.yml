@@ -24,6 +24,9 @@ bareos_sd_tls_enable: true
 # Verify the peer.
 bareos_sd_tls_verify_peer: false
 
+# A list of autochangers to configure.
+bareos_sd_autochangers: []
+
 # A list of devices to configure.
 bareos_sd_devices: []
 

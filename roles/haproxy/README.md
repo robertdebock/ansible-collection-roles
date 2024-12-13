@@ -36,6 +36,12 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
           port: 25
           default_backend: smtp
           mode: tcp
+        - name: prometheus
+          address: "*"
+          port: 8405
+          mode: http
+          http_request: use-service prometheus-exporter
+          no_log: true
       haproxy_backend_default_balance: roundrobin
       haproxy_backends:
         - name: backend
@@ -160,7 +166,7 @@ haproxy_timeout_http_keep_alive: 10s
 haproxy_timeout_check: 10s
 haproxy_maxconn: 3000
 
-# A list of frontends. See `molecule/
+# A list of frontends. See `molecule/default/converge.yml` for an example.
 haproxy_frontends: []
 haproxy_backend_default_balance: roundrobin
 haproxy_backends: []
@@ -201,10 +207,9 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|8, 9|
+|[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|9|
 |[Debian](https://hub.docker.com/r/robertdebock/debian)|all|
-|[Fedora](https://hub.docker.com/r/robertdebock/fedora)|all|
-|[opensuse](https://hub.docker.com/r/robertdebock/opensuse)|all|
+|[Fedora](https://hub.docker.com/r/robertdebock/fedora)|39, 40|
 |[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|all|
 
 The minimum version of Ansible required is 2.12, tests have been done to:

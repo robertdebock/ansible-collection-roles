@@ -56,9 +56,6 @@ gitlab_runner_name: "{{ ansible_fqdn }}"
 # The URL to register the runner to.
 gitlab_runner_url: "https://gitlab.com/"
 
-# The list of tags.
-gitlab_runner_tags: []
-
 # The type of executor. Choose from: "ssh", "shell", "parallels", "virtualbox",
 # "docker", "docker_machine", "kubernetes" or "custom"
 gitlab_runner_executor: docker
@@ -101,7 +98,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|all|
+|[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|9|
 |[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|focal|
 
 The minimum version of Ansible required is 2.12, tests have been done to:

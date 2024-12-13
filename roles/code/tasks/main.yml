@@ -1,10 +1,6 @@
 ---
 # tasks file for code
 
-- name: Install required packages
-  ansible.builtin.package:
-    name: "{{ required_packages }}"
-
 - name: Place yum repository
   ansible.builtin.yum_repository:
     name: code

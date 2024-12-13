@@ -50,7 +50,7 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 oracle_instant_client_type: "all"
 
 # The version of the client to install. Versions can be found here: https://www.oracle.com/database/technologies/instant-client/linux-x86-64-downloads.html
-oracle_instant_client_version: "21.13.0.0.0"
+oracle_instant_client_version: "21.15.0.0.0"
 
 # Set the installation package type, either: "package" or "zip".
 # The `oracle_instant_client_selected_type` is detected in `vars/main.yml`, but can be overridden here.
@@ -83,9 +83,9 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|7, 8|
+|[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|9|
 |[Debian](https://hub.docker.com/r/robertdebock/debian)|all|
-|[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|all|
+|[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|jammy, focal|
 
 The minimum version of Ansible required is 2.12, tests have been done to:
 

@@ -1,0 +1,41 @@
+---
+galaxy_info:
+  author: robertdebock
+  role_name: cisco_anyconnect
+  description: Install and configure Cisco AnyConnect Secure Mobility Client.
+  license: Apache-2.0
+  company: none
+  min_ansible_version: "2.12"
+
+  platforms:
+    - name: Alpine
+      versions:
+        - all
+    - name: Amazon
+      versions:
+        - Candidate
+    - name: Debian
+      versions:
+        - all
+    - name: EL
+      versions:
+        - all
+    - name: Fedora
+      versions:
+        - all
+    - name: Ubuntu
+      versions:
+        - all
+
+  galaxy_tags:
+    - ciscoanyconnect
+    - application
+    - cloud
+    - infrastructure
+    - linux
+    - networking
+    - security
+    - system
+    - tools
+
+dependencies: []

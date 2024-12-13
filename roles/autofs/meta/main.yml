@@ -13,12 +13,8 @@ galaxy_info:
         - bullseye
     - name: EL
       versions:
-        - "8"
-        # - "9"  # Segmentation fault when staring autofs.service
+        - "9"
     - name: Fedora
-      versions:
-        - all
-    - name: opensuse
       versions:
         - all
     - name: Ubuntu

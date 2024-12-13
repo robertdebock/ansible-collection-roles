@@ -1,0 +1,137 @@
+---
+
+- name: assert | Test vault_agent_user
+  ansible.builtin.assert:
+    that:
+      - vault_agent_user is defined
+      - vault_agent_user is string
+      - vault_agent_user is not none
+    quiet: true
+
+- name: assert | Test vault_agent_group
+  ansible.builtin.assert:
+    that:
+      - vault_agent_group is defined
+      - vault_agent_group is string
+      - vault_agent_group is not none
+    quiet: true
+
+- name: assert | Test vault_agent_pid_file
+  ansible.builtin.assert:
+    that:
+      - vault_agent_pid_file is string
+      - vault_agent_pid_file is not none
+    quiet: true
+  when:
+    - vault_agent_pid_file is defined
+
+- name: assert | Test vault_agent_address
+  ansible.builtin.assert:
+    that:
+      - vault_agent_address is defined
+      - vault_agent_address is string
+      - vault_agent_address is not none
+    quiet: true
+
+- name: assert | Test vault_agent_retries
+  ansible.builtin.assert:
+    that:
+      - vault_agent_retries is defined
+      - vault_agent_retries is number
+      - vault_agent_retries is not none
+    quiet: true
+
+- name: assert | Test vault_agent_auto_auth
+  ansible.builtin.assert:
+    that:
+      - vault_agent_auto_auth is mapping
+      - vault_agent_auto_auth is not none
+    quiet: true
+  when:
+    - vault_agent_auto_auth is defined
+
+- name: assert | Test vault_agent_auto_auth.methods
+  ansible.builtin.assert:
+    that:
+      - vault_agent_auto_auth.methods is defined
+      - vault_agent_auto_auth.methods is iterable
+      - vault_agent_auto_auth.methods is not none
+    quiet: true
+
+- name: assert | Test vault_agent_auto_auth.sinks
+  ansible.builtin.assert:
+    that:
+      - vault_agent_auto_auth.sinks is iterable
+      - vault_agent_auto_auth.sinks is not none
+    quiet: true
+  when:
+    - vault_agent_auto_auth.sinks is defined
+
+- name: assert | Test vault_agent_cache
+  ansible.builtin.assert:
+    that:
+      - vault_agent_cache is mapping
+    quiet: true
+  when:
+    - vault_agent_cache is defined
+
+- name: assert | Test vault_agent_api_proxy
+  ansible.builtin.assert:
+    that:
+      - vault_agent_api_proxy is mapping
+      - vault_agent_api_proxy is not none
+    quiet: true
+  when:
+    - vault_agent_api_proxy is defined
+
+- name: assert | Test vault_agent_api_proxy
+  ansible.builtin.assert:
+    that:
+      - vault_agent_api_proxy is not defined
+    quiet: true
+  when:
+    - vault_agent_env_templates is defined
+
+- name: assert | Test vault_agent_templates
+  ansible.builtin.assert:
+    that:
+      - vault_agent_templates is not defined
+    quiet: true
+  when:
+    - vault_agent_env_templates is defined
+
+- name: assert | Test vault_agent_listeners
+  ansible.builtin.assert:
+    that:
+      - vault_agent_listeners is iterable
+      - vault_agent_listeners is not none
+    quiet: true
+  when:
+    - vault_agent_listeners is defined
+
+- name: assert | Test vault_agent_templates
+  ansible.builtin.assert:
+    that:
+      - vault_agent_templates is iterable
+      - vault_agent_templates is not none
+    quiet: true
+  when:
+    - vault_agent_templates is defined
+
+- name: assert | Test vault_agent_env_templates
+  ansible.builtin.assert:
+    that:
+      - vault_agent_env_templates is iterable
+      - vault_agent_env_templates is not none
+    quiet: true
+  when:
+    - vault_agent_env_templates is defined
+
+- name: assert | Test vault_agent_exec
+  ansible.builtin.assert:
+    that:
+      - vault_agent_exec is mapping
+      - vault_agent_exec is not none
+    quiet: true
+  when:
+    - vault_agent_exec is defined

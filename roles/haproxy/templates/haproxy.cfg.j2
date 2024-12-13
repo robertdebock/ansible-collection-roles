@@ -30,7 +30,7 @@ defaults
 
 {% if haproxy_stats == true %}
 listen stats
-    bind                 {{haproxy_stats_bind_addr }}:{{ haproxy_stats_port }}
+    bind                 {{ haproxy_stats_bind_addr }}:{{ haproxy_stats_port }}
     mode                 http
     stats                enable
     stats                uri /stats
@@ -38,11 +38,19 @@ listen stats
 
 {% for frontend in haproxy_frontends %}
 frontend {{ frontend.name }}
-    bind {{ frontend.address }}:{{ frontend.port }}{% if frontend.ssl is defined and frontend.ssl == true %} ssl{% endif %}{% if frontend.crts is defined and frontend.crts | length >0 %}{% for crt in frontend.crts %} crt {{ crt }}{% endfor %}{% endif %}
+    bind {{ frontend.address }}:{{ frontend.port }}{% if frontend.ssl is defined and frontend.ssl == true %} ssl{% endif %}{% if frontend.crts is defined and frontend.crts | length > 0 %} {% for crt in frontend.crts %} crt {{ crt }}{% endfor %}{% endif %}
 
+{% if frontend.default_backend is defined %}
     default_backend {{ frontend.default_backend }}
+{% endif %}
     mode {{ frontend.mode | default('http') }}
     option {{ frontend.option | default('httplog') }}
+{% if frontend.http_request is defined %}
+    http-request {{ frontend.http_request }}
+{% endif %}
+{% if frontend.no_log is defined and frontend.no_log %}
+    no log
+{% endif %}
 {% endfor %}
 
 {% for backend in haproxy_backends %}

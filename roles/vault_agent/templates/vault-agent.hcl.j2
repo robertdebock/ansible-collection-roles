@@ -1,0 +1,106 @@
+{{ ansible_managed | comment }}
+
+{% if vault_agent_pid_file is defined %}
+pid_file = "{{ vault_agent_pid_file }}"
+{% endif %}
+ 
+vault {
+  address = "{{ vault_agent_address }}"
+  retry {
+    num_retries = {{ vault_agent_retries }}
+  }
+}
+
+auto_auth {
+{% for auth_method in vault_agent_auto_auth.methods %}
+  method "{{ auth_method.name }}" {
+{% if auth_method.mount_path is defined %}
+    mount_path = "{{ auth_method.mount_path }}"
+{% endif %}
+    config = {
+{% if auth_method.config.type is defined %}
+      type = "{{ auth_method.config.type }}"
+{% endif %}
+{% if auth_method.config.role is defined %}
+      role = "{{ auth_method.config.role }}"
+{% endif %}
+{% if auth_method.config.role_id_file_path is defined %}
+      role_id_file_path = "{{ auth_method.config.role_id_file_path }}"
+{% endif %}
+{% if auth_method.config.secret_id_file_path is defined %}
+      secret_id_file_path = "{{ auth_method.config.secret_id_file_path }}"
+{% endif %}
+    }
+  }
+{% endfor %}
+{% if vault_agent_auto_auth.sinks is defined %}
+{% for sink in vault_agent_auto_auth.sinks %}
+  sink "{{ sink.name }}" {
+{% if sink.wrap_ttl is defined %}
+    wrap_ttl = "{{ sink.wrap_ttl }}"
+{% endif %}
+{% if sink.aad_env_var is defined %}
+    aad_env_var = "{{ sink.aad_env_var }}"
+{% endif %}
+{% if sink.dh_type is defined %}
+    dh_type = "{{ sink.dh_type }}"
+{% endif %}
+{% if sink.dh_path is defined %}
+    dh_path = "{{ sink.dh_path }}"
+{% endif %}
+    config = {
+      path = "{{ sink.config.path }}"
+    }
+  }
+{% endfor %}
+{% endif %}
+}
+
+{% if vault_agent_cache is defined %}
+cache {}
+{% endif %}
+
+{% if vault_agent_api_proxy is defined %}
+api_proxy {
+  use_auto_auth_token = {{ vault_agent_api_proxy.use_auto_auth_token | ternary("true", "false") }}
+}
+{% endif %}
+
+{% for listener in vault_agent_listeners %}
+listener "{{ listener.name }}" {
+  address = "{{ listener.address }}"
+  tls_disable = {{ listener.tls_disable | ternary("true", "false") }}
+{% if listener.agent_api is defined %}
+  agent_api {
+    enable_quit = {{ listener.agent_api.enable_quit | ternary("true", "false") }}
+  }
+{% endif %}
+}
+{% endfor %}
+
+{% if vault_agent_templates is defined %}
+{% for template in vault_agent_templates %} 
+template {
+  source = "{{ template.source }}"
+  destination = "{{ template.destination }}"
+}
+{% endfor %}
+{% endif %}
+
+{% if vault_agent_env_templates is defined %}
+{% for template in vault_agent_env_templates %}
+env_template "{{ template.name }}" {
+  contents             = "{{ template.contents }}"
+  error_on_missing_key = {{ template.error_on_missing_key | ternary("true", "false") }}
+}
+{% endfor %}
+{% endif %}
+
+{% if vault_agent_exec is defined %}
+exec {
+  command                   = [{{ '\"' + vault_agent_exec.command | join('\", \"') + '\"' }}]
+  restart_on_secret_changes = "{{ vault_agent_exec.restart_on_secret_changes }}"
+  restart_stop_signal       = "{{ vault_agent_exec.restart_stop_signal }}"
+}
+{% endif %}
+ 

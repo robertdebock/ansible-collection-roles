@@ -14,13 +14,14 @@
         cmd: vault status -format=yaml
       environment:
         VAULT_ADDR: "{{ vault_initialize_addr }}"
+        VAULT_SKIP_VERIFY: "{{ vault_tls_skip_verify }}"
       register: vault_initialize_status_raw
       changed_when: false
       run_once: true
   rescue:
     - name: Inform user of non-critical error
       ansible.builtin.debug:
-        msg: "Could not read the status of Vault, continuing."
+        msg: "Vault command exited in failure, no problem, continuing."
 
 - name: Store vault_initialize_status as YAML
   ansible.builtin.set_fact:
@@ -32,6 +33,7 @@
     cmd: vault operator init -format=yaml
   environment:
     VAULT_ADDR: "{{ vault_initialize_addr }}"
+    VAULT_SKIP_VERIFY: "{{ vault_tls_skip_verify }}"
   register: vault_initialize_raw
   when:
     - not vault_initialize_status.initialized
@@ -62,6 +64,7 @@
     cmd: vault operator unseal {{ item }}
   environment:
     VAULT_ADDR: "{{ vault_initialize_addr }}"
+    VAULT_SKIP_VERIFY: "{{ vault_tls_skip_verify }}"
   loop: "{{ vault_initialize.unseal_keys_b64 }}"
   loop_control:
     label: "Sensitive data is hidden."

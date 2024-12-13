@@ -1,0 +1,69 @@
+---
+
+argument_specs:
+  main:
+    short_description: "Install and configure vault_agent on your system."
+    description: >
+      Install and configure vault_agent on your system.
+    author: Robert de Bock
+    options:
+      vault_agent_user:
+        required: false
+        default: "vault"
+        description: "The user that owns the Vault configuration files."
+        type: "str"
+      vault_agent_group:
+        required: false
+        default: "vault"
+        description: "The group that owns the Vault configuration files."
+        type: "str"
+      vault_agent_pid_file:
+        required: false
+        default: null
+        description: "The PID file for the Vault agent."
+        type: "str"
+      vault_agent_address:
+        required: true
+        default: null
+        description: "The Vault address where the agent can connect to."
+        type: "str"
+      vault_agent_retries:
+        required: false
+        default: 5
+        description: "The number of times to retry connecting to Vault."
+        type: "int"
+      vault_agent_auto_auth:
+        required: false
+        default: null
+        description: "The authentication method to use."
+        type: "dict"
+      vault_agent_cache:
+        required: false
+        default: {}
+        description: "By specifying (an empty cache configuration), the agent will store the token in the cache."
+        type: "dict"
+      vault_agent_api_proxy:
+        required: false
+        default: {"use_auto_auth_token": true}
+        description: "Should this Vault offer proxy capabilties?"
+        type: "dict"
+      vault_agent_listeners:
+        required: false
+        default: null
+        description: "A list of listeners to configure."
+        type: "list"
+      vault_agent_templates:
+        required: false
+        default: null
+        description: "A list of templates to render. The files mentioned in the source will not be placed by this role."
+        type: "list"
+      vault_agent_env_templates:
+        required: false
+        default: null
+        description: "A list of environment variables to set."
+        type: "list"
+      vault_agent_exec:
+        required: false
+        default: null
+        description: "A command to execute when secrets change."
+        type: "dict"

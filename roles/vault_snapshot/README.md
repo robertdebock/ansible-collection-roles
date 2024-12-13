@@ -118,6 +118,7 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
         VAULT_ADDR: "https://localhost:8200"
         VAULT_SKIP_VERIFY: "true"
       changed_when: true
+      no_log: true
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.
@@ -174,8 +175,8 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |---------|----|
 |[Amazon](https://hub.docker.com/r/robertdebock/amazonlinux)|Candidate|
 |[Debian](https://hub.docker.com/r/robertdebock/debian)|all|
-|[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|all|
-|[Fedora](https://hub.docker.com/r/robertdebock/fedora)|39|
+|[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|9|
+|[Fedora](https://hub.docker.com/r/robertdebock/fedora)|39, 40|
 |[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|all|
 
 The minimum version of Ansible required is 2.12, tests have been done to:

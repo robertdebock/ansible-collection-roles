@@ -6,3 +6,4 @@ roles:
   - name: robertdebock.epel
   - name: robertdebock.python_pip
 collections:
+  - name: community.general

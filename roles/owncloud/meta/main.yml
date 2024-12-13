@@ -11,9 +11,6 @@ galaxy_info:
     - name: Debian
       versions:
         - bullseye
-    - name: opensuse
-      versions:
-        - all
     - name: Ubuntu
       versions:
         - focal

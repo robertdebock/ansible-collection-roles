@@ -10,17 +10,14 @@ galaxy_info:
   platforms:
     - name: EL
       versions:
-        - "8"
         - "9"
     - name: Debian
       versions:
         - all
     - name: Fedora
       versions:
-        - all
-    - name: opensuse
-      versions:
-        - all
+        - "39"
+        - "40"
     - name: Ubuntu
       versions:
         - all

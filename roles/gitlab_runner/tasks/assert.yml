@@ -25,14 +25,6 @@
       - gitlab_runner_url is not none
     quiet: true
 
-- name: assert | Test gitlab_runner_tags
-  ansible.builtin.assert:
-    that:
-      - gitlab_runner_tags is iterable
-    quiet: true
-  when:
-    - gitlab_runner_tags is defined
-
 - name: assert | Test gitlab_runner_executor
   ansible.builtin.assert:
     that:

@@ -88,6 +88,21 @@
     - Check configuration
     - Reload bareos-dir
 
+- name: Place counter
+  ansible.builtin.template:
+    src: counter.conf.j2
+    dest: "/etc/bareos/bareos-dir.d/counter/{{ item.name }}.conf"
+    owner: bareos
+    group: bareos
+    mode: "0644"
+    backup: "{{ bareos_dir_backup_configurations }}"
+  loop: "{{ bareos_dir_counters }}"
+  loop_control:
+    label: "{{ item.name }}"
+  notify:
+    - Check configuration
+    - Reload bareos-dir
+
 - name: Place client
   ansible.builtin.template:
     src: client.conf.j2

@@ -1,0 +1,78 @@
+---
+
+argument_specs:
+  main:
+    short_description: "Install and configure php on your system."
+    description: >
+      Install and configure php on your system.
+    author: Robert de Bock
+    options:
+      php_ini_location:
+        description: "The role discovers the ini location automatically, but can be overwritten."
+        default: null
+      php_alpine_version:
+        description: "Alpine has both php5 and php7. Select the desired version here."
+        default: 7
+      php_display_errors:
+        description: "All the settings for PHP."
+        default: false
+      php_startup_errors:
+        description: "All the settings for PHP."
+        default: false
+      php_error_reporting:
+        description: "All the settings for PHP."
+        default: false
+      php_html_errors:
+        description: "All the settings for PHP."
+        default: true
+      php_log_errors:
+        description: "All the settings for PHP."
+        default: true
+      php_max_input_time:
+        description: "All the settings for PHP."
+        default: 60
+      php_max_execution_time:
+        description: "All the settings for PHP."
+        default: 60
+      php_output_buffering:
+        description: "All the settings for PHP."
+        default: 4096
+      php_register_argc_argv:
+        description: "All the settings for PHP."
+        default: false
+      php_request_order:
+        description: "All the settings for PHP."
+        default: GP
+      php_session_gc_divisor:
+        description: "All the settings for PHP."
+        default: 1000
+      php_session_hash_bits_per_character:
+        description: "All the settings for PHP."
+        default: 5
+      php_short_open_tag:
+        description: "All the settings for PHP."
+        default: false
+      php_track_errors:
+        description: "All the settings for PHP."
+        default: false
+      php_variables_order:
+        description: "All the settings for PHP."
+        default: GPCS
+      php_engine:
+        description: "All the settings for PHP."
+        default: true
+      php_date_timezone:
+        description: "All the settings for PHP."
+        default: Europe/Amsterdam
+      php_memory_limit:
+        description: "All the settings for PHP."
+        default: 128M
+      php_upload_max_filesize:
+        description: "All the settings for PHP."
+        default: 2M
+      php_post_max_size:
+        description: "All the settings for PHP."
+        default: 8M
+      php_extensions:
+        description: "All the settings for PHP."
+        default: null

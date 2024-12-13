@@ -1,0 +1,38 @@
+---
+galaxy_info:
+  author: robertdebock
+  role_name: vault_agent
+  description: Install and configure HashiCorp Vault Agent on your system.
+  license: Apache-2.0
+  company: none
+  min_ansible_version: "2.12"
+
+  platforms:
+    - name: Amazon
+      versions:
+        - Candidate
+    - name: Debian
+      versions:
+        - all
+    - name: EL
+      versions:
+        - "9"
+    - name: Fedora
+      versions:
+        - "39"
+        - "40"
+    - name: Ubuntu
+      versions:
+        - all
+
+  galaxy_tags:
+    - vaultagent
+    - application
+    - cloud
+    - infrastructure
+    - linux
+    - security
+    - system
+    - tools
+
+dependencies: []

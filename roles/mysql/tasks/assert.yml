@@ -8,6 +8,15 @@
       - mysql_bind_address is not none
     quiet: true
 
+- name: assert | Test mysql_port
+  ansible.builtin.assert:
+    that:
+      - mysql_port is defined
+      - mysql_port is number
+      - mysql_port > 1
+      - mysql_port < 65536
+    quiet: true
+
 - name: assert | Test mysql_root_password
   ansible.builtin.assert:
     that:

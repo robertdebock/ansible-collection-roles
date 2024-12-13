@@ -19,6 +19,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 
   roles:
     - role: robertdebock.roles.mysql
+      mysql_port: 3307
       mysql_databases:
         - name: my_db
           encoding: utf8
@@ -56,6 +57,9 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 # The address mysql should bind to.
 mysql_bind_address: "127.0.0.1"
 
+# The port to listen on.
+mysql_port: 3306
+
 # The password to set for the root user. Also stored in my.cnf
 mysql_root_password: "s3Cur31t4."
 
@@ -73,6 +77,9 @@ mysql_configuration_options:
   - option: bind-address
     section: mysqld
     value: "{{ mysql_bind_address }}"
+  - option: port
+    section: mysqld
+    value: "{{ mysql_port }}"
   - option: socket
     section: mysqld
     value: "{{ mysql_socket }}"
@@ -113,10 +120,9 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |container|tags|
 |---------|----|
 |[Debian](https://hub.docker.com/r/robertdebock/debian)|bullseye|
-|[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|8, 9|
+|[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|9|
 |[Fedora](https://hub.docker.com/r/robertdebock/fedora)|all|
-|[opensuse](https://hub.docker.com/r/robertdebock/opensuse)|all|
-|[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|all|
+|[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|noble, jammy|
 
 The minimum version of Ansible required is 2.12, tests have been done to:
 

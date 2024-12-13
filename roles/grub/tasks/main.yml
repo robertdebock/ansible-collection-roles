@@ -46,5 +46,10 @@
     - grub_options is defined
     - grub_options | length > 0
 
+- name: Import password.yml
+  ansible.builtin.import_tasks: password.yml
+  when:
+    - grub_set_password
+
 - name: Flush handlers
   ansible.builtin.meta: flush_handlers

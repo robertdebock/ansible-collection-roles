@@ -1,0 +1,7 @@
+#!/bin/sh -e
+
+cat << "EOF"
+set superusers="{{ grub_user }}"
+export superusers
+password_pbkdf2 {{ grub_user }} {{ grub_password }}
+EOF

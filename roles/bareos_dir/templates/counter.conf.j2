@@ -1,0 +1,21 @@
+{{ ansible_managed | comment }}
+
+{% if item.enabled is defined and item.enabled or item.enabled is not defined %}
+Counter {
+  Name = "{{ item.name }}"
+{% if item.description is defined %}
+  Description = "{{ item.description }}"
+{% endif %}
+{% if item.catalog is defined %}
+  Catalog = "{{ item.catalog }}"
+{% endif %}
+{% if item.minimum is defined %}
+  Minimum = {{ item.minimum }}
+{% endif %}
+{% if item.maximum is defined %}
+  Maximum = {{ item.maximum }}
+{% endif %}
+}
+{% else %}
+# This file is not enabled.
+{% endif %}

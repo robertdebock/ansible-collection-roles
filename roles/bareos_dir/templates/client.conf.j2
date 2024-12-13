@@ -23,6 +23,9 @@ Client {
 {% if item.tls_verify_peer is defined %}
   TLS Verify Peer = {{ item.tls_verify_peer | ternary('Yes', 'No') }}
 {% endif %}
+{% if item.client_enabled is defined %}
+  Enabled = {{ item.client_enabled | ternary('yes', 'no') }}
+{% endif %}
 }
 {% else %}
 # This file is not enabled.

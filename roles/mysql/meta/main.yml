@@ -13,17 +13,14 @@ galaxy_info:
         - bullseye
     - name: EL
       versions:
-        - "8"
         - "9"
     - name: Fedora
       versions:
         - all
-    - name: opensuse
-      versions:
-        - all
     - name: Ubuntu
       versions:
-        - all
+        - noble
+        - jammy
 
   galaxy_tags:
     - mysql

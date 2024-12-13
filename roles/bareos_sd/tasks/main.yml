@@ -29,6 +29,21 @@
     - Check configuration
     - Restart bareos-sd
 
+- name: Place autochanger
+  ansible.builtin.template:
+    src: autochanger.conf.j2
+    dest: "/etc/bareos/bareos-sd.d/autochanger/{{ item.name }}.conf"
+    owner: bareos
+    group: bareos
+    mode: "0640"
+    backup: "{{ bareos_sd_backup_configurations }}"
+  loop: "{{ bareos_sd_autochangers }}"
+  loop_control:
+    label: "{{ item.name }}"
+  notify:
+    - Check configuration
+    - Restart bareos-sd
+
 - name: Place device
   ansible.builtin.template:
     src: device.conf.j2

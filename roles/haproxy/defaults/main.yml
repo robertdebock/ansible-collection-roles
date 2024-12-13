@@ -16,7 +16,7 @@ haproxy_timeout_http_keep_alive: 10s
 haproxy_timeout_check: 10s
 haproxy_maxconn: 3000
 
-# A list of frontends. See `molecule/
+# A list of frontends. See `molecule/default/converge.yml` for an example.
 haproxy_frontends: []
 haproxy_backend_default_balance: roundrobin
 haproxy_backends: []

@@ -12,4 +12,7 @@ Storage {
 {% if bareos_sd_tls_verify_peer %}
   TLS Verify Peer = Yes
 {% endif %}
+{% if bareos_sd_device_reserve_by_media_type is defined and bareos_sd_device_reserve_by_media_type %}
+  Device Reserve By Media Type = Yes
+{% endif %}
 }

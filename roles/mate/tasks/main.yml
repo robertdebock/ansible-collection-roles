@@ -12,7 +12,7 @@
   when:
     - ansible_os_family in [ "RedHat", "Rocky" ]
   block:
-    - name: Install software with excluded
+    - name: Install software with exclusions
       ansible.builtin.package:
         name: "{{ mate_packages }}"
         state: present

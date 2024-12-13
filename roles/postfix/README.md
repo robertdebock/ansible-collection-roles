@@ -31,7 +31,6 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
           destination: test@example.com
       # Ziggo settings: ("email-address" and "email-password" are placeholders)
       postfix_relayhost: "[smtp.ziggo.nl]:587"
-      postfix_smtp_use_tls: true
       postfix_smtp_sasl_auth_enable: true
       postfix_smtp_sasl_password_map: "/etc/postfix/relay_pass"
       postfix_smtp_sasl_security_options: ""
@@ -206,8 +205,14 @@ postfix_smtp_tls_security_level: none
 # File with the Postfix SMTP server RSA certificate in PEM format.
 # postfix_smtpd_tls_cert_file: /etc/letsencrypt/live/smtp.syhosting.ch/cert.pem
 
+# Local file with the Postfix SMTP server RSA certificate in PEM format which shall be copied to the target host.
+# postfix_smtpd_tls_cert_file_source: ./certs/cert.pem
+
 # File with the Postfix SMTP server RSA private key in PEM format.
 # postfix_smtpd_tls_key_file: /etc/letsencrypt/live/smtp.syhosting.ch/privkey.pem
+
+# Local file with the Postfix SMTP server RSA private key in PEM format which shall be copied to the target host.
+# postfix_smtpd_tls_key_file_source: ./certs/privkey.pem
 
 # Request that the Postfix SMTP server produces Received: message headers that include information about the protocol and cipher used, as well as the remote SMTP client CommonName and client certificate issuer CommonName.
 # postfix_smtpd_tls_received_header: true
@@ -280,7 +285,6 @@ postfix_smtp_tls_security_level: none
 # So either specifcy a port number or a service name like `smtp`.
 postfix_smtp_listen_port: smtp
 
-postfix_smtp_use_tls: false
 postfix_smtp_sasl_auth_enable: false
 postfix_smtp_sasl_password_map: ""
 postfix_smtp_sasl_security_options: ""
@@ -314,8 +318,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|[Amazon](https://hub.docker.com/r/robertdebock/amazonlinux)|2018.03|
-|[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|all|
+|[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|9|
 |[Debian](https://hub.docker.com/r/robertdebock/debian)|all|
 |[Fedora](https://hub.docker.com/r/robertdebock/fedora)|all|
 |[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|all|

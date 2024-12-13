@@ -236,6 +236,17 @@
   when:
     - postfix_smtpd_tls_key_file is defined
 
+- name: assert | Test either postfix_smtpd_tls_cert_file_source and postfix_smtpd_tls_key_file_source are defined both or none
+  ansible.builtin.assert:
+    that:
+      - postfix_smtpd_tls_cert_file_source is string
+      - postfix_smtpd_tls_cert_file_source is not none
+      - postfix_smtpd_tls_key_file_source is string
+      - postfix_smtpd_tls_key_file_source is not none
+    quiet: true
+  when:
+    - postfix_smtpd_tls_cert_file_source is defined or postfix_smtpd_tls_key_file_source is defined
+
 - name: assert | Test postfix_smtpd_tls_received_header
   ansible.builtin.assert:
     that:
@@ -426,14 +437,6 @@
         postfix_smtp_listen_port is string
     quiet: true
 
-- name: assert | Test postfix_smtp_use_tls
-  ansible.builtin.assert:
-    that:
-      - postfix_smtp_use_tls is boolean
-    quiet: true
-  when:
-    - postfix_smtp_use_tls is defined
-
 - name: assert | Test postfix_smtp_sasl_auth_enable
   ansible.builtin.assert:
     that:
@@ -477,3 +480,11 @@
     quiet: true
   when:
     - postfix_smtp_sasl_password_map_content is defined
+
+- name: assert | Test postfix_master_custom
+  ansible.builtin.assert:
+    that:
+      - postfix_master_custom is iterable
+    quiet: true
+  when:
+    - postfix_master_custom is defined

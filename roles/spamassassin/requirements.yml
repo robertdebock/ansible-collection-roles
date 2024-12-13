@@ -6,3 +6,4 @@ roles:
   - name: robertdebock.logrotate
   - name: robertdebock.rsyslog
 collections:
+  - name: community.general

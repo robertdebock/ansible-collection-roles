@@ -1,0 +1,49 @@
+---
+# tasks file for vault_agent
+
+- name: Import assert.yml
+  ansible.builtin.import_tasks:
+    file: assert.yml
+  run_once: true
+  delegate_to: localhost
+
+- name: Install vault agent
+  ansible.builtin.package:
+    name: vault
+
+- name: Create vault agent configuration directory
+  ansible.builtin.file:
+    path: /etc/vault.d
+    state: directory
+    owner: "{{ vault_agent_user }}"
+    group: "{{ vault_agent_group }}"
+    mode: 0750
+
+- name: Create vault agent configuration file
+  ansible.builtin.template:
+    src: vault-agent.hcl.j2
+    dest: /etc/vault.d/vault-agent.hcl
+    owner: "{{ vault_agent_user }}"
+    group: "{{ vault_agent_group }}"
+    mode: 0640
+  notify:
+    - Restart vault agent
+
+- name: Create vault agent service file
+  ansible.builtin.template:
+    src: vault-agent.service.j2
+    dest: /etc/systemd/system/vault-agent.service
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - Reload systemd
+
+- name: Flush handlers
+  ansible.builtin.meta: flush_handlers
+
+- name: Start and enable vault agent
+  ansible.builtin.systemd:
+    name: vault-agent
+    state: started
+    enabled: true

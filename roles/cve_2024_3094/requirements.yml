@@ -2,3 +2,5 @@
 roles:
   - name: robertdebock.bootstrap
   - name: robertdebock.openssh
+collections:
+  - name: community.general

@@ -32,7 +32,7 @@ storage_default_fstype: ext4
 
 # storage_filesystems:
 #   - name: /dev/group1/var
-#     filesystem: ext4
+#     fstype: ext4
 
 # storage_mounts:
 #   - name: /var

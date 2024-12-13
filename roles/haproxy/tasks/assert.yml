@@ -75,9 +75,6 @@
       - item.port is number
       - item.port > 0
       - item.port < 65536
-      - item.default_backend is defined
-      - item.default_backend is string
-      - item.default_backend is not none
     quiet: true
   loop: "{{ haproxy_frontends }}"
   loop_control:
@@ -107,6 +104,29 @@
     label: "{{ item.name }}"
   when:
     - item.mode is defined
+
+- name: assert | Test optional item http_request in haproxy_frontends
+  ansible.builtin.assert:
+    that:
+      - item.http_request is string
+      - item.http_request is not none
+    quiet: true
+  loop: "{{ haproxy_frontends }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - item.http_request is defined
+
+- name: assert | Test optional item no_log in haproxy_frontends
+  ansible.builtin.assert:
+    that:
+      - item.no_log is boolean
+    quiet: true
+  loop: "{{ haproxy_frontends }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - item.no_log is defined
 
 - name: assert | Test haproxy_backends
   ansible.builtin.assert:

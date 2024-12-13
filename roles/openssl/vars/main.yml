@@ -16,6 +16,7 @@ openssl_requirements: "{{ _openssl_requirements[ansible_os_family] | default(_op
 _openssl_pip_packages:
   default:
     - pyOpenSSL
+  Alpine: []
   Debian: []
 openssl_pip_packages: "{{ _openssl_pip_packages[ansible_os_family] | default(_openssl_pip_packages['default']) }}"
 

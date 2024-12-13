@@ -3,3 +3,4 @@ roles:
   - name: robertdebock.bootstrap
 collections:
   - name: awx.awx
+  - name: community.general

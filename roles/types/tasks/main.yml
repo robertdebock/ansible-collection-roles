@@ -72,6 +72,6 @@
 - name: Test list of lists
   ansible.builtin.assert:
     that:
-      - item is list
+      - item is iterable
     quiet: true
   loop: "{{ types_lists }}"

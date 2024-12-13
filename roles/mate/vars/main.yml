@@ -12,7 +12,4 @@ _mate_packages:
 
 mate_packages: "{{ _mate_packages[ansible_os_family] }}"
 
-_mate_exclude:
-  RedHat: "{{ ansible_distribution | lower }}-release-matecompiz"
-
-mate_exclude: "{{ _mate_exclude[ansible_os_family] }}"
+mate_exclude: "{{ ansible_distribution | lower }}-release-matecompiz"

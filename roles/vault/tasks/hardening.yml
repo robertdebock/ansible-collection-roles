@@ -48,11 +48,10 @@
     - vault_hardening_disable_shell_command_history
 
 - name: hardening | Configure SELinux / AppArmor
-  when:
-    - vault_hardening_configure_selinux_apparmor
   block:
     - name: hardening | Enable SELinux
       when:
+        - vault_hardening_configure_selinux_apparmor
         - ansible_selinux.status == "enabled"
       block:
         - name: hardening | Install selinux-policy

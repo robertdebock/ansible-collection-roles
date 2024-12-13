@@ -19,6 +19,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 
   roles:
     - role: robertdebock.roles.vault_initialize
+      vault_tls_skip_verify: true
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-vault_initialize/blob/master/molecule/default/prepare.yml):
@@ -35,6 +36,7 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
     - role: robertdebock.roles.core_dependencies
     - role: robertdebock.roles.hashicorp
     - role: robertdebock.roles.vault
+      vault_hardening_disable_swap: false
     - role: robertdebock.roles.vault_configuration
       vault_configuration_listener_tcp:
         address: "127.0.0.1:8200"
@@ -55,10 +57,13 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 ---
 # defaults file for vault_initialize
 
-# The address where Vault can be found. Simiar to `VAULT_ADDR`.
-vault_initialize_addr: "http://localhost:8200"
+# The address where Vault can be found, similar to `VAULT_ADDR`.
+vault_initialize_addr: "https://localhost:8200"
 
-# You can show the (sensitive) information of initializing Vault. This includes the root-token and unseal-keys.
+# When Vault is installed using untrusted certificates, you can disable the verification of the certificates.
+vault_tls_skip_verify: false
+
+# You can show the (sensitive) information when initializing Vault. This includes the root token and unseal keys.
 vault_initialize_show_information: true
 ```
 
@@ -94,8 +99,8 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |---------|----|
 |[Amazon](https://hub.docker.com/r/robertdebock/amazonlinux)|Candidate|
 |[Debian](https://hub.docker.com/r/robertdebock/debian)|all|
-|[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|all|
-|[Fedora](https://hub.docker.com/r/robertdebock/fedora)|37, 38|
+|[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|9|
+|[Fedora](https://hub.docker.com/r/robertdebock/fedora)|39, 40|
 |[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|all|
 
 The minimum version of Ansible required is 2.12, tests have been done to:

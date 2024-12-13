@@ -1,0 +1,22 @@
+---
+
+- name: assert | Test cisco_anyconnect_tmp_dir
+  ansible.builtin.assert:
+    that:
+      - cisco_anyconnect_tmp_dir is defined
+      - cisco_anyconnect_tmp_dir is string
+    quiet: true
+
+- name: assert | Test cisco_anyconnect_download_url
+  ansible.builtin.assert:
+    that:
+      - cisco_anyconnect_download_url is defined
+      - cisco_anyconnect_download_url is string
+    quiet: true
+
+- name: assert | Test cisco_anyconnect_install_dir
+  ansible.builtin.assert:
+    that:
+      - cisco_anyconnect_install_dir is defined
+      - cisco_anyconnect_install_dir is string
+    quiet: true

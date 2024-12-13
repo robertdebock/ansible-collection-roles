@@ -74,6 +74,13 @@
       - bareos_dir_consoles is iterable
     quiet: true
 
+- name: assert | Test bareos_dir_counters
+  ansible.builtin.assert:
+    that:
+      - bareos_dir_counters is defined
+      - bareos_dir_counters is iterable
+    quiet: true
+
 - name: assert | Test bareos_dir_clients
   ansible.builtin.assert:
     that:

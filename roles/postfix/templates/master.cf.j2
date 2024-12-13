@@ -29,6 +29,11 @@ scan      unix  -       -       n       -       16      smtp
   -o mynetworks_style=host
   -o smtpd_authorized_xforward_hosts=127.0.0.0/8
 {% endif %}
+{% if postfix_master_custom is defined %}
+{% for item in postfix_master_custom %}
+{{ item }}
+{% endfor %}
+{% endif %}
 #smtp      inet  n       -       n       -       1       postscreen
 #smtpd     pass  -       -       n       -       -       smtpd
 #dnsblog   unix  -       -       n       -       0       dnsblog

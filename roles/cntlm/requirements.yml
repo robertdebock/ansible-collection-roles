@@ -5,3 +5,4 @@ roles:
   - name: robertdebock.epel
   - name: robertdebock.service
 collections:
+  - name: community.general
