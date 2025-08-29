@@ -1,0 +1,127 @@
+---
+
+- name: assert | Test prosody_domain
+  ansible.builtin.assert:
+    that:
+      - prosody_domain is defined
+      - prosody_domain is string
+      - prosody_domain is not none
+    quiet: true
+
+- name: assert | Test prosody_port
+  ansible.builtin.assert:
+    that:
+      - prosody_port is defined
+      - prosody_port is number
+      - prosody_port > 0
+      - prosody_port <= 65535
+    quiet: true
+
+- name: assert | Test prosody_s2s_port
+  ansible.builtin.assert:
+    that:
+      - prosody_s2s_port is defined
+      - prosody_s2s_port is number
+      - prosody_s2s_port > 0
+      - prosody_s2s_port <= 65535
+    quiet: true
+
+- name: assert | Test prosody_http_port
+  ansible.builtin.assert:
+    that:
+      - prosody_http_port is defined
+      - prosody_http_port is number
+      - prosody_http_port > 0
+      - prosody_http_port <= 65535
+    quiet: true
+
+- name: assert | Test prosody_https_enable
+  ansible.builtin.assert:
+    that:
+      - prosody_https_enable is defined
+      - prosody_https_enable is boolean
+    quiet: true
+
+- name: assert | Test prosody_https_port
+  ansible.builtin.assert:
+    that:
+      - prosody_https_port is defined
+      - prosody_https_port is number
+      - prosody_https_port > 0
+      - prosody_https_port <= 65535
+    quiet: true
+  when:
+    - prosody_https_enable
+
+- name: assert | Test prosody_ssl_common_name
+  ansible.builtin.assert:
+    that:
+      - prosody_ssl_common_name is defined
+      - prosody_ssl_common_name is string
+      - prosody_ssl_common_name is not none
+    quiet: true
+  when:
+    - prosody_https_enable
+
+- name: assert | Test prosody_ssl_organization
+  ansible.builtin.assert:
+    that:
+      - prosody_ssl_organization is defined
+      - prosody_ssl_organization is string
+      - prosody_ssl_organization is not none
+    quiet: true
+  when:
+    - prosody_https_enable
+
+- name: assert | Test prosody_ssl_country
+  ansible.builtin.assert:
+    that:
+      - prosody_ssl_country is defined
+      - prosody_ssl_country is string
+      - prosody_ssl_country is not none
+      - prosody_ssl_country | length == 2
+    quiet: true
+  when:
+    - prosody_https_enable
+
+- name: assert | Test prosody_ssl_state
+  ansible.builtin.assert:
+    that:
+      - prosody_ssl_state is defined
+      - prosody_ssl_state is string
+      - prosody_ssl_state is not none
+    quiet: true
+  when:
+    - prosody_https_enable
+
+- name: assert | Test prosody_ssl_locality
+  ansible.builtin.assert:
+    that:
+      - prosody_ssl_locality is defined
+      - prosody_ssl_locality is string
+      - prosody_ssl_locality is not none
+    quiet: true
+  when:
+    - prosody_https_enable
+
+- name: assert | Test prosody_ssl_email
+  ansible.builtin.assert:
+    that:
+      - prosody_ssl_email is defined
+      - prosody_ssl_email is string
+      - prosody_ssl_email is not none
+      - "'@' in prosody_ssl_email"
+    quiet: true
+  when:
+    - prosody_https_enable
+
+- name: assert | Test prosody_ssl_days
+  ansible.builtin.assert:
+    that:
+      - prosody_ssl_days is defined
+      - prosody_ssl_days is number
+      - prosody_ssl_days > 0
+      - prosody_ssl_days <= 3650
+    quiet: true
+  when:
+    - prosody_https_enable

@@ -1,8 +1,16 @@
 {{ ansible_managed | comment }}
 
 <Directory "{{ item.path }}">
-{% if item.allow_override is defined %}  AllowOverride {{ item.allow_override }}{% endif %}
+{% if item.options is defined %}
+  Options {% for option in item.options %}{{ option }}{% if not loop.last %} {% endif %}{% endfor %}
 
-{% if item.options is defined %}  Options {% for option in item.options %}{{ option }}{% if not loop.last %} {% endif %}{% endfor %}{% endif %}
-  Require valid-user
+{% endif %}
+{% if item.allow_override is defined %}
+  AllowOverride {{ item.allow_override }}
+
+{% endif %}
+{% if item.require is defined %}
+  Require {{ item.require }}
+
+{% endif %}
 </Directory>

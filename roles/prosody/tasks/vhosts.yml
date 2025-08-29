@@ -1,0 +1,14 @@
+---
+# Virtual hosts configuration for prosody
+
+- name: vhosts | Configure virtual hosts
+  ansible.builtin.template:
+    src: vhost.conf.j2
+    dest: "{{ prosody_config_directory }}/conf.d/{{ item.name }}.cfg.lua"
+    owner: "{{ prosody_user }}"
+    group: "{{ prosody_group }}"
+    mode: "0644"
+  loop: "{{ prosody_vhosts }}"
+  notify:
+    - Validate prosody configuration
+    - Restart prosody

@@ -8,6 +8,8 @@
     line: 'export {{ item.key }}="{{ item.value }}"'
     create: true
     mode: "0644"
-  loop: "{{ environment_list | dict2items }}"
+  loop: "{{ environment_map | dict2items }}"
   loop_control:
     label: "{{ item.key }}"
+  when:
+    - environment_map is defined

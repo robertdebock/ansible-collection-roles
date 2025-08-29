@@ -2,13 +2,13 @@
 # defaults file for vault
 
 # Select the type of Vault to install. Either "oss", "ent" or "hsm".
-# `oss` means Open Source.
-# `ent` means Enterprise.
-# `hsm` means Enterprise with HSM support.
+# `oss` means Vault Open Source/community edition.
+# `ent` means Vault Enterprise.
+# `hsm` means Vault Enterprise with HSM support.
 vault_type: oss
 
 # Set the version of the package to install.
-vault_version: "1.15.6"
+vault_version: "1.20.2"
 
 # For package installations, a "release" is required. The package would for example be called `vault-1.12.2-1`.
 vault_package_release: "1"
@@ -19,7 +19,7 @@ vault_installation_method: "package"
 # When `vault_installation_method` is set to "binary", set the path where to (temporarily) download Vault.
 vault_download_path: "/tmp/vault-{{ vault_version }}"
 
-# When `vault_installation_method` is set to "binary", set the (base) path where to install Vault. This can be "" or "/opt" for example.
+# When `vault_installation_method` is set to "binary", set the (base) path where to install Vault. This can be "" or "/opte" for example.
 vault_path: ""
 
 # When `vault_installation_method` is set to "binary", set the user Vault will run under. The user "root" is not allowed.

@@ -1,10 +1,10 @@
 {{ ansible_managed | comment }}
-# Redis configuration file example.
+# Valkey configuration file example.
 #
-# Note that in order to read the configuration file, Redis must be
+# Note that in order to read the configuration file, Valkey must be
 # started with the file path as first argument:
 #
-# ./redis-server /path/to/redis.conf
+# ./valkey-server /path/to/valkey.conf
 
 # Note on units: when memory size is needed, it is possible to specify
 # it in the usual form of 1k 5GB 4M and so forth:
@@ -21,12 +21,12 @@
 ################################## INCLUDES ###################################
 
 # Include one or more other config files here.  This is useful if you
-# have a standard template that goes to all Redis servers but also need
+# have a standard template that goes to all Valkey servers but also need
 # to customize a few per-server settings.  Include files can include
 # other files, so use this wisely.
 #
 # Notice option "include" won't be rewritten by command "CONFIG REWRITE"
-# from admin or Redis Sentinel. Since Redis always uses the last processed
+# from admin or Valkey Sentinel. Since Valkey always uses the last processed
 # line as value of a configuration directive, you'd better put includes
 # at the beginning of this file to avoid overwriting config change at runtime.
 #
@@ -46,7 +46,7 @@
 
 ################################## NETWORK #####################################
 
-# By default, if no "bind" configuration directive is specified, Redis listens
+# By default, if no "bind" configuration directive is specified, Valkey listens
 # for connections from all the network interfaces available on the server.
 # It is possible to listen to just one or multiple selected interfaces using
 # the "bind" configuration directive, followed by one or more IP addresses.
@@ -56,11 +56,11 @@
 # bind 192.168.1.100 10.0.0.1
 # bind 127.0.0.1 ::1
 #
-# ~~~ WARNING ~~~ If the computer running Redis is directly exposed to the
+# ~~~ WARNING ~~~ If the computer running Valkey is directly exposed to the
 # internet, binding to all the interfaces is dangerous and will expose the
 # instance to everybody on the internet. So by default we uncomment the
-# following bind directive, that will force Redis to listen only into
-# the IPv4 loopback interface address (this means Redis will be able to
+# following bind directive, that will force Valkey to listen only into
+# the IPv4 loopback interface address (this means Valkey will be able to
 # accept connections only from clients running into the same computer it
 # is running).
 #
@@ -70,7 +70,7 @@
 bind {{ redis_bind_address }}
 
 # Protected mode is a layer of security protection, in order to avoid that
-# Redis instances left open on the internet are accessed and exploited.
+# Valkey instances left open on the internet are accessed and exploited.
 #
 # When protected mode is on and if:
 #
@@ -83,13 +83,13 @@ bind {{ redis_bind_address }}
 # sockets.
 #
 # By default protected mode is enabled. You should disable it only if
-# you are sure you want clients from other hosts to connect to Redis
+# you are sure you want clients from other hosts to connect to Valkey
 # even if no authentication is configured, nor a specific set of interfaces
 # are explicitly listed using the "bind" directive.
 protected-mode yes
 
 # Accept connections on the specified port, default is 6379 (IANA #815344).
-# If port 0 is specified Redis will not listen on a TCP socket.
+# If port 0 is specified Valkey will not listen on a TCP socket.
 port 6379
 
 # TCP listen() backlog.
@@ -104,10 +104,10 @@ tcp-backlog 511
 # Unix socket.
 #
 # Specify the path for the Unix socket that will be used to listen for
-# incoming connections. There is no default, so Redis will not listen
+# incoming connections. There is no default, so Valkey will not listen
 # on a unix socket when not specified.
 #
-# unixsocket /tmp/redis.sock
+# unixsocket /tmp/valkey.sock
 # unixsocketperm 700
 
 # Close the connection after a client is idle for N seconds (0 to disable)
@@ -127,19 +127,19 @@ timeout 0
 # On other kernels the period depends on the kernel configuration.
 #
 # A reasonable value for this option is 300 seconds, which is the new
-# Redis default starting with Redis 3.2.1.
+# Valkey default starting with Valkey 3.2.1.
 tcp-keepalive 300
 
 ################################# GENERAL #####################################
 
-# By default Redis does not run as a daemon. Use 'yes' if you need it.
-# Note that Redis will write a pid file in /var/run/redis.pid when daemonized.
+# By default Valkey does not run as a daemon. Use 'yes' if you need it.
+# Note that Valkey will write a pid file in /var/run/valkey.pid when daemonized.
 daemonize no
 
-# If you run Redis from upstart or systemd, Redis can interact with your
+# If you run Valkey from upstart or systemd, Valkey can interact with your
 # supervision tree. Options:
 #   supervised no      - no supervision interaction
-#   supervised upstart - signal upstart by putting Redis into SIGSTOP mode
+#   supervised upstart - signal upstart by putting Valkey into SIGSTOP mode
 #   supervised systemd - signal systemd by writing READY=1 to $NOTIFY_SOCKET
 #   supervised auto    - detect upstart or systemd method based on
 #                        UPSTART_JOB or NOTIFY_SOCKET environment variables
@@ -147,16 +147,16 @@ daemonize no
 #       They do not enable continuous liveness pings back to your supervisor.
 supervised no
 
-# If a pid file is specified, Redis writes it where specified at startup
+# If a pid file is specified, Valkey writes it where specified at startup
 # and removes it at exit.
 #
 # When the server runs non daemonized, no pid file is created if none is
 # specified in the configuration. When the server is daemonized, the pid file
-# is used even if not specified, defaulting to "/var/run/redis.pid".
+# is used even if not specified, defaulting to "/var/run/valkey.pid".
 #
-# Creating a pid file is best effort: if Redis is not able to create it
+# Creating a pid file is best effort: if Valkey is not able to create it
 # nothing bad happens, the server will start and run normally.
-pidfile /var/run/redis_6379.pid
+pidfile /var/run/valkey_6379.pid
 
 # Specify the server verbosity level.
 # This can be one of:
@@ -167,16 +167,16 @@ pidfile /var/run/redis_6379.pid
 loglevel notice
 
 # Specify the log file name. Also the empty string can be used to force
-# Redis to log on the standard output. Note that if you use standard
+# Valkey to log on the standard output. Note that if you use standard
 # output for logging but daemonize, logs will be sent to /dev/null
-logfile /var/log/redis/redis.log
+logfile /var/log/valkey/valkey.log
 
 # To enable logging to the system logger, just set 'syslog-enabled' to yes,
 # and optionally update the other syslog parameters to suit your needs.
 # syslog-enabled no
 
 # Specify the syslog identity.
-# syslog-ident redis
+# syslog-ident valkey
 
 # Specify the syslog facility. Must be USER or between LOCAL0-LOCAL7.
 # syslog-facility local0
@@ -186,7 +186,7 @@ logfile /var/log/redis/redis.log
 # dbid is a number between 0 and 'databases'-1
 databases 16
 
-# By default Redis shows an ASCII art logo only when started to log to the
+# By default Valkey shows an ASCII art logo only when started to log to the
 # standard output and if the standard output is a TTY. Basically this means
 # that normally a logo is displayed only in interactive sessions.
 #
@@ -261,7 +261,7 @@ dbfilename dump.rdb
 # The Append Only File will also be created inside this directory.
 #
 # Note that you must specify a directory here, not a file name.
-dir /var/lib/redis
+dir /var/lib/valkey
 
 ################################# REPLICATION #################################
 

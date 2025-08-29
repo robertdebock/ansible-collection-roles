@@ -1,0 +1,29 @@
+---
+# vars file for openbao
+
+## Determine package extension based on detected package manager
+_openbao_pkg_ext:
+  default: rpm
+  apt: deb
+
+openbao_pkg_ext: "{{ _openbao_pkg_ext[ansible_pkg_mgr] | default(_openbao_pkg_ext['default']) }}"
+
+## Determine architecture for package naming
+_openbao_arch:
+  default: amd64
+  aarch64: arm64
+  arm64: arm64
+
+openbao_arch: "{{ _openbao_arch[ansible_architecture] | default(_openbao_arch['default']) }}"
+
+## Construct the package URL based on version, OS, and architecture
+openbao_package_url: "{{ 'https://github.com/openbao/openbao/releases/download/v' + openbao_version + '/bao_' + openbao_version + '_linux_' + openbao_arch + '.' + openbao_pkg_ext }}"
+
+## Local package path for downloaded file
+openbao_local_pkg: "{{ openbao_download_dir.rstrip('/') + '/' + (openbao_package_url | basename) }}"
+
+## GPG key URL for OpenBao
+openbao_gpg_key_url: "https://openbao.org/assets/openbao-gpg-pub-20240618.asc"
+
+## Local GPG key path
+openbao_gpg_key_path: "{{ openbao_download_dir.rstrip('/') + '/openbao_public_key.asc' }}"

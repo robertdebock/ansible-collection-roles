@@ -14,7 +14,7 @@
     validate_certs: false
     mode: "0644"
   when:
-    - ansible_pkg_mgr in [ "dnf", "yum" ]
+    - ansible_pkg_mgr in [ "dnf", "yum", "dnf5" ]
 
 - name: Import rpm key
   ansible.builtin.rpm_key:
@@ -22,7 +22,7 @@
     state: present
     validate_certs: false
   when:
-    - ansible_pkg_mgr in [ "dnf", "yum", "zypper" ]
+    - ansible_pkg_mgr in [ "dnf", "yum", "zypper", "dnf5" ]
 
 - name: Configure apt
   when:

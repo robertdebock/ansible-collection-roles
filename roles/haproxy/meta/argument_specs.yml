@@ -7,6 +7,18 @@ argument_specs:
       Install and configure haproxy on your system.
     author: Robert de Bock
     options:
+      haproxy_config:
+        type: "str"
+        default: ""
+        description: "Complete HAProxy configuration as a string. If provided, this will be used instead of individual parameters."
+      haproxy_mode:
+        type: "str"
+        default: "http"
+        description: "The default mode for HAProxy (http or tcp)."
+      haproxy_options:
+        type: "list"
+        default: ["httplog", "dontlognull", "http-server-close", "forwardfor except 127.0.0.0/8", "redispatch"]
+        description: "A list of options for HAProxy."
       haproxy_stats:
         type: "bool"
         default: true

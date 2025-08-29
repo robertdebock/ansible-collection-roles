@@ -8,7 +8,7 @@
     exclude: "{{ gnome_exclude | default(omit) }}"
     allowerasing: true
   when:
-    - ansible_pkg_mgr == "dnf"
+    - ansible_pkg_mgr in [ "dnf", "dnf5" ]
 
 - name: Install software using package
   ansible.builtin.package:

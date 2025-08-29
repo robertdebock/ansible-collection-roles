@@ -1,0 +1,309 @@
+---
+
+- name: assert | Test openbao_version
+  ansible.builtin.assert:
+    that:
+      - openbao_version is defined
+      - openbao_version is string
+      - openbao_version | length > 0
+    quiet: true
+
+- name: assert | Test openbao_download_dir
+  ansible.builtin.assert:
+    that:
+      - openbao_download_dir is defined
+      - openbao_download_dir is string
+      - openbao_download_dir | length > 0
+    quiet: true
+
+- name: assert | Test openbao_ui
+  ansible.builtin.assert:
+    that:
+      - openbao_ui is defined
+      - openbao_ui is boolean
+    quiet: true
+
+- name: assert | Test openbao_storage
+  ansible.builtin.assert:
+    that:
+      - openbao_storage is defined
+      - openbao_storage is mapping
+      - openbao_storage.type is defined
+      - openbao_storage.type is string
+      - openbao_storage.type in [ 'file', 'inmem', 'raft', 'postgresql' ]
+    quiet: true
+
+- name: assert | Test openbao_storage file parameters
+  ansible.builtin.assert:
+    that:
+      - openbao_storage.path is defined
+      - openbao_storage.path is string
+      - openbao_storage.path | length > 0
+    quiet: true
+  when:
+    - openbao_storage.type == 'file'
+
+- name: assert | Test openbao_storage raft parameters
+  ansible.builtin.assert:
+    that:
+      - openbao_storage.path is defined
+      - openbao_storage.path is string
+      - openbao_storage.path | length > 0
+      - openbao_storage.node_id is defined
+      - openbao_storage.node_id is string
+      - openbao_storage.node_id | length > 0
+    quiet: true
+  when:
+    - openbao_storage.type == 'raft'
+
+- name: assert | Test cluster address for raft storage
+  ansible.builtin.assert:
+    that:
+      - openbao_cluster_addr is defined
+      - openbao_cluster_addr is string
+      - openbao_cluster_addr | length > 0
+    quiet: true
+  when:
+    - openbao_storage.type == 'raft'
+
+- name: assert | Test API address for raft storage
+  ansible.builtin.assert:
+    that:
+      - openbao_api_addr is defined
+      - openbao_api_addr is string
+      - openbao_api_addr | length > 0
+    quiet: true
+  when:
+    - openbao_storage.type == 'raft'
+
+- name: assert | Test openbao_storage postgresql parameters
+  ansible.builtin.assert:
+    that:
+      - openbao_storage.connection_url is defined
+      - openbao_storage.connection_url is string
+      - openbao_storage.connection_url | length > 0
+    quiet: true
+  when:
+    - openbao_storage.type == 'postgresql'
+
+- name: assert | Test openbao_listeners
+  ansible.builtin.assert:
+    that:
+      - openbao_listeners is defined
+      - openbao_listeners is iterable
+      - openbao_listeners | length > 0
+    quiet: true
+
+- name: assert | Test each listener
+  ansible.builtin.assert:
+    that:
+      - item.name is defined
+      - item.name is string
+      - item.name | length > 0
+      - item.address is defined
+      - item.address is string
+      - item.address | length > 0
+    quiet: true
+  loop: "{{ openbao_listeners }}"
+  loop_control:
+    label: "{{ item.name }}"
+
+- name: assert | Test openbao_seal
+  ansible.builtin.assert:
+    that:
+      - openbao_seal is defined
+      - openbao_seal is iterable
+    quiet: true
+
+- name: assert | Test each seal (if any)
+  ansible.builtin.assert:
+    that:
+      - item.name is defined
+      - item.name is string
+      - item.name | length > 0
+      - item.name in [ 'awskms', 'alicloudkms', 'azurekeyvault', 'gcpckms', 'kmip', 'ocikms', 'pkcs11', 'transit' ]
+    quiet: true
+  loop: "{{ openbao_seal }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - openbao_seal | length > 0
+
+- name: assert | Test AWS KMS seal parameters
+  ansible.builtin.assert:
+    that:
+      - item.region is defined
+      - item.region is string
+      - item.region | length > 0
+      - item.kms_key_id is defined
+      - item.kms_key_id is string
+      - item.kms_key_id | length > 0
+    quiet: true
+  loop: "{{ openbao_seal }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - openbao_seal | length > 0
+    - item.name == 'awskms'
+
+- name: assert | Test AliCloud KMS seal parameters
+  ansible.builtin.assert:
+    that:
+      - item.region is defined
+      - item.region is string
+      - item.region | length > 0
+      - item.key_id is defined
+      - item.key_id is string
+      - item.key_id | length > 0
+    quiet: true
+  loop: "{{ openbao_seal }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - openbao_seal | length > 0
+    - item.name == 'alicloudkms'
+
+- name: assert | Test Azure Key Vault seal parameters
+  ansible.builtin.assert:
+    that:
+      - item.tenant_id is defined
+      - item.tenant_id is string
+      - item.tenant_id | length > 0
+      - item.client_id is defined
+      - item.client_id is string
+      - item.client_id | length > 0
+      - item.client_secret is defined
+      - item.client_secret is string
+      - item.client_secret | length > 0
+      - item.vault_name is defined
+      - item.vault_name is string
+      - item.vault_name | length > 0
+      - item.key_name is defined
+      - item.key_name is string
+      - item.key_name | length > 0
+    quiet: true
+  loop: "{{ openbao_seal }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - openbao_seal | length > 0
+    - item.name == 'azurekeyvault'
+
+- name: assert | Test GCP Cloud KMS seal parameters
+  ansible.builtin.assert:
+    that:
+      - item.project is defined
+      - item.project is string
+      - item.project | length > 0
+      - item.region is defined
+      - item.region is string
+      - item.region | length > 0
+      - item.key_ring is defined
+      - item.key_ring is string
+      - item.key_ring | length > 0
+      - item.crypto_key is defined
+      - item.crypto_key is string
+      - item.crypto_key | length > 0
+    quiet: true
+  loop: "{{ openbao_seal }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - openbao_seal | length > 0
+    - item.name == 'gcpckms'
+
+- name: assert | Test KMIP seal parameters
+  ansible.builtin.assert:
+    that:
+      - item.server is defined
+      - item.server is string
+      - item.server | length > 0
+    quiet: true
+  loop: "{{ openbao_seal }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - openbao_seal | length > 0
+    - item.name == 'kmip'
+
+- name: assert | Test OCI KMS seal parameters
+  ansible.builtin.assert:
+    that:
+      - item.key_id is defined
+      - item.key_id is string
+      - item.key_id | length > 0
+      - item.crypto_endpoint is defined
+      - item.crypto_endpoint is string
+      - item.crypto_endpoint | length > 0
+    quiet: true
+  loop: "{{ openbao_seal }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - openbao_seal | length > 0
+    - item.name == 'ocikms'
+
+- name: assert | Test PKCS#11 seal parameters
+  ansible.builtin.assert:
+    that:
+      - item.lib is defined
+      - item.lib is string
+      - item.lib | length > 0
+      - item.slot is defined
+      - item.slot is string
+      - item.slot | length > 0
+      - item.pin is defined
+      - item.pin is string
+      - item.pin | length > 0
+      - item.key_label is defined
+      - item.key_label is string
+      - item.key_label | length > 0
+    quiet: true
+  loop: "{{ openbao_seal }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - openbao_seal | length > 0
+    - item.name == 'pkcs11'
+
+- name: assert | Test Transit seal parameters
+  ansible.builtin.assert:
+    that:
+      - item.address is defined
+      - item.address is string
+      - item.address | length > 0
+      - item.token is defined
+      - item.token is string
+      - item.token | length > 0
+      - item.key_name is defined
+      - item.key_name is string
+      - item.key_name | length > 0
+    quiet: true
+  loop: "{{ openbao_seal }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - openbao_seal | length > 0
+    - item.name == 'transit'
+
+- name: assert | Test openbao_telemetry
+  ansible.builtin.assert:
+    that:
+      - openbao_telemetry is defined
+      - openbao_telemetry is mapping
+    quiet: true
+
+- name: assert | Test openbao_log_requests_level
+  ansible.builtin.assert:
+    that:
+      - openbao_log_requests_level is defined
+      - openbao_log_requests_level is string
+      - openbao_log_requests_level in [ 'error', 'warn', 'info', 'debug', 'trace', 'off' ]
+    quiet: true
+
+- name: assert | Test openbao_validate_gpg_ssl
+  ansible.builtin.assert:
+    that:
+      - openbao_validate_gpg_ssl is defined
+      - openbao_validate_gpg_ssl is boolean
+    quiet: true

@@ -1,0 +1,70 @@
+---
+# tasks file for openbao
+
+- name: Import assert.yml
+  ansible.builtin.import_tasks:
+    file: assert.yml
+  run_once: true
+  delegate_to: localhost
+
+- name: Ensure download directory exists
+  ansible.builtin.file:
+    path: "{{ openbao_download_dir }}"
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+
+# Download OpenBao GPG key with SSL verification disabled to handle
+# older Ubuntu versions (Focal, Jammy) with outdated CA certificates
+- name: Download OpenBao GPG key
+  ansible.builtin.get_url:
+    url: "{{ openbao_gpg_key_url }}"
+    dest: "{{ openbao_gpg_key_path }}"
+    mode: "0644"
+    validate_certs: "{{ openbao_validate_gpg_ssl }}"
+
+- name: Import OpenBao GPG key (apt)
+  ansible.builtin.apt_key:
+    file: "{{ openbao_gpg_key_path }}"
+    state: present
+  when:
+    - ansible_pkg_mgr in [ "apt" ]
+
+- name: Import OpenBao GPG key (dnf/dnf5/yum)
+  ansible.builtin.rpm_key:
+    key: "{{ openbao_gpg_key_path }}"
+    state: present
+  when:
+    - ansible_pkg_mgr in [ "dnf", "dnf5", "yum" ]
+
+- name: Download OpenBao package
+  ansible.builtin.get_url:
+    url: "{{ openbao_package_url }}"
+    dest: "{{ openbao_local_pkg }}"
+    mode: "0644"
+    validate_certs: "{{ openbao_validate_gpg_ssl }}"
+
+- name: Install OpenBao (apt-based)
+  ansible.builtin.apt:
+    deb: "{{ openbao_local_pkg }}"
+    state: present
+  when:
+    - ansible_pkg_mgr in [ "apt" ]
+
+- name: Install OpenBao (rpm-based)
+  ansible.builtin.dnf:
+    name: "{{ openbao_local_pkg }}"
+    state: present
+  when:
+    - ansible_pkg_mgr in [ "dnf", "dnf5", "yum" ]
+
+- name: Configure OpenBao
+  ansible.builtin.template:
+    src: openbao.hcl.j2
+    dest: /etc/openbao/openbao.hcl
+    owner: root
+    group: root
+    mode: "0644"
+  notify:
+    - Restart OpenBao

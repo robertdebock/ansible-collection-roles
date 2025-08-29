@@ -33,7 +33,7 @@
 
 - name: Execute yum/dnf tasks
   when:
-    - ansible_pkg_mgr in [ "dnf", "yum" ]
+    - ansible_pkg_mgr in [ "dnf", "yum", "dnf5" ]
   block:
     - name: Install rpm repository key
       ansible.builtin.rpm_key:

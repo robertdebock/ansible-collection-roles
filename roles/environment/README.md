@@ -19,7 +19,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 
   roles:
     - role: robertdebock.roles.environment
-      environment_list:
+      environment_map:
         my_variable: "my_value"
         my_other_variable: "my_other_value"
         PATH: "$PATH:/my/path"

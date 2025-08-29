@@ -28,3 +28,10 @@
       - tailscale_hostname is defined
       - tailscale_hostname is string
     quiet: true
+
+- name: assert | Test tailscale_accept_dns
+  ansible.builtin.assert:
+    that:
+      - tailscale_accept_dns is defined
+      - tailscale_accept_dns is boolean
+    quiet: true

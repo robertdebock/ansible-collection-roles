@@ -19,11 +19,11 @@ galaxy_info:
         - "9"
     - name: Fedora
       versions:  # Will never work on "all", as rawhide is not supported by HC.
-        - "39"
-        - "40"
+        - "41"
     - name: Ubuntu
       versions:
-        - all
+        - noble
+        - jammy
 
   galaxy_tags:
     - vault

@@ -1,10 +1,18 @@
 ---
 
+- name: war | Append .war to context name
+  ansible.builtin.set_fact:
+    war_destination: "{{ war.context_name + '.war' }}"
+  when:
+    - war.context_name is defined
+
 - name: war | Deploy war url
   ansible.builtin.get_url:
     url: "{{ war.url }}"
-    dest: "{{ tomcat_directory }}//{{ instance.name }}/webapps/"
+    dest: "{{ tomcat_directory }}/{{ instance.name }}/webapps/{{ war_destination | default(omit) }}"
     validate_certs: false
     mode: "0640"
+    owner: "{{ instance.user | default(tomcat_user) }}"
+    group: "{{ instance.group | default(tomcat_group) }}"
   when:
     - war.url is defined

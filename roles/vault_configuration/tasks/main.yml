@@ -16,6 +16,21 @@
     group: "{{ vault_configuration_group }}"
   when:
     - vault_configuration_storage_raft is defined
+    - vault_configuration_storage_raft is mapping
+
+- name: Create TLS directory
+  ansible.builtin.file:
+    path: "{{ vault_configuration_tls_directory }}"
+    state: directory
+    mode: "0750"
+    owner: "{{ vault_configuration_owner }}"
+    group: "{{ vault_configuration_group }}"
+  when:
+    - vault_configuration_storage_raft is defined
+    - vault_configuration_storage_raft is mapping
+    - vault_configuration_storage_raft.retry_join is defined
+    - (vault_configuration_storage_raft.retry_join | selectattr('leader_ca_cert', 'defined') | list | length > 0) or
+      (vault_configuration_storage_raft.retry_join | selectattr('leader_ca_cert_file', 'defined') | list | length > 0)
 
 - name: Place TLS CA certificate
   ansible.builtin.copy:
@@ -32,6 +47,7 @@
     label: "A CA certificate"
   when:
     - vault_configuration_storage_raft is defined
+    - vault_configuration_storage_raft is mapping
     - vault_configuration_storage_raft.retry_join is defined
     - item.leader_ca_cert is defined or
       item.leader_ca_cert_file is defined
@@ -96,6 +112,14 @@
     label: "{{ item.address | dirname }}"
   when:
     - item.type == "unix"
+
+- name: Create /etc/vault.d directory
+  ansible.builtin.file:
+    path: /etc/vault.d
+    state: directory
+    mode: "0750"
+    owner: "{{ vault_configuration_owner }}"
+    group: "{{ vault_configuration_group }}"
 
 - name: Place Vault configuration
   ansible.builtin.template:

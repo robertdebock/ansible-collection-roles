@@ -1,0 +1,242 @@
+{{ ansible_managed | comment }}
+
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: MPL-2.0
+
+# Full configuration options can be found at https://github.com/openbao/openbao/tree/main/website/content/docs/configuration
+
+ui = {{ openbao_ui | ternary('true', 'false') }}
+
+{% if openbao_log_requests_level != "off" %}
+log_requests_level = "{{ openbao_log_requests_level }}"
+{% endif %}
+
+storage "{{ openbao_storage.type }}" {
+{% if openbao_storage.type in [ "file", "raft" ] %}
+  path = "{{ openbao_storage.path }}"
+{% endif %}
+{% if openbao_storage.type == "raft" %}
+  node_id = "{{ openbao_storage.node_id }}"
+{% if openbao_storage.performance_multiplier is defined %}
+  performance_multiplier = {{ openbao_storage.performance_multiplier }}
+{% endif %}
+{% if openbao_storage.trailing_logs is defined %}
+  trailing_logs = {{ openbao_storage.trailing_logs }}
+{% endif %}
+{% if openbao_storage.snapshot_threshold is defined %}
+  snapshot_threshold = {{ openbao_storage.snapshot_threshold }}
+{% endif %}
+{% if openbao_storage.snapshot_interval is defined %}
+  snapshot_interval = {{ openbao_storage.snapshot_interval }}
+{% endif %}
+{% if openbao_storage.max_entry_size is defined %}
+  max_entry_size = {{ openbao_storage.max_entry_size }}
+{% endif %}
+{% if openbao_storage.max_transaction_size is defined %}
+  max_transaction_size = {{ openbao_storage.max_transaction_size }}
+{% endif %}
+{% if openbao_storage.autopilot_reconcile_interval is defined %}
+  autopilot_reconcile_interval = "{{ openbao_storage.autopilot_reconcile_interval }}"
+{% endif %}
+{% if openbao_storage.autopilot_update_interval is defined %}
+  autopilot_update_interval = "{{ openbao_storage.autopilot_update_interval }}"
+{% endif %}
+{% if openbao_storage.retry_join_as_non_voter is defined %}
+  retry_join_as_non_voter = {{ openbao_storage.retry_join_as_non_voter | ternary('true', 'false') }}
+{% endif %}
+{% if openbao_storage.retry_join is defined %}
+{% for rj in openbao_storage.retry_join %}
+  retry_join {
+{% if rj.leader_api_addr is defined %}
+    leader_api_addr = "{{ rj.leader_api_addr }}"
+{% endif %}
+{% if rj.auto_join is defined %}
+    auto_join = "{{ rj.auto_join }}"
+{% endif %}
+{% if rj.auto_join_scheme is defined %}
+    auto_join_scheme = "{{ rj.auto_join_scheme }}"
+{% endif %}
+{% if rj.auto_join_port is defined %}
+    auto_join_port = {{ rj.auto_join_port }}
+{% endif %}
+{% if rj.leader_tls_servername is defined %}
+    leader_tls_servername = "{{ rj.leader_tls_servername }}"
+{% endif %}
+{% if rj.leader_ca_cert_file is defined %}
+    leader_ca_cert_file = "{{ rj.leader_ca_cert_file }}"
+{% endif %}
+{% if rj.leader_client_cert_file is defined %}
+    leader_client_cert_file = "{{ rj.leader_client_cert_file }}"
+{% endif %}
+{% if rj.leader_client_key_file is defined %}
+    leader_client_key_file = "{{ rj.leader_client_key_file }}"
+{% endif %}
+{% if rj.leader_ca_cert is defined %}
+    leader_ca_cert = "{{ rj.leader_ca_cert }}"
+{% endif %}
+{% if rj.leader_client_cert is defined %}
+    leader_client_cert = "{{ rj.leader_client_cert }}"
+{% endif %}
+{% if rj.leader_client_key is defined %}
+    leader_client_key = "{{ rj.leader_client_key }}"
+{% endif %}
+  }
+{% endfor %}
+{% endif %}
+{% endif %}
+{% if openbao_storage.type == "postgresql" %}
+  connection_url = "{{ openbao_storage.connection_url }}"
+{% endif %}
+}
+
+{% if openbao_cluster_addr | length > 0 %}
+cluster_addr = "{{ openbao_cluster_addr }}"
+{% endif %}
+
+{% if openbao_api_addr | length > 0 %}
+api_addr = "{{ openbao_api_addr }}"
+{% endif %}
+
+{% for listener in openbao_listeners %}
+listener "{{ listener.name }}" {
+  address = "{{ listener.address }}"
+{% if listener.tls_disable is defined %}
+  tls_disable = {{ listener.tls_disable | ternary('true', 'false') }}
+{% endif %}
+{% if listener.tls_cert_file is defined %}
+  tls_cert_file = "{{ listener.tls_cert_file }}"
+{% endif %}
+{% if listener.tls_key_file is defined %}
+  tls_key_file = "{{ listener.tls_key_file }}"
+{% endif %}
+}
+{% endfor %}
+
+{% if openbao_seal | length > 0 %}
+{% for seal in openbao_seal %}
+seal "{{ seal.name }}" {
+{% if seal.name == 'awskms' %}
+  region = "{{ seal.region }}"
+{% if seal.access_key is defined %}
+  access_key = "{{ seal.access_key }}"
+{% endif %}
+{% if seal.secret_key is defined %}
+  secret_key = "{{ seal.secret_key }}"
+{% endif %}
+  kms_key_id = "{{ seal.kms_key_id }}"
+{% elif seal.name == 'alicloudkms' %}
+  region = "{{ seal.region }}"
+{% if seal.access_key is defined %}
+  access_key = "{{ seal.access_key }}"
+{% endif %}
+{% if seal.secret_key is defined %}
+  secret_key = "{{ seal.secret_key }}"
+{% endif %}
+  key_id = "{{ seal.key_id }}"
+{% elif seal.name == 'azurekeyvault' %}
+  tenant_id = "{{ seal.tenant_id }}"
+  client_id = "{{ seal.client_id }}"
+  client_secret = "{{ seal.client_secret }}"
+  vault_name = "{{ seal.vault_name }}"
+  key_name = "{{ seal.key_name }}"
+{% elif seal.name == 'gcpckms' %}
+{% if seal.credentials is defined %}
+  credentials = "{{ seal.credentials }}"
+{% endif %}
+  project = "{{ seal.project }}"
+  region = "{{ seal.region }}"
+  key_ring = "{{ seal.key_ring }}"
+  crypto_key = "{{ seal.crypto_key }}"
+{% elif seal.name == 'kmip' %}
+  server = "{{ seal.server }}"
+{% if seal.certificate is defined %}
+  certificate = "{{ seal.certificate }}"
+{% endif %}
+{% if seal.key is defined %}
+  key = "{{ seal.key }}"
+{% endif %}
+{% if seal.ca_cert is defined %}
+  ca_cert = "{{ seal.ca_cert }}"
+{% endif %}
+{% elif seal.name == 'ocikms' %}
+{% if seal.auth_type is defined %}
+  auth_type = "{{ seal.auth_type }}"
+{% endif %}
+  key_id = "{{ seal.key_id }}"
+  crypto_endpoint = "{{ seal.crypto_endpoint }}"
+{% elif seal.name == 'pkcs11' %}
+  lib = "{{ seal.lib }}"
+  slot = "{{ seal.slot }}"
+  pin = "{{ seal.pin }}"
+  key_label = "{{ seal.key_label }}"
+
+{% elif seal.name == 'transit' %}
+  address = "{{ seal.address }}"
+  token = "{{ seal.token }}"
+  key_name = "{{ seal.key_name }}"
+{% endif %}
+}
+{% endfor %}
+{% endif %}
+
+{% if openbao_telemetry | length > 0 %}
+telemetry {
+{% if openbao_telemetry.usage_gauge_period is defined %}
+  usage_gauge_period = "{{ openbao_telemetry.usage_gauge_period }}"
+{% endif %}
+{% if openbao_telemetry.maximum_gauge_cardinality is defined %}
+  maximum_gauge_cardinality = {{ openbao_telemetry.maximum_gauge_cardinality }}
+{% endif %}
+{% if openbao_telemetry.disable_hostname is defined %}
+  disable_hostname = {{ openbao_telemetry.disable_hostname | ternary('true', 'false') }}
+{% endif %}
+{% if openbao_telemetry.enable_hostname_label is defined %}
+  enable_hostname_label = {{ openbao_telemetry.enable_hostname_label | ternary('true', 'false') }}
+{% endif %}
+{% if openbao_telemetry.metrics_prefix is defined %}
+  metrics_prefix = "{{ openbao_telemetry.metrics_prefix }}"
+{% endif %}
+{% if openbao_telemetry.lease_metrics_epsilon is defined %}
+  lease_metrics_epsilon = "{{ openbao_telemetry.lease_metrics_epsilon }}"
+{% endif %}
+{% if openbao_telemetry.num_lease_metrics_buckets is defined %}
+  num_lease_metrics_buckets = {{ openbao_telemetry.num_lease_metrics_buckets }}
+{% endif %}
+{% if openbao_telemetry.add_lease_metrics_namespace_labels is defined %}
+  add_lease_metrics_namespace_labels = {{ openbao_telemetry.add_lease_metrics_namespace_labels | ternary('true', 'false') }}
+{% endif %}
+{% if openbao_telemetry.filter_default is defined %}
+  filter_default = {{ openbao_telemetry.filter_default | ternary('true', 'false') }}
+{% endif %}
+{% if openbao_telemetry.prefix_filter is defined %}
+  prefix_filter = [{% for filter in openbao_telemetry.prefix_filter %}"{{ filter }}"{% if not loop.last %}, {% endif %}{% endfor %}]
+{% endif %}
+{% if openbao_telemetry.statsite_address is defined %}
+  statsite_address = "{{ openbao_telemetry.statsite_address }}"
+{% endif %}
+{% if openbao_telemetry.statsd_address is defined %}
+  statsd_address = "{{ openbao_telemetry.statsd_address }}"
+{% endif %}
+{% if openbao_telemetry.dogstatsd_addr is defined %}
+  dogstatsd_addr = "{{ openbao_telemetry.dogstatsd_addr }}"
+{% endif %}
+{% if openbao_telemetry.dogstatsd_tags is defined %}
+  dogstatsd_tags = [{% for tag in openbao_telemetry.dogstatsd_tags %}"{{ tag }}"{% if not loop.last %}, {% endif %}{% endfor %}]
+{% endif %}
+{% if openbao_telemetry.prometheus_retention_time is defined %}
+  prometheus_retention_time = "{{ openbao_telemetry.prometheus_retention_time }}"
+{% endif %}
+{% if openbao_telemetry.stackdriver_project_id is defined %}
+  stackdriver_project_id = "{{ openbao_telemetry.stackdriver_project_id }}"
+{% endif %}
+{% if openbao_telemetry.stackdriver_location is defined %}
+  stackdriver_location = "{{ openbao_telemetry.stackdriver_location }}"
+{% endif %}
+{% if openbao_telemetry.stackdriver_namespace is defined %}
+  stackdriver_namespace = "{{ openbao_telemetry.stackdriver_namespace }}"
+{% endif %}
+{% if openbao_telemetry.stackdriver_debug_logs is defined %}
+  stackdriver_debug_logs = {{ openbao_telemetry.stackdriver_debug_logs | ternary('true', 'false') }}
+{% endif %}
+}
+{% endif %}

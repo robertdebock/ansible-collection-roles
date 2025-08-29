@@ -58,7 +58,8 @@
   when:
     - instance.java_opts is defined or
       instance.xms is defined or
-      instance.xmx is defined
+      instance.xmx is defined or
+      instance.java_home is defined
   notify:
     - Restart tomcat instance
 
@@ -69,6 +70,28 @@
     owner: "{{ instance.user | default(tomcat_user) }}"
     group: "{{ instance.group | default(tomcat_group) }}"
     mode: "0640"
+  when:
+    - instance.remove_webapps is not defined or (instance.remove_webapps is defined and instance.remove_webapps is iterable and "'ROOT' not in instance.remove_webapps")
+
+- name: instance | Remove selected webapps
+  ansible.builtin.file:
+    path: "{{ tomcat_directory }}/{{ instance.name }}/webapps/{{ item }}"
+    state: absent
+  loop: "{{ instance.remove_webapps }}"
+  when:
+    - instance.remove_webapps is defined
+
+- name: instance | Place context.xml
+  ansible.builtin.copy:
+    content: "{{ instance.context }}"
+    dest: "{{ tomcat_directory }}/{{ instance.name }}/conf/context.xml"
+    mode: "0640"
+    owner: "{{ instance.user | default(tomcat_user) }}"
+    group: "{{ instance.group | default(tomcat_group) }}"
+  when:
+    - instance.context is defined
+  notify:
+    - Restart tomcat instance
 
 - name: instance | Loop over config_files
   ansible.builtin.include_tasks:

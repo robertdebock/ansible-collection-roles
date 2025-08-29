@@ -21,7 +21,7 @@
   loop_control:
     label: "{{ item.name }}"
   when:
-    - ansible_pkg_mgr in [ "dnf", "yum" ]
+    - ansible_pkg_mgr in [ "dnf", "yum", "dnf5" ]
 
 - name: Run tasks on apt based distributions
   when:
@@ -126,7 +126,7 @@
       loop_control:
         label: "{{ item.name }}"
       when:
-        - ansible_pkg_mgr in [ "dnf", "yum" ]
+        - ansible_pkg_mgr in [ "dnf", "yum", "dnf5" ]
 
     - name: Add repository (zypper)
       community.general.zypper_repository:

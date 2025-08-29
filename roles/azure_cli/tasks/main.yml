@@ -17,7 +17,7 @@
     gpgcheck: true
     gpgkey: "https://packages.microsoft.com/keys/microsoft.asc"
   when:
-    - ansible_pkg_mgr in [ "yum", "dnf" ]
+    - ansible_pkg_mgr in [ "yum", "dnf", "dnf5" ]
 
 - name: Add zypper repository
   community.general.zypper_repository:
@@ -32,11 +32,11 @@
     name: azure-cli
     state: present
   when:
-    - ansible_pkg_mgr not in [ "apt", "yum", "dnf", "zypper" ]
+    - ansible_pkg_mgr not in [ "apt", "yum", "dnf", "zypper", "dnf5" ]
 
 - name: Install
   ansible.builtin.package:
     name: azure-cli
     state: present
   when:
-    - ansible_pkg_mgr in [ "apt", "yum", "dnf", "zypper" ]
+    - ansible_pkg_mgr in [ "apt", "yum", "dnf", "zypper, "dnf5"" ]

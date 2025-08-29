@@ -73,7 +73,32 @@
     label: "{{ item.name }}"
   when:
     - mysql_databases is defined
+    - item.initial_import is not defined
   no_log: true
+
+- name: List databases
+  community.mysql.mysql_info:
+    login_unix_socket: "{{ mysql_socket }}"
+    login_user: root
+    login_password: "{{ mysql_root_password }}"
+    filter: databases
+  register: mysql_info
+  no_log: true
+
+- name: Import database
+  community.mysql.mysql_db:
+    name: "{{ item.name }}"
+    state: "import"
+    target: "{{ item.initial_import }}"
+    login_unix_socket: "{{ mysql_socket }}"
+    login_user: root
+    login_password: "{{ mysql_root_password }}"
+  loop: "{{ mysql_databases }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - item.initial_import is defined
+    - item.name not in mysql_info.databases
 
 - name: Create users
   community.mysql.mysql_user:

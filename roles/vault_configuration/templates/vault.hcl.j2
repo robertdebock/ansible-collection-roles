@@ -157,7 +157,7 @@ storage "raft" {
 {% for item in vault_configuration_storage_raft.retry_join %}
   retry_join {
     leader_api_addr = "{{ item.leader_api_addr }}"
-{% if item.auto_join is defined and item.auto_join != "" %} 
+{% if item.auto_join is defined and item.auto_join != "" %}
     auto_join = "{{ item.auto_join }}"
 {% endif %}
 {% if item.auto_join_scheme is defined and item.auto_join_scheme != "https" %}
@@ -204,6 +204,36 @@ storage "raft" {
 {% if vault_configuration_storage_raft.autopilot_redundancy_zone is defined and vault_configuration_storage_raft.autopilot_redundancy_zone != "" %}
   autopilot_redundancy_zone = "{{ vault_configuration_storage_raft.autopilot_redundancy_zone }}"
 {% endif %}
+{% endif %}
+}
+{% endif %}
+
+{% if vault_configuration_storage_postgresql is defined %}
+storage "postgresql" {
+  connection_url = "{{ vault_configuration_storage_postgresql.connection_url }}"
+{% if vault_configuration_storage_postgresql.table is defined and vault_configuration_storage_postgresql.table != "vault_kv_store" %}
+  table = "{{ vault_configuration_storage_postgresql.table }}"
+{% endif %}
+{% if vault_configuration_storage_postgresql.max_idle_connections is defined and vault_configuration_storage_postgresql.max_idle_connections != 0 %}
+  max_idle_connections = {{ vault_configuration_storage_postgresql.max_idle_connections }}
+{% endif %}
+{% if vault_configuration_storage_postgresql.max_parallel is defined and vault_configuration_storage_postgresql.max_parallel != "128" %}
+  max_parallel = "{{ vault_configuration_storage_postgresql.max_parallel }}"
+{% endif %}
+{% if vault_configuration_storage_postgresql.ha_enabled is defined and vault_configuration_storage_postgresql.ha_enabled == "true" %}
+  ha_enabled = "true"
+{% endif %}
+{% if vault_configuration_storage_postgresql.ha_table is defined and vault_configuration_storage_postgresql.ha_table != "vault_ha_locks" %}
+  ha_table = "{{ vault_configuration_storage_postgresql.ha_table }}"
+{% endif %}
+{% if vault_configuration_storage_postgresql.auth_mode is defined and vault_configuration_storage_postgresql.auth_mode != "standard" %}
+  auth_mode = "{{ vault_configuration_storage_postgresql.auth_mode }}"
+{% endif %}
+{% if vault_configuration_storage_postgresql.aws_db_region is defined and vault_configuration_storage_postgresql.aws_db_region != "" %}
+  aws_db_region = "{{ vault_configuration_storage_postgresql.aws_db_region }}"
+{% endif %}
+{% if vault_configuration_storage_postgresql.azure_client_id is defined and vault_configuration_storage_postgresql.azure_client_id != "" %}
+  azure_client_id = "{{ vault_configuration_storage_postgresql.azure_client_id }}"
 {% endif %}
 }
 {% endif %}

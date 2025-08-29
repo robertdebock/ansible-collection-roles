@@ -17,10 +17,11 @@
   ansible.builtin.command:
     cmd: dnf clean all
   when:
-    - ansible_pkg_mgr == "dnf"
+    - ansible_pkg_mgr in [ "dnf", "dnf5" ]
   register: maintenance_cleanup_dnf
   changed_when:
     - "'0 files removed' not in maintenance_cleanup_dnf.stdout"
+    - "'Removed 0' not in maintenance_cleanup_dnf.stdout"
 
 - name: Cleanup yum cache
   ansible.builtin.command:

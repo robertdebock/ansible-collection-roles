@@ -22,6 +22,9 @@ ExecStart={{ item.start_command }}
 {% if item.stop_command is defined %}
 ExecStop={{ item.stop_command }}
 {% endif %}
+{% if item.reload_command is defined %}
+ExecReload={{ item.reload_command }}
+{% endif %}
 {% if item.environment_variables is defined %}
 {% for key in item.environment_variables %}
 Environment={{ key }}={{ item.environment_variables[key] }}

@@ -15,7 +15,7 @@
     regexp: nodocs
     mode: "0640"
   when:
-    - ansible_pkg_mgr == "dnf"
+    - ansible_pkg_mgr in [ "dnf", "dnf5" ]
 
 - name: Status of /etc/dpkg/dpkg.cfg.d/excludes
   ansible.builtin.stat:

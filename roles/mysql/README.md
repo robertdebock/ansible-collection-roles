@@ -24,6 +24,9 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
         - name: my_db
           encoding: utf8
           collation: utf8_bin
+        # - name: my_imported_db
+        #   # This file will be imported once at creation of the database.
+        #   initial_import: /path/to/dump.sql  # .gz or also allowed.
       mysql_users:
         - name: my_user
           password: my_pass

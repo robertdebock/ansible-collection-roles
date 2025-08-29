@@ -7,8 +7,9 @@ _java_default_version:
   Alpine: 8
   Amazon: 17
   Debian-12: 17
+  Fedora: 21
   Gentoo: 8
-  RedHat: 8
+  RedHat: 11
   Ubuntu: 19
   Ubuntu-18: 17
   Ubuntu-20: 17
@@ -50,10 +51,12 @@ _java_openjdk_package:
     17:
       default: openjdk-17-jre
       Amazon: java-17-amazon-corretto
+      Fedora: java-17-openjdk-headless
     19:
       default: openjdk-19-jre
     21:
       default: openjdk-21-jre
+      Fedora: java-21-openjdk-headless
   jdk:
     6:
       default: java-1.6.0-openjdk-devel

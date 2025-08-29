@@ -10,4 +10,4 @@ _tomcat_unarchive_urls:
   9: "{{ tomcat_mirror }}/dist/tomcat/tomcat-9/v{{ tomcat_version9 }}/bin/apache-tomcat-{{ tomcat_version9 }}.tar.gz"
   10: "{{ tomcat_mirror }}/dist/tomcat/tomcat-10/v{{ tomcat_version10 }}/bin/apache-tomcat-{{ tomcat_version10 }}.tar.gz"
 
-tomcat_unarchive_url: "{{ _tomcat_unarchive_urls[tomcat_version] }}"
+tomcat_unarchive_url: "{{ _tomcat_unarchive_urls[instance.version | default(tomcat_version)] }}"

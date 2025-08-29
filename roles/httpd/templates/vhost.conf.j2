@@ -10,11 +10,29 @@
 </IfModule>
 {% endif %}
 
-<VirtualHost *:{{ httpd_port }}>
+{% if item.redirect_to_https is defined and item.redirect_to_https %}
+<IfModule !rewrite_module>
+   LoadModule rewrite_module {{ httpd_modules_path }}/mod_rewrite.so
+</IfModule>
+{% endif %}
+
+<VirtualHost *:{{ item.port | default(httpd_port) }}>
    ServerName {{ item.servername }}
 
 {% if item.serveralias is defined %}
    ServerAlias {{ item.serveralias | join(' ') }}
+{% endif %}
+
+{% if item.redirect_to_https is defined and item.redirect_to_https %}
+   RewriteEngine On
+   RewriteCond %{HTTPS} off
+   RewriteRule ^(.*)$ https://%{SERVER_NAME}:{{ item.ssl_port | default(httpd_ssl_port) }}%{REQUEST_URI} [L,R=301]
+{% else %}
+
+{% if item.ssl_certificate_file is defined %}
+   SSLEngine on
+   SSLCertificateFile "{{ item.ssl_certificate_file }}"
+   SSLCertificateKeyFile "{{ item.ssl_certificate_key_file }}"
 {% endif %}
 
 {% if item.options is defined %}
@@ -47,5 +65,30 @@ ProxyPass / {{ item.backend_url }}
 {% for env in item.setenv %}
    SetEnv {{ env.name }} {{ env.value | default("") }}
 {% endfor %}
+{% endif %}
+{% endif %}
+{% if item.locations is defined %}
+{% for location in item.locations %}
+   <Location {{ location.location }}>
+     ProxyPass {{ location.backend_url }}
+     ProxyPassReverse {{ location.backend_url }}
+   </Location>
+{% endfor %}
+{% endif %}
+{% if item.directories is defined %}
+{% for directory in item.directories %}
+   <Directory "{{ directory.path }}">
+     Options {% for option in directory.options %}{{ option }}{% if not loop.last %} {% endif %}{% endfor %}
+
+     AllowOverride {{ directory.allow_override }}
+     Require {{ directory.require }}
+   </Directory>
+{% endfor %}
+{% endif %}
+{% if item.error_log is defined %}
+   ErrorLog {{ item.error_log }}
+{% endif %}
+{% if item.custom_log is defined %}
+   CustomLog {{ item.custom_log }} combined
 {% endif %}
 </VirtualHost>

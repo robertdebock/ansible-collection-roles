@@ -4,7 +4,9 @@
   ansible.builtin.get_url:
     url: "{{ lib.url }}"
     dest: "{{ tomcat_directory }}//{{ instance.name }}/lib/"
-    mode: "0640"
+    mode: "0755"
+    owner: "{{ instance.user | default(tomcat_user) }}"
+    group: "{{ instance.group | default(tomcat_group) }}"
   when:
     - lib.url is defined
   notify:

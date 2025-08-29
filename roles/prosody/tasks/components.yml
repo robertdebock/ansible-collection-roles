@@ -1,0 +1,14 @@
+---
+# Components configuration for prosody
+
+- name: components | Configure components
+  ansible.builtin.template:
+    src: component.conf.j2
+    dest: "{{ prosody_config_directory }}/conf.d/{{ item.name }}.cfg.lua"
+    owner: "{{ prosody_user }}"
+    group: "{{ prosody_group }}"
+    mode: "0644"
+  loop: "{{ prosody_components }}"
+  notify:
+    - Validate prosody configuration
+    - Restart prosody

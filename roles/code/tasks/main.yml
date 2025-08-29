@@ -9,7 +9,7 @@
     gpgcheck: true
     gpgkey: "https://packages.microsoft.com/keys/microsoft.asc"
   when:
-    - ansible_pkg_mgr in [ "yum", "dnf" ]
+    - ansible_pkg_mgr in [ "yum", "dnf", "dnf5"]
 
 - name: Configure APT systems
   when:

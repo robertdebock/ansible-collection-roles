@@ -1,0 +1,56 @@
+---
+# handlers file for prosody
+
+- name: Validate prosody configuration
+  ansible.builtin.command:
+    cmd: "{{ prosody_binary }} check"
+  changed_when: false
+  failed_when: false
+  register: prosody_check_result
+
+- name: Display prosody configuration check results
+  ansible.builtin.debug:
+    msg: "{{ prosody_check_result.stdout_lines }}"
+  when: prosody_check_result.rc != 0
+
+- name: Restart prosody using service
+  listen: Restart prosody
+  ansible.builtin.service:
+    name: "{{ prosody_service }}"
+    state: restarted
+  when: ansible_os_family != "Alpine"
+
+## Alpine-specific restart sequence, split into individual handler tasks
+- name: Alpine - Check if prosody is running
+  listen: Restart prosody
+  ansible.builtin.command:
+    cmd: "{{ prosody_binary }} status"
+  register: prosody_alpine_restart_status
+  failed_when: false
+  changed_when: false
+  when: ansible_os_family == "Alpine"
+
+- name: Alpine - Stop prosody if running
+  listen: Restart prosody
+  ansible.builtin.command:
+    cmd: "{{ prosody_binary }} stop"
+  register: prosody_alpine_stop
+  changed_when:
+    - prosody_alpine_stop.rc == 0
+    - "'not running' not in prosody_alpine_stop.stdout"
+  failed_when: false
+  when:
+    - ansible_os_family == "Alpine"
+    - prosody_alpine_restart_status is defined
+    - prosody_alpine_restart_status.rc == 0
+
+- name: Alpine - Start prosody
+  listen: Restart prosody
+  ansible.builtin.command:
+    cmd: "{{ prosody_binary }} start"
+  register: prosody_alpine_restart
+  changed_when:
+    - prosody_alpine_restart.rc == 0
+    - "'already running' not in prosody_alpine_restart.stdout"
+  failed_when: false
+  when: ansible_os_family == "Alpine"

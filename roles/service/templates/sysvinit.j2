@@ -67,6 +67,29 @@ stop() {
   fi
 }
 
+reload() {
+{% if item.status_pattern is defined %}
+  pgrep -f {{ item.status_pattern }} > /dev/null
+{% else %}
+  pgrep -f {{ item.start_command | regex_replace(' .*') }} > /dev/null
+{% endif %}
+  returncode="${?}"
+  if [ $returncode -eq 0 ] ; then
+    echo -n "Reloading {{ item.name }}: "
+{% if item.reload_command is defined %}
+    {{ item.reload_command }}
+{% elif item.status_pattern is defined %}
+    pkill -HUP -f {{ item.status_pattern }}
+{% else %}
+    pkill -HUP -f {{ item.start_command | regex_replace(' .*') }}
+{% endif %}
+    returncode="${?}"
+  else
+    echo "Service not running."
+    returncode=1
+  fi
+}
+
 status() {
 {% if item.status_pattern is defined %}
   pgrep -f {{ item.status_pattern }} > /dev/null
@@ -90,6 +113,9 @@ case "$1" in
   stop)
     stop
   ;;
+  reload)
+    reload
+  ;;
   status)
     status
   ;;
@@ -98,7 +124,7 @@ case "$1" in
     start
   ;;
     *)
-  echo "Usage: <servicename> {start|stop|status|restart}"
+  echo "Usage: <servicename> {start|stop|reload|status|restart}"
   exit 1
   ;;
 esac

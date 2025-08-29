@@ -30,6 +30,12 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
         - name: my_location
           location: /my_location
           backend_url: "http://localhost:8080/myapplication"
+      httpd_vhosts:
+        - name: redirect_to_https
+          servername: www.example.com
+          port: 8080
+          redirect_to_https: true
+          ssl_port: 8443
       # httpd_vhosts:
       #   - name: my_vhost_docroot
       #     servername: www1.example.com
@@ -63,13 +69,51 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
       #     servername: nodocroot.example.com
       #     documentroot: /var/www/html/nodocroot
       #     create_docroot: false
+      #   - name: my_vhost_with_locations
+      #     servername: my_vhost_with_locations.example.com
+      #     locations:
+      #       - location: /my_location
+      #         backend_url: "http://localhost:8080/myapplication"
+      #       - location: /my_location2
+      #         backend_url: "http://localhost:8080/myapplication2"
+      #   - name: my_https_vhost_with_locations
+      #     port: 8443
+      #     servername: my_vhost_with_locations.example.com
+      #     ssl_certificate_file: "{{ httpd_ssl_certificate_file }}"
+      #     ssl_certificate_key_file: "{{ httpd_ssl_certificate_key_file }}"
+      #     locations:
+      #       - location: /my_location
+      #         backend_url: "http://localhost:8080/myapplication"
+      #       - location: /my_location2
+      #         backend_url: "http://localhost:8080/myapplication2"
+      #   - name: my_vhost_with_error_log
+      #     servername: my_vhost_with_error_log.example.com
+      #     error_log: /var/log/httpd/my_vhost_with_error_log.example.com-error.log
+      #   - name: my_vhost_with_custom_log
+      #     servername: my_vhost_with_custom_log.example.com
+      #     custom_log: /var/log/httpd/my_vhost_with_custom_log.example.com-access.log combined
+      #   - name: my_vhost_with_error_log_and_custom_log
+      #     servername: my_vhost_with_error_log_and_custom_log.example.com
+      #     error_log: /var/log/httpd/my_vhost_with_error_log_and_custom_log.example.com-error.log
+      #     custom_log: /var/log/httpd/my_vhost_with_error_log_and_custom_log.example.com-access.log combined
+      #   - name: my_vhost_with_directory
+      #     servername: my_vhost_with_directory.example.com
+      #     directories:
+      #       - path: "{{ httpd_data_directory }}/my_vhost_with_directory"
+      #         options:
+      #           - Indexes
+      #           - FollowSymLinks
+      #         allow_override: All
+      #         require: all granted
+
       httpd_directories:
         - name: my_directory
           path: "{{ httpd_data_directory }}/my_directory"
-          # options:
-          #   - Indexes
-          #   - FollowSymLinks
+          options:
+            - Indexes
+            - FollowSymLinks
           allow_override: All
+          require: all granted
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-httpd/blob/master/molecule/default/prepare.yml):
@@ -86,6 +130,7 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
     - role: robertdebock.roles.epel
     - role: robertdebock.roles.buildtools
     - role: robertdebock.roles.python_pip
+      python_pip_update: false
     - role: robertdebock.roles.openssl
       openssl_items:
         - name: apache-httpd

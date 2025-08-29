@@ -22,12 +22,12 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
     git_groupname: root
     git_repository_destination: /root
     git_repositories:
-      - repo: "https://github.com/robertdebock/robertdebock.bootstrap"
+      - repo: "https://github.com/robertdebock/ansible-role-bootstrap"
         dest: bootstrap
-      - repo: "https://github.com/robertdebock/robertdebock.bootstrap"
+      - repo: "https://github.com/robertdebock/ansible-role-bootstrap"
         dest: bootstrap-force
         force: true
-      - repo: "https://github.com/robertdebock/robertdebock.bootstrap"
+      - repo: "https://github.com/robertdebock/ansible-role-bootstrap"
         dest: bootstrap-version
         version: "2.11.1"
 

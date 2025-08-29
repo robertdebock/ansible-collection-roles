@@ -1,0 +1,23 @@
+-- {{ ansible_managed }}
+
+-- MUC configuration for {{ prosody_domain }}
+Component "muc.{{ prosody_domain }}" "muc"
+    modules_enabled = {
+        "muc_meeting_id";
+        "muc_domain_mapper";
+        "muc_meeting_logging";
+    }
+    muc_room_locking = false
+    muc_room_default_public_jids = true
+{% if prosody_muc_rooms is defined %}
+    {% for room in prosody_muc_rooms %}
+    {% if room.name is defined %}
+    -- Room: {{ room.name }}
+    {% if room.options is defined %}
+        {% for key, value in room.options.items() %}
+        {{ key }} = {{ value }};
+        {% endfor %}
+    {% endif %}
+    {% endif %}
+    {% endfor %}
+{% endif %} 

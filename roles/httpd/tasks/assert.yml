@@ -115,6 +115,58 @@
     - httpd_vhosts is defined
     - item.serveralias is defined
 
+- name: assert | Test item.locations in httpd_vhosts
+  ansible.builtin.assert:
+    that:
+      - item.locations is iterable
+    quiet: true
+  loop: "{{ httpd_vhosts }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - httpd_vhosts is defined
+    - item.locations is defined
+
+- name: assert | Test item.ssl_certificate_file in httpd_vhosts
+  ansible.builtin.assert:
+    that:
+      - item.ssl_certificate_file is string
+      - item.ssl_certificate_file is not none
+      - item.ssl_certificate_key_file is defined
+  when:
+    - httpd_vhosts is defined
+    - item.ssl_certificate_file is defined
+
+- name: assert | Test item.ssl_certificate_key_file in httpd_vhosts
+  ansible.builtin.assert:
+    that:
+      - item.ssl_certificate_key_file is string
+      - item.ssl_certificate_key_file is not none
+      - item.ssl_certificate_file is defined
+  when:
+    - httpd_vhosts is defined
+    - item.ssl_certificate_key_file is defined
+
+- name: assert | Test item.error_log in httpd_vhosts
+  ansible.builtin.assert:
+    that:
+      - item.error_log is string
+      - item.error_log is not none
+    quiet: true
+  when:
+    - httpd_vhosts is defined
+    - item.error_log is defined
+
+- name: assert | Test item.custom_log in httpd_vhosts
+  ansible.builtin.assert:
+    that:
+      - item.custom_log is string
+      - item.custom_log is not none
+    quiet: true
+  when:
+    - httpd_vhosts is defined
+    - item.custom_log is defined
+
 - name: assert | Test httpd_directories
   ansible.builtin.assert:
     that:

@@ -19,7 +19,8 @@ galaxy_info:
         - all
     - name: Ubuntu
       versions:
-        - all
+        - noble
+        - jammy
 
   galaxy_tags:
     - backup

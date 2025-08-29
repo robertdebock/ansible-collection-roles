@@ -34,7 +34,7 @@
     enabled: true
     gpgkey: https://www.mongodb.org/static/pgp/server-6.0.asc
   when:
-    - ansible_pkg_mgr in [ "dnf", "yum" ]
+    - ansible_pkg_mgr in [ "dnf", "yum", "dnf5" ]
 
 - name: Install mongodb-org
   ansible.builtin.package:

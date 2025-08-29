@@ -280,6 +280,9 @@ postfix_smtp_tls_security_level: none
 # The location of Postfix HTML files that describe how to build, configure or operate a specific Postfix subsystem or feature.
 # postfix_html_directory: /usr/share/doc/postfix/html
 
+# List of custom master.cf entries if more services are needed outside of postfix defaults
+# postfix_master_custom: []
+
 # You can change the port where Postfix listens on.
 # Postfix used `/etc/services` to map service names to port numbers like `2525`.
 # So either specifcy a port number or a service name like `smtp`.

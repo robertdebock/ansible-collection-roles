@@ -19,6 +19,17 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 
   roles:
     - role: robertdebock.roles.vault_configuration
+    # This would create a Vault cluster with a PostgreSQL storage backend.
+    # vault_configuration_storage_raft: null
+
+    # vault_configuration_storage_postgresql:
+    #   connection_url: "postgres://test:test@localhost:5432/vault"
+    #   table: "vault_kv_store"
+    #   max_idle_connections: 5
+    #   max_parallel: "128"
+    #   ha_enabled: "true"
+    #   ha_table: "vault_ha_locks"
+    #   auth_mode: "standard"
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-vault_configuration/blob/master/molecule/default/prepare.yml):
@@ -249,6 +260,19 @@ vault_configuration_storage_raft:
 # NOT IMPLEMENTED.
 # vault_configuration_storage_inmem: true
 
+# PostgreSQL storage backend configuration.
+# Values used below are taken from: https://developer.hashicorp.com/vault/docs/configuration/storage/postgresql
+# vault_configuration_storage_postgresql:
+#   connection_url: "postgres://user123:secret123!@localhost:5432/vault"
+#   table: "vault_kv_store"
+#   max_idle_connections: 0
+#   max_parallel: "128"
+#   ha_enabled: "false"
+#   ha_table: "vault_ha_locks"
+#   auth_mode: "standard"
+#   aws_db_region: ""
+#   azure_client_id: ""
+
 #
 # (UN)SEAL SETTINGS
 #
@@ -372,8 +396,8 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |[Amazon](https://hub.docker.com/r/robertdebock/amazonlinux)|Candidate|
 |[Debian](https://hub.docker.com/r/robertdebock/debian)|all|
 |[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|9|
-|[Fedora](https://hub.docker.com/r/robertdebock/fedora)|39, 40|
-|[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|all|
+|[Fedora](https://hub.docker.com/r/robertdebock/fedora)|41|
+|[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|noble, jammy|
 
 The minimum version of Ansible required is 2.12, tests have been done to:
 

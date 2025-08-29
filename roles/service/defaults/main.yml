@@ -24,4 +24,7 @@
 # - after: Start after the mentioned service.
 # - restart_mode: The mode to use, for example "always".
 # - restart_seconds: The time to allow restart to finish.
+# - reload_command: Custom command to reload the service configuration.
+#   This is useful for services that support configuration reloading
+#   without a full restart, i.e. "kill -HUP $MAINPID"
 service_list: []

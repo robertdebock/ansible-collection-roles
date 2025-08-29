@@ -1,0 +1,31 @@
+---
+# SSL configuration for prosody
+
+- name: ssl | Create SSL directories
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ prosody_user }}"
+    group: "{{ prosody_group }}"
+    mode: "0755"
+  loop:
+    - "{{ prosody_ssl_key_directory }}"
+    - "{{ prosody_ssl_cert_directory }}"
+
+- name: ssl | Generate SSL certificate
+  community.crypto.x509_certificate:
+    path: "{{ prosody_ssl_cert }}"
+    privatekey_path: "{{ prosody_ssl_key }}"
+    common_name: "{{ prosody_ssl_common_name }}"
+    organization: "{{ prosody_ssl_organization }}"
+    country: "{{ prosody_ssl_country }}"
+    state: "{{ prosody_ssl_state }}"
+    locality: "{{ prosody_ssl_locality }}"
+    email: "{{ prosody_ssl_email }}"
+    days: "{{ prosody_ssl_days }}"
+    owner: "{{ prosody_user }}"
+    group: "{{ prosody_group }}"
+    mode: "0644"
+  notify:
+    - Validate prosody configuration
+    - Restart prosody

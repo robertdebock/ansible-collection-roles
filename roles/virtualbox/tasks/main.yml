@@ -15,7 +15,7 @@
   loop_control:
     label: "{{ item | basename }}"
   when:
-    - ansible_pkg_mgr in [ "yum", "dnf", "zypper" ]
+    - ansible_pkg_mgr in [ "yum", "dnf", "zypper", "dnf5" ]
 
 - name: Place yum repository
   ansible.builtin.yum_repository:
@@ -24,7 +24,7 @@
     baseurl: "{{ virtualbox_yum_baseurl }}"
     gpgcheck: true
   when:
-    - ansible_pkg_mgr in [ "yum", "dnf" ]
+    - ansible_pkg_mgr in [ "yum", "dnf", "dnf5" ]
 
 - name: Place zypper repository
   community.general.zypper_repository:

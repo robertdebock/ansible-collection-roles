@@ -1,0 +1,53 @@
+---
+# vars file for prosody
+
+_prosody_packages:
+  default:
+    - prosody
+  Alpine:
+    - prosody
+    - lua-socket
+    - lua-sec
+    - openrc
+  Debian:
+    - prosody
+    - lua-socket
+    - lua-sec
+  RedHat:
+    - prosody
+    - lua-socket
+    - lua-sec
+  Suse:
+    - prosody
+    - lua-socket
+    - lua-sec
+
+prosody_packages: "{{ prosody_additional_modules + _prosody_packages[ansible_os_family] | default(_prosody_packages['default']) }}"
+
+prosody_service: prosody
+prosody_user: prosody
+prosody_group: prosody
+prosody_config_directory: /etc/prosody
+prosody_data_directory: /var/lib/prosody
+prosody_log_directory: /var/log/prosody
+prosody_binary: prosodyctl
+
+prosody_pidfile: /run/prosody/prosody.pid
+
+_prosody_ssl_key_directory:
+  default: /tmp
+  Alpine: /etc/ssl/private
+  Debian: /etc/ssl/private
+  RedHat: /etc/pki/tls/private
+  Suse: /etc/ssl/private
+
+prosody_ssl_key_directory: "{{ _prosody_ssl_key_directory[ansible_os_family] | default(_prosody_ssl_key_directory['default']) }}"
+
+_prosody_ssl_cert_directory:
+  default: /tmp
+  Alpine: /etc/ssl/certs
+  Debian: /etc/ssl/certs
+  RedHat: /etc/pki/tls/certs
+  Suse: /etc/ssl/certs
+
+prosody_ssl_cert_directory: "{{ _prosody_ssl_cert_directory[ansible_os_family] | default(_prosody_ssl_cert_directory['default']) }}"

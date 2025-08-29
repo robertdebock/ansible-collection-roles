@@ -34,6 +34,7 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
     - role: robertdebock.roles.bootstrap
     - role: robertdebock.roles.ca_certificates
     - role: robertdebock.roles.hostname
+    - role: robertdebock.roles.prosody
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.
@@ -82,6 +83,7 @@ The following roles are used to prepare a system. You can prepare your system in
 |[robertdebock.bootstrap](https://galaxy.ansible.com/robertdebock/bootstrap)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-bootstrap/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-bootstrap/actions)|[![Build Status GitLab](https://gitlab.com/robertdebock-iac/ansible-role-bootstrap/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-bootstrap)|
 |[robertdebock.ca_certificates](https://galaxy.ansible.com/robertdebock/ca_certificates)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-ca_certificates/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-ca_certificates/actions)|[![Build Status GitLab](https://gitlab.com/robertdebock-iac/ansible-role-ca_certificates/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-ca_certificates)|
 |[robertdebock.hostname](https://galaxy.ansible.com/robertdebock/hostname)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-hostname/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-hostname/actions)|[![Build Status GitLab](https://gitlab.com/robertdebock-iac/ansible-role-hostname/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-hostname)|
+|[robertdebock.prosody](https://galaxy.ansible.com/robertdebock/prosody)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-prosody/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-prosody/actions)|[![Build Status GitLab](https://gitlab.com/robertdebock-iac/ansible-role-prosody/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-prosody)|
 
 ## [Context](#context)
 

@@ -18,15 +18,15 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
   gather_facts: true
 
   roles:
-    - role: robertdebock.roles.hashicorp
-      hashicorp_products:
-        - name: consul
-          version: "1.11.3"
+    # - role: robertdebock.roles.hashicorp
+    #   hashicorp_products:
+    #     - name: consul
+    #       version: "1.21.3"
     - role: robertdebock.roles.hashicorp
       hashicorp_installation_method: manual
       hashicorp_products:
         - name: vault
-          version: "1.9.0"
+          version: "1.20.1"
           type: ent
 ```
 
@@ -119,7 +119,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |[Amazon](https://hub.docker.com/r/robertdebock/amazonlinux)|Candidate|
 |[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|9|
 |[Debian](https://hub.docker.com/r/robertdebock/debian)|bullseye|
-|[Fedora](https://hub.docker.com/r/robertdebock/fedora)|39, 40|
+|[Fedora](https://hub.docker.com/r/robertdebock/fedora)|41|
 |[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|all|
 
 The minimum version of Ansible required is 2.12, tests have been done to:

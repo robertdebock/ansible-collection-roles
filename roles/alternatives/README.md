@@ -19,6 +19,10 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 
   roles:
     - role: robertdebock.roles.alternatives
+      alternatives_list:
+        - name: my_alternative_fake_binary
+          link: /bin/my_alternative_fake_binary
+          path: /bin/my_fake_binary
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-alternatives/blob/master/molecule/default/prepare.yml):

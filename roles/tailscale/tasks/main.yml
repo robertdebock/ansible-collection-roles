@@ -10,7 +10,7 @@
     state: present
     key: "{{ tailscale_repo_gpgkey }}"
   when:
-    - ansible_pkg_mgr in [ "yum", "dnf", "zypper" ]
+    - ansible_pkg_mgr in [ "yum", "dnf", "zypper", "dnf5" ]
 
 - name: Add the Tailscale repository (yum/dnf)
   ansible.builtin.yum_repository:
@@ -19,7 +19,7 @@
     baseurl: "{{ tailscale_repo_baseurl }}"
     gpgkey: "{{ tailscale_repo_gpgkey }}"
   when:
-    - ansible_pkg_mgr in [ "yum", "dnf" ]
+    - ansible_pkg_mgr in [ "yum", "dnf", "dnf5" ]
 
 - name: Run apt tasks
   when:

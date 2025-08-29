@@ -1,0 +1,26 @@
+-- Component configuration for {{ item.name }}
+-- {{ ansible_managed }}
+
+Component "{{ item.name }}" "{{ item.type }}"
+{% if item.secret is defined %}
+    component_secret = "{{ item.secret }}"
+{% endif %}
+{% if item.modules_enabled is defined %}
+    modules_enabled = {
+        {% for module in item.modules_enabled %}
+        "{{ module }}";
+        {% endfor %}
+    }
+{% endif %}
+{% if item.modules_disabled is defined %}
+    modules_disabled = {
+        {% for module in item.modules_disabled %}
+        "{{ module }}";
+        {% endfor %}
+    }
+{% endif %}
+{% if item.custom_config is defined %}
+    {% for key, value in item.custom_config.items() %}
+    {{ key }} = {{ value }};
+    {% endfor %}
+{% endif %} 

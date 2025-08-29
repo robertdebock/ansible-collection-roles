@@ -23,7 +23,7 @@
 
 - name: Prepare redhat
   when:
-    - ansible_pkg_mgr in [ "dnf", "yum" ]
+    - ansible_pkg_mgr in [ "dnf", "yum", "dnf5" ]
   block:
     - name: Add collabora key (dnf and yum)
       ansible.builtin.rpm_key:

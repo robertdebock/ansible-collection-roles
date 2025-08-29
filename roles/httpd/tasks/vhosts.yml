@@ -23,3 +23,16 @@
   notify:
     - Test httpd configuration validity
     - Restart httpd
+
+- name: vhosts | Enable vhosts
+  ansible.builtin.command:
+    cmd: "a2ensite {{ item.name }}"
+    creates: "{{ httpd_vhosts_enabled_directory }}/{{ item.name }}.conf"
+  loop: "{{ httpd_vhosts }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - ansible_os_family == 'Debian'
+  notify:
+    - Test httpd configuration validity
+    - Restart httpd

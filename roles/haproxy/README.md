@@ -151,12 +151,71 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 ---
 # defaults file for haproxy
 
+# Complete HAProxy configuration as a string (alternative to individual parameters)
+# If set, this will be used instead of individual parameters
+# haproxy_config: |
+#   global
+#       log         127.0.0.1 local2
+#       chroot      /var/lib/haproxy
+#       pidfile     /var/run/haproxy.pid
+#       maxconn     4000
+#       user        haproxy
+#       group       haproxy
+#       daemon
+#       stats       socket /var/lib/haproxy/stats
+
+#   defaults
+#       mode                    http
+#       log                     global
+#       option                  httplog
+#       option                  dontlognull
+#       option                  http-server-close
+#       option                  forwardfor except 127.0.0.0/8
+#       option                  redispatch
+#       retries                 3
+#       timeout http-request    10s
+#       timeout queue           10s
+#       timeout connect         10s
+#       timeout client          1m
+#       timeout server          1m
+#       timeout http-keep-alive 10s
+#       timeout check           10s
+#       maxconn                 3000
+
+#   listen stats
+#       bind                0.0.0.0:1936
+#       mode                http
+#       stats               enable
+#       stats               uri /stats
+
+#   frontend http
+#       bind *:80
+#       default_backend backend
+#       mode http
+#       option httplog
+
+#   backend backend
+#       balance roundrobin
+#       mode http
+#       server server1 127.0.0.1:8080 check
+#       server server2 127.0.0.2:8080 check
+
+# Default is to use individual parameters.
+haproxy_config: ""
+
 # Configure stats in HAProxy?
 haproxy_stats: true
 haproxy_stats_port: 1936
 haproxy_stats_bind_addr: "0.0.0.0"
 
 # Default setttings for HAProxy.
+haproxy_mode: http
+haproxy_options:
+  - httplog
+  - dontlognull
+  - http-server-close
+  - forwardfor except 127.0.0.0/8
+  - redispatch
 haproxy_retries: 3
 haproxy_timeout_http_request: 10s
 haproxy_timeout_connect: 10s
@@ -209,7 +268,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |---------|----|
 |[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|9|
 |[Debian](https://hub.docker.com/r/robertdebock/debian)|all|
-|[Fedora](https://hub.docker.com/r/robertdebock/fedora)|39, 40|
+|[Fedora](https://hub.docker.com/r/robertdebock/fedora)|all|
 |[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|all|
 
 The minimum version of Ansible required is 2.12, tests have been done to:

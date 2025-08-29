@@ -202,6 +202,19 @@ vault_configuration_storage_raft:
 # NOT IMPLEMENTED.
 # vault_configuration_storage_inmem: true
 
+# PostgreSQL storage backend configuration.
+# Values used below are taken from: https://developer.hashicorp.com/vault/docs/configuration/storage/postgresql
+# vault_configuration_storage_postgresql:
+#   connection_url: "postgres://user123:secret123!@localhost:5432/vault"
+#   table: "vault_kv_store"
+#   max_idle_connections: 0
+#   max_parallel: "128"
+#   ha_enabled: "false"
+#   ha_table: "vault_ha_locks"
+#   auth_mode: "standard"
+#   aws_db_region: ""
+#   azure_client_id: ""
+
 #
 # (UN)SEAL SETTINGS
 #

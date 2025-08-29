@@ -13,7 +13,7 @@
     dest: /etc/yum.repos.d/bintray-jfrog-artifactory-rpms.repo
     mode: "0640"
   when:
-    - ansible_pkg_mgr in [ "dnf", "yum" ]
+    - ansible_pkg_mgr in [ "dnf", "yum", "dnf5" ]
 
 - name: Configure apt repository
   when:

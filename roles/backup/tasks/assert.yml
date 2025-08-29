@@ -36,7 +36,8 @@
     that:
       - backup_format is defined
       - backup_format is string
-      - backup_format in [ "gz", "tgz", "zip", "bz2" ]
+      - backup_format in [ "bz2", "gz", "tar", "xz", "zip" ]
+
     quiet: true
 
 - name: assert | Test backup_objects

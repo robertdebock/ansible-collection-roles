@@ -1,0 +1,139 @@
+-- {{ ansible_managed }}
+
+-- Basic server settings
+admins = { "admin@{{ prosody_domain }}" }
+
+-- Network settings
+interfaces = { "*" }
+allow_registration = {{ "true" if prosody_registration_enable else "false" }}
+
+-- Process management
+pidfile = "{{ prosody_pidfile }}"
+
+-- External addresses configuration
+{% if prosody_external_addresses is defined and prosody_external_addresses %}
+external_addresses = { {% for address in prosody_external_addresses %}"{{ address }}"{% if not loop.last %}, {% endif %}{% endfor %} }
+{% endif %}
+
+-- Port configuration
+c2s_ports = { {{ prosody_port }} }
+s2s_ports = { {{ prosody_s2s_port }} }
+http_ports = { {{ prosody_http_port }} }
+{% if prosody_https_enable %}
+https_ports = { {{ prosody_https_port }} }
+{% endif %}
+
+-- SSL/TLS configuration
+{% if prosody_tls_enable %}
+c2s_require_encryption = false
+{% endif %}
+
+-- Server-to-server configuration (global setting)
+{% if prosody_s2s_enable %}
+s2s_secure_auth = false
+{% endif %}
+
+-- SSL certificate paths
+{% if prosody_https_enable %}
+ssl = {
+    key = "{{ prosody_ssl_key }}";
+    certificate = "{{ prosody_ssl_cert }}";
+}
+{% endif %}
+
+-- Test environment settings
+consider_websocket_secure = false
+http_cors_override = true
+
+-- Authentication
+authentication = "internal_plain"
+{% if prosody_sasl_enable %}
+sasl_backend = "internal"
+{% endif %}
+
+-- Anonymous authentication
+{% if prosody_anonymous_enable %}
+authentication = "anonymous"
+{% endif %}
+
+-- Modules
+modules_enabled = {
+    -- Core modules
+    "roster";
+    "saslauth";
+    "tls";
+    "dialback";
+    "disco";
+    "version";
+    "uptime";
+    "time";
+    "ping";
+    "pep";
+    "admin_adhoc";
+    {% if prosody_posix_enable %}
+    "posix";
+    {% endif %}
+    
+    -- HTTP modules
+    "http";
+    "http_files";
+    {% if prosody_bosh_enable %}
+    "bosh";
+    {% endif %}
+    {% if prosody_websocket_enable %}
+    "websocket";
+    {% endif %}
+    
+    -- Chat modules
+    {% if prosody_muc_enable %}
+    "muc";
+    {% endif %}
+    {% if prosody_pubsub_enable %}
+    "pubsub";
+    {% endif %}
+    {% if prosody_pep_enable %}
+    "pep";
+    {% endif %}
+    
+    -- Storage modules
+    {% if prosody_offline_enable %}
+    "offline";
+    {% endif %}
+    
+    -- Additional modules
+    {% for module in prosody_additional_modules %}
+    "{{ module }}";
+    {% endfor %}
+}
+
+-- Disable modules
+modules_disabled = {
+    -- Disable modules that might cause issues
+    "vcard";
+    "vcard_legacy";
+}
+
+-- Logging
+{% if prosody_logging_enable %}
+log = {
+    { to = "console", levels = { "{{ prosody_log_level }}" } };
+    { to = "file", filename = "{{ prosody_log_directory }}/prosody.log", levels = { "{{ prosody_log_level }}" } };
+}
+{% endif %}
+
+-- Data storage
+data_path = "{{ prosody_data_directory }}"
+
+-- Virtual hosts
+VirtualHost "{{ prosody_domain }}"
+{% if prosody_https_enable %}
+    ssl = {
+        key = "{{ prosody_ssl_key }}";
+        certificate = "{{ prosody_ssl_cert }}";
+    }
+{% endif %}
+
+-- Custom configuration
+{% for key, value in prosody_custom_config.items() %}
+{{ key }} = {{ value }};
+{% endfor %} 

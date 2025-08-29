@@ -1,0 +1,412 @@
+---
+
+argument_specs:
+  main:
+    short_description: "Install and configure openbao on your system."
+    description: >
+      Install and configure openbao on your system.
+    author: Robert de Bock
+    options:
+      openbao_version:
+        type: "str"
+        required: false
+        default: "2.3.2"
+        description: "Version of OpenBao to install (e.g., '2.3.2')."
+      openbao_download_dir:
+        type: "str"
+        default: "/tmp"
+        description: "Directory to store the downloaded package before installation."
+      openbao_validate_gpg_ssl:
+        type: "bool"
+        default: false
+        description: "Whether to validate SSL certificates when downloading the GPG key. Set to false to handle older Ubuntu versions with outdated CA certificates."
+      openbao_ui:
+        type: "bool"
+        default: true
+        description: "Enable or disable the OpenBao web UI."
+      openbao_storage:
+        type: "dict"
+        required: true
+        description: "Storage backend configuration for OpenBao."
+        options:
+          type:
+            type: "str"
+            required: true
+            choices:
+              - file
+              - inmem
+              - raft
+              - postgresql
+            description: "Storage backend type."
+          path:
+            type: "str"
+            required: false
+            description: "Path for file or raft storage backends."
+          node_id:
+            type: "str"
+            required: false
+            description: "Node ID for raft storage backend."
+          cluster_addr:
+            type: "str"
+            required: false
+            description: "Cluster address for raft storage backend."
+          # Raft advanced options
+          performance_multiplier:
+            type: "int"
+            required: false
+            description: "Multiplier to scale Raft timing parameters (0-10)."
+          trailing_logs:
+            type: "int"
+            required: false
+            description: "Number of log entries to retain after snapshot."
+          snapshot_threshold:
+            type: "int"
+            required: false
+            description: "Minimum number of commits between snapshots."
+          snapshot_interval:
+            type: "int"
+            required: false
+            description: "Snapshot check interval in seconds."
+          retry_join:
+            type: "list"
+            required: false
+            elements: "dict"
+            description: "List of retry_join stanzas to locate leader."
+            options:
+              leader_api_addr:
+                type: "str"
+                required: false
+                description: "Address of a possible leader node."
+              auto_join:
+                type: "str"
+                required: false
+                description: "Cloud auto-join configuration (go-discover)."
+              auto_join_scheme:
+                type: "str"
+                required: false
+                description: "Scheme for auto-join addresses (http/https)."
+              auto_join_port:
+                type: "int"
+                required: false
+                description: "Port for auto-join addresses."
+              leader_tls_servername:
+                type: "str"
+                required: false
+                description: "TLS server name for HTTPS leader connection."
+              leader_ca_cert_file:
+                type: "str"
+                required: false
+                description: "Path to leader CA cert file."
+              leader_client_cert_file:
+                type: "str"
+                required: false
+                description: "Path to client cert file."
+              leader_client_key_file:
+                type: "str"
+                required: false
+                description: "Path to client key file."
+              leader_ca_cert:
+                type: "str"
+                required: false
+                description: "Inline leader CA cert."
+              leader_client_cert:
+                type: "str"
+                required: false
+                description: "Inline client certificate."
+              leader_client_key:
+                type: "str"
+                required: false
+                description: "Inline client key."
+          retry_join_as_non_voter:
+            type: "bool"
+            required: false
+            description: "Join as non-voter when using retry_join."
+          max_entry_size:
+            type: "int"
+            required: false
+            description: "Maximum bytes for a Raft log entry."
+          max_transaction_size:
+            type: "int"
+            required: false
+            description: "Maximum bytes for a Raft transaction entry."
+          autopilot_reconcile_interval:
+            type: "str"
+            required: false
+            description: "Autopilot reconcile interval (e.g., '10s')."
+          autopilot_update_interval:
+            type: "str"
+            required: false
+            description: "Autopilot update interval (e.g., '2s')."
+          connection_url:
+            type: "str"
+            required: false
+            description: "Connection URL for PostgreSQL storage backend."
+      openbao_cluster_addr:
+        type: "str"
+        required: false
+        default: ""
+        description: "Cluster address for OpenBao (required when using raft storage)."
+      openbao_api_addr:
+        type: "str"
+        required: false
+        default: ""
+        description: "API address for OpenBao (required when using raft storage)."
+      openbao_listeners:
+        type: "list"
+        required: true
+        description: "List of listener configurations for OpenBao."
+        elements: "dict"
+        options:
+          name:
+            type: "str"
+            required: true
+            description: "Listener type (e.g., tcp)."
+          address:
+            type: "str"
+            required: true
+            description: "Listener address and port (e.g., 0.0.0.0:8200)."
+          tls_disable:
+            type: "bool"
+            required: false
+            description: "Disable TLS for this listener."
+          tls_cert_file:
+            type: "str"
+            required: false
+            description: "Path to TLS certificate file."
+          tls_key_file:
+            type: "str"
+            required: false
+            description: "Path to TLS private key file."
+      openbao_seal:
+        type: "list"
+        required: false
+        default: []
+        description: "List of seal configurations for OpenBao (currently only one supported)."
+        elements: "dict"
+        options:
+          name:
+            type: "str"
+            required: true
+            choices:
+              - awskms
+              - alicloudkms
+              - azurekeyvault
+              - gcpckms
+              - kmip
+              - ocikms
+              - pkcs11
+              - transit
+            description: "Seal type."
+          region:
+            type: "str"
+            required: false
+            description: "AWS region for AWS KMS seal."
+          access_key:
+            type: "str"
+            required: false
+            description: "AWS access key for AWS KMS seal."
+          secret_key:
+            type: "str"
+            required: false
+            description: "AWS secret key for AWS KMS seal."
+          kms_key_id:
+            type: "str"
+            required: false
+            description: "AWS KMS key ID for AWS KMS seal."
+          address:
+            type: "str"
+            required: false
+            description: "Transit server address for Transit seal."
+          token:
+            type: "str"
+            required: false
+            description: "Token for Transit seal."
+          key_name:
+            type: "str"
+            required: false
+            description: "Key name for Transit seal."
+      openbao_telemetry:
+        type: "dict"
+        required: false
+        default: {}
+        description: "Telemetry configuration for OpenBao."
+        options:
+          # Common telemetry parameters
+          usage_gauge_period:
+            type: "str"
+            required: false
+            description: "Interval for high-cardinality usage data collection (e.g., '10m')."
+          maximum_gauge_cardinality:
+            type: "int"
+            required: false
+            description: "Maximum cardinality of gauge labels."
+          disable_hostname:
+            type: "bool"
+            required: false
+            description: "Disable hostname prefix for gauge values."
+          enable_hostname_label:
+            type: "bool"
+            required: false
+            description: "Add host label to all metric values."
+          metrics_prefix:
+            type: "str"
+            required: false
+            description: "Prefix for metric values (default: 'vault')."
+          lease_metrics_epsilon:
+            type: "str"
+            required: false
+            description: "Bucket size for lease expiration metrics (e.g., '1h')."
+          num_lease_metrics_buckets:
+            type: "int"
+            required: false
+            description: "Number of expiry buckets for leases."
+          add_lease_metrics_namespace_labels:
+            type: "bool"
+            required: false
+            description: "Break down expiring leases by time and namespace."
+          filter_default:
+            type: "bool"
+            required: false
+            description: "Allow metrics not specified by filter."
+          prefix_filter:
+            type: "list"
+            required: false
+            description: "Filter rules for allowing/blocking metrics by prefix."
+            elements: "str"
+          # Statsite parameters
+          statsite_address:
+            type: "str"
+            required: false
+            description: "Address of statsite server."
+          # StatsD parameters
+          statsd_address:
+            type: "str"
+            required: false
+            description: "Address of statsd server."
+          # DogStatsD parameters
+          dogstatsd_addr:
+            type: "str"
+            required: false
+            description: "Address of DogStatsD instance."
+          dogstatsd_tags:
+            type: "list"
+            required: false
+            description: "Global tags for DogStatsD telemetry."
+            elements: "str"
+          # Prometheus parameters
+          prometheus_retention_time:
+            type: "str"
+            required: false
+            description: "Retention time for Prometheus metrics (e.g., '24h')."
+          # Stackdriver parameters
+          stackdriver_project_id:
+            type: "str"
+            required: false
+            description: "Google Cloud Project ID for Stackdriver."
+          stackdriver_location:
+            type: "str"
+            required: false
+            description: "GCP or AWS region for Stackdriver."
+          stackdriver_namespace:
+            type: "str"
+            required: false
+            description: "Namespace identifier for Stackdriver telemetry."
+          stackdriver_debug_logs:
+            type: "bool"
+            required: false
+            description: "Enable Stackdriver debug logs."
+          # AliCloud KMS parameters
+          key_id:
+            type: "str"
+            required: false
+            description: "Key ID for AliCloud KMS seal."
+          # Azure Key Vault parameters
+          tenant_id:
+            type: "str"
+            required: false
+            description: "Tenant ID for Azure Key Vault seal."
+          client_id:
+            type: "str"
+            required: false
+            description: "Client ID for Azure Key Vault seal."
+          client_secret:
+            type: "str"
+            required: false
+            description: "Client secret for Azure Key Vault seal."
+          vault_name:
+            type: "str"
+            required: false
+            description: "Vault name for Azure Key Vault seal."
+          # GCP Cloud KMS parameters
+          credentials:
+            type: "str"
+            required: false
+            description: "Path to credentials file for GCP Cloud KMS seal."
+          project:
+            type: "str"
+            required: false
+            description: "Project ID for GCP Cloud KMS seal."
+          key_ring:
+            type: "str"
+            required: false
+            description: "Key ring for GCP Cloud KMS seal."
+          crypto_key:
+            type: "str"
+            required: false
+            description: "Crypto key for GCP Cloud KMS seal."
+          # KMIP parameters
+          server:
+            type: "str"
+            required: false
+            description: "Server address for KMIP seal."
+          certificate:
+            type: "str"
+            required: false
+            description: "Certificate path for KMIP seal."
+          key:
+            type: "str"
+            required: false
+            description: "Key path for KMIP seal."
+
+          ca_cert:
+            type: "str"
+            required: false
+            description: "CA certificate path for KMIP seal."
+          # OCI KMS parameters
+          auth_type:
+            type: "str"
+            required: false
+            description: "Authentication type for OCI KMS seal."
+          crypto_endpoint:
+            type: "str"
+            required: false
+            description: "Crypto endpoint for OCI KMS seal."
+          # PKCS#11 parameters
+          lib:
+            type: "str"
+            required: false
+            description: "PKCS#11 library path."
+          slot:
+            type: "str"
+            required: false
+            description: "PKCS#11 slot number."
+          pin:
+            type: "str"
+            required: false
+            description: "PKCS#11 PIN."
+          key_label:
+            type: "str"
+            required: false
+            description: "PKCS#11 key label."
+      openbao_log_requests_level:
+        type: "str"
+        required: false
+        default: "off"
+        choices:
+          - error
+          - warn
+          - info
+          - debug
+          - trace
+          - "off"
+        description: "Logging level for completed requests (default: off)."

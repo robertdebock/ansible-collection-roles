@@ -1,5 +1,8 @@
 {{ ansible_managed | comment }}
 
+{% if haproxy_config is defined and haproxy_config | length > 0 %}
+{{ haproxy_config }}
+{% else %}
 global
     log         127.0.0.1 local2
     chroot      /var/lib/haproxy
@@ -11,20 +14,22 @@ global
     stats       socket /var/lib/haproxy/stats
 
 defaults
-    mode                    http
+    mode                    {{ haproxy_mode }}
     log                     global
-    option                  httplog
-    option                  dontlognull
-    option                  http-server-close
-    option                  forwardfor except 127.0.0.0/8
-    option                  redispatch
+{% for option in haproxy_options %}
+    option                  {{ option }}
+{% endfor %}
     retries                 {{ haproxy_retries }}
+{% if haproxy_timeout_http_request %}
     timeout http-request    {{ haproxy_timeout_http_request }}
+{% endif %}
     timeout queue           {{ haproxy_timeout_check }}
     timeout connect         {{ haproxy_timeout_connect }}
     timeout client          {{ haproxy_timeout_client }}
     timeout server          {{ haproxy_timeout_server }}
+{% if haproxy_timeout_http_keep_alive %}
     timeout http-keep-alive {{ haproxy_timeout_http_keep_alive }}
+{% endif %}
     timeout check           {{ haproxy_timeout_check }}
     maxconn                 {{ haproxy_maxconn }}
 
@@ -98,3 +103,4 @@ listen {{ listen.name }}
 {% endif %}
 {% endfor %}
 {% endfor %}
+{% endif %}

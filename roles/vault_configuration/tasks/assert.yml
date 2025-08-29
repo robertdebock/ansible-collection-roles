@@ -145,7 +145,6 @@
 - name: assert | Test vault_configuration_listeners.cluster_address
   ansible.builtin.assert:
     that:
-      - item.cluster_address is defined
       - item.cluster_address is string
       - item.cluster_address is not none
     quiet: true
@@ -153,6 +152,7 @@
   loop_control:
     label: "{{ item.address }}"
   when:
+    - item.cluster_address is defined
     - not vault_configuration_disable_clustering
     - item.type == "tcp"
 
@@ -539,7 +539,7 @@
 - name: assert | Test vault_configuration_storage_raft
   ansible.builtin.assert:
     that:
-      - vault_configuration_storage_raft is mapping
+      - vault_configuration_storage_raft is mapping or vault_configuration_storage_raft is none
     quiet: true
   when:
     - vault_configuration_storage_raft is defined
@@ -552,6 +552,7 @@
     quiet: true
   when:
     - vault_configuration_storage_raft is defined
+    - vault_configuration_storage_raft is mapping
 
 - name: assert | Test vault_configuration_storage_raft.node_id
   ansible.builtin.assert:
@@ -561,6 +562,7 @@
     quiet: true
   when:
     - vault_configuration_storage_raft is defined
+    - vault_configuration_storage_raft is mapping
 
 - name: assert | Test vault_configuration_storage_raft.performance_multiplier
   ansible.builtin.assert:
@@ -571,6 +573,7 @@
   when:
     - vault_configuration_storage_raft.performance_multiplier is defined
     - vault_configuration_storage_raft is defined
+    - vault_configuration_storage_raft is mapping
 
 - name: assert | Test vault_configuration_storage_raft.trailing_logs
   ansible.builtin.assert:
@@ -580,6 +583,7 @@
     quiet: true
   when:
     - vault_configuration_storage_raft is defined
+    - vault_configuration_storage_raft is mapping
     - vault_configuration_storage_raft.trailing_logs is defined
 
 - name: assert | Test vault_configuration_storage_raft.snapshot_threshold
@@ -590,6 +594,7 @@
     quiet: true
   when:
     - vault_configuration_storage_raft is defined
+    - vault_configuration_storage_raft is mapping
     - vault_configuration_storage_raft.snapshot_threshold is defined
 
 - name: assert | Test vault_configuration_storage_raft.retry_join
@@ -599,6 +604,7 @@
     quiet: true
   when:
     - vault_configuration_storage_raft is defined
+    - vault_configuration_storage_raft is mapping
     - vault_configuration_storage_raft.retry_join is defined
 
 - name: assert | Test item.leader_api_addr
@@ -612,6 +618,7 @@
     label: "{{ item.leader_api_addr }}"
   when:
     - vault_configuration_storage_raft is defined
+    - vault_configuration_storage_raft is mapping
     - vault_configuration_storage_raft.retry_join is defined
     - item.leader_api_addr is defined
 
@@ -626,6 +633,7 @@
     label: "{{ item.auto_join | default('Not set') }}"
   when:
     - vault_configuration_storage_raft is defined
+    - vault_configuration_storage_raft is mapping
     - vault_configuration_storage_raft.retry_join is defined
     - item.auto_join is defined
 
@@ -640,6 +648,7 @@
     label: "{{ item.auto_join_scheme | default('Not set') }}"
   when:
     - vault_configuration_storage_raft is defined
+    - vault_configuration_storage_raft is mapping
     - vault_configuration_storage_raft.retry_join is defined
     - item.auto_join_scheme is defined
 
@@ -655,6 +664,7 @@
     label: "{{ item.auto_join_port | default('Not set') }}"
   when:
     - vault_configuration_storage_raft is defined
+    - vault_configuration_storage_raft is mapping
     - vault_configuration_storage_raft.retry_join is defined
     - item.auto_join_port is defined
 
@@ -669,6 +679,7 @@
     label: "{{ item.leader_tls_servername | default('Not set') }}"
   when:
     - vault_configuration_storage_raft is defined
+    - vault_configuration_storage_raft is mapping
     - vault_configuration_storage_raft.retry_join is defined
     - item.leader_tls_servername is defined
 
@@ -683,6 +694,7 @@
     label: "{{ item.leader_ca_cert_file | default('Not set') }}"
   when:
     - vault_configuration_storage_raft is defined
+    - vault_configuration_storage_raft is mapping
     - vault_configuration_storage_raft.retry_join is defined
     - item.leader_ca_cert_file is defined
 
@@ -713,6 +725,7 @@
     label: "{{ item.leader_client_cert_file | default('Not set') }}"
   when:
     - vault_configuration_storage_raft is defined
+    - vault_configuration_storage_raft is mapping
     - vault_configuration_storage_raft.retry_join is defined
     - item.leader_client_cert_file is defined
 
@@ -727,6 +740,7 @@
     label: "{{ item.leader_client_key_file | default('Not set') }}"
   when:
     - vault_configuration_storage_raft is defined
+    - vault_configuration_storage_raft is mapping
     - vault_configuration_storage_raft.retry_join is defined
     - item.leader_client_key_file is defined
 
@@ -741,6 +755,7 @@
     label: "{{ item.leader_ca_cert | default('Not set') }}"
   when:
     - vault_configuration_storage_raft is defined
+    - vault_configuration_storage_raft is mapping
     - vault_configuration_storage_raft.retry_join is defined
     - item.leader_ca_cert is defined
 
@@ -755,6 +770,7 @@
     label: "{{ item.leader_client_cert | default('Not set') }}"
   when:
     - vault_configuration_storage_raft is defined
+    - vault_configuration_storage_raft is mapping
     - vault_configuration_storage_raft.retry_join is defined
     - item.leader_client_cert is defined
 
@@ -769,6 +785,7 @@
     label: "{{ item.leader_client_key | default('Not set') }}"
   when:
     - vault_configuration_storage_raft is defined
+    - vault_configuration_storage_raft is mapping
     - vault_configuration_storage_raft.retry_join is defined
     - item.leader_client_key is defined
 
@@ -779,6 +796,7 @@
     quiet: true
   when:
     - vault_configuration_storage_raft is defined
+    - vault_configuration_storage_raft is mapping
     - vault_configuration_storage_raft.retry_join_as_non_voter is defined
 
 - name: assert | Test vault_configuration_storage_raft.max_entry_size
@@ -789,6 +807,7 @@
     quiet: true
   when:
     - vault_configuration_storage_raft is defined
+    - vault_configuration_storage_raft is mapping
     - vault_configuration_storage_raft.max_entry_size is defined
 
 - name: assert | Test vault_configuration_storage_raft.autopilot_reconcile_interval
@@ -799,6 +818,7 @@
     quiet: true
   when:
     - vault_configuration_storage_raft is defined
+    - vault_configuration_storage_raft is mapping
     - vault_configuration_storage_raft.autopilot_reconcile_interval is defined
 
 - name: assert | Test vault_configuration_storage_raft.autopilot_update_interval
@@ -809,6 +829,7 @@
     quiet: true
   when:
     - vault_configuration_storage_raft is defined
+    - vault_configuration_storage_raft is mapping
     - vault_configuration_storage_raft.autopilot_update_interval is defined
 
 - name: assert | Test vault_configuration_storage_raft.autopilot_upgrade_version
@@ -819,6 +840,7 @@
     quiet: true
   when:
     - vault_configuration_storage_raft is defined
+    - vault_configuration_storage_raft is mapping
     - vault_configuration_storage_raft.autopilot_upgrade_version is defined
 
 - name: assert | Test vault_configuration_storage_raft.autopilot_redundancy_zone
@@ -829,6 +851,7 @@
     quiet: true
   when:
     - vault_configuration_storage_raft is defined
+    - vault_configuration_storage_raft is mapping
     - vault_configuration_storage_raft.autopilot_redundancy_zone is defined
 
 - name: assert | Test vault_configuration_seal_awskms
@@ -1215,3 +1238,101 @@
   when:
     - vault_configuration_seal_ocikms is defined
     - vault_configuration_seal_ocikms.disabled is defined
+
+- name: assert | Test vault_configuration_storage_postgresql
+  ansible.builtin.assert:
+    that:
+      - vault_configuration_storage_postgresql is mapping
+    quiet: true
+  when:
+    - vault_configuration_storage_postgresql is defined
+
+- name: assert | Test vault_configuration_storage_postgresql.connection_url
+  ansible.builtin.assert:
+    that:
+      - vault_configuration_storage_postgresql.connection_url is defined
+      - vault_configuration_storage_postgresql.connection_url is string
+      - vault_configuration_storage_postgresql.connection_url is not none
+    quiet: true
+  when:
+    - vault_configuration_storage_postgresql is defined
+
+- name: assert | Test vault_configuration_storage_postgresql.table
+  ansible.builtin.assert:
+    that:
+      - vault_configuration_storage_postgresql.table is string
+      - vault_configuration_storage_postgresql.table is not none
+    quiet: true
+  when:
+    - vault_configuration_storage_postgresql is defined
+    - vault_configuration_storage_postgresql.table is defined
+
+- name: assert | Test vault_configuration_storage_postgresql.max_idle_connections
+  ansible.builtin.assert:
+    that:
+      - vault_configuration_storage_postgresql.max_idle_connections is number
+      - vault_configuration_storage_postgresql.max_idle_connections >= 0
+    quiet: true
+  when:
+    - vault_configuration_storage_postgresql is defined
+    - vault_configuration_storage_postgresql.max_idle_connections is defined
+
+- name: assert | Test vault_configuration_storage_postgresql.max_parallel
+  ansible.builtin.assert:
+    that:
+      - vault_configuration_storage_postgresql.max_parallel is string
+      - vault_configuration_storage_postgresql.max_parallel is not none
+    quiet: true
+  when:
+    - vault_configuration_storage_postgresql is defined
+    - vault_configuration_storage_postgresql.max_parallel is defined
+
+- name: assert | Test vault_configuration_storage_postgresql.ha_enabled
+  ansible.builtin.assert:
+    that:
+      - vault_configuration_storage_postgresql.ha_enabled is string
+      - vault_configuration_storage_postgresql.ha_enabled in [ "true", "false" ]
+    quiet: true
+  when:
+    - vault_configuration_storage_postgresql is defined
+    - vault_configuration_storage_postgresql.ha_enabled is defined
+
+- name: assert | Test vault_configuration_storage_postgresql.ha_table
+  ansible.builtin.assert:
+    that:
+      - vault_configuration_storage_postgresql.ha_table is string
+      - vault_configuration_storage_postgresql.ha_table is not none
+    quiet: true
+  when:
+    - vault_configuration_storage_postgresql is defined
+    - vault_configuration_storage_postgresql.ha_table is defined
+
+- name: assert | Test vault_configuration_storage_postgresql.auth_mode
+  ansible.builtin.assert:
+    that:
+      - vault_configuration_storage_postgresql.auth_mode is string
+      - vault_configuration_storage_postgresql.auth_mode in [ "standard", "aws_iam", "azure_msi", "gcp_iam" ]
+    quiet: true
+  when:
+    - vault_configuration_storage_postgresql is defined
+    - vault_configuration_storage_postgresql.auth_mode is defined
+
+- name: assert | Test vault_configuration_storage_postgresql.aws_db_region
+  ansible.builtin.assert:
+    that:
+      - vault_configuration_storage_postgresql.aws_db_region is string
+      - vault_configuration_storage_postgresql.aws_db_region is not none
+    quiet: true
+  when:
+    - vault_configuration_storage_postgresql is defined
+    - vault_configuration_storage_postgresql.aws_db_region is defined
+
+- name: assert | Test vault_configuration_storage_postgresql.azure_client_id
+  ansible.builtin.assert:
+    that:
+      - vault_configuration_storage_postgresql.azure_client_id is string
+      - vault_configuration_storage_postgresql.azure_client_id is not none
+    quiet: true
+  when:
+    - vault_configuration_storage_postgresql is defined
+    - vault_configuration_storage_postgresql.azure_client_id is defined

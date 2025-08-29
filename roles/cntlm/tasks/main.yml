@@ -25,7 +25,7 @@
     remote_src: true
     mode: "0755"
   when:
-    - ansible_pkg_mgr not in [ "apt", "yum", "dnf" ]
+    - ansible_pkg_mgr not in [ "apt", "yum", "dnf", "dnf5" ]
   notify:
     - Configure cntlm
     - Make cntlm
@@ -46,7 +46,7 @@
     validate_certs: false
     disable_gpg_check: true
   when:
-    - ansible_pkg_mgr in [ "dnf" ]
+    - ansible_pkg_mgr in [ "dnf", "dnf5" ]
 
 - name: Manage apt details
   when:

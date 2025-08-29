@@ -15,10 +15,6 @@ galaxy_info:
     - name: EL
       versions:
         - "9"
-    - name: Fedora
-      versions:
-        - "38"
-        - "39"
     - name: Ubuntu
       versions:
         - jammy

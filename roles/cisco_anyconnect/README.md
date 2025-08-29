@@ -49,7 +49,7 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 cisco_anyconnect_tmp_dir: /tmp/cisco-anyconnect
 
 # The URL where the Cisco Anyconnect package can be downloaded from
-cisco_anyconnect_download_url: ""
+cisco_anyconnect_download_url: "https://its.gmu.edu/wp-content/uploads/cisco-secure-client-linux64-5.1.3.62-predeploy-k9.tar.gz"
 # Since this package is not typically available from a public URL, you can host your own copy and reference it here.
 # cisco_anyconnect_download_url: "https://example.com/downloads/cisco-secure-client-linux64-5.1.3.62-predeploy-k9.tar.gz"
 

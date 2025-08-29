@@ -3,5 +3,6 @@ roles:
   - name: robertdebock.bootstrap
   - name: robertdebock.ca_certificates
   - name: robertdebock.hostname
+  - name: robertdebock.prosody
 collections:
   - name: community.general

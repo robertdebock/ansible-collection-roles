@@ -1,0 +1,178 @@
+---
+
+argument_specs:
+  main:
+    short_description: "Install and configure prosody on your system."
+    description: >
+      Install and configure prosody on your system.
+    author: Robert de Bock
+    options:
+      prosody_domain:
+        type: "str"
+        default: "{{ ansible_fqdn }}"
+        description: "The domain to use for this XMPP server"
+      prosody_port:
+        type: "int"
+        default: 5222
+        description: "The port to use for XMPP client connections"
+      prosody_s2s_port:
+        type: "int"
+        default: 5269
+        description: "The port to use for XMPP server-to-server connections"
+      prosody_http_port:
+        type: "int"
+        default: 5280
+        description: "The port to use for HTTP/HTTPS (for admin interface, BOSH, etc.)"
+      prosody_https_enable:
+        type: "bool"
+        default: false
+        description: "Enable HTTPS for the HTTP interface"
+      prosody_https_port:
+        type: "int"
+        default: 5281
+        description: "The port to use for HTTPS"
+      prosody_ssl_common_name:
+        type: "str"
+        default: "{{ prosody_domain }}"
+        description: "Common name for SSL certificate"
+      prosody_ssl_organization:
+        type: "str"
+        default: "{{ prosody_domain }}"
+        description: "Organization for SSL certificate"
+      prosody_ssl_country:
+        type: "str"
+        default: "US"
+        description: "Country for SSL certificate"
+      prosody_ssl_state:
+        type: "str"
+        default: "State"
+        description: "State for SSL certificate"
+      prosody_ssl_locality:
+        type: "str"
+        default: "City"
+        description: "Locality for SSL certificate"
+      prosody_ssl_email:
+        type: "str"
+        default: "admin@{{ prosody_domain }}"
+        description: "Email for SSL certificate"
+      prosody_ssl_days:
+        type: "int"
+        default: 365
+        description: "Validity period for SSL certificate in days"
+      prosody_s2s_enable:
+        type: "bool"
+        default: true
+        description: "Enable server-to-server connections"
+      prosody_components_enable:
+        type: "bool"
+        default: false
+        description: "Enable component connections"
+      prosody_admin_enable:
+        type: "bool"
+        default: true
+        description: "Enable admin interface"
+      prosody_bosh_enable:
+        type: "bool"
+        default: false
+        description: "Enable BOSH (Bidirectional-streams Over Synchronous HTTP)"
+      prosody_websocket_enable:
+        type: "bool"
+        default: false
+        description: "Enable WebSocket support"
+      prosody_muc_enable:
+        type: "bool"
+        default: true
+        description: "Enable MUC (Multi-User Chat)"
+      prosody_pubsub_enable:
+        type: "bool"
+        default: true
+        description: "Enable PubSub (Publish-Subscribe)"
+      prosody_pep_enable:
+        type: "bool"
+        default: true
+        description: "Enable PEP (Personal Eventing Protocol)"
+      prosody_offline_enable:
+        type: "bool"
+        default: true
+        description: "Enable offline message storage"
+      prosody_registration_enable:
+        type: "bool"
+        default: false
+        description: "Enable user registration"
+      prosody_anonymous_enable:
+        type: "bool"
+        default: false
+        description: "Enable anonymous authentication"
+      prosody_sasl_enable:
+        type: "bool"
+        default: true
+        description: "Enable SASL authentication"
+      prosody_tls_enable:
+        type: "bool"
+        default: true
+        description: "Enable TLS/SSL for client connections"
+      prosody_s2s_tls_enable:
+        type: "bool"
+        default: true
+        description: "Enable TLS/SSL for server-to-server connections"
+      prosody_compression_enable:
+        type: "bool"
+        default: false
+        description: "Enable compression"
+      prosody_logging_enable:
+        type: "bool"
+        default: true
+        description: "Enable logging"
+      prosody_log_level:
+        type: "str"
+        default: "info"
+        choices: ["debug", "info", "warn", "error"]
+        description: "Log level"
+      prosody_daemon_enable:
+        type: "bool"
+        default: true
+        description: "Enable daemon mode"
+      prosody_user:
+        type: "str"
+        default: "prosody"
+        description: "User to run prosody as"
+      prosody_group:
+        type: "str"
+        default: "prosody"
+        description: "Group to run prosody as"
+      prosody_data_directory:
+        type: "str"
+        default: "/var/lib/prosody"
+        description: "Data directory for prosody"
+      prosody_log_directory:
+        type: "str"
+        default: "/var/log/prosody"
+        description: "Log directory for prosody"
+      prosody_config_directory:
+        type: "str"
+        default: "/etc/prosody"
+        description: "Configuration directory for prosody"
+      prosody_additional_modules:
+        type: "list"
+        elements: "str"
+        default: []
+        description: "Additional modules to enable"
+      prosody_custom_config:
+        type: "dict"
+        default: {}
+        description: "Custom configuration options (key-value pairs)"
+      prosody_vhosts:
+        type: "list"
+        elements: "dict"
+        default: []
+        description: "Virtual hosts configuration"
+      prosody_components:
+        type: "list"
+        elements: "dict"
+        default: []
+        description: "Component configurations"
+      prosody_muc_rooms:
+        type: "list"
+        elements: "dict"
+        default: []
+        description: "MUC room configurations"

@@ -19,7 +19,22 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 
   roles:
     - role: robertdebock.roles.backup
-      backup_cleanup: false
+      # backup_cleanup: false
+      # backup_directory: backups
+      # backup_remote_directory: /data
+      # backup_timestamp: "{{ ansible_date_time.date }}"
+      # backup_format: gz
+      # backup_objects:
+      #   - name: home
+      #     type: directory
+      #     source: /home
+      #   - name: test_db
+      #     type: mysql
+      #     source: test_db
+      #     format: zip
+      #   - name: test_db
+      #     type: postgres
+      #     source: test_db
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-backup/blob/master/molecule/default/prepare.yml):
@@ -69,7 +84,7 @@ backup_cleanup: true
 # What timestamp format to use when saving files.
 backup_timestamp: "{{ ansible_date_time.date }}"
 
-# What compression type to use, choose from bz2, tar, xz or zip
+# What compression type to use, choose from bz2, gz, tar, xz and zip.
 backup_format: zip
 
 backup_objects:
@@ -111,7 +126,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|9|
 |[Debian](https://hub.docker.com/r/robertdebock/debian)|all|
 |[Fedora](https://hub.docker.com/r/robertdebock/fedora)|all|
-|[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|all|
+|[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|noble, jammy|
 
 The minimum version of Ansible required is 2.12, tests have been done to:
 

@@ -45,7 +45,7 @@
         state: present
       register: zabbix_repository_install_dnf_yum
       when:
-        - ansible_pkg_mgr in [ "dnf", "yum" ]
+        - ansible_pkg_mgr in [ "dnf", "yum", "dnf5" ]
 
     - name: Install (apt) repository
       ansible.builtin.apt:
@@ -69,7 +69,7 @@
       ansible.builtin.rpm_key:
         key: "https://repo.zabbix.com/zabbix-official-repo.key"
       when:
-        - ansible_pkg_mgr in [ "dnf", "yum", "zypper" ]
+        - ansible_pkg_mgr in [ "dnf", "yum", "zypper", "dnf5" ]
 
 - name: Fail when yum/dnf, apt and zypper are skipped
   ansible.builtin.fail:

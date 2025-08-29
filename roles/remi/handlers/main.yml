@@ -6,7 +6,7 @@
     cmd: dnf --assumeyes module reset php
   changed_when: true
   when:
-    - ansible_pkg_mgr == "dnf"
+    - ansible_pkg_mgr in [ "dnf", "dnf5" ]
 
 - name: Enable repository
   ansible.builtin.command:

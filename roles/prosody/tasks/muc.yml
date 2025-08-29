@@ -1,0 +1,15 @@
+---
+# MUC configuration for prosody
+
+- name: muc | Configure MUC rooms
+  ansible.builtin.template:
+    src: muc.conf.j2
+    dest: "{{ prosody_config_directory }}/conf.d/muc.cfg.lua"
+    owner: "{{ prosody_user }}"
+    group: "{{ prosody_group }}"
+    mode: "0644"
+  when:
+    - prosody_muc_rooms is defined
+  notify:
+    - Validate prosody configuration
+    - Restart prosody

@@ -19,6 +19,15 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 
   roles:
     - role: robertdebock.roles.restore
+      restore_mysql_username: restore
+      restore_mysql_password: rest0re
+      restore_objects:
+        - name: home
+          type: directory
+          destination: /home
+        - name: test_db
+          type: mysql
+          destination: test_db
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-restore/blob/master/molecule/default/prepare.yml):

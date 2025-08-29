@@ -28,7 +28,7 @@
     dest: /etc/yum.repos.d/docker_ce.repo
     mode: "0640"
   when:
-    - ansible_pkg_mgr in [ "dnf", "yum" ]
+    - ansible_pkg_mgr in [ "dnf", "yum", "dnf5" ]
 
 - name: Install docker_ce packages
   ansible.builtin.package:

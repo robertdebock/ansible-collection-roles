@@ -86,10 +86,12 @@ httpd_config_dest: "{{ _httpd_config_dest[ansible_os_family] }}"
 _httpd_vhosts_directory:
   default: "{{ httpd_server_root }}/conf.d"
   Alpine: "{{ httpd_server_root }}/conf.d"
-  Debian: "{{ httpd_server_root }}/sites-enabled"
+  Debian: "{{ httpd_server_root }}/sites-available"
   Suse: "{{ httpd_server_root }}/conf.d"
 
 httpd_vhosts_directory: "{{ _httpd_vhosts_directory[ansible_os_family] | default(_httpd_vhosts_directory['default']) }}"
+
+httpd_vhosts_enabled_directory: "{{ httpd_server_root }}/sites-enabled"
 
 # Some distributions have the "Listen" parameters somewhere else.
 _httpd_ports_conf:

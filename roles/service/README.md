@@ -69,6 +69,12 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
           description: Service with environmentfile
           start_command: "{{ service_test_command }} 921600"
           environmentfile: /environmentfile.txt
+        - name: reload-service
+          description: Service with reload command
+          start_command: "{{ service_test_command }} 1843200"
+          reload_command: "kill -HUP $MAINPID"
+          state: started
+          enabled: true
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-service/blob/master/molecule/default/prepare.yml):
@@ -125,6 +131,9 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 # - after: Start after the mentioned service.
 # - restart_mode: The mode to use, for example "always".
 # - restart_seconds: The time to allow restart to finish.
+# - reload_command: Custom command to reload the service configuration.
+#   This is useful for services that support configuration reloading
+#   without a full restart, i.e. "kill -HUP $MAINPID"
 service_list: []
 ```
 
